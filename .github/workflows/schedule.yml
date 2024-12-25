@@ -31,7 +31,9 @@ jobs:
       - name: Run npm script
         env:
           BASE_URL: ${{ vars.BASE_URL }}
-        run: npm run save
+        run: |
+          echo "BASE_URL is $BASE_URL"
+          npm run save
 
       # 提交更改
       - name: Commit changes
