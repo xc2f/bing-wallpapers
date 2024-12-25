@@ -1,0 +1,34 @@
+{
+  "mediaContents": [
+    {
+      "ImageContent": {
+        "Description": "The dazzling Lakes of Covadonga, nestled in the heart of the towering Picos de Europa mountain range in Asturias, northern Spain, is an iconic tourist destination, particularly captivating in winter. The sight of these lakes draped in a blanket of snow and surrounded by majestic mountains creates a breathtaking natural spectacle that fascinates and attracts visitors from all over. In addition to their stunning beauty, the lakes hold deep historical significance. Nearby lies the emblematic Cave of Covadonga, the site of the renowned Battle of 722, a milestone in the Reconquista. This corner of Asturias is the perfect place to immerse yourself in both nature and history.",
+        "Image": {
+          "Url": "/th?id=OHR.CovadongaWinter_ROW6306600418_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CovadongaWinter_ROW6306600418_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lakes of Covadonga, Asturias, Spain",
+        "Copyright": "© Carlos Fernandez/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20241225_CovadongaWinter\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lakes+of+Covadonga&form=hpcapt&filters=HpDate:\"20241225_0800\"",
+        "TriviaId": "HPQuiz_20241225_CovadongaWinter"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20241225_0800",
+      "FullDateString": "Dec 25, 2024"
+    }
+  ]
+}
