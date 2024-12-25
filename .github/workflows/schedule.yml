@@ -29,6 +29,8 @@ jobs:
 
       # 执行 npm run save
       - name: Run npm script
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
         run: npm run save
 
       # 提交更改
