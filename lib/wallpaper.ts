@@ -2,8 +2,9 @@
 import request from "./request"
 import * as cheerio from "cheerio"
 import { write, read } from "./db"
+import "dotenv/config"
 
-const BASE_URL = "https://www.bing.com/"
+const BASE_URL = process.env.BASE_URL
 
 // 从字符串中提取 `MediaContents` 对象
 function extractWallpapersFromData(htmlContent: string): any[] {
