@@ -5,6 +5,9 @@ on:
     - cron: '0 1 * * *'  # 每天凌晨1点执行 (UTC)
   workflow_dispatch:  # 允许手动触发
 
+permissions:
+  contents: write  # 赋予推送权限
+
 jobs:
   run-npm-script:
     runs-on: ubuntu-latest
