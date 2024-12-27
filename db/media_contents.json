@@ -29,6 +29,36 @@
       "VideoContent": null,
       "Ssd": "20241225_0800",
       "FullDateString": "Dec 25, 2024"
+    },
+    {
+      "ImageContent": {
+        "Description": "As the last notes of Christmas carols still linger in the air, let's visit the harbour of Mousehole, a fishing village in Cornwall, England, to keep the merriment going. Featured in today's image, Mousehole harbour is known for its Christmas illuminations. The Mousehole lights were first lit in the early 1960s, thanks to local artist Joan Gillchrest. A few humble strings of lights soon turned into a full-blown spectacle, growing over the years to include iconic scenes, nautical motifs and Cornish themes. Today, the lights, switched on from December until early January, span the entire harbour, wrapping buildings, boats and even the water's edge in a soft glow.",
+        "Image": {
+          "Url": "/th?id=OHR.MouseholeXmas_ROW5799394609_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MouseholeXmas_ROW5799394609_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Christmas lights at Mousehole harbour, Cornwall, England",
+        "Copyright": "© ianwool/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20241226_MouseholeXmas\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cornwall+England&form=hpcapt&filters=HpDate:\"20241226_0800\"",
+        "TriviaId": "HPQuiz_20241226_MouseholeXmas"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20241226_0800",
+      "FullDateString": "Dec 26, 2024"
     }
   ]
 }
