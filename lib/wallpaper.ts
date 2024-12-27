@@ -2,6 +2,7 @@
 import request from "./request"
 import * as cheerio from "cheerio"
 import { write, read } from "./db"
+import { write as write_low } from "./db_low"
 import "dotenv/config"
 
 const BASE_URL = process.env.BASE_URL
@@ -42,7 +43,7 @@ const extractWallpapersFromResponse = (htmlContent: string): any[] => {
 const fetchWallpapers = async (): Promise<any[] | null> => {
   try {
     // 请求目标网站
-    const response = await request.get(BASE_URL, {
+    const response = await request.get(BASE_URL as string, {
       params: {
         setlang: "en",
         cc: "hk",
@@ -59,8 +60,12 @@ const fetchWallpapers = async (): Promise<any[] | null> => {
 async function saveWallpapers() {
   const wallpapers = await fetchWallpapers()
   if (wallpapers && wallpapers.length > 0) {
+    console.log("sqlite写入开始...")
     await write(wallpapers)
-    console.log("操作成功！")
+    console.log("sqlite写入完成！")
+    console.log("lowdb写入开始...")
+    await write_low(wallpapers)
+    console.log("lowdb写入完成！")
   } else {
     console.log("没有找到可保存的壁纸数据。")
   }
