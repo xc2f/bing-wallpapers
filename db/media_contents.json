@@ -59,6 +59,36 @@
       "VideoContent": null,
       "Ssd": "20241226_0800",
       "FullDateString": "Dec 26, 2024"
+    },
+    {
+      "ImageContent": {
+        "Description": "Lake Bled in Slovenia gets plenty of attention in summer, but winter? That's when things slow down in the best way. The lake's emerald waters take on a softer tone, and Bled Island, with its quaint church, looks straight out of a winter fairytale, as seen in today's image. This over 2-kilometre lake, surrounded by the snow-dusted Julian Alps, was formed over 14,000 years ago through glacial and tectonic activity. The first signs of settlement on Bled Island date back to the New Stone Age (10,000 BCE to 3,000 BCE). Additionally, archaeologists uncovered an Early Medieval graveyard here from the 9th century CE. Today, it houses the Church of the Assumption—built in its current form near the end of the 17th century—where visitors ring the 'wishing bell' for good luck.",
+        "Image": {
+          "Url": "/th?id=OHR.LakeBledSnow_ROW6189813176_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LakeBledSnow_ROW6189813176_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lake Bled, Slovenia",
+        "Copyright": "© Kesu01/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20241227_LakeBledSnow\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lake+Bled+Slovenia&form=hpcapt&filters=HpDate:\"20241227_0800\"",
+        "TriviaId": "HPQuiz_20241227_LakeBledSnow"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20241227_0800",
+      "FullDateString": "Dec 27, 2024"
     }
   ]
 }
