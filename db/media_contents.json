@@ -89,6 +89,36 @@
       "VideoContent": null,
       "Ssd": "20241227_0800",
       "FullDateString": "Dec 27, 2024"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image shows a green sea turtle swimming in the waters off New Caledonia in the southwest Pacific Ocean. Found along the coastlines of over 140 countries, they nest in more than 80 countries year-round. Despite their size and strength, they face significant challenges, including hunting, boat collisions and entanglement in fishing nets. In the image, the turtle is gliding over staghorn coral, a threatened species of marine invertebrate. This coral can grow to over 1 metre and is crucial to marine ecosystems. Thanks to its rapid growth, it acts as a marine nursery for juvenile fish, as well as providing buffer zones against erosion and storms.",
+        "Image": {
+          "Url": "/th?id=OHR.CoralTurtle_ROW9351762717_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CoralTurtle_ROW9351762717_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A green sea turtle swims in the Pacific Ocean near the French overseas territory of New Caledonia",
+        "Copyright": "© Damsea/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20241228_CoralTurtle\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=green+sea+turtle&form=hpcapt&filters=HpDate:\"20241228_0800\"",
+        "TriviaId": "HPQuiz_20241228_CoralTurtle"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20241228_0800",
+      "FullDateString": "Dec 28, 2024"
     }
   ]
 }
