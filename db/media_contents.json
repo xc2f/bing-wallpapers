@@ -179,6 +179,36 @@
       "VideoContent": null,
       "Ssd": "20241230_0800",
       "FullDateString": "Dec 30, 2024"
+    },
+    {
+      "ImageContent": {
+        "Description": "New Year's Eve, also known as Old Year's Day, is celebrated around the world with revelry, fireworks and for some, religious and cultural observances. Many countries celebrate with foods symbolic of prosperity, long life and good fortune for the coming year, and many people sing Scottish folk song 'Auld Lang Syne' at the stroke of midnight to remember old friends and past experiences. The new year is often personified as a baby, a tradition that dates back to ancient Greeks, often paired with an old man who represents the previous year.",
+        "Image": {
+          "Url": "/th?id=OHR.CANYE24_ROW0206031786_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CANYE24_ROW0206031786_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Fireworks over Parliament Hill, Ottawa, Canada",
+        "Copyright": "© naibank/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20241231_CANYE24\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Parliament+Hill%2c+Ottawa&form=hpcapt&filters=HpDate:\"20241231_0800\"",
+        "TriviaId": "HPQuiz_20241231_CANYE24"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20241231_0800",
+      "FullDateString": "Dec 31, 2024"
     }
   ]
 }
