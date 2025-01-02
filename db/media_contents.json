@@ -209,6 +209,36 @@
       "VideoContent": null,
       "Ssd": "20241231_0800",
       "FullDateString": "Dec 31, 2024"
+    },
+    {
+      "ImageContent": {
+        "Description": "Humans have celebrated the new year since at least 2000 BCE, but various cultures have chosen different days coinciding with equinoxes or lunar cycles. The Romans established January 1 as the beginning of the year in 153 BCE, but this fell out of favour throughout Europe during the medieval era. Since 1582 and the widespread adoption of the Gregorian calendar, however, much of the world now celebrates the new year on the first day of January. In addition to watching fireworks, drinking champagne and making resolutions in the wee hours of the morning, other global traditions include making noise, eating lucky foods and giving gifts.",
+        "Image": {
+          "Url": "/th?id=OHR.PolarBearSwim_ROW0440567720_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PolarBearSwim_ROW0440567720_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Polar bears at play in the Arctic",
+        "Copyright": "© Ondrej Prosicky/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250101_PolarBearSwim\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=polar+bear&form=hpcapt&filters=HpDate:\"20250101_0800\"",
+        "TriviaId": "HPQuiz_20250101_PolarBearSwim"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250101_0800",
+      "FullDateString": "Jan 1, 2025"
     }
   ]
 }
