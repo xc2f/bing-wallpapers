@@ -269,6 +269,36 @@
       "VideoContent": null,
       "Ssd": "20250102_0800",
       "FullDateString": "Jan 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today, we are at Radcliffe Camera, with the magnificent All Souls College standing in the background, both iconic landmarks of the University of Oxford, England. The Radcliffe Camera, fondly referred to as the 'Rad Cam' or 'The Camera,' is an architectural gem that was built between 1737 and 1749. Designed in Baroque style by James Gibbs, it originally served as the Radcliffe Science Library. Its unique circular design and prominent location make it a defining feature of Oxford's skyline and a beloved symbol of the university.",
+        "Image": {
+          "Url": "/th?id=OHR.TolkienOxford_ROW0329962791_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TolkienOxford_ROW0329962791_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Radcliffe Camera and All Souls College, University of Oxford, England",
+        "Copyright": "© atiger/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250103_TolkienOxford\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=University+of+Oxford&form=hpcapt&filters=HpDate:\"20250103_0800\"",
+        "TriviaId": "HPQuiz_20250103_TolkienOxford"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250103_0800",
+      "FullDateString": "Jan 3, 2025"
     }
   ]
 }
