@@ -299,6 +299,36 @@
       "VideoContent": null,
       "Ssd": "20250103_0800",
       "FullDateString": "Jan 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Welcome to a spot where rivers meet borders in the most stunning way: Bản Giốc – Detian Falls, featured in today's image. Tucked between the karst hills of Daxin County in China and Trùng Khánh district in Vietnam, these falls tumble along the Quây Sơn River. Over 28 metres tall and 298 metres wide, it holds the distinction of being the widest waterfall in Vietnam. Located just 272 kilometres north of Hanoi, this waterfall has gradually worn away its crest over the years, inching upstream. For most of the year, they flow as two distinct cascades, but come summer, when the rains swell the river, they merge into one big fall.",
+        "Image": {
+          "Url": "/th?id=OHR.VietnamFalls_ROW0032978772_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.VietnamFalls_ROW0032978772_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Bản Giốc – Detian Falls on the Quây Sơn River, Vietnam",
+        "Copyright": "© Shane P. White/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250104_VietnamFalls\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ban+Gioc-Detian+Falls&form=hpcapt&filters=HpDate:\"20250104_0800\"",
+        "TriviaId": "HPQuiz_20250104_VietnamFalls"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250104_0800",
+      "FullDateString": "Jan 4, 2025"
     }
   ]
 }
