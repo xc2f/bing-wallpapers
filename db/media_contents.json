@@ -389,6 +389,36 @@
       "VideoContent": null,
       "Ssd": "20250106_0800",
       "FullDateString": "Jan 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Although rocks are common, few of us take the time to consider how amazing they are. Forged in volcanoes or moulded by millennia of pressure, these solid masses of minerals hold the key to understanding how our planet formed. Rocks can also contain fossils, the remnants of long-extinct organisms, which give scientists clues about what creatures and plants have lived on Earth during its 4.5-billion-year history.",
+        "Image": {
+          "Url": "/th?id=OHR.BouldersNZ_ROW7357113464_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BouldersNZ_ROW7357113464_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Moeraki Boulders, South Island, New Zealand",
+        "Copyright": "© Douglas Pearson/eStock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250107_BouldersNZ\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Moeraki+Boulders&form=hpcapt&filters=HpDate:\"20250107_0800\"",
+        "TriviaId": "HPQuiz_20250107_BouldersNZ"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250107_0800",
+      "FullDateString": "Jan 7, 2025"
     }
   ]
 }
