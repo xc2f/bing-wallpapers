@@ -419,6 +419,36 @@
       "VideoContent": null,
       "Ssd": "20250107_0800",
       "FullDateString": "Jan 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Picture a sea of shifting sand dunes glowing orange in the sunrise, stretching as far as the eye can see. Welcome to the Namib desert, spanning thousands of kilometres across Namibia. Estimated to be 55 million years old, it is believed to be the oldest desert in the world. It also boasts some of the tallest sand dunes on Earth, including the famous 'Big Daddy,' which towers over 1,066 feet; Dune 7, the highest dune in Namibia at more than 380 metres; and Dune 45, which, at roughly 170 metres, is a favourite among photographers.",
+        "Image": {
+          "Url": "/th?id=OHR.NamibiaDunes_ROW6587653838_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NamibiaDunes_ROW6587653838_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Sossusvlei sand dunes, Namib desert, Namibia",
+        "Copyright": "© Airpano/Amazing Aerial Agency",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250109_NamibiaDunes\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Namib+desert&form=hpcapt&filters=HpDate:\"20250109_0800\"",
+        "TriviaId": "HPQuiz_20250109_NamibiaDunes"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250109_0800",
+      "FullDateString": "Jan 9, 2025"
     }
   ]
 }
