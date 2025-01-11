@@ -449,6 +449,36 @@
       "VideoContent": null,
       "Ssd": "20250109_0800",
       "FullDateString": "Jan 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Ever heard of frozen bubbles? Abraham Lake in Alberta, Canada, has them during the winter, and they're not just beautiful—they're science in action. Created in 1972, Abraham Lake is a man-made reservoir that spans more than 5,173 hectares along the North Saskatchewan River. Thanks to glacier-fed waters from the Rocky Mountains, the lake stays transparent even in the coldest months. The glacial meltwater carries fine sediment that scatters sunlight, while natural filtration through rocks keeps pollutants to a minimum.",
+        "Image": {
+          "Url": "/th?id=OHR.BubbleLake_ROW6430486602_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BubbleLake_ROW6430486602_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Abraham Lake, Alberta, Canada",
+        "Copyright": "© Basic Elements Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250110_BubbleLake\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Abraham+Lake+Alberta&form=hpcapt&filters=HpDate:\"20250110_0800\"",
+        "TriviaId": "HPQuiz_20250110_BubbleLake"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250110_0800",
+      "FullDateString": "Jan 10, 2025"
     }
   ]
 }
