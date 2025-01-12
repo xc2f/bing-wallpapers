@@ -479,6 +479,36 @@
       "VideoContent": null,
       "Ssd": "20250110_0800",
       "FullDateString": "Jan 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "An imperial city in northern central Morocco, Meknes is steeped in history. Once the capital of Morocco under Sultan Ismail Ibn Sharif of the Alawi dynasty in the 17th century, it's known for its massive walls, grand gates and structures built to last centuries. Meknes reflects the Moroccan style of architecture, with one of its most impressive landmarks being Heri es-Swani, seen in today's image.",
+        "Image": {
+          "Url": "/th?id=OHR.MeknesMorocco_ROW7997051695_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MeknesMorocco_ROW7997051695_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Heri es-Swani in Meknes, Morocco",
+        "Copyright": "© Calin Stan/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250111_MeknesMorocco\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Heri+es-Swani+Morocco&form=hpcapt&filters=HpDate:\"20250111_0800\"",
+        "TriviaId": "HPQuiz_20250111_MeknesMorocco"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250111_0800",
+      "FullDateString": "Jan 11, 2025"
     }
   ]
 }
