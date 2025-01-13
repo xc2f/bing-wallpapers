@@ -509,6 +509,36 @@
       "VideoContent": null,
       "Ssd": "20250111_0800",
       "FullDateString": "Jan 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Say hello to the crescent-tail bigeye, a fish as eye-catching as its name suggests. With large, wide eyes and a distinctive tail shaped like a crescent moon, it's hard to miss. Measuring 45 to 50 centimetres long, it has a sleek body and a protruding lower jaw with small conical teeth. Its eyes are adapted to the low-light conditions of deep waters, helping it spot prey and avoid predators. This fish mainly feeds on smaller fish, crustaceans and invertebrates, fuelling its active lifestyle as it patrols the reefs and hunts for food.",
+        "Image": {
+          "Url": "/th?id=OHR.CrescentTail_ROW9178057435_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CrescentTail_ROW9178057435_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Crescent-tail bigeye fish in the Great Barrier Reef, Australia",
+        "Copyright": "© Fred Bavendam/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250112_CrescentTail\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Crescent-tail+Bigeye&form=hpcapt&filters=HpDate:\"20250112_0800\"",
+        "TriviaId": "HPQuiz_20250112_CrescentTail"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250112_0800",
+      "FullDateString": "Jan 12, 2025"
     }
   ]
 }
