@@ -539,6 +539,36 @@
       "VideoContent": null,
       "Ssd": "20250112_0800",
       "FullDateString": "Jan 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Tŵr Mawr lighthouse, seen in today's image, isn't just a striking white tower on Ynys Llanddwyn in Wales, United Kingdom­­­­—it's got stories to tell. Built in 1873, this windmill-shaped beacon was designed to guide sailors through the tricky Menai Strait. Though it has been decomissioned, it remains a popular destination for visitors drawn to its rugged charm. Stading at 10 metres tall, Tŵr Mawr served alongside its smaller counterpart Tŵr Bach. Consider it an unsung hero of the 19th-century Welsh maritime life. As for Ynys Llanddwyn, it is not your average tidal island. The area is steeped in history—especially the legend of St. Dwynwen, the Welsh saint of love. People once visited the island seeking her blessings. You'll also find old pilot cottages and remnants of a life-saving station, all pointing to the island's long-standing link to the sea.",
+        "Image": {
+          "Url": "/th?id=OHR.CoastalWales_ROW9438791203_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CoastalWales_ROW9438791203_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cottage and Tŵr Mawr lighthouse, Ynys Llanddwyn, Wales, United Kingdom",
+        "Copyright": "© Westend61 on Offset/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250113_CoastalWales\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Twr+Mawr+lighthouse+Ynys+Llanddwyn&form=hpcapt&filters=HpDate:\"20250113_0800\"",
+        "TriviaId": "HPQuiz_20250113_CoastalWales"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250113_0800",
+      "FullDateString": "Jan 13, 2025"
     }
   ]
 }
