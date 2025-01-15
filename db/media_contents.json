@@ -569,6 +569,36 @@
       "VideoContent": null,
       "Ssd": "20250113_0800",
       "FullDateString": "Jan 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Zahara de la Sierra, a stunning whitewashed village in the hills of Cádiz, Spain, offers a perfect blend of history and nature in the south of the Iberian Peninsula. Perched on a rocky hilltop, the village seen in today's image overlooks the turquoise Zahara-El Gastor reservoir and the lush Sierra de Grazalema Natural Park, a UNESCO Biosphere Reserve since 1977. Its iconic Moorish castle ruins and the 15th-century tower reflect its history as a medieval fortress. Stroll through narrow streets lined with flower-filled balconies, visit the picturesque church of Santa María de la Mesa, or simply relax and take in the breathtaking views. Zahara is also a gateway to adventure—activities like hiking, cycling and kayaking are only a little of what the village has to offer.",
+        "Image": {
+          "Url": "/th?id=OHR.CadizSpain_ROW9720255243_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CadizSpain_ROW9720255243_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Zahara de la Sierra, Cadiz, Spain",
+        "Copyright": "© SEN LI/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250114_CadizSpain\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Andalusia&form=hpcapt&filters=HpDate:\"20250114_0800\"",
+        "TriviaId": "HPQuiz_20250114_CadizSpain"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250114_0800",
+      "FullDateString": "Jan 14, 2025"
     }
   ]
 }
