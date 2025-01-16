@@ -599,6 +599,36 @@
       "VideoContent": null,
       "Ssd": "20250114_0800",
       "FullDateString": "Jan 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Pointe du Diable, on the island of Réunion, is a striking intersection of nature's power and mystery. Formed 200,000 years ago by lava flows from the Piton des Neiges, this basaltic peninsula juts majestically into the Indian Ocean. On one side lies Petite Baie, once a haven for surfers, its shores still echoing tales of a time when humans and the ocean coexisted in harmony—until shark attacks imposed a solemn stillness. On the other side is a pebble beach, where the unrelenting waves sculpt the landscape. Here, the salty spray carried by the wind and the thunder of waves crashing against cliffs serve as constant reminders of nature's raw force.",
+        "Image": {
+          "Url": "/th?id=OHR.PointeDiable_ROW0222638036_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PointeDiable_ROW0222638036_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Pointe du Diable, Saint-Pierre, Réunion Island",
+        "Copyright": "© MONTICO Lionel/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250115_PointeDiable\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Reunion+Island&form=hpcapt&filters=HpDate:\"20250115_0800\"",
+        "TriviaId": "HPQuiz_20250115_PointeDiable"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250115_0800",
+      "FullDateString": "Jan 15, 2025"
     }
   ]
 }
