@@ -629,6 +629,36 @@
       "VideoContent": null,
       "Ssd": "20250115_0800",
       "FullDateString": "Jan 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Jagged pinnacles and spires, monoliths and unusual caves—welcome to Pinnacles National Park in central California, United States. It all began in 1908 when then-US President Theodore Roosevelt designated the area as a national monument. Later in 2013, Pinnacles earned its status as a national park. This land owes its formations to an ancient volcanic eruption that occurred 23 million years ago. The fiery beginnings made towering spires, cliffs and talus caves—created by falling boulders wedged into narrow canyons. Over millennia, tectonic forces shifted the landmass northward, leaving the park far from its volcanic birthplace. Talk about a journey!",
+        "Image": {
+          "Url": "/th?id=OHR.PinnaclesPeaks_ROW0453524201_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PinnaclesPeaks_ROW0453524201_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "High Peaks Trail at Pinnacles National Park, San Benito County, California, USA",
+        "Copyright": "© yhelfman/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250116_PinnaclesPeaks\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Pinnacles+National+Park&form=hpcapt&filters=HpDate:\"20250116_0800\"",
+        "TriviaId": "HPQuiz_20250116_PinnaclesPeaks"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250116_0800",
+      "FullDateString": "Jan 16, 2025"
     }
   ]
 }
