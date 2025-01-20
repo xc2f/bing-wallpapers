@@ -719,6 +719,36 @@
       "VideoContent": null,
       "Ssd": "20250118_0800",
       "FullDateString": "Jan 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Down 654 steps, perched perilously over the sea in Sardinia, Italy, you'll find a surprise waiting for you. Neptune's Grotto is a stunning stalactite cave that sits just over half a metre above sea level. First discovered by local fishermen in the 18th century, the grotto was named after the Roman god of the sea. The entire cave complex stretches on for around 4 kilometres, although visitors can only access about 300 metres of the total. Inside, there's a labyrinth of lit pathways winding past stalactite and stalagmite formations, leading to an over 100-metres-long saltwater lake.",
+        "Image": {
+          "Url": "/th?id=OHR.NeptunesGrotto_ROW1184653075_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NeptunesGrotto_ROW1184653075_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Neptune's Grotto, Sardinia, Italy",
+        "Copyright": "© Carlo Murenu/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250119_NeptunesGrotto\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Neptunes+Grotto&form=hpcapt&filters=HpDate:\"20250119_0800\"",
+        "TriviaId": "HPQuiz_20250119_NeptunesGrotto"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250119_0800",
+      "FullDateString": "Jan 19, 2025"
     }
   ]
 }
