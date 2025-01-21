@@ -749,6 +749,36 @@
       "VideoContent": null,
       "Ssd": "20250119_0800",
       "FullDateString": "Jan 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today we celebrate World Pizza Day, an important anniversary for pizza lovers around the world. That's why we are in Naples, the home of pizza. Although similar dishes existed in ancient times, the modern pizza has its roots in the heart of the capital of Campania, the city that gave birth to this dish in the 18th century, when tomatoes imported from America were combined with bread. Created in 1889 in honour of Queen Margherita of Savoy, the Pizza Margherita, with its ingredients reminiscent of the Italian flag—red tomatoes, white mozzarella and green basil—became a symbol of Italian conviviality, culture and tradition.",
+        "Image": {
+          "Url": "/th?id=OHR.NapoliPizza_ROW8840504063_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NapoliPizza_ROW8840504063_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Looking over the Gulf of Naples towards Mount Vesuvius, Italy",
+        "Copyright": "© ezypix/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250120_NapoliPizza\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Gulf+of+Naples&form=hpcapt&filters=HpDate:\"20250120_0800\"",
+        "TriviaId": "HPQuiz_20250120_NapoliPizza"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250120_0800",
+      "FullDateString": "Jan 20, 2025"
     }
   ]
 }
