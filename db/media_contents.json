@@ -779,6 +779,36 @@
       "VideoContent": null,
       "Ssd": "20250120_0800",
       "FullDateString": "Jan 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "What's that long, bushy tail scurrying across the branches? Chances are, it's a squirrel. From the tiny least pygmy squirrel—more than 13 centimetres long—to the Bhutan giant flying squirrel at more than one metres, these mammals come in all shapes and sizes.",
+        "Image": {
+          "Url": "/th?id=OHR.DutchSquirrel_ROW1439673577_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DutchSquirrel_ROW1439673577_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eurasian red squirrel with toadstool",
+        "Copyright": "© Edwin Giesbers/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250121_DutchSquirrel\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Eurasian+red+squirrel&form=hpcapt&filters=HpDate:\"20250121_0800\"",
+        "TriviaId": "HPQuiz_20250121_DutchSquirrel"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250121_0800",
+      "FullDateString": "Jan 21, 2025"
     }
   ]
 }
