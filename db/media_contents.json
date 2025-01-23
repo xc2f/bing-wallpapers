@@ -809,6 +809,36 @@
       "VideoContent": null,
       "Ssd": "20250121_0800",
       "FullDateString": "Jan 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Carved into rose-red cliffs, Petra and its crown jewel, Ad-Deir, or 'The Monastery,' feel like stepping into a real-life Indiana Jones adventure. Tucked in the heart of Jordan's arid desert landscapes, this ancient city once thrived as the capital of the Nabataean Kingdom in the 2nd century BCE. It was also a hub of the spice trade, connecting distant regions like China, Egypt, Greece and India. The city was abandoned for around 500 years before being rediscovered in 1812, earning it the 'Lost City' moniker.",
+        "Image": {
+          "Url": "/th?id=OHR.PetraMonastery_ROW1669102086_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PetraMonastery_ROW1669102086_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ad-Deir, Petra, Jordan",
+        "Copyright": "© Punnawit Suwuttananun/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250122_PetraMonastery\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ad-Deir+Petra&form=hpcapt&filters=HpDate:\"20250122_0800\"",
+        "TriviaId": "HPQuiz_20250122_PetraMonastery"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250122_0800",
+      "FullDateString": "Jan 22, 2025"
     }
   ]
 }
