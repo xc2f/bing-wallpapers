@@ -929,6 +929,36 @@
       "VideoContent": null,
       "Ssd": "20250125_0800",
       "FullDateString": "Jan 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Beech trees are pretty amazing. There are several species worldwide, but the European beech steals the spotlight in much of Europe. With its smooth grey bark, short trunk and sweeping branches, this tree is a standout in Belgium's forests, as shown in today's image. It grows in temperate regions and prefers well-drained, fertile soils, taking up to 30 years to mature. Not only do these 48-metres-tall trees dominate the landscape, but their wood is also used to make some of the sturdiest furniture, flooring and even kitchen tools.",
+        "Image": {
+          "Url": "/th?id=OHR.FrostedBeech_ROW4515394331_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FrostedBeech_ROW4515394331_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "European beech forest in Belgium",
+        "Copyright": "© Philippe Moes/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250126_FrostedBeech\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=European+beech&form=hpcapt&filters=HpDate:\"20250126_0800\"",
+        "TriviaId": "HPQuiz_20250126_FrostedBeech"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250126_0800",
+      "FullDateString": "Jan 26, 2025"
     }
   ]
 }
