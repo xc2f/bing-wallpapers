@@ -959,6 +959,36 @@
       "VideoContent": null,
       "Ssd": "20250126_0800",
       "FullDateString": "Jan 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Carved by the Colorado River, nearly 2 billion years of Earth's history are exposed in the layers of the Grand Canyon. While geologists continue to debate parts of the formation story of the canyon, recent studies suggest the river carved its path through the region about 5 to 6 million years ago. Since then, the river has been deepening and widening the canyon while sculpting its dramatic geographic features.",
+        "Image": {
+          "Url": "/th?id=OHR.CanyonSnow_ROW4589545580_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CanyonSnow_ROW4589545580_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Zoroaster Temple, Grand Canyon National Park, Arizona, USA",
+        "Copyright": "© Nick Lake/Tandem Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250127_CanyonSnow\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Zoroaster+Temple&form=hpcapt&filters=HpDate:\"20250127_0800\"",
+        "TriviaId": "HPQuiz_20250127_CanyonSnow"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250127_0800",
+      "FullDateString": "Jan 27, 2025"
     }
   ]
 }
