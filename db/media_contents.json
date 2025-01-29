@@ -989,6 +989,36 @@
       "VideoContent": null,
       "Ssd": "20250127_0800",
       "FullDateString": "Jan 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The short-eared owl, featured in today's image, is a grassland-dwelling member of the owl family. Found on all continents except Antarctica and Australia, it's one of the most widely distributed bird species. This raptor belongs to the genus Asio, whose members are characterised by feather tufts ('ears') on their head. The short-eared owl only reveals its tufts when feeling defensive.",
+        "Image": {
+          "Url": "/th?id=OHR.FlyingOwl_ROW4662526865_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FlyingOwl_ROW4662526865_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Short-eared owl hunting in heavy snow",
+        "Copyright": "© Dilshan Muthalib/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250128_FlyingOwl\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=short+eared+owl&form=hpcapt&filters=HpDate:\"20250128_0800\"",
+        "TriviaId": "HPQuiz_20250128_FlyingOwl"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250128_0800",
+      "FullDateString": "Jan 28, 2025"
     }
   ]
 }
