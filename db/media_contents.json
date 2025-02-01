@@ -1079,6 +1079,36 @@
       "VideoContent": null,
       "Ssd": "20250130_0800",
       "FullDateString": "Jan 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In today's picture, we see two plains zebras—which are anything but plain—standing gracefully at sunrise in Mokala National Park, South Africa. These striking animals, known for their unique black and white patterns, are mostly found in the African savannah, stretching from Kenya to South Africa. These stripes aren't just for show—they act as camouflage against predators by disrupting the outline of individual zebras within a herd. When it comes to food, they are not fuddy. Grass is their main dish, but they'll munch on leaves and barks if that's what's on the menu. They have a tough digestive system that lets them make the most of whatever they find, even if it's not the freshest. Plains zebras live in family groups, usually led by a dominant stallion, with mares and their foals forming the core of the herd.",
+        "Image": {
+          "Url": "/th?id=OHR.PlainsZebra_ROW4908645936_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PlainsZebra_ROW4908645936_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Plains zebras at sunrise, Mokala National Park, South Africa",
+        "Copyright": "© EcoPrint/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250131_PlainsZebra\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Plains+zebra&form=hpcapt&filters=HpDate:\"20250131_0800\"",
+        "TriviaId": "HPQuiz_20250131_PlainsZebra"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250131_0800",
+      "FullDateString": "Jan 31, 2025"
     }
   ]
 }
