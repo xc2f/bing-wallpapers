@@ -1109,6 +1109,36 @@
       "VideoContent": null,
       "Ssd": "20250131_0800",
       "FullDateString": "Jan 31, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Königstein Fortress, one of the largest mountain fortresses in Europe, rises high in the Elbe Sandstone Mountains of Saxon Switzerland. The 'Burgrave Gebhard vom Stein' is first mentioned in a document of King Wenceslas I of Bohemia in 1233, presumably referring to Königstein. At that time the area belonged to the Kingdom of Bohemia. In the 16th century, the castle underwent significant expansion to become a Saxon state fortress, with the start of construction of the imposing 152.5-metre-deep castle well between 1566 and 1569 being an important milestone. It is still one of the deepest historic wells in Germany.",
+        "Image": {
+          "Url": "/th?id=OHR.FestungKonigsteinElbsandsteingebirge_ROW4984505024_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FestungKonigsteinElbsandsteingebirge_ROW4984505024_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Königstein Fortress, Saxon Switzerland, Germany",
+        "Copyright": "© Bildagentur-online/Exss/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250201_FestungKonigsteinElbsandsteingebirge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Konigstein+Fortress+Saxon+Switzerland&form=hpcapt&filters=HpDate:\"20250201_0800\"",
+        "TriviaId": "HPQuiz_20250201_FestungKonigsteinElbsandsteingebirge"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250201_0800",
+      "FullDateString": "Feb 1, 2025"
     }
   ]
 }
