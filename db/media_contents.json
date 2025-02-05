@@ -1199,6 +1199,36 @@
       "VideoContent": null,
       "Ssd": "20250203_0800",
       "FullDateString": "Feb 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Two colossal stone hands cradle a shimmering, golden walkway, as though the mountains themselves are offering it to the sky. This is Cầu Vàng, or the Golden Bridge, a pedestrian bridge in the misty mountains near Da Nang in central Vietnam. Opened in 2018, the bridge quickly became a global sensation, captivating travellers with its unique design and awe-inspiring setting.",
+        "Image": {
+          "Url": "/th?id=OHR.GoldenBridge_ROW5205659206_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GoldenBridge_ROW5205659206_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Golden Bridge, Bà Nà Hills, Da Nang, Vietnam",
+        "Copyright": "© Hien Phung Thu/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250204_GoldenBridge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Golden+Bridge+Da+Nang&form=hpcapt&filters=HpDate:\"20250204_0800\"",
+        "TriviaId": "HPQuiz_20250204_GoldenBridge"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250204_0800",
+      "FullDateString": "Feb 4, 2025"
     }
   ]
 }
