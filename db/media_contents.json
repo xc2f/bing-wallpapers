@@ -1229,6 +1229,36 @@
       "VideoContent": null,
       "Ssd": "20250204_0800",
       "FullDateString": "Feb 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Being the 'black sheep' isn't always a bad thing—just ask the Scottish Blackface, seen here in Aberdeenshire, Scotland. With its striking dark features and a knack for thriving in places others wouldn't, this British breed has turned the idiom on its head. Far from an outcast, it's the backbone of Scotland's rural life and a true champion of the hills and moors. Interestingly, the Blackface sheep didn't originate in Scotland but south of the Anglo-Scottish border. The breed's history is fascinating, and varieties such as the large-framed Perth and the medium-framed Lanark types are found across the United Kingdom. Though it's the most common breed in the region, the Blackface sheep has spread across the world. Its coarse fleece is perfect for making durable products like carpets and tweeds—definitely not your average sweater material.",
+        "Image": {
+          "Url": "/th?id=OHR.ScottishSheep_ROW5260080843_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ScottishSheep_ROW5260080843_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Scottish Blackface sheep, Aberdeenshire, Scotland",
+        "Copyright": "© Mike Powles/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250205_ScottishSheep\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Scottish+Blackface&form=hpcapt&filters=HpDate:\"20250205_0800\"",
+        "TriviaId": "HPQuiz_20250205_ScottishSheep"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250205_0800",
+      "FullDateString": "Feb 5, 2025"
     }
   ]
 }
