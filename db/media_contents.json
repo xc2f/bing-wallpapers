@@ -1259,6 +1259,36 @@
       "VideoContent": null,
       "Ssd": "20250205_0800",
       "FullDateString": "Feb 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Welcome to the Archway Islands—a group of four rock stacks at Wharariki Beach in New Zealand. The islands are a result of wind and coastal erosion that have shaped the rocks into arches, caves and stacks. The rocks, which are around 55–65 million years old, are made of quartz- and feldspar-rich sandstones and pebbly conglomerates. Rising from the waters of the Tasman Sea, these rugged islets became well known around the world after they were featured in a Windows 10 desktop screensaver in 2015. At low tide, curious wanderers can explore caves and rock pools and often spot lounging seals.",
+        "Image": {
+          "Url": "/th?id=OHR.WhararikiBeach_ROW4180919774_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WhararikiBeach_ROW4180919774_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Archway Islands, Wharariki Beach, South Island, New Zealand",
+        "Copyright": "© Francesco Vaninetti/AWL/plainpicture",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250206_WhararikiBeach\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Archway+Islands&form=hpcapt&filters=HpDate:\"20250206_0800\"",
+        "TriviaId": "HPQuiz_20250206_WhararikiBeach"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250206_0800",
+      "FullDateString": "Feb 6, 2025"
     }
   ]
 }
