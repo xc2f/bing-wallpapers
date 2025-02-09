@@ -1319,6 +1319,36 @@
       "VideoContent": null,
       "Ssd": "20250207_0800",
       "FullDateString": "Feb 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Winter turns Mestia's medieval towers into icy fortresses. Perched 1,500 metres up in the Caucasus Mountains, Mestia is a charming highland town in northwest Georgia. The town is home to the Svans, a cultural and linguistic subgroup of Georgians. Despite its modest size, Mestia has been an essential hub of Georgian culture for centuries, dotted with the Svan defensive towers, seen in today's image. Most of these towers were constructed between the 9th and 12th centuries, a period often referred to as Georgia's Golden Age. However, their roots are believed to stretch even further back, possibly into prehistoric times. Built for both protection and shelter, these towers were not just fortresses but also integral parts of family homes, reflecting the region's history of resilience and self-sufficiency. Therefore, it isn't just a town; it's a living museum where history rises from these towers and echoes through the mountains.",
+        "Image": {
+          "Url": "/th?id=OHR.SnowySvaneti_ROW3815244842_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SnowySvaneti_ROW3815244842_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Medieval towers in Mestia, Upper Svaneti, Georgia",
+        "Copyright": "© photoaliona/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250208_SnowySvaneti\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mestia&form=hpcapt&filters=HpDate:\"20250208_0800\"",
+        "TriviaId": "HPQuiz_20250208_SnowySvaneti"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250208_0800",
+      "FullDateString": "Feb 8, 2025"
     }
   ]
 }
