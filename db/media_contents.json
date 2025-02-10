@@ -1349,6 +1349,36 @@
       "VideoContent": null,
       "Ssd": "20250208_0800",
       "FullDateString": "Feb 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If you're chasing sunsets and jaw-dropping views, come to Alstrom Point. Located in the United States, in southern Utah's Kane County, this spot in the Glen Canyon National Recreation Area stands at an impressive height of 1,428 metres. Made mostly of Entrada Sandstone, it has the same geological roots as nearby sites like Romana Mesa, its parent peak and Gunsight Butte, another sandstone summit to the east.",
+        "Image": {
+          "Url": "/th?id=OHR.AlstromPoint_ROW3881630966_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AlstromPoint_ROW3881630966_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Alstrom Point, Lake Powell, Utah, United States",
+        "Copyright": "© T.M. Schultze/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250209_AlstromPoint\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Alstrom+Point&form=hpcapt&filters=HpDate:\"20250209_0800\"",
+        "TriviaId": "HPQuiz_20250209_AlstromPoint"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250209_0800",
+      "FullDateString": "Feb 9, 2025"
     }
   ]
 }
