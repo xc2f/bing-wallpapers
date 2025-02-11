@@ -1379,6 +1379,36 @@
       "VideoContent": null,
       "Ssd": "20250209_0800",
       "FullDateString": "Feb 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features one of the simplest yet most essential inventions in human history: the umbrella, or parasol. Over 4,000 years ago, in ancient Egypt, Assyria and China, these foldable canopies were first used to shield people from the sun. It wasn't until the 17th century that the umbrella, as we know it today, gained popularity in Europe, initially as a luxury item primarily for women. Fast-forward a few centuries and these weather shields have become a staple in pop culture, too. Remember Mary Poppins with her iconic umbrella that helped her fly, or Rihanna's hit song 'Umbrella'?",
+        "Image": {
+          "Url": "/th?id=OHR.UmbrellaDay_ROW3953766438_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.UmbrellaDay_ROW3953766438_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Art installation of umbrellas, Borough Market, London, England",
+        "Copyright": "© Malcolm P Chapman/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250210_UmbrellaDay\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Borough+Market+London&form=hpcapt&filters=HpDate:\"20250210_0800\"",
+        "TriviaId": "HPQuiz_20250210_UmbrellaDay"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250210_0800",
+      "FullDateString": "Feb 10, 2025"
     }
   ]
 }
