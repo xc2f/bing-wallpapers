@@ -1439,6 +1439,36 @@
       "VideoContent": null,
       "Ssd": "20250211_0800",
       "FullDateString": "Feb 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Marine iguanas, seen in today's image, are fascinating creatures found exclusively on the Galápagos Islands in Ecuador. They weigh around 1.5 kilograms and can grow up to 1.5 metres in length. These reptiles are the only lizards in the world that forage in the sea, diving to graze on algae growing on submerged rocks. Researchers believe that both Galápagos land iguanas and marine iguanas evolved from a common ancestor that likely rafted from Central or South America. They've adapted in remarkable ways, from flattened tails for swimming to salt glands that allow them to expel seawater by sneezing.",
+        "Image": {
+          "Url": "/th?id=OHR.GalapagosIguana_ROW4125098914_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GalapagosIguana_ROW4125098914_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Marine iguanas, Galápagos Islands, Ecuador",
+        "Copyright": "© helovi/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250212_GalapagosIguana\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Marine+iguanas&form=hpcapt&filters=HpDate:\"20250212_0800\"",
+        "TriviaId": "HPQuiz_20250212_GalapagosIguana"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250212_0800",
+      "FullDateString": "Feb 12, 2025"
     }
   ]
 }
