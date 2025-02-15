@@ -1499,6 +1499,36 @@
       "VideoContent": null,
       "Ssd": "20250213_0800",
       "FullDateString": "Feb 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features a couple of Magellanic penguins, photographed holding flippers in the Falkland Islands. These penguins, found in coastal Patagonia, are known for their distinctive black and white bands and their loud, braying calls. They also mate with the same partner every year. They dig burrows near the coast to lay their eggs and raise their chicks. The male returns to burrows he used the year before and waits for his partner, who can recognise him by his voice alone. Their diet mainly consists of small fish, squid and krill. They can dive up to 50 metres depth to forage for food. In winter, they migrate north to warmer waters, sometimes reaching as far as southern Brazil. These penguins are highly social and often seen in large colonies, where they communicate with each other through their distinctive calls. Fun fact: Penguins can drink seawater because they have a special gland that filters out the salt!",
+        "Image": {
+          "Url": "/th?id=OHR.PenguinLove_ROW4247133496_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PenguinLove_ROW4247133496_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Two Magellanic penguins, Falkland Islands",
+        "Copyright": "© Vicki Jauron, Babylon and Beyond Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250214_PenguinLove\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Magellanic+penguins&form=hpcapt&filters=HpDate:\"20250214_0800\"",
+        "TriviaId": "HPQuiz_20250214_PenguinLove"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250214_0800",
+      "FullDateString": "Feb 14, 2025"
     }
   ]
 }
