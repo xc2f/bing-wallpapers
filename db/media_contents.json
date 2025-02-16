@@ -1529,6 +1529,36 @@
       "VideoContent": null,
       "Ssd": "20250214_0800",
       "FullDateString": "Feb 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Behold, the magic of the Misotsuchi Icicles in Chichibu, Japan! This breathtaking natural ice wall, over 30 metres wide and 10 metres tall, is formed by spring water freezing as it trickles down a rock face. The attraction, called 'Misotsuchi no Tsurara,' is only open from mid-January through mid-February and includes coloured lights after dark, creating a scene that feels straight out of a winter fairy tale.",
+        "Image": {
+          "Url": "/th?id=OHR.Misotsuchi2025_ROW4358740514_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.Misotsuchi2025_ROW4358740514_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Icicles of Misotsuchi, Chichibu, Japan",
+        "Copyright": "© watayu0821/shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250215_Misotsuchi2025\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Chichibu+Saitama+Japan&form=hpcapt&filters=HpDate:\"20250215_0800\"",
+        "TriviaId": "HPQuiz_20250215_Misotsuchi2025"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250215_0800",
+      "FullDateString": "Feb 15, 2025"
     }
   ]
 }
