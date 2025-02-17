@@ -1559,6 +1559,36 @@
       "VideoContent": null,
       "Ssd": "20250215_0800",
       "FullDateString": "Feb 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In today's image, we witness a humpback whale mother and calf in the waters of Tonga. Humpbacks can grow up to 12 metres long and weigh as much as 36,000 kilograms, approximately. They have a unique body shape with long flippers that can be up to one-third of their body length and special bumps called tubercles on their heads.",
+        "Image": {
+          "Url": "/th?id=OHR.HumpbackMother_ROW4438689523_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HumpbackMother_ROW4438689523_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Humpback whale mother and calf, Tonga",
+        "Copyright": "© Chase Dekker/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250216_HumpbackMother\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Humpback+whale+&form=hpcapt&filters=HpDate:\"20250216_0800\"",
+        "TriviaId": "HPQuiz_20250216_HumpbackMother"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250216_0800",
+      "FullDateString": "Feb 16, 2025"
     }
   ]
 }
