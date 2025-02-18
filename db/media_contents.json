@@ -1589,6 +1589,36 @@
       "VideoContent": null,
       "Ssd": "20250216_0800",
       "FullDateString": "Feb 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "For those who appreciate quiet escapes and unspoiled nature, Coll d'Ares in the Catalan Pyrenees is a perfect place to visit. Located between Molló in Catalonia's Ripollès region and Prats-de-Mollo-la-Preste in Occitania, this pass offers a breathtaking natural spectacle, especially in winter when its landscapes are blanketed in snow. This mountain pass has served as a key route for centuries, linking the regions of Catalonia and France. Historically, it was used by traders and travellers crossing the Pyrenees, adding to its charm as a place rich in stories.",
+        "Image": {
+          "Url": "/th?id=OHR.CatalanPyrenees_ROW4796947025_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CatalanPyrenees_ROW4796947025_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Coll d'Ares, Catalan Pyrenees",
+        "Copyright": "© CRISTIAN IONUT ZAHARIA/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250217_CatalanPyrenees\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Coll+d%27Ares&form=hpcapt&filters=HpDate:\"20250217_0800\"",
+        "TriviaId": "HPQuiz_20250217_CatalanPyrenees"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250217_0800",
+      "FullDateString": "Feb 17, 2025"
     }
   ]
 }
