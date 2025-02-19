@@ -1619,6 +1619,36 @@
       "VideoContent": null,
       "Ssd": "20250217_0800",
       "FullDateString": "Feb 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Great Blue Hole, found near the centre of Lighthouse Reef off the coast of Belize, is one of nature's most incredible creations. This massive marine sinkhole, 318 metres across and 124 metres deep, was formed during the last ice age when a limestone cave system collapsed and rising sea levels flooded the area, leaving behind this striking natural wonder.",
+        "Image": {
+          "Url": "/th?id=OHR.BlueBelize_ROW4613488745_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BlueBelize_ROW4613488745_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Great Blue Hole, Belize",
+        "Copyright": "© JamiesOnAMission/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250218_BlueBelize\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Great+Blue+Hole+Belize&form=hpcapt&filters=HpDate:\"20250218_0800\"",
+        "TriviaId": "HPQuiz_20250218_BlueBelize"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250218_0800",
+      "FullDateString": "Feb 18, 2025"
     }
   ]
 }
