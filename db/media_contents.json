@@ -1679,6 +1679,36 @@
       "VideoContent": null,
       "Ssd": "20250219_0800",
       "FullDateString": "Feb 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Throughout history, red deer have captured humanity's awe and respect. These creatures can be found across Europe, Asia, parts of North Africa and a few other regions. The stags have antlers that grow larger each year until maturity and are usually over 70 centimetres long, weighing around 1 kilogram. These antlers have long been a symbol of power and are the only mammal organ capable of complete regeneration. Females, or hinds, are slightly smaller and antler-free, as seen in today's image. Breeding season, known as the rut, is a time of dramatic display as males compete fiercely for mates through roaring and antler clashes. The cultural significance of red deer represents the natural cycle of life. Artistic depictions, from medieval manuscripts to modern sculptures, frequently highlight their grace and strength.",
+        "Image": {
+          "Url": "/th?id=OHR.CanadaDeer_ROW4993266615_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CanadaDeer_ROW4993266615_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red deer, Canada",
+        "Copyright": "© Delbars/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250220_CanadaDeer\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Red+deer&form=hpcapt&filters=HpDate:\"20250220_0800\"",
+        "TriviaId": "HPQuiz_20250220_CanadaDeer"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250220_0800",
+      "FullDateString": "Feb 20, 2025"
     }
   ]
 }
