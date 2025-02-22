@@ -1709,6 +1709,36 @@
       "VideoContent": null,
       "Ssd": "20250220_0800",
       "FullDateString": "Feb 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "From waterfalls to temples, Shivamogga, in the South Indian state of Karnataka, offers experiences waiting to be discovered. Steeped in timeless lore, the city is mentioned in the Ramayana and the Mahabharata, epics composed as poems and set in the ancient Hindu kingdoms of India. The region's name itself holds a spiritual significance, derived from the Sanskrit words 'Shiva-Mukha,' meaning the 'face of Shiva,' the Hindu god. It is home to several temples, including the Sharavati Temple, dedicated to Shiva and a temple in the Kodachadri hills that offers vistas of the Western Ghats mountain range.",
+        "Image": {
+          "Url": "/th?id=OHR.ChampakaSarasi_ROW1533931524_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ChampakaSarasi_ROW1533931524_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Champaka Sarasi pond near Shivamogga, Karnataka, India",
+        "Copyright": "© Amith Nag Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250221_ChampakaSarasi\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Shimoga&form=hpcapt&filters=HpDate:\"20250221_0800\"",
+        "TriviaId": "HPQuiz_20250221_ChampakaSarasi"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250221_0800",
+      "FullDateString": "Feb 21, 2025"
     }
   ]
 }
