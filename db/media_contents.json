@@ -1739,6 +1739,36 @@
       "VideoContent": null,
       "Ssd": "20250221_0800",
       "FullDateString": "Feb 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today we are at the Gateway National Park, which was established on February 22, 2018, in St. Louis, Missouri, United States. The park, which lies along a picturesque stretch of the Mississippi River, commemorates Thomas Jefferson's idea of a continental nation. At its heart stands the Gateway Arch, a breathtaking 192-metre-tall structure that has become the symbol of St. Louis. Constructed of stainless steel, it holds the title of the world's tallest arch and Missouri's tallest accessible structure. Finnish-American architect Eero Saarinen dreamed up the design back in 1947, and by October 28, 1965, his vision had been brought to life. The arch's futuristic design has long been viewed as a symbol of the automobile era, representing the modern, urban landscape and the promise of a technologically advanced future.",
+        "Image": {
+          "Url": "/th?id=OHR.StLouisArch_ROW2924911206_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.StLouisArch_ROW2924911206_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Gateway Arch and St. Louis, Missouri, USA",
+        "Copyright": "© f11photo/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250222_StLouisArch\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Gateway+Arch+National+Park&form=hpcapt&filters=HpDate:\"20250222_0800\"",
+        "TriviaId": "HPQuiz_20250222_StLouisArch"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250222_0800",
+      "FullDateString": "Feb 22, 2025"
     }
   ]
 }
