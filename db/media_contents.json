@@ -1769,6 +1769,36 @@
       "VideoContent": null,
       "Ssd": "20250222_0800",
       "FullDateString": "Feb 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nearly 100 kilometres southwest of Tokyo stands one of Japan's cultural icons: Mount Fuji. The country's tallest mountain rises more than 3,000 metres above the surrounding landscape, with its near-symmetrical cone covered in snow for nearly five months each year. For centuries, Fujisan—as it is known in Japanese—has been worshipped as a sacred mountain. In the Shinto faith, Fuji is deified as Asama no Okami and shrines dedicated to it are built within sight of the mountain. Mount Fuji is one of Japan's cherished 'Three Holy Mountains' along with Mount Tate and Mount Haku. In 2013, it was recognised as a UNESCO World Heritage Site, highlighting its cultural importance.",
+        "Image": {
+          "Url": "/th?id=OHR.MtFujiSunrise_ROW2950020869_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MtFujiSunrise_ROW2950020869_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mount Fuji at sunrise, Lake Kawaguchi, Japan",
+        "Copyright": "© Twenty47studio/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250223_MtFujiSunrise\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mount+Fuji&form=hpcapt&filters=HpDate:\"20250223_0800\"",
+        "TriviaId": "HPQuiz_20250223_MtFujiSunrise"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250223_0800",
+      "FullDateString": "Feb 23, 2025"
     }
   ]
 }
