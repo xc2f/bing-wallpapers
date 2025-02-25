@@ -1799,6 +1799,36 @@
       "VideoContent": null,
       "Ssd": "20250223_0800",
       "FullDateString": "Feb 23, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Prepare to be amazed by the giant cuttlefish, known for its mesmerising ability to transform its appearance in the blink of an eye. This cuttlefish is found in the temperate and subtropical waters of Australia, ranging from Brisbane in Queensland and Shark Bay in Western Australia to as far south as Tasmania.",
+        "Image": {
+          "Url": "/th?id=OHR.GiantCuttlefish_ROW2970851266_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GiantCuttlefish_ROW2970851266_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Group of giant cuttlefish in Spencer Gulf, off Whyalla, South Australia",
+        "Copyright": "© Gary Bell/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250224_GiantCuttlefish\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Giant+cuttlefish&form=hpcapt&filters=HpDate:\"20250224_0800\"",
+        "TriviaId": "HPQuiz_20250224_GiantCuttlefish"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250224_0800",
+      "FullDateString": "Feb 24, 2025"
     }
   ]
 }
