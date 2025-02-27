@@ -1859,6 +1859,36 @@
       "VideoContent": null,
       "Ssd": "20250225_0800",
       "FullDateString": "Feb 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Perched dramatically on a tidal islet in Loch Laich, Argyll, Castle Stalker is one of Scotland's most picturesque and well-preserved medieval tower houses. Built around the 1440s by the Stewarts of Appin, its history includes royal visits and even a drunken wager that briefly transferred ownership to Clan Campbell. Despite falling into disrepair by the 19th century, it was lovingly restored in the mid-20th century and is still privately owned today. Visitors can explore this historic site on selected guided tours during the summer.",
+        "Image": {
+          "Url": "/th?id=OHR.ArgyllStalker_ROW3019480631_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ArgyllStalker_ROW3019480631_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Castle Stalker on Loch Laich, Argyll, Scotland",
+        "Copyright": "© WLDavies/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250226_ArgyllStalker\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Castle+Stalker&form=hpcapt&filters=HpDate:\"20250226_0800\"",
+        "TriviaId": "HPQuiz_20250226_ArgyllStalker"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250226_0800",
+      "FullDateString": "Feb 26, 2025"
     }
   ]
 }
