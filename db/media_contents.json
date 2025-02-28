@@ -1889,6 +1889,36 @@
       "VideoContent": null,
       "Ssd": "20250226_0800",
       "FullDateString": "Feb 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Polar bears are native to the Arctic and can be found in Alaska, Russia, Greenland and Svalbard. They're also found in Canada—like the cub in today's image, photographed in Churchill, Manitoba. Polar bears spend over half of their time hunting for seals on the sea ice, although they usually catch just one or two for every 10 that they try to catch. Their reliance on sea ice for hunting means that they are highly vulnerable to climate change. Their fur isn't truly white; it's translucent, reflecting visible light and allowing them to blend seamlessly into their snowy environment. Sea ice is rapidly disappearing as the planet heats up, and polar bears are at risk of malnutrition and starvation as their hunting grounds vanish. Shrinking ice sheets also mean that these bears have to swim farther to find food, which depletes their energy reserves. Protecting polar bears means protecting their home—let's work together to slow the effects of climate change and safeguard their future.",
+        "Image": {
+          "Url": "/th?id=OHR.PolarCub_ROW4617288706_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PolarCub_ROW4617288706_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Polar bear cub, Churchill, Manitoba, Canada",
+        "Copyright": "© Eric Baccega/NPL/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250227_PolarCub\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Manitoba&form=hpcapt&filters=HpDate:\"20250227_0800\"",
+        "TriviaId": "HPQuiz_20250227_PolarCub"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250227_0800",
+      "FullDateString": "Feb 27, 2025"
     }
   ]
 }
