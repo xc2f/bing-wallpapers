@@ -1919,6 +1919,36 @@
       "VideoContent": null,
       "Ssd": "20250227_0800",
       "FullDateString": "Feb 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image takes us to Taktsang Palphug, also known as the Tiger's Nest, a Buddhist monastery and holy site perched 3,000 metres above sea level in Bhutan. Built around the Taktsang Senge Samdup cave in 1692, it is where Guru Padmasambhava, who introduced Vajrayana Buddhism to Bhutan, meditated and taught his students. According to legend, an emperor's former wife, out of devotion, transformed into a tigress and carried Guru Padmasambhava from Tibet to Taktsang in Bhutan. There, he meditated in a cave and emerged in eight incarnations, which is why it is known as the 'Tiger's Nest.' Paro Taktsang is made up of four main temples, all connected by stairways cut into the cliff face, as well as a handful of rickety bridges. There are three main routes to reach the monastery, with the most popular path winding through a forest decorated with prayer flags. The hike is demanding but rewarding, providing breathtaking views of the surrounding landscape.",
+        "Image": {
+          "Url": "/th?id=OHR.BhutanMonastery_ROW3073381457_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BhutanMonastery_ROW3073381457_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Taktsang Palphug Monastery, Bhutan",
+        "Copyright": "© Baron Reznik/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250228_BhutanMonastery\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Paro+Taktsang&form=hpcapt&filters=HpDate:\"20250228_0800\"",
+        "TriviaId": "HPQuiz_20250228_BhutanMonastery"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250228_0800",
+      "FullDateString": "Feb 28, 2025"
     }
   ]
 }
