@@ -1949,6 +1949,36 @@
       "VideoContent": null,
       "Ssd": "20250228_0800",
       "FullDateString": "Feb 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some places feel almost untouched by time. In Canada, one such place sits deep in Jasper National Park, Alberta, where the 22-kilometre-long, winding Maligne Lake cuts through the mountains. It is the largest natural lake in the Canadian Rockies, where towering peaks, glacial waters and endless sky come together.",
+        "Image": {
+          "Url": "/th?id=OHR.MaligneLakeJasper_ROW3095401066_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MaligneLakeJasper_ROW3095401066_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The aurora borealis over Spirit Island on Maligne Lake, Jasper National Park, Canada",
+        "Copyright": "© Mumemories/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250301_MaligneLakeJasper\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Maligne+Lake&form=hpcapt&filters=HpDate:\"20250301_0800\"",
+        "TriviaId": "HPQuiz_20250301_MaligneLakeJasper"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250301_0800",
+      "FullDateString": "Mar 1, 2025"
     }
   ]
 }
