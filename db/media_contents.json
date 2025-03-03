@@ -1979,6 +1979,36 @@
       "VideoContent": null,
       "Ssd": "20250301_0800",
       "FullDateString": "Mar 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today, we are in New South Wales, Australia, amid the Blue Mountains National Park. Known for its dramatic cliffs, dense rainforests and cascading waterfalls, this UNESCO World Heritage Site is a treasure trove of natural beauty and biodiversity. Among the most iconic features of the Blue Mountains region are the eucalyptus trees, pictured here. Home to 92 species of eucalyptus, this area offers visitors a chance to marvel at these resilient trees, which are central to Australian wildlife. Their aromatic leaves provide food for koalas, while their bark and canopy create habitats for countless birds and insects. Also nestled within the mountains is the Megalong Valley.",
+        "Image": {
+          "Url": "/th?id=OHR.EucalyptusForest_ROW3147112022_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EucalyptusForest_ROW3147112022_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eucalyptus trees, Megalong Valley, Blue Mountains National Park, NSW, Australia",
+        "Copyright": "© Andrew Peacock/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250302_EucalyptusForest\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Blue+Mountains+National+Park&form=hpcapt&filters=HpDate:\"20250302_0800\"",
+        "TriviaId": "HPQuiz_20250302_EucalyptusForest"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250302_0800",
+      "FullDateString": "Mar 2, 2025"
     }
   ]
 }
