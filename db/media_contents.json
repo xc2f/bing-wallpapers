@@ -2009,6 +2009,36 @@
       "VideoContent": null,
       "Ssd": "20250302_0800",
       "FullDateString": "Mar 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features the southern yellow-billed hornbill, a bird found throughout Southern Africa and commonly spotted in Kruger National Park in South Africa. This medium-sized bird measures about 48 to 50 centimetres in length with a wingspan of 60 centimetres and weighs 150 to 200 grams. Recognisable by its bright yellow, curved bill, this bird is often seen hopping on the ground in search of food. Its diet includes insects, seeds, fruits, berries, nuts and small reptiles, making it a key player in the ecosystem as both a predator and seed disperser. Social creatures, these hornbills are usually found in pairs or small groups, often foraging together. They nest in natural tree cavities, with the female sealing herself inside using a mud wall, leaving only a small slit through which the male feeds her and the chicks. Their calls—whistling, grunting and cackling—echo across the savannah.",
+        "Image": {
+          "Url": "/th?id=OHR.HornbillPair_ROW3184273725_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HornbillPair_ROW3184273725_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Southern yellow-billed hornbills in Kruger National Park, South Africa",
+        "Copyright": "© Richard Du Toit/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250303_HornbillPair\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Kruger+National+Park&form=hpcapt&filters=HpDate:\"20250303_0800\"",
+        "TriviaId": "HPQuiz_20250303_HornbillPair"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250303_0800",
+      "FullDateString": "Mar 3, 2025"
     }
   ]
 }
