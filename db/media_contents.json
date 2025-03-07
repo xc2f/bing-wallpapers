@@ -2069,6 +2069,36 @@
       "VideoContent": null,
       "Ssd": "20250304_0800",
       "FullDateString": "Mar 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nature's desert navigators—desert bighorn sheep—are a marvel to watch, effortlessly scaling cliffs and navigating rocky terrains with grace. Native to North America, these sheep are known for their distinctive curled horns, which can weigh up to 14 kilograms. Rams use their massive horns in intense headbutting contests. During these battles, males hurl themselves at each other in charges of up to 32 kilometres per hour. Ewes, on the other hand, tend to keep things more low-key, forming smaller groups with their lambs. Adapted to the desert environment, bighorn sheep can go long periods without water, relying on moisture from plants to survive.",
+        "Image": {
+          "Url": "/th?id=OHR.NevadaBigHorns_ROW3330839545_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NevadaBigHorns_ROW3330839545_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Desert bighorn sheep in Valley of Fire State Park, Nevada, United States",
+        "Copyright": "© Rachid Dahnoun/Cavan Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250306_NevadaBigHorns\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Valley+of+Fire+State+Park&form=hpcapt&filters=HpDate:\"20250306_0800\"",
+        "TriviaId": "HPQuiz_20250306_NevadaBigHorns"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250306_0800",
+      "FullDateString": "Mar 6, 2025"
     }
   ]
 }
