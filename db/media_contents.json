@@ -2159,6 +2159,36 @@
       "VideoContent": null,
       "Ssd": "20250308_0800",
       "FullDateString": "Mar 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Venice is known for its canals, gondolas and grand architecture, but if you really want to watch time fly, look no further than St Mark's Clock Tower. For over 500 years, this Renaissance masterpiece has been keeping time in Piazza San Marco, offering both locals and tourists a spectacle of moving figures, astronomical precision and a bit of Venetian charm. The massive blue and gold clock face displays hours, minutes, moon phases and zodiac signs.",
+        "Image": {
+          "Url": "/th?id=OHR.ItalyClock_ROW0695891607_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ItalyClock_ROW0695891607_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "St Mark's Clock Tower, Venice, Italy",
+        "Copyright": "© scaliger/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250309_ItalyClock\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=St+Marks+Clock+Tower&form=hpcapt&filters=HpDate:\"20250309_0700\"",
+        "TriviaId": "HPQuiz_20250309_ItalyClock"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250309_0700",
+      "FullDateString": "Mar 9, 2025"
     }
   ]
 }
