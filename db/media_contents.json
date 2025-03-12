@@ -2219,6 +2219,36 @@
       "VideoContent": null,
       "Ssd": "20250310_0700",
       "FullDateString": "Mar 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Let's be real—the beaches in Bali are beautiful, but the ones in Nusa Penida? That's a whole new vibe. This off-the-beaten-path island, part of the Bali province, is where nature gets a little wild, and the sights are nothing short of epic. With its rugged cliffs and crystal-clear waters, the island offers an escape from Bali's busier tourist hubs. The name 'Nusa Penida' translates to 'island of priests,' and historically, it served as a spiritual retreat, with temples and rituals that locals still honour today.",
+        "Image": {
+          "Url": "/th?id=OHR.NusaPenida_ROW7505183112_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NusaPenida_ROW7505183112_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Broken Beach in Nusa Penida, Bali, Indonesia",
+        "Copyright": "© joakimbkk/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250311_NusaPenida\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Nusa+Penida+Island&form=hpcapt&filters=HpDate:\"20250311_0700\"",
+        "TriviaId": "HPQuiz_20250311_NusaPenida"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250311_0700",
+      "FullDateString": "Mar 11, 2025"
     }
   ]
 }
