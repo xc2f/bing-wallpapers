@@ -2249,6 +2249,36 @@
       "VideoContent": null,
       "Ssd": "20250311_0700",
       "FullDateString": "Mar 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the heart of the Gran Paradiso National Park, straddling Piedmont and Valle d'Aosta, an alpine landscape of rare beauty is revealed, where snow-capped peaks are reflected in crystal-clear lakes. This corner of paradise invites visitors to get lost in its natural wonders, offering a spectacle that seems to come out of a dream. The majestic and imposing mountains stand as silent guardians, while the lakes, with their clear and calm waters, reflect the blue sky and the surrounding peaks.",
+        "Image": {
+          "Url": "/th?id=OHR.Piedmont_ROW7537490150_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.Piedmont_ROW7537490150_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Gran Paradiso National Park, Piedmont, Italy",
+        "Copyright": "© Stefano Zaccaria/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250313_Piedmont\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Gran+Paradiso+National+Park&form=hpcapt&filters=HpDate:\"20250313_0700\"",
+        "TriviaId": "HPQuiz_20250313_Piedmont"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250313_0700",
+      "FullDateString": "Mar 13, 2025"
     }
   ]
 }
