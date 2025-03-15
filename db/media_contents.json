@@ -2279,6 +2279,36 @@
       "VideoContent": null,
       "Ssd": "20250313_0700",
       "FullDateString": "Mar 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Dolmen of Sorginetxe stands tall amidst the rolling Basque hills in Alava, Spain, inviting you to step back into a time long before the region's bustling modern-day life. Sorginetxe is a Basque term meaning 'house of Sorgin' or 'house of witches.' Dating back to 3,000 BCE, this ancient burial site was crafted by the early Basque inhabitants and provides a glimpse into their spiritual practices. The dolmen consists of massive stones arranged in a formation that was used for burial purposes, and possibly, ceremonies. Over time, this megalith has withstood centuries of weathering and still serves as a powerful reminder of the past.",
+        "Image": {
+          "Url": "/th?id=OHR.BasqueDolmen_ROW7711296740_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BasqueDolmen_ROW7711296740_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Dolmen of Sorginetxe, Basque Country, Alava, Spain",
+        "Copyright": "© David Herraez Calzada/plainpicture",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250314_BasqueDolmen\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dolmen+of+Sorginetxe&form=hpcapt&filters=HpDate:\"20250314_0700\"",
+        "TriviaId": "HPQuiz_20250314_BasqueDolmen"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250314_0700",
+      "FullDateString": "Mar 14, 2025"
     }
   ]
 }
