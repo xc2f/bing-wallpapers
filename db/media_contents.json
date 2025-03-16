@@ -2309,6 +2309,36 @@
       "VideoContent": null,
       "Ssd": "20250314_0700",
       "FullDateString": "Mar 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Temple of Saturn, standing in the heart of ancient Rome, holds centuries of stories within its weathered ruins. Traditionally believed to have been dedicated in 497 BCE, this temple honoured Saturn, the god of agriculture and wealth. Its origins are shrouded in mystery, with ancient historians offering conflicting accounts. The temple saw multiple reconstructions over time, including a significant rebuilding by Munatius Plancus in 42 BCE and another in the late 4th century after a devastating fire.",
+        "Image": {
+          "Url": "/th?id=OHR.ForumRomanum_ROW7684301989_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ForumRomanum_ROW7684301989_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Temple of Saturn in the Roman Forum, Rome, Italy",
+        "Copyright": "© Nico De Pasquale Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250315_ForumRomanum\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=The+Temple+of+Saturn&form=hpcapt&filters=HpDate:\"20250315_0700\"",
+        "TriviaId": "HPQuiz_20250315_ForumRomanum"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250315_0700",
+      "FullDateString": "Mar 15, 2025"
     }
   ]
 }
