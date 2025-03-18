@@ -2369,6 +2369,36 @@
       "VideoContent": null,
       "Ssd": "20250316_0700",
       "FullDateString": "Mar 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Among Ireland's many landmarks, Dublin's Samuel Beckett Bridge—featured in today's image—stands out. The bridge, which spans over 120 metres across the River Liffey, was named after the Dublin-born writer Samuel Beckett.",
+        "Image": {
+          "Url": "/th?id=OHR.BeckettBridge_ROW7629520157_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BeckettBridge_ROW7629520157_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Samuel Beckett Bridge, Dublin, Ireland",
+        "Copyright": "© Colm Keating/Tandem Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250317_BeckettBridge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Samuel+Beckett+Bridge&form=hpcapt&filters=HpDate:\"20250317_0700\"",
+        "TriviaId": "HPQuiz_20250317_BeckettBridge"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250317_0700",
+      "FullDateString": "Mar 17, 2025"
     }
   ]
 }
