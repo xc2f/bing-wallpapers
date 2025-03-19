@@ -2399,6 +2399,36 @@
       "VideoContent": null,
       "Ssd": "20250317_0700",
       "FullDateString": "Mar 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Sedona, Arizona, is a place where nature, history and spirituality converge amidst stunning red rock formations. These fiery sandstone creations, part of the Schnebly Hill Formation, were shaped over millions of years during the Permian Period as sediment accumulated in an ancient sea. Over time, erosion has further sculpted Sedona's landscapes, which now glow brilliantly at sunrise and sunset. Notable formations such as Wilson Mountain, Seven Sacred Pools and Cathedral Rock offer iconic views.",
+        "Image": {
+          "Url": "/th?id=OHR.SedonaSpring_ROW7606994452_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SedonaSpring_ROW7606994452_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red rock formations, Sedona, Arizona, United States",
+        "Copyright": "© Jim Ekstrand/Alamy Stock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250318_SedonaSpring\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=sedona+arizona&form=hpcapt&filters=HpDate:\"20250318_0700\"",
+        "TriviaId": "HPQuiz_20250318_SedonaSpring"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250318_0700",
+      "FullDateString": "Mar 18, 2025"
     }
   ]
 }
