@@ -2429,6 +2429,36 @@
       "VideoContent": null,
       "Ssd": "20250318_0700",
       "FullDateString": "Mar 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the world of clever hunting, the black heron rules the roost. This bird thrives in shallow, open waters and at the edges of freshwater lakes and ponds. It's also commonly spotted in marshes, rice fields, seasonally flooded grasslands and along riverbanks.",
+        "Image": {
+          "Url": "/th?id=OHR.BlackHeron_ROW7581644114_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BlackHeron_ROW7581644114_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Black heron canopy hunting, Chobe National Park, Botswana",
+        "Copyright": "© Paul Souders/Minden PIctures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250319_BlackHeron\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Black+heron&form=hpcapt&filters=HpDate:\"20250319_0700\"",
+        "TriviaId": "HPQuiz_20250319_BlackHeron"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250319_0700",
+      "FullDateString": "Mar 19, 2025"
     }
   ]
 }
