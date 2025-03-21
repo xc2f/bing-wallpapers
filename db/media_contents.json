@@ -2459,6 +2459,36 @@
       "VideoContent": null,
       "Ssd": "20250319_0700",
       "FullDateString": "Mar 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features the narcissus, commonly known as daffodil or jonquil. These blooms typically come in shades of white and yellow, though garden varieties can also display hues of orange or pink, with petals and coronas that may either match or contrast beautifully. Known since ancient times for their botanical and medicinal properties, narcissi were officially classified by Linnaeus in Species Plantarum (1753). They naturally thrive in meadows and woodlands across southern Europe and North Africa, with their greatest variety found in the Western Mediterranean, particularly on the Iberian Peninsula.",
+        "Image": {
+          "Url": "/th?id=OHR.SpringDaffodils_ROW7561102201_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SpringDaffodils_ROW7561102201_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Daffodils glow in the morning",
+        "Copyright": "© LedyX/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250320_SpringDaffodils\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=daffodils&form=hpcapt&filters=HpDate:\"20250320_0700\"",
+        "TriviaId": "HPQuiz_20250320_SpringDaffodils"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250320_0700",
+      "FullDateString": "Mar 20, 2025"
     }
   ]
 }
