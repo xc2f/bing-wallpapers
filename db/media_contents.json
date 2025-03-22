@@ -2489,6 +2489,36 @@
       "VideoContent": null,
       "Ssd": "20250320_0700",
       "FullDateString": "Mar 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "One of the most breathtaking places to observe the richness of forests is the Danum Valley Conservation Area in Sabah on the Malaysian island of Borneo, as seen in today's image. This approximately 43,800-hectare sanctuary is home to an ancient, 130-million-year-old rainforest, teeming with rare species like Bornean orangutans, clouded leopards and over 270 bird species. In addition to its incredible biodiversity, the Danum Valley is also a haven for researchers, with long-term studies monitoring its ecosystem and wildlife to aid conservation efforts. Let's take a moment to appreciate nature's beauty and support efforts to safeguard our forests for generations to come.",
+        "Image": {
+          "Url": "/th?id=OHR.DanumValley_ROW7259991229_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DanumValley_ROW7259991229_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mist over lowland rainforest, Danum Valley, Sabah, Borneo, Malaysia",
+        "Copyright": "© Nick Garbutt/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250321_DanumValley\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Danum+Valley+Conservation+Area&form=hpcapt&filters=HpDate:\"20250321_0700\"",
+        "TriviaId": "HPQuiz_20250321_DanumValley"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250321_0700",
+      "FullDateString": "Mar 21, 2025"
     }
   ]
 }
