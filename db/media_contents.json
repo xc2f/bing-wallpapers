@@ -2549,6 +2549,36 @@
       "VideoContent": null,
       "Ssd": "20250322_0700",
       "FullDateString": "Mar 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Pictured here is the awe-inspiring anvil crawler lightning in Nebraska, United States—a state renowned for its tornadoes and thunderstorms, typically during spring and summer. Anvil crawlers—often called rocket lightning—are tree-like lightning discharges that move horizontally. Their slower speed makes them one of the few types of lightning that the human eye can easily follow. These lightning bolts usually form high up in the sky, far above the ground—which is why they don't create loud thunder.  Nebraska's unique geography, with its Great Plains, makes it a hotspot for such phenomena.",
+        "Image": {
+          "Url": "/th?id=OHR.NebraskaStorm_ROW7518048455_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NebraskaStorm_ROW7518048455_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lightning and storm clouds at sunset near Bowman, Nebraska, United States",
+        "Copyright": "© john finney photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250323_NebraskaStorm\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Nebraska&form=hpcapt&filters=HpDate:\"20250323_0700\"",
+        "TriviaId": "HPQuiz_20250323_NebraskaStorm"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250323_0700",
+      "FullDateString": "Mar 23, 2025"
     }
   ]
 }
