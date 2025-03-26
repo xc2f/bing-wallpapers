@@ -2609,6 +2609,36 @@
       "VideoContent": null,
       "Ssd": "20250324_0700",
       "FullDateString": "Mar 24, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Bright flashes of red, gold and black dart through meadows and hedgerows—European goldfinches are hard to miss. These small birds are widespread across Europe, North Africa and parts of Asia, favouring open woodlands, orchards and gardens. Their pointed beaks are perfect for extracting seeds from teasels and thistles, though they also eat insects during the breeding season.",
+        "Image": {
+          "Url": "/th?id=OHR.GoldfinchSunflower_ROW8225520434_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GoldfinchSunflower_ROW8225520434_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "European goldfinches in a sunflower field, Germany",
+        "Copyright": "© Juniors Bildarchiv GmbH/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250325_GoldfinchSunflower\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=European+Goldfinch&form=hpcapt&filters=HpDate:\"20250325_0700\"",
+        "TriviaId": "HPQuiz_20250325_GoldfinchSunflower"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250325_0700",
+      "FullDateString": "Mar 25, 2025"
     }
   ]
 }
