@@ -2639,6 +2639,36 @@
       "VideoContent": null,
       "Ssd": "20250325_0700",
       "FullDateString": "Mar 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Manatees don't rush through life—they float. Featured in today's image is a manatee in the serene waters of Crystal River, Florida, United States. These gentle giants of the sea have been gliding through warm waters for millions of years, minding their own business and munching on seagrass. But despite their laid-back nature, they face serious threats.",
+        "Image": {
+          "Url": "/th?id=OHR.CrystalManatee_ROW8398212778_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CrystalManatee_ROW8398212778_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Manatee in Crystal River, Florida, United States",
+        "Copyright": "© Stephen Frink/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250326_CrystalManatee\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Crystal+River&form=hpcapt&filters=HpDate:\"20250326_0700\"",
+        "TriviaId": "HPQuiz_20250326_CrystalManatee"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250326_0700",
+      "FullDateString": "Mar 26, 2025"
     }
   ]
 }
