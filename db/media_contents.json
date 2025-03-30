@@ -2729,6 +2729,36 @@
       "VideoContent": null,
       "Ssd": "20250328_0700",
       "FullDateString": "Mar 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "It's not every day you see a desert burst into colours, but during a superbloom, the arid land is covered with endless stretches of flowers. This rare phenomenon happens in California and Arizona, United States, when the rainy season awakens wildflower seeds that have been lying dormant in the soil. Superblooms in California typically occur once a decade, but prolonged droughts in the 21st century have made them increasingly less frequent.",
+        "Image": {
+          "Url": "/th?id=OHR.CarrizoBloom_ROW8748742226_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CarrizoBloom_ROW8748742226_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Superbloom in Carrizo Plain National Monument, California, United States",
+        "Copyright": "© Robb Hirsch/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250329_CarrizoBloom\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=superbloom+flowers+california&form=hpcapt&filters=HpDate:\"20250329_0700\"",
+        "TriviaId": "HPQuiz_20250329_CarrizoBloom"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250329_0700",
+      "FullDateString": "Mar 29, 2025"
     }
   ]
 }
