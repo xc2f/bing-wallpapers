@@ -2789,6 +2789,36 @@
       "VideoContent": null,
       "Ssd": "20250330_0700",
       "FullDateString": "Mar 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Perched on a hilltop overlooking the Adriatic Sea, here is a historic city that enchants visitors with its labyrinth of whitewashed buildings, winding alleyways and a sun-drenched piazza. Welcome to Ostuni, in the Apulia region of Italy. Apulia is a southeastern area of the country, located in the 'heel of Italy's boot.' It has the longest coastline of any mainland region in the country and is home to numerous attractions, including beaches, cliffs and charming cities like the one we see in today's image.",
+        "Image": {
+          "Url": "/th?id=OHR.ItalyOstuni_ROW9050219154_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ItalyOstuni_ROW9050219154_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ostuni at dusk, Apulia, Italy",
+        "Copyright": "© Feng Wei Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250331_ItalyOstuni\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ostuni+Italy&form=hpcapt&filters=HpDate:\"20250331_0700\"",
+        "TriviaId": "HPQuiz_20250331_ItalyOstuni"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250331_0700",
+      "FullDateString": "Mar 31, 2025"
     }
   ]
 }
