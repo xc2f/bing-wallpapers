@@ -2879,6 +2879,36 @@
       "VideoContent": null,
       "Ssd": "20250402_0700",
       "FullDateString": "Apr 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Saguaro National Park, a stunning desert known for its hot summers and mild winters, is in Arizona, United States. The park is famous for its giant saguaro cacti, which can grow over 12 metres tall. It is also a home to a variety of wildlife, including coyotes, javelinas, bobcats and numerous bird species. Spanning more than 37,000 hectares, the park is divided into two areas: the Rincon Mountain District to the east and the Tucson Mountain District to the west. Featured in today's image is a rainbow over Wasson Peak, the highest point of the Tucson Mountain District, standing at 1,429 metres. Against a backdrop of desert cacti and rocky slopes, the vibrant arc stands out in a place where rain is scarce, proving that even the driest landscapes can surprise you.",
+        "Image": {
+          "Url": "/th?id=OHR.SaguaroRainbow_ROW9425365513_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SaguaroRainbow_ROW9425365513_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Wasson Peak, Saguaro National Park, Arizona, United States",
+        "Copyright": "© Frank Staub/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250403_SaguaroRainbow\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Saguaro+National+Park&form=hpcapt&filters=HpDate:\"20250403_0700\"",
+        "TriviaId": "HPQuiz_20250403_SaguaroRainbow"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250403_0700",
+      "FullDateString": "Apr 3, 2025"
     }
   ]
 }
