@@ -2909,6 +2909,36 @@
       "VideoContent": null,
       "Ssd": "20250403_0700",
       "FullDateString": "Apr 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Every spring, Washington, DC, transforms into a sea of pink and white as the cherry blossoms bloom, marking the return of the National Cherry Blossom Festival. This beloved event commemorates the 1912 gift of 3,000 cherry trees from Tokyo's Mayor Yukio Ozaki to the United States, symbolising the enduring friendship between the two nations.",
+        "Image": {
+          "Url": "/th?id=OHR.CherryBlossomDC_ROW7816114178_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CherryBlossomDC_ROW7816114178_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "National Cherry Blossom Festival, Washington, DC, United States",
+        "Copyright": "© f11photo/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250404_CherryBlossomDC\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=National+Cherry+Blossom+Festival&form=hpcapt&filters=HpDate:\"20250404_0700\"",
+        "TriviaId": "HPQuiz_20250404_CherryBlossomDC"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250404_0700",
+      "FullDateString": "Apr 4, 2025"
     }
   ]
 }
