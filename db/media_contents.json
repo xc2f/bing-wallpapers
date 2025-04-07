@@ -2969,6 +2969,36 @@
       "VideoContent": null,
       "Ssd": "20250405_0700",
       "FullDateString": "Apr 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "London's skyline has had its fair share of famous landmarks, but none quite like The Shard. Rising 310 metres above England's capital, this glass-clad giant is not just the tallest building in the United Kingdom but also a symbol of modern London. It was designed by Renzo Piano, an Italian architect known for making a statement with high-tech, lightweight and functional designs. Inspired by church spires and ship masts, he envisioned a sleek, tapering structure that would reflect the changing sky. Construction began in 2009 and by 2012, it had officially claimed its title as Western Europe's tallest skyscraper.",
+        "Image": {
+          "Url": "/th?id=OHR.ShardLondon2025_ROW8102821252_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ShardLondon2025_ROW8102821252_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Shard, London, England",
+        "Copyright": "© Dennis Fischer Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250406_ShardLondon2025\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=The+Shard+London&form=hpcapt&filters=HpDate:\"20250406_0700\"",
+        "TriviaId": "HPQuiz_20250406_ShardLondon2025"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250406_0700",
+      "FullDateString": "Apr 6, 2025"
     }
   ]
 }
