@@ -2999,6 +2999,36 @@
       "VideoContent": null,
       "Ssd": "20250406_0700",
       "FullDateString": "Apr 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Beavers are remarkable creatures known for their dam-building skills, which create wetlands, benefiting numerous species. As North America's largest rodents, they can grow up to 1 metre long, not including their distinctive flat tails. Their continuously growing teeth, with thick enamel giving them an orange hue, are essential tools for gnawing on trees—a behaviour that maintains both their dental health and their environment.",
+        "Image": {
+          "Url": "/th?id=OHR.BeaverDay_ROW8524885688_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BeaverDay_ROW8524885688_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "North American beaver, Moran, Wyoming, United States",
+        "Copyright": "© Enrique Aguirre Aves/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250407_BeaverDay\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=North+American+beaver&form=hpcapt&filters=HpDate:\"20250407_0700\"",
+        "TriviaId": "HPQuiz_20250407_BeaverDay"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250407_0700",
+      "FullDateString": "Apr 7, 2025"
     }
   ]
 }
