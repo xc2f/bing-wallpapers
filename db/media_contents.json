@@ -3029,6 +3029,36 @@
       "VideoContent": null,
       "Ssd": "20250407_0700",
       "FullDateString": "Apr 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the heart of Bologna, Piazza Maggiore, featured in today's image, is more than just a square—it's the soul of the city. Established way back in the 13th century, this iconic square was designed to serve as the heart of Bologna's social and political life.",
+        "Image": {
+          "Url": "/th?id=OHR.PiazzaBologna_ROW8498910662_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PiazzaBologna_ROW8498910662_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Piazza Maggiore, Bologna, Italy",
+        "Copyright": "© RudyBalasko/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250408_PiazzaBologna\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Piazza+Maggiore+Bologna&form=hpcapt&filters=HpDate:\"20250408_0700\"",
+        "TriviaId": "HPQuiz_20250408_PiazzaBologna"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250408_0700",
+      "FullDateString": "Apr 8, 2025"
     }
   ]
 }
