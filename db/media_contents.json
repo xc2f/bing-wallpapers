@@ -3059,6 +3059,36 @@
       "VideoContent": null,
       "Ssd": "20250408_0700",
       "FullDateString": "Apr 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "As daylight fades or just before it emerges, the island of Naxos in Greece takes on an azure glow, immersing itself in the magic of the blue hour. When the sun is positioned well below the horizon, during this brief window, the lingering sunlight casts a deep blue hue across the sky.",
+        "Image": {
+          "Url": "/th?id=OHR.BlueNaxos_ROW8595405240_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BlueNaxos_ROW8595405240_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Blue hour in Naxos, Cyclades, Greece",
+        "Copyright": "© Sizun Eye/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250409_BlueNaxos\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Naxos+Greece&form=hpcapt&filters=HpDate:\"20250409_0700\"",
+        "TriviaId": "HPQuiz_20250409_BlueNaxos"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250409_0700",
+      "FullDateString": "Apr 9, 2025"
     }
   ]
 }
