@@ -3089,6 +3089,36 @@
       "VideoContent": null,
       "Ssd": "20250409_0700",
       "FullDateString": "Apr 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Red fox, the largest and most widespread species of fox, is found across the Northern Hemisphere. Males are called tods or dogs while females are known as vixens. Their young, referred to as cubs or kits, are featured in today's image. They are born in an underground den, blind and helpless. Their mother keeps them safe while the father brings food. But as their eyes open and legs strengthen, the real fun begins. Sibling play is essential, shaping their hunting and social skills while keeping things entertaining. Wrestling, pouncing and even playful ambushes are all part of the training. They mimic each other's behaviours, test their boundaries and develop their cunning instincts as a team.",
+        "Image": {
+          "Url": "/th?id=OHR.LittleFoxes_ROW8690620947_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LittleFoxes_ROW8690620947_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red fox cubs near their den",
+        "Copyright": "© WildMedia/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250410_LittleFoxes\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Red+fox&form=hpcapt&filters=HpDate:\"20250410_0700\"",
+        "TriviaId": "HPQuiz_20250410_LittleFoxes"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250410_0700",
+      "FullDateString": "Apr 10, 2025"
     }
   ]
 }
