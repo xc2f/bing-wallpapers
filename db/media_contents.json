@@ -3119,6 +3119,36 @@
       "VideoContent": null,
       "Ssd": "20250410_0700",
       "FullDateString": "Apr 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "From the famous tulip fields to the world's largest flower auction, the Netherlands and tulips go a long way back. Interestingly, tulips didn't originate here. These beauties arrived in the country in the late 16th century, brought from the Ottoman Empire. By the 17th century, they became so valuable that a single bulb could cost more than a house. This period, known as 'tulip mania', is considered one of the first recorded financial bubbles. When prices crashed in 1637, fortunes were lost, but the love for tulips remained.",
+        "Image": {
+          "Url": "/th?id=OHR.TulipsWindmill_ROW8756634246_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TulipsWindmill_ROW8756634246_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Tulips, Netherlands",
+        "Copyright": "© 1111IESPDJ/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250411_TulipsWindmill\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Tulips&form=hpcapt&filters=HpDate:\"20250411_0700\"",
+        "TriviaId": "HPQuiz_20250411_TulipsWindmill"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250411_0700",
+      "FullDateString": "Apr 11, 2025"
     }
   ]
 }
