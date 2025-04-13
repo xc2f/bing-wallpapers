@@ -3149,6 +3149,36 @@
       "VideoContent": null,
       "Ssd": "20250411_0700",
       "FullDateString": "Apr 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Pictured here is the view from the cupola of the International Space Station, showing the vast South Pacific Ocean. The station was designed between 1984 and 1993. By the late 1980s, construction of its components was underway across the United States, Canada, Japan and Europe, with Russia joining later.",
+        "Image": {
+          "Url": "/th?id=OHR.SpaceFlight_ROW6824209935_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SpaceFlight_ROW6824209935_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "View from the cupola of the International Space Station above the South Pacific Ocean",
+        "Copyright": "© NASA",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250412_SpaceFlight\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=International+Space+Station&form=hpcapt&filters=HpDate:\"20250412_0700\"",
+        "TriviaId": "HPQuiz_20250412_SpaceFlight"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250412_0700",
+      "FullDateString": "Apr 12, 2025"
     }
   ]
 }
