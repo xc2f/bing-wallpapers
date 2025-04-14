@@ -3179,6 +3179,36 @@
       "VideoContent": null,
       "Ssd": "20250412_0700",
       "FullDateString": "Apr 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Wat Tang Sai Temple in Ban Krut, seen in today's image, reflects Thai spirituality and culture. Perched along the serene Ban Krut Sea in the Thong Chai Subdistrict, Bang Saphan District, Prachuap Khiri Khan Province, this temple is a true hidden gem. The temple complex is home to a 13-metre-tall Buddha statue and Thai-style pagodas. Built in 1996 to honour King Bhumibol Adulyadej (Rama IX) on his 50th year of reign (1946–2016), it remains an important spiritual site. The temple also has a beautiful viewpoint overlooking Ban Grood Beach, where rows of coconut trees stretch along the shore. With stunning coastline views, Wat Tang Sai offers a peaceful setting to meditate and feel the vibrations of Buddhist chants.",
+        "Image": {
+          "Url": "/th?id=OHR.ThailandPagodas_ROW8973626174_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ThailandPagodas_ROW8973626174_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Wat Tang Sai Temple in Ban Krut, Thailand",
+        "Copyright": "© Ratnakorn Piyasirisorost/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250413_ThailandPagodas\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Wat+Tang+Sai+Temple&form=hpcapt&filters=HpDate:\"20250413_0700\"",
+        "TriviaId": "HPQuiz_20250413_ThailandPagodas"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250413_0700",
+      "FullDateString": "Apr 13, 2025"
     }
   ]
 }
