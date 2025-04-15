@@ -3209,6 +3209,36 @@
       "VideoContent": null,
       "Ssd": "20250413_0700",
       "FullDateString": "Apr 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Atlantic spotted dolphins—the stars of today's image—are known for the spots on their body, which multiply and become denser with age. When younger, they lack spots, often resembling slender bottlenose dolphins. You'll find them in the warm temperate and tropical waters of the Atlantic, hunting fish in coordinated groups. They're fast swimmers, known for their playful bow-riding and acrobatic, shallow leaps. These dolphins are amazing team players when it comes to hunting, as they often hunt in groups, working together to surround their prey, which includes small fish, benthic invertebrates and even squid. Interestingly, they prefer to hunt at night, making the most of the cover of darkness to catch their prey. Their speed and agility make them efficient hunters—and a thrill to watch.",
+        "Image": {
+          "Url": "/th?id=OHR.SpottedDolphins_ROW9067273233_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SpottedDolphins_ROW9067273233_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Atlantic spotted dolphins near Santa Maria Island, Azores, Portugal",
+        "Copyright": "© Jordi Chias/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250414_SpottedDolphins\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Atlantic+spotted+dolphin&form=hpcapt&filters=HpDate:\"20250414_0700\"",
+        "TriviaId": "HPQuiz_20250414_SpottedDolphins"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250414_0700",
+      "FullDateString": "Apr 14, 2025"
     }
   ]
 }
