@@ -3239,6 +3239,36 @@
       "VideoContent": null,
       "Ssd": "20250414_0700",
       "FullDateString": "Apr 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the region of Guadix, between mountains and valleys, stands La Calahorra, a small town with a monumental treasure, its imposing Renaissance castle. This architectural gem, built in the 16th century by the first Marquis of Zenete, combines military strength with the elegance of Italian palaces and is one of the earliest examples of the Renaissance in Spain. Perched at an altitude of 1,250 metres, the castle dominates the landscape of the Marquisate of Zenete and has been the scene of key historical events, from the Christian conquest to the Alpujarras Rebellion. Recently, it gained prominence after being chosen as the location for the series 'House of the Dragon,' created by Ryan Condal and George R.R. Martin.",
+        "Image": {
+          "Url": "/th?id=OHR.CerezoEnFlor_ROW0960888815_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CerezoEnFlor_ROW0960888815_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Castillo de La Calahorra, Granada, Spain",
+        "Copyright": "© Ugo Mellone/eStock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250415_CerezoEnFlor\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Castillo+de+La+Calahorra&form=hpcapt&filters=HpDate:\"20250415_0700\"",
+        "TriviaId": "HPQuiz_20250415_CerezoEnFlor"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250415_0700",
+      "FullDateString": "Apr 15, 2025"
     }
   ]
 }
