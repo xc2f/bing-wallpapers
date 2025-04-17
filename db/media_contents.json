@@ -3269,6 +3269,36 @@
       "VideoContent": null,
       "Ssd": "20250415_0700",
       "FullDateString": "Apr 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Within the remote canyons of southeastern Utah, United States, Natural Bridges National Monument highlights the power of erosion and the passage of time. Shaped by the relentless forces of wind and water, this monument features three magnificent natural bridges—Sipapu, Kachina and Owachomo. These bridges were named to honour the Ancestral Puebloans who once lived here. Sipapu is the largest bridge, with a massive opening that could almost fit the dome of the United States Capitol. Kachina, pictured here, is equidistant from Sipapu and Owachomo. It was named after the petroglyphs and pictographs found at its base. Owachomo is believed to be the oldest of the three. Its thin, arching structure suggests it may eventually collapse. It is a place of awe and solitude, where visitors can hike beneath the soaring bridges, gaze at some of the darkest night skies in the country and step back into a landscape sculpted over millions of years.",
+        "Image": {
+          "Url": "/th?id=OHR.KachinaBridge_ROW9220690058_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.KachinaBridge_ROW9220690058_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Kachina Bridge, Natural Bridges National Monument, Utah, United States",
+        "Copyright": "© Alan Majchrowicz/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250416_KachinaBridge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Natural+Bridges+National+Monument&form=hpcapt&filters=HpDate:\"20250416_0700\"",
+        "TriviaId": "HPQuiz_20250416_KachinaBridge"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250416_0700",
+      "FullDateString": "Apr 16, 2025"
     }
   ]
 }
