@@ -3299,6 +3299,36 @@
       "VideoContent": null,
       "Ssd": "20250416_0700",
       "FullDateString": "Apr 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If fashion had a bird ambassador, the cock-of-the-rock would steal the spotlight. The males? They look like they're wearing a bright orange-red costume, complete with a huge crest that almost covers their beak. With its bold colours, this native South American bird isn't just about looks—it's got the moves too.",
+        "Image": {
+          "Url": "/th?id=OHR.EcuadorBird_ROW9462385239_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EcuadorBird_ROW9462385239_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Andean cocks-of-the-rock, Ecuador",
+        "Copyright": "© Kit Day/Alamy Stock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250417_EcuadorBird\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cock-of-the-rock+bird&form=hpcapt&filters=HpDate:\"20250417_0700\"",
+        "TriviaId": "HPQuiz_20250417_EcuadorBird"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250417_0700",
+      "FullDateString": "Apr 17, 2025"
     }
   ]
 }
