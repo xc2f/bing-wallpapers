@@ -3329,6 +3329,36 @@
       "VideoContent": null,
       "Ssd": "20250417_0700",
       "FullDateString": "Apr 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the heart of Cappadocia, Türkiye, Göreme Historical National Park is a fascinating fusion of history, adventure and natural beauty. Spanning nearly 100 square kilometres, this UNESCO World Heritage site is famous for its 'fairy chimneys'—towering rock formations shaped by volcanic ash and erosion over thousands of years. Among these unique formations is the enchanting Love Valley, known for its distinctive rock formations and stunning views. The park's rich history is equally captivating. For centuries, people have been carving homes, churches and even entire underground cities into the soft rock formations. These ancient dwellings, some dating back to the 4th century, served as places of refuge, especially for early Christians who sought protection from invaders. Göreme is a must-visit destination that offers something for everyone—whether you're a history enthusiast, an adventure seeker or simply someone looking to enjoy the serene beauty of this magical place.",
+        "Image": {
+          "Url": "/th?id=OHR.GoremeTurkey_ROW2743842644_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GoremeTurkey_ROW2743842644_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Hot air balloons over Göreme Historical National Park in Cappadocia, Türkiye",
+        "Copyright": "© Anton Petrus/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250418_GoremeTurkey\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Goreme+Historical+National+Park&form=hpcapt&filters=HpDate:\"20250418_0700\"",
+        "TriviaId": "HPQuiz_20250418_GoremeTurkey"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250418_0700",
+      "FullDateString": "Apr 18, 2025"
     }
   ]
 }
