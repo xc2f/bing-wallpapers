@@ -3359,6 +3359,36 @@
       "VideoContent": null,
       "Ssd": "20250418_0700",
       "FullDateString": "Apr 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Zion National Park—seen in today's image—is Utah's first national park. The park's unique geography is adorned with stunning sandstone cliffs and narrow slot canyons, covering 600 square kilometres. This national park has a diverse plant and animal life, including nearly 300 bird species and 19 species of bats. Back in 1909, President William Howard Taft named the area Mukuntuweap National Monument to protect its stunning landscape. A decade later, in 1919, United State Congress added more land to it and it was then renamed as Zion National Park. With its rich history and breathtaking scenery, it is a must-visit destination, offering something magical for everyone.",
+        "Image": {
+          "Url": "/th?id=OHR.ZionValley_ROW3043698822_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ZionValley_ROW3043698822_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Zion National Park, Utah, United States",
+        "Copyright": "© Simon Dannhauer/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250419_ZionValley\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Zion+National+Park&form=hpcapt&filters=HpDate:\"20250419_0700\"",
+        "TriviaId": "HPQuiz_20250419_ZionValley"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250419_0700",
+      "FullDateString": "Apr 19, 2025"
     }
   ]
 }
