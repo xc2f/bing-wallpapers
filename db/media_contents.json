@@ -3389,6 +3389,36 @@
       "VideoContent": null,
       "Ssd": "20250419_0700",
       "FullDateString": "Apr 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Yellow warbler—featured in today's image—is a tiny songbird that brightens the landscape with its vibrant colour. Hopping from branch to branch, it spends its days feasting on insects like caterpillars and beetles. These birds thrive in wetlands, woodlands and gardens, making their homes in shrubs and small trees. During the breeding season, males turn into tireless singers, hoping to win a mate with their sweet tunes. When it's time to nest, females carefully weave small cup-shaped homes from grass, plant fibres and feathers, ensuring a cosy spot for their eggs. But here's something impressive—yellow warblers won't tolerate freeloaders. If a brown-headed cowbird sneaks an egg into their nest, these clever birds simply build a new layer over it, protecting their own offspring. As summer ends, they embark on a journey south to Central and South America, spending the colder months basking in warmer climates before returning.",
+        "Image": {
+          "Url": "/th?id=OHR.YellowWarbler_ROW3132425719_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YellowWarbler_ROW3132425719_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Yellow warbler in Canada",
+        "Copyright": "© mirceax/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250420_YellowWarbler\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Yellow+warbler&form=hpcapt&filters=HpDate:\"20250420_0700\"",
+        "TriviaId": "HPQuiz_20250420_YellowWarbler"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250420_0700",
+      "FullDateString": "Apr 20, 2025"
     }
   ]
 }
