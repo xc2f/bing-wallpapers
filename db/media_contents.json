@@ -3419,6 +3419,36 @@
       "VideoContent": null,
       "Ssd": "20250420_0700",
       "FullDateString": "Apr 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features a desert icon—the Joshua tree—native to the Mojave Desert in the southwestern United States. This remarkable tree grows rapidly during its first ten years, averaging about 7 centimetres per year. After that, its growth slows down to around 4 centimetres per year and over its lifespan, it can reach up to 15 metres. Their long, messy and rough appearance resembles the look of a beard, adding to the tree's unique and rugged charm.",
+        "Image": {
+          "Url": "/th?id=OHR.JoshuaStars_ROW3275604070_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.JoshuaStars_ROW3275604070_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Joshua trees under the Milky Way, California, United States",
+        "Copyright": "© Chao Zhang/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250421_JoshuaStars\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Joshua+tree&form=hpcapt&filters=HpDate:\"20250421_0700\"",
+        "TriviaId": "HPQuiz_20250421_JoshuaStars"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250421_0700",
+      "FullDateString": "Apr 21, 2025"
     }
   ]
 }
