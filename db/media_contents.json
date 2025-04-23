@@ -3449,6 +3449,36 @@
       "VideoContent": null,
       "Ssd": "20250421_0700",
       "FullDateString": "Apr 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Grand Prismatic Spring in Yellowstone National Park, Wyoming, featured in today's image is one of nature's most stunning displays of geothermal power. The largest hot spring in the United States, it spans 110 metres across and reaches temperatures of 70 °C. This geothermal marvel is fuelled by the immense heat of the massive Yellowstone volcano beneath the surface. Its vivid rings of blue, green, yellow and orange are created by heat-loving microorganisms—called thermophiles—that thrive in the mineral-rich waters.",
+        "Image": {
+          "Url": "/th?id=OHR.YellowstoneSpring_ROW3399107427_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YellowstoneSpring_ROW3399107427_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Grand Prismatic Spring, Yellowstone National Park, Wyoming, United States",
+        "Copyright": "© Ajith Kumar/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250422_YellowstoneSpring\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grand+Prismatic+Spring&form=hpcapt&filters=HpDate:\"20250422_0700\"",
+        "TriviaId": "HPQuiz_20250422_YellowstoneSpring"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250422_0700",
+      "FullDateString": "Apr 22, 2025"
     }
   ]
 }
