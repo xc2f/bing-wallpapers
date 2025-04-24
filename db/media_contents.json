@@ -3479,6 +3479,36 @@
       "VideoContent": null,
       "Ssd": "20250422_0700",
       "FullDateString": "Apr 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Did you know that the first beach chairs were developed in the 19th century to protect against the fine sand and wind? Beach chairs have a special charm even in stormy weather, as in the picture today in front of the pier on Steinwarder in Heiligenhafen, Germany. Steinwarder, a picturesque peninsula, was originally only connected to the mainland by salt marshes and the Eichholz lowlands. Today, it is a paradise for vacationers seeking peace and nature.",
+        "Image": {
+          "Url": "/th?id=OHR.BeachChairsSteinwarder_ROW3560286476_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BeachChairsSteinwarder_ROW3560286476_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Beach chairs on Steinwarder in Heiligenhafen, Schleswig-Holstein, Germany",
+        "Copyright": "© Frank Lukasseck/eStock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250423_BeachChairsSteinwarder\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Heiligenhafen&form=hpcapt&filters=HpDate:\"20250423_0700\"",
+        "TriviaId": "HPQuiz_20250423_BeachChairsSteinwarder"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250423_0700",
+      "FullDateString": "Apr 23, 2025"
     }
   ]
 }
