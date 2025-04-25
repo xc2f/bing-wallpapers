@@ -3509,6 +3509,36 @@
       "VideoContent": null,
       "Ssd": "20250423_0700",
       "FullDateString": "Apr 23, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Kenai Fjords National Park, featured in today's image, is a gem on Alaska's Kenai Peninsula in the United States. Stretching over 271,100 hectares, this landscape features towering fjords, winding river valleys and alpine landscapes. More than half of its terrain is blanketed in ice, with glaciers dominating 51% of its area. Throughout the 20th century, the park's glaciers have receded, uncovering new land for plant and animal life to take root. From ancient Sitka spruces to delicate fireweed shoots and lush moss carpeting the forest floor, plant life in Kenai Fjords flourishes despite the rugged terrain. The park is also home to diverse terrestrial and marine mammals, including timber wolves, porcupines, Canadian lynxes and cetaceans like orcas and fin whales. It also hosts a variety of birds, such as bald eagles and Peale's peregrine falcons.",
+        "Image": {
+          "Url": "/th?id=OHR.KenaiSpires_ROW3648613941_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.KenaiSpires_ROW3648613941_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Spire Cove in Kenai Fjords National Park, Seward, Alaska, United States",
+        "Copyright": "© Wander Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250424_KenaiSpires\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Kenai+Fjords+National+Park+Alaska&form=hpcapt&filters=HpDate:\"20250424_0700\"",
+        "TriviaId": "HPQuiz_20250424_KenaiSpires"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250424_0700",
+      "FullDateString": "Apr 24, 2025"
     }
   ]
 }
