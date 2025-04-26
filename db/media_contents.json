@@ -3539,6 +3539,36 @@
       "VideoContent": null,
       "Ssd": "20250424_0700",
       "FullDateString": "Apr 24, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Cute, clumsy and completely captivating, penguins always steal the show. Among the many remarkable species of penguins are the Magellanic penguins, featured in today's image. A species native to South America's coastal regions, these birds breed along Patagonia's shores in Argentina, Chile and the Falkland Islands. Named after Portuguese explorer Ferdinand Magellan, these medium-sized penguins were first documented in 1520. They can grow up to 76 centimetres tall and weigh around 6 kilograms. Skilled hunters, they thrive on a diet of small fish, squid and krill, efficiently filtering seawater with their specialised salt-excreting glands. With the abundant marine life along South America's Atlantic coast, they have a reliable food source. While these flightless creatures may not soar in the skies, they certainly capture hearts.",
+        "Image": {
+          "Url": "/th?id=OHR.MagellanicPenguin_ROW3755492915_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MagellanicPenguin_ROW3755492915_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Magellanic penguins, Volunteer Point, Falkland Islands",
+        "Copyright": "© imageBROKER/Matthias Graben/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250425_MagellanicPenguin\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=penguin&form=hpcapt&filters=HpDate:\"20250425_0700\"",
+        "TriviaId": "HPQuiz_20250425_MagellanicPenguin"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250425_0700",
+      "FullDateString": "Apr 25, 2025"
     }
   ]
 }
