@@ -3569,6 +3569,36 @@
       "VideoContent": null,
       "Ssd": "20250425_0700",
       "FullDateString": "Apr 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Carved by time and water, Bruce Peninsula National Park protects a breathtaking stretch of the Niagara Escarpment in Ontario, Canada. Designated in 1987, it safeguards a landscape of towering limestone cliffs, hidden caves, dense forests and untouched shorelines. As part of a UNESCO Biosphere Reserve, it's a haven for species that have adapted to its rugged terrain, like black bears, massasauga rattlesnakes and white-tailed deer.",
+        "Image": {
+          "Url": "/th?id=OHR.BrucePeninsula_ROW3859189459_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BrucePeninsula_ROW3859189459_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Indian Head Cove, Bruce Peninsula National Park, Ontario, Canada",
+        "Copyright": "© Maurice Prokaziuk/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250426_BrucePeninsula\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bruce+Peninsula+National+Park&form=hpcapt&filters=HpDate:\"20250426_0700\"",
+        "TriviaId": "HPQuiz_20250426_BrucePeninsula"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250426_0700",
+      "FullDateString": "Apr 26, 2025"
     }
   ]
 }
