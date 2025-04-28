@@ -3599,6 +3599,36 @@
       "VideoContent": null,
       "Ssd": "20250426_0700",
       "FullDateString": "Apr 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Step into a world where trees touch the sky. The redwood groves of Redwood National and State Parks (RNSP) in California, United States, are home to some of the tallest trees on Earth, soaring over 110 metres high. The combined RNSP contain Redwood National Park, Del Norte Coast Redwoods State Park, Jedediah Smith Redwoods State Park and Prairie Creek Redwoods State Park. Some of these redwoods were alive when the Mayans built their temples, and the Great Wall of China was under construction. Protected since 1968, the park preserves nearly half of the world's remaining old-growth redwoods.",
+        "Image": {
+          "Url": "/th?id=OHR.RedwoodGrove_ROW3943985098_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RedwoodGrove_ROW3943985098_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Grove of redwoods in Redwood National and State Parks, California, United States",
+        "Copyright": "© Bob Pool/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250427_RedwoodGrove\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Redwood+National+and+State+Parks&form=hpcapt&filters=HpDate:\"20250427_0700\"",
+        "TriviaId": "HPQuiz_20250427_RedwoodGrove"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250427_0700",
+      "FullDateString": "Apr 27, 2025"
     }
   ]
 }
