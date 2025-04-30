@@ -3659,6 +3659,36 @@
       "VideoContent": null,
       "Ssd": "20250428_0700",
       "FullDateString": "Apr 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The grass truly is greener on the other side—especially when that side is Château de Villandry. While the Loire Valley in France is packed with stunning châteaux (French for castles), Villandry stands apart, not for its towering turrets or medieval might, but for its gardens. Built in the 16th century by Jean le Breton, a minister to King Francis I, Villandry was always meant to impress. Unlike fortified castles built for war, it was designed for comfort, featuring large windows and an open, welcoming layout. Its gardens are arranged across terraces with distinct themes. The ornamental garden showcases geometric patterns like the one pictured here. The water garden offers a serene retreat and the vegetable garden turns everyday crops into artistic displays.",
+        "Image": {
+          "Url": "/th?id=OHR.GardensVillandry_ROW4116943750_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GardensVillandry_ROW4116943750_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Formal Château de Villandry, Loire Valley, France",
+        "Copyright": "© Mint Images/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250429_GardensVillandry\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Chateau+de+Villandry+France&form=hpcapt&filters=HpDate:\"20250429_0700\"",
+        "TriviaId": "HPQuiz_20250429_GardensVillandry"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250429_0700",
+      "FullDateString": "Apr 29, 2025"
     }
   ]
 }
