@@ -3689,6 +3689,36 @@
       "VideoContent": null,
       "Ssd": "20250429_0700",
       "FullDateString": "Apr 29, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image is one of the largest waterfall systems in the world—Iguazu Falls—located on the border between Argentina and Brazil, within the Iguazu River. Spanning approximately 3 kilometres in width, the tallest waterfalls reach up to 82 metres. The falls consist of around 275 individual waterfalls—each one different, yet all equally mesmerising. One of the most iconic features of the falls is the Devil's Throat canyon, which is almost 90 metres wide and nearly 80 metres deep. The name 'Iguazu' is derived from the Guarani or Tupi words 'y,' meaning water, and 'ûasú,' means big. Here, every drop of water, every trail and every encounter tells a story of beauty, strength and connection.",
+        "Image": {
+          "Url": "/th?id=OHR.FozdoIguacu2025_ROW4234187947_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FozdoIguacu2025_ROW4234187947_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Iguazu Falls seen from Paraná, Brazil",
+        "Copyright": "© agustavop/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250430_FozdoIguacu2025\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Iguazu+Falls&form=hpcapt&filters=HpDate:\"20250430_0700\"",
+        "TriviaId": "HPQuiz_20250430_FozdoIguacu2025"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250430_0700",
+      "FullDateString": "Apr 30, 2025"
     }
   ]
 }
