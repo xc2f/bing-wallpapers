@@ -3719,6 +3719,36 @@
       "VideoContent": null,
       "Ssd": "20250430_0700",
       "FullDateString": "Apr 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features nature's own vibrant confetti—plumeria flowers, often grown in tropical regions, mostly in Hawaii, United States. This species has no nectar, yet it tricks moths and butterflies with its irresistible scent—a mix of citrus, jasmine, gardenia, coconut, peach, vanilla and woody undertones. These flowers come in a variety of colours, including pink, red, white, yellow, orange or pastel. As captivating as they are, their milky sap is toxic, so handle with care!",
+        "Image": {
+          "Url": "/th?id=OHR.PinkPlumeria_ROW4429508381_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PinkPlumeria_ROW4429508381_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Plumeria flowers, Hawaii, United States",
+        "Copyright": "© Miranda Jans/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250501_PinkPlumeria\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Plumeria&form=hpcapt&filters=HpDate:\"20250501_0700\"",
+        "TriviaId": "HPQuiz_20250501_PinkPlumeria"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250501_0700",
+      "FullDateString": "May 1, 2025"
     }
   ]
 }
