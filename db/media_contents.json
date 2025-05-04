@@ -3779,6 +3779,36 @@
       "VideoContent": null,
       "Ssd": "20250502_0700",
       "FullDateString": "May 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the heart of eastern Utah in the United States is Arches National Park—featured in today's image— a surreal landscape of red rock formations and natural stone arches. Spanning over 31,000 hectares, the park boasts more than 2,000 natural arches. From the iconic Delicate Arch standing proudly against the skyline to the expansive Landscape Arch and the majestic Double Arch, each rock formation tells a story shaped by millions of years of erosion, weathering and natural rock fractures. Other highlights include Balanced Rock, Three Penguins and countless other formations that make every visit unforgettable.",
+        "Image": {
+          "Url": "/th?id=OHR.ArchesGalaxy_ROW0551660527_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ArchesGalaxy_ROW0551660527_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Milky Way framed by Double Arch in Arches National Park, Utah, United States",
+        "Copyright": "© Adventure_Photo/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250503_ArchesGalaxy\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Arches+National+Park&form=hpcapt&filters=HpDate:\"20250503_0700\"",
+        "TriviaId": "HPQuiz_20250503_ArchesGalaxy"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250503_0700",
+      "FullDateString": "May 3, 2025"
     }
   ]
 }
