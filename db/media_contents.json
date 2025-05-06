@@ -3839,6 +3839,36 @@
       "VideoContent": null,
       "Ssd": "20250504_0700",
       "FullDateString": "May 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Yoho sounds like something you'd shout from a mountaintop—and honestly, you might find yourself doing just that. Established in 1886, Yoho National Park in British Columbia is known for its towering cliffs, glacial lakes and thunderous waterfalls. It's the second oldest national park in Canada and part of the Canadian Rocky Mountain Parks World Heritage Site. Covering 131,300 hectares, the park is home to the Burgess Shale, a globally recognised fossil site. It consists of well-preserved marine life dating back over 500 million years—vital to understanding early evolution. Here, one can observe elk, mountain goat, marmot and the occasional grizzly bear in their natural habitat. Lodgepole pines dominate the forest canopy, while avalanche lilies appear shortly after snowmelt.",
+        "Image": {
+          "Url": "/th?id=OHR.YohoNP_ROW2748763967_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YohoNP_ROW2748763967_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mount Burgess and Emerald Lake in Yoho National Park, British Columbia, Canada",
+        "Copyright": "© Feng Wei Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250505_YohoNP\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Yoho+National+Park&form=hpcapt&filters=HpDate:\"20250505_0700\"",
+        "TriviaId": "HPQuiz_20250505_YohoNP"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250505_0700",
+      "FullDateString": "May 5, 2025"
     }
   ]
 }
