@@ -3899,6 +3899,36 @@
       "VideoContent": null,
       "Ssd": "20250506_0700",
       "FullDateString": "May 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If Dunluce Castle, pictured here, feels like something straight out of 'Game of Thrones,' that's because it is the real-life inspiration for Pyke, the seat of House Greyjoy. Built in the 13th century, this castle in County Antrim, Northern Ireland, was once a stronghold of the MacDonnells of Antrim, a branch of the Clan MacDonnell that played a key role in Irish politics from the 15th to the 17th century. The family's fortunes declined after the Battle of the Boyne in 1690, and with little money for upkeep, the castle gradually fell into ruin.",
+        "Image": {
+          "Url": "/th?id=OHR.DunluceIreland_ROW0996301714_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DunluceIreland_ROW0996301714_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Dunluce Castle, County Antrim, Northern Ireland",
+        "Copyright": "© DieterMeyrl/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250507_DunluceIreland\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dunluce+Castle&form=hpcapt&filters=HpDate:\"20250507_0700\"",
+        "TriviaId": "HPQuiz_20250507_DunluceIreland"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250507_0700",
+      "FullDateString": "May 7, 2025"
     }
   ]
 }
