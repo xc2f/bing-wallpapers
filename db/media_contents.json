@@ -3929,6 +3929,36 @@
       "VideoContent": null,
       "Ssd": "20250507_0700",
       "FullDateString": "May 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Donkeys—featured in today's image—have a reputation for being stubborn, but that's just a misunderstanding. They're actually cautious thinkers. Unlike horses, which might bolt at danger, donkeys take a moment to assess the situation before reacting. From ancient trade routes to modern farms, donkeys have been essential to transportation and agriculture. In many parts of the world, they're still the backbone of rural economies, carrying supplies across difficult terrain where vehicles can't go. Despite their vital role, donkeys face serious challenges. Many endure overwork, poor treatment and abandonment.",
+        "Image": {
+          "Url": "/th?id=OHR.RhyoliteDonkeys_ROW1102369485_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RhyoliteDonkeys_ROW1102369485_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Donkeys in a valley near Rhyolite, Nevada, United States",
+        "Copyright": "© Moelyn Photos/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250508_RhyoliteDonkeys\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Donkey&form=hpcapt&filters=HpDate:\"20250508_0700\"",
+        "TriviaId": "HPQuiz_20250508_RhyoliteDonkeys"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250508_0700",
+      "FullDateString": "May 8, 2025"
     }
   ]
 }
