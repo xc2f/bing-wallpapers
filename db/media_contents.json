@@ -3989,6 +3989,36 @@
       "VideoContent": null,
       "Ssd": "20250509_0700",
       "FullDateString": "May 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the heart of the Bardenas Reales of Navarre, a unique semi-desert landscape in Spain, rises Castildetierra, the most iconic rock formation in the area. Its silhouette, reminiscent of a natural tower eroded by wind and water, is a symbol of this territory declared a Biosphere Reserve by UNESCO.",
+        "Image": {
+          "Url": "/th?id=OHR.Castildetierra_ROW1842638088_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.Castildetierra_ROW1842638088_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Castildetierra in the Bardenas Reales, Navarre, Spain",
+        "Copyright": "© Eloi_Omella/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250510_Castildetierra\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bardenas+Reales&form=hpcapt&filters=HpDate:\"20250510_0700\"",
+        "TriviaId": "HPQuiz_20250510_Castildetierra"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250510_0700",
+      "FullDateString": "May 10, 2025"
     }
   ]
 }
