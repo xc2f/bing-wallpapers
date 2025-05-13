@@ -4049,6 +4049,36 @@
       "VideoContent": null,
       "Ssd": "20250511_0700",
       "FullDateString": "May 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Flower viewing is a beloved tradition in Japan, with each season bringing its own natural spectacle. Just as the last sakura (cherry blossom) petals drift away, Tokyo's gardens start gearing up for their next big show: the iris bloom. Featured here is an iris garden in Tokyo. The iris is a flowering plant genus that has 310 recognised species, known for their bold and beautiful blossoms. The genus is named after the Greek word 'îris', meaning 'rainbow,' which is also the name of the Greek goddess of rainbows.",
+        "Image": {
+          "Url": "/th?id=OHR.IrisGarden_ROW1449696310_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.IrisGarden_ROW1449696310_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "An iris garden in Tokyo, Japan",
+        "Copyright": "© M.Arai/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250512_IrisGarden\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Iris+plant&form=hpcapt&filters=HpDate:\"20250512_0700\"",
+        "TriviaId": "HPQuiz_20250512_IrisGarden"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250512_0700",
+      "FullDateString": "May 12, 2025"
     }
   ]
 }
