@@ -4109,6 +4109,36 @@
       "VideoContent": null,
       "Ssd": "20250513_0700",
       "FullDateString": "May 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Most ports rely on docks and cranes that extend into the shoreline. Porto Flavia in the Sulcis-Iglesiente region, however, took a completely different approach. This engineering marvel transformed a cliff into a gateway for Sardinia's ore industry. Mining in Sulcis-Iglesiente has a history dating back thousands of years, from the Phoenicians and Romans to the industrial boom in the 20th century. Lead, zinc, coal, sulphur, barium and silver were extracted from these rugged hills, but transporting them was a logistical nightmare. Ore had to be hauled by cart, loaded onto small boats and then transferred to larger ships—a slow, costly and inefficient process.",
+        "Image": {
+          "Url": "/th?id=OHR.SardiniaFlavia_ROW1636394232_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SardiniaFlavia_ROW1636394232_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Porto Flavia, Sulcis-Iglesiente, Sardinia, Italy",
+        "Copyright": "© Marco Bottigelli/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250514_SardiniaFlavia\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Porto+Flavia+in+Sulcis+Iglesiente+Sardinia&form=hpcapt&filters=HpDate:\"20250514_0700\"",
+        "TriviaId": "HPQuiz_20250514_SardiniaFlavia"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250514_0700",
+      "FullDateString": "May 14, 2025"
     }
   ]
 }
