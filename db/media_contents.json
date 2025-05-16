@@ -4139,6 +4139,36 @@
       "VideoContent": null,
       "Ssd": "20250514_0700",
       "FullDateString": "May 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "London's most famous clock tower isn't called Big Ben—that name belongs to the massive 13.5-ton bell inside. It has marked time for Londoners since 1859, ringing from what is now known as the Elizabeth Tower. In 2012, officials renamed the Clock Tower as Elizabeth Tower to honour Queen Elizabeth II during her Diamond Jubilee. The clock has stopped only for maintenance and rare disruptions, such as bomb damage during World Wars I and II. Each of its four clock faces spans nearly 7 metres, with the minute hands measuring approximately 4 metres. At 96 metres tall, the tower is part of the grand Palace of Westminster, home to the UK Parliament.",
+        "Image": {
+          "Url": "/th?id=OHR.LondonParliament_ROW3873497471_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LondonParliament_ROW3873497471_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Big Ben and Parliament, Palace of Westminster, London, England",
+        "Copyright": "© Puthipong Worasaran/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250515_LondonParliament\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Big+Ben+in+London&form=hpcapt&filters=HpDate:\"20250515_0700\"",
+        "TriviaId": "HPQuiz_20250515_LondonParliament"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250515_0700",
+      "FullDateString": "May 15, 2025"
     }
   ]
 }
