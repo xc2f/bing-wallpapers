@@ -4169,6 +4169,36 @@
       "VideoContent": null,
       "Ssd": "20250515_0700",
       "FullDateString": "May 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The stunning bird, featured in today's image, is the great green macaw. Measuring around 90 centimetres in length and weighing above 1 kilogram, it is the second-heaviest macaw species and the third-heaviest parrot species in the world. This macaw species is known for its mostly green plumage, with a bold reddish forehead and soft pale blue hues on its lower back, rump and upper tail feathers. They have incredibly powerful beaks, practically built like nature’s nutcracker, which helps them open even the toughest nuts. Native to the tropical forests of Central and South America, this colourful parrot is critically endangered, with fewer than 1,000 individuals estimated in the wild. These intelligent, social birds depend heavily on old-growth forests, particularly in places like Costa Rica, where they nest in almendro trees.",
+        "Image": {
+          "Url": "/th?id=OHR.GreenMacaw_ROW6177034783_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GreenMacaw_ROW6177034783_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Great green macaw, Mexico",
+        "Copyright": "© Ondrej Prosicky/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250516_GreenMacaw\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Great+green+macaw&form=hpcapt&filters=HpDate:\"20250516_0700\"",
+        "TriviaId": "HPQuiz_20250516_GreenMacaw"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250516_0700",
+      "FullDateString": "May 16, 2025"
     }
   ]
 }
