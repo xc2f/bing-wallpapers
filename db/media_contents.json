@@ -4199,6 +4199,36 @@
       "VideoContent": null,
       "Ssd": "20250516_0700",
       "FullDateString": "May 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Pictured here is a spectacular view of a delta in the Venetian Lagoon, Italy. Spanning over 54,900 hectares, this lagoon is a rich mosaic of islands, mudflats, canals and marshes and is one of the largest wetlands in the entire Mediterranean Basin. The lagoon isn't just a scenic wonder—it's a place steeped in history and innovation. Formed after the last Ice Age, it became a refuge for people fleeing invasions around the time of the fall of the Western Roman Empire in 476 CE. In the centuries that followed, those early settlers began building what would eventually become the iconic city of Venice.",
+        "Image": {
+          "Url": "/th?id=OHR.VeniceLagoon_ROW6294338902_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.VeniceLagoon_ROW6294338902_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A delta in the Venetian Lagoon, Italy",
+        "Copyright": "© Dimitri Weber/Amazing Aerial Agency",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250517_VeniceLagoon\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Venetian+Lagoon&form=hpcapt&filters=HpDate:\"20250517_0700\"",
+        "TriviaId": "HPQuiz_20250517_VeniceLagoon"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250517_0700",
+      "FullDateString": "May 17, 2025"
     }
   ]
 }
