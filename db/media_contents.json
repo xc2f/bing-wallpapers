@@ -4229,6 +4229,36 @@
       "VideoContent": null,
       "Ssd": "20250517_0700",
       "FullDateString": "May 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "As the sun sets over the Garonne River, Toulouse reveals one of its most beautiful panoramas: the Saint-Pierre Bridge and the majestic Dôme de la Grave reflected in the water. This bridge, connecting the two banks of the Ville Rose, was built in 1849, then rebuilt in 1927 and 1987 to adapt to modern needs. Opposite it, the Dôme de la Grave, crowning the former hospital of the same name, dominates the landscape. This 19th-century architectural masterpiece is a symbol of Toulouse, visible from afar thanks to its imposing silhouette. Once dedicated to the sick and the poor, the Hôpital de la Grave bears witness to the city's medical past, and today it remains a centre of research and innovation.",
+        "Image": {
+          "Url": "/th?id=OHR.ToulouseBridge_ROW0275769873_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ToulouseBridge_ROW0275769873_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Pont St-Pierre across the Garonne River, Toulouse, France",
+        "Copyright": "© Image Professionals GmbH/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250518_ToulouseBridge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Toulouse&form=hpcapt&filters=HpDate:\"20250518_0700\"",
+        "TriviaId": "HPQuiz_20250518_ToulouseBridge"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250518_0700",
+      "FullDateString": "May 18, 2025"
     }
   ]
 }
