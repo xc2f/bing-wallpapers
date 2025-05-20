@@ -4259,6 +4259,36 @@
       "VideoContent": null,
       "Ssd": "20250518_0700",
       "FullDateString": "May 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Drive up Mount Hamilton in the Bay Area, California, and immerse yourself in stunning views and rich history. The 31-kilometre Mount Hamilton Road is part of State Route 130. It is loved by cyclists and motorcyclists for its long climbs and sparse traffic. The road, built in 1875-76, was designed to transport materials to the Lick Observatory, the world's first permanently occupied mountaintop observatory. At the summit, standing at 1,300 metres, you can see as far as Yosemite National Park or the Sierra Nevada on a clear day.",
+        "Image": {
+          "Url": "/th?id=OHR.MountHamilton_ROW6617758492_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MountHamilton_ROW6617758492_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mount Hamilton, San Francisco Bay Area, California, United States",
+        "Copyright": "© Jeffrey Lewis/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250519_MountHamilton\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mount+Hamilton+Bay+Area&form=hpcapt&filters=HpDate:\"20250519_0700\"",
+        "TriviaId": "HPQuiz_20250519_MountHamilton"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250519_0700",
+      "FullDateString": "May 19, 2025"
     }
   ]
 }
