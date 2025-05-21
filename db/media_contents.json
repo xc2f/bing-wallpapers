@@ -4289,6 +4289,36 @@
       "VideoContent": null,
       "Ssd": "20250519_0700",
       "FullDateString": "May 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Honey bees may be small, but without them, your grocery list would be a lot shorter. No more berries, avocados or even coffee. Alongside butterflies, bats and hummingbirds, bees pollinate nearly 90% of the world's wild flowering plants and over 35% of the food crops we rely on. Unfortunately, bee populations are in danger. Pesticide exposure, habitat loss and climate change are driving their numbers down, threatening both global food security and biodiversity. The good news is that small actions can make a big difference. Support local beekeepers, plant pollinator-friendly flowers and avoid chemical pesticides. And the next time you stir honey into your tea, remember the tiny worker behind that golden spoonful and why protecting this buzzing species matters more than ever.",
+        "Image": {
+          "Url": "/th?id=OHR.HoneyBeeLavender_ROW6706348405_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HoneyBeeLavender_ROW6706348405_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Honey bee on lavender flowers",
+        "Copyright": "© Anthony Brown/Alamy Stock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250520_HoneyBeeLavender\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Honey+bee&form=hpcapt&filters=HpDate:\"20250520_0700\"",
+        "TriviaId": "HPQuiz_20250520_HoneyBeeLavender"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250520_0700",
+      "FullDateString": "May 20, 2025"
     }
   ]
 }
