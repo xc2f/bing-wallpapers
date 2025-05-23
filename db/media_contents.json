@@ -4349,6 +4349,36 @@
       "VideoContent": null,
       "Ssd": "20250521_0700",
       "FullDateString": "May 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features Madagascar's Avenue of the Baobabs. In the Menabe region of western Madagascar, Grandidier's baobabs line the unpaved Road No. 8. Also known as giant baobabs, they are the largest and most famous of Madagascar's baobab species. With their root-like branches stretching toward the sky, baobabs have an almost otherworldly presence.",
+        "Image": {
+          "Url": "/th?id=OHR.BaobabAvenue_ROW6886430771_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BaobabAvenue_ROW6886430771_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Baobab trees at sunset, Avenue of the Baobabs, Madagascar",
+        "Copyright": "© Framalicious/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250522_BaobabAvenue\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Baobab+trees&form=hpcapt&filters=HpDate:\"20250522_0700\"",
+        "TriviaId": "HPQuiz_20250522_BaobabAvenue"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250522_0700",
+      "FullDateString": "May 22, 2025"
     }
   ]
 }
