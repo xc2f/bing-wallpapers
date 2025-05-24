@@ -4379,6 +4379,36 @@
       "VideoContent": null,
       "Ssd": "20250522_0700",
       "FullDateString": "May 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Here we see a fascinating Amazonian phenomenon—a Julia butterfly on the nose of a yellow-spotted river turtle in Ecuador's Amazon River region. Butterflies in the Amazon are known to sip the tears of turtles, which provide a vital source of sodium, a mineral in short supply. The yellow-spotted river turtle is one of the largest river turtles in South America. While these turtles are well-adapted to the waters, they face a range of threats from humans, birds, snakes, large fish, frogs and mammals. In the 1960s, they were heavily exploited for the American pet trade, leading to strict regulations on their importation. Today, a captive, self-sustaining population exists in the United States, with some living over 30 years in captivity.",
+        "Image": {
+          "Url": "/th?id=OHR.ButterflyTurtle_ROW8121339289_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ButterflyTurtle_ROW8121339289_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A Julia butterfly on the nose of a yellow-spotted river turtle, Amazon Region, Ecuador",
+        "Copyright": "© Westend61/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250523_ButterflyTurtle\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=yellow-spotted+river+turtle&form=hpcapt&filters=HpDate:\"20250523_0700\"",
+        "TriviaId": "HPQuiz_20250523_ButterflyTurtle"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250523_0700",
+      "FullDateString": "May 23, 2025"
     }
   ]
 }
