@@ -4499,6 +4499,36 @@
       "VideoContent": null,
       "Ssd": "20250526_0700",
       "FullDateString": "May 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's photo takes us to one of Germany's most beautiful cities—Heidelberg, a city where rich history and innovative modernity blend with a romantic past. Picturesquely situated on the Neckar river, Heidelberg attracts visitors from all over the world. High above the Old Town, on the northern slope of the Königstuhl, and surrounded by verdant forests, stands the majestic Heidelberg Castle. It is considered one of Germany's most famous ruins. Once the magnificent residence of the Electors Palatine, it was destroyed by wars and lightning strikes in the 17th century.",
+        "Image": {
+          "Url": "/th?id=OHR.HeidelbergSpring_ROW7437605721_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HeidelbergSpring_ROW7437605721_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Heidelberg, Baden-Württemberg, Germany",
+        "Copyright": "© anyaivanova/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250527_HeidelbergSpring\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Heidelberg&form=hpcapt&filters=HpDate:\"20250527_0700\"",
+        "TriviaId": "HPQuiz_20250527_HeidelbergSpring"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250527_0700",
+      "FullDateString": "May 27, 2025"
     }
   ]
 }
