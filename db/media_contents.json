@@ -4559,6 +4559,36 @@
       "VideoContent": null,
       "Ssd": "20250528_0700",
       "FullDateString": "May 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some towns live in the present. Miravet in Spain politely declined. Clinging to a cliff above the Ebro River, this Catalan village still offers a living glimpse into the Middle Ages. A castle keeps its perch, potters spin like it's the 1300s and the local ferry still refuses to join the motor age. Welcome to the village where even the river seems too relaxed to rush. As Spain's longest river, the Ebro winds through tales of Iberians, Romans, Moors and Knights Templar. Locals once relied on its waters for trade, transport and even defence. Today, you'll spot kayakers, ferryboats and visitors drifting through the same currents where Crusaders once crossed.",
+        "Image": {
+          "Url": "/th?id=OHR.MiravetSpain_ROW7690047738_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MiravetSpain_ROW7690047738_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Miravet on the Ebro river, Tarragona, Catalonia, Spain",
+        "Copyright": "© Eloi_Omella/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250529_MiravetSpain\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Miravet+Spain&form=hpcapt&filters=HpDate:\"20250529_0700\"",
+        "TriviaId": "HPQuiz_20250529_MiravetSpain"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250529_0700",
+      "FullDateString": "May 29, 2025"
     }
   ]
 }
