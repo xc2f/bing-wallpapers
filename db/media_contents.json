@@ -4649,6 +4649,36 @@
       "VideoContent": null,
       "Ssd": "20250531_0700",
       "FullDateString": "May 31, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "'Life under the sea is better than anything they got up there,' Sebastian the crab once told Ariel. But are we doing enough to protect that underwater world? Today's image features the New Caledonian barrier reef, which wraps around Grande Terre, New Caledonia's largest island.",
+        "Image": {
+          "Url": "/th?id=OHR.GrandeTerreReef_ROW1096147222_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GrandeTerreReef_ROW1096147222_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Barrier reef off Grande Terre, New Caledonia, France",
+        "Copyright": "© Karsten Wrobel/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250601_GrandeTerreReef\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=New+Caledonian+barrier+reef&form=hpcapt&filters=HpDate:\"20250601_0700\"",
+        "TriviaId": "HPQuiz_20250601_GrandeTerreReef"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250601_0700",
+      "FullDateString": "Jun 1, 2025"
     }
   ]
 }
