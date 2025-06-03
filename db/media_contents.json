@@ -4679,6 +4679,36 @@
       "VideoContent": null,
       "Ssd": "20250601_0700",
       "FullDateString": "Jun 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Pictured here is a skipper butterfly, known for its quick, darting flight, resting on a vibrant Echinacea, or coneflower, at Rockefeller State Park in New York, United States. Native to North America, Echinacea is loved by both gardeners and pollinators for its hardy blooms. Its name comes from the Greek word 'ekhinos,' meaning 'hedgehog,' referring to its spiky centre. These flowers bloom during summer, providing long-lasting colour and attracting bees, butterflies and hummingbirds. They are also appreciated for their low-maintenance nature and ability to naturalize. Unfortunately, wild Echinacea populations are under growing threat from excessive harvesting. In addition, habitat loss and environmental changes caused by human activity also threaten the long-term survival of some species.",
+        "Image": {
+          "Url": "/th?id=OHR.EchinaceaButterfly_ROW1204867098_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EchinaceaButterfly_ROW1204867098_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Skipper butterfly on an Echinacea flower, Rockefeller State Park, New York, USA",
+        "Copyright": "© Marianne A. Campolongo/Alamy Stock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250602_EchinaceaButterfly\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Echinacea&form=hpcapt&filters=HpDate:\"20250602_0700\"",
+        "TriviaId": "HPQuiz_20250602_EchinaceaButterfly"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250602_0700",
+      "FullDateString": "Jun 2, 2025"
     }
   ]
 }
