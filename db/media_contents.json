@@ -4709,6 +4709,36 @@
       "VideoContent": null,
       "Ssd": "20250602_0700",
       "FullDateString": "Jun 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Two wheels, no fuel and a whole lot of purpose—cycling is affordable, eco-friendly and easy on the planet. Something as simple as cycling can significantly boost your health, and swapping the car for a bicycle is an easy way to stay active. Moreover, cycling helps reduce pollution, eases traffic congestion and offers an affordable transport option for those without access to cars.",
+        "Image": {
+          "Url": "/th?id=OHR.BicyclesUtrecht_ROW1292854784_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BicyclesUtrecht_ROW1292854784_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Bicycles on a bridge in Utrecht, Netherlands",
+        "Copyright": "© George Pachantouris/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250603_BicyclesUtrecht\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=bicycle&form=hpcapt&filters=HpDate:\"20250603_0700\"",
+        "TriviaId": "HPQuiz_20250603_BicyclesUtrecht"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250603_0700",
+      "FullDateString": "Jun 3, 2025"
     }
   ]
 }
