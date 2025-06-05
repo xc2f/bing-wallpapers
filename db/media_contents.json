@@ -4739,6 +4739,36 @@
       "VideoContent": null,
       "Ssd": "20250603_0700",
       "FullDateString": "Jun 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in a picturesque pond landscape just a few kilometres from Dresden, Germany, Moritzburg Castle stands proudly, as seen in today's image. Originally built in the 16th century as a hunting lodge for Maurice, Elector of Saxony, it was transformed into a country seat surrounded by a moat in the 18th century under Augustus the Strong. Today, it impresses visitors with its Baroque architecture and idyllic location on an artificial island. Majestic towers and halls, furnished with precious furniture and trophies, bear witness to the former splendour of the Saxon court. It is no wonder that this castle is not only the landmark of the town of the same name but is also regarded as one of the most beautiful Baroque castles in Germany.",
+        "Image": {
+          "Url": "/th?id=OHR.SchlossMoritzburg_ROW1385647959_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SchlossMoritzburg_ROW1385647959_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Moritzburg Castle, Saxony, Germany",
+        "Copyright": "© Hans-Peter Szyszka/eStock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250604_SchlossMoritzburg\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Moritzburg+Castle&form=hpcapt&filters=HpDate:\"20250604_0700\"",
+        "TriviaId": "HPQuiz_20250604_SchlossMoritzburg"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250604_0700",
+      "FullDateString": "Jun 4, 2025"
     }
   ]
 }
