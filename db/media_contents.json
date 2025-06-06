@@ -4769,6 +4769,36 @@
       "VideoContent": null,
       "Ssd": "20250604_0700",
       "FullDateString": "Jun 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image takes us to Fumacinha Waterfall, one of the most beautiful yet least explored waterfalls in Chapada Diamantina National Park in Bahia, Brazil. With a height of approximately 100 metres, the access trail begins in the village of Baixão and is considered challenging due to its steep sections. The sound of the cascading water echoes through the canyon, providing a unique sensory experience. Surrounding the waterfall, a diverse range of wildlife—including exotic birds and small mammals—enhances the feeling of being in a pristine, untouched wilderness.",
+        "Image": {
+          "Url": "/th?id=OHR.FumacinhaBahia_ROW1478694911_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FumacinhaBahia_ROW1478694911_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Fumacinha Waterfall, Chapada Diamantina, Brazil",
+        "Copyright": "© Pulsar Imagens/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250605_FumacinhaBahia\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Fumacinha+waterfall&form=hpcapt&filters=HpDate:\"20250605_0700\"",
+        "TriviaId": "HPQuiz_20250605_FumacinhaBahia"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250605_0700",
+      "FullDateString": "Jun 5, 2025"
     }
   ]
 }
