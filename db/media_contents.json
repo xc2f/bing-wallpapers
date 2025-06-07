@@ -4799,6 +4799,36 @@
       "VideoContent": null,
       "Ssd": "20250605_0700",
       "FullDateString": "Jun 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features a common pheasant in Normandy, France. This male, more colourful than the female, is easily recognisable by its long neck, bright red mask and long ridged tail. Originally from Asia, the ring-necked pheasant was introduced to France during the Middle Ages. Today, it is a common sight in rural landscapes, particularly in Normandy, where it finds refuge in hedgerows, field edges and flowering meadows. Although it is not a threatened species, its survival depends on the quality of agricultural areas. The loss of hedges, wasteland and fallow fields reduces areas where it can nest and seek shelter.",
+        "Image": {
+          "Url": "/th?id=OHR.Pheasant_ROW1557701381_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.Pheasant_ROW1557701381_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Common pheasant, Normandy, France",
+        "Copyright": "© slowmotiongli/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250606_Pheasant\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Common+pheasant&form=hpcapt&filters=HpDate:\"20250606_0700\"",
+        "TriviaId": "HPQuiz_20250606_Pheasant"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250606_0700",
+      "FullDateString": "Jun 6, 2025"
     }
   ]
 }
