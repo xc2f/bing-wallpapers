@@ -4829,6 +4829,36 @@
       "VideoContent": null,
       "Ssd": "20250606_0700",
       "FullDateString": "Jun 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image takes us to the Angeles National Forest in California, United States. Home to towering pines and rugged ridgelines, this forest also hosts a stretch of the legendary Pacific Crest Trail (PCT). Winding over 4,200 kilometres from Mexico to Canada, the PCT is the ultimate thru-hike dream. Designated a National Scenic Trail in 1968, it traverses seven national parks, 25 national forests and provides a unique lens through which to experience the dramatic landscapes of the American West. Known officially as the Pacific Crest National Scenic Trail, the PCT runs through the states of California, Oregon and Washington. Some of the notable locations on or near the trail are Big Bear Lake, South Sierra Wilderness, Walker Pass and Mount Rainier National Park.",
+        "Image": {
+          "Url": "/th?id=OHR.PacificCrestTrail_ROW1631856584_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PacificCrestTrail_ROW1631856584_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Summit of Pine Mountain, Angeles National Forest, California, United States",
+        "Copyright": "© Matthew Kuhns/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250607_PacificCrestTrail\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Angeles+National+Forest&form=hpcapt&filters=HpDate:\"20250607_0700\"",
+        "TriviaId": "HPQuiz_20250607_PacificCrestTrail"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250607_0700",
+      "FullDateString": "Jun 7, 2025"
     }
   ]
 }
