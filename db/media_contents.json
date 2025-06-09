@@ -4859,6 +4859,36 @@
       "VideoContent": null,
       "Ssd": "20250607_0700",
       "FullDateString": "Jun 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Steller sea lions might look like laid-back loungers on rocky shores, but they are noisy and nosy. Built with broad chests and thick necks, they are hard to miss. Today's image features Steller sea lions gliding through the chilly waters off the coast of Vancouver Island in Canada. These marine mammals are heavy—females average more than 260 kilograms, while males are around 540 kilograms. Males are noticeably larger than females and are known for their loud roars and flatter snouts. Their deep vocalisations include belching, growling and snorting to warn others and communicate underwater. Males get loud to defend turf, while moms and pups use unique calls to find each other in a crowded rookery. Despite their size, they're preyed on by orcas and large sharks. These sea lions are considered near-threatened. Ocean conservation keeps them—and countless other mammals—afloat.",
+        "Image": {
+          "Url": "/th?id=OHR.StellarSeaLions_ROW1703622183_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.StellarSeaLions_ROW1703622183_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Steller sea lions, Vancouver Island, British Columbia, Canada",
+        "Copyright": "© Steve Woods Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250608_StellarSeaLions\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Steller+sea+lion&form=hpcapt&filters=HpDate:\"20250608_0700\"",
+        "TriviaId": "HPQuiz_20250608_StellarSeaLions"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250608_0700",
+      "FullDateString": "Jun 8, 2025"
     }
   ]
 }
