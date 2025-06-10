@@ -4889,6 +4889,36 @@
       "VideoContent": null,
       "Ssd": "20250608_0700",
       "FullDateString": "Jun 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "There is something mesmerising about cities that wear their history on their sleeves—and Dubrovnik, Croatia, is one of them. Once known as the independent Republic of Ragusa, this city was a major maritime power and trading hub from the 14th to the 19th century. Situated in southern Dalmatia along the Adriatic Sea, its success was built on diplomacy and seafaring. The Walls of Dubrovnik, built between the 13th and 17th centuries, stretch for almost 2 kilometres, with towers, forts and bastions still standing strong. The current layout of the walls follows a city plan from 1292, when Dubrovnik was rebuilt after a fire under Venetian rule.",
+        "Image": {
+          "Url": "/th?id=OHR.DubrovnikTwilight_ROW1786568218_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DubrovnikTwilight_ROW1786568218_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Old City of Dubrovnik in Dalmatia, Croatia",
+        "Copyright": "© bluejayphoto/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250609_DubrovnikTwilight\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dubrovnik&form=hpcapt&filters=HpDate:\"20250609_0700\"",
+        "TriviaId": "HPQuiz_20250609_DubrovnikTwilight"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250609_0700",
+      "FullDateString": "Jun 9, 2025"
     }
   ]
 }
