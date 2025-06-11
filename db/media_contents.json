@@ -4919,6 +4919,36 @@
       "VideoContent": null,
       "Ssd": "20250609_0700",
       "FullDateString": "Jun 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Wouldn't it be great to see our reflection from above in this vast expanse of water? Everglades National Park, located in Florida, is the largest tropical wilderness in the United States, spanning more than 610,000 hectares. It protects the southern 20% of the original Everglades and is home to numerous rare and endangered species, including the Florida panther, American crocodile and West Indian manatee. Often referred to as 'River of Grass,' the park's unique ecosystem, fed by a slow-moving river from Lake Okeechobee to Florida Bay, is a significant breeding ground for tropical wading birds. Everglades National Park is not only a national treasure but also an international one, recognised as a World Heritage Site, an International Biosphere Reserve and a Wetland of International Importance.",
+        "Image": {
+          "Url": "/th?id=OHR.AerialEverglades_ROW1882187380_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AerialEverglades_ROW1882187380_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Aerial view of Everglades National Park, Florida, United States",
+        "Copyright": "© Robert DelVecchio - OcuDrone/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250610_AerialEverglades\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Everglades+National+Park+Florida&form=hpcapt&filters=HpDate:\"20250610_0700\"",
+        "TriviaId": "HPQuiz_20250610_AerialEverglades"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250610_0700",
+      "FullDateString": "Jun 10, 2025"
     }
   ]
 }
