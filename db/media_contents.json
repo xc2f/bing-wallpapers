@@ -4949,6 +4949,36 @@
       "VideoContent": null,
       "Ssd": "20250610_0700",
       "FullDateString": "Jun 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In Lüderitz, Namibia, these birds aren't just passing through—they're standing their ground. Literally. On one leg. These long-legged locals, the greater flamingos, bring a splash of pink to Namibia's windswept Atlantic coast. These birds are the largest of their kind, and they're not shy about showing off. Towering up to 1.5 metres tall with spoon-shaped bills and stilt-like legs, they're easy to spot.",
+        "Image": {
+          "Url": "/th?id=OHR.FlamingosNamibia_ROW1962719255_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FlamingosNamibia_ROW1962719255_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Greater flamingos, Lüderitz, Namibia",
+        "Copyright": "© Karine Aigner/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250611_FlamingosNamibia\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Greater+flamingo&form=hpcapt&filters=HpDate:\"20250611_0700\"",
+        "TriviaId": "HPQuiz_20250611_FlamingosNamibia"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250611_0700",
+      "FullDateString": "Jun 11, 2025"
     }
   ]
 }
