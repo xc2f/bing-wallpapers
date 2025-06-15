@@ -5039,6 +5039,36 @@
       "VideoContent": null,
       "Ssd": "20250613_0700",
       "FullDateString": "Jun 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Cinque Torri, or Five Towers, rise majestically in the heart of the Dolomites in the province of Belluno, within the Veneto region of Italy. They offer the perfect refuge from the summer heat and crowded beaches. Each tower has its own story to tell: of ancient civilisations, adventurous hikers, daring climbers and distant battles. Shaped by time and weather, these Dolomite spires played a strategic role during World War I, and it is still possible to explore the trenches and remnants of that conflict-scarred past. However, nature is stronger than history.",
+        "Image": {
+          "Url": "/th?id=OHR.DolomitiEstate_ROW3727709491_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DolomitiEstate_ROW3727709491_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cinque Torri, Dolomites, Italy",
+        "Copyright": "© usabin/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250614_DolomitiEstate\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cinque+Torri+Dolomites&form=hpcapt&filters=HpDate:\"20250614_0700\"",
+        "TriviaId": "HPQuiz_20250614_DolomitiEstate"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250614_0700",
+      "FullDateString": "Jun 14, 2025"
     }
   ]
 }
