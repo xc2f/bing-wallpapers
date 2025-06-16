@@ -5069,6 +5069,36 @@
       "VideoContent": null,
       "Ssd": "20250614_0700",
       "FullDateString": "Jun 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured here is a lesser rhea, also known as Darwin's rhea, with his chicks in the Torres del Paine National Park, Patagonia, Chile. Native to open grasslands and shrublands of South America, the lesser rhea is a large, flightless bird. Known for its impressive speed and agility on land, it can reach speeds of up to 60 kmph. It is sometimes referred to as the South American ostrich, as it closely resembles a small ostrich.",
+        "Image": {
+          "Url": "/th?id=OHR.RheaDad_ROW4809293275_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RheaDad_ROW4809293275_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lesser rhea adult male with chicks, Torres del Paine National Park, Patagonia, Chile",
+        "Copyright": "© Ignacio Yufera/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250615_RheaDad\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lesser+rhea&form=hpcapt&filters=HpDate:\"20250615_0700\"",
+        "TriviaId": "HPQuiz_20250615_RheaDad"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250615_0700",
+      "FullDateString": "Jun 15, 2025"
     }
   ]
 }
