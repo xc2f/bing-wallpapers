@@ -5099,6 +5099,36 @@
       "VideoContent": null,
       "Ssd": "20250615_0700",
       "FullDateString": "Jun 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "They've got built-in helmets, a slow-and-steady vibe and zero interest in your deadlines. Sea turtles, like this one photographed in Fernando de Noronha, Brazil, have been cruising Earth's oceans since before T-rex was a thing. There are seven species of sea turtles: green, loggerhead, hawksbill, leatherback, Kemp's ridley, olive ridley and flatback. Among them, the leatherback sea turtle is the largest, sometimes reaching almost 2 metres in length and weighing between 300 to 640 kilograms. Each species has unique behaviours, diets and nesting patterns—yet all share a deep connection to coastal and marine environments. Let's protect these ancient mariners—for the oceans, and for the future.",
+        "Image": {
+          "Url": "/th?id=OHR.SeaTurtleBrazil_ROW4882364759_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SeaTurtleBrazil_ROW4882364759_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Sea turtle, Fernando de Noronha, Brazil",
+        "Copyright": "© João Vianna/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250616_SeaTurtleBrazil\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Sea+turtle&form=hpcapt&filters=HpDate:\"20250616_0700\"",
+        "TriviaId": "HPQuiz_20250616_SeaTurtleBrazil"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250616_0700",
+      "FullDateString": "Jun 16, 2025"
     }
   ]
 }
