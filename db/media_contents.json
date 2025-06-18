@@ -5129,6 +5129,36 @@
       "VideoContent": null,
       "Ssd": "20250616_0700",
       "FullDateString": "Jun 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Before you hit the beach, you'll hear it—the rustle of leaves in salty air, the creak of twisted trunks, the hush of an old world. Welcome to the maritime forest of Cumberland Island National Seashore on the southernmost stretch of Georgia's Atlantic coast. Salt spray, sandy soil, hurricanes? The trees here stand their ground. Live oaks bend but don't break. Saw palmettos crowd the ground like leafy bodyguards, while Spanish moss hangs from branches like nature's fringe. This maritime forest is one of the best remaining examples of this rare habitat in the United States. Thanks to its national seashore status, the island has been spared from the concrete creep seen on other coastlines.",
+        "Image": {
+          "Url": "/th?id=OHR.CumberlandOaks_ROW4961647351_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CumberlandOaks_ROW4961647351_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Maritime forest in Cumberland Island National Seashore, Georgia, United States",
+        "Copyright": "© Chris Moore/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250617_CumberlandOaks\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cumberland+Island+National+Seashore&form=hpcapt&filters=HpDate:\"20250617_0700\"",
+        "TriviaId": "HPQuiz_20250617_CumberlandOaks"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250617_0700",
+      "FullDateString": "Jun 17, 2025"
     }
   ]
 }
