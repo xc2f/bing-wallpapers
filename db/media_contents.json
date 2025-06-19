@@ -5159,6 +5159,36 @@
       "VideoContent": null,
       "Ssd": "20250617_0700",
       "FullDateString": "Jun 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured here is the Asian swallowtail, beautifully captured on a red spider lily. Found across Northeast Asia and even parts of Hawaii, this striking butterfly is known for its vivid colouration and powerful flight, making it a frequent visitor to both urban gardens and wild habitats. While it is common and not currently threatened, its role as a pollinator is no less important. The Asian swallowtail uses sophisticated colour vision and colour constancy to identify flowers, especially those in the citrus family, even under changing light conditions. This remarkable ability allows it to remain an effective pollinator across a wide range of environments. Delicate yet determined, the Asian swallowtail reminds us that even the smallest pollinators play a big role in keeping nature balanced and beautiful.",
+        "Image": {
+          "Url": "/th?id=OHR.AsianSwallowtail_ROW5026758014_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AsianSwallowtail_ROW5026758014_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Asian swallowtail butterfly on a red spider lily",
+        "Copyright": "© lzh/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250618_AsianSwallowtail\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Asian+swallowtail+butterfly&form=hpcapt&filters=HpDate:\"20250618_0700\"",
+        "TriviaId": "HPQuiz_20250618_AsianSwallowtail"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250618_0700",
+      "FullDateString": "Jun 18, 2025"
     }
   ]
 }
