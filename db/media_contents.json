@@ -5189,6 +5189,36 @@
       "VideoContent": null,
       "Ssd": "20250618_0700",
       "FullDateString": "Jun 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Stretching over 560 kilometres along Brazil's southern Atlantic, Santa Catarina's coast is a place shaped by history and change. Long before European ships appeared on the horizon, the Carijós—skilled fishermen and farmers of the Tupi-Guarani group—lived here. By 1529, explorers had charted these waters and the name 'Santa Catarina' appeared on world maps. In the 18th century, waves of Azorean settlers arrived. The coast became a stage for disputes between Portugal and Spain, and in the centuries that followed, German and Italian immigrants added new colours to the region's tapestry. Fishing communities and ports flourished throughout the 19th and 20th centuries.",
+        "Image": {
+          "Url": "/th?id=OHR.WinterBegins_ROW5099492663_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WinterBegins_ROW5099492663_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Beach in Santa Catarina, Brazil",
+        "Copyright": "© CaioCarvalhoPhotography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250619_WinterBegins\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Santa+Catarina+Brazil&form=hpcapt&filters=HpDate:\"20250619_0700\"",
+        "TriviaId": "HPQuiz_20250619_WinterBegins"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250619_0700",
+      "FullDateString": "Jun 19, 2025"
     }
   ]
 }
