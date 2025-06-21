@@ -5219,6 +5219,36 @@
       "VideoContent": null,
       "Ssd": "20250619_0700",
       "FullDateString": "Jun 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image is the Seljalandsfoss waterfall. Located along Iceland's South Coast, the 60-metre waterfall drops from cliffs that once marked the country's coastline. The cascading water is part of the Seljalandsá River, originating from the volcanic glacier Eyjafjallajökull. The volcano under the icecap last erupted in 2010, causing disruption for locals and air traffic.",
+        "Image": {
+          "Url": "/th?id=OHR.IcelandSolstice_ROW5177555688_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.IcelandSolstice_ROW5177555688_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Seljalandsfoss waterfall at sunset, Iceland",
+        "Copyright": "© Tom Mackie/AWL/plainpicture",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250620_IcelandSolstice\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Seljalandsfoss+waterfall&form=hpcapt&filters=HpDate:\"20250620_0700\"",
+        "TriviaId": "HPQuiz_20250620_IcelandSolstice"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250620_0700",
+      "FullDateString": "Jun 20, 2025"
     }
   ]
 }
