@@ -5249,6 +5249,36 @@
       "VideoContent": null,
       "Ssd": "20250620_0700",
       "FullDateString": "Jun 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Masai giraffes, known for their distinctive jagged blotches, are native to East Africa. Besides Kenya and Uganda, they roam the vast plains of Tanzania's Serengeti, a name derived from the Maasai word 'seringit,' meaning 'endless plains.' Masai giraffes were named after Herr von Tippelskirch, a member of a German scientific expedition who was the first to collect information and specimens of this giraffe subspecies and bring them to Europe.",
+        "Image": {
+          "Url": "/th?id=OHR.SerengetiGiraffe_ROW5363450229_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SerengetiGiraffe_ROW5363450229_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Masai giraffe mother grooming her calf in the Serengeti, Tanzania",
+        "Copyright": "© Alberto Cassani/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250621_SerengetiGiraffe\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Masai+giraffe&form=hpcapt&filters=HpDate:\"20250621_0700\"",
+        "TriviaId": "HPQuiz_20250621_SerengetiGiraffe"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250621_0700",
+      "FullDateString": "Jun 21, 2025"
     }
   ]
 }
