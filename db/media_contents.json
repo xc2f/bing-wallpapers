@@ -5279,6 +5279,36 @@
       "VideoContent": null,
       "Ssd": "20250621_0700",
       "FullDateString": "Jun 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Amazon Rainforest spreads across much of the Amazon basin in South America. One notable region is in Ecuador. Although smaller than Brazil's share, it's considered one of the most biologically dense areas on Earth. It also shelters an extraordinary range of life—jaguars, macaws, black caimans, electric eels and medicinal plants, many of which are still unknown to science.",
+        "Image": {
+          "Url": "/th?id=OHR.AmazonEcuador_ROW7281571583_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AmazonEcuador_ROW7281571583_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Amazon rainforest, Ecuador",
+        "Copyright": "© Mark Fox/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250622_AmazonEcuador\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Amazon+rainforest+Ecuador&form=hpcapt&filters=HpDate:\"20250622_0700\"",
+        "TriviaId": "HPQuiz_20250622_AmazonEcuador"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250622_0700",
+      "FullDateString": "Jun 22, 2025"
     }
   ]
 }
