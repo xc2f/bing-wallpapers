@@ -5309,6 +5309,36 @@
       "VideoContent": null,
       "Ssd": "20250622_0700",
       "FullDateString": "Jun 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Berlin gets the buzz, Munich brings the beer, but what about Dresden, in Saxony, Germany? Dresden brings the story. The city, once called 'the Florence on the Elbe,' was nearly wiped off the map in 1945 during World War II. Since then, it has rebuilt itself into a place where modern museums, Baroque buildings and riverside views share the same frame. Much of the city's oldest architecture can be found in the boroughs of the Altstadt (Old Town) and Neustadt (New Town). The surrounding neighbourhoods, originally planned by Saxon monarchs in the 18th and 19th centuries, are named after Saxon sovereigns like Friedrichstadt and Albertstadt.",
+        "Image": {
+          "Url": "/th?id=OHR.DresdenElbe_ROW5477551321_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DresdenElbe_ROW5477551321_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Elbe river in Dresden, Germany",
+        "Copyright": "© Sean Pavone/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250623_DresdenElbe\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dresden&form=hpcapt&filters=HpDate:\"20250623_0700\"",
+        "TriviaId": "HPQuiz_20250623_DresdenElbe"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250623_0700",
+      "FullDateString": "Jun 23, 2025"
     }
   ]
 }
