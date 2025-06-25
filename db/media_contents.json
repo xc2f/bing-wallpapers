@@ -5339,6 +5339,36 @@
       "VideoContent": null,
       "Ssd": "20250623_0700",
       "FullDateString": "Jun 23, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "This place wasn't built overnight—nature took its time to craft this masterpiece. What you see at Arches National Park in Utah, United States, is the result of over 300 million years of erosion, uplift and weathering. These arches were formed when salt beds were left behind by ancient seas. Over time, layers of sandstone cracked, shifted and slowly wore away, revealing more than 2,000 natural arches. These formations are made mostly of Entrada and Navajo sandstone. The park was recognised as a national monument in 1929 and was later upgraded to national park status in 1971.",
+        "Image": {
+          "Url": "/th?id=OHR.DelicateArch_ROW5553821108_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DelicateArch_ROW5553821108_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Delicate Arch, Arches National Park, Utah, United States",
+        "Copyright": "© mmac72/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250624_DelicateArch\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Delicate+Arch+Arches+National+Park+Utah&form=hpcapt&filters=HpDate:\"20250624_0700\"",
+        "TriviaId": "HPQuiz_20250624_DelicateArch"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250624_0700",
+      "FullDateString": "Jun 24, 2025"
     }
   ]
 }
