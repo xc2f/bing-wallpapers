@@ -5369,6 +5369,36 @@
       "VideoContent": null,
       "Ssd": "20250624_0700",
       "FullDateString": "Jun 24, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Glastonbury Tor, pictured here, is a hill crowned by the 14th-century St Michael's Church Tower—a Grade I listed building. The Tor is steeped in myth and legend, from ties to King Arthur's Avalon to ancient spiritual lore. Sometimes, when the air and ground temperatures are just right, the Tor looks like it's floating above the mist—a trick of the light called a Fata Morgana. The name comes from Morgan le Fay, a sorceress in Arthurian legends. The Tor stands in the heart of the Summerland Meadows, which are part of the Somerset Levels. It rises to an elevation of 158 metres and is clearly visible from far away, making it a striking landmark. Although often described as an island, the Tor actually sits at the western tip of a peninsula, surrounded on three sides by the River Brue.",
+        "Image": {
+          "Url": "/th?id=OHR.GlastonburyScenic_ROW5625321891_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GlastonburyScenic_ROW5625321891_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "St. Michael's Church Tower on Glastonbury Tor, Glastonbury, Somerset, England",
+        "Copyright": "© Gavin Hellier/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250625_GlastonburyScenic\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Glastonbury+Tor&form=hpcapt&filters=HpDate:\"20250625_0700\"",
+        "TriviaId": "HPQuiz_20250625_GlastonburyScenic"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250625_0700",
+      "FullDateString": "Jun 25, 2025"
     }
   ]
 }
