@@ -5399,6 +5399,36 @@
       "VideoContent": null,
       "Ssd": "20250625_0700",
       "FullDateString": "Jun 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "You can lead a horse to water, but you can't make it drink—unless, of course, you're talking about Horse Head Rock, perched off the Sapphire Coast near Bermagui in New South Wales, Australia. This ancient formation, pictured here, seems as if nature itself has sculpted a mythical creature forever poised to drink from the sea. Estimated to be 500 million years old, the rock's uncanny resemblance to a horse bending its neck is the result of wind and wave erosion. As one of the region's oldest and most iconic landmarks, it attracts hikers, photographers and nature lovers year-round. The best views are from the elevated track between Camel Rock and Murunna Point, while the more daring can scramble around from Camel Rock Surf Beach, though only safely at low tide.",
+        "Image": {
+          "Url": "/th?id=OHR.HorseheadRock_ROW5697614901_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HorseheadRock_ROW5697614901_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Milky Way over Horse Head Rock, New South Wales, Australia",
+        "Copyright": "© Philip Thurston/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250626_HorseheadRock\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Horse+Head+Rock+Bermagui&form=hpcapt&filters=HpDate:\"20250626_0700\"",
+        "TriviaId": "HPQuiz_20250626_HorseheadRock"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250626_0700",
+      "FullDateString": "Jun 26, 2025"
     }
   ]
 }
