@@ -5429,6 +5429,36 @@
       "VideoContent": null,
       "Ssd": "20250626_0700",
       "FullDateString": "Jun 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Don't let the name fool you—this frog isn't just leafing around. The splendid leaf frog, or splendid treefrog, is a rainforest resident with a flair for the dramatic: neon legs, sticky feet and a disappearing act. One minute it's a humble green leaf, the next it's a flash of colour mid-leap, startling predators. This frog lives high in the canopies of Central and South America, especially in Costa Rica, Panama and parts of Ecuador and Colombia.",
+        "Image": {
+          "Url": "/th?id=OHR.SplendidFrog_ROW3619803881_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SplendidFrog_ROW3619803881_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Splendid leaf frog",
+        "Copyright": "© Jan Stria/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250627_SplendidFrog\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Splendid+leaf+frog&form=hpcapt&filters=HpDate:\"20250627_0700\"",
+        "TriviaId": "HPQuiz_20250627_SplendidFrog"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250627_0700",
+      "FullDateString": "Jun 27, 2025"
     }
   ]
 }
