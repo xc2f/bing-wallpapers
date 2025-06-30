@@ -5489,6 +5489,36 @@
       "VideoContent": null,
       "Ssd": "20250628_0700",
       "FullDateString": "Jun 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Photographed here is Pulau Ay, a small but historically significant island. It is also popularly known as the Spice Island for its exceptional production of mace, nutmeg, pepper and cloves. Nutmeg was once one of the world's most sought-after commodities—and this tiny island in Indonesia's Banda Islands played a key role in its global trade. It once sparked global rivalries and deadly sea battles, influencing the geopolitical boundaries of the modern world.",
+        "Image": {
+          "Url": "/th?id=OHR.BandaIsland_ROW4416839626_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BandaIsland_ROW4416839626_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Blue lagoon of Pulau Ay, Banda Islands, Indonesia",
+        "Copyright": "© fabio lamanna/Alamy Stock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250629_BandaIsland\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Banda+Islands&form=hpcapt&filters=HpDate:\"20250629_0700\"",
+        "TriviaId": "HPQuiz_20250629_BandaIsland"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250629_0700",
+      "FullDateString": "Jun 29, 2025"
     }
   ]
 }
