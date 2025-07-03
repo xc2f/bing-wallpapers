@@ -5579,6 +5579,36 @@
       "VideoContent": null,
       "Ssd": "20250701_0700",
       "FullDateString": "Jul 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "That bright fish hiding in the anemone? That's the spine-cheeked anemonefish, also known as the maroon clownfish and it is not just a cute creature. Native to the Indo-Pacific, from western Indonesia to Taiwan and the Great Barrier Reef, this species lives on the edges of coral reefs. This fish is easily distinguished by the spine extending from each cheek—hence the name. Groups of spine-cheeked anemonefish form around a single dominant female, and if she disappears, the top male steps up—literally changing sex to take her place. It thrives in warm, shallow waters and sticks close to its chosen sea anemone.",
+        "Image": {
+          "Url": "/th?id=OHR.MaroonClownfish_ROW4636021251_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MaroonClownfish_ROW4636021251_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Spine-cheeked anemonefish surrounded by bubble-tip anemone, Milne Bay, Papua New Guinea",
+        "Copyright": "© Fred Bavendam/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250702_MaroonClownfish\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Spine+cheeked+anemonefish&form=hpcapt&filters=HpDate:\"20250702_0700\"",
+        "TriviaId": "HPQuiz_20250702_MaroonClownfish"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250702_0700",
+      "FullDateString": "Jul 2, 2025"
     }
   ]
 }
