@@ -5609,6 +5609,36 @@
       "VideoContent": null,
       "Ssd": "20250702_0700",
       "FullDateString": "Jul 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the northern Gulf Coast of Florida in the United States is Rainbow Springs State Park. This area has served as a natural resource for humans and animals for centuries, with the crystal-clear Rainbow River—flowing through the park—playing a major role. The gently winding waterway is fed by Rainbow Springs, one of Florida's largest springs. The water that bubbles up here comes from an almost 200,000-hectare area and eventually flows into the Withlacoochee River.",
+        "Image": {
+          "Url": "/th?id=OHR.RainbowRiver_ROW4765713461_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RainbowRiver_ROW4765713461_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Rainbow River in Rainbow Springs State Park, Florida, United States",
+        "Copyright": "© Michel Roggo/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250703_RainbowRiver\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Rainbow+River+Florida&form=hpcapt&filters=HpDate:\"20250703_0700\"",
+        "TriviaId": "HPQuiz_20250703_RainbowRiver"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250703_0700",
+      "FullDateString": "Jul 3, 2025"
     }
   ]
 }
