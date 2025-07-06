@@ -5669,6 +5669,36 @@
       "VideoContent": null,
       "Ssd": "20250704_0700",
       "FullDateString": "Jul 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Imagine a bridge that connects more than just two sides of a river. Nestled in the Ain department, the Cize-Bolozon Viaduct—featured in today's image—has accomplished this feat for over 70 years. Built in 1950 to replace a structure destroyed during World War II, it has watched over the valley with understated elegance ever since.",
+        "Image": {
+          "Url": "/th?id=OHR.BolozonViaduct_ROW4997285549_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BolozonViaduct_ROW4997285549_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cize-Bolozon viaduct crossing the Ain gorge, France",
+        "Copyright": "© Leonid Andronov/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250705_BolozonViaduct\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cize+Bolozon+viaduct&form=hpcapt&filters=HpDate:\"20250705_0700\"",
+        "TriviaId": "HPQuiz_20250705_BolozonViaduct"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250705_0700",
+      "FullDateString": "Jul 5, 2025"
     }
   ]
 }
