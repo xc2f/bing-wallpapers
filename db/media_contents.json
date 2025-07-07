@@ -5699,6 +5699,36 @@
       "VideoContent": null,
       "Ssd": "20250705_0700",
       "FullDateString": "Jul 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Mesquite Flat Sand Dunes, located near Stovepipe Wells Village in Death Valley National Park, are the most accessible and iconic dunes in the park. They are formed by a combination of eroding mountains to the north that supply sand, prevailing winds that move it and surrounding mountains that trap it from the south—creating a stunning landscape of rippling sand hills. Named after the resilient mesquite trees that grow here, the dunes offer breathtaking views at sunrise and sunset, as well as exceptional stargazing opportunities.",
+        "Image": {
+          "Url": "/th?id=OHR.MesquiteFlats_ROW5187767291_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MesquiteFlats_ROW5187767291_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mesquite Flat Sand Dunes in Death Valley National Park, California, United States",
+        "Copyright": "© Bryan Jolley/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250706_MesquiteFlats\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Death+Valley+National+Park&form=hpcapt&filters=HpDate:\"20250706_0700\"",
+        "TriviaId": "HPQuiz_20250706_MesquiteFlats"
+      },
+      "AudioContent": null,
+      "VideoContent": null,
+      "Ssd": "20250706_0700",
+      "FullDateString": "Jul 6, 2025"
     }
   ]
 }
