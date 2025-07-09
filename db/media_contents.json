@@ -5757,6 +5757,34 @@
       },
       "Ssd": "20250707_0700",
       "FullDateString": "Jul 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Italy's Dolomites don't just tower; they enchant, turning every trail into a story. Fondly known as the 'Pale Mountains,' the Dolomites derive their name from dolomite—a carbonate mineral. Set in the northern Italian Alps, the range spans over 139,000 hectares and boasts 18 soaring peaks that rise above 2,800 metres. These mountains feature sheer cliffs, lofty walls and a maze of narrow, winding valleys.",
+        "Image": {
+          "Url": "/th?id=OHR.SecedaPeak_ROW5372649409_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SecedaPeak_ROW5372649409_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Seceda, a peak in the Dolomites, South Tyrol, Italy",
+        "Copyright": "© Kalyakan/Adobe Stock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250708_SecedaPeak\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dolomites&form=hpcapt&filters=HpDate:\"20250708_0700\"",
+        "TriviaId": "HPQuiz_20250708_SecedaPeak"
+      },
+      "Ssd": "20250708_0700",
+      "FullDateString": "Jul 8, 2025"
     }
   ]
 }
