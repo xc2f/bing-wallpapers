@@ -5785,6 +5785,34 @@
       },
       "Ssd": "20250708_0700",
       "FullDateString": "Jul 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Constitución railway station in Buenos Aires, pictured here, is a historic hub that reflects Argentina's drive for growth, connectivity and the spirit of unity that emerged during a transformative era. On 19 September 1925, the Prince of Wales—later the Duke of Windsor—laid the foundation stone for the present-day terminus during his official visit to Argentina. This marked the beginning of a major transformation, with the station rebuilt to include fourteen roofed platforms, modern buffer stops and a vast main concourse—one of the largest railway halls in the world at the time. Today, Constitución is a busy gateway for all southbound trains on the Roca Line, connecting Buenos Aires to cities like La Plata, Mar del Plata and Bahía Blanca.",
+        "Image": {
+          "Url": "/th?id=OHR.ConstitucionStation_ROW5458871760_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ConstitucionStation_ROW5458871760_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Constitución railway station, Buenos Aires, Argentina",
+        "Copyright": "© Grafissimo/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250709_ConstitucionStation\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Constituci%c3%b3n+railway+station&form=hpcapt&filters=HpDate:\"20250709_0700\"",
+        "TriviaId": "HPQuiz_20250709_ConstitucionStation"
+      },
+      "Ssd": "20250709_0700",
+      "FullDateString": "Jul 9, 2025"
     }
   ]
 }
