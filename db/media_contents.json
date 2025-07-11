@@ -5813,6 +5813,34 @@
       },
       "Ssd": "20250709_0700",
       "FullDateString": "Jul 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Bahamas is an archipelagic island country comprising more than 3,000 islands, cays and islets. Nestled in the Atlantic Ocean, just southeast of Florida and northeast of Cuba, the Bahamas is famous for its beautiful waters, white sandy beaches and vibrant coral reefs. Every corner of the Bahamas is a shade card of blue, but the most captivating of all are the turquoise waters that surround the islands. The shallow, white sandbanks reflect sunlight in a way that gives the ocean its signature electric-blue glow, pictured here. Whether you're snorkelling among coral reefs, watching fireworks from a beachfront or cruising the Exuma Cays under the golden sun, the sea glows with a brilliance that feels almost magical.",
+        "Image": {
+          "Url": "/th?id=OHR.BahamaBlues_ROW5508297502_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BahamaBlues_ROW5508297502_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Turquoise waters of the Bahamas",
+        "Copyright": "© BlueOrange Studio/Adobe Stock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250710_BahamaBlues\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bahamas&form=hpcapt&filters=HpDate:\"20250710_0700\"",
+        "TriviaId": "HPQuiz_20250710_BahamaBlues"
+      },
+      "Ssd": "20250710_0700",
+      "FullDateString": "Jul 10, 2025"
     }
   ]
 }
