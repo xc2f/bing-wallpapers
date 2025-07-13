@@ -5869,6 +5869,34 @@
       },
       "Ssd": "20250711_0700",
       "FullDateString": "Jul 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "There's something about the way animals move through the grasslands of the Maasai Mara, bathed in golden rays, that makes you pause and simply watch. This stretch of savanna in southwestern Kenya teems with wildlife—from elephants stomping through bushes to cheetahs scanning the horizon. Yet sometimes it's the smaller creatures that grab attention—like the Thomson's gazelles featured in today's image.",
+        "Image": {
+          "Url": "/th?id=OHR.ThomsonGazelle_ROW8400660458_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ThomsonGazelle_ROW8400660458_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Thomson's gazelle mother and fawn, Maasai Mara, Kenya",
+        "Copyright": "© Gallo Images/DanitaDelimont.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250712_ThomsonGazelle\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Thomsons+gazelle&form=hpcapt&filters=HpDate:\"20250712_0700\"",
+        "TriviaId": "HPQuiz_20250712_ThomsonGazelle"
+      },
+      "Ssd": "20250712_0700",
+      "FullDateString": "Jul 12, 2025"
     }
   ]
 }
