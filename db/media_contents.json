@@ -5897,6 +5897,34 @@
       },
       "Ssd": "20250712_0700",
       "FullDateString": "Jul 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image takes us to Kálfshamarsvík—a secluded cove on the country's remote Skagi peninsula. Unlike Iceland's famous black sand beaches, this cove's shore is strewn with large, smooth pebbles, while its fiery volcanic past still reveals itself in the towering cliffs. Here, evidence of volcanic activity is on full display in the form of rare hexagonal basalt columns. These sea cliffs are shaped into natural sculptures so symmetrical that they look almost man-made. These striking formations were created around 2 million years ago, when thick basalt lava cooled slowly, contracting and cracking into geometric shapes that formed near-perfect hexagons. Though Iceland is full of volcanic marvels, formations like these are rare, making this quiet cove truly remarkable.",
+        "Image": {
+          "Url": "/th?id=OHR.BasaltColumns_ROW8629166407_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BasaltColumns_ROW8629166407_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Basalt columns in Kálfshamarsvík cove, Skagi peninsula, Iceland",
+        "Copyright": "© Arterra Picture Library/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250713_BasaltColumns\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Skagi+peninsula&form=hpcapt&filters=HpDate:\"20250713_0700\"",
+        "TriviaId": "HPQuiz_20250713_BasaltColumns"
+      },
+      "Ssd": "20250713_0700",
+      "FullDateString": "Jul 13, 2025"
     }
   ]
 }
