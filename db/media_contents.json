@@ -5925,6 +5925,34 @@
       },
       "Ssd": "20250713_0700",
       "FullDateString": "Jul 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The blue shark, featured here, is sleek, wide-ranging and undeniably captivating. It's the only member of its genus that prefers the deep waters of temperate and tropical oceans. While typically a laid-back swimmer, it's capable of sudden bursts of speed when needed. Blue sharks are famous for their epic migrations—some travel from New England to South America, guided by seasonal changes, food availability and favourable environmental conditions. They give birth to live young and are known for their large litters—ranging from 25 to over 100 pups. After birth, the young head to special nursery zones, far from adult habitats, where they can grow and learn the ways of the sea.",
+        "Image": {
+          "Url": "/th?id=OHR.YoungShark_ROW8712681767_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YoungShark_ROW8712681767_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Young blue shark swimming off the coast of Galicia, Spain",
+        "Copyright": "© Damocean/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250714_YoungShark\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=blue+shark&form=hpcapt&filters=HpDate:\"20250714_0700\"",
+        "TriviaId": "HPQuiz_20250714_YoungShark"
+      },
+      "Ssd": "20250714_0700",
+      "FullDateString": "Jul 14, 2025"
     }
   ]
 }
