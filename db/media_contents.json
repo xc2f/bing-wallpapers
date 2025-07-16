@@ -5953,6 +5953,34 @@
       },
       "Ssd": "20250714_0700",
       "FullDateString": "Jul 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image is Great Basin National Park in Nevada, United States, where ancient bristlecone pines stand beneath a sky ablaze with shooting stars. These remarkable trees are the oldest non-clonal species on Earth. Shaped by relentless wind, snow and rain, they've endured for millennia—witnessing ice ages, volcanic eruptions and the rise and fall of civilisations. Their incredibly slow growth results in wood that's dense and highly resistant to insects, fungi, decay and erosion. Against all odds, the Great Basin bristlecones cling to life on barren limestone ridges, twisting into forms that appear almost sculpted by time. Their scattered presence across isolated mountain ranges may be due to wind dispersal, the help of birds like the Clark's nutcracker, or even now-extinct species that once carried their seeds across the highlands.",
+        "Image": {
+          "Url": "/th?id=OHR.PerseidsPine_ROW8981452096_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PerseidsPine_ROW8981452096_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "An ancient bristlecone pine, Great Basin National Park, Nevada, United States",
+        "Copyright": "© Wirestock Creators/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250715_PerseidsPine\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Great+Basin+National+Park+USA&form=hpcapt&filters=HpDate:\"20250715_0700\"",
+        "TriviaId": "HPQuiz_20250715_PerseidsPine"
+      },
+      "Ssd": "20250715_0700",
+      "FullDateString": "Jul 15, 2025"
     }
   ]
 }
