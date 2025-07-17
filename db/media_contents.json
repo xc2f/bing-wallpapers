@@ -5981,6 +5981,34 @@
       },
       "Ssd": "20250715_0700",
       "FullDateString": "Jul 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Temple of Philae, often called the Temple of Isis, is one of Egypt's most enchanting ancient sites. Originally built on Philae Island, it was moved to nearby Agilkia Island to save it from flooding. The international rescue effort, launched by UNESCO in the 1960s, required a monumental effort that involved moving more than 40,000 stones. Today, it's a peaceful spot surrounded by the Nile—perfect for a scenic boat ride and a journey into the past.",
+        "Image": {
+          "Url": "/th?id=OHR.TemplePhilae_ROW9063878443_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TemplePhilae_ROW9063878443_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Temple of Philae (aka Temple of Isis), Aswan, Egypt",
+        "Copyright": "© Ratnakorn Piyasirisorost/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250716_TemplePhilae\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Philae+temple+Aswan+Egypt&form=hpcapt&filters=HpDate:\"20250716_0700\"",
+        "TriviaId": "HPQuiz_20250716_TemplePhilae"
+      },
+      "Ssd": "20250716_0700",
+      "FullDateString": "Jul 16, 2025"
     }
   ]
 }
