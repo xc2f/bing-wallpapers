@@ -6037,6 +6037,34 @@
       },
       "Ssd": "20250717_0700",
       "FullDateString": "Jul 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image takes us to Santa Catarina in Brazil. This is a reforestation area where beauty and functionality share the same space. Tall, aligned and fast-growing, these trees are not native to the country — they came from Oceania, but took root here in the early 20th century. Eucalyptus is now one of the most planted species in the country, the basis for the production of paper, cellulose and charcoal. When well-managed, especially in already degraded areas, it can relieve pressure on native forests and favour soil recovery. However, in large areas, the continuous cultivation of eucalyptus can alter the local environment, affecting biodiversity and water dynamics.",
+        "Image": {
+          "Url": "/th?id=OHR.EucaliptoSC_ROW7955901675_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EucaliptoSC_ROW7955901675_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eucalyptus forest, Urubici, Santa Catarina, Brazil",
+        "Copyright": "© YES BRASIL/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250718_EucaliptoSC\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Eucalyptus&form=hpcapt&filters=HpDate:\"20250718_0700\"",
+        "TriviaId": "HPQuiz_20250718_EucaliptoSC"
+      },
+      "Ssd": "20250718_0700",
+      "FullDateString": "Jul 18, 2025"
     }
   ]
 }
