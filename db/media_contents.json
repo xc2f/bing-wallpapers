@@ -6065,6 +6065,34 @@
       },
       "Ssd": "20250718_0700",
       "FullDateString": "Jul 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image is the luna moth, a species whose charm rivals that of butterflies. Also known as the American moon moth, this striking insect—with its lime-green wings, white body and moon-like eyespots—can be found across North America.  Its caterpillars are also green and are known for their impressive size, as well as their ability to emit clicking sounds and regurgitate intestinal contents as a defence mechanism against predators.",
+        "Image": {
+          "Url": "/th?id=OHR.MothWeek_ROW9542610307_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MothWeek_ROW9542610307_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Luna moth resting on cedar elm, New Braunfels, Texas, United States",
+        "Copyright": "© Rolf Nussbaumer/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250719_MothWeek\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Luna+moth&form=hpcapt&filters=HpDate:\"20250719_0700\"",
+        "TriviaId": "HPQuiz_20250719_MothWeek"
+      },
+      "Ssd": "20250719_0700",
+      "FullDateString": "Jul 19, 2025"
     }
   ]
 }
