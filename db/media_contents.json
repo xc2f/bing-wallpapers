@@ -6093,6 +6093,34 @@
       },
       "Ssd": "20250719_0700",
       "FullDateString": "Jul 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Glowing like a silent guardian in the night sky, the moon is the fifth-largest satellite in the solar system and orbits Earth at an average distance of approximately 384,399 kilometres. With a diameter of about 3,474 kilometres—roughly one-quarter that of Earth—it exerts only one-sixth of our planet's gravity. This is why astronauts famously bounce when they walk on its surface. The moon's surface is mostly covered with rock and fine lunar dust, created by billions of years of impacts from meteoroids and micrometeorites. This powdery material, called regolith, gives the moon its grey, dusty appearance.",
+        "Image": {
+          "Url": "/th?id=OHR.BigMoon_ROW9629931774_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BigMoon_ROW9629931774_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The moon's surface seen through a telescope",
+        "Copyright": "© Sergey Kuznetsov/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250720_BigMoon\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=moon&form=hpcapt&filters=HpDate:\"20250720_0700\"",
+        "TriviaId": "HPQuiz_20250720_BigMoon"
+      },
+      "Ssd": "20250720_0700",
+      "FullDateString": "Jul 20, 2025"
     }
   ]
 }
