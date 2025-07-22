@@ -6121,6 +6121,34 @@
       },
       "Ssd": "20250720_0700",
       "FullDateString": "Jul 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Staghorn coral—pictured here—is a branching, stony coral that plays a vital role in shaping marine ecosystems. It can be easily recognised by its thick, upright branches that can grow more than 2 metres tall. These strong, round branches look a lot like a stag's antlers, which is why it's called Staghorn coral. Scientifically named Acropora cervicornis, it is among the fastest-growing corals on Earth—serving as a central hub of biodiversity in the Western Atlantic.",
+        "Image": {
+          "Url": "/th?id=OHR.AcroporaReef_ROW9713296408_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AcroporaReef_ROW9713296408_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Staghorn coral off the island of Bonaire, Caribbean Netherlands",
+        "Copyright": "© blue-sea.cz/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250721_AcroporaReef\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Staghorn+coral&form=hpcapt&filters=HpDate:\"20250721_0700\"",
+        "TriviaId": "HPQuiz_20250721_AcroporaReef"
+      },
+      "Ssd": "20250721_0700",
+      "FullDateString": "Jul 21, 2025"
     }
   ]
 }
