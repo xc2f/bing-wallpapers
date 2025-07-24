@@ -6177,6 +6177,34 @@
       },
       "Ssd": "20250722_0700",
       "FullDateString": "Jul 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the middle of Rome, Italy, lies an entire country of its own: Vatican City. At just 49 hectares, it's the smallest independent nation in the world, yet its reach spans centuries and continents. Home to the pope and the spiritual centre of the Roman Catholic Church, this walled enclave is a blend of art, history and devotion. At its core stands St. Peter's Basilica. Seen in the distance in today's image, this Renaissance masterpiece is built over what is believed to be the tomb of Saint Peter, the first Bishop of Rome. With its soaring dome dominating the skyline, the basilica is one of the largest churches in the world. Just beyond the basilica lies St. Peter's Square, where thousands gather for papal blessings.",
+        "Image": {
+          "Url": "/th?id=OHR.VaticanCity_ROW9915711454_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.VaticanCity_ROW9915711454_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Vatican City with Saint Peter's Basilica, Rome, Italy",
+        "Copyright": "© RudyBalasko/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250723_VaticanCity\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Vatican+City&form=hpcapt&filters=HpDate:\"20250723_0700\"",
+        "TriviaId": "HPQuiz_20250723_VaticanCity"
+      },
+      "Ssd": "20250723_0700",
+      "FullDateString": "Jul 23, 2025"
     }
   ]
 }
