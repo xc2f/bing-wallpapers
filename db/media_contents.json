@@ -6261,6 +6261,34 @@
       },
       "Ssd": "20250725_0700",
       "FullDateString": "Jul 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "As twilight descends on Walakiri Beach on the island of Sumba, Indonesia, the silhouettes of mangrove trees stand like sentinels in the tide—graceful, resilient and vital. Mangroves are nature's coastal guardians. With their arching and salt-filtering roots, they thrive where few trees can—anchored in brackish water, enduring tides and shifting sands. They protect shorelines from erosion, buffer communities against storms and serve as nurseries for countless marine animals. Their tangled root systems not only stabilise sediment but also provide shelter for juvenile fish, crabs and birds.",
+        "Image": {
+          "Url": "/th?id=OHR.MangroveTwilight_ROW4626130443_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MangroveTwilight_ROW4626130443_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mangrove trees at twilight, Walakiri Beach, island of Sumba, Indonesia",
+        "Copyright": "© Boonchet Ch./Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250726_MangroveTwilight\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mangrove&form=hpcapt&filters=HpDate:\"20250726_0700\"",
+        "TriviaId": "HPQuiz_20250726_MangroveTwilight"
+      },
+      "Ssd": "20250726_0700",
+      "FullDateString": "Jul 26, 2025"
     }
   ]
 }
