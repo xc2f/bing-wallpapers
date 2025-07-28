@@ -6289,6 +6289,34 @@
       },
       "Ssd": "20250726_0700",
       "FullDateString": "Jul 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Being surrounded by a shimmering spiral of silver—that's what it feels like to encounter a school of blackfin barracuda at Shark Reef in Ras Mohammed National Park, Egypt. These streamlined fish, marked by sharp V-shaped stripes, move in near-perfect unison. Their slow, deliberate spirals aren't random—they're an evolutionary strategy that offers both safety in numbers and an edge in hunting. Blackfin barracudas are found throughout tropical waters, from the Red Sea to the central Pacific. During the day, they gather in tight, coordinated groups near the reef, scattering at dusk to pursue prey.",
+        "Image": {
+          "Url": "/th?id=OHR.BlackfinBarracuda_ROW4721072499_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BlackfinBarracuda_ROW4721072499_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "School of blackfin barracuda, Shark Reef, Ras Mohammed National Park, Sinai Peninsula, Egypt",
+        "Copyright": "© Alex Mustard/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250727_BlackfinBarracuda\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ras+Mohammed+National+Park&form=hpcapt&filters=HpDate:\"20250727_0700\"",
+        "TriviaId": "HPQuiz_20250727_BlackfinBarracuda"
+      },
+      "Ssd": "20250727_0700",
+      "FullDateString": "Jul 27, 2025"
     }
   ]
 }
