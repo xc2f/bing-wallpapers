@@ -6317,6 +6317,34 @@
       },
       "Ssd": "20250727_0700",
       "FullDateString": "Jul 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Mongolia's vast grassland, featured today, is an ecoregion in East Asia. These ecosystems are among the largest intact temperate grasslands on Earth, stretching across millions of hectares of open steppe. They support around 200,000 nomadic herder families and provide habitat for rare species like the Mongolian gazelle and snow leopard.",
+        "Image": {
+          "Url": "/th?id=OHR.MongoliaYurts_ROW4824239487_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MongoliaYurts_ROW4824239487_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Yurts in the grassland of Mongolia",
+        "Copyright": "© Michel Arnault/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250728_MongoliaYurts\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mongolia&form=hpcapt&filters=HpDate:\"20250728_0700\"",
+        "TriviaId": "HPQuiz_20250728_MongoliaYurts"
+      },
+      "Ssd": "20250728_0700",
+      "FullDateString": "Jul 28, 2025"
     }
   ]
 }
