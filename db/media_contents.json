@@ -6345,6 +6345,34 @@
       },
       "Ssd": "20250728_0700",
       "FullDateString": "Jul 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Think you can hear silence? Try sitting in a jeep in Kanha National Park in the heart of India, waiting for a Bengal tiger to appear. These cats are more than their unmistakable orange coats and black stripes. They are apex predators, essential to the health and balance of the ecosystems they inhabit. By keeping prey populations like deer and wild boar in check, tigers help shape vegetation patterns and support the overall biodiversity of their environments.",
+        "Image": {
+          "Url": "/th?id=OHR.TigerDay_ROW4927777950_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TigerDay_ROW4927777950_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Female Bengal tiger, Kanha National Park, India",
+        "Copyright": "© Axel Gomille/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250729_TigerDay\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bengal+tiger&form=hpcapt&filters=HpDate:\"20250729_0700\"",
+        "TriviaId": "HPQuiz_20250729_TigerDay"
+      },
+      "Ssd": "20250729_0700",
+      "FullDateString": "Jul 29, 2025"
     }
   ]
 }
