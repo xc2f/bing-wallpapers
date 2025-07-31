@@ -6373,6 +6373,34 @@
       },
       "Ssd": "20250729_0700",
       "FullDateString": "Jul 29, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Ribadesella, featured in today's image, is an 84-square-kilometre municipality in northern Spain's Asturias region, known for its coastal charm and rich heritage. This historic town was founded in the 13th century by Alfonso X the Wise. Its rugged yet beautiful coastline includes beaches such as Santa Marina and Guadamía, where sea and mountains merge in striking landscapes. Nearby, the Tito Bustillo Cave, a UNESCO World Heritage Site, offers a journey into the past with cave paintings dating back more than 14,000 years.",
+        "Image": {
+          "Url": "/th?id=OHR.RibadesellaSummer_ROW5171975400_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RibadesellaSummer_ROW5171975400_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ribadesella, Asturias, Spain",
+        "Copyright": "© Agnieszka Glowala/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250730_RibadesellaSummer\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ribadesella&form=hpcapt&filters=HpDate:\"20250730_0700\"",
+        "TriviaId": "HPQuiz_20250730_RibadesellaSummer"
+      },
+      "Ssd": "20250730_0700",
+      "FullDateString": "Jul 30, 2025"
     }
   ]
 }
