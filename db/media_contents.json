@@ -6401,6 +6401,34 @@
       },
       "Ssd": "20250730_0700",
       "FullDateString": "Jul 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "No road signs, no souvenir stands—just 18 kilometres of mud, cliffs and sweeping views leading to one of Hawaii's most remote beaches. Kalalau Beach, at the end of Kauai's Kalalau Trail, is where tired feet meet a sandy reward. The only land access is the trail itself, a rugged trek through valleys and along coastal cliffs. During summer, some arrive by kayak, but all visitors need permits to stay.",
+        "Image": {
+          "Url": "/th?id=OHR.NaPaliKauai_ROW5276434924_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NaPaliKauai_ROW5276434924_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Kalalau Beach on the Nā Pali Coast, Kauai, Hawaii, United States",
+        "Copyright": "© Russ Bishop/DanitaDelimont.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250731_NaPaliKauai\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Kalalau+Beach&form=hpcapt&filters=HpDate:\"20250731_0700\"",
+        "TriviaId": "HPQuiz_20250731_NaPaliKauai"
+      },
+      "Ssd": "20250731_0700",
+      "FullDateString": "Jul 31, 2025"
     }
   ]
 }
