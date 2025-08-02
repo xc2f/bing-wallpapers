@@ -6429,6 +6429,34 @@
       },
       "Ssd": "20250731_0700",
       "FullDateString": "Jul 31, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Royal Mile, featured in today's image, is a historic street in Edinburgh, Scotland, stretching over one kilometre from Edinburgh Castle to the Palace of Holyroodhouse. This iconic route is made up of five connected streets, namely Castlehill, the Lawnmarket, the High Street, the Canongate and Abbey Strand. Along the way, visitors encounter major attractions such as St Giles' Cathedral, the Scottish Parliament Building and John Knox House.",
+        "Image": {
+          "Url": "/th?id=OHR.EdinburghFringe_ROW5428357489_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EdinburghFringe_ROW5428357489_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Royal Mile, Edinburgh, Scotland",
+        "Copyright": "© MEDITERRANEAN/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250801_EdinburghFringe\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Royal+Mile&form=hpcapt&filters=HpDate:\"20250801_0700\"",
+        "TriviaId": "HPQuiz_20250801_EdinburghFringe"
+      },
+      "Ssd": "20250801_0700",
+      "FullDateString": "Aug 1, 2025"
     }
   ]
 }
