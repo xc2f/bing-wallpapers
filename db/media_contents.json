@@ -6457,6 +6457,34 @@
       },
       "Ssd": "20250801_0700",
       "FullDateString": "Aug 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "There's something timeless about Capitol Reef National Park—a place where red rock cliffs, winding canyons and ancient stories come together under Utah's desert sky. Designated a national park in 1971, Capitol Reef invites reflection—not just on its vivid geology, but on the ancient narratives and cultural heritage etched into its landscape.",
+        "Image": {
+          "Url": "/th?id=OHR.FruitaPetroglyphs_ROW5543812447_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FruitaPetroglyphs_ROW5543812447_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Petroglyphs near Fruita in Capitol Reef National Park, Utah, United States",
+        "Copyright": "© Nicolas VINCENT/Adobe Stock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250802_FruitaPetroglyphs\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Capitol+Reef+National+Park&form=hpcapt&filters=HpDate:\"20250802_0700\"",
+        "TriviaId": "HPQuiz_20250802_FruitaPetroglyphs"
+      },
+      "Ssd": "20250802_0700",
+      "FullDateString": "Aug 2, 2025"
     }
   ]
 }
