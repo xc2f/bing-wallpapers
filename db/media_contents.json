@@ -6569,6 +6569,34 @@
       },
       "Ssd": "20250805_0700",
       "FullDateString": "Aug 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "It looks like this small creature is playing a game, right? But when a baby ring-tailed lemur wraps its tail around or gives it a tug, it's actually working on crucial skills. The infants spend their early weeks hanging tight to their mom, first clinging to her belly and later to her back. As they grow, they separate from their mom and tail-chasing becomes part of how they learn balance, coordination and group play. These primates use their long tails for communication as well. Raised like flags during group movement, the tails help them stick together in open terrain. Loud, rhythmic calls, scent markings and 'stink fights' between males add to the social drama.",
+        "Image": {
+          "Url": "/th?id=OHR.BabyLemur_ROW5956965002_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BabyLemur_ROW5956965002_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ring-tailed lemur infant playing with its own tail, Madagascar",
+        "Copyright": "© Andy Rouse/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250806_BabyLemur\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ring+tailed+lemur&form=hpcapt&filters=HpDate:\"20250806_0700\"",
+        "TriviaId": "HPQuiz_20250806_BabyLemur"
+      },
+      "Ssd": "20250806_0700",
+      "FullDateString": "Aug 6, 2025"
     }
   ]
 }
