@@ -6597,6 +6597,34 @@
       },
       "Ssd": "20250806_0700",
       "FullDateString": "Aug 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Before GPS told ships where to go, lighthouses lit the way—each with its own flash pattern so sailors could figure out where they were, even in total darkness. And like many lighthouses around the world, Florida's Gasparilla Island Lights still hold their ground. The Gasparilla Island Rear Range Light, seen in today's image, has had quite a journey. Originally assembled in Delaware, it found its forever home here in 1927 but was decommissioned by the Coast Guard in 2014. The lighthouse was restored to its former glory in 2017 and was switched on again in 2018. Today, it blinks white every six seconds. The lighthouse grounds and museum are open to visitors seasonally, offering insights into the area's shipping past.",
+        "Image": {
+          "Url": "/th?id=OHR.GasparillaLight_ROW6062509878_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GasparillaLight_ROW6062509878_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Gasparilla Island Rear Range Light, Boca Grande, Florida, United States",
+        "Copyright": "© Wiltser/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250807_GasparillaLight\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Boca+Grande&form=hpcapt&filters=HpDate:\"20250807_0700\"",
+        "TriviaId": "HPQuiz_20250807_GasparillaLight"
+      },
+      "Ssd": "20250807_0700",
+      "FullDateString": "Aug 7, 2025"
     }
   ]
 }
