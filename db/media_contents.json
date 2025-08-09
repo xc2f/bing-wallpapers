@@ -6625,6 +6625,34 @@
       },
       "Ssd": "20250807_0700",
       "FullDateString": "Aug 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "No voice is loud enough to drown out the roar of Iguazú Falls. But it's not just the sound. The sheer presence of this natural wonder is overwhelming as it straddles the border between Argentina and Brazil. This vast waterfall system stretches nearly 3 kilometres and features more than 270 individual cascades, each offering a unique display of tumbling water and shimmering mist.",
+        "Image": {
+          "Url": "/th?id=OHR.IguazuArgentina_ROW3437451352_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.IguazuArgentina_ROW3437451352_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Three Musketeers Falls at Iguazú Falls, Argentina",
+        "Copyright": "© Mark Meredith/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250808_IguazuArgentina\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Iguazu+waterfalls+Argentina+Brazil&form=hpcapt&filters=HpDate:\"20250808_0700\"",
+        "TriviaId": "HPQuiz_20250808_IguazuArgentina"
+      },
+      "Ssd": "20250808_0700",
+      "FullDateString": "Aug 8, 2025"
     }
   ]
 }
