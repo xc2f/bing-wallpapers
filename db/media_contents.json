@@ -6653,6 +6653,34 @@
       },
       "Ssd": "20250808_0700",
       "FullDateString": "Aug 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Amid the fast-paced traffic of Manaus, in Amazonas, Brazil, there's a point where meaning dissolves. Seen from above, the image appears to show a roundabout like any other. But in its centre rests an unusual sculpture: gigantic steel letters intertwined in a knot. Created by artist Sérgio Cardoso in 2003, the work arrived before the roundabout itself—traffic circled around it before any road planning. Made of stainless steel and about 4 metres tall, its original name, 'Diálogo,' never stuck. For residents, it was always 'Bola das Letras.' And so, it remained: a spontaneous nickname, a reference that slipped out of control and became part of the urban landscape. Today, few remember the official title—or even the name of the roundabout.",
+        "Image": {
+          "Url": "/th?id=OHR.RotatoriaLetras_ROW3601160329_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RotatoriaLetras_ROW3601160329_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Letters Square Roundabout, Manaus, Brazil",
+        "Copyright": "© Cristian Lourenço/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250809_RotatoriaLetras\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Letters+Roundabout+Manaus&form=hpcapt&filters=HpDate:\"20250809_0700\"",
+        "TriviaId": "HPQuiz_20250809_RotatoriaLetras"
+      },
+      "Ssd": "20250809_0700",
+      "FullDateString": "Aug 9, 2025"
     }
   ]
 }
