@@ -6681,6 +6681,34 @@
       },
       "Ssd": "20250809_0700",
       "FullDateString": "Aug 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image are among the most iconic big cats in the animal kingdom—the lions—known for their powerful roar which can be heard from 8 kilometres. One of the best places to witness lions in the wild is Maasai Mara National Reserve in Kenya. Nestled in the heart of East Africa, this vast savannah is home to around 850 to 900 lions. The reserve's rich ecosystem and seasonal wildebeest migration offer a front-row seat to the drama of lion life—from territorial battles to cooperative hunts. But Maasai Mara is more than a wildlife haven; it's a model for community-led conservation. Local Maasai communities work alongside conservationists to protect both lions and their ancestral lands, showing that coexistence is not only possible but powerful.",
+        "Image": {
+          "Url": "/th?id=OHR.LionessKenya_ROW4235545619_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LionessKenya_ROW4235545619_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lioness in Maasai Mara National Reserve, Kenya",
+        "Copyright": "© Tandem Stock/Adobe Stock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250810_LionessKenya\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Maasai+Mara+National+Reserve&form=hpcapt&filters=HpDate:\"20250810_0700\"",
+        "TriviaId": "HPQuiz_20250810_LionessKenya"
+      },
+      "Ssd": "20250810_0700",
+      "FullDateString": "Aug 10, 2025"
     }
   ]
 }
