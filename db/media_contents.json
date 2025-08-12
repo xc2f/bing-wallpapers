@@ -6709,6 +6709,34 @@
       },
       "Ssd": "20250810_0700",
       "FullDateString": "Aug 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Tucked into the northern Italian Alps, the village of Santa Maddalena is a postcard-perfect hamlet in South Tyrol's valley of Val di Funes. With its iconic church steeple set against the jagged peaks of the Dolomites—a mountain range in the Alps—it's one of the most photographed spots in the region. The Dolomites themselves—a UNESCO World Heritage Site—rise dramatically behind the village, their pale limestone faces glowing pink at sunset in a phenomenon locals call 'enrosadira.'",
+        "Image": {
+          "Url": "/th?id=OHR.SantaMaddalena_ROW4509037757_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SantaMaddalena_ROW4509037757_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Village of Santa Maddalena, Dolomites, Italy",
+        "Copyright": "© Sakrapee Nopparat/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250811_SantaMaddalena\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dolomites+Italy&form=hpcapt&filters=HpDate:\"20250811_0700\"",
+        "TriviaId": "HPQuiz_20250811_SantaMaddalena"
+      },
+      "Ssd": "20250811_0700",
+      "FullDateString": "Aug 11, 2025"
     }
   ]
 }
