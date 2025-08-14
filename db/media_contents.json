@@ -6765,6 +6765,34 @@
       },
       "Ssd": "20250812_0700",
       "FullDateString": "Aug 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Just outside Arches National Park in Utah, United States, lies a natural wonder that rises like a colossal doorway against the sky, drawing photographers, nature lovers and hikers. Welcome to Corona Arch, seen in today's image, a towering Navajo sandstone formation that offers big adventure without the big crowds. The Corona Arch Trail starts off easy but packs a punch of scenery: railroad tracks, slickrock scrambles and even a metal cable assist makes it more than just a walk in the desert. After 2.4 kilometres of walking, the payoff is big: a massive arch that's 43 metres wide and 32 metres high. It's so large that people once swung from it on ropes, until that was banned for safety reasons. Even without the adrenaline stunts, the hike offers beautiful views and unforgettable moments in the heart of Red Rock Country.",
+        "Image": {
+          "Url": "/th?id=OHR.CoronaArch_ROW4754489590_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CoronaArch_ROW4754489590_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A man rappels off Corona Arch near Moab, Utah, United States",
+        "Copyright": "© Grant Ordelheide/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250813_CoronaArch\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Natural+arch&form=hpcapt&filters=HpDate:\"20250813_0700\"",
+        "TriviaId": "HPQuiz_20250813_CoronaArch"
+      },
+      "Ssd": "20250813_0700",
+      "FullDateString": "Aug 13, 2025"
     }
   ]
 }
