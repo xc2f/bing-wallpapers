@@ -6793,6 +6793,34 @@
       },
       "Ssd": "20250813_0700",
       "FullDateString": "Aug 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "There's a mountain in Switzerland that's always looking down on you—but don't take it personally. At 3,056 metres, Piz Nair of the Albula Alps keeps an eye over the Engadine valley in Graubünden. Start in St. Moritz: hop on the funicular (a type of cable railway system) to Corviglia, then ride the cable car to the summit. At the top? A viewing platform and that famous ibex (an alpine goat) statue. There's also a restaurant where you can eat inside a glass cube with 360° views.",
+        "Image": {
+          "Url": "/th?id=OHR.PizNairPeak_ROW4951213904_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PizNairPeak_ROW4951213904_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cable car station on Piz Nair mountain, Graubünden, Switzerland",
+        "Copyright": "© Roberto Moiola/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250814_PizNairPeak\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Piz+Nair&form=hpcapt&filters=HpDate:\"20250814_0700\"",
+        "TriviaId": "HPQuiz_20250814_PizNairPeak"
+      },
+      "Ssd": "20250814_0700",
+      "FullDateString": "Aug 14, 2025"
     }
   ]
 }
