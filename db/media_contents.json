@@ -6852,6 +6852,37 @@
       "Market": "ROW",
       "Hash": "5085410852",
       "FullDateString": "Aug 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "About 35% of global food crop production relies on animal pollination, including honeybees. The value of crops pollinated by bees is estimated at hundreds of billions of dollars. Despite their superpowers, bees are in a sticky situation. Habitat loss, pesticides, disease and climate change are making life in the hive less than ideal. To protect them, humans created man-made beehives—structures designed to house a honeybee nest, allowing them to live safely. Within these hives, honeybees carry out their seasonal cycle—raising their young and producing honey.",
+        "Image": {
+          "Url": "/th?id=OHR.ColorfulBeehives_ROW5187644040_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ColorfulBeehives_ROW5187644040_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Colourful beehives, Italy",
+        "Copyright": "© Roberto Caucino/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250816_ColorfulBeehives\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Beehives&form=hpcapt&filters=HpDate:\"20250816_0700\"",
+        "TriviaId": "HPQuiz_20250816_ColorfulBeehives"
+      },
+      "Ssd": "20250816",
+      "Name": "ColorfulBeehives",
+      "Market": "ROW",
+      "Hash": "5187644040",
+      "FullDateString": "Aug 16, 2025"
     }
   ]
 }
