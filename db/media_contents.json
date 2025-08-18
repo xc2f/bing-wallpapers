@@ -6883,6 +6883,37 @@
       "Market": "ROW",
       "Hash": "5187644040",
       "FullDateString": "Aug 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Built to brave storms and steer ships to safety, lighthouses now glow as symbols of heritage, wonder and connection. Among the many lighthouses, one of the most iconic in Denmark is the Lyngvig Lighthouse, featured here. Standing over 36-metre tall, this tower was built in 1906 atop a 16-metre dune along the west coast of Jutland—the country's westernmost region. Made with a concrete foundation and brick walls and finished with teak-framed windows and doors, the lighthouse originally required a team of three keepers. They maintained its light until 1965. It has been operating automatically ever since. Following a temporary closure in 2024 due to structural concerns, the lighthouse is now open to the public again.",
+        "Image": {
+          "Url": "/th?id=OHR.LyngvigLighthouse_ROW5324860565_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LyngvigLighthouse_ROW5324860565_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lyngvig Lighthouse, Hvide Sande, Denmark",
+        "Copyright": "© Caroline Brundle Bugge/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250817_LyngvigLighthouse\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lyngvig+Lighthouse&form=hpcapt&filters=HpDate:\"20250817_0700\"",
+        "TriviaId": "HPQuiz_20250817_LyngvigLighthouse"
+      },
+      "Ssd": "20250817",
+      "Name": "LyngvigLighthouse",
+      "Market": "ROW",
+      "Hash": "5324860565",
+      "FullDateString": "Aug 17, 2025"
     }
   ]
 }
