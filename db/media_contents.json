@@ -6914,6 +6914,37 @@
       "Market": "ROW",
       "Hash": "5324860565",
       "FullDateString": "Aug 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "There's no easing into the wild here—the Avalanche Lake Trail carves a bold path through rock scrambles, narrow ledges and alpine serenity. Tucked away in in the Adirondack High Peaks in New York, United States, this 3.6-hectare alpine lake sits at nearly 879 metres between Mount Colden and Avalanche Mountain. Shaped by ancient glaciers, the lake is framed by dramatic cliffs and rugged terrain that echo its icy origins. Its most striking feature is the Trap Dike—a towering 365-metre rock canyon flanked by steep walls, making the lake one of the most awe-inspiring sights in the Adirondacks. Massive avalanches carved these cliffs, leaving behind the dramatic landscape that gave Avalanche Lake its name.",
+        "Image": {
+          "Url": "/th?id=OHR.AvalancheLake_ROW5439773268_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AvalancheLake_ROW5439773268_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Avalanche Lake Trail at Adirondack High Peaks, New York, United States",
+        "Copyright": "© Posnov/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250818_AvalancheLake\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Avalanche+Lake+New+York&form=hpcapt&filters=HpDate:\"20250818_0700\"",
+        "TriviaId": "HPQuiz_20250818_AvalancheLake"
+      },
+      "Ssd": "20250818",
+      "Name": "AvalancheLake",
+      "Market": "ROW",
+      "Hash": "5439773268",
+      "FullDateString": "Aug 18, 2025"
     }
   ]
 }
