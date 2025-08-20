@@ -6945,6 +6945,37 @@
       "Market": "ROW",
       "Hash": "5439773268",
       "FullDateString": "Aug 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "On the coast of Zumaia, in the Basque Country, lies one of the most stunning geological landscapes in Spain: the flysch. These rock formations, visible along the cliffs, reveal millions of years of Earth's history in perfectly aligned layers. Walking along Itzurun Beach or following the trail through the Basque Coast Geopark offers a chance to witness this unique natural phenomenon.",
+        "Image": {
+          "Url": "/th?id=OHR.GipuzcoaSummer_ROW5551089786_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GipuzcoaSummer_ROW5551089786_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Layers of flysch in Zumaia, Basque Country, Spain",
+        "Copyright": "© Eloi_Omella/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250819_GipuzcoaSummer\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Zumaia&form=hpcapt&filters=HpDate:\"20250819_0700\"",
+        "TriviaId": "HPQuiz_20250819_GipuzcoaSummer"
+      },
+      "Ssd": "20250819",
+      "Name": "GipuzcoaSummer",
+      "Market": "ROW",
+      "Hash": "5551089786",
+      "FullDateString": "Aug 19, 2025"
     }
   ]
 }
