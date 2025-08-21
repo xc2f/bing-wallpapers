@@ -6976,6 +6976,37 @@
       "Market": "ROW",
       "Hash": "5551089786",
       "FullDateString": "Aug 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Set at Corsica's southern edge, Bonifacio looks out across a narrow strait to Sardinia, its limestone cliffs towering above the waves. Bonifacio didn't begin as a picturesque tourist destination—it was originally established as a coastal fortification and has spent centuries guarding one of the Mediterranean's busiest sea lanes. Established in 828 CE by Boniface II of Tuscany, the commune gradually became a meeting point for traders, soldiers and sailors—each group contributing to the evolution of the town's structure. Bonifacio is divided into two sections, with the 'vieille ville' (old town)—also known as 'la Haute Ville' (the Upper City)—standing on a high cliff within the original citadel walls. Below, the marine area lines the narrow inlet with harbours, waterfront homes and a growing valley community.",
+        "Image": {
+          "Url": "/th?id=OHR.CitadelBonifacio_ROW5645693651_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CitadelBonifacio_ROW5645693651_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The citadel in Bonifacio, Southern Corsica, France",
+        "Copyright": "© Marc Dozier/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250820_CitadelBonifacio\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bonifacio&form=hpcapt&filters=HpDate:\"20250820_0700\"",
+        "TriviaId": "HPQuiz_20250820_CitadelBonifacio"
+      },
+      "Ssd": "20250820",
+      "Name": "CitadelBonifacio",
+      "Market": "ROW",
+      "Hash": "5645693651",
+      "FullDateString": "Aug 20, 2025"
     }
   ]
 }
