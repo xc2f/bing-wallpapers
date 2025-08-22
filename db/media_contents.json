@@ -7007,6 +7007,37 @@
       "Market": "ROW",
       "Hash": "5645693651",
       "FullDateString": "Aug 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "You don't need to be a bird expert to notice the wheatear darting across open ground. These ground-dwelling songbirds belong to the Oenanthe genus and are known for their upright posture and habit of hopping or sprinting between perches. Despite the name, wheatears have nothing to do with wheat or ears—the name is a twist on the old phrase 'white arse,', pointing to the bird's distinctive white rump found in most species.  Globally, there are around 20 species of wheatears. Today's image features the northern wheatear. It weighs less than a kilogram, but travels thousands of kilometres between its summer homes in Alaska and northern Canada to its wintering grounds in Africa. Its migration route is one of the longest for a bird its size, crossing oceans and continents.",
+        "Image": {
+          "Url": "/th?id=OHR.WheatearBird_ROW5756773054_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WheatearBird_ROW5756773054_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Wheatear and flowering heather, Peak District National Park, England",
+        "Copyright": "© Ben Hall/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250821_WheatearBird\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Wheatear+bird&form=hpcapt&filters=HpDate:\"20250821_0700\"",
+        "TriviaId": "HPQuiz_20250821_WheatearBird"
+      },
+      "Ssd": "20250821",
+      "Name": "WheatearBird",
+      "Market": "ROW",
+      "Hash": "5756773054",
+      "FullDateString": "Aug 21, 2025"
     }
   ]
 }
