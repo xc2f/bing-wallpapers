@@ -7038,6 +7038,37 @@
       "Market": "ROW",
       "Hash": "5756773054",
       "FullDateString": "Aug 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Wave after wave of velvety hills stretch across the Palouse. This tranquil region lies in southeastern Washington in United States, extending to the borders of Idaho and Oregon. The wheat-covered slopes shift in colour with every passing season. In spring, the hills turn lush shades of green as young wheat and barley begin to grow, while summer transforms them into dry, golden browns as the crops near harvest.",
+        "Image": {
+          "Url": "/th?id=OHR.PalouseWA_ROW5952867460_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PalouseWA_ROW5952867460_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Rolling hills of the Palouse, Washington, United States",
+        "Copyright": "© svetlana57/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250822_PalouseWA\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Palouse+region&form=hpcapt&filters=HpDate:\"20250822_0700\"",
+        "TriviaId": "HPQuiz_20250822_PalouseWA"
+      },
+      "Ssd": "20250822",
+      "Name": "PalouseWA",
+      "Market": "ROW",
+      "Hash": "5952867460",
+      "FullDateString": "Aug 22, 2025"
     }
   ]
 }
