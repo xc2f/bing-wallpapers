@@ -7069,6 +7069,37 @@
       "Market": "ROW",
       "Hash": "5952867460",
       "FullDateString": "Aug 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "At the gateway to Saintes-Maries-de-la-Mer, the Camargue Regional Natural Park unfolds its landscapes of water, salt and light. Here, amidst marshes, salt marshes and lagoons, the greater flamingo reigns supreme. In the shallow waters, these graceful birds, with their pink feathers and wings tinged with red and black, perform an unforgettable aerial ballet.",
+        "Image": {
+          "Url": "/th?id=OHR.Flamingos_ROW6320249671_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.Flamingos_ROW6320249671_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Greater flamingos, Saintes-Maries-de-la-Mer, Camargue Regional Nature Park, France",
+        "Copyright": "© Raimund Linke/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250823_Flamingos\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Greater+flamingo&form=hpcapt&filters=HpDate:\"20250823_0700\"",
+        "TriviaId": "HPQuiz_20250823_Flamingos"
+      },
+      "Ssd": "20250823",
+      "Name": "Flamingos",
+      "Market": "ROW",
+      "Hash": "6320249671",
+      "FullDateString": "Aug 23, 2025"
     }
   ]
 }
