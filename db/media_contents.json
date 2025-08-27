@@ -7162,6 +7162,37 @@
       "Market": "ROW",
       "Hash": "6734170781",
       "FullDateString": "Aug 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If fairy tales had architects, they might've come up with something like Alberobello in Italy. But instead of magic wands, it was limestone, mortar-free masonry and—according to some theories—a bit of tax evasion that built this town's signature homes: the trulli. These are whitewashed stone houses topped with dry-stacked limestone roofs shaped like upside-down ice cream cones. It's an ancient building technique and in this case, a clever one. Back in the 14th century, locals were reportedly trying to avoid property taxes by constructing homes that could be quickly dismantled when the king's tax collector came around.",
+        "Image": {
+          "Url": "/th?id=OHR.TrulliHouses_ROW6850250684_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TrulliHouses_ROW6850250684_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Trullo buildings in Alberobello, Apulia, Italy",
+        "Copyright": "© Feng Wei Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250826_TrulliHouses\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Alberobello&form=hpcapt&filters=HpDate:\"20250826_0700\"",
+        "TriviaId": "HPQuiz_20250826_TrulliHouses"
+      },
+      "Ssd": "20250826",
+      "Name": "TrulliHouses",
+      "Market": "ROW",
+      "Hash": "6850250684",
+      "FullDateString": "Aug 26, 2025"
     }
   ]
 }
