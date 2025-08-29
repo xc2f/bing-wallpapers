@@ -7224,6 +7224,37 @@
       "Market": "ROW",
       "Hash": "6981036463",
       "FullDateString": "Aug 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Meet the great egret, also known as the great white egret. Found in the Americas, Asia, Africa and parts of Europe, these birds are often seen wading through wetlands, tidal flats and quiet streams. Patient and precise, they stand motionless for minutes, waiting for just the right moment to deliver a lightning-fast strike. Fish are their main prey, but they also eat frogs, reptiles and even small mammals.",
+        "Image": {
+          "Url": "/th?id=OHR.WhiteEgret_ROW7082373076_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WhiteEgret_ROW7082373076_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Great white egret, Hungary",
+        "Copyright": "© Markus Varesvuo/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250828_WhiteEgret\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Great+white+egret&form=hpcapt&filters=HpDate:\"20250828_0700\"",
+        "TriviaId": "HPQuiz_20250828_WhiteEgret"
+      },
+      "Ssd": "20250828",
+      "Name": "WhiteEgret",
+      "Market": "ROW",
+      "Hash": "7082373076",
+      "FullDateString": "Aug 28, 2025"
     }
   ]
 }
