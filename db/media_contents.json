@@ -7286,6 +7286,37 @@
       "Market": "ROW",
       "Hash": "7184279069",
       "FullDateString": "Aug 29, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Whale sharks are the biggest fish in the sea, but don't let the word 'shark' fool you. They're plankton-eating giants with no interest in humans. Found in warm waters from the Maldives and Mozambique to Mexico's Yucatán coast, they often show up in food-rich, calm waters. Their mouths can stretch over a metre wide, but they feed by suction, not biting. Each has a unique pattern of white spots and stripes—no two alike—used by researchers to track individuals. Their breeding patterns remain largely a mystery, but they are ovoviviparous, meaning pups hatch inside the mother before being born alive. Their story reminds us how much ocean life remains a mystery and how vital it is to protect what we already know is at risk.",
+        "Image": {
+          "Url": "/th?id=OHR.MaldivesWhaleShark_ROW7272953722_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MaldivesWhaleShark_ROW7272953722_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Whale shark off the coast of Alifu Dhaalu Atoll, Maldives",
+        "Copyright": "© Bachir Moukarzel/Amazing Aerial Agency",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250830_MaldivesWhaleShark\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Whale+shark&form=hpcapt&filters=HpDate:\"20250830_0700\"",
+        "TriviaId": "HPQuiz_20250830_MaldivesWhaleShark"
+      },
+      "Ssd": "20250830",
+      "Name": "MaldivesWhaleShark",
+      "Market": "ROW",
+      "Hash": "7272953722",
+      "FullDateString": "Aug 30, 2025"
     }
   ]
 }
