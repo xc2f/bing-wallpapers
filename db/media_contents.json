@@ -7317,6 +7317,37 @@
       "Market": "ROW",
       "Hash": "7272953722",
       "FullDateString": "Aug 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Long before GPS, natural landmarks like Scotts Bluff rose high above the prairie, signalling to travellers that they were on the right path heading west. Before Gering became a town in 1887 and decades before Nebraska achieved statehood in 1867, these sandstone and siltstone formations were already guiding thousands along the Oregon, California and Mormon Trails. Scotts Bluff National Monument is named after Hiram Scott, a fur trader with the Rocky Mountain Fur Company who died under mysterious circumstances nearby in the 1820s.",
+        "Image": {
+          "Url": "/th?id=OHR.ScottsBluff_ROW7379733057_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ScottsBluff_ROW7379733057_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Scotts Bluff National Monument in Gering, Nebraska, United States",
+        "Copyright": "© Hawk Buckman/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250831_ScottsBluff\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Scotts+Bluff+National+Monument&form=hpcapt&filters=HpDate:\"20250831_0700\"",
+        "TriviaId": "HPQuiz_20250831_ScottsBluff"
+      },
+      "Ssd": "20250831",
+      "Name": "ScottsBluff",
+      "Market": "ROW",
+      "Hash": "7379733057",
+      "FullDateString": "Aug 31, 2025"
     }
   ]
 }
