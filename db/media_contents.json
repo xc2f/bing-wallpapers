@@ -7348,6 +7348,37 @@
       "Market": "ROW",
       "Hash": "7379733057",
       "FullDateString": "Aug 31, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Kaiserstuhl is a small mountain range in the south of Baden-Württemberg, near Freiburg im Breisgau, and is one of the sunniest places in Germany. The Kaiserstuhl owes its name to Emperor Otto III, who held court here in 994. This picturesque region is a true paradise for nature lovers, those seeking relaxation and wine connoisseurs alike. Thanks to the fertile soils and mild climate, grape varieties such as Pinot Gris and Pinot Noir thrive here. The volcanic past has left behind mineral-rich soil that gives the region's wines their unique character. The rolling hills, idyllic villages and diverse wildlife—including the rare green lizard—make the Kaiserstuhl a fascinating destination for nature lovers.",
+        "Image": {
+          "Url": "/th?id=OHR.FieldKaiserstuhl_ROW2652237582_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FieldKaiserstuhl_ROW2652237582_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Kaiserstuhl, Baden-Württemberg, Germany",
+        "Copyright": "© EyeEM Mobile GmbH/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250901_FieldKaiserstuhl\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Kaiserstuhl&form=hpcapt&filters=HpDate:\"20250901_0700\"",
+        "TriviaId": "HPQuiz_20250901_FieldKaiserstuhl"
+      },
+      "Ssd": "20250901",
+      "Name": "FieldKaiserstuhl",
+      "Market": "ROW",
+      "Hash": "2652237582",
+      "FullDateString": "Sep 1, 2025"
     }
   ]
 }
