@@ -7379,6 +7379,37 @@
       "Market": "ROW",
       "Hash": "2652237582",
       "FullDateString": "Sep 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "At first glance, it looks like a surreal art installation: dark trees frozen on a clay pan, backed by sand dunes and a glowing sky. But this scene from Deadvlei, in Namibia's Namib-Naukluft Park, is entirely natural. The name 'Deadvlei' means 'dead marsh'—a remnant of the wetland that once filled this basin.",
+        "Image": {
+          "Url": "/th?id=OHR.DeadvleiTrees_ROW7595543784_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DeadvleiTrees_ROW7595543784_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Camel thorn trees, Deadvlei, Namib-Naukluft Park, Namibia",
+        "Copyright": "© Inge Johnsson/Alamy Stock Photo",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250902_DeadvleiTrees\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Namib+Naukluft+Park+in+Namibia&form=hpcapt&filters=HpDate:\"20250902_0700\"",
+        "TriviaId": "HPQuiz_20250902_DeadvleiTrees"
+      },
+      "Ssd": "20250902",
+      "Name": "DeadvleiTrees",
+      "Market": "ROW",
+      "Hash": "7595543784",
+      "FullDateString": "Sep 2, 2025"
     }
   ]
 }
