@@ -7410,6 +7410,37 @@
       "Market": "ROW",
       "Hash": "7595543784",
       "FullDateString": "Sep 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image, Boundary Waters Canoe Area Wilderness is a stunning and expansive wilderness area in northeastern Minnesota, United States. It's one of the largest designated wilderness areas in the country, forming part of the internationally significant Quetico–Superior country. Spanning over 440,000 hectares, it is a vast expanse of interconnected lakes, rivers and boreal forests. The landscape is a mosaic of glacially carved waterways, rocky outcrops and dense woodlands, offering a haven for moose, wolves, loons and countless other species. With over 1,900 kilometres of canoe routes and more than 2,000 campsites, it provides a rare opportunity for solitude and immersion in nature. Protected under the Wilderness Act of 1964, the Boundary Waters remains one of the most pristine natural areas in the US—preserved for future generations to experience and cherish.",
+        "Image": {
+          "Url": "/th?id=OHR.MinnesotaWaters_ROW7698043966_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MinnesotaWaters_ROW7698043966_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Boundary Waters Canoe Area Wilderness, Minnesota, United States",
+        "Copyright": "© s.tomas/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250903_MinnesotaWaters\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Boundary+Waters+Canoe+Area+Wilderness&form=hpcapt&filters=HpDate:\"20250903_0700\"",
+        "TriviaId": "HPQuiz_20250903_MinnesotaWaters"
+      },
+      "Ssd": "20250903",
+      "Name": "MinnesotaWaters",
+      "Market": "ROW",
+      "Hash": "7698043966",
+      "FullDateString": "Sep 3, 2025"
     }
   ]
 }
