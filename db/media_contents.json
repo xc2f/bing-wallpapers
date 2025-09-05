@@ -7441,6 +7441,37 @@
       "Market": "ROW",
       "Hash": "7698043966",
       "FullDateString": "Sep 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image is the grizzly bear, a symbol of the American wilderness. Young grizzlies often 'play-fight' to build strength, sharpen skills and establish social bonds. These heavyweight champs can weigh up to 410 kilograms and still sprint faster than most humans. And it's not just their strength and speed that impress; a grizzly's sense of smell is so powerful, it can detect food from over 30 kilometres away—seven times better than a bloodhound's. Once widespread across the western United States, grizzlies now primarily roam Alaska and parts of the Northern Rockies. Among many places in Alaska, Katmai National Park and Preserve is considered one of the best places in the world to observe grizzly bears in their natural habitat.",
+        "Image": {
+          "Url": "/th?id=OHR.WrestlingBears_ROW7780803769_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WrestlingBears_ROW7780803769_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Grizzly bears wrestling, Katmai National Park and Preserve, Alaska, United States",
+        "Copyright": "© Cavan Images/Adobe Stock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250904_WrestlingBears\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grizzly+bears&form=hpcapt&filters=HpDate:\"20250904_0700\"",
+        "TriviaId": "HPQuiz_20250904_WrestlingBears"
+      },
+      "Ssd": "20250904",
+      "Name": "WrestlingBears",
+      "Market": "ROW",
+      "Hash": "7780803769",
+      "FullDateString": "Sep 4, 2025"
     }
   ]
 }
