@@ -7503,6 +7503,37 @@
       "Market": "ROW",
       "Hash": "6836711117",
       "FullDateString": "Sep 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "They fly backward, dive-bomb rivals and travel farther than most road trippers. Meet the rufous hummingbird—photographed in Golden Gate Park, San Francisco, in the United States. The bird, one of nine species in the genus Selasphorus, gets its name from its rusty, reddish-orange feathers. Males flash copper backs and red throat patches that shimmer in the sun. Females are more subdued but still carry streaks of rufous on their sides and tails.",
+        "Image": {
+          "Url": "/th?id=OHR.RufousHummer_ROW6939671460_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RufousHummer_ROW6939671460_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Rufous hummingbird, Golden Gate Park, San Francisco, California, United States",
+        "Copyright": "© jeremyborkat/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250906_RufousHummer\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Rufous+hummingbird&form=hpcapt&filters=HpDate:\"20250906_0700\"",
+        "TriviaId": "HPQuiz_20250906_RufousHummer"
+      },
+      "Ssd": "20250906",
+      "Name": "RufousHummer",
+      "Market": "ROW",
+      "Hash": "6939671460",
+      "FullDateString": "Sep 6, 2025"
     }
   ]
 }
