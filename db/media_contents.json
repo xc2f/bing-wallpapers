@@ -7534,6 +7534,37 @@
       "Market": "ROW",
       "Hash": "6939671460",
       "FullDateString": "Sep 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Where cobbled charm meets coastal cool, Gdańsk is a dynamic city in Poland's Pomorskie province. It is part of Tricity—a metropolitan area along the Gdańsk Bay that includes the neighbouring coastal cities of Sopot and Gdynia, along with nearby towns. The city likely takes its name from 'Gdania', an earlier name for the Motława river that runs through it.",
+        "Image": {
+          "Url": "/th?id=OHR.BlueGdansk_ROW7036139554_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BlueGdansk_ROW7036139554_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Gdańsk on the banks of the Motława river, Poland",
+        "Copyright": "© Oscar Dominguez/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250907_BlueGdansk\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Gdansk+poland&form=hpcapt&filters=HpDate:\"20250907_0700\"",
+        "TriviaId": "HPQuiz_20250907_BlueGdansk"
+      },
+      "Ssd": "20250907",
+      "Name": "BlueGdansk",
+      "Market": "ROW",
+      "Hash": "7036139554",
+      "FullDateString": "Sep 7, 2025"
     }
   ]
 }
