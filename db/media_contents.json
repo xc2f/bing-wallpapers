@@ -7565,6 +7565,37 @@
       "Market": "ROW",
       "Hash": "7036139554",
       "FullDateString": "Sep 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The library@orchard at Orchard Gateway in Singapore, featured here, reflects a bold shift in how libraries engage with younger audiences. Its journey began in 1999 when then-Minister for Information and the Arts, Lee Yock Suan, inaugurated the original space on the fifth floor of Ngee Ann City along Orchard Road. After closing in 2007 due to rising rents, the concept was revived and redefined—returning in 2014 to its present home at Orchard Gateway where it continues to inspire a new generation of readers and creators. Spanning two visually distinct levels—The Studio and The Loft—this 1,700-square-metre space holds a curated collection of 100,000 items. Developed in collaboration with students and lecturers from Singapore Polytechnic, this library is a dynamic environment for learning, expression and creative exploration in the heart of Orchard Road.",
+        "Image": {
+          "Url": "/th?id=OHR.OrchardLibrary_ROW7132062115_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OrchardLibrary_ROW7132062115_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Library@orchard, Singapore",
+        "Copyright": "© Darwin Fan/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250908_OrchardLibrary\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Library+orchard+Singapore&form=hpcapt&filters=HpDate:\"20250908_0700\"",
+        "TriviaId": "HPQuiz_20250908_OrchardLibrary"
+      },
+      "Ssd": "20250908",
+      "Name": "OrchardLibrary",
+      "Market": "ROW",
+      "Hash": "7132062115",
+      "FullDateString": "Sep 8, 2025"
     }
   ]
 }
