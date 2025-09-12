@@ -7658,6 +7658,37 @@
       "Market": "ROW",
       "Hash": "7331770812",
       "FullDateString": "Sep 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image takes us to Monfragüe National Park, a natural treasure in the heart of Extremadura, Spain. From the viewpoint of Salto del Gitano, in Cáceres, you can enjoy one of the most stunning sunsets in the country, surrounded by rocky cliffs and skies painted in gold. Two rivers cross the park—the Tagus and the Tiétar—shaping its rugged landscape and nourishing a rich variety of wildlife and Mediterranean vegetation. This paradise is perfect for nature and bird lovers. Soaring freely over the park are griffon vultures—Spain is home to the largest colony in Europe—along with Spanish imperial eagles and Egyptian vultures, making it a true biodiversity hotspot.",
+        "Image": {
+          "Url": "/th?id=OHR.ExtremaduraJamon_ROW7444306308_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ExtremaduraJamon_ROW7444306308_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Peña Falcon rock on the Tagus river, Monfragüe National Park, Spain",
+        "Copyright": "© Daniel Viñé Garcia/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250911_ExtremaduraJamon\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Monfrague+National+Park&form=hpcapt&filters=HpDate:\"20250911_0700\"",
+        "TriviaId": "HPQuiz_20250911_ExtremaduraJamon"
+      },
+      "Ssd": "20250911",
+      "Name": "ExtremaduraJamon",
+      "Market": "ROW",
+      "Hash": "7444306308",
+      "FullDateString": "Sep 11, 2025"
     }
   ]
 }
