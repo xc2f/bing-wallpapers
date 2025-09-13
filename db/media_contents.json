@@ -7689,6 +7689,37 @@
       "Market": "ROW",
       "Hash": "7444306308",
       "FullDateString": "Sep 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "With lifelong bonds, signature whistles and echolocation, dolphins are more than just smart swimmers. Over 40 dolphin species swim our seas, from the Māui dolphin to the Irrawaddy dolphin. They're expert navigators, problem-solvers and team players. Some even form super pods—temporary gatherings of hundreds or thousands of dolphins moving together offshore.",
+        "Image": {
+          "Url": "/th?id=OHR.SpinnerDolphins_ROW7589569967_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SpinnerDolphins_ROW7589569967_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Spinner dolphin pod in the Red Sea, Marsa Alam, Egypt",
+        "Copyright": "© Franco Banfi/Nature Picture Library",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250912_SpinnerDolphins\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Spinner+dolphin&form=hpcapt&filters=HpDate:\"20250912_0700\"",
+        "TriviaId": "HPQuiz_20250912_SpinnerDolphins"
+      },
+      "Ssd": "20250912",
+      "Name": "SpinnerDolphins",
+      "Market": "ROW",
+      "Hash": "7589569967",
+      "FullDateString": "Sep 12, 2025"
     }
   ]
 }
