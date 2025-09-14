@@ -7720,6 +7720,37 @@
       "Market": "ROW",
       "Hash": "7589569967",
       "FullDateString": "Sep 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "It's not polished or curated—and that's exactly the point. Drive just over an hour north of San Francisco, in the United States, and you'll reach Point Reyes National Seashore—a place where fog drifts slowly, tule elk roam freely and time seems to pause. Established by the US Congress in 1962, the park was set aside to protect this piece of coastline for public enjoyment and environmental conservation. It covers over 28,700 hectares and features an impressive array of landscapes, from coastal prairie and blustery headlands to sandy shores and Douglas fir woodlands.",
+        "Image": {
+          "Url": "/th?id=OHR.PointReyesSeashore_ROW7684376877_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PointReyesSeashore_ROW7684376877_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Chimney Rock, Point Reyes National Seashore, California, United States",
+        "Copyright": "© Enrique Aguirre Aves/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250913_PointReyesSeashore\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Point+Reyes+National+Seashore&form=hpcapt&filters=HpDate:\"20250913_0700\"",
+        "TriviaId": "HPQuiz_20250913_PointReyesSeashore"
+      },
+      "Ssd": "20250913",
+      "Name": "PointReyesSeashore",
+      "Market": "ROW",
+      "Hash": "7684376877",
+      "FullDateString": "Sep 13, 2025"
     }
   ]
 }
