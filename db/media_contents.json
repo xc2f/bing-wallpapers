@@ -7751,6 +7751,37 @@
       "Market": "ROW",
       "Hash": "7684376877",
       "FullDateString": "Sep 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Olympic National Park covers a rare mix of terrain—and that's part of its unique appeal. Alpine ridges, quiet forests and one of the longest stretches of undeveloped coastline in the lower 48 of the United States all meet here. Spanning nearly 373,500 hectares in Washington State, this UNESCO World Heritage Site drew over 3.7 million visitors in 2024. Originally protected in 1909 as Mount Olympus National Monument by President Theodore Roosevelt, the area became a national park in 1938.",
+        "Image": {
+          "Url": "/th?id=OHR.HohWaterfall_ROW7820858130_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HohWaterfall_ROW7820858130_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A waterfall in Olympic National Park, Washington, United States",
+        "Copyright": "© Chris Moore/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250914_HohWaterfall\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Olympic+National+Park+Washington&form=hpcapt&filters=HpDate:\"20250914_0700\"",
+        "TriviaId": "HPQuiz_20250914_HohWaterfall"
+      },
+      "Ssd": "20250914",
+      "Name": "HohWaterfall",
+      "Market": "ROW",
+      "Hash": "7820858130",
+      "FullDateString": "Sep 14, 2025"
     }
   ]
 }
