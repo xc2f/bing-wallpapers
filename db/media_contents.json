@@ -7782,6 +7782,37 @@
       "Market": "ROW",
       "Hash": "7820858130",
       "FullDateString": "Sep 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Across the shimmering lagoons of Africa, the winding deltas of Asia and the salt marshes of southern Europe, a graceful figure emerges, poised delicately between water and sky. The black-winged stilt, with its long, slender red legs, moves with quiet elegance through the shallows. Their presence sometimes evokes a quiet intimacy—two birds drifting close, their movements mirroring one another in a delicate choreography, as if sharing a secret only the wetlands can hear. They hunt with quiet precision, gently picking insects, larvae and tiny crustaceans from the water's surface. Each movement reveals a subtle mastery of their environment, shaped by patience and instinct.",
+        "Image": {
+          "Url": "/th?id=OHR.Echasse_ROW7944797323_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.Echasse_ROW7944797323_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Black-winged stilts, France",
+        "Copyright": "© Antonio Sementa/500px/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250915_Echasse\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Black-winged+stilt&form=hpcapt&filters=HpDate:\"20250915_0700\"",
+        "TriviaId": "HPQuiz_20250915_Echasse"
+      },
+      "Ssd": "20250915",
+      "Name": "Echasse",
+      "Market": "ROW",
+      "Hash": "7944797323",
+      "FullDateString": "Sep 15, 2025"
     }
   ]
 }
