@@ -7813,6 +7813,37 @@
       "Market": "ROW",
       "Hash": "7944797323",
       "FullDateString": "Sep 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "What do invisible gases, vintage hairspray and satellites have in common? They all played a role in one of the greatest environmental comebacks in history. Seen from 362 kilometres above, the Gulf Coast glows like a constellation—clusters of light scattered across the dark. But what truly makes this view possible can't be seen: the ozone layer, silently shielding everything below from the sun's ultraviolet rays. By the 1980s, that shield was thinning fast—damaged by chemicals once used in refrigeration and aerosol products. The solution? A global pact. The Montreal Protocol, signed in 1987, led to a swift phase-out of ozone-depleting substances. Today, satellites show that the hole over Antarctica is shrinking. Scientists believe it could be fully healed by mid-century.",
+        "Image": {
+          "Url": "/th?id=OHR.OzoneEarth_ROW8045660515_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OzoneEarth_ROW8045660515_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A nighttime view of the Gulf Coast states from 362 kilometres above Earth",
+        "Copyright": "© Stocktrek Images/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250916_OzoneEarth\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ozone+layer&form=hpcapt&filters=HpDate:\"20250916_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250916_OzoneEarth"
+      },
+      "Ssd": "20250916",
+      "Name": "OzoneEarth",
+      "Market": "ROW",
+      "Hash": "8045660515",
+      "FullDateString": "Sep 16, 2025"
     }
   ]
 }
