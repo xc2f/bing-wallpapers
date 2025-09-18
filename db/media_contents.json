@@ -7844,6 +7844,37 @@
       "Market": "ROW",
       "Hash": "8045660515",
       "FullDateString": "Sep 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "He may be young, but these antlers speak of future battles. In Denali National Park, in Alaska, United States, a young bull moose lifts his head above the shrubs. At this stage, his antlers are more crown than weapon—still covered in velvet. But even now, they hint at a life shaped by instinct, sparring and the quiet pull of dominance.",
+        "Image": {
+          "Url": "/th?id=OHR.YoungMoose_ROW0217187286_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YoungMoose_ROW0217187286_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A young bull moose in Denali National Park, Alaska, United States",
+        "Copyright": "© Grant Ordelheide/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250917_YoungMoose\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Alaska+moose&form=hpcapt&filters=HpDate:\"20250917_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250917_YoungMoose"
+      },
+      "Ssd": "20250917",
+      "Name": "YoungMoose",
+      "Market": "ROW",
+      "Hash": "0217187286",
+      "FullDateString": "Sep 17, 2025"
     }
   ]
 }
