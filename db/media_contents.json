@@ -7875,6 +7875,37 @@
       "Market": "ROW",
       "Hash": "0217187286",
       "FullDateString": "Sep 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "This stunning view—where the sky meets the open waters of the Atlantic—is accessible only by foot. Tucked away on Ireland's wild and beautiful Dingle Peninsula, Dunquin Pier is one of the most photogenic spots in County Kerry. The small pier is famous for its winding, serpentine path that zigzags dramatically down the cliffside like a ribbon. These steep curves aren't just for the thrill—they're the only way to reach the pier below, where boats depart for the remote Blasket Islands.",
+        "Image": {
+          "Url": "/th?id=OHR.DunquinIreland_ROW8248282029_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DunquinIreland_ROW8248282029_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Serpentine stairs of Dunquin Pier, County Kerry, Ireland",
+        "Copyright": "© Hugh O'Connor/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250918_DunquinIreland\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dunquin+Pier&form=hpcapt&filters=HpDate:\"20250918_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250918_DunquinIreland"
+      },
+      "Ssd": "20250918",
+      "Name": "DunquinIreland",
+      "Market": "ROW",
+      "Hash": "8248282029",
+      "FullDateString": "Sep 18, 2025"
     }
   ]
 }
