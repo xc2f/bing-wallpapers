@@ -7906,6 +7906,37 @@
       "Market": "ROW",
       "Hash": "8248282029",
       "FullDateString": "Sep 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "When you hear 'Thousand Islands', you might think of a jar of salad dressing, but behind that creamy condiment is one of North America's most enchanting regions. The Thousand Islands is an archipelago in the St. Lawrence River, spanning the state of New York in the United States and the province of Ontario in Canada. It is made up of more than 1,800 islands. Some of these islands have fairytale castles; others are barely big enough for a hammock. There's also Just Room Enough Island, which lives up to its name with a single house and a lone tree.",
+        "Image": {
+          "Url": "/th?id=OHR.ThousandIslands_ROW3854293844_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ThousandIslands_ROW3854293844_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Thousand Islands region, St. Lawrence River, USA-Canada border",
+        "Copyright": "© benedek/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250919_ThousandIslands\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Thousand+Islands+region&form=hpcapt&filters=HpDate:\"20250919_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250919_ThousandIslands"
+      },
+      "Ssd": "20250919",
+      "Name": "ThousandIslands",
+      "Market": "ROW",
+      "Hash": "3854293844",
+      "FullDateString": "Sep 19, 2025"
     }
   ]
 }
