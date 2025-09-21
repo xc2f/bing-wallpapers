@@ -7937,6 +7937,37 @@
       "Market": "ROW",
       "Hash": "3854293844",
       "FullDateString": "Sep 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Every year, between late September and early October, Theresienwiese, a square in Munich, Germany, transforms into one of the world's largest festivals—Oktoberfest. First held in 1810 to celebrate a royal wedding, it has grown into a 16- to 18-day tradition attracting more than six million people from around the globe. The scale is staggering: the festival grounds span about 42 hectares and host 14 main tents, each seating thousands. Each year, visitors consume around seven million litres of beer, along with mountains of pretzels, sausages and gingerbread hearts. All beer served at Oktoberfest comes from Munich breweries and meets the strict standards of the Reinheitsgebot, the German Beer Purity Law.",
+        "Image": {
+          "Url": "/th?id=OHR.OktoberfestSwing_ROW4294317377_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OktoberfestSwing_ROW4294317377_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Swing carousel at Oktoberfest, Munich, Bavaria, Germany",
+        "Copyright": "© LOOK-foto/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250920_OktoberfestSwing\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Oktoberfest&form=hpcapt&filters=HpDate:\"20250920_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250920_OktoberfestSwing"
+      },
+      "Ssd": "20250920",
+      "Name": "OktoberfestSwing",
+      "Market": "ROW",
+      "Hash": "4294317377",
+      "FullDateString": "Sep 20, 2025"
     }
   ]
 }
