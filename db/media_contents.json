@@ -7968,6 +7968,37 @@
       "Market": "ROW",
       "Hash": "4294317377",
       "FullDateString": "Sep 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Think sea otters are just about whiskers and floating naps? There's more going on behind those button eyes. In Prince William Sound, in Alaska, United States, sea otters drift on ice or crack shellfish on their bellies using their favourite rock, as seen in today's image. Less visible is how their appetite for sea urchins helps protect kelp forests.",
+        "Image": {
+          "Url": "/th?id=OHR.IceOtters_ROW4423609000_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.IceOtters_ROW4423609000_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Sea otters, Prince William Sound, Alaska, United States",
+        "Copyright": "© Gerald Corsi/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250921_IceOtters\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Sea+Otter&form=hpcapt&filters=HpDate:\"20250921_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250921_IceOtters"
+      },
+      "Ssd": "20250921",
+      "Name": "IceOtters",
+      "Market": "ROW",
+      "Hash": "4423609000",
+      "FullDateString": "Sep 21, 2025"
     }
   ]
 }
