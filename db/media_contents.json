@@ -7999,6 +7999,37 @@
       "Market": "ROW",
       "Hash": "4423609000",
       "FullDateString": "Sep 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nature is full of wonders, and one of its most magical creations is the aspen trees, featured in today's image. Unlike ordinary trees, these aspens don't grow from separate seeds; instead, new trees sprout from the roots of existing ones, forming large groups of connected trees where all the trees belong to the same organism. The largest and oldest colony of aspen trees, named Pando, is located in Fishlake National Forest, in Utah, United States, covering an area of about 43 hectares.",
+        "Image": {
+          "Url": "/th?id=OHR.AspenEquinox_ROW4592504146_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AspenEquinox_ROW4592504146_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Aspen trees during autumn, Fishlake National Forest, Utah, United States",
+        "Copyright": "© Danita Delimont/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250922_AspenEquinox\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Aspen+trees&form=hpcapt&filters=HpDate:\"20250922_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250922_AspenEquinox"
+      },
+      "Ssd": "20250922",
+      "Name": "AspenEquinox",
+      "Market": "ROW",
+      "Hash": "4592504146",
+      "FullDateString": "Sep 22, 2025"
     }
   ]
 }
