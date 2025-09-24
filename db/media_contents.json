@@ -8030,6 +8030,37 @@
       "Market": "ROW",
       "Hash": "4592504146",
       "FullDateString": "Sep 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Spot a flash of yellow on its chest and a bill that looks painted by an artist—that's the keel-billed toucan. A member of the Ramphastidae family, which includes toucan barbets, it is one of more than 40 toucan species. Found from southern Mexico to northern Colombia, it spends much of its day plucking fruit with a rainbow-coloured bill about one-third of its total length. It also eats insects, eggs and small reptiles when available. The bill not only helps it eat but also keeps the toucan cool by radiating excess heat—thanks to the blood vessels running through it. This social bird often moves in small groups, chattering and gliding between treetops. With each wing measuring around 18-20 centimetres, the keel-billed toucan moults, or sheds its feathers, just once a year.",
+        "Image": {
+          "Url": "/th?id=OHR.ToucanForest_ROW4747613727_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ToucanForest_ROW4747613727_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Keel-billed toucan in Costa Rica",
+        "Copyright": "© Juan Carlos Vindas/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250923_ToucanForest\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Keel+billed+toucan&form=hpcapt&filters=HpDate:\"20250923_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250923_ToucanForest"
+      },
+      "Ssd": "20250923",
+      "Name": "ToucanForest",
+      "Market": "ROW",
+      "Hash": "4747613727",
+      "FullDateString": "Sep 23, 2025"
     }
   ]
 }
