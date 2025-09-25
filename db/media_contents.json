@@ -8061,6 +8061,37 @@
       "Market": "ROW",
       "Hash": "4747613727",
       "FullDateString": "Sep 23, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Somewhere in the wide prairies of northeastern Wyoming in the United States, stands Devils Tower, a stone formation that rises from the open plains. Once called Bear Lodge, the butte gained its current name during an 1875 expedition led by Colonel Richard Irving Dodge, possibly after an interpreter mistranslated a Native phrase as 'Bad God's Tower.' The missing apostrophe in its official title follows standard geographic naming conventions—hence, the signs read 'Devils Tower.' In 1906, President Theodore Roosevelt proclaimed it as the nation's first national monument.",
+        "Image": {
+          "Url": "/th?id=OHR.BearLodge_ROW5124769347_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BearLodge_ROW5124769347_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Devils Tower National Monument, Wyoming, United States",
+        "Copyright": "© Laura Hedien/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250924_BearLodge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Devils+Tower+National+Monument&form=hpcapt&filters=HpDate:\"20250924_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250924_BearLodge"
+      },
+      "Ssd": "20250924",
+      "Name": "BearLodge",
+      "Market": "ROW",
+      "Hash": "5124769347",
+      "FullDateString": "Sep 24, 2025"
     }
   ]
 }
