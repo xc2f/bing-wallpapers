@@ -8092,6 +8092,37 @@
       "Market": "ROW",
       "Hash": "5124769347",
       "FullDateString": "Sep 24, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "High on a hill rising over 180 metres in Rajasthan, India, Chittorgarh Fort spans approximately 280 hectares. It stands as a proud witness to the valour of the famed warrior clans—the Rajputs. Their name comes from the Sanskrit 'rajaputra,' meaning 'son of a king,' and they are celebrated for their noble lineage and martial traditions across northern India. The fort's stone walls have witnessed centuries of courage, pride and romance, remembered in the songs of Rajasthan's bards. According to legend, Bhim, a hero from the Hindu epic 'Mahabharata,' first laid its foundations.",
+        "Image": {
+          "Url": "/th?id=OHR.FortChittorgarh_ROW5235971139_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FortChittorgarh_ROW5235971139_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Chittorgarh Fort, Rajasthan, India",
+        "Copyright": "© chetansoni/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250925_FortChittorgarh\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Chittorgarh+Fort+India&form=hpcapt&filters=HpDate:\"20250925_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250925_FortChittorgarh"
+      },
+      "Ssd": "20250925",
+      "Name": "FortChittorgarh",
+      "Market": "ROW",
+      "Hash": "5235971139",
+      "FullDateString": "Sep 25, 2025"
     }
   ]
 }
