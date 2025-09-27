@@ -8123,6 +8123,37 @@
       "Market": "ROW",
       "Hash": "5235971139",
       "FullDateString": "Sep 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the world of woodland critters, the least chipmunk might seem like the 'under squirrel'—but don't count it out. With survival smarts and turbo-charged feet, this tiny rodent proves that being 'least' is no reason to squirrel away your potential. Weighing less than a deck of cards and measuring under 25 centimetres from nose to tail, this species is North America's smallest chipmunk.",
+        "Image": {
+          "Url": "/th?id=OHR.AutumnChipmunk_ROW5358598702_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AutumnChipmunk_ROW5358598702_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Least chipmunk, Kootenai National Forest, Montana, United States",
+        "Copyright": "© Donald M. Jones/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250926_AutumnChipmunk\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Least+chipmunk&form=hpcapt&filters=HpDate:\"20250926_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250926_AutumnChipmunk"
+      },
+      "Ssd": "20250926",
+      "Name": "AutumnChipmunk",
+      "Market": "ROW",
+      "Hash": "5358598702",
+      "FullDateString": "Sep 26, 2025"
     }
   ]
 }
