@@ -8154,6 +8154,37 @@
       "Market": "ROW",
       "Hash": "5358598702",
       "FullDateString": "Sep 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Tank Lakes in Alpine Lakes Wilderness, in Washington, United States, is a hidden treasure for nature lovers. The hike begins at the Necklace Valley Trailhead along the forested East Foss River before climbing steeply through rocky terrain and passing several alpine lakes. It covers about 38 kilometres round trip with an elevation gain of more than 1600 metres. The major attractions of the trails are snow-capped peaks, pristine alpine lakes and plenty backcountry exploring in a stunning section of Washington's Cascade Range. The journey to Tank Lakes is challenging but rewarding, offering panoramic views, pristine waters and an immersive wilderness experience. So, if you are adventurous, Tank Lakes could be your next destination.",
+        "Image": {
+          "Url": "/th?id=OHR.TankLakes_ROW5456053450_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TankLakes_ROW5456053450_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Tank Lakes, Alpine Lakes Wilderness, Washington, United States",
+        "Copyright": "© Austin Trigg/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250927_TankLakes\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Alpine+Lakes+Wilderness&form=hpcapt&filters=HpDate:\"20250927_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250927_TankLakes"
+      },
+      "Ssd": "20250927",
+      "Name": "TankLakes",
+      "Market": "ROW",
+      "Hash": "5456053450",
+      "FullDateString": "Sep 27, 2025"
     }
   ]
 }
