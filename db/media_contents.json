@@ -8216,6 +8216,37 @@
       "Market": "ROW",
       "Hash": "5557368253",
       "FullDateString": "Sep 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "You won't find souvenir shops or tourist maps pointing the way—but follow the edge of Lake Rietplas in Houten and you'll stumble upon one of the Netherlands' most unexpectedly photogenic sights. While many flock to Amsterdam's canals or Rotterdam's cube houses, this quiet commuter town offers its own architectural twist. Lined up like a mirage, the Rainbow Houses shimmer in bold, painterly hues—a residential block turned an understated cultural landmark.",
+        "Image": {
+          "Url": "/th?id=OHR.HoutenHouses_ROW5656377952_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HoutenHouses_ROW5656377952_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Rainbow houses in the town of Houten, Netherlands",
+        "Copyright": "© George Pachantouris/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20250929_HoutenHouses\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Houten+Netherlands&form=hpcapt&filters=HpDate:\"20250929_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20250929_HoutenHouses"
+      },
+      "Ssd": "20250929",
+      "Name": "HoutenHouses",
+      "Market": "ROW",
+      "Hash": "5656377952",
+      "FullDateString": "Sep 29, 2025"
     }
   ]
 }
