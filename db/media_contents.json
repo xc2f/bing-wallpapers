@@ -8278,6 +8278,37 @@
       "Market": "ROW",
       "Hash": "5777411549",
       "FullDateString": "Sep 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the heart of California's Sierra Nevada, Yosemite National Park, spans more than 310,000 hectares, cradling granite giants, cascading waterfalls and ancient sequoias. Among its lesser-known treasures lies the Clark Range—the rugged, high-elevation spine seen in today's image. It was named after Galen Clark, Yosemite's first guardian and a pioneer of conservation.",
+        "Image": {
+          "Url": "/th?id=OHR.YosemiteClark_ROW5897373346_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YosemiteClark_ROW5897373346_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Clark Range, Sierra Nevada, Yosemite National Park, California, United States",
+        "Copyright": "© Robb Hirsch/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251001_YosemiteClark\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Clark+Range&form=hpcapt&filters=HpDate:\"20251001_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251001_YosemiteClark"
+      },
+      "Ssd": "20251001",
+      "Name": "YosemiteClark",
+      "Market": "ROW",
+      "Hash": "5897373346",
+      "FullDateString": "Oct 1, 2025"
     }
   ]
 }
