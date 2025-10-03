@@ -8309,6 +8309,37 @@
       "Market": "ROW",
       "Hash": "5897373346",
       "FullDateString": "Oct 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Beyond water, rivers carry life, history and stories. They are nature's ever-moving contribution to our landscapes, flowing through lands and across time. One such gem is the Snake River, which winds through Grand Teton National Park in Wyoming, United States. A particularly stunning spot along this river is Oxbow Bend—featured in today's image—where calm waters reflect the towering Teton Range and wildlife such as moose and bald eagles thrive. On calm days, Mount Moran can be seen mirrored on the water's surface, making the scene even more striking. Here, water flows freely, unbound by concrete or commerce, protected by the Wild and Scenic Rivers Act. At dawn, mist dances over the bend and the mountains blush with the first light. Visitors pause, hushed by nature's poetry.",
+        "Image": {
+          "Url": "/th?id=OHR.OxbowBend_ROW5989192939_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OxbowBend_ROW5989192939_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Oxbow Bend on the Snake River, Grand Teton National Park, Wyoming, United States",
+        "Copyright": "© DanitaDelimont.com/AWL Images/SuperStock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251002_OxbowBend\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grand+Teton+National+Park&form=hpcapt&filters=HpDate:\"20251002_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251002_OxbowBend"
+      },
+      "Ssd": "20251002",
+      "Name": "OxbowBend",
+      "Market": "ROW",
+      "Hash": "5989192939",
+      "FullDateString": "Oct 2, 2025"
     }
   ]
 }
