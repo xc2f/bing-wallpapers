@@ -8340,6 +8340,37 @@
       "Market": "ROW",
       "Hash": "5989192939",
       "FullDateString": "Oct 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Mists curl, waters glimmer and legends linger—welcome to Glen Brittle. On the Isle of Skye, Scotland's fabled 'Misty Isle,' the glen stretches in a sweep of purple heather carpeting its rugged slopes. The landscape hums with echoes of the past: dinosaurs left footprints on these cliffs long before Mesolithic hunters traced its streams over 8,000 years ago. In the 9th century, seafaring Norse Vikings settled here. Centuries later, the powerful MacLeod and MacDonald clans claimed these lands, their castles standing guard over countless battles and alliances.",
+        "Image": {
+          "Url": "/th?id=OHR.SkyeHeather_ROW6254655210_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SkyeHeather_ROW6254655210_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Heather growing in Glen Brittle, Isle of Skye, Scotland",
+        "Copyright": "© Adam Mowery/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251003_SkyeHeather\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Glen+Brittle+in+Skye&form=hpcapt&filters=HpDate:\"20251003_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251003_SkyeHeather"
+      },
+      "Ssd": "20251003",
+      "Name": "SkyeHeather",
+      "Market": "ROW",
+      "Hash": "6254655210",
+      "FullDateString": "Oct 3, 2025"
     }
   ]
 }
