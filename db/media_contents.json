@@ -8402,6 +8402,37 @@
       "Market": "ROW",
       "Hash": "8867251205",
       "FullDateString": "Oct 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features a boreal owl, one of the smallest and most elusive members of the owl family. This compact bird has a round head without ear tufts, striking yellow eyes framed by a pale facial disc, brown upperparts speckled with white and cream-coloured underparts streaked with russet brown. Males measure about 25 centimetres in length with a wingspan of almost 60 centimetres, while females are slightly larger, around 30 centimetres long, with a wingspan over 60 centimetres.",
+        "Image": {
+          "Url": "/th?id=OHR.TeacherOwl_ROW9041107583_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TeacherOwl_ROW9041107583_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Boreal owl in a forest in Central Europe",
+        "Copyright": "© Ondrej Prosicky/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251005_TeacherOwl\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Boreal+owl&form=hpcapt&filters=HpDate:\"20251005_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251005_TeacherOwl"
+      },
+      "Ssd": "20251005",
+      "Name": "TeacherOwl",
+      "Market": "ROW",
+      "Hash": "9041107583",
+      "FullDateString": "Oct 5, 2025"
     }
   ]
 }
