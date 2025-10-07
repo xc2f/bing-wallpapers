@@ -8433,6 +8433,37 @@
       "Market": "ROW",
       "Hash": "9041107583",
       "FullDateString": "Oct 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features the Anshun Bridge in Chengdu, China. It isn't just a crossing—it's a cultural icon shining over the Jin River. Its name literally translates as 'Bridge of Peace and Propitiousness,' reflecting its role as both a practical crossing and a symbol of the city. The original bridge was built in 1746 but suffered repeated damage from floods over the centuries. The current structure, completed in 2003, preserves the architectural style of the Ming and Qing dynasties and spans 81 metres in length and 6 metres in width. The bridge features handrails with traditional floral carvings, water-beast statues on the piers and memorial archways on each side, reflecting classic Chinese architecture. It serves as a cultural landmark and a hub for tourism, featuring a restaurant on the upper level, hosting occasional cultural events and offering an illuminated night view that has become one of Chengdu's most photographed attractions.",
+        "Image": {
+          "Url": "/th?id=OHR.AnshunBridge_ROW9179881328_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AnshunBridge_ROW9179881328_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Anshun Bridge illuminated for the Mid-Autumn Festival, Chengdu, China",
+        "Copyright": "© Philippe LEJEANVRE/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251006_AnshunBridge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Anshun+Bridge&form=hpcapt&filters=HpDate:\"20251006_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251006_AnshunBridge"
+      },
+      "Ssd": "20251006",
+      "Name": "AnshunBridge",
+      "Market": "ROW",
+      "Hash": "9179881328",
+      "FullDateString": "Oct 6, 2025"
     }
   ]
 }
