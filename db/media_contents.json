@@ -8464,6 +8464,37 @@
       "Market": "ROW",
       "Hash": "9179881328",
       "FullDateString": "Oct 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "It's that time of year in the Northern Hemisphere when the hills shed their summer greens, unveiling a blaze of colours that lights up the season. The change usually begins in September and early October, with higher slopes turning first, followed by the lower valleys. Among the stars of this display are the aspens, whose leaves shimmer like gold coins in the sunlight. The magic of aspen colours, however, isn't guaranteed year after year. Their golden glow depends on many factors—tree health, local weather shifts, soil moisture and where they grow in terms of elevation and latitude.",
+        "Image": {
+          "Url": "/th?id=OHR.RidgwayAspens_ROW4668132017_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RidgwayAspens_ROW4668132017_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Autumn colours below Mount Sneffels near Ridgway, Colorado, United States",
+        "Copyright": "© Grant Ordelheide/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251007_RidgwayAspens\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mount+Sneffels&form=hpcapt&filters=HpDate:\"20251007_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251007_RidgwayAspens"
+      },
+      "Ssd": "20251007",
+      "Name": "RidgwayAspens",
+      "Market": "ROW",
+      "Hash": "4668132017",
+      "FullDateString": "Oct 7, 2025"
     }
   ]
 }
