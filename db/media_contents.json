@@ -8495,6 +8495,37 @@
       "Market": "ROW",
       "Hash": "4668132017",
       "FullDateString": "Oct 7, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Meet the master of disguise—the day octopus (Octopus cyanea). Found across the Pacific and Indian Oceans, from Hawaii in the United States to Africa's eastern coast, this reef-dweller is a true shapeshifter. Unlike most of its kin, it hunts in broad daylight, instantly shifting its colour, pattern and even skin texture to blend into its surroundings. At times, it even performs a clever 'passing clouds' act, casting a false shadow to trick crabs into moving at just the wrong moment. And once the trap is sprung, the hunter wastes no time. A skilled predator, this octopus prowls the reef for fish, crabs, prawns and molluscs. Smaller catches are devoured on the spot, while larger prey is dragged back to its den.",
+        "Image": {
+          "Url": "/th?id=OHR.OctopusCyanea_ROW4586818693_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OctopusCyanea_ROW4586818693_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Day octopus, Maui, Hawaii, United States",
+        "Copyright": "© Dave Fleetham/plainpicture",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251008_OctopusCyanea\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Day+octopus&form=hpcapt&filters=HpDate:\"20251008_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251008_OctopusCyanea"
+      },
+      "Ssd": "20251008",
+      "Name": "OctopusCyanea",
+      "Market": "ROW",
+      "Hash": "4586818693",
+      "FullDateString": "Oct 8, 2025"
     }
   ]
 }
