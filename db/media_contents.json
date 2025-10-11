@@ -8557,6 +8557,37 @@
       "Market": "ROW",
       "Hash": "9564633470",
       "FullDateString": "Oct 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features one of Fiji's true gems, the island of Monuriki. Known worldwide as the filming site of 'Cast Away,' it is uninhabited—but far from lifeless. Tucked within the Mamanuca group, this small volcanic islet stretches over a kilometre in length and 600 metres across, surrounded by turquoise waters and vibrant coral reefs. The reefs act as a natural fortress, protecting the island from storms while sheltering countless species of fish. They are a fitting metaphor: strong, diverse and deeply connected to the well-being of the nation. Beyond its waters, Monuriki is also home to the endangered Fiji crested iguana, one of the few places where this rare reptile can still be found. Together, the island's vibrant reef and unique wildlife make it a true natural treasure of Fiji.",
+        "Image": {
+          "Url": "/th?id=OHR.MonurikiFiji_ROW9654134811_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MonurikiFiji_ROW9654134811_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Coral reef surrounding the island of Monuriki, Mamanuca Islands, Fiji",
+        "Copyright": "© David Wall/SuperStock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251010_MonurikiFiji\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Monuriki&form=hpcapt&filters=HpDate:\"20251010_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251010_MonurikiFiji"
+      },
+      "Ssd": "20251010",
+      "Name": "MonurikiFiji",
+      "Market": "ROW",
+      "Hash": "9654134811",
+      "FullDateString": "Oct 10, 2025"
     }
   ]
 }
