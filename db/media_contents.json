@@ -8588,6 +8588,37 @@
       "Market": "ROW",
       "Hash": "9654134811",
       "FullDateString": "Oct 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The wood duck, pictured here, is one of the most colourful waterfowl in North America. Males dazzle with iridescent plumage, red eyes and a bold white flare down the neck, while females have a softer look, with grey-brown feathers, a white eye-ring and a pale throat. Both have a small crest on the head, and their wings show a blue-green patch edged in white.",
+        "Image": {
+          "Url": "/th?id=OHR.WoodDuckHen_ROW9793950559_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WoodDuckHen_ROW9793950559_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Wood duck hen, United States",
+        "Copyright": "© ps50ace/iStock/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251011_WoodDuckHen\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Wood+duck+hen&form=hpcapt&filters=HpDate:\"20251011_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251011_WoodDuckHen"
+      },
+      "Ssd": "20251011",
+      "Name": "WoodDuckHen",
+      "Market": "ROW",
+      "Hash": "9793950559",
+      "FullDateString": "Oct 11, 2025"
     }
   ]
 }
