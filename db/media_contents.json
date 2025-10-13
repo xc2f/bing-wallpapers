@@ -8619,6 +8619,37 @@
       "Market": "ROW",
       "Hash": "9793950559",
       "FullDateString": "Oct 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some places are just stops on the map, but Saranac Lake in the Adirondack Mountains in New York, United States, is a destination that keeps people hooked year-round. Despite its name, this village isn't directly on the Saranac Lakes themselves but rather on Lake Flower, a wide section of the Saranac River. For centuries, the area—nicknamed 'The Capital of the Adirondacks'—was used by Indigenous peoples for hunting and travel. By the late 19th century, it gained fame as a health retreat, where Dr. Edward Livingston Trudeau pioneered fresh-air treatment for tuberculosis. The cure cottages from that era still stand today.",
+        "Image": {
+          "Url": "/th?id=OHR.SaranacLake_ROW9913011112_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SaranacLake_ROW9913011112_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Village of Saranac Lake, Adirondack Mountains, New York, United States",
+        "Copyright": "© DenisTangneyJr/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251012_SaranacLake\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Saranac+Lake+village&form=hpcapt&filters=HpDate:\"20251012_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251012_SaranacLake"
+      },
+      "Ssd": "20251012",
+      "Name": "SaranacLake",
+      "Market": "ROW",
+      "Hash": "9913011112",
+      "FullDateString": "Oct 12, 2025"
     }
   ]
 }
