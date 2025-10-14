@@ -8650,6 +8650,37 @@
       "Market": "ROW",
       "Hash": "9913011112",
       "FullDateString": "Oct 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "With its steep rocky walls, cascading streams and scenery that looks painted by nature itself, the Wimbachklamm near Ramsau, in Berchtesgaden National Park, ranks among Bavaria's most stunning gorges. In today's photo, the Wimbach carves its way through narrow rock formations over a stretch of about 200 metres, tumbling down in small waterfalls and sculpting impressive patterns into the stone over time. The colourful layers of rock reveal geological processes that date back thousands of years.",
+        "Image": {
+          "Url": "/th?id=OHR.HinterseeWaterfall_ROW0045640204_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HinterseeWaterfall_ROW0045640204_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Waterfall at Wimbachklamm Gorge, Bavaria, Germany",
+        "Copyright": "© EyeEm Mobile GmbH/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251013_HinterseeWaterfall\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Wimbachklamm&form=hpcapt&filters=HpDate:\"20251013_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251013_HinterseeWaterfall"
+      },
+      "Ssd": "20251013",
+      "Name": "HinterseeWaterfall",
+      "Market": "ROW",
+      "Hash": "0045640204",
+      "FullDateString": "Oct 13, 2025"
     }
   ]
 }
