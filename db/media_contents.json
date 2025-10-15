@@ -8681,6 +8681,37 @@
       "Market": "ROW",
       "Hash": "0045640204",
       "FullDateString": "Oct 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Ever wondered what it's like to live on a movie set? Oia is about as close as it gets, part of Greece's Santorini archipelago. This village has appeared in films like 'The Sisterhood of the Traveling Pants' and 'Tomb Raider,' thanks to its Cycladic houses—cube-shaped homes with flat roofs—and cliffside views that feel almost unreal. Its unique architecture has roots in the late 19th century. Sailors and merchants carved houses right into the volcanic cliffs—cool in summer and warm in winter. The white-and-blue theme is also more than just for show: houses were painted with lime wash so rainwater would run off and be collected. Today, visitors wander its cobbled lanes, explore the Naval Maritime Museum or climb to the ruins of Agios Nikolaos Castle for unforgettable sunsets.",
+        "Image": {
+          "Url": "/th?id=OHR.OiaSantorini_ROW0156825358_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OiaSantorini_ROW0156825358_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Village of Oia, Santorini, Greece",
+        "Copyright": "© f9photos/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251014_OiaSantorini\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Oia+Greece&form=hpcapt&filters=HpDate:\"20251014_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251014_OiaSantorini"
+      },
+      "Ssd": "20251014",
+      "Name": "OiaSantorini",
+      "Market": "ROW",
+      "Hash": "0156825358",
+      "FullDateString": "Oct 14, 2025"
     }
   ]
 }
