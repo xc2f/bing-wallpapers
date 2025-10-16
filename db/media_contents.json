@@ -8712,6 +8712,37 @@
       "Market": "ROW",
       "Hash": "0156825358",
       "FullDateString": "Oct 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Did you know that approximately 14,000 species of mushrooms have been described? One of them is the amethyst laccaria, pictured here. Also known as the amethyst deceiver, its bright purple colour is dazzling when young, but it fades with age and weathering, making it tricky to identify. Despite its delicate, ever-changing appearance, this jewel-toned fungus is edible and plays a vital role in the ecosystem.",
+        "Image": {
+          "Url": "/th?id=OHR.AmethystLaccaria_ROW0300500776_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AmethystLaccaria_ROW0300500776_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Amethyst laccaria mushrooms, Seabeck, Washington, United States",
+        "Copyright": "© Danita Delimont/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251015_AmethystLaccaria\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Amethyst+laccaria+mushrooms&form=hpcapt&filters=HpDate:\"20251015_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251015_AmethystLaccaria"
+      },
+      "Ssd": "20251015",
+      "Name": "AmethystLaccaria",
+      "Market": "ROW",
+      "Hash": "0300500776",
+      "FullDateString": "Oct 15, 2025"
     }
   ]
 }
