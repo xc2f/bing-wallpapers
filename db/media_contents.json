@@ -8743,6 +8743,37 @@
       "Market": "ROW",
       "Hash": "0300500776",
       "FullDateString": "Oct 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Think of a cat that can vanish into the forest without a sound—that's the Eurasian lynx, pictured here in Siberia. With its tufted ears and a piercing gaze, this feline is the largest of the four lynx species. Stretching more than 100 centimetres in length and standing over 70 centimetres tall at the shoulder, it is built for power and precision. Its padded paws aren't just for sneaking; they act like snowshoes, spreading its weight so it can chase down prey in deep winter drifts. Mostly a nocturnal hunter, it spends its days tucked away in thickets or rocky dens, venturing out under the cover of darkness to stalk deer, hares and squirrels.",
+        "Image": {
+          "Url": "/th?id=OHR.SiberianLynx_ROW0430935564_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SiberianLynx_ROW0430935564_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eurasian lynx, Siberia",
+        "Copyright": "© Mario Plechaty Photograph/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251016_SiberianLynx\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Eurasian+lynx&form=hpcapt&filters=HpDate:\"20251016_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251016_SiberianLynx"
+      },
+      "Ssd": "20251016",
+      "Name": "SiberianLynx",
+      "Market": "ROW",
+      "Hash": "0430935564",
+      "FullDateString": "Oct 16, 2025"
     }
   ]
 }
