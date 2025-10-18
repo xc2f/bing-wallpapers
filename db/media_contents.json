@@ -8774,6 +8774,37 @@
       "Market": "ROW",
       "Hash": "0430935564",
       "FullDateString": "Oct 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled within Rock River Canyon Wilderness, in Michigan, United States, Rock River Falls emerges amid a landscape shaped by glaciers, dense woods and layers of history. In the Upper Peninsula, humans have left their traces for millennia: Indigenous Algonquian-speaking peoples were followed by French and British explorers and waves of Finnish, Swedish and French-Canadian immigrants settled there during the 19th-century mining and logging booms. Today, this sparsely populated region hosts barely 3% of Michigan's residents, cradling its forests and waterfalls in near-natural serenity.",
+        "Image": {
+          "Url": "/th?id=OHR.RockRiverFalls_ROW9398171921_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RockRiverFalls_ROW9398171921_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Rock River Falls, Upper Peninsula, Michigan, United States",
+        "Copyright": "© Matt Anderson Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251017_RockRiverFalls\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Rock+River+Wilderness+Michigan&form=hpcapt&filters=HpDate:\"20251017_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251017_RockRiverFalls"
+      },
+      "Ssd": "20251017",
+      "Name": "RockRiverFalls",
+      "Market": "ROW",
+      "Hash": "9398171921",
+      "FullDateString": "Oct 17, 2025"
     }
   ]
 }
