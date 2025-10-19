@@ -8805,6 +8805,37 @@
       "Market": "ROW",
       "Hash": "9398171921",
       "FullDateString": "Oct 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some ancient sites, like the one shown here, blend seamlessly into their surroundings: at first glance, Silbury Hill in Wiltshire, England, may seem like a simple slope in the countryside. However, it conceals a 4,500-year-old Neolithic enigma. Starting around 2400 BCE, chalk was locally quarried, transported and compacted by hand, layer by layer, over generations. The result is the tallest prehistoric mound in Europe, built entirely by human effort, rising to almost 40 metres.",
+        "Image": {
+          "Url": "/th?id=OHR.SilburyHill_ROW9508999634_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SilburyHill_ROW9508999634_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Neolithic site of Silbury Hill, Tilshead, Wiltshire, England",
+        "Copyright": "© dbstockphoto/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251018_SilburyHill\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Silbury+Hill&form=hpcapt&filters=HpDate:\"20251018_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251018_SilburyHill"
+      },
+      "Ssd": "20251018",
+      "Name": "SilburyHill",
+      "Market": "ROW",
+      "Hash": "9508999634",
+      "FullDateString": "Oct 18, 2025"
     }
   ]
 }
