@@ -8836,6 +8836,37 @@
       "Market": "ROW",
       "Hash": "9508999634",
       "FullDateString": "Oct 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "This time of the year in Minnesota, United States, carries more than crimson leaves—it brings the crisp promise of apple season. From mid-August through late October, orchards across the state open their rows of Honeycrisp, Haralson and dozens of other cultivars, each bred for flavour, resilience and charm. Today's image captures that moment: branches heavy with ripe fruit, ready for harvest.",
+        "Image": {
+          "Url": "/th?id=OHR.AppleHarvest_ROW9692877404_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AppleHarvest_ROW9692877404_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Apples ready for harvest, Minnesota, United States",
+        "Copyright": "© Tammi Mild/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251019_AppleHarvest\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=harvesting+apples&form=hpcapt&filters=HpDate:\"20251019_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251019_AppleHarvest"
+      },
+      "Ssd": "20251019",
+      "Name": "AppleHarvest",
+      "Market": "ROW",
+      "Hash": "9692877404",
+      "FullDateString": "Oct 19, 2025"
     }
   ]
 }
