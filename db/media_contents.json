@@ -8867,6 +8867,37 @@
       "Market": "ROW",
       "Hash": "9692877404",
       "FullDateString": "Oct 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "How good would it feel if you could just hang out and do absolutely nothing all day? That's exactly what sloths do, but don't let their slow pace fool you. Sloths are around three times stronger than humans and can hang on tight enough to fend off a jaguar.",
+        "Image": {
+          "Url": "/th?id=OHR.HoffmansSloth_ROW9786631767_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.HoffmansSloth_ROW9786631767_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Hoffmann's two-toed sloth, Ecuador",
+        "Copyright": "© Murray Cooper/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251020_HoffmansSloth\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Sloth&form=hpcapt&filters=HpDate:\"20251020_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251020_HoffmansSloth"
+      },
+      "Ssd": "20251020",
+      "Name": "HoffmansSloth",
+      "Market": "ROW",
+      "Hash": "9786631767",
+      "FullDateString": "Oct 20, 2025"
     }
   ]
 }
