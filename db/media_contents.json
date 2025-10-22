@@ -8898,6 +8898,37 @@
       "Market": "ROW",
       "Hash": "9786631767",
       "FullDateString": "Oct 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nested between Cannes and Nice, the Cap d'Antibes is a peaceful peninsula at the heart of Antibes, France. Maritime pines perfume the salty air, the coves harbour solitude and the coastal paths are silent except for the waves.",
+        "Image": {
+          "Url": "/th?id=OHR.CapAntibes_ROW9927091167_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CapAntibes_ROW9927091167_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cap d'Antibes, Provence-Alpes-Côte d'Azur, France",
+        "Copyright": "© Eric Rousset/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251021_CapAntibes\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cap+d%27Antibes&form=hpcapt&filters=HpDate:\"20251021_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251021_CapAntibes"
+      },
+      "Ssd": "20251021",
+      "Name": "CapAntibes",
+      "Market": "ROW",
+      "Hash": "9927091167",
+      "FullDateString": "Oct 21, 2025"
     }
   ]
 }
