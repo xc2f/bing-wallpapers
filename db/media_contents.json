@@ -8991,6 +8991,37 @@
       "Market": "ROW",
       "Hash": "0153710664",
       "FullDateString": "Oct 23, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "She was never meant to fade away. When the RMS Queen Mary sailed in 1936, she stole the spotlight across the Atlantic—an Art Deco liner that broke speed records and carried celebrities, royalty and dignitaries. War transformed her from a floating palace into the 'Grey Ghost,' stripped of luxury and loaded with Allied troops. In 1967, after 30 years at sea, she retired to Long Beach, in California, United States, where her decks now serve as hotel corridors, guided exhibits and a living monument to maritime history.",
+        "Image": {
+          "Url": "/th?id=OHR.QueenMary_ROW0248943301_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.QueenMary_ROW0248943301_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Night view of the RMS Queen Mary, Long Beach, California, United States",
+        "Copyright": "© Kit Leong/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251024_QueenMary\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=RMS+Queen+Mary&form=hpcapt&filters=HpDate:\"20251024_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251024_QueenMary"
+      },
+      "Ssd": "20251024",
+      "Name": "QueenMary",
+      "Market": "ROW",
+      "Hash": "0248943301",
+      "FullDateString": "Oct 24, 2025"
     }
   ]
 }
