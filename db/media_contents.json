@@ -9022,6 +9022,37 @@
       "Market": "ROW",
       "Hash": "0248943301",
       "FullDateString": "Oct 24, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today, we step into the Martimoaapa Mire Reserve in Finland, where wide, cold-climate wetlands and peatlands stretch across a landscape shaped over thousands of years. This reserve is more than just mires—it carries layers of history. During Finland's Prohibition era (1919–1932), smugglers hauled sacks of liquor from Sweden across these bogs, following a 'spirits' route that passed through Martimoaapa. Parts of that path can still be traced today. Imagine trekking with a heavy pack over soggy ground—would you have made it?",
+        "Image": {
+          "Url": "/th?id=OHR.MartimoaapaFinland_ROW0416444680_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MartimoaapaFinland_ROW0416444680_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Aerial view of peatland in Martimoaapa Mire Reserve, Finland",
+        "Copyright": "© romikatarina/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251025_MartimoaapaFinland\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Martimoaapa+Finland&form=hpcapt&filters=HpDate:\"20251025_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251025_MartimoaapaFinland"
+      },
+      "Ssd": "20251025",
+      "Name": "MartimoaapaFinland",
+      "Market": "ROW",
+      "Hash": "0416444680",
+      "FullDateString": "Oct 25, 2025"
     }
   ]
 }
