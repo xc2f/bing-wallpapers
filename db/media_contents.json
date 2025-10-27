@@ -9053,6 +9053,37 @@
       "Market": "ROW",
       "Hash": "0416444680",
       "FullDateString": "Oct 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "A pumpkin farm is a patchwork of colour, life and tradition, with every gourd waiting its turn to shine. Walking through the fields, you'll spot pumpkins of all shapes and sizes, from small decorative varieties to the giants that have inspired growers worldwide. Interestingly, the heaviest pumpkin ever recorded weighed an incredible 1,246.9 kilograms. Despite their solid appearance, pumpkins can float effortlessly because they are 92% water. These gourds have rolled their way into pies, porches, lattes and parades. The colour of pumpkins comes from beta-carotene, but not all are orange—some grow white, green or even blue. Their utility doesn't end there—pumpkins have stood guard as scarecrows, been launched in pumpkin-chucking contests and even hollowed out for boat races.",
+        "Image": {
+          "Url": "/th?id=OHR.PumpkinFarm_ROW0518823159_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PumpkinFarm_ROW0518823159_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Pumpkin farm in North Carolina, United States",
+        "Copyright": "© Matthew H Irvin/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251026_PumpkinFarm\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=pumpkin&form=hpcapt&filters=HpDate:\"20251026_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251026_PumpkinFarm"
+      },
+      "Ssd": "20251026",
+      "Name": "PumpkinFarm",
+      "Market": "ROW",
+      "Hash": "0518823159",
+      "FullDateString": "Oct 26, 2025"
     }
   ]
 }
