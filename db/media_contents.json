@@ -9084,6 +9084,37 @@
       "Market": "ROW",
       "Hash": "0518823159",
       "FullDateString": "Oct 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Perched high in the mountains of Ethiopia, Eritrea and Somalia, the thick-billed raven holds the title of the world's largest raven. At more than 70 centimetres in length and weighing over a kilogram, it is about a quarter heavier than the common raven. Its enormous, arched bill—pale at the base and close to 8 centimetres long—is the largest among perching birds. These ravens live mostly between 1,500 and 3,400 metres above sea level, found across farmland, rocky cliffs and even rooftops in mountain towns.",
+        "Image": {
+          "Url": "/th?id=OHR.AfricanRaven_ROW0614133197_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AfricanRaven_ROW0614133197_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Thick-billed raven, Simien Mountains, Ethiopia",
+        "Copyright": "© Ignacio Yufera/FLPA/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251027_AfricanRaven\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=thick+billed+raven&form=hpcapt&filters=HpDate:\"20251027_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251027_AfricanRaven"
+      },
+      "Ssd": "20251027",
+      "Name": "AfricanRaven",
+      "Market": "ROW",
+      "Hash": "0614133197",
+      "FullDateString": "Oct 27, 2025"
     }
   ]
 }
