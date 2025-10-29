@@ -9115,6 +9115,37 @@
       "Market": "ROW",
       "Hash": "0614133197",
       "FullDateString": "Oct 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "From 18th-century visitors to fire-carved trails, this rock city tells a story of survival. Hidden in Czechia's Hradec Králové Region, the Adršpach–Teplice Rocks form Central Europe's largest sandstone labyrinth. For centuries, the cliffs and passages lay cloaked in forest until a great fire stripped the land bare. Arches, towers and winding corridors emerged out of the ashes and the first hiking paths were carved into the rock. Soon after, explorers and poets left their marks with stone inscriptions that captured a destination both wild and enchanting.",
+        "Image": {
+          "Url": "/th?id=OHR.TepliceRocks_ROW0717999002_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TepliceRocks_ROW0717999002_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Gothic Gate in the Adršpach-Teplice Rocks, Czechia",
+        "Copyright": "© Kseniya_Milner/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251028_TepliceRocks\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Adrspach+Teplice+Rocks+Czechia&form=hpcapt&filters=HpDate:\"20251028_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251028_TepliceRocks"
+      },
+      "Ssd": "20251028",
+      "Name": "TepliceRocks",
+      "Market": "ROW",
+      "Hash": "0717999002",
+      "FullDateString": "Oct 28, 2025"
     }
   ]
 }
