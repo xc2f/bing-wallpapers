@@ -9146,6 +9146,37 @@
       "Market": "ROW",
       "Hash": "0717999002",
       "FullDateString": "Oct 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Portuguese island of Madeira—about 965 kilometres southwest of mainland Portugal—hides a forest unlike any other. On its northern slopes lies Fanal Forest, where veils of mist drift through centuries-old til trees. These are part of the Laurissilva of Madeira—an outstanding relict of a once widespread laurel forest type. Laurissilva is the largest surviving area of its kind, with about 90% considered primary forest. Home to a unique array of plants and animals, including endemic species such as the Madeiran long-toed pigeon, it remains a living museum of natural history.",
+        "Image": {
+          "Url": "/th?id=OHR.FanalForest_ROW0809161285_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FanalForest_ROW0809161285_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ancient til trees in Fanal Forest, island of Madeira, Portugal",
+        "Copyright": "© Lukas Jonaitis/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251029_FanalForest\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Laurissilva+of+Madeira&form=hpcapt&filters=HpDate:\"20251029_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251029_FanalForest"
+      },
+      "Ssd": "20251029",
+      "Name": "FanalForest",
+      "Market": "ROW",
+      "Hash": "0809161285",
+      "FullDateString": "Oct 29, 2025"
     }
   ]
 }
