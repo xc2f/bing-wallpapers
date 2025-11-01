@@ -9208,6 +9208,37 @@
       "Market": "ROW",
       "Hash": "0922720525",
       "FullDateString": "Oct 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Featured in today's image is Bran Castle, one of Romania's most iconic landmarks, where centuries of history blend seamlessly with myth and mystery. The fortress was built in the 14th century and has withstood wars, monarchs and shifting empires. During World War II, Bran Castle was turned into a hospital for wounded soldiers by Princess Ileana, who was trained as a nurse. But here, legends speak louder than history. Perched between the regions of Transylvania—renowned for its chilling tales—and Wallachia, once ruled by Vlad III Dracula, the castle evokes a haunting legacy. Vlad's ruthless reputation inspired Bram Stoker's 1897 novel 'Dracula.' Though the story is not set at Bran Castle, its looming form and persistent rumours of Vlad's presence blur fact and legend, forever linking it to one of humanity's most enduring tales.",
+        "Image": {
+          "Url": "/th?id=OHR.BranCastle_ROW9947564327_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BranCastle_ROW9947564327_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Entrance of Bran Castle in Bran, Brașov, Romania",
+        "Copyright": "© blue sky in my pocket/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251031_BranCastle\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=bran+castle&form=hpcapt&filters=HpDate:\"20251031_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251031_BranCastle"
+      },
+      "Ssd": "20251031",
+      "Name": "BranCastle",
+      "Market": "ROW",
+      "Hash": "9947564327",
+      "FullDateString": "Oct 31, 2025"
     }
   ]
 }
