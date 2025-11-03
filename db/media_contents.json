@@ -9270,6 +9270,37 @@
       "Market": "ROW",
       "Hash": "0056517784",
       "FullDateString": "Nov 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today, we travel to the Arashiyama district in Kyoto, Japan, renowned for its captivating seasonal landscapes. Here, vibrant Japanese maple trees and serene bamboo forests create a harmonious blend of colour and tranquillity. These maples, known for their delicate, deeply lobed leaves, turn fiery shades of red, orange and gold during autumn, attracting visitors from around the world. They are celebrated not only for their beauty but also for their cultural symbolism—representing elegance, peace and the fleeting nature of life.",
+        "Image": {
+          "Url": "/th?id=OHR.KyotoMaple_ROW2819580230_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.KyotoMaple_ROW2819580230_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Colourful maple leaves and bamboo forest in Arashiyama, Kyoto, Japan",
+        "Copyright": "© DoctorEgg/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251102_KyotoMaple\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Arashiyama+Kyoto&form=hpcapt&filters=HpDate:\"20251102_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251102_KyotoMaple"
+      },
+      "Ssd": "20251102",
+      "Name": "KyotoMaple",
+      "Market": "ROW",
+      "Hash": "2819580230",
+      "FullDateString": "Nov 2, 2025"
     }
   ]
 }
