@@ -9301,6 +9301,37 @@
       "Market": "ROW",
       "Hash": "2819580230",
       "FullDateString": "Nov 2, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "They don't have brains, bones or even hearts, yet jellyfish have pulsed through Earth's oceans for half a billion years. Don't be fooled by the 'fish' in their name: they belong to the invertebrate club called Cnidaria and they're made up of about 95% water. With their bell-shaped bodies and trailing tentacles, they're more like ocean drifters than deep-sea athletes. Some glow, like the one pictured here in the Pacific Ocean off Guerrero, Mexico, others pack stings and a select few, like the 'immortal jellyfish,' can reset their life cycle and start again.",
+        "Image": {
+          "Url": "/th?id=OHR.MexicoJelly_ROW2844027370_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MexicoJelly_ROW2844027370_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Jellyfish swimming in the Pacific, Guerrero, Mexico",
+        "Copyright": "© Christian Vizl/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251103_MexicoJelly\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Jellyfish&form=hpcapt&filters=HpDate:\"20251103_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251103_MexicoJelly"
+      },
+      "Ssd": "20251103",
+      "Name": "MexicoJelly",
+      "Market": "ROW",
+      "Hash": "2844027370",
+      "FullDateString": "Nov 3, 2025"
     }
   ]
 }
