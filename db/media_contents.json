@@ -9332,6 +9332,37 @@
       "Market": "ROW",
       "Hash": "2844027370",
       "FullDateString": "Nov 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some bridges connect two sides. Tower Bridge connects history, engineering and a flair for drama. Standing next to the Tower of London and rising over the River Thames since 1894, this London icon literally knows how to lift spirits—and traffic. With its twin towers, blue-and-white paintwork and bascules that open like a giant's drawbridge, Tower Bridge is less a traffic solution and more a stage performer.",
+        "Image": {
+          "Url": "/th?id=OHR.TowerBridgeUK_ROW2871124404_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TowerBridgeUK_ROW2871124404_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Tower Bridge, London, England",
+        "Copyright": "© Nick Brundle Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251104_TowerBridgeUK\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Tower+Bridge+London&form=hpcapt&filters=HpDate:\"20251104_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251104_TowerBridgeUK"
+      },
+      "Ssd": "20251104",
+      "Name": "TowerBridgeUK",
+      "Market": "ROW",
+      "Hash": "2871124404",
+      "FullDateString": "Nov 4, 2025"
     }
   ]
 }
