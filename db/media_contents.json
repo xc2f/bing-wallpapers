@@ -9363,6 +9363,37 @@
       "Market": "ROW",
       "Hash": "2871124404",
       "FullDateString": "Nov 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Spain's Aragon region isn't exactly famous for its forests—it's more 'sun and scrub' than 'shade and shuffle.' And yet, climb the slopes of Moncayo and you'll walk straight into a twist ending: a dense, whispering beech forest. The mountain is a climate roller coaster. At the bottom? Mediterranean shrubs. Midway up? Oaks and pines. Push further? Suddenly you're in Peña Roya, a beech wonderland that seems to say, 'Surprise, leaf it to me!'",
+        "Image": {
+          "Url": "/th?id=OHR.MoncayoAutumn_ROW2899498621_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MoncayoAutumn_ROW2899498621_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Peña Roya beech forest, Moncayo Natural Park, Zaragoza, Aragon, Spain",
+        "Copyright": "© David Santiago Garcia/DEEPOL by plainpicture",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251105_MoncayoAutumn\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Zaragoza+Spain&form=hpcapt&filters=HpDate:\"20251105_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251105_MoncayoAutumn"
+      },
+      "Ssd": "20251105",
+      "Name": "MoncayoAutumn",
+      "Market": "ROW",
+      "Hash": "2899498621",
+      "FullDateString": "Nov 5, 2025"
     }
   ]
 }
