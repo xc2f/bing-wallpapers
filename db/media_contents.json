@@ -9518,6 +9518,37 @@
       "Market": "ROW",
       "Hash": "3011967113",
       "FullDateString": "Nov 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In 1978, a stark stretch of South Dakota prairie gained recognition as one of America's natural treasures. Badlands National Park, carved by wind and water, was redesignated from national monument to national park status, securing stronger protection within the United States' National Park System. Its cliffs and spires rise above fossil beds that reveal ancient rhinoceroses, camels and subtropical seas. Yet the park is not only a window into the past; it also safeguards one of the largest remaining tracts of mixed-grass prairie in the country.",
+        "Image": {
+          "Url": "/th?id=OHR.PrairieDogTown_ROW3043607482_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PrairieDogTown_ROW3043607482_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Black-tailed prairie dogs at Roberts Prairie Dog Town, Badlands National Park, South Dakota, United States",
+        "Copyright": "© Greg Vaughn/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251110_PrairieDogTown\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Black-tailed+prairie+dog&form=hpcapt&filters=HpDate:\"20251110_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251110_PrairieDogTown"
+      },
+      "Ssd": "20251110",
+      "Name": "PrairieDogTown",
+      "Market": "ROW",
+      "Hash": "3043607482",
+      "FullDateString": "Nov 10, 2025"
     }
   ]
 }
