@@ -9549,6 +9549,37 @@
       "Market": "ROW",
       "Hash": "3043607482",
       "FullDateString": "Nov 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the heart of Germany's Teutoburg Forest, near the town of Horn-Bad Meinberg in North Rhine-Westphalia, the dramatic rock formations known as the Externsteine rise majestically into the sky. These sandstone pillars, formed around 70 million years ago, are among Germany's most significant natural and cultural landmarks. They captivate visitors with their unique shapes and rich historical significance, attracting thousands each year. The rocks reach heights of up to 35 metres. As early as the Middle Ages, the site was used as a place of worship, as evidenced by a remarkable 12th-century relief carved into the stone depicting the Descent from the Cross. It is the oldest of its kind north of the Alps.",
+        "Image": {
+          "Url": "/th?id=OHR.ExternsteineSunset_ROW3073183805_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ExternsteineSunset_ROW3073183805_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Externsteine rock formation in the Teutoburg Forest, Germany",
+        "Copyright": "© Michael Sroka/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251111_ExternsteineSunset\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Externsteine+Teutoburg+Forest&form=hpcapt&filters=HpDate:\"20251111_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251111_ExternsteineSunset"
+      },
+      "Ssd": "20251111",
+      "Name": "ExternsteineSunset",
+      "Market": "ROW",
+      "Hash": "3073183805",
+      "FullDateString": "Nov 11, 2025"
     }
   ]
 }
