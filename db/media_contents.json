@@ -9580,6 +9580,37 @@
       "Market": "ROW",
       "Hash": "3073183805",
       "FullDateString": "Nov 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Think modern sports are dramatic? Ancient Romans had front-row seats to spectacles far more intense inside the Colosseum. Commissioned by the Flavian emperor Vespasian in 72 CE and finished by his son Titus in 80 CE, this amphitheatre broke tradition with its predecessors that were built into hillsides for natural support. Instead, the Colosseum was a fully free-standing architectural giant. Crafted from stone and concrete, its arches and vaults supported an arena that could host up to 50,000 spectators. Gladiators, exotic animals and even staged sea battles thrilled the crowds, while hidden lifts and trapdoors created sudden, dramatic appearances.",
+        "Image": {
+          "Url": "/th?id=OHR.ColosseumRome_ROW3105960195_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ColosseumRome_ROW3105960195_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Aerial view of the Colosseum, Rome, Italy",
+        "Copyright": "© Nico De Pasquale Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251112_ColosseumRome\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Colosseum+Rome&form=hpcapt&filters=HpDate:\"20251112_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251112_ColosseumRome"
+      },
+      "Ssd": "20251112",
+      "Name": "ColosseumRome",
+      "Market": "ROW",
+      "Hash": "3105960195",
+      "FullDateString": "Nov 12, 2025"
     }
   ]
 }
