@@ -9611,6 +9611,37 @@
       "Market": "ROW",
       "Hash": "3105960195",
       "FullDateString": "Nov 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Of all the plants on Earth, the quiver tree looks the most like a vision from the future. Found in Southern Africa, including parts of Namibia, these striking giants are not true trees but a species of aloe adapted to life under the desert's scorching sun. Their thick trunks store water, while their branches reflect heat, helping them endure harsh conditions. Reaching up to 7 metres in height, with some living for more than 100 years, quiver trees are also vital to their ecosystem. They offer rare perches and nesting sites for birds in landscapes where few other trees exist.",
+        "Image": {
+          "Url": "/th?id=OHR.AloeDichotoma_ROW2671936766_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AloeDichotoma_ROW2671936766_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Quiver trees at night with the Milky Way, Keetmanshoop, Namibia",
+        "Copyright": "© Wim van den Heever/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251113_AloeDichotoma\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Quiver+tree&form=hpcapt&filters=HpDate:\"20251113_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251113_AloeDichotoma"
+      },
+      "Ssd": "20251113",
+      "Name": "AloeDichotoma",
+      "Market": "ROW",
+      "Hash": "2671936766",
+      "FullDateString": "Nov 13, 2025"
     }
   ]
 }
