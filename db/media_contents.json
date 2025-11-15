@@ -9642,6 +9642,37 @@
       "Market": "ROW",
       "Hash": "2671936766",
       "FullDateString": "Nov 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Manatees, featured in today's image, are found in the warm coastal waters of the Caribbean Sea, the Gulf of Mexico, the Amazon Basin and West Africa. They can weigh up to 550 kilograms, yet their diet is strictly vegetarian. These whiskered mammals are slow swimmers in a fast-paced world. They cruise at around 8 kilometres per hour—great for relaxing, not so great when speedboats come charging through. That's why 'no-wake zones,' or sections of waterways with a strict speed limit, are there to keep manatees safe.",
+        "Image": {
+          "Url": "/th?id=OHR.ManateeBaby_ROW8045882925_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ManateeBaby_ROW8045882925_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Mother manatee and calf, Crystal River, Florida, United States",
+        "Copyright": "© Gregory Sweeney/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251114_ManateeBaby\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Manatee&form=hpcapt&filters=HpDate:\"20251114_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251114_ManateeBaby"
+      },
+      "Ssd": "20251114",
+      "Name": "ManateeBaby",
+      "Market": "ROW",
+      "Hash": "8045882925",
+      "FullDateString": "Nov 14, 2025"
     }
   ]
 }
