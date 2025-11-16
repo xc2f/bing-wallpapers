@@ -9673,6 +9673,37 @@
       "Market": "ROW",
       "Hash": "8045882925",
       "FullDateString": "Nov 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If you think the alphabet is straightforward, Japan's Irohazaka Road in Nikko will twist that belief right out of you. Named after the old Japanese syllabary 'Iroha', this mountain pass once had 48 hairpin bends—each curve matched to a character of the alphabet. Today, it's a pair of separate one-way roads—one goes up, the other comes down and both make drivers feel as if they're spelling out a story with every turn.",
+        "Image": {
+          "Url": "/th?id=OHR.IrohazakaAutumn_ROW7825970008_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.IrohazakaAutumn_ROW7825970008_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Irohazaka RoadTochigi, Japan",
+        "Copyright": "© oneinchpunch/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251115_IrohazakaAutumn\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Nikko+Tochigi+Prefecture&form=hpcapt&filters=HpDate:\"20251115_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251115_IrohazakaAutumn"
+      },
+      "Ssd": "20251115",
+      "Name": "IrohazakaAutumn",
+      "Market": "ROW",
+      "Hash": "7825970008",
+      "FullDateString": "Nov 15, 2025"
     }
   ]
 }
