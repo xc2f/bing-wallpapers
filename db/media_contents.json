@@ -9704,6 +9704,37 @@
       "Market": "ROW",
       "Hash": "7825970008",
       "FullDateString": "Nov 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In Lyon, France, you don't just walk through the city—you glide through it. The traboules, a network of hidden passageways threading between courtyards and buildings, turn a simple stroll into a treasure hunt. They were the original shortcuts, allowing residents to dodge rain, carry goods or move discreetly through the medieval quarters. Today, they're less about practicality and more about discovery. These passages date back to the fourth century but became essential during the Renaissance, when silk traders used them to shuttle delicate fabrics safely from workshops to the river without braving the weather. Later, during World War II, Resistance fighters used the traboules as escape routes.",
+        "Image": {
+          "Url": "/th?id=OHR.LyonTraboules_ROW8240471725_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LyonTraboules_ROW8240471725_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A traboule in Lyon, France",
+        "Copyright": "© TPopova/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251116_LyonTraboules\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Traboules+of+Lyon&form=hpcapt&filters=HpDate:\"20251116_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251116_LyonTraboules"
+      },
+      "Ssd": "20251116",
+      "Name": "LyonTraboules",
+      "Market": "ROW",
+      "Hash": "8240471725",
+      "FullDateString": "Nov 16, 2025"
     }
   ]
 }
