@@ -9766,6 +9766,37 @@
       "Market": "ROW",
       "Hash": "8425475363",
       "FullDateString": "Nov 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "The quiet waterways of Oregon, United States, offer the perfect setting for hooded mergansers—small diving ducks native to North America. They are agile divers, plunging beneath the surface to catch fish and other prey. Males, known as drakes, stand out with their fan-shaped white crests, dark heads and chestnut-brown sides, while females, called hens, are brownish grey with smaller crests. Oregon's lakes and wetlands provide sheltered feeding grounds as these birds migrate or winter across the continent.",
+        "Image": {
+          "Url": "/th?id=OHR.AutumnMerganser_ROW8533864662_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AutumnMerganser_ROW8533864662_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Male hooded merganser, Oregon, United States",
+        "Copyright": "© Eric Vogt/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251118_AutumnMerganser\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Hooded+merganser&form=hpcapt&filters=HpDate:\"20251118_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251118_AutumnMerganser"
+      },
+      "Ssd": "20251118",
+      "Name": "AutumnMerganser",
+      "Market": "ROW",
+      "Hash": "8533864662",
+      "FullDateString": "Nov 18, 2025"
     }
   ]
 }
