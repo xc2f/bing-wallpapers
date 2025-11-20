@@ -9797,6 +9797,37 @@
       "Market": "ROW",
       "Hash": "8533864662",
       "FullDateString": "Nov 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Step closer and the details begin to speak—every stone, spire and statue seems to hold a story of its own. Conceived in the late 19th century, the Hungarian Parliament Building was designed to reflect a nation's ambition, blending Gothic Revival elegance with distinctly Hungarian motifs. Architect Imre Steindl's vision took shape over two decades through the work of more than 1,000 craftsmen. Even the central dome, rising 96 metres high, carries meaning: the height honours the year of Hungary's millennium anniversary in 1896. Completed in 1904, the building still dominates Budapest's skyline as a powerful national symbol.",
+        "Image": {
+          "Url": "/th?id=OHR.BudapestParliament_ROW8632595503_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BudapestParliament_ROW8632595503_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Hungarian Parliament Building, Budapest, Hungary",
+        "Copyright": "© Alexander Spatari/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251119_BudapestParliament\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Hungarian+Parliament+building&form=hpcapt&filters=HpDate:\"20251119_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251119_BudapestParliament"
+      },
+      "Ssd": "20251119",
+      "Name": "BudapestParliament",
+      "Market": "ROW",
+      "Hash": "8632595503",
+      "FullDateString": "Nov 19, 2025"
     }
   ]
 }
