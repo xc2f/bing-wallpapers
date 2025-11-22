@@ -9859,6 +9859,37 @@
       "Market": "ROW",
       "Hash": "8757145455",
       "FullDateString": "Nov 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features harbour seals—also known as common seals—which are true pinnipeds distinguished by their lack of visible ear flaps. They are found in the northern Atlantic and Pacific Oceans, as well as the Baltic and North Seas, typically staying near coastlines, which is how they got their name. Adults can weigh almost 170 kilograms and reach lengths of up to 2 metres. They display a variety of colours, from white or silvery grey to black or dark brown, often marked with distinctive spots and V-shaped nasal openings.",
+        "Image": {
+          "Url": "/th?id=OHR.SealWaving_ROW8856649845_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SealWaving_ROW8856649845_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Harbour seals at Robert Moses State Park, Long Island, New York, United States",
+        "Copyright": "© Vicki Jauron, Babylon and Beyond Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251121_SealWaving\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Harbour+seals&form=hpcapt&filters=HpDate:\"20251121_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251121_SealWaving"
+      },
+      "Ssd": "20251121",
+      "Name": "SealWaving",
+      "Market": "ROW",
+      "Hash": "8856649845",
+      "FullDateString": "Nov 21, 2025"
     }
   ]
 }
