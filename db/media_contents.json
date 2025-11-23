@@ -9890,6 +9890,37 @@
       "Market": "ROW",
       "Hash": "8856649845",
       "FullDateString": "Nov 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Mount Sirente stands proudly in the heart of Abruzzo, in Italy, with its peak touching the clear sky and its slopes cloaked in forests. At 2,349 metres, Mount Sirente dominates the landscape of the Sirente-Velino Regional Park, amid silent valleys and karst plateaus. Its massive, almost trapezoidal shape speaks of ancient geological origins and a mysterious crater, possibly caused by a meteorite that fell thousands of years ago.",
+        "Image": {
+          "Url": "/th?id=OHR.MonteVelino_ROW8967772522_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MonteVelino_ROW8967772522_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Monte Sirente, Abruzzo, Italy",
+        "Copyright": "© ValerioMei/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251122_MonteVelino\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Monte+Sirente&form=hpcapt&filters=HpDate:\"20251122_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251122_MonteVelino"
+      },
+      "Ssd": "20251122",
+      "Name": "MonteVelino",
+      "Market": "ROW",
+      "Hash": "8967772522",
+      "FullDateString": "Nov 22, 2025"
     }
   ]
 }
