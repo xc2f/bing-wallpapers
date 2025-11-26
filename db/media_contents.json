@@ -9983,6 +9983,37 @@
       "Market": "ROW",
       "Hash": "9210547208",
       "FullDateString": "Nov 24, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Ever heard coins clinking louder than applause? That's the Trevi Fountain in Rome, Italy, for you—a spot where history, hope and selfie sticks collide. Completed in 1762, it marks the endpoint of one of ancient Rome's earliest aqueducts, the Aqua Virgo, which still supplies water today. The name 'Trevi' comes from Tre Vie—'three roads'—signifying the junction where it stands. Designed by Italian architect Nicola Salvi and finished by Giuseppe Pannini, this 26-metre marvel is the largest Baroque fountain in the city and one of the most famous in the world. Its sculptures show Oceanus, the god of the sea, surrounded by Tritons and horses.",
+        "Image": {
+          "Url": "/th?id=OHR.TreviFountain_ROW2561775014_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TreviFountain_ROW2561775014_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Trevi Fountain in Rome, Italy",
+        "Copyright": "© Nico De Pasquale Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251125_TreviFountain\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Trevi+Fountain&form=hpcapt&filters=HpDate:\"20251125_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251125_TreviFountain"
+      },
+      "Ssd": "20251125",
+      "Name": "TreviFountain",
+      "Market": "ROW",
+      "Hash": "2561775014",
+      "FullDateString": "Nov 25, 2025"
     }
   ]
 }
