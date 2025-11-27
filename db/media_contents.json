@@ -10014,6 +10014,37 @@
       "Market": "ROW",
       "Hash": "2561775014",
       "FullDateString": "Nov 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Ancient yet vibrant, twisted yet resilient, olive trees can live for over a thousand years. Even when scarred or hollowed, their trunks still send out fresh leaves each season—a living record of survival through drought, wind and fire. Olives have carried both practical and symbolic weight through the ages: their oil was pressed for anointing, medicine and daily sustenance; crowns of their leaves graced Olympic victors; and their branches became a lasting emblem of peace.",
+        "Image": {
+          "Url": "/th?id=OHR.OliveGrove_ROW9424610098_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OliveGrove_ROW9424610098_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Olive orchard in the Serra de Tramuntana, Mallorca, Balearic Islands, Spain",
+        "Copyright": "© cinoby/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251126_OliveGrove\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Olive+Tree&form=hpcapt&filters=HpDate:\"20251126_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251126_OliveGrove"
+      },
+      "Ssd": "20251126",
+      "Name": "OliveGrove",
+      "Market": "ROW",
+      "Hash": "9424610098",
+      "FullDateString": "Nov 26, 2025"
     }
   ]
 }
