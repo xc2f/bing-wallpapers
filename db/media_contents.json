@@ -10045,6 +10045,37 @@
       "Market": "ROW",
       "Hash": "9424610098",
       "FullDateString": "Nov 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "When it comes to seaside icons, England's Eastbourne Pier doesn't just make waves—it has been riding them for over 150 years. Opened in 1870, this Victorian marvel in East Sussex has survived tempests, fires and even wars. Stretching gracefully into the English Channel, the pier started life as a docking point for steamers. Over time, it evolved into a place where you can stroll above the water, lose a few coins to an arcade machine and gain a few back in memories.",
+        "Image": {
+          "Url": "/th?id=OHR.PierOfEastbourne2025_ROW9555406617_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PierOfEastbourne2025_ROW9555406617_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eastbourne Pier, East Sussex, England",
+        "Copyright": "© Tolga_TEZCAN/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251127_PierOfEastbourne2025\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Eastbourne+Pier&form=hpcapt&filters=HpDate:\"20251127_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251127_PierOfEastbourne2025"
+      },
+      "Ssd": "20251127",
+      "Name": "PierOfEastbourne2025",
+      "Market": "ROW",
+      "Hash": "9555406617",
+      "FullDateString": "Nov 27, 2025"
     }
   ]
 }
