@@ -10076,6 +10076,37 @@
       "Market": "ROW",
       "Hash": "9555406617",
       "FullDateString": "Nov 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some valleys ask to be explored; Val Brandet in Lombardy, Italy, invites you to slow down and listen. Tucked inside Adamello Park and part of the municipality of Corteno Golgi—named after Nobel Prize–winning physician Camillo Golgi—this valley balances science and scenery, memory and movement.",
+        "Image": {
+          "Url": "/th?id=OHR.InvernoItalia_ROW5410859519_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.InvernoItalia_ROW5410859519_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Val Brandet, Brescia, Lombardy, Italy",
+        "Copyright": "© ClickAlps/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251128_InvernoItalia\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Val+Brandet+Lombardy&form=hpcapt&filters=HpDate:\"20251128_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251128_InvernoItalia"
+      },
+      "Ssd": "20251128",
+      "Name": "InvernoItalia",
+      "Market": "ROW",
+      "Hash": "5410859519",
+      "FullDateString": "Nov 28, 2025"
     }
   ]
 }
