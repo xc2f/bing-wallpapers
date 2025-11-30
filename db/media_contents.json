@@ -10107,6 +10107,37 @@
       "Market": "ROW",
       "Hash": "5410859519",
       "FullDateString": "Nov 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Picture 55 square kilometres of open land, wildlife on the move and a stag flaunting its crown of antlers. In 1909, husband and wife Anton Kröller and Helene Kröller-Müller began building a private estate in Gelderland, Netherlands—what we now know as De Hoge Veluwe National Park. Their vision? To merge art and nature. They brought it to life by placing artwork within the landscape, like 'Three Upright Motives' by English sculptor Henry Moore in the Pampelse Zand and the President Steyn stone bench by Belgian architect Henry van de Velde, among others.",
+        "Image": {
+          "Url": "/th?id=OHR.DeerVeluwe_ROW5512867028_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DeerVeluwe_ROW5512867028_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red deer stag in De Hoge Veluwe National Park, Netherlands",
+        "Copyright": "© CreativeNature_nl/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251129_DeerVeluwe\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=De+Hoge+Veluwe+National+Park&form=hpcapt&filters=HpDate:\"20251129_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251129_DeerVeluwe"
+      },
+      "Ssd": "20251129",
+      "Name": "DeerVeluwe",
+      "Market": "ROW",
+      "Hash": "5512867028",
+      "FullDateString": "Nov 29, 2025"
     }
   ]
 }
