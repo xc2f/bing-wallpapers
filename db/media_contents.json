@@ -10138,6 +10138,37 @@
       "Market": "ROW",
       "Hash": "5512867028",
       "FullDateString": "Nov 29, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Do you know what people bought at Christmas markets 567 years ago? Not costly ornaments or fancy souvenirs but candles, spices, local goods, knitted items and toys. Leipzig's Christmas market began in 1458 and quickly became a favourite stop for merchants and locals alike. Today, with its cultural and culinary offerings spread across the historic old town and about 300 stalls, it is one of the largest Christmas markets in Germany. Imagine streets buzzing with the chatter of traders and children following the scent of 'Lebkuchen'—honey-sweetened cakes. This is where townsfolk gather to celebrate winter and catch up on news while sipping mulled wine. These markets have always symbolised more than shopping—they offer an escape from the everyday routine.",
+        "Image": {
+          "Url": "/th?id=OHR.LeipzigMarket_ROW5616068319_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LeipzigMarket_ROW5616068319_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Christmas market in Leipzig, Germany",
+        "Copyright": "© Krzysztof Baranowski/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251130_LeipzigMarket\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Leipzig&form=hpcapt&filters=HpDate:\"20251130_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251130_LeipzigMarket"
+      },
+      "Ssd": "20251130",
+      "Name": "LeipzigMarket",
+      "Market": "ROW",
+      "Hash": "5616068319",
+      "FullDateString": "Nov 30, 2025"
     }
   ]
 }
