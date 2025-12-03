@@ -10200,6 +10200,37 @@
       "Market": "ROW",
       "Hash": "5830360852",
       "FullDateString": "Dec 1, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Spanning over 53,000 square kilometres, Wrangell–St. Elias, in Alaska, is the largest national park in the United States. It is a wilderness where caribou, Dall sheep and grizzly bears roam free and glaciers carve valleys that have existed for millennia. The park is a realm of extremes: its glaciers sprawling like frozen rivers, volcanic peaks piercing the sky. Among them stands Mount Blackburn, a 5,000-metre sentinel of ice and ancient fire. Its snow-mantled slopes feed vast glacier systems, a silent monument to geological time. Just beyond the park boundary, Willow Lake rests in the Copper River Basin—a roadside jewel along the Richardson Highway. On clear days, its glassy surface reflects the Wrangell Mountains in a panorama that feels endless: Blackburn's white shoulders rising against cobalt skies, mirrored in still waters where swans drift like living brushstrokes.",
+        "Image": {
+          "Url": "/th?id=OHR.WillowLake_ROW6069143746_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WillowLake_ROW6069143746_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Willow Lake and Mount Blackburn, Wrangell-St. Elias National Park and Preserve, Alaska, United States",
+        "Copyright": "© Patrick J. Endres/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251202_WillowLake\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Wrangell-St.+Elias+National+Park+and+Preserve&form=hpcapt&filters=HpDate:\"20251202_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251202_WillowLake"
+      },
+      "Ssd": "20251202",
+      "Name": "WillowLake",
+      "Market": "ROW",
+      "Hash": "6069143746",
+      "FullDateString": "Dec 2, 2025"
     }
   ]
 }
