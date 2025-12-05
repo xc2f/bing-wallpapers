@@ -10262,6 +10262,37 @@
       "Market": "ROW",
       "Hash": "6233736547",
       "FullDateString": "Dec 3, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "High atop a termite mound in the Maasai Mara National Reserve—a protected savanna in southwestern Kenya—a cheetah scans the plains. Its sleek body can reach speeds of over 100 km/h, making it the fastest land mammal on Earth. Long legs and a flexible spine allow incredible acceleration, while its strong tail helps maintain balance during high-speed chases. With fewer than 7,100 individuals left in the wild, these are among Africa's most vulnerable big cats.",
+        "Image": {
+          "Url": "/th?id=OHR.CheetahMound_ROW6407916214_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CheetahMound_ROW6407916214_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cheetah in Maasai Mara National Reserve, Narok, Kenya",
+        "Copyright": "© Andy Rouse/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251204_CheetahMound\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Cheetah&form=hpcapt&filters=HpDate:\"20251204_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251204_CheetahMound"
+      },
+      "Ssd": "20251204",
+      "Name": "CheetahMound",
+      "Market": "ROW",
+      "Hash": "6407916214",
+      "FullDateString": "Dec 4, 2025"
     }
   ]
 }
