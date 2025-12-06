@@ -10293,6 +10293,37 @@
       "Market": "ROW",
       "Hash": "6407916214",
       "FullDateString": "Dec 4, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In a quiet valley of western Honduras lie the ruins of Copán—a city of the ancient Maya civilisation. Its sky served as both compass and calendar, guiding celestial events and shaping temples, rituals and the rhythm of life. Around 426 CE, K'inich Yax K'uk' Mo', a warrior from the Maya heartland, founded Copán and established its royal dynasty. The city became a centre of Maya art, astronomy and power.",
+        "Image": {
+          "Url": "/th?id=OHR.CopanRuins_ROW6495195051_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CopanRuins_ROW6495195051_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Maya site of Copán, Honduras",
+        "Copyright": "© diegograndi/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251205_CopanRuins\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Maya+site+of+Copan&form=hpcapt&filters=HpDate:\"20251205_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251205_CopanRuins"
+      },
+      "Ssd": "20251205",
+      "Name": "CopanRuins",
+      "Market": "ROW",
+      "Hash": "6495195051",
+      "FullDateString": "Dec 5, 2025"
     }
   ]
 }
