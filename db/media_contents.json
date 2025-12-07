@@ -10324,6 +10324,37 @@
       "Market": "ROW",
       "Hash": "6495195051",
       "FullDateString": "Dec 5, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "On Florida's southern tip lies one of the United States' most unusual landscapes. The Everglades is not a typical swamp or river. It is a slow, shallow sheet of water that drifts south across flat grasslands toward Florida Bay, linking forests, marshes, mangroves and coastal prairies. This subtropical wilderness supports hundreds of species, including alligators, manatees and the endangered Florida panther. On December 6, 1947, the United States established the Everglades National Park, protecting over 600,000 hectares and shifting conservation toward preserving entire ecosystems rather than isolated landmarks.",
+        "Image": {
+          "Url": "/th?id=OHR.EvergladesSunrise_ROW6583902193_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EvergladesSunrise_ROW6583902193_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Spider webs in Everglades National Park, Florida, United Sates",
+        "Copyright": "© Troy Harrison/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251206_EvergladesSunrise\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Everglades+National+Park&form=hpcapt&filters=HpDate:\"20251206_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251206_EvergladesSunrise"
+      },
+      "Ssd": "20251206",
+      "Name": "EvergladesSunrise",
+      "Market": "ROW",
+      "Hash": "6583902193",
+      "FullDateString": "Dec 6, 2025"
     }
   ]
 }
