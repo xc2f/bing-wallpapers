@@ -10355,6 +10355,37 @@
       "Market": "ROW",
       "Hash": "6583902193",
       "FullDateString": "Dec 6, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In December, the forests of Alsace, in France's Grand Est region, wrap themselves in a veil of fog, as if nature were holding its breath before winter. Between Scots pines and silver firs, the moss-covered ground muffles every step and silence feels almost sacred. These woodlands, which cover nearly 40% of Alsace, shelter a rich biodiversity: roe deer, wild boar, black woodpeckers and sometimes the elusive lynx, which has returned after decades of absence.",
+        "Image": {
+          "Url": "/th?id=OHR.MistyPineForest_ROW4499541003_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MistyPineForest_ROW4499541003_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A pine forest in Alsace, France",
+        "Copyright": "© alekseystemmer/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251207_MistyPineForest\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Alsace&form=hpcapt&filters=HpDate:\"20251207_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251207_MistyPineForest"
+      },
+      "Ssd": "20251207",
+      "Name": "MistyPineForest",
+      "Market": "ROW",
+      "Hash": "4499541003",
+      "FullDateString": "Dec 7, 2025"
     }
   ]
 }
