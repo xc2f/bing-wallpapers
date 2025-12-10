@@ -10417,6 +10417,37 @@
       "Market": "ROW",
       "Hash": "4608119261",
       "FullDateString": "Dec 8, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If llamas are the laid-back stars of the Andes, their cousins, the guanacos, are the free spirits of Patagonia. Guanacos are part of the same camelid family as llamas, alpacas and vicuñas. But unlike their domesticated relatives, they keep things wild. Found mainly in Argentina, Chile, Peru and Bolivia, they're built for life at high altitude. Their thick coats help them handle chilly winds, while their padded feet give them the grip to trek across rocky terrain that would make even mountain goats nervous.",
+        "Image": {
+          "Url": "/th?id=OHR.LlamaDay_ROW4693372268_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LlamaDay_ROW4693372268_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Guanaco, Punta Norte, Valdés Peninsula, Argentina",
+        "Copyright": "© Sylvain Cordier/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251209_LlamaDay\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Guanaco&form=hpcapt&filters=HpDate:\"20251209_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251209_LlamaDay"
+      },
+      "Ssd": "20251209",
+      "Name": "LlamaDay",
+      "Market": "ROW",
+      "Hash": "4693372268",
+      "FullDateString": "Dec 9, 2025"
     }
   ]
 }
