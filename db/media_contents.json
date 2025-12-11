@@ -10448,6 +10448,37 @@
       "Market": "ROW",
       "Hash": "4693372268",
       "FullDateString": "Dec 9, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Among the silent crests of the Abruzzo Apennines in Italy, when autumn begins to touch the rocks with amber fingers, the Castle of Rocca Calascio appears like a mirage of stone and wind. At over 1,400 metres above sea level, the fortress has watched over valleys tinged with copper and gold for centuries, suspended between heaven and Earth like an ancient thought.",
+        "Image": {
+          "Url": "/th?id=OHR.CastleAbruzzo_ROW4838323641_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CastleAbruzzo_ROW4838323641_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Castle of Rocca Calascio, Abruzzo, Italy",
+        "Copyright": "© carlo alberto conti/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251210_CastleAbruzzo\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Castle+of+Rocca+Calascio&form=hpcapt&filters=HpDate:\"20251210_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251210_CastleAbruzzo"
+      },
+      "Ssd": "20251210",
+      "Name": "CastleAbruzzo",
+      "Market": "ROW",
+      "Hash": "4838323641",
+      "FullDateString": "Dec 10, 2025"
     }
   ]
 }
