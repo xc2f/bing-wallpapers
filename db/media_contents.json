@@ -10479,6 +10479,37 @@
       "Market": "ROW",
       "Hash": "4838323641",
       "FullDateString": "Dec 10, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "From the rolling Alps to the towering Himalayas, mountains cover nearly a quarter of Earth's land and host 15% of the world's population and nearly half of its biodiversity hotspots. On the crest of the Great Himalayas of southern Asia, along the border between Nepal and Tibet, stands Mount Everest. At over 8,800 metres, it is the world's highest peak and a symbol of human aspiration and natural beauty. In 1953, Sir Edmund Hillary of New Zealand and Tenzing Norgay, a Nepali Sherpa climber, were the first to successfully reach its summit, marking a historic achievement in exploration. Its glaciers feed rivers sustaining millions, showing that mountains are more than scenery—they are lifelines.",
+        "Image": {
+          "Url": "/th?id=OHR.EverestGlow_ROW4955731519_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EverestGlow_ROW4955731519_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The summit of Mount Everest at sunset, seen from Renjo La, Nepal",
+        "Copyright": "© shoults/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251211_EverestGlow\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mount+Everest&form=hpcapt&filters=HpDate:\"20251211_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251211_EverestGlow"
+      },
+      "Ssd": "20251211",
+      "Name": "EverestGlow",
+      "Market": "ROW",
+      "Hash": "4955731519",
+      "FullDateString": "Dec 11, 2025"
     }
   ]
 }
