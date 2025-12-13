@@ -10510,6 +10510,37 @@
       "Market": "ROW",
       "Hash": "4955731519",
       "FullDateString": "Dec 11, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some plants simply sit quietly on windowsills. The poinsettia? It demands the spotlight. Bright, bold and as red as Rudolph's nose, it is native to Mexico and Central America. In Mexico, it is known as the Flores de Nochebuena (Flowers of the Holy Night), a symbol of Christmas celebrations. The poinsettia's common name comes from Joel Roberts Poinsett, the first United States minister to Mexico, who introduced it to the United States in the 1820s.",
+        "Image": {
+          "Url": "/th?id=OHR.SpeckledPoinsettia_ROW3840038275_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SpeckledPoinsettia_ROW3840038275_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Spotted poinsettia",
+        "Copyright": "© DigiPub/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251212_SpeckledPoinsettia\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Poinsettia&form=hpcapt&filters=HpDate:\"20251212_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251212_SpeckledPoinsettia"
+      },
+      "Ssd": "20251212",
+      "Name": "SpeckledPoinsettia",
+      "Market": "ROW",
+      "Hash": "3840038275",
+      "FullDateString": "Dec 12, 2025"
     }
   ]
 }
