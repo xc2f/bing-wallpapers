@@ -10541,6 +10541,37 @@
       "Market": "ROW",
       "Hash": "3840038275",
       "FullDateString": "Dec 12, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Every masterpiece needs a brushstroke to tie it together. For Yosemite National Park, in the United States, that stroke is the Merced River—painting reflections of granite cliffs, pine forests and waterfalls across its canvas. One of the National Wild and Scenic Rivers, this waterway begins high in the Sierra Nevada. It gathers meltwater and winds 233 kilometres west through Yosemite Valley into California's Central Valley.",
+        "Image": {
+          "Url": "/th?id=OHR.YosemiteWinter_ROW3941721184_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.YosemiteWinter_ROW3941721184_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Merced River, Yosemite National Park, California, United States",
+        "Copyright": "© Ron and Patty Thomas/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251213_YosemiteWinter\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Merced+River&form=hpcapt&filters=HpDate:\"20251213_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251213_YosemiteWinter"
+      },
+      "Ssd": "20251213",
+      "Name": "YosemiteWinter",
+      "Market": "ROW",
+      "Hash": "3941721184",
+      "FullDateString": "Dec 13, 2025"
     }
   ]
 }
