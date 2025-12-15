@@ -10572,6 +10572,37 @@
       "Market": "ROW",
       "Hash": "3941721184",
       "FullDateString": "Dec 13, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Before you spot it, you'll likely hear it—a series of clear, whistling notes, often described as 'peter-peter-peter,' announcing the presence of the tufted titmouse, featured in today's image. This small, grey songbird, measuring about 15 centimetres in length, is a lively inhabitant of the eastern North America. Unlike other small songbirds, it has a tufted grey crest that crowns its head, giving it a distinctive and expressive look. Despite its small size, the tufted titmouse is surprisingly strong, able to crack open even large seeds with its beak—showcasing its skill and resourcefulness in the daily pursuit of food. It forages both in the trees and on the ground, searching for a varied diet of insects, nuts, seeds, berries and other invertebrates.",
+        "Image": {
+          "Url": "/th?id=OHR.TuftedTitmouse_ROW4045050908_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TuftedTitmouse_ROW4045050908_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Tufted titmouse perched on pine boughs, Massachusetts, United States",
+        "Copyright": "© Tim Laman/NPL/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251214_TuftedTitmouse\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Tufted+Titmouse&form=hpcapt&filters=HpDate:\"20251214_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251214_TuftedTitmouse"
+      },
+      "Ssd": "20251214",
+      "Name": "TuftedTitmouse",
+      "Market": "ROW",
+      "Hash": "4045050908",
+      "FullDateString": "Dec 14, 2025"
     }
   ]
 }
