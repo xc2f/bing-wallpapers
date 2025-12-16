@@ -10603,6 +10603,37 @@
       "Market": "ROW",
       "Hash": "4045050908",
       "FullDateString": "Dec 14, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Have you ever wondered how canals changed the way cities developed? For thousands of years, people have built canals to transport goods, control water flow and connect places. From ancient Mesopotamia and Egypt to medieval Europe, they transformed cities like Venice and Bruges into trade hubs. The Netherlands took this even further—by the 17th century, they were designing waterways that shaped cities such as Amsterdam.",
+        "Image": {
+          "Url": "/th?id=OHR.AmsterdamLights_ROW4220094908_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AmsterdamLights_ROW4220094908_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Light decorations on Spiegelgracht canal, Amsterdam, Netherlands",
+        "Copyright": "© Amith Nag Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251215_AmsterdamLights\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Spiegelgracht+canal&form=hpcapt&filters=HpDate:\"20251215_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251215_AmsterdamLights"
+      },
+      "Ssd": "20251215",
+      "Name": "AmsterdamLights",
+      "Market": "ROW",
+      "Hash": "4220094908",
+      "FullDateString": "Dec 15, 2025"
     }
   ]
 }
