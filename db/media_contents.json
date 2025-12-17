@@ -10634,6 +10634,37 @@
       "Market": "ROW",
       "Hash": "4220094908",
       "FullDateString": "Dec 15, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the Italian region of Umbria, Perugia reveals itself slowly, like a page from another era turning in the wind. Its stones carry memories of Etruscans, medieval rulers, artists and generations of students. The city unfolds through steep lanes, mesmerising viewpoints and corners that feel almost painted.",
+        "Image": {
+          "Url": "/th?id=OHR.PerugiaStreet_ROW4410274538_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PerugiaStreet_ROW4410274538_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Medieval Aqueduct, Perugia, Italy",
+        "Copyright": "© Sean Pavone/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251216_PerugiaStreet\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Perugia+Medieval+Aquaduct&form=hpcapt&filters=HpDate:\"20251216_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251216_PerugiaStreet"
+      },
+      "Ssd": "20251216",
+      "Name": "PerugiaStreet",
+      "Market": "ROW",
+      "Hash": "4410274538",
+      "FullDateString": "Dec 16, 2025"
     }
   ]
 }
