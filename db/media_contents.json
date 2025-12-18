@@ -10665,6 +10665,37 @@
       "Market": "ROW",
       "Hash": "4410274538",
       "FullDateString": "Dec 16, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Who could resist that squishy face? A Eurasian red squirrel perches on a snowy pine branch, paws clutching a pine cone like it's the last snack on Earth. These little acrobats stay busy collecting nuts, seeds and fungi—feasting on fresh finds in summer and on stored cones through winter.",
+        "Image": {
+          "Url": "/th?id=OHR.FrostySquirrel_ROW4524085352_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FrostySquirrel_ROW4524085352_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eurasian red squirrel in Northumberland, England",
+        "Copyright": "© Michael_Conrad/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251217_FrostySquirrel\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Eurasian+Red+Squirrel&form=hpcapt&filters=HpDate:\"20251217_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251217_FrostySquirrel"
+      },
+      "Ssd": "20251217",
+      "Name": "FrostySquirrel",
+      "Market": "ROW",
+      "Hash": "4524085352",
+      "FullDateString": "Dec 17, 2025"
     }
   ]
 }
