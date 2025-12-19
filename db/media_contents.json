@@ -10696,6 +10696,37 @@
       "Market": "ROW",
       "Hash": "4524085352",
       "FullDateString": "Dec 17, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Rock layers formed over millions of years and a massive bend in the Earth's crust give this desert a rare window into geologic history. This is Capitol Reef National Park in Utah, where sandstone cliffs and canyons preserve a striking record of the planet's past. It was designated as a national park in 1971. Today's featured image highlights the sandstone monoliths of Cathedral Valley, including the Temple of the Sun, part of this extraordinary, protected landscape.",
+        "Image": {
+          "Url": "/th?id=OHR.CathedralValley_ROW4669841552_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CathedralValley_ROW4669841552_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Temple of the Sun, Capitol Reef National Park, Utah, United States",
+        "Copyright": "© Austin Cronnelly/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251218_CathedralValley\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Temple+of+the+Sun+Utah&form=hpcapt&filters=HpDate:\"20251218_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251218_CathedralValley"
+      },
+      "Ssd": "20251218",
+      "Name": "CathedralValley",
+      "Market": "ROW",
+      "Hash": "4669841552",
+      "FullDateString": "Dec 18, 2025"
     }
   ]
 }
