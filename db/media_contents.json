@@ -10727,6 +10727,37 @@
       "Market": "ROW",
       "Hash": "4669841552",
       "FullDateString": "Dec 18, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Bormio is a mountain town in northern Italy's Lombardy region, nestled in the Alps near the Stelvio Pass. This location has connected communities across mountain valleys for centuries, shaping how people live and move through the region. Today's image features Bormio's winter landscape, a reflection of its high-altitude setting and enduring bond with the surrounding peaks.",
+        "Image": {
+          "Url": "/th?id=OHR.BormioItaly_ROW4800266258_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BormioItaly_ROW4800266258_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Snow-covered landscape at Bormio, Lombardy, Italy",
+        "Copyright": "© Roberto Moiola/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251219_BormioItaly\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bormio+Italy&form=hpcapt&filters=HpDate:\"20251219_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251219_BormioItaly"
+      },
+      "Ssd": "20251219",
+      "Name": "BormioItaly",
+      "Market": "ROW",
+      "Hash": "4800266258",
+      "FullDateString": "Dec 19, 2025"
     }
   ]
 }
