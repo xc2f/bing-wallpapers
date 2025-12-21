@@ -10758,6 +10758,37 @@
       "Market": "ROW",
       "Hash": "4800266258",
       "FullDateString": "Dec 19, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some animals rely on strength, others on speed. Foxes? They rely on brains. And the red fox, seen in today's image, has mastered the art. Found across nearly every type of landscape on Earth, foxes have adapted over time to deserts, forests and suburbs alike. The red fox's story began in Eurasia about 400,000 years ago and around 130,000 years ago, these creatures crossed into North America and found a permanent home.",
+        "Image": {
+          "Url": "/th?id=OHR.RedFoxVulpes_ROW4883421988_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RedFoxVulpes_ROW4883421988_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red fox, Canada",
+        "Copyright": "© RT-Images/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251220_RedFoxVulpes\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Red+fox&form=hpcapt&filters=HpDate:\"20251220_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251220_RedFoxVulpes"
+      },
+      "Ssd": "20251220",
+      "Name": "RedFoxVulpes",
+      "Market": "ROW",
+      "Hash": "4883421988",
+      "FullDateString": "Dec 20, 2025"
     }
   ]
 }
