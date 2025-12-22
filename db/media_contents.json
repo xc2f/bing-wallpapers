@@ -10789,6 +10789,37 @@
       "Market": "ROW",
       "Hash": "4883421988",
       "FullDateString": "Dec 20, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Ever wondered why some days feel endless while others pass in the blink of an eye? This fascinating rhythm of day and night is closely tied to a remarkable event called the solstice. Occurring twice a year, solstices mark the moments when the Sun reaches its highest or lowest point in the sky at noon, resulting the longest and shortest days of the year. There are two solstices each year: the summer solstice and the winter solstice.",
+        "Image": {
+          "Url": "/th?id=OHR.SwedenSolstice_ROW5093958502_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SwedenSolstice_ROW5093958502_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Dawn light through frosty trees, Sweden",
+        "Copyright": "© Schon/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251221_SwedenSolstice\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Sweden&form=hpcapt&filters=HpDate:\"20251221_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251221_SwedenSolstice"
+      },
+      "Ssd": "20251221",
+      "Name": "SwedenSolstice",
+      "Market": "ROW",
+      "Hash": "5093958502",
+      "FullDateString": "Dec 21, 2025"
     }
   ]
 }
