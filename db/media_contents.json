@@ -10820,6 +10820,37 @@
       "Market": "ROW",
       "Hash": "5093958502",
       "FullDateString": "Dec 21, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Frankfurt, the vibrant metropolis in the heart of Germany, captivates visitors with its unique blend of modern skyline and historic old town. A prominent landmark is the Alte Brücke—known in German as 'Old Bridge'—which has spanned the Main River since the Middle Ages and is considered one of the city's oldest river crossings. For centuries, it served as an important trade route. The bridge is particularly charming at sunset.",
+        "Image": {
+          "Url": "/th?id=OHR.FrankfurtAlteBruecke_ROW5240961184_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FrankfurtAlteBruecke_ROW5240961184_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Alte Brücke Bridge, Frankfurt, Germany",
+        "Copyright": "© diegograndi/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251222_FrankfurtAlteBruecke\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Alte+Brucke&form=hpcapt&filters=HpDate:\"20251222_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251222_FrankfurtAlteBruecke"
+      },
+      "Ssd": "20251222",
+      "Name": "FrankfurtAlteBruecke",
+      "Market": "ROW",
+      "Hash": "5240961184",
+      "FullDateString": "Dec 22, 2025"
     }
   ]
 }
