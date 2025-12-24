@@ -10851,6 +10851,37 @@
       "Market": "ROW",
       "Hash": "5240961184",
       "FullDateString": "Dec 22, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "In the heart of Valmalenco, Lombardy, Italy, at nearly 2,000 metres above sea level, Lake Lagazzuolo reveals itself like a secret hidden within the mountains' folds. The 2.5-kilometre trek leading there weaves through woods and stone, inviting you to slow down with each step. The hike ranges from moderate to challenging, with an elevation gain of around 590 metres, making it perfect for those seeking a fun outdoor experience.",
+        "Image": {
+          "Url": "/th?id=OHR.LagoLagazuolo_ROW5340646179_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LagoLagazuolo_ROW5340646179_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lagazzuolo Lake, Valmalenco, Lombardy, Italy",
+        "Copyright": "© Francesco Bergamaschi/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251223_LagoLagazuolo\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lagazzuolo+Lake+Valmalenco&form=hpcapt&filters=HpDate:\"20251223_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251223_LagoLagazuolo"
+      },
+      "Ssd": "20251223",
+      "Name": "LagoLagazuolo",
+      "Market": "ROW",
+      "Hash": "5340646179",
+      "FullDateString": "Dec 23, 2025"
     }
   ]
 }
