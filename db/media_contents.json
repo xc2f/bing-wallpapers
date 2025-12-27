@@ -10944,6 +10944,37 @@
       "Market": "ROW",
       "Hash": "5662663795",
       "FullDateString": "Dec 25, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If your idea of recharging includes crisp air, mountain views and water, the Lakes of Covadonga in Asturias, Spain are ready to reboot your mood. Set inside Picos de Europa National Park, the glacial duo—Enol and Ercina—prove that nature doesn't need editing software. Enol is the deeper, larger lake, calm enough to mirror the surrounding peaks. Ercina sits slightly higher, shallower and usually accompanied by Asturian cows. Both rest at around 1,000 metres, shaped long ago by slowly retreating glaciers.",
+        "Image": {
+          "Url": "/th?id=OHR.WinterCovadonga_ROW0034591599_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WinterCovadonga_ROW0034591599_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lakes of Covadonga, Asturias, Spain",
+        "Copyright": "© emiliozv/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251226_WinterCovadonga\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=lakes+of+covadonga&form=hpcapt&filters=HpDate:\"20251226_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251226_WinterCovadonga"
+      },
+      "Ssd": "20251226",
+      "Name": "WinterCovadonga",
+      "Market": "ROW",
+      "Hash": "0034591599",
+      "FullDateString": "Dec 26, 2025"
     }
   ]
 }
