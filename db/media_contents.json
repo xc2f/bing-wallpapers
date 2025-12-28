@@ -10975,6 +10975,37 @@
       "Market": "ROW",
       "Hash": "0034591599",
       "FullDateString": "Dec 26, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "When winter tightens its grip on Lake Superior in Minnesota, United States, the shoreline transforms into a landscape of tilted, glass-like shards known as plate ice. Thin sheets fracture under shifting temperatures, then drift and stack as the wind presses them toward land. The result is a field of translucent blues and silvers, catching the light at sharp angles and making the water's edge appear sculpted rather than frozen.",
+        "Image": {
+          "Url": "/th?id=OHR.SuperiorIceMN_ROW0122363759_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SuperiorIceMN_ROW0122363759_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Plate ice along Lake Superior, Grand Marais, Minnesota, United States",
+        "Copyright": "© wanderluster/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251227_SuperiorIceMN\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lake+Superior+Minnesota&form=hpcapt&filters=HpDate:\"20251227_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251227_SuperiorIceMN"
+      },
+      "Ssd": "20251227",
+      "Name": "SuperiorIceMN",
+      "Market": "ROW",
+      "Hash": "0122363759",
+      "FullDateString": "Dec 27, 2025"
     }
   ]
 }
