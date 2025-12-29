@@ -11006,6 +11006,37 @@
       "Market": "ROW",
       "Hash": "0122363759",
       "FullDateString": "Dec 27, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "One moment the canopy is still, and the next a burst of black and white shoots through it like a living exclamation mark. That's the black-and-white ruffed lemur, a primate that doesn't shy away from announcing itself with raucous calls. Its coat comes in bold patches, and the thick ruff frames its face.",
+        "Image": {
+          "Url": "/th?id=OHR.RuffedLemur_ROW0207681779_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RuffedLemur_ROW0207681779_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Black-and-white ruffed lemur in Madagascar",
+        "Copyright": "© Cyrielle Beaubois/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251228_RuffedLemur\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=lemur&form=hpcapt&filters=HpDate:\"20251228_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251228_RuffedLemur"
+      },
+      "Ssd": "20251228",
+      "Name": "RuffedLemur",
+      "Market": "ROW",
+      "Hash": "0207681779",
+      "FullDateString": "Dec 28, 2025"
     }
   ]
 }
