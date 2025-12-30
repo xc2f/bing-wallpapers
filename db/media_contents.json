@@ -11037,6 +11037,37 @@
       "Market": "ROW",
       "Hash": "0207681779",
       "FullDateString": "Dec 28, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Facing the vast blue expanse of the English Channel, the cliffs of Étretat raise their arches and spires like a mineral cathedral sculpted by time. For millennia, the sea has carved a masterpiece that no architect could have imagined: white chalk cliffs, pierced by Gothic gateways and punctuated by natural columns that interact with the ever-changing light over Normandy's sky in France.",
+        "Image": {
+          "Url": "/th?id=OHR.EtretatBeach_ROW0829020848_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EtretatBeach_ROW0829020848_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Étretat, Normandy, France",
+        "Copyright": "© Luis Henrique Boucault/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251229_EtretatBeach\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=%c3%89tretat&form=hpcapt&filters=HpDate:\"20251229_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251229_EtretatBeach"
+      },
+      "Ssd": "20251229",
+      "Name": "EtretatBeach",
+      "Market": "ROW",
+      "Hash": "0829020848",
+      "FullDateString": "Dec 29, 2025"
     }
   ]
 }
