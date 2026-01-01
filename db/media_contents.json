@@ -11099,6 +11099,37 @@
       "Market": "ROW",
       "Hash": "0913401353",
       "FullDateString": "Dec 30, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "If a bridge could win 'Best Supporting Role' in a city's story, Germany's Oberbaum Bridge in Berlin would sweep the awards. Spanning the River Spree between Friedrichshain and Kreuzberg, it connects two districts while juggling trains on top, traffic below and crowds of sunset hunters in between. Originally a wooden crossing, the bridge took on its signature red-brick Gothic revival form in 1896, complete with turreted towers that look like they wandered in from a medieval set. But the real twist came during the Cold War, when the bridge became a strict checkpoint between East and West. After reunification, it was restored in the 1990s and welcomed the U1 line back across its upper deck.",
+        "Image": {
+          "Url": "/th?id=OHR.GermanyNewYear_ROW1011878383_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GermanyNewYear_ROW1011878383_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Oberbaum Bridge, Berlin, Germany",
+        "Copyright": "© spreephoto.de/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20251231_GermanyNewYear\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Oberbaum+Bridge&form=hpcapt&filters=HpDate:\"20251231_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20251231_GermanyNewYear"
+      },
+      "Ssd": "20251231",
+      "Name": "GermanyNewYear",
+      "Market": "ROW",
+      "Hash": "1011878383",
+      "FullDateString": "Dec 31, 2025"
     }
   ]
 }
