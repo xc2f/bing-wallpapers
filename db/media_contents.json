@@ -11130,6 +11130,37 @@
       "Market": "ROW",
       "Hash": "1011878383",
       "FullDateString": "Dec 31, 2025"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image features an Arctic fox nestled in its winter den—a perfect picture of comfort and survival in harsh conditions. This highly adapted mammal is native to the cold Arctic and sub-Arctic regions, including parts of Alaska, Canada, Greenland, Iceland, northern Europe and Russia. Arctic foxes have evolved unique physical traits that help them thrive in some of the world's most extreme environments.",
+        "Image": {
+          "Url": "/th?id=OHR.NewYearFox_ROW1128491767_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NewYearFox_ROW1128491767_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Arctic fox sleeping",
+        "Copyright": "© Chansak Joe/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260101_NewYearFox\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Arctic+fox&form=hpcapt&filters=HpDate:\"20260101_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260101_NewYearFox"
+      },
+      "Ssd": "20260101",
+      "Name": "NewYearFox",
+      "Market": "ROW",
+      "Hash": "1128491767",
+      "FullDateString": "Jan 1, 2026"
     }
   ]
 }
