@@ -11192,6 +11192,37 @@
       "Market": "ROW",
       "Hash": "3935417793",
       "FullDateString": "Jan 2, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Our picture of the day takes us to the Swiss village of Lauterbrunnen, where the Staubbach Falls shimmer in the distance beyond a quiet alpine valley. The falls cascade 297 metres down a towering cliff, one of Europe's highest free-falling waterfalls, creating a shimmering veil of mist that can be seen for miles around. The town of Lauterbrunnen, with its 72 waterfalls, is often considered one of the most picturesque valleys in the world. This is the landscape a young traveller, J.R.R. Tolkien, crossed during a hiking trip in 1911, long before he became the storyteller behind 'The Lord of the Rings' and 'The Hobbit.' Its soaring cliffs, silver waterfalls and crisp mountain air left a lasting impression and are believed to have inspired his vision of Rivendell, the elven refuge hidden deep in Middle-earth.",
+        "Image": {
+          "Url": "/th?id=OHR.LauterbrunnenValley_ROW1355118346_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LauterbrunnenValley_ROW1355118346_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Staubbach Falls at Lauterbrunnen, Canton of Bern, Switzerland",
+        "Copyright": "© pongnathee kluaythong/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260103_LauterbrunnenValley\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Staubbach+Falls&form=hpcapt&filters=HpDate:\"20260103_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260103_LauterbrunnenValley"
+      },
+      "Ssd": "20260103",
+      "Name": "LauterbrunnenValley",
+      "Market": "ROW",
+      "Hash": "1355118346",
+      "FullDateString": "Jan 3, 2026"
     }
   ]
 }
