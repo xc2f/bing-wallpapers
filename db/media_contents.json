@@ -11223,6 +11223,37 @@
       "Market": "ROW",
       "Hash": "1355118346",
       "FullDateString": "Jan 3, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Kings Mountain in the Chugach Mountains of Alaska, United States, isn't just another bump on the horizon—it's the kind of rugged beauty that makes you slow down and stare. Rising over 1,770 metres and sitting roughly 35 kilometres northeast of Palmer, this peak towers over mile 75 of the Glenn Highway, a route famous for its dramatic scenery. Its slopes bear the marks of ancient glaciers, etched into ridges and valleys that seem tailor-made for adventure.",
+        "Image": {
+          "Url": "/th?id=OHR.KingMountain_ROW1475814409_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.KingMountain_ROW1475814409_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Kings Mountain, Chugach Mountains, Alaska, United States",
+        "Copyright": "© Chris Moore - Exploring Light Photography/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260104_KingMountain\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Kings+Mountain+Chugach+Mountains&form=hpcapt&filters=HpDate:\"20260104_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260104_KingMountain"
+      },
+      "Ssd": "20260104",
+      "Name": "KingMountain",
+      "Market": "ROW",
+      "Hash": "1475814409",
+      "FullDateString": "Jan 4, 2026"
     }
   ]
 }
