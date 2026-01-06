@@ -11254,6 +11254,37 @@
       "Market": "ROW",
       "Hash": "1475814409",
       "FullDateString": "Jan 4, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "What stands out about Londolozi Game Reserve in South Africa isn't just the wildlife—it's the long-term commitment behind it. Since 1926, its 150 square kilometres have supported research and monitored wildlife behaviour in their natural habitat. Located within the Sabi Sand Private Game Reserve, it is home to Africa's Big Five. Londolozi is part of a larger open system that connects with Kruger National Park, allowing animals such as elephants, rhinos, lions, leopards, zebras and many antelope species to move freely without fences holding them back.",
+        "Image": {
+          "Url": "/th?id=OHR.ImpalaRooibok_ROW1567487559_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ImpalaRooibok_ROW1567487559_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "A herd of impalas, Londolozi Game Reserve, South Africa",
+        "Copyright": "© Mint Images/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260105_ImpalaRooibok\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Impala+antelope&form=hpcapt&filters=HpDate:\"20260105_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260105_ImpalaRooibok"
+      },
+      "Ssd": "20260105",
+      "Name": "ImpalaRooibok",
+      "Market": "ROW",
+      "Hash": "1567487559",
+      "FullDateString": "Jan 5, 2026"
     }
   ]
 }
