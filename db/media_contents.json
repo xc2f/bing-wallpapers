@@ -11285,6 +11285,37 @@
       "Market": "ROW",
       "Hash": "1567487559",
       "FullDateString": "Jan 5, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Picture a city where your daily commute offers views of fjords, drifting ice and the Northern Lights. That's everyday life in Nuuk, the capital of Greenland—a small yet spirited Arctic hub blending Inuit heritage with Nordic modernity. Founded in 1728 by Danish-Norwegian missionary Hans Egede, it began as a small settlement called Godthaab—'Good Hope.'",
+        "Image": {
+          "Url": "/th?id=OHR.NuukGreenland_ROW1680674734_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NuukGreenland_ROW1680674734_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Nuuk, Greenland",
+        "Copyright": "© nevereverro/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260106_NuukGreenland\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Nuuk+Greenland&form=hpcapt&filters=HpDate:\"20260106_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260106_NuukGreenland"
+      },
+      "Ssd": "20260106",
+      "Name": "NuukGreenland",
+      "Market": "ROW",
+      "Hash": "1680674734",
+      "FullDateString": "Jan 6, 2026"
     }
   ]
 }
