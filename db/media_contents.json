@@ -11316,6 +11316,37 @@
       "Market": "ROW",
       "Hash": "1680674734",
       "FullDateString": "Jan 6, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "In Arches National Park located in Utah in the United States, Turret Arch—seen through North Window—offers a striking reminder: landscapes can take hundreds of millions of years to assemble. Standing approximately 20 metres tall and 10 metres wide, the arch is formed from Entrada Sandstone. These arches began as shifting dunes and shallow seas long before erosion carved the shapes we see today. Even so, these formations are relatively young. Arches National Park protects the highest concentration of natural stone arches on Earth—over 2,000 documented arches, along with spires, fins and balanced rocks. While here, visitors can explore through auto touring, hiking, bicycling, backpacking, canyoneering and rock climbing—permits required for the last three. It's a place where the rocks don't move, but you definitely will.",
+        "Image": {
+          "Url": "/th?id=OHR.OldRockArch_ROW8266401569_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OldRockArch_ROW8266401569_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Turret Arch framed by North Window in Arches National Park, Utah, United States",
+        "Copyright": "© Jim Patterson/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260107_OldRockArch\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Arches+National+Park+Windows&form=hpcapt&filters=HpDate:\"20260107_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260107_OldRockArch"
+      },
+      "Ssd": "20260107",
+      "Name": "OldRockArch",
+      "Market": "ROW",
+      "Hash": "8266401569",
+      "FullDateString": "Jan 7, 2026"
     }
   ]
 }
