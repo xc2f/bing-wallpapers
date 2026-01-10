@@ -11378,6 +11378,37 @@
       "Market": "ROW",
       "Hash": "1885349561",
       "FullDateString": "Jan 8, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Step into the realm of giants. Try embracing a BFG (Big Friendly Giant) as you wrap your arms around a thousand years of wisdom in a single tree trunk. Welcome to Muir Woods National Monument, a majestic hall of coastal redwoods just north of San Francisco, in California, United States. These towering redwoods are the tallest trees on Earth—one here stretches about 80 metres, roughly the height of 43 people stacked head to toe. Most are 600–800 years old and some have stood for over a millennium, yet they're still considered 'young' for a species that can live for 2,000 years.",
+        "Image": {
+          "Url": "/th?id=OHR.MuirWoodsMonument_ROW9621439164_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MuirWoodsMonument_ROW9621439164_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Giant redwood trees in Muir Woods National Monument, California, United States",
+        "Copyright": "© photo by canderson/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260109_MuirWoodsMonument\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Muir+Woods+National+Monument&form=hpcapt&filters=HpDate:\"20260109_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260109_MuirWoodsMonument"
+      },
+      "Ssd": "20260109",
+      "Name": "MuirWoodsMonument",
+      "Market": "ROW",
+      "Hash": "9621439164",
+      "FullDateString": "Jan 9, 2026"
     }
   ]
 }
