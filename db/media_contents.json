@@ -11440,6 +11440,37 @@
       "Market": "ROW",
       "Hash": "9727465933",
       "FullDateString": "Jan 10, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Chefchaouen, known as the 'Blue Pearl' of the Rif Mountains, is one of the most atmospheric cities in Morocco. Its name comes from a blend of Arabic and Berber—Chef, derived from the Arabic word meaning 'to look,' and Echaouen, a Berber term for 'horns'—together meaning 'look at the horns,' a reference to the two mountain peaks that rise above the town.",
+        "Image": {
+          "Url": "/th?id=OHR.BlueMorocco_ROW0232801057_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BlueMorocco_ROW0232801057_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Blue walls of Chefchaouen, Morocco",
+        "Copyright": "© AnetteAndersen/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260111_BlueMorocco\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Chefchaouen+Morocco&form=hpcapt&filters=HpDate:\"20260111_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260111_BlueMorocco"
+      },
+      "Ssd": "20260111",
+      "Name": "BlueMorocco",
+      "Market": "ROW",
+      "Hash": "0232801057",
+      "FullDateString": "Jan 11, 2026"
     }
   ]
 }
