@@ -11502,6 +11502,37 @@
       "Market": "ROW",
       "Hash": "0461006867",
       "FullDateString": "Jan 12, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "The Vale of Clwyd lies between the Clwydian hills and the north Wales coast, forming a wide, fertile valley shaped by centuries of human use. Its flat valley floor and rich soils made it ideal for farming, drawing activity here from prehistoric times. Roman routes later crossed the valley, and by the medieval period, agriculture and market towns had become firmly established. Rather than being repeatedly reshaped, the landscape evolved around cultivation, leaving behind a countryside still defined by open fields, rural settlements and long-standing routes through the land.",
+        "Image": {
+          "Url": "/th?id=OHR.WalesWinter_ROW0714081167_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WalesWinter_ROW0714081167_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Vale of Clwyd, Wales",
+        "Copyright": "© Valerie Blencowe/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260113_WalesWinter\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Vale+of+Clwyd+Wales&form=hpcapt&filters=HpDate:\"20260113_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260113_WalesWinter"
+      },
+      "Ssd": "20260113",
+      "Name": "WalesWinter",
+      "Market": "ROW",
+      "Hash": "0714081167",
+      "FullDateString": "Jan 13, 2026"
     }
   ]
 }
