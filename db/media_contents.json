@@ -11533,6 +11533,37 @@
       "Market": "ROW",
       "Hash": "0714081167",
       "FullDateString": "Jan 13, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Perched high above the coastal town of Nafplio in Greece, the Fortress of Palamidi asserts itself before its walls even come into view. The climb is steep and unhurried, cut directly into rock, opening wide views across land and sea with every turn. This ascent was never ornamental. It was designed to slow movement, expose approach and reinforce control long before an enemy reached the gates.",
+        "Image": {
+          "Url": "/th?id=OHR.PalamidiFortress_ROW0874671580_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PalamidiFortress_ROW0874671580_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The staircase of the Fortress of Palamidi, Nafplio, Greece",
+        "Copyright": "© George Pachantouris/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260114_PalamidiFortress\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Palamidi+fortress&form=hpcapt&filters=HpDate:\"20260114_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260114_PalamidiFortress"
+      },
+      "Ssd": "20260114",
+      "Name": "PalamidiFortress",
+      "Market": "ROW",
+      "Hash": "0874671580",
+      "FullDateString": "Jan 14, 2026"
     }
   ]
 }
