@@ -11564,6 +11564,37 @@
       "Market": "ROW",
       "Hash": "0874671580",
       "FullDateString": "Jan 14, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Tucked deep within Norway's Arctic Circle, Reine feels like the kind of place you see on a postcard and assume can't possibly be real. But it is. This small fishing village of about 300 residents is known for its steep mountains, calm fjords and bright red rorbuer—traditional fishermen's cabins—that dot the shoreline. Despite its size, Reine draws thousands of visitors each year.",
+        "Image": {
+          "Url": "/th?id=OHR.ReineSunrise_ROW1097716318_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ReineSunrise_ROW1097716318_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The fishing village of Reine, Norway",
+        "Copyright": "© Roberto Moiola/Cavan Images/SuperStock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260115_ReineSunrise\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Reine&form=hpcapt&filters=HpDate:\"20260115_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260115_ReineSunrise"
+      },
+      "Ssd": "20260115",
+      "Name": "ReineSunrise",
+      "Market": "ROW",
+      "Hash": "1097716318",
+      "FullDateString": "Jan 15, 2026"
     }
   ]
 }
