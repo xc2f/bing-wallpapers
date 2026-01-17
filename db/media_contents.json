@@ -11595,6 +11595,37 @@
       "Market": "ROW",
       "Hash": "1097716318",
       "FullDateString": "Jan 15, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "If you've ever watched a wildlife documentary, you know the moment: the camera pans across a quiet savannah and suddenly a leopard appears as if it has been there all along. That quiet reveal says everything about how these cats operate. They move with precision, slipping through grass and branches without making a sound. Their build, muscular but lean, helps them climb, sprint and hide in plain sight. Their rosetted coats? No two patterns match, each serving as natural camouflage from sunrise to moonlight.",
+        "Image": {
+          "Url": "/th?id=OHR.EtoshaLeopard_ROW5263067191_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EtoshaLeopard_ROW5263067191_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Leopard at Etosha National Park, Namibia",
+        "Copyright": "© Norbert Achtelik/Cavan Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260116_EtoshaLeopard\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Leopard&form=hpcapt&filters=HpDate:\"20260116_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260116_EtoshaLeopard"
+      },
+      "Ssd": "20260116",
+      "Name": "EtoshaLeopard",
+      "Market": "ROW",
+      "Hash": "5263067191",
+      "FullDateString": "Jan 16, 2026"
     }
   ]
 }
