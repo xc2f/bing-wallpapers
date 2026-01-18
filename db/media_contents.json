@@ -11626,6 +11626,37 @@
       "Market": "ROW",
       "Hash": "5263067191",
       "FullDateString": "Jan 16, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "As the sun sinks below the horizon, the sky glows in soft gold, framing two dramatic rock formations that define one of Brazil's most recognisable seascapes. This striking view is of Fernando de Noronha, a remote archipelago in the state of Pernambuco, located about 360 kilometres from the mainland. Formed by volcanic activity millions of years ago, Fernando de Noronha is now a UNESCO World Heritage Site known for its exceptional natural beauty and biodiversity. Its beaches, including Baía do Sancho and Praia do Leão, regularly feature on lists of the world's best. The surrounding waters support spinner dolphins, sea turtles, reef fish and rare seabirds, making the archipelago one of Brazil's top destinations for snorkelling and diving.",
+        "Image": {
+          "Url": "/th?id=OHR.NoronhaSunset_ROW5367221935_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NoronhaSunset_ROW5367221935_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Fernando de Noronha, Pernambuco, Brazil",
+        "Copyright": "© Stephanie Kenner/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260117_NoronhaSunset\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Fernando+de+Noronha&form=hpcapt&filters=HpDate:\"20260117_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260117_NoronhaSunset"
+      },
+      "Ssd": "20260117",
+      "Name": "NoronhaSunset",
+      "Market": "ROW",
+      "Hash": "5367221935",
+      "FullDateString": "Jan 17, 2026"
     }
   ]
 }
