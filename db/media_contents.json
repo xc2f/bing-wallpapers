@@ -11657,6 +11657,37 @@
       "Market": "ROW",
       "Hash": "5367221935",
       "FullDateString": "Jan 17, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "If 'Frozen' traded ice for sand, the result would look a lot like White Sands National Park in New Mexico, United States—cool, white dunes that deceive the eye at first glance. It was established to protect a rare geological phenomenon: the world's largest gypsum dunefield. These dunes were formed from gypsum crystals that broke down over thousands of years, creating bright waves that stay cool even in summer.",
+        "Image": {
+          "Url": "/th?id=OHR.WhiteSandsNM_ROW5464182169_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WhiteSandsNM_ROW5464182169_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "White Sands National Park, New Mexico, United States",
+        "Copyright": "© Francesco Carucci/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260118_WhiteSandsNM\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=White+Sands+National+Park+New+Mexico&form=hpcapt&filters=HpDate:\"20260118_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260118_WhiteSandsNM"
+      },
+      "Ssd": "20260118",
+      "Name": "WhiteSandsNM",
+      "Market": "ROW",
+      "Hash": "5464182169",
+      "FullDateString": "Jan 18, 2026"
     }
   ]
 }
