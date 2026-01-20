@@ -11688,6 +11688,37 @@
       "Market": "ROW",
       "Hash": "5464182169",
       "FullDateString": "Jan 18, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "The surface looks busy, but everything else is still. White bubbles stack under clear ice as if time stalled halfway through a reaction. Unusual? Yes. Mysterious? Only until you look closer. This is Abraham Lake, the largest reservoir in Alberta, Canada. It is located in the Kootenay Plains area of the Canadian Rockies' front range, where winter captures gas in mid-escape.",
+        "Image": {
+          "Url": "/th?id=OHR.BubblesAbraham_ROW5591187969_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BubblesAbraham_ROW5591187969_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Frozen Abraham Lake, Alberta, Canada",
+        "Copyright": "© Luis F Arevalo/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260119_BubblesAbraham\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Abraham+Lake+Alberta&form=hpcapt&filters=HpDate:\"20260119_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260119_BubblesAbraham"
+      },
+      "Ssd": "20260119",
+      "Name": "BubblesAbraham",
+      "Market": "ROW",
+      "Hash": "5591187969",
+      "FullDateString": "Jan 19, 2026"
     }
   ]
 }
