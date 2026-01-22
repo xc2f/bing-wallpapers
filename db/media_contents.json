@@ -11750,6 +11750,37 @@
       "Market": "ROW",
       "Hash": "6935173309",
       "FullDateString": "Jan 20, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today's image shows a Eurasian red squirrel perched in the snow, highlighting the thick winter coat and distinctive ear tufts that set this species apart. Native to forests across Europe and parts of Asia, red squirrels depend on a varied diet of seeds, nuts, buds and fungi. To prepare for colder months, they scatter food stores across their territory and construct well-insulated nests—called dreys—inside tree hollows or high among branches.",
+        "Image": {
+          "Url": "/th?id=OHR.BerrySquirrel_ROW7122480645_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BerrySquirrel_ROW7122480645_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Eurasian red squirrel",
+        "Copyright": "© Galina Jacyna/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260121_BerrySquirrel\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Eurasian+red+squirrel&form=hpcapt&filters=HpDate:\"20260121_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260121_BerrySquirrel"
+      },
+      "Ssd": "20260121",
+      "Name": "BerrySquirrel",
+      "Market": "ROW",
+      "Hash": "7122480645",
+      "FullDateString": "Jan 21, 2026"
     }
   ]
 }
