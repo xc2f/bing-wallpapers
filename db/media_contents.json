@@ -11781,6 +11781,37 @@
       "Market": "ROW",
       "Hash": "7122480645",
       "FullDateString": "Jan 21, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "In today's image, winter settles over Karlovy Vary in Czechia, a pastel valley that built its identity around the hot springs rising through its hills. The eponymous city traces its beginnings to accounts of Charles IV, then king of Bohemia (a historic region of Czechia) and later Roman Emperor, encountering a steaming pool here in the 14th century, an early moment that set this quiet part of Bohemia on the path to becoming a spa retreat.",
+        "Image": {
+          "Url": "/th?id=OHR.KarlovyVary_ROW7214269081_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.KarlovyVary_ROW7214269081_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Karlovy Vary, Bohemia, Czechia",
+        "Copyright": "© Henryk Sadura/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260122_KarlovyVary\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Karlovy+Vary&form=hpcapt&filters=HpDate:\"20260122_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260122_KarlovyVary"
+      },
+      "Ssd": "20260122",
+      "Name": "KarlovyVary",
+      "Market": "ROW",
+      "Hash": "7214269081",
+      "FullDateString": "Jan 22, 2026"
     }
   ]
 }
