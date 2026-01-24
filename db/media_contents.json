@@ -11812,6 +11812,37 @@
       "Market": "ROW",
       "Hash": "7214269081",
       "FullDateString": "Jan 22, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "When January's chill grips Iceland, locals turn to warmth and tradition with Þorrablót—a midwinter festival rooted in Viking heritage. Named after Þorri, a winter figure from Norse mythology, this celebration began as a sacrificial feast to honour the gods and ensure survival through harsh winters. Today, it's a lively cultural event that blends history with hearty camaraderie.",
+        "Image": {
+          "Url": "/th?id=OHR.IcelandSheep_ROW5964366591_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.IcelandSheep_ROW5964366591_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Sheep grazing in snow, Iceland",
+        "Copyright": "© Christophe Lehenaff/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260123_IcelandSheep\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Iceland+Midwinter+Festival&form=hpcapt&filters=HpDate:\"20260123_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260123_IcelandSheep"
+      },
+      "Ssd": "20260123",
+      "Name": "IcelandSheep",
+      "Market": "ROW",
+      "Hash": "5964366591",
+      "FullDateString": "Jan 23, 2026"
     }
   ]
 }
