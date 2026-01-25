@@ -11843,6 +11843,37 @@
       "Market": "ROW",
       "Hash": "5964366591",
       "FullDateString": "Jan 23, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Nestled in the Urseren Valley at about 1,437 metres, Andermatt is a charming Swiss village embraced by the majestic Alps. Long a vital crossroads, it's linked by three iconic passes—Gotthard, Furka and Oberalp—each enhancing its allure as a gateway between regions and cultures.",
+        "Image": {
+          "Url": "/th?id=OHR.AndermattSwiss_ROW7938991512_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AndermattSwiss_ROW7938991512_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Andermatt village in the Alps, Switzerland",
+        "Copyright": "© Xantana/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260124_AndermattSwiss\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Andermatt+Switzerland&form=hpcapt&filters=HpDate:\"20260124_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260124_AndermattSwiss"
+      },
+      "Ssd": "20260124",
+      "Name": "AndermattSwiss",
+      "Market": "ROW",
+      "Hash": "7938991512",
+      "FullDateString": "Jan 24, 2026"
     }
   ]
 }
