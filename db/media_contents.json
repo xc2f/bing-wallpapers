@@ -11905,6 +11905,37 @@
       "Market": "ROW",
       "Hash": "7455567401",
       "FullDateString": "Jan 25, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Snowfall turns Retiro Park in Spain's capital, Madrid, into a winter postcard, with the Crystal Palace at its centre. Built in 1887 as a glass conservatory for the Philippines Exposition, this elegant iron-and-glass structure was inspired by London's Crystal Palace from the Great Exhibition of 1851. Designed by Spanish architect Ricardo Velázquez Bosco, the pavilion was intended to flood its interior with natural light, a feature that becomes especially striking when winter light filters through snow-dusted panes.",
+        "Image": {
+          "Url": "/th?id=OHR.FITUR_ROW7734232756_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FITUR_ROW7734232756_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Retiro Park, Madrid, Spain",
+        "Copyright": "© All rights reserved-Copyright/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260126_FITUR\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Retiro+Park+Madrid&form=hpcapt&filters=HpDate:\"20260126_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260126_FITUR"
+      },
+      "Ssd": "20260126",
+      "Name": "FITUR",
+      "Market": "ROW",
+      "Hash": "7734232756",
+      "FullDateString": "Jan 26, 2026"
     }
   ]
 }
