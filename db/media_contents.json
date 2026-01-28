@@ -11936,6 +11936,37 @@
       "Market": "ROW",
       "Hash": "7734232756",
       "FullDateString": "Jan 26, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Winter at Lake Kerkini in Greece delivers some of Europe's clearest views of Dalmatian pelicans. Their large silhouettes move in tight, steady groups across the still water, making their scale hard to miss. With wingspans stretching over 3 metres, they rank among the world's largest flying birds. Lake Kerkini's predictable winter conditions offer reliable, close-range views of their size, grace and coordinated movement.",
+        "Image": {
+          "Url": "/th?id=OHR.DalmationPelicans_ROW0012607190_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DalmationPelicans_ROW0012607190_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Dalmatian pelicans, Lake Kerkini, Greece",
+        "Copyright": "© Guy Edwardes/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260127_DalmationPelicans\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Dalmatian+pelicans&form=hpcapt&filters=HpDate:\"20260127_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260127_DalmationPelicans"
+      },
+      "Ssd": "20260127",
+      "Name": "DalmationPelicans",
+      "Market": "ROW",
+      "Hash": "0012607190",
+      "FullDateString": "Jan 27, 2026"
     }
   ]
 }
