@@ -11967,6 +11967,37 @@
       "Market": "ROW",
       "Hash": "0012607190",
       "FullDateString": "Jan 27, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Whanganui National Park showcases one of New Zealand's most distinctive river landscapes. Established in 1986, the park covers about 741 square kilometres across the central North Island, with the Whanganui River tracing long, quiet bends through dense forest. Although the river is not officially within the park's boundaries, it shapes nearly everything around it, including the Whanganui Journey—one of New Zealand's designated Great Walks.",
+        "Image": {
+          "Url": "/th?id=OHR.WhanganuiPark_ROW0563176528_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WhanganuiPark_ROW0563176528_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Whanganui National Park, Retaruke, New Zealand",
+        "Copyright": "© Matthew Micah Wright/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260128_WhanganuiPark\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Whanganui+National+park+New+Zealand&form=hpcapt&filters=HpDate:\"20260128_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260128_WhanganuiPark"
+      },
+      "Ssd": "20260128",
+      "Name": "WhanganuiPark",
+      "Market": "ROW",
+      "Hash": "0563176528",
+      "FullDateString": "Jan 28, 2026"
     }
   ]
 }
