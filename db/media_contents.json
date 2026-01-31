@@ -12029,6 +12029,37 @@
       "Market": "ROW",
       "Hash": "0871854348",
       "FullDateString": "Jan 29, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Picture a small island rising from the Cornish sea, connected to the mainland only when the tide retreats. For a few hours a day, you can wander across a centuries-old granite causeway made smooth by pilgrims and fishermen. This is St. Michael's Mount, just off the coast of Marazion, in Cornwall, England. Managed by the National Trust and home to the St. Aubyn family since the 1600s, the mount blends myth, medieval history and sweeping coastal views.",
+        "Image": {
+          "Url": "/th?id=OHR.StMichaelsCornwall_ROW1235400581_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.StMichaelsCornwall_ROW1235400581_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "St. Michael's Mount in Marazion, Cornwall, England",
+        "Copyright": "© Baxter Bradford/robertharding/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260130_StMichaelsCornwall\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=St+Michaels+Mount&form=hpcapt&filters=HpDate:\"20260130_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260130_StMichaelsCornwall"
+      },
+      "Ssd": "20260130",
+      "Name": "StMichaelsCornwall",
+      "Market": "ROW",
+      "Hash": "1235400581",
+      "FullDateString": "Jan 30, 2026"
     }
   ]
 }
