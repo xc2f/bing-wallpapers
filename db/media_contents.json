@@ -12060,6 +12060,37 @@
       "Market": "ROW",
       "Hash": "1235400581",
       "FullDateString": "Jan 30, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Some animals whisper their way through the wild. Zebras don't. They show up in high-contrast stripes, act like it's the most practical outfit ever invented—and somehow, it is. These African equines come in three species. Plains zebras—featured in today's image from Namibia's Etosha National Park—wear bold stripes, mountain ones sport pinstripes, and Grévy's go for the ultra-fine, designer look. No two patterns match, turning every individual into a walking fingerprint. Scientists believe those stripes help confuse predators, deter biting flies and even cool the body by creating tiny air currents.",
+        "Image": {
+          "Url": "/th?id=OHR.EtoshaZebra_ROW9291615043_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EtoshaZebra_ROW9291615043_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Plains zebras, Etosha National Park, Namibia",
+        "Copyright": "© Mogens Trolle/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260131_EtoshaZebra\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Plains+zebras&form=hpcapt&filters=HpDate:\"20260131_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260131_EtoshaZebra"
+      },
+      "Ssd": "20260131",
+      "Name": "EtoshaZebra",
+      "Market": "ROW",
+      "Hash": "9291615043",
+      "FullDateString": "Jan 31, 2026"
     }
   ]
 }
