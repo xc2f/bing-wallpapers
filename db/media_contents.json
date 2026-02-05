@@ -12184,6 +12184,37 @@
       "Market": "ROW",
       "Hash": "2696648958",
       "FullDateString": "Feb 3, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Red kites are striking birds of prey known for their reddish‑brown bodies, pale heads and long, forked tails that help them steer with impressive precision. Mostly found in Europe, they thrive in countries such as the United Kingdom, Spain, France and Germany. The Chiltern Hills in England are one of the biggest conservation success stories: once nearly wiped out there, the birds rebounded after chicks from Spain were released in the late 1980s and early 1990s.",
+        "Image": {
+          "Url": "/th?id=OHR.BigGardenBirdwatch2026_ROW3059488270_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BigGardenBirdwatch2026_ROW3059488270_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red kite in snow",
+        "Copyright": "© Carl Mckie/500px/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260204_BigGardenBirdwatch2026\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Red+kite+bird&form=hpcapt&filters=HpDate:\"20260204_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260204_BigGardenBirdwatch2026"
+      },
+      "Ssd": "20260204",
+      "Name": "BigGardenBirdwatch2026",
+      "Market": "ROW",
+      "Hash": "3059488270",
+      "FullDateString": "Feb 4, 2026"
     }
   ]
 }
