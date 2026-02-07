@@ -12246,6 +12246,37 @@
       "Market": "ROW",
       "Hash": "3900508445",
       "FullDateString": "Feb 5, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "At the Giau Pass, where cyclists gasp and clouds drift like they're sightseeing too, this sharp-backed peak rises with quiet confidence. It's the kind of mountain that says, 'Take your time,' and then steals your breath anyway. Ra Gusela sits above Giau Pass, one of the most scenic high passes in the Dolomites, just outside Cortina d'Ampezzo. At 2,595 metres, it isn't the tallest neighbour in the room, but it has presence.",
+        "Image": {
+          "Url": "/th?id=OHR.GiauPass_ROW8285301958_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GiauPass_ROW8285301958_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ra Gusela peak at Giau Pass, near Cortina d'Ampezzo, Italy",
+        "Copyright": "© Tomasz Podolski/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260206_GiauPass\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ra+Gusela+peak&form=hpcapt&filters=HpDate:\"20260206_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260206_GiauPass"
+      },
+      "Ssd": "20260206",
+      "Name": "GiauPass",
+      "Market": "ROW",
+      "Hash": "8285301958",
+      "FullDateString": "Feb 6, 2026"
     }
   ]
 }
