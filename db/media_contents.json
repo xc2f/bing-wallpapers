@@ -12308,6 +12308,37 @@
       "Market": "ROW",
       "Hash": "9588613912",
       "FullDateString": "Feb 7, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "The island of Corfu, Greece, meets you at night with a quiet kind of intensity: stone facades catching warm lamplight, fortress walls rising in sharp outline and narrow lanes unfolding like a lived-in labyrinth. The Old Town doesn't just look historic—it feels inhabited, shaped by centuries of shifting cultures and the slow rhythm of island life after dark.",
+        "Image": {
+          "Url": "/th?id=OHR.CorfuGreece_ROW8621582269_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CorfuGreece_ROW8621582269_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Corfu, Greece",
+        "Copyright": "© whitewizzard/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260208_CorfuGreece\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Corfu+Greece&form=hpcapt&filters=HpDate:\"20260208_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260208_CorfuGreece"
+      },
+      "Ssd": "20260208",
+      "Name": "CorfuGreece",
+      "Market": "ROW",
+      "Hash": "8621582269",
+      "FullDateString": "Feb 8, 2026"
     }
   ]
 }
