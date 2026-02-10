@@ -12339,6 +12339,37 @@
       "Market": "ROW",
       "Hash": "8621582269",
       "FullDateString": "Feb 8, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "The leopard cat is a small wild cat found across South, Southeast and East Asia. Similar in size to a house cat but longer-legged and slenderer, it generally measures 38–66 centimetres long, with a tail about 17–31 centimetres. Depending on the region, adults weigh roughly 0.55–7 kilograms. Their appearance varies widely: southern individuals tend to have warm golden coats, while those farther north often have pale grey fur that thickens for winter.",
+        "Image": {
+          "Url": "/th?id=OHR.LeopardCat_ROW9470593052_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.LeopardCat_ROW9470593052_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Amur leopard cat, Russia",
+        "Copyright": "© Valeriy Maleev/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260209_LeopardCat\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Leopard+cat&form=hpcapt&filters=HpDate:\"20260209_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260209_LeopardCat"
+      },
+      "Ssd": "20260209",
+      "Name": "LeopardCat",
+      "Market": "ROW",
+      "Hash": "9470593052",
+      "FullDateString": "Feb 9, 2026"
     }
   ]
 }
