@@ -12401,6 +12401,37 @@
       "Market": "ROW",
       "Hash": "9500187441",
       "FullDateString": "Feb 10, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Death Valley National Park challenges first impressions. Spanning more than 1.34 million hectares across California and Nevada in the United States, it is the largest national park in the contiguous United States. Across this vast expanse, salt flats, volcanic hills, sweeping sand dunes and distant snowcapped peaks create a landscape shaped by time and extremes. From the soaring heights of Telescope Peak, which rises over 3,300 metres above the desert floor, to the depths of Badwater Basin, 86 metres below sea level, the park is a study in contrasts.",
+        "Image": {
+          "Url": "/th?id=OHR.BadwaterFlats_ROW9539566313_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BadwaterFlats_ROW9539566313_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Salt flats in Badwater Basin, Death Valley National Park, California, USA",
+        "Copyright": "© Jim Patterson/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260211_BadwaterFlats\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Death+Valley+National+Park&form=hpcapt&filters=HpDate:\"20260211_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260211_BadwaterFlats"
+      },
+      "Ssd": "20260211",
+      "Name": "BadwaterFlats",
+      "Market": "ROW",
+      "Hash": "9539566313",
+      "FullDateString": "Feb 11, 2026"
     }
   ]
 }
