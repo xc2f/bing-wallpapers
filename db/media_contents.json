@@ -12432,6 +12432,37 @@
       "Market": "ROW",
       "Hash": "9539566313",
       "FullDateString": "Feb 11, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "When romance calls, this bird lifts one bright blue foot, then the other, like it's auditioning for a talent show with very strict colour rules. Not metaphorically. Literally. Meet the blue-footed booby. Widely associated with the Galápagos Islands, these seabirds range across the eastern tropical Pacific.",
+        "Image": {
+          "Url": "/th?id=OHR.DarwinBooby_ROW9751594098_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DarwinBooby_ROW9751594098_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Blue-footed booby, Galápagos Islands, Ecuador",
+        "Copyright": "© Karine Aigner/TANDEM Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260212_DarwinBooby\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Blue+footed+booby&form=hpcapt&filters=HpDate:\"20260212_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260212_DarwinBooby"
+      },
+      "Ssd": "20260212",
+      "Name": "DarwinBooby",
+      "Market": "ROW",
+      "Hash": "9751594098",
+      "FullDateString": "Feb 12, 2026"
     }
   ]
 }
