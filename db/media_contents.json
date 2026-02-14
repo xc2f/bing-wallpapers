@@ -12463,6 +12463,37 @@
       "Market": "ROW",
       "Hash": "9751594098",
       "FullDateString": "Feb 12, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Before bridges, rivers set the pace of travel. Now, with bridges, people do. That shift explains why cross-border links like the Third Thai-Lao Friendship Bridge connecting Laos and Thailand matter. Bridges come in many forms, each built to meet a specific challenge. Arch bridges manage compression, suspension bridges span long distances and concrete box-girder bridges prioritise stability and load efficiency. This bridge uses the box-girder design, making it a practical choice for crossing the wide, fast-moving Mekong River.",
+        "Image": {
+          "Url": "/th?id=OHR.FriendshipBridge_ROW0019277166_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.FriendshipBridge_ROW0019277166_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Third Thai-Lao Friendship Bridge connecting Laos and Thailand",
+        "Copyright": "© chaiyut samsuk/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260213_FriendshipBridge\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Third+Thai+Lao+Friendship+Bridge&form=hpcapt&filters=HpDate:\"20260213_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260213_FriendshipBridge"
+      },
+      "Ssd": "20260213",
+      "Name": "FriendshipBridge",
+      "Market": "ROW",
+      "Hash": "0019277166",
+      "FullDateString": "Feb 13, 2026"
     }
   ]
 }
