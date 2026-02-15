@@ -12494,6 +12494,37 @@
       "Market": "ROW",
       "Hash": "0019277166",
       "FullDateString": "Feb 13, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "At first glance, it looks like a love story that went a little too far. Pink hearts dangle from curved stems, each with a tiny white drop at the tip, as if the plant is mid-sigh. Meet the bleeding heart—proof that flowers can be dramatic without saying a word. Formally known as Dicentra spectabilis, it is a spring-flowering perennial native to eastern Asia. It can grow up to 60 centimetres tall and spread to nearly 75 centimetres wide, creating a graceful, almost poetic display.",
+        "Image": {
+          "Url": "/th?id=OHR.ValentineHearts_ROW0216813332_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ValentineHearts_ROW0216813332_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Bleeding hearts",
+        "Copyright": "© Dorene Hookey/Cavan Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260214_ValentineHearts\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Bleeding+hearts&form=hpcapt&filters=HpDate:\"20260214_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260214_ValentineHearts"
+      },
+      "Ssd": "20260214",
+      "Name": "ValentineHearts",
+      "Market": "ROW",
+      "Hash": "0216813332",
+      "FullDateString": "Feb 14, 2026"
     }
   ]
 }
