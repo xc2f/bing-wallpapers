@@ -12525,6 +12525,37 @@
       "Market": "ROW",
       "Hash": "0216813332",
       "FullDateString": "Feb 14, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Humpback whales are easily recognisable by their long pectoral fins and are known for their complex songs associated with breeding behaviour. Their predictable migrations bring them close to shore, turning them into both a cultural marker of the season and a focal point for early conservation efforts.",
+        "Image": {
+          "Url": "/th?id=OHR.MontereyHumpbacks_ROW0446556209_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MontereyHumpbacks_ROW0446556209_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Humpback whales in Monterey Bay, California, USA",
+        "Copyright": "© Kiliii Fish/Cavan Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260215_MontereyHumpbacks\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Humpback+whales&form=hpcapt&filters=HpDate:\"20260215_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260215_MontereyHumpbacks"
+      },
+      "Ssd": "20260215",
+      "Name": "MontereyHumpbacks",
+      "Market": "ROW",
+      "Hash": "0446556209",
+      "FullDateString": "Feb 15, 2026"
     }
   ]
 }
