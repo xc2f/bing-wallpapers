@@ -12556,6 +12556,37 @@
       "Market": "ROW",
       "Hash": "0446556209",
       "FullDateString": "Feb 15, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Banff in Alberta, Canada, didn't grow quietly. It arrived with railways, hot springs and a vision: to protect places of rare beauty. In 1883, railway workers stumbled upon warm mineral water bubbling from Sulphur Mountain—an unlikely surprise in the cold sweep of the Rockies. The discovery drew attention quickly. By 1885, the surrounding land has been set aside as a protected reserve. What did that lead to? The beginnings of Banff National Park, Canada's first, and a blueprint the country would return to again and again.",
+        "Image": {
+          "Url": "/th?id=OHR.BanffWinter_ROW0592236098_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BanffWinter_ROW0592236098_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Banff, Alberta, Canada",
+        "Copyright": "© Herbert Rong/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260216_BanffWinter\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Banff+town&form=hpcapt&filters=HpDate:\"20260216_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260216_BanffWinter"
+      },
+      "Ssd": "20260216",
+      "Name": "BanffWinter",
+      "Market": "ROW",
+      "Hash": "0592236098",
+      "FullDateString": "Feb 16, 2026"
     }
   ]
 }
