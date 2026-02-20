@@ -12649,6 +12649,37 @@
       "Market": "ROW",
       "Hash": "1038206758",
       "FullDateString": "Feb 18, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Dragon's Eye sounds like something pulled from legend, and standing on Norway's Uttakleiv Beach in the Lofoten Islands, it's easy to see why. The formation, carved into ancient rock and framed by sand and sea, looks uncannily alive, as though the land itself is watching you. Shaped over thousands of years by ice and water, it has become one of the region's most captivating sights.",
+        "Image": {
+          "Url": "/th?id=OHR.DragonsEyeRock_ROW1212085075_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DragonsEyeRock_ROW1212085075_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Dragon's Eye rock formation at Uttakleiv Beach, Norway",
+        "Copyright": "© reisegraf/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260219_DragonsEyeRock\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Uttakleiv+Beach+Norway&form=hpcapt&filters=HpDate:\"20260219_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260219_DragonsEyeRock"
+      },
+      "Ssd": "20260219",
+      "Name": "DragonsEyeRock",
+      "Market": "ROW",
+      "Hash": "1212085075",
+      "FullDateString": "Feb 19, 2026"
     }
   ]
 }
