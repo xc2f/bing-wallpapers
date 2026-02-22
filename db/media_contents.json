@@ -12711,6 +12711,37 @@
       "Market": "ROW",
       "Hash": "1469118992",
       "FullDateString": "Feb 20, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "A red fox standing in the snowfall of Grand Teton National Park is more than a picturesque moment—it offers a glimpse into the resilience of one of North America's most adaptable predators. This small carnivore is instantly recognisable by its sharp gaze and thick, fiery coat that helps it thrive even in Wyoming's harsh winter conditions. Snow muffles sound, yet the animal's extraordinary hearing allows it to detect prey moving beneath the surface. You can almost imagine it pausing amid the drifting flakes, ears rotating, body perfectly still, waiting for the faintest rustle.",
+        "Image": {
+          "Url": "/th?id=OHR.TetonFox_ROW1833044776_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TetonFox_ROW1833044776_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Red fox standing in snowfall, Grand Teton National Park, Wyoming, United States",
+        "Copyright": "© Radomir Jakubowski/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260221_TetonFox\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Red+fox&form=hpcapt&filters=HpDate:\"20260221_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260221_TetonFox"
+      },
+      "Ssd": "20260221",
+      "Name": "TetonFox",
+      "Market": "ROW",
+      "Hash": "1833044776",
+      "FullDateString": "Feb 21, 2026"
     }
   ]
 }
