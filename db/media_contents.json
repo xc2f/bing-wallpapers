@@ -12742,6 +12742,37 @@
       "Market": "ROW",
       "Hash": "1833044776",
       "FullDateString": "Feb 21, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "'Shivering Mountain' is a dramatic nickname, but Mam Tor has earned it over hundreds of years. Rising above Castleton in England's Peak District, it lies within the United Kingdom's first national park, which spans more than 1,400 square kilometres. This landmark takes its name from Old English, 'mam' meaning 'mother,' a nod to the smaller hills it appears to cradle. Yet this 'mother mountain' is famously unstable. Its layers of shale and sandstone have caused landslips for centuries, including a collapse that permanently closed the A625 road in 1979.",
+        "Image": {
+          "Url": "/th?id=OHR.MamTorSunrise_ROW2203325574_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.MamTorSunrise_ROW2203325574_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The hill of Mam Tor, Derbyshire, England",
+        "Copyright": "© john finney photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260222_MamTorSunrise\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Mam+Tor+hill&form=hpcapt&filters=HpDate:\"20260222_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260222_MamTorSunrise"
+      },
+      "Ssd": "20260222",
+      "Name": "MamTorSunrise",
+      "Market": "ROW",
+      "Hash": "2203325574",
+      "FullDateString": "Feb 22, 2026"
     }
   ]
 }
