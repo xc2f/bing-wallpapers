@@ -12804,6 +12804,37 @@
       "Market": "ROW",
       "Hash": "2876151337",
       "FullDateString": "Feb 23, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Floating lilies, glass-clear pools and a hidden world below: welcome to the Grand Cenote in Tulum, Mexico. This natural sinkhole formed thousands of years ago when collapsing rock let aquifer waters in. Over time, the chamber filled with clear freshwater that now connects a vast underground system of caves. At first, our eyes rest on the still surface. The water lilies we see in the image float without hurry, their broad leaves catching sunlight while supporting rich ecosystems underneath. These botanical wonders belong to one of the oldest flowering lineages on Earth, dating back more than 125 million years—older than most dinosaurs. Each bloom has evolved clever tricks to attract pollinators—beetles, bees, flies and even the wind—using scent, shape and timing to ensure survival in still water.",
+        "Image": {
+          "Url": "/th?id=OHR.TulumLilies_ROW3115035500_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TulumLilies_ROW3115035500_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Water lilies at Grand Cenote, Tulum, Mexico",
+        "Copyright": "© Christian Vizl/Tandem Stills + Motion",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260224_TulumLilies\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grand+Cenote+Tulum&form=hpcapt&filters=HpDate:\"20260224_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260224_TulumLilies"
+      },
+      "Ssd": "20260224",
+      "Name": "TulumLilies",
+      "Market": "ROW",
+      "Hash": "3115035500",
+      "FullDateString": "Feb 24, 2026"
     }
   ]
 }
