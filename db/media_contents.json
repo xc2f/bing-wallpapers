@@ -12866,6 +12866,37 @@
       "Market": "ROW",
       "Hash": "3350238488",
       "FullDateString": "Feb 25, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Every day at the Grand Canyon National Park in Arizona, United States, tells a story. At the heart of it all flows the Colorado River, winding for hundreds of kilometres through layered stone, quietly shaping the canyon one season at a time. Visitors can slow down and explore through ranger-led programs and talks that highlight the canyon's geology, wildlife and cultural history. A walk along the South Rim offers sweeping views where California condors circle overhead, while elk, mule deer and bighorn sheep roam the park's diverse habitats. Stargazing and scenic overlooks add to the experience, especially during winter's clearer nights.",
+        "Image": {
+          "Url": "/th?id=OHR.GrandSunset_ROW3515132743_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GrandSunset_ROW3515132743_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Grand Canyon and the Colorado River, Arizona, United States",
+        "Copyright": "© Matt Anderson Photography/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260226_GrandSunset\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grand+Canyon+National+Park+USA&form=hpcapt&filters=HpDate:\"20260226_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260226_GrandSunset"
+      },
+      "Ssd": "20260226",
+      "Name": "GrandSunset",
+      "Market": "ROW",
+      "Hash": "3515132743",
+      "FullDateString": "Feb 26, 2026"
     }
   ]
 }
