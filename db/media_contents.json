@@ -12897,6 +12897,37 @@
       "Market": "ROW",
       "Hash": "3515132743",
       "FullDateString": "Feb 26, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Polar bears are closely tied to their frozen Arctic realms, roaming vast icy landscapes and sometimes covering hundreds of kilometres in search of food. The world's largest land carnivores are perfectly adapted to life on sea ice, with large paws that can span more than 30 centimetres and help them swim for kilometres.",
+        "Image": {
+          "Url": "/th?id=OHR.ArcitcCub_ROW3693461289_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.ArcitcCub_ROW3693461289_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Polar bear cub walking across pack ice, Arctic National Wildlife Refuge, Alaska, United States",
+        "Copyright": "© Steven Kazlowski/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260227_ArcitcCub\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Polar+bear&form=hpcapt&filters=HpDate:\"20260227_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260227_ArcitcCub"
+      },
+      "Ssd": "20260227",
+      "Name": "ArcitcCub",
+      "Market": "ROW",
+      "Hash": "3693461289",
+      "FullDateString": "Feb 27, 2026"
     }
   ]
 }
