@@ -12959,6 +12959,37 @@
       "Market": "ROW",
       "Hash": "3892366742",
       "FullDateString": "Feb 28, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today we celebrate the stunning Spanish islands of the Balearic archipelago. This diverse and deeply Mediterranean territory includes Mallorca, Menorca, Ibiza and Formentera, each shaped by centuries of history and a close relationship with the sea.",
+        "Image": {
+          "Url": "/th?id=OHR.BalearesDay_ROW4071522082_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BalearesDay_ROW4071522082_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Ibiza, Balearic Islands, Spain",
+        "Copyright": "© tokar/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260301_BalearesDay\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ibiza+city&form=hpcapt&filters=HpDate:\"20260301_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260301_BalearesDay"
+      },
+      "Ssd": "20260301",
+      "Name": "BalearesDay",
+      "Market": "ROW",
+      "Hash": "4071522082",
+      "FullDateString": "Mar 1, 2026"
     }
   ]
 }
