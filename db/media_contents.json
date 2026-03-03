@@ -12990,6 +12990,37 @@
       "Market": "ROW",
       "Hash": "4071522082",
       "FullDateString": "Mar 1, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Do not be fooled by how simple Ko Samui's longtail boats look from a distance; decades of local ingenuity have shaped their slender frames. These vessels, known in Thailand as 'ruea hang yao,' emerged in the early 20th century, when fishermen repurposed vehicle engines to navigate shallow waters that larger boats couldn't reach. Handcrafted plank by plank, each boat reflects generations of skill. Their hulls burst with bold, striking colours, while decorative cloth and flowers often crown the bows—Buddhist blessings meant to safeguard both the boat and its crew.",
+        "Image": {
+          "Url": "/th?id=OHR.SamuiThailand_ROW4256574976_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SamuiThailand_ROW4256574976_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Harbour and longtail boats at Ko Samui, Thailand",
+        "Copyright": "© Foto2rich/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260302_SamuiThailand\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Ko+Samui+Thailand&form=hpcapt&filters=HpDate:\"20260302_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260302_SamuiThailand"
+      },
+      "Ssd": "20260302",
+      "Name": "SamuiThailand",
+      "Market": "ROW",
+      "Hash": "4256574976",
+      "FullDateString": "Mar 2, 2026"
     }
   ]
 }
