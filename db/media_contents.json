@@ -13021,6 +13021,37 @@
       "Market": "ROW",
       "Hash": "4256574976",
       "FullDateString": "Mar 2, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Our well-being is deeply connected to the natural world. Medicinal and aromatic plants (MAPs)—species used in traditional healing, modern medicine, cosmetics and food—play a vital role in daily life across the globe. An estimated 50,000 to 70,000 MAP species are harvested worldwide, with 70–95% of people in many developing countries relying on them for primary health care. Yet many of these plants face growing threats from habitat loss, overharvesting and illegal trade, making sustainable use essential for their future.",
+        "Image": {
+          "Url": "/th?id=OHR.BabyElephant_ROW4423597871_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BabyElephant_ROW4423597871_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "African elephant calf playing with its mother, Masai Mara National Reserve, Kenya",
+        "Copyright": "© Denis-Huot/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260303_BabyElephant\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Masai+Mara+National+Reserve&form=hpcapt&filters=HpDate:\"20260303_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260303_BabyElephant"
+      },
+      "Ssd": "20260303",
+      "Name": "BabyElephant",
+      "Market": "ROW",
+      "Hash": "4423597871",
+      "FullDateString": "Mar 3, 2026"
     }
   ]
 }
