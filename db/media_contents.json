@@ -13052,6 +13052,37 @@
       "Market": "ROW",
       "Hash": "4423597871",
       "FullDateString": "Mar 3, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "As winter's grip on the Rila Mountains of southwestern Bulgaria begins to loosen, crocuses push through the thinning snow, signalling the arrival of spring in the country's highest mountain range. These early bloomers use stored nutrients to quickly grow in cold conditions, completing much of their life cycle before taller plants emerge. Their clustered blossoms unfurl over alpine meadows in sweeping purple ribbons, creating a striking contrast with bright snowfields and crisp morning light.",
+        "Image": {
+          "Url": "/th?id=OHR.RilaCrocuses_ROW4635215657_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.RilaCrocuses_ROW4635215657_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Purple crocus flowers, Seven Rila Lakes, Bulgaria",
+        "Copyright": "© Maya Karkalicheva/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260304_RilaCrocuses\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Seven+Rila+Lakes+Bulgaria&form=hpcapt&filters=HpDate:\"20260304_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260304_RilaCrocuses"
+      },
+      "Ssd": "20260304",
+      "Name": "RilaCrocuses",
+      "Market": "ROW",
+      "Hash": "4635215657",
+      "FullDateString": "Mar 4, 2026"
     }
   ]
 }
