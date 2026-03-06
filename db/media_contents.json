@@ -13083,6 +13083,37 @@
       "Market": "ROW",
       "Hash": "4635215657",
       "FullDateString": "Mar 4, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "As evening settles over the town of Göreme in the heart of the Cappadocia region of Türkiye, dusk reveals a landscape forged by nature and centuries of human presence. This scene is part of Göreme National Park and the Rock Sites of Cappadocia, a UNESCO World Heritage Site inscribed in 1985 for its exceptional combination of early cultural history and geological formations. These formations, often called 'fairy chimneys' or hoodoos, began as layers of volcanic ash that hardened into soft stone following eruptions of ancient Anatolian volcanoes. Over time, wind and water carved the pillars, ridges and valleys that define the region today.",
+        "Image": {
+          "Url": "/th?id=OHR.GoremeTwilight_ROW5000170185_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.GoremeTwilight_ROW5000170185_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Göreme, Cappadocia, Türkiye",
+        "Copyright": "© ONNAJA/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260305_GoremeTwilight\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=G%c3%b6reme+T%c3%bcrkiye&form=hpcapt&filters=HpDate:\"20260305_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260305_GoremeTwilight"
+      },
+      "Ssd": "20260305",
+      "Name": "GoremeTwilight",
+      "Market": "ROW",
+      "Hash": "5000170185",
+      "FullDateString": "Mar 5, 2026"
     }
   ]
 }
