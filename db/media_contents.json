@@ -13114,6 +13114,37 @@
       "Market": "ROW",
       "Hash": "5000170185",
       "FullDateString": "Mar 5, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Architecture blends art and technology, expressed through the built form. While many designs focus primarily on function, some buildings give equal weight to visual impact. A strong example is The Wave building complex in Vejle, Denmark, where sculptural design and practical housing come together seamlessly.",
+        "Image": {
+          "Url": "/th?id=OHR.WaveDenmark_ROW5073761456_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.WaveDenmark_ROW5073761456_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "The Wave residential building, Vejle, Denmark",
+        "Copyright": "© Frank Bach/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260306_WaveDenmark\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=The+Wave+building+Vejle+Denmark&form=hpcapt&filters=HpDate:\"20260306_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260306_WaveDenmark"
+      },
+      "Ssd": "20260306",
+      "Name": "WaveDenmark",
+      "Market": "ROW",
+      "Hash": "5073761456",
+      "FullDateString": "Mar 6, 2026"
     }
   ]
 }
