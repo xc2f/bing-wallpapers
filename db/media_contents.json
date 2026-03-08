@@ -13145,6 +13145,37 @@
       "Market": "ROW",
       "Hash": "5073761456",
       "FullDateString": "Mar 6, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Owls are full of contradictions. Silent wings, loud opinions. They are night hunters that somehow feel ancient. From myths to cartoons, they have always had a presence. Athena's owl symbolised wisdom, while pop culture gave us lines we still quote—remember Owl from 'Winnie-the-Pooh' always sounding sure of himself?",
+        "Image": {
+          "Url": "/th?id=OHR.OwlonGuard_ROW4856156035_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.OwlonGuard_ROW4856156035_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Snowy owl near the Canadian Rockies, Canada",
+        "Copyright": "© www.harshadventure.com/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260307_OwlonGuard\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Snowy+owl&form=hpcapt&filters=HpDate:\"20260307_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260307_OwlonGuard"
+      },
+      "Ssd": "20260307",
+      "Name": "OwlonGuard",
+      "Market": "ROW",
+      "Hash": "4856156035",
+      "FullDateString": "Mar 7, 2026"
     }
   ]
 }
