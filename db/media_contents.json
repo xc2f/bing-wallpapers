@@ -13176,6 +13176,37 @@
       "Market": "ROW",
       "Hash": "4856156035",
       "FullDateString": "Mar 7, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Imagine reaching the Brocken in Harz National Park, Germany, as clouds slide across the ridge. With the sun behind you, mist ahead—then a giant, haloed shadow forms. Ever wondered why climbers once feared this sight? The phenomenon, called the Brocken spectre, is an eerie natural optical effect that occurs when sunlight projects a person's shadow onto cloud or fog. Rising about 1,141 metres, the Brocken is the highest peak in northern Germany and has long inspired folklore, including tales of witches gathering here during Walpurgis Night.",
+        "Image": {
+          "Url": "/th?id=OHR.BrockenSunrise_ROW5181265545_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.BrockenSunrise_ROW5181265545_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Sunrise on the Brocken, Harz National Park, Germany",
+        "Copyright": "© imageBROKER/AVTG/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260308_BrockenSunrise\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Harz+National+Park&form=hpcapt&filters=HpDate:\"20260308_0800\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260308_BrockenSunrise"
+      },
+      "Ssd": "20260308",
+      "Name": "BrockenSunrise",
+      "Market": "ROW",
+      "Hash": "5181265545",
+      "FullDateString": "Mar 8, 2026"
     }
   ]
 }
