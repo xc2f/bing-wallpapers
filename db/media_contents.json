@@ -13207,6 +13207,37 @@
       "Market": "ROW",
       "Hash": "5181265545",
       "FullDateString": "Mar 8, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Not all wildlife moments are dramatic—some unfold in perfect stillness. The grey seal resting on the shores of the Orkney Islands, Scotland, is a perfect example. Grey seals are among the UK's largest native marine mammals, with the country supporting around 40% of the world's population. Despite their size, they are remarkably adaptable sleepers. Rather than settling into one long stretch, grey seals nap in short, flexible bursts shaped by their surroundings.",
+        "Image": {
+          "Url": "/th?id=OHR.NappingSeal_ROW2198134616_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.NappingSeal_ROW2198134616_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Grey seal sleeping on the beach, Orkney Islands, Scotland",
+        "Copyright": "© Andrew Mason/Minden Pictures",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260309_NappingSeal\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grey+seal&form=hpcapt&filters=HpDate:\"20260309_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260309_NappingSeal"
+      },
+      "Ssd": "20260309",
+      "Name": "NappingSeal",
+      "Market": "ROW",
+      "Hash": "2198134616",
+      "FullDateString": "Mar 9, 2026"
     }
   ]
 }
