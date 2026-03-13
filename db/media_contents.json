@@ -13300,6 +13300,37 @@
       "Market": "ROW",
       "Hash": "2817467939",
       "FullDateString": "Mar 11, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "High in Ecuador's cloud forests, a young sunbittern spreads its wings in an early display, casting flashes of orange, black and white through the filtered green light. The sudden contrast cuts through the moss‑covered branches and leaf‑shadowed understorey, offering a snapshot of the species' dramatic wing patterns. Adult sunbitterns most often show these bold markings during defensive displays, briefly transforming an elusive bird into a striking spectacle.",
+        "Image": {
+          "Url": "/th?id=OHR.SunbitternEcuador_ROW2999974301_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SunbitternEcuador_ROW2999974301_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Juvenile sunbittern displaying at nest, Ecuador",
+        "Copyright": "© Andy Rouse/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260312_SunbitternEcuador\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Sunbittern+bird&form=hpcapt&filters=HpDate:\"20260312_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260312_SunbitternEcuador"
+      },
+      "Ssd": "20260312",
+      "Name": "SunbitternEcuador",
+      "Market": "ROW",
+      "Hash": "2999974301",
+      "FullDateString": "Mar 12, 2026"
     }
   ]
 }
