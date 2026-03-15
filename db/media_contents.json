@@ -13331,6 +13331,37 @@
       "Market": "ROW",
       "Hash": "2999974301",
       "FullDateString": "Mar 12, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Time has altered the land around it, but Lanyon Quoit in Cornwall, England, still commands attention. Built in the Neolithic period, 'The Giant's Table' offers a rare chance to consider how early settlers marked their presence. Formed by upright stones holding a massive capstone of about 13,000 kilograms, the monument likely served as a communal burial chamber.",
+        "Image": {
+          "Url": "/th?id=OHR.CornwallDolmen_ROW3459140266_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CornwallDolmen_ROW3459140266_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lanyon Quoit, a Neolithic dolmen in Cornwall, England",
+        "Copyright": "© Helen Hotson/Alamy",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260314_CornwallDolmen\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lanyon+Quoit&form=hpcapt&filters=HpDate:\"20260314_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260314_CornwallDolmen"
+      },
+      "Ssd": "20260314",
+      "Name": "CornwallDolmen",
+      "Market": "ROW",
+      "Hash": "3459140266",
+      "FullDateString": "Mar 14, 2026"
     }
   ]
 }
