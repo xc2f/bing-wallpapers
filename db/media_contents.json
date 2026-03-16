@@ -13362,6 +13362,37 @@
       "Market": "ROW",
       "Hash": "3459140266",
       "FullDateString": "Mar 14, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Spring break on Vancouver Island, Canada looks a little different. In Canada, people can witness the annual spring migration of thousands of grey whales as they pass close to the island's west coast. Created by local communities in the 1980s, the Pacific Rim Whale Festival marks the whales' return north from breeding lagoons in Baja California, Mexico.",
+        "Image": {
+          "Url": "/th?id=OHR.PacificRimNP_ROW9181043528_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PacificRimNP_ROW9181043528_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Pacific Rim National Park Reserve, Vancouver Island, Canada",
+        "Copyright": "© EmilyNorton/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260315_PacificRimNP\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Pacific+Rim+National+Park+Reserve&form=hpcapt&filters=HpDate:\"20260315_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260315_PacificRimNP"
+      },
+      "Ssd": "20260315",
+      "Name": "PacificRimNP",
+      "Market": "ROW",
+      "Hash": "9181043528",
+      "FullDateString": "Mar 15, 2026"
     }
   ]
 }
