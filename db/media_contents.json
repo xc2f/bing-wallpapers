@@ -13393,6 +13393,37 @@
       "Market": "ROW",
       "Hash": "9181043528",
       "FullDateString": "Mar 15, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "If Rio de Janeiro were a story, today's image would be one of its most iconic chapters. It captures the essence of a metropolis founded on 1 March 1565 to protect Guanabara Bay and control the trade of brazilwood. Since then, it has evolved from a military settlement into a cultural centre, from a strategic port into a national symbol. The city has faced invasions, fires and major political shifts, yet has repeatedly turned challenges into urban expression. Today, the capital of the state of Rio de Janeiro is among the most recognisable cityscapes in the world.",
+        "Image": {
+          "Url": "/th?id=OHR.AnivRio_ROW3862828341_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AnivRio_ROW3862828341_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Cable car and Sugarloaf Mountain, Rio de Janeiro, Brazil",
+        "Copyright": "© f11photo/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260316_AnivRio\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Sugarloaf+Mountain&form=hpcapt&filters=HpDate:\"20260316_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260316_AnivRio"
+      },
+      "Ssd": "20260316",
+      "Name": "AnivRio",
+      "Market": "ROW",
+      "Hash": "3862828341",
+      "FullDateString": "Mar 16, 2026"
     }
   ]
 }
