@@ -13424,6 +13424,37 @@
       "Market": "ROW",
       "Hash": "3862828341",
       "FullDateString": "Mar 16, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Today, we find ourselves in County Donegal in the northwest of Ireland. Grianan of Aileach, a stone ringfort—dating from the Iron Age to the early Middle Ages—linked to the Kings of Aileach and the Northern Uí Néill, stands here. The fort crowns Greenan Mountain and served as a ceremonial and strategic stronghold. Archaeological evidence suggests the site had importance long before the current walls rose in the 6th or 7th century.",
+        "Image": {
+          "Url": "/th?id=OHR.DonegalFort_ROW4126307625_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.DonegalFort_ROW4126307625_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Grianan of Aileach ring fort, Donegal, Ireland",
+        "Copyright": "© Lukassek/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260317_DonegalFort\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Grianan+of+Aileach+ring+fort+Donegal&form=hpcapt&filters=HpDate:\"20260317_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260317_DonegalFort"
+      },
+      "Ssd": "20260317",
+      "Name": "DonegalFort",
+      "Market": "ROW",
+      "Hash": "4126307625",
+      "FullDateString": "Mar 17, 2026"
     }
   ]
 }
