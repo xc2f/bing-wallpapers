@@ -13486,6 +13486,37 @@
       "Market": "ROW",
       "Hash": "4378783991",
       "FullDateString": "Mar 18, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "An egg-laying mammal. No teeth. Reptilian gait. Built-in body armour. If the short-beaked echidna sounds like a checklist of contradictions, that's because it is—and it owns it. Native to Australia, Tasmania and parts of New Guinea, it's one of the few surviving monotremes, or mammals that lay eggs. Despite the headlines, it still qualifies as a mammal: it has fur, produces milk and is warm-blooded. The twist? Milk is released through specialised skin patches rather than nipples, leaving the young to lap it up.",
+        "Image": {
+          "Url": "/th?id=OHR.EchidnaAustralia_ROW4548583116_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.EchidnaAustralia_ROW4548583116_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Short-beaked echidna, Adelaide Hills, Australia",
+        "Copyright": "© Etienne Littlefair/naturepl.com",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260319_EchidnaAustralia\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Short-beaked+echidna&form=hpcapt&filters=HpDate:\"20260319_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260319_EchidnaAustralia"
+      },
+      "Ssd": "20260319",
+      "Name": "EchidnaAustralia",
+      "Market": "ROW",
+      "Hash": "4548583116",
+      "FullDateString": "Mar 19, 2026"
     }
   ]
 }
