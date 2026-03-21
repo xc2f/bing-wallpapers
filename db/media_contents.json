@@ -13517,6 +13517,37 @@
       "Market": "ROW",
       "Hash": "4548583116",
       "FullDateString": "Mar 19, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "A white snowdrop feels like spring's quiet debut. No fanfare, no fuss—just a small flower daring to appear as the season begins to turn. Snowdrops are among the earliest bloomers, often pushing through frozen soil, leaf litter and even light snow. How do they manage it? Their nodding, bell-shaped flowers protect pollen from cold rain, while antifreeze-like compounds in their cells help them tolerate frost. Delicate-looking, yes. Fragile? Not at all.",
+        "Image": {
+          "Url": "/th?id=OHR.SpringSnowdrops_ROW7920205293_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.SpringSnowdrops_ROW7920205293_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Snowdrops in spring",
+        "Copyright": "© klagyivik/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260320_SpringSnowdrops\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Galanthus+flower&form=hpcapt&filters=HpDate:\"20260320_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260320_SpringSnowdrops"
+      },
+      "Ssd": "20260320",
+      "Name": "SpringSnowdrops",
+      "Market": "ROW",
+      "Hash": "7920205293",
+      "FullDateString": "Mar 20, 2026"
     }
   ]
 }
