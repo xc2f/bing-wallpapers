@@ -13579,6 +13579,37 @@
       "Market": "ROW",
       "Hash": "4397618654",
       "FullDateString": "Mar 21, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Water has always shaped human survival, but moments come when simply flowing along is no longer enough—we have to protect the systems that carry us forward. Few places capture that urgency like Lake Tanganyika, set deep within the Great Rift Valley of eastern Africa. Seen from space, it stretches like a narrow ribbon about 676 kilometres long, linking Tanzania, Burundi, the Democratic Republic of the Congo and Zambia. At the shoreline, it's a 10-million-year-old rift basin, formed as the Earth's crust slowly pulled apart.",
+        "Image": {
+          "Url": "/th?id=OHR.TanganyikaWater_ROW4763595612_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.TanganyikaWater_ROW4763595612_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Lake Tanganyika, Africa",
+        "Copyright": "© BEST-BACKGROUNDS/NASA/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260322_TanganyikaWater\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Lake+Tanganyika&form=hpcapt&filters=HpDate:\"20260322_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260322_TanganyikaWater"
+      },
+      "Ssd": "20260322",
+      "Name": "TanganyikaWater",
+      "Market": "ROW",
+      "Hash": "4763595612",
+      "FullDateString": "Mar 22, 2026"
     }
   ]
 }
