@@ -13641,6 +13641,37 @@
       "Market": "ROW",
       "Hash": "5466478182",
       "FullDateString": "Mar 23, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "When mist drifts across Königssee Lake, located in Bavaria, Germany, in the early morning, the landscape feels almost timeless. The long, narrow mountain lake lies in south-eastern Bavaria, cradled between the steep rock faces of the Berchtesgaden Alps. Large parts of the lake lie within Berchtesgaden National Park, Germany's only Alpine national park, where nature is largely allowed to develop without human interference.",
+        "Image": {
+          "Url": "/th?id=OHR.KoenigsseeFog_ROW4902303534_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.KoenigsseeFog_ROW4902303534_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Königssee Lake, Bavaria, Germany",
+        "Copyright": "© EyeEm Mobile GmbH/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260324_KoenigsseeFog\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Konigssee+Lake+Bavaria&form=hpcapt&filters=HpDate:\"20260324_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260324_KoenigsseeFog"
+      },
+      "Ssd": "20260324",
+      "Name": "KoenigsseeFog",
+      "Market": "ROW",
+      "Hash": "4902303534",
+      "FullDateString": "Mar 24, 2026"
     }
   ]
 }
