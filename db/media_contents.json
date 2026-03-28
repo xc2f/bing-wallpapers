@@ -13734,6 +13734,37 @@
       "Market": "ROW",
       "Hash": "8107496948",
       "FullDateString": "Mar 26, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "This is the kind of landscape that makes maps feel suddenly more interesting. Evening settles quietly over Maligne Lake in Jasper National Park, Alberta. As temperatures drop, the surface stills, mirroring snow-dusted peaks that formed during the last Ice Age. Stretching about 22 kilometres, the lake owes its existence to glacial movement that carved the valley and left behind meltwater basins. Today, cold, oxygen-rich freshwater sustains ecosystems that include species such as lake trout and mountain whitefish. Boat cruises and paddling routes offer one of the best ways to view Spirit Island, the small but widely photographed landmark featured in the image.",
+        "Image": {
+          "Url": "/th?id=OHR.AuroraIsland_ROW4443502358_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.AuroraIsland_ROW4443502358_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Aurora over Spirit Island on Maligne Lake, Jasper National Park, Alberta, Canada",
+        "Copyright": "© Mumemories/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260327_AuroraIsland\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Maligne+Lake+Canada&form=hpcapt&filters=HpDate:\"20260327_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260327_AuroraIsland"
+      },
+      "Ssd": "20260327",
+      "Name": "AuroraIsland",
+      "Market": "ROW",
+      "Hash": "4443502358",
+      "FullDateString": "Mar 27, 2026"
     }
   ]
 }
