@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import DetailAmbientBackground from "@/components/detail-ambient-background";
 import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import SmartBackButton from "@/components/smart-back-button";
@@ -17,6 +18,7 @@ import {
   toProxyImageUrl,
 } from "@/lib/archive";
 import {
+  formatArchiveDate,
   getDictionary,
   getLocaleFromParam,
   isValidLocale,
@@ -102,6 +104,11 @@ export default async function LocalizedWallpaperDetailPage({
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.noDescription;
+  const formattedDate = formatArchiveDate(
+    currentLocale,
+    wallpaper.Ssd,
+    wallpaper.FullDateString
+  );
   const previewUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Url);
   const imageUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
@@ -142,20 +149,23 @@ export default async function LocalizedWallpaperDetailPage({
   }
 
   return (
-    <main className="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
-      <ScrollToTopButton label={dictionary.backToTop} />
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
-        <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
-          <div className="relative flex items-center justify-end">
+    <DetailAmbientBackground imageUrl={previewUrl || imageUrl}>
+      <main className="min-h-screen bg-stone-950/84 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+        <ScrollToTopButton label={dictionary.backToTop} />
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
+          <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-end">
+              <LocaleSwitcher
+                locale={currentLocale}
+                pathname={`/wallpaper/${ssd}`}
+                searchParams={resolvedSearchParams}
+              />
+            </div>
             <SmartBackButton
               fallbackHref={backHref}
-              className="absolute left-0 -top-2 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
               label={dictionary.detailBack}
-            />
-            <LocaleSwitcher
-              locale={currentLocale}
-              pathname={`/wallpaper/${ssd}`}
-              searchParams={resolvedSearchParams}
             />
           </div>
 
@@ -181,7 +191,7 @@ export default async function LocalizedWallpaperDetailPage({
               <div>
                 <dt className="uppercase tracking-[0.2em]">{dictionary.detailDate}</dt>
                 <dd className="mt-1 text-base font-medium text-stone-100">
-                  {wallpaper.FullDateString ?? wallpaper.Ssd}
+                  {formattedDate}
                 </dd>
               </div>
               <div>
@@ -192,9 +202,9 @@ export default async function LocalizedWallpaperDetailPage({
               </div>
             </dl>
           </div>
-        </section>
+          </section>
 
-        <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/5">
+          <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-[2px]">
           <div className="bg-stone-900">
             {previewUrl ? (
               <Image
@@ -212,7 +222,7 @@ export default async function LocalizedWallpaperDetailPage({
             )}
           </div>
 
-          <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
+            <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div>
               <h2 className="text-lg font-semibold text-white">
                 {dictionary.detailDescription}
@@ -220,7 +230,7 @@ export default async function LocalizedWallpaperDetailPage({
               <p className="mt-4 text-sm leading-7 text-stone-300">{description}</p>
             </div>
 
-            <aside className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5">
+              <aside className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5 backdrop-blur-md">
               <h2 className="text-lg font-semibold text-white">{dictionary.detailInfo}</h2>
               <dl className="mt-4 flex flex-col gap-4 text-sm text-stone-300">
                 <div>
@@ -236,7 +246,7 @@ export default async function LocalizedWallpaperDetailPage({
                 <div>
                   <dt className="text-stone-400">{dictionary.detailDate}</dt>
                   <dd className="mt-1">
-                    {wallpaper.FullDateString ?? wallpaper.Ssd}
+                    {formattedDate}
                   </dd>
                 </div>
               </dl>
@@ -263,12 +273,13 @@ export default async function LocalizedWallpaperDetailPage({
                   </a>
                 ) : null}
               </div>
-            </aside>
-          </div>
-        </section>
+              </aside>
+            </div>
+          </section>
 
-        <section className="grid gap-4 border-t border-white/10 pt-8 md:grid-cols-2">
-          {previous ? (
+        {previous || next ? (
+          <section className="grid gap-4 border-t border-white/10 pt-8 md:grid-cols-2">
+            {previous ? (
             <Link
               href={createDetailHref(previous.Ssd)}
               replace
@@ -278,19 +289,15 @@ export default async function LocalizedWallpaperDetailPage({
                 {dictionary.detailOlder}
               </p>
               <p className="mt-2 text-sm text-stone-400">
-                {previous.FullDateString ?? previous.Ssd}
+                {formatArchiveDate(currentLocale, previous.Ssd, previous.FullDateString)}
               </p>
               <h3 className="mt-1 text-lg font-semibold text-white">
                 {previous.ImageContent?.Title ?? previous.Ssd}
               </h3>
             </Link>
-          ) : (
-            <div className="rounded-3xl border border-dashed border-white/10 p-5 text-sm text-stone-500">
-              {dictionary.detailOlder}
-            </div>
-          )}
+            ) : null}
 
-          {next ? (
+            {next ? (
             <Link
               href={createDetailHref(next.Ssd)}
               replace
@@ -300,18 +307,15 @@ export default async function LocalizedWallpaperDetailPage({
                 {dictionary.detailNewer}
               </p>
               <p className="mt-2 text-sm text-stone-400">
-                {next.FullDateString ?? next.Ssd}
+                {formatArchiveDate(currentLocale, next.Ssd, next.FullDateString)}
               </p>
               <h3 className="mt-1 text-lg font-semibold text-white">
                 {next.ImageContent?.Title ?? next.Ssd}
               </h3>
             </Link>
-          ) : (
-            <div className="rounded-3xl border border-dashed border-white/10 p-5 text-right text-sm text-stone-500">
-              {dictionary.detailNewer}
-            </div>
-          )}
-        </section>
+            ) : null}
+          </section>
+        ) : null}
 
         <section className="flex flex-col gap-4 border-t border-white/10 pt-8">
           <h2 className="text-2xl font-semibold text-white">{dictionary.detailMore}</h2>
@@ -343,7 +347,7 @@ export default async function LocalizedWallpaperDetailPage({
                   )}
                   <div className="p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                      {item.FullDateString ?? item.Ssd}
+                      {formatArchiveDate(currentLocale, item.Ssd, item.FullDateString)}
                     </p>
                     <h3 className="mt-2 text-lg font-semibold text-white">
                       {relatedTitle}
@@ -354,7 +358,8 @@ export default async function LocalizedWallpaperDetailPage({
             })}
           </div>
         </section>
-      </div>
-    </main>
+        </div>
+      </main>
+    </DetailAmbientBackground>
   );
 }

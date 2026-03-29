@@ -11,6 +11,7 @@ import {
   toProxyImageUrl,
 } from "@/lib/archive";
 import {
+  formatArchiveDate,
   getDictionary,
   getLocaleFromParam,
   isValidLocale,
@@ -82,7 +83,7 @@ export default async function LocalizedWaterfallPage({
   const waterfallPath = createWaterfallHref(locale, year, mode);
   const items = wallpapers.map((wallpaper) => ({
     ssd: wallpaper.Ssd,
-    fullDate: wallpaper.FullDateString ?? wallpaper.Ssd,
+    fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
     description:
       wallpaper.ImageContent?.Description ?? dictionary.noDescription,
@@ -100,21 +101,23 @@ export default async function LocalizedWaterfallPage({
       />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
         <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
-          <div className="relative flex items-center justify-end">
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-end">
+              <LocaleSwitcher
+                locale={locale}
+                pathname="/waterfall"
+                searchParams={resolvedSearchParams}
+              />
+            </div>
             <Link
               href={localizePath(locale)}
-              className="absolute left-0 -top-2 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
             >
               <span aria-hidden="true" className="text-sm leading-none">
                 ←
               </span>
               {dictionary.waterfallBack}
             </Link>
-            <LocaleSwitcher
-              locale={locale}
-              pathname="/waterfall"
-              searchParams={resolvedSearchParams}
-            />
           </div>
 
           <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">

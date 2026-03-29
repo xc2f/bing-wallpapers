@@ -9,15 +9,26 @@ const baseEn = {
   siteDescription: "Browse locally archived Bing wallpapers.",
   archiveLabel: "Bing Wallpapers Archive",
   archived: "Archived",
-  latest: "Latest",
+  latest: "Last Updated",
   filterSearch: "Search wallpapers",
-  filterSearchPlaceholder: "For example: Spain, turtle, lake...",
+  filterSearchPlaceholder:
+    "For example: Spain, turtle, lake... Press ? for search help",
+  filterSearchHelpHint: "Press ? for search help",
   filterYear: "Year",
   filterMonth: "Month",
   filterAllYears: "All years",
   filterAllMonths: "All months",
   filterSubmit: "Search",
   filterReset: "Clear",
+  filterCollapse: "Hide filters",
+  filterExpand: "Show filters",
+  filterSummaryAll: "No filters applied",
+  filterHelpTitle: "Advanced search",
+  filterHelpPhrase: "`bird fish` matches the full phrase.",
+  filterHelpOr: "`bird, fish` matches any comma-separated clause.",
+  filterHelpExclude: "`lake -night` excludes results containing `night`.",
+  filterHelpFields:
+    "Field search: `title:bird`, `desc:turtle`, `copyright:spain`, `date:2024`, `ssd:20241229`.",
   resultSummaryPrefix: "Found",
   resultSummaryMiddle: "results, page",
   resultSummaryPageJoin: "of",
@@ -25,6 +36,7 @@ const baseEn = {
   activeQuery: "Query",
   activeYear: "Year",
   activeMonth: "Month",
+  notAvailable: "N/A",
   emptyTitle: "No wallpapers matched",
   emptyDescriptionPrefix: "Try another keyword, or run",
   emptyDescriptionSuffix: "to refresh local data.",
@@ -58,7 +70,15 @@ const baseEn = {
   detailViewAll: "View all",
   metadataNotFound: "Wallpaper Not Found",
   metadataFallbackDescription: "Bing wallpaper details.",
-} as const;
+  footerDisclaimerLine1:
+    "Images are sourced from Microsoft Bing and are used for display purposes only.",
+  footerDisclaimerLine2: "All copyrights belong to their respective owners.",
+  footerDisclaimerLine3:
+    "This project does not store or redistribute any images.",
+  footerDisclaimerLine4:
+    "If there is any infringement, please contact for removal.",
+  footerGithub: "View on GitHub",
+} as const
 
 export const dictionaries = {
   en: baseEn,
@@ -67,15 +87,25 @@ export const dictionaries = {
     siteTitle: "Bing 壁纸档案馆",
     siteDescription: "浏览本地归档的 Bing 壁纸。",
     archived: "存档数",
-    latest: "最新日期",
+    latest: "上次更新",
     filterSearch: "搜索壁纸",
-    filterSearchPlaceholder: "例如: Spain, turtle, lake...",
+    filterSearchPlaceholder: "例如: Spain, turtle, lake... 按 ? 显示高级搜索提示",
+    filterSearchHelpHint: "按 ? 显示高级搜索提示",
     filterYear: "年份",
     filterMonth: "月份",
     filterAllYears: "全部年份",
     filterAllMonths: "全部月份",
     filterSubmit: "搜索",
     filterReset: "清空",
+    filterCollapse: "收起筛选",
+    filterExpand: "展开筛选",
+    filterSummaryAll: "当前未启用筛选条件",
+    filterHelpTitle: "高级搜索",
+    filterHelpPhrase: "`bird fish` 按完整短语匹配。",
+    filterHelpOr: "`bird, fish` 按逗号拆分，任一条件命中即可。",
+    filterHelpExclude: "`lake -night` 会排除包含 `night` 的结果。",
+    filterHelpFields:
+      "字段搜索：`title:bird`、`desc:turtle`、`copyright:spain`、`date:2024`、`ssd:20241229`。",
     resultSummaryPrefix: "找到",
     resultSummaryMiddle: "条结果，当前第",
     resultSummaryPageJoin: "/",
@@ -83,6 +113,7 @@ export const dictionaries = {
     activeQuery: "当前关键词",
     activeYear: "年份",
     activeMonth: "月份",
+    notAvailable: "暂无",
     emptyTitle: "没有匹配的壁纸",
     emptyDescriptionPrefix: "可以换个关键词试试，或者先运行",
     emptyDescriptionSuffix: "更新本地数据。",
@@ -115,27 +146,47 @@ export const dictionaries = {
     detailViewAll: "查看全部",
     metadataNotFound: "壁纸未找到",
     metadataFallbackDescription: "Bing 壁纸详情。",
+    footerDisclaimerLine1: "图片资源来自 Microsoft Bing，仅用于展示用途。",
+    footerDisclaimerLine2: "所有版权归各自权利人所有。",
+    footerDisclaimerLine3: "本项目不存储或再分发任何图片。",
+    footerDisclaimerLine4: "如有侵权，请联系删除。",
+    footerGithub: "查看 GitHub 仓库",
   },
   es: {
     ...baseEn,
     siteTitle: "Archivo de Fondos de Bing",
-    siteDescription: "Explora fondos de pantalla de Bing archivados localmente.",
+    siteDescription:
+      "Explora fondos de pantalla de Bing archivados localmente.",
     archived: "Archivados",
-    latest: "Más reciente",
+    latest: "Última actualización",
     filterSearch: "Buscar fondos",
-    filterSearchPlaceholder: "Por ejemplo: Spain, turtle, lake...",
+    filterSearchPlaceholder:
+      "Por ejemplo: Spain, turtle, lake... Pulsa ? para ver la ayuda de búsqueda",
+    filterSearchHelpHint: "Pulsa ? para ver la ayuda de búsqueda",
     filterYear: "Año",
     filterMonth: "Mes",
     filterAllYears: "Todos los años",
     filterAllMonths: "Todos los meses",
     filterSubmit: "Buscar",
     filterReset: "Limpiar",
+    filterCollapse: "Ocultar filtros",
+    filterExpand: "Mostrar filtros",
+    filterSummaryAll: "No hay filtros activos",
+    filterHelpTitle: "Búsqueda avanzada",
+    filterHelpPhrase: "`bird fish` busca la frase completa.",
+    filterHelpOr:
+      "`bird, fish` coincide con cualquiera de las cláusulas separadas por comas.",
+    filterHelpExclude:
+      "`lake -night` excluye resultados que contengan `night`.",
+    filterHelpFields:
+      "Búsqueda por campo: `title:bird`, `desc:turtle`, `copyright:spain`, `date:2024`, `ssd:20241229`.",
     resultSummaryPrefix: "Se encontraron",
     resultSummaryMiddle: "resultados, página",
     resultSummaryPageJoin: "de",
     activeQuery: "Búsqueda",
     activeYear: "Año",
     activeMonth: "Mes",
+    notAvailable: "No disponible",
     emptyTitle: "No se encontraron fondos",
     emptyDescriptionPrefix: "Prueba otra palabra clave o ejecuta",
     emptyDescriptionSuffix: "para actualizar los datos locales.",
@@ -148,7 +199,8 @@ export const dictionaries = {
     paginationNext: "Siguiente",
     viewWaterfall: "Vista en cascada",
     waterfallTitle: "Todos los fondos",
-    waterfallDescription: "Explora todos los fondos archivados en una cuadrícula fluida.",
+    waterfallDescription:
+      "Explora todos los fondos archivados en una cuadrícula fluida.",
     waterfallBack: "Volver al archivo",
     waterfallShowMeta: "Mostrar información",
     waterfallHideMeta: "Ocultar información",
@@ -168,27 +220,49 @@ export const dictionaries = {
     detailViewAll: "Ver todo",
     metadataNotFound: "Fondo no encontrado",
     metadataFallbackDescription: "Detalles del fondo de Bing.",
+    footerDisclaimerLine1:
+      "Las imágenes provienen de Microsoft Bing y se utilizan solo con fines de visualización.",
+    footerDisclaimerLine2:
+      "Todos los derechos pertenecen a sus respectivos propietarios.",
+    footerDisclaimerLine3:
+      "Este proyecto no almacena ni redistribuye ninguna imagen.",
+    footerDisclaimerLine4:
+      "Si existe alguna infracción, póngase en contacto para su eliminación.",
+    footerGithub: "Ver en GitHub",
   },
   fr: {
     ...baseEn,
     siteTitle: "Archive des Fonds Bing",
     siteDescription: "Parcourez les fonds d'écran Bing archivés localement.",
     archived: "Archives",
-    latest: "Le plus récent",
+    latest: "Dernière mise à jour",
     filterSearch: "Rechercher des fonds",
-    filterSearchPlaceholder: "Par exemple : Spain, turtle, lake...",
+    filterSearchPlaceholder:
+      "Par exemple : Spain, turtle, lake... Appuyez sur ? pour afficher l'aide de recherche",
+    filterSearchHelpHint: "Appuyez sur ? pour afficher l'aide de recherche",
     filterYear: "Année",
     filterMonth: "Mois",
     filterAllYears: "Toutes les années",
     filterAllMonths: "Tous les mois",
     filterSubmit: "Rechercher",
     filterReset: "Effacer",
+    filterCollapse: "Masquer les filtres",
+    filterExpand: "Afficher les filtres",
+    filterSummaryAll: "Aucun filtre actif",
+    filterHelpTitle: "Recherche avancée",
+    filterHelpPhrase: "`bird fish` recherche la phrase complète.",
+    filterHelpOr:
+      "`bird, fish` correspond à l'une des clauses séparées par des virgules.",
+    filterHelpExclude: "`lake -night` exclut les résultats contenant `night`.",
+    filterHelpFields:
+      "Recherche par champ : `title:bird`, `desc:turtle`, `copyright:spain`, `date:2024`, `ssd:20241229`.",
     resultSummaryPrefix: "",
     resultSummaryMiddle: "résultats, page",
     resultSummaryPageJoin: "sur",
     activeQuery: "Recherche",
     activeYear: "Année",
     activeMonth: "Mois",
+    notAvailable: "Indisponible",
     emptyTitle: "Aucun fond correspondant",
     emptyDescriptionPrefix: "Essayez un autre mot-clé ou exécutez",
     emptyDescriptionSuffix: "pour actualiser les données locales.",
@@ -201,7 +275,8 @@ export const dictionaries = {
     paginationNext: "Suivant",
     viewWaterfall: "Vue en cascade",
     waterfallTitle: "Tous les fonds",
-    waterfallDescription: "Parcourez tous les fonds archivés dans une grille fluide.",
+    waterfallDescription:
+      "Parcourez tous les fonds archivés dans une grille fluide.",
     waterfallBack: "Retour à l'archive",
     waterfallShowMeta: "Afficher les infos",
     waterfallHideMeta: "Masquer les infos",
@@ -221,27 +296,49 @@ export const dictionaries = {
     detailViewAll: "Voir tout",
     metadataNotFound: "Fond introuvable",
     metadataFallbackDescription: "Détails du fond Bing.",
+    footerDisclaimerLine1:
+      "Les images proviennent de Microsoft Bing et sont utilisées uniquement à des fins d'affichage.",
+    footerDisclaimerLine2:
+      "Tous les droits appartiennent à leurs propriétaires respectifs.",
+    footerDisclaimerLine3:
+      "Ce projet ne stocke ni ne redistribue aucune image.",
+    footerDisclaimerLine4:
+      "En cas d'atteinte aux droits, veuillez nous contacter pour suppression.",
+    footerGithub: "Voir sur GitHub",
   },
   de: {
     ...baseEn,
     siteTitle: "Bing-Hintergrundarchiv",
     siteDescription: "Durchsuche lokal archivierte Bing-Hintergründe.",
     archived: "Archiviert",
-    latest: "Neueste",
+    latest: "Zuletzt aktualisiert",
     filterSearch: "Hintergründe suchen",
-    filterSearchPlaceholder: "Zum Beispiel: Spain, turtle, lake...",
+    filterSearchPlaceholder:
+      "Zum Beispiel: Spain, turtle, lake... ? zeigt die Suchhilfe",
+    filterSearchHelpHint: "? zeigt die Suchhilfe",
     filterYear: "Jahr",
     filterMonth: "Monat",
     filterAllYears: "Alle Jahre",
     filterAllMonths: "Alle Monate",
     filterSubmit: "Suchen",
     filterReset: "Zurücksetzen",
+    filterCollapse: "Filter ausblenden",
+    filterExpand: "Filter anzeigen",
+    filterSummaryAll: "Keine aktiven Filter",
+    filterHelpTitle: "Erweiterte Suche",
+    filterHelpPhrase: "`bird fish` sucht nach der exakten Wortgruppe.",
+    filterHelpOr:
+      "`bird, fish` trifft auf jede durch Komma getrennte Klausel zu.",
+    filterHelpExclude: "`lake -night` schließt Ergebnisse mit `night` aus.",
+    filterHelpFields:
+      "Feldsuche: `title:bird`, `desc:turtle`, `copyright:spain`, `date:2024`, `ssd:20241229`.",
     resultSummaryPrefix: "",
     resultSummaryMiddle: "Ergebnisse, Seite",
     resultSummaryPageJoin: "von",
     activeQuery: "Suche",
     activeYear: "Jahr",
     activeMonth: "Monat",
+    notAvailable: "Nicht verfügbar",
     emptyTitle: "Keine passenden Hintergründe",
     emptyDescriptionPrefix: "Versuche ein anderes Stichwort oder führe",
     emptyDescriptionSuffix: "aus, um lokale Daten zu aktualisieren.",
@@ -254,7 +351,8 @@ export const dictionaries = {
     paginationNext: "Weiter",
     viewWaterfall: "Wasserfallansicht",
     waterfallTitle: "Alle Hintergründe",
-    waterfallDescription: "Durchsuche alle archivierten Hintergründe in einem fließenden Raster.",
+    waterfallDescription:
+      "Durchsuche alle archivierten Hintergründe in einem fließenden Raster.",
     waterfallBack: "Zurück zum Archiv",
     waterfallShowMeta: "Infos anzeigen",
     waterfallHideMeta: "Infos ausblenden",
@@ -274,21 +372,40 @@ export const dictionaries = {
     detailViewAll: "Alle anzeigen",
     metadataNotFound: "Hintergrund nicht gefunden",
     metadataFallbackDescription: "Details zum Bing-Hintergrund.",
+    footerDisclaimerLine1:
+      "Die Bilder stammen von Microsoft Bing und werden ausschließlich zu Anzeigezwecken verwendet.",
+    footerDisclaimerLine2:
+      "Alle Urheberrechte liegen bei ihren jeweiligen Eigentümern.",
+    footerDisclaimerLine3:
+      "Dieses Projekt speichert oder verbreitet keine Bilder weiter.",
+    footerDisclaimerLine4:
+      "Bei Rechtsverletzungen kontaktieren Sie uns bitte zur Entfernung.",
+    footerGithub: "Auf GitHub ansehen",
   },
   ja: {
     ...baseEn,
     siteTitle: "Bing 壁紙アーカイブ",
     siteDescription: "ローカルに保存された Bing 壁紙を閲覧します。",
     archived: "アーカイブ数",
-    latest: "最新日付",
+    latest: "最終更新",
     filterSearch: "壁紙を検索",
-    filterSearchPlaceholder: "例: Spain, turtle, lake...",
+    filterSearchPlaceholder: "例: Spain, turtle, lake... ? で検索ヘルプを表示",
+    filterSearchHelpHint: "? で検索ヘルプを表示",
     filterYear: "年",
     filterMonth: "月",
     filterAllYears: "すべての年",
     filterAllMonths: "すべての月",
     filterSubmit: "検索",
     filterReset: "クリア",
+    filterCollapse: "絞り込みを隠す",
+    filterExpand: "絞り込みを表示",
+    filterSummaryAll: "現在フィルターはありません",
+    filterHelpTitle: "高度な検索",
+    filterHelpPhrase: "`bird fish` は完全なフレーズとして一致します。",
+    filterHelpOr: "`bird, fish` はカンマ区切りのいずれかの条件に一致します。",
+    filterHelpExclude: "`lake -night` は `night` を含む結果を除外します。",
+    filterHelpFields:
+      "フィールド検索: `title:bird`、`desc:turtle`、`copyright:spain`、`date:2024`、`ssd:20241229`。",
     resultSummaryPrefix: "",
     resultSummaryMiddle: "件、ページ",
     resultSummaryPageJoin: "/",
@@ -296,6 +413,7 @@ export const dictionaries = {
     activeQuery: "キーワード",
     activeYear: "年",
     activeMonth: "月",
+    notAvailable: "なし",
     emptyTitle: "一致する壁紙がありません",
     emptyDescriptionPrefix: "別のキーワードを試すか、",
     emptyDescriptionSuffix: "を実行してローカルデータを更新してください。",
@@ -308,7 +426,8 @@ export const dictionaries = {
     paginationNext: "次へ",
     viewWaterfall: "ウォーターフォール表示",
     waterfallTitle: "すべての壁紙",
-    waterfallDescription: "保存されたすべての壁紙を流れるようなグリッドで閲覧します。",
+    waterfallDescription:
+      "保存されたすべての壁紙を流れるようなグリッドで閲覧します。",
     waterfallBack: "一覧へ戻る",
     waterfallShowMeta: "情報を表示",
     waterfallHideMeta: "情報を隠す",
@@ -328,21 +447,37 @@ export const dictionaries = {
     detailViewAll: "すべて表示",
     metadataNotFound: "壁紙が見つかりません",
     metadataFallbackDescription: "Bing 壁紙の詳細。",
+    footerDisclaimerLine1:
+      "画像は Microsoft Bing から提供されており、表示目的でのみ使用されています。",
+    footerDisclaimerLine2: "すべての著作権は各権利者に帰属します。",
+    footerDisclaimerLine3: "このプロジェクトは画像を保存または再配布しません。",
+    footerDisclaimerLine4: "権利侵害がある場合は、削除のためご連絡ください。",
+    footerGithub: "GitHub で見る",
   },
   ko: {
     ...baseEn,
     siteTitle: "Bing 배경화면 아카이브",
     siteDescription: "로컬에 보관된 Bing 배경화면을 둘러보세요.",
     archived: "보관 수",
-    latest: "최신 날짜",
+    latest: "마지막 업데이트",
     filterSearch: "배경화면 검색",
-    filterSearchPlaceholder: "예: Spain, turtle, lake...",
+    filterSearchPlaceholder: "예: Spain, turtle, lake... ? 로 검색 도움말 표시",
+    filterSearchHelpHint: "? 로 검색 도움말 표시",
     filterYear: "연도",
     filterMonth: "월",
     filterAllYears: "모든 연도",
     filterAllMonths: "모든 월",
     filterSubmit: "검색",
     filterReset: "초기화",
+    filterCollapse: "필터 숨기기",
+    filterExpand: "필터 표시",
+    filterSummaryAll: "현재 적용된 필터가 없습니다",
+    filterHelpTitle: "고급 검색",
+    filterHelpPhrase: "`bird fish` 는 전체 구문과 일치합니다.",
+    filterHelpOr: "`bird, fish` 는 쉼표로 구분된 조건 중 하나와 일치합니다.",
+    filterHelpExclude: "`lake -night` 는 `night` 를 포함한 결과를 제외합니다.",
+    filterHelpFields:
+      "필드 검색: `title:bird`, `desc:turtle`, `copyright:spain`, `date:2024`, `ssd:20241229`.",
     resultSummaryPrefix: "",
     resultSummaryMiddle: "개의 결과, 페이지",
     resultSummaryPageJoin: "/",
@@ -350,6 +485,7 @@ export const dictionaries = {
     activeQuery: "검색어",
     activeYear: "연도",
     activeMonth: "월",
+    notAvailable: "없음",
     emptyTitle: "일치하는 배경화면이 없습니다",
     emptyDescriptionPrefix: "다른 검색어를 시도하거나",
     emptyDescriptionSuffix: "를 실행해 로컬 데이터를 새로고침하세요.",
@@ -382,8 +518,15 @@ export const dictionaries = {
     detailViewAll: "전체 보기",
     metadataNotFound: "배경화면을 찾을 수 없습니다",
     metadataFallbackDescription: "Bing 배경화면 상세 정보.",
+    footerDisclaimerLine1:
+      "이미지는 Microsoft Bing에서 제공되며, 표시 목적으로만 사용됩니다.",
+    footerDisclaimerLine2: "모든 저작권은 각 권리자에게 있습니다.",
+    footerDisclaimerLine3:
+      "이 프로젝트는 어떤 이미지도 저장하거나 재배포하지 않습니다.",
+    footerDisclaimerLine4: "침해 사항이 있다면 삭제를 위해 연락해 주세요.",
+    footerGithub: "GitHub에서 보기",
   },
-} as const;
+} as const
 
 export type Dictionary = (typeof dictionaries)[Locale];
 
@@ -405,6 +548,16 @@ export const htmlLangMap: Record<Locale, string> = {
   de: "de",
   ja: "ja",
   ko: "ko",
+};
+
+const intlLocaleMap: Record<Locale, string> = {
+  en: "en-US",
+  zh: "zh-CN",
+  es: "es-ES",
+  fr: "fr-FR",
+  de: "de-DE",
+  ja: "ja-JP",
+  ko: "ko-KR",
 };
 
 export function isValidLocale(locale: string): locale is Locale {
@@ -449,16 +602,28 @@ export function formatMonthLabel(locale: Locale, month: string) {
   if (locale === "ja") return `${Number(month)}月`;
   if (locale === "ko") return `${Number(month)}월`;
 
-  const formatterLocale =
-    locale === "es"
-      ? "es-ES"
-      : locale === "fr"
-        ? "fr-FR"
-        : locale === "de"
-          ? "de-DE"
-          : "en-US";
-
-  return new Intl.DateTimeFormat(formatterLocale, { month: "long" }).format(
+  return new Intl.DateTimeFormat(intlLocaleMap[locale], { month: "long" }).format(
     new Date(`2000-${month}-01`)
   );
+}
+
+export function formatArchiveDate(locale: Locale, ssd?: string, fallback?: string) {
+  if (!ssd) {
+    return fallback ?? "";
+  }
+
+  const match = ssd.match(/^(\d{4})(\d{2})(\d{2})/);
+  if (!match) {
+    return fallback ?? ssd;
+  }
+
+  const [, year, month, day] = match;
+  const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+
+  return new Intl.DateTimeFormat(intlLocaleMap[locale], {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(date);
 }

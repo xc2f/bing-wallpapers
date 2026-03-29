@@ -8,6 +8,7 @@ import ScrollRestorer from "@/components/scroll-restorer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import {
   filterWallpapersByDate,
+  getSearchHighlightTerms,
   getAllWallpapers,
   getMonthOptions,
   getYearOptions,
@@ -16,6 +17,7 @@ import {
   toProxyImageUrl,
 } from "@/lib/archive";
 import {
+  formatArchiveDate,
   getDictionary,
   getLocaleFromParam,
   isValidLocale,
@@ -23,6 +25,41 @@ import {
   locales,
   type Locale,
 } from "@/lib/i18n";
+import type { ReactNode } from "react";
+
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function highlightText(text: string, terms: string[]): ReactNode {
+  if (!terms.length) {
+    return text;
+  }
+
+  const pattern = terms.map(escapeRegExp).join("|");
+  if (!pattern) {
+    return text;
+  }
+
+  const segments = text.split(new RegExp(`(${pattern})`, "gi"));
+
+  return segments.map((segment, index) => {
+    const isMatch = terms.some((term) => segment.toLowerCase() === term.toLowerCase());
+
+    if (!isMatch) {
+      return <span key={`${segment}-${index}`}>{segment}</span>;
+    }
+
+    return (
+      <mark
+        key={`${segment}-${index}`}
+        className="rounded bg-amber-300/20 px-0.5 text-amber-100"
+      >
+        {segment}
+      </mark>
+    );
+  });
+}
 
 function createPageHref(
   locale: Locale,
@@ -101,11 +138,14 @@ export default async function LocalizedHomePage({
   );
   const dateFilteredWallpapers = filterWallpapersByDate(allWallpapers, year, month);
   const filteredWallpapers = searchWallpapers(dateFilteredWallpapers, query);
+  const highlightTerms = getSearchHighlightTerms(query);
   const { currentPage, totalPages, items } = paginateWallpapers(
     filteredWallpapers,
     page
   );
-  const latestDate = allWallpapers[0]?.FullDateString ?? "N/A";
+  const latestDate = allWallpapers[0]
+    ? formatArchiveDate(locale, allWallpapers[0].Ssd, allWallpapers[0].FullDateString)
+    : dictionary.notAvailable;
   const currentListPath = createPageHref(locale, currentPage, query, year, month);
 
   return (
@@ -131,14 +171,14 @@ export default async function LocalizedHomePage({
                 {dictionary.siteTitle}
               </h1>
             </div>
-            <dl className="grid grid-cols-2 gap-x-8 gap-y-3 border-l border-white/10 pl-6 text-sm text-stone-400 sm:w-fit">
-              <div>
+            <dl className="flex flex-wrap items-start gap-x-5 gap-y-3 border-l border-white/10 pl-6 text-sm text-stone-400 sm:w-fit">
+              <div className="min-w-[7.5rem]">
                 <dt className="uppercase tracking-[0.2em]">{dictionary.archived}</dt>
                 <dd className="mt-1 text-base font-medium text-stone-100">
                   {allWallpapers.length}
                 </dd>
               </div>
-              <div>
+              <div className="min-w-[9.5rem]">
                 <dt className="uppercase tracking-[0.2em]">{dictionary.latest}</dt>
                 <dd className="mt-1 text-base font-medium text-stone-100">
                   {latestDate}
@@ -173,12 +213,12 @@ export default async function LocalizedHomePage({
                   href={localizePath(locale, "/waterfall")}
                   aria-label={dictionary.viewWaterfall}
                   title={dictionary.viewWaterfall}
-                  className="inline-flex h-7 w-7 items-center justify-center rounded-md text-stone-400 transition hover:bg-white/[0.06] hover:text-white"
+                  className="inline-flex h-8 items-center gap-2 rounded-md border border-white/10 px-2.5 text-stone-300 transition hover:bg-white/[0.06] hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 16 16"
-                    className="h-4 w-4"
+                    className="h-4 w-4 shrink-0"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -187,6 +227,7 @@ export default async function LocalizedHomePage({
                     <rect x="1.5" y="9" width="5" height="5" stroke="currentColor" />
                     <rect x="9.5" y="9" width="5" height="5" stroke="currentColor" />
                   </svg>
+                  <span className="text-xs tracking-[0.14em]">{dictionary.viewWaterfall}</span>
                 </Link>
               </div>
             }
@@ -237,7 +278,9 @@ export default async function LocalizedHomePage({
 
                     <div className="flex flex-col gap-4 p-5">
                       <div className="flex items-center justify-between gap-3 text-xs uppercase tracking-[0.2em] text-stone-400">
-                        <span>{wallpaper.FullDateString ?? wallpaper.Ssd}</span>
+                        <span>
+                          {formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString)}
+                        </span>
                         <span>{wallpaper.Ssd}</span>
                       </div>
 
@@ -247,11 +290,11 @@ export default async function LocalizedHomePage({
                             href={createDetailHref(locale, wallpaper.Ssd)}
                             className="transition hover:text-amber-200"
                           >
-                            {title}
+                            {highlightText(title, highlightTerms.title)}
                           </PreserveScrollLink>
                         </h2>
                         <p className="mt-3 line-clamp-6 text-sm leading-6 text-stone-300">
-                          {description}
+                          {highlightText(description, highlightTerms.description)}
                         </p>
                       </div>
 
@@ -264,13 +307,15 @@ export default async function LocalizedHomePage({
               })}
             </section>
 
-            <nav className="flex flex-col gap-3 border-t border-white/10 pt-6 text-sm sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-stone-400">{dictionary.paginationPageSize}</p>
-              <div className="flex gap-3">
+            <nav className="flex flex-col items-center gap-3 border-t border-white/10 pt-6 text-sm sm:flex-row sm:justify-between">
+              <p className="inline-flex min-h-10 items-center text-stone-400">
+                {dictionary.paginationPageSize}
+              </p>
+              <div className="flex items-center gap-3">
                 <Link
                   href={createPageHref(locale, currentPage - 1, query, year, month)}
                   aria-disabled={currentPage <= 1}
-                  className={`rounded-full px-4 py-2 transition ${
+                  className={`inline-flex min-h-10 items-center rounded-full px-4 py-2 transition ${
                     currentPage <= 1
                       ? "pointer-events-none border border-white/10 text-stone-600"
                       : "border border-white/15 text-white hover:bg-white/10"
@@ -281,7 +326,7 @@ export default async function LocalizedHomePage({
                 <Link
                   href={createPageHref(locale, currentPage + 1, query, year, month)}
                   aria-disabled={currentPage >= totalPages}
-                  className={`rounded-full px-4 py-2 transition ${
+                  className={`inline-flex min-h-10 items-center rounded-full px-4 py-2 transition ${
                     currentPage >= totalPages
                       ? "pointer-events-none border border-white/10 text-stone-600"
                       : "bg-amber-300 text-stone-950 hover:bg-amber-200"

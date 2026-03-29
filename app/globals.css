@@ -5,6 +5,12 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-body:
+    "Avenir Next", Avenir, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", "Noto Sans JP", system-ui, sans-serif;
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+    "Noto Serif SC", "Source Han Serif SC", "Songti SC", STSong, Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,9 +23,14 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family:
-    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
-    "Noto Serif SC", "Songti SC", Georgia, serif;
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+[data-display-text="true"] {
+  font-family: var(--font-display);
 }
 
 code {
