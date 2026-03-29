@@ -1,6 +1,6 @@
 import data from "@/db/media_contents.json";
 
-export const BING_BASE_URL = process.env.BASE_URL
+export const BING_BASE_URL = process.env.BASE_URL || "https://www.bing.com";
 export const PAGE_SIZE = 12;
 
 export interface WallpaperItem {
@@ -31,6 +31,17 @@ interface DateParts {
 export function toAbsoluteUrl(path?: string) {
   if (!path) return "";
   return path.startsWith("http") ? path : `${BING_BASE_URL}${path}`;
+}
+
+export function toProxyImageUrl(path?: string) {
+  const absoluteUrl = toAbsoluteUrl(path);
+  if (!absoluteUrl) return "";
+
+  const params = new URLSearchParams({
+    url: absoluteUrl,
+  });
+
+  return `/api/image?${params.toString()}`;
 }
 
 export function getAllWallpapers() {

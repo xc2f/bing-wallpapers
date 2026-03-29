@@ -13,7 +13,7 @@ import {
   getYearOptions,
   paginateWallpapers,
   searchWallpapers,
-  toAbsoluteUrl,
+  toProxyImageUrl,
 } from "@/lib/archive";
 import {
   getDictionary,
@@ -209,7 +209,7 @@ export default async function LocalizedHomePage({
                 const title = wallpaper.ImageContent?.Title ?? dictionary.untitled;
                 const description =
                   wallpaper.ImageContent?.Description ?? dictionary.noDescription;
-                const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
+                const previewUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Url);
 
                 return (
                   <article

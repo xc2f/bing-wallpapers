@@ -14,7 +14,7 @@ import {
   getRelatedWallpapersFromList,
   getWallpaperBySsd,
   searchWallpapers,
-  toAbsoluteUrl,
+  toProxyImageUrl,
 } from "@/lib/archive";
 import {
   getDictionary,
@@ -102,8 +102,8 @@ export default async function LocalizedWallpaperDetailPage({
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.noDescription;
-  const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
-  const imageUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper);
+  const previewUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Url);
+  const imageUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
   const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
   const relatedWallpapers = hasFilteredMatch
@@ -319,7 +319,7 @@ export default async function LocalizedWallpaperDetailPage({
           <div className="grid gap-6 md:grid-cols-3">
             {relatedWallpapers.map((item) => {
               const relatedTitle = item.ImageContent?.Title ?? item.Ssd;
-              const relatedPreviewUrl = toAbsoluteUrl(item.ImageContent?.Image?.Url);
+              const relatedPreviewUrl = toProxyImageUrl(item.ImageContent?.Image?.Url);
 
               return (
                 <Link

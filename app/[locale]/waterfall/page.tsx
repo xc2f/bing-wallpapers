@@ -8,7 +8,7 @@ import {
   filterWallpapersByDate,
   getAllWallpapers,
   getYearOptions,
-  toAbsoluteUrl,
+  toProxyImageUrl,
 } from "@/lib/archive";
 import {
   getDictionary,
@@ -86,7 +86,7 @@ export default async function LocalizedWaterfallPage({
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
     description:
       wallpaper.ImageContent?.Description ?? dictionary.noDescription,
-    previewUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url),
+    previewUrl: toProxyImageUrl(wallpaper.ImageContent?.Image?.Url),
     detailHref: createDetailHref(locale, wallpaper.Ssd),
   }));
 
