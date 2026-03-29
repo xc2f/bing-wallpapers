@@ -84,7 +84,7 @@ export default function FilterBar({
   }
 
   return (
-    <div className="rounded-[1.25rem] bg-white/[0.03] p-4 backdrop-blur-xl sm:p-5">
+    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl sm:p-5">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex flex-col gap-3 xl:flex-row xl:items-end">
           <label className="flex min-w-0 flex-1 flex-col gap-2">

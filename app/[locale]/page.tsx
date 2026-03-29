@@ -244,14 +244,7 @@ export default async function LocalizedHomePage({
                       <div>
                         <h2 className="text-xl font-semibold leading-tight text-white">
                           <PreserveScrollLink
-                            href={createDetailHref(
-                              locale,
-                              wallpaper.Ssd,
-                              query,
-                              year,
-                              month,
-                              currentPage
-                            )}
+                            href={createDetailHref(locale, wallpaper.Ssd)}
                             className="transition hover:text-amber-200"
                           >
                             {title}
