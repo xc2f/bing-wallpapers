@@ -4,6 +4,7 @@ const url = new URL(process.env.BASE_URL || "https://www.bing.com")
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: url.protocol.slice(0, -1) as "http" | "https",
