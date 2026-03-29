@@ -13765,6 +13765,37 @@
       "Market": "ROW",
       "Hash": "4443502358",
       "FullDateString": "Mar 27, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "The African buffalo, a powerful and imposing creature, roams the savannas and wetlands of Tanzania, particularly within the Ngorongoro Conservation Area (NCA). Known for their large, curved horns and massive size, they are one of Africa's 'Big Five' (buffalo, elephant, leopard, rhino, lion) and are widely respected for their strength and resilience. The NCA, a UNESCO World Heritage Site, offers a dramatic and ecologically rich setting for observing these formidable herbivores.",
+        "Image": {
+          "Url": "/th?id=OHR.CapeBuffalo_ROW0708366233_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.CapeBuffalo_ROW0708366233_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "African buffalo, Ngorongoro Crater, Tanzania",
+        "Copyright": "© jesuss8/500px/Getty Images",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260328_CapeBuffalo\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=African+buffalo&form=hpcapt&filters=HpDate:\"20260328_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260328_CapeBuffalo"
+      },
+      "Ssd": "20260328",
+      "Name": "CapeBuffalo",
+      "Market": "ROW",
+      "Hash": "0708366233",
+      "FullDateString": "Mar 28, 2026"
     }
   ]
 }
