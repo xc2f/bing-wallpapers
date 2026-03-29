@@ -53,7 +53,7 @@ Run:
 npm run save
 ```
 
-This will fetch wallpaper data and update local storage files under [`db/`](/Users/fen/workspace/bing-wallpapers/db).
+This will fetch wallpaper data and update local storage files under [`db/`](./db/).
 
 ## Scripts
 
@@ -66,18 +66,18 @@ This will fetch wallpaper data and update local storage files under [`db/`](/Use
 
 ## Image Proxy
 
-The app proxies Bing images through [`app/api/image/route.ts`](/Users/fen/workspace/bing-wallpapers/app/api/image/route.ts) so requests can include a Bing-compatible `Referer` and avoid direct-image `400` responses.
+The app proxies Bing images through [`app/api/image/route.ts`](./app/api/image/route.ts) so requests can include a Bing-compatible `Referer` and avoid direct-image `400` responses.
 
-Image helpers live in [`lib/archive.ts`](/Users/fen/workspace/bing-wallpapers/lib/archive.ts).
+Image helpers live in [`lib/archive.ts`](./lib/archive.ts).
 
 ## Project Structure
 
-- [`app/[locale]/page.tsx`](/Users/fen/workspace/bing-wallpapers/app/[locale]/page.tsx) - archive list page
-- [`app/[locale]/wallpaper/[ssd]/page.tsx`](/Users/fen/workspace/bing-wallpapers/app/[locale]/wallpaper/[ssd]/page.tsx) - wallpaper detail page
-- [`app/[locale]/waterfall/page.tsx`](/Users/fen/workspace/bing-wallpapers/app/[locale]/waterfall/page.tsx) - waterfall gallery
-- [`lib/wallpaper.ts`](/Users/fen/workspace/bing-wallpapers/lib/wallpaper.ts) - wallpaper fetching pipeline
-- [`lib/db.ts`](/Users/fen/workspace/bing-wallpapers/lib/db.ts) - SQLite persistence
-- [`lib/db_low.ts`](/Users/fen/workspace/bing-wallpapers/lib/db_low.ts) - JSON persistence
+- [`app/[locale]/page.tsx`](./app/[locale]/page.tsx) - archive list page
+- [`app/[locale]/wallpaper/[ssd]/page.tsx`](./app/[locale]/wallpaper/[ssd]/page.tsx) - wallpaper detail page
+- [`app/[locale]/waterfall/page.tsx`](./app/[locale]/waterfall/page.tsx) - waterfall gallery
+- [`lib/wallpaper.ts`](./lib/wallpaper.ts) - wallpaper fetching pipeline
+- [`lib/db.ts`](./lib/db.ts) - SQLite persistence
+- [`lib/db_low.ts`](./lib/db_low.ts) - JSON persistence
 
 ## Deployment
 
@@ -92,10 +92,10 @@ npm run deploy
 
 ## Screenshots
 
-![Archive list](public/images/bing-xc2f.webp)
+![Archive list](./public/images/bing-xc2f.webp)
 
-![Wallpaper detail](public/images/bing-xc2f-wallpaper.webp)
+![Wallpaper detail](./public/images/bing-xc2f-wallpaper.webp)
 
-![Waterfall view - image only](public/images/bing-xc2f-waterfall-image.webp)
+![Waterfall view - image only](./public/images/bing-xc2f-waterfall-image.webp)
 
-![Waterfall view - with metadata](public/images/bing-xc2f-waterfall-meta.webp)
+![Waterfall view - with metadata](./public/images/bing-xc2f-waterfall-meta.webp)
