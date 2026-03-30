@@ -13796,6 +13796,37 @@
       "Market": "ROW",
       "Hash": "0708366233",
       "FullDateString": "Mar 28, 2026"
+    },
+    {
+      "ImageContent": {
+        "Description": "Peggy's Cove is a small yet captivating village on the rugged coast of Nova Scotia that offers a glimpse of life by the sea. The village's most famous landmark is Peggy's Point Lighthouse—also known as Peggy's Cove Lighthouse—first established in 1868 and replaced by the current structure in 1915. For over a century, it has guided ships through the ever-changing Atlantic waters, serving as a timeless symbol of coastal life. The surrounding landscape, with its windswept beauty and crashing waves, feels almost untouched by time.",
+        "Image": {
+          "Url": "/th?id=OHR.PeggysLighthouse_ROW0925207018_1920x1080.webp",
+          "Wallpaper": "/th?id=OHR.PeggysLighthouse_ROW0925207018_1920x1200.jpg&rf=LaDigue_1920x1200.jpg",
+          "Downloadable": true
+        },
+        "Headline": "Info",
+        "Title": "Peggy's Point Lighthouse, Atlantic Coast, Nova Scotia, Canada",
+        "Copyright": "© Prashanth Bala/Shutterstock",
+        "SocialGood": null,
+        "MapLink": {
+          "Url": "",
+          "Link": ""
+        },
+        "QuickFact": {
+          "MainText": "",
+          "LinkUrl": "",
+          "LinkText": ""
+        },
+        "TriviaUrl": "/search?q=Bing+homepage+quiz&filters=WQOskey:\"HPQuiz_20260329_PeggysLighthouse\"&FORM=HPQUIZ",
+        "BackstageUrl": "/search?q=Peggys+Point+Lighthouse&form=hpcapt&filters=HpDate:\"20260329_0700\"+mgzv3configlist:\"BingQA_Encyclopedia_Layout\"",
+        "TriviaId": "HPQuiz_20260329_PeggysLighthouse"
+      },
+      "Ssd": "20260329",
+      "Name": "PeggysLighthouse",
+      "Market": "ROW",
+      "Hash": "0925207018",
+      "FullDateString": "Mar 29, 2026"
     }
   ]
 }
