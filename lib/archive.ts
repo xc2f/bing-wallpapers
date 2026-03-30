@@ -70,7 +70,7 @@ export function getRelatedWallpapersFromList(
 
   const related: WallpaperItem[] = [];
 
-  for (let offset = 1; related.length < limit; offset += 1) {
+  for (let offset = 2; related.length < limit; offset += 1) {
     const newerWallpaper = wallpapers[currentIndex - offset];
     const olderWallpaper = wallpapers[currentIndex + offset];
 
@@ -78,12 +78,12 @@ export function getRelatedWallpapersFromList(
       break;
     }
 
-    if (olderWallpaper) {
-      related.push(olderWallpaper);
+    if (newerWallpaper) {
+      related.push(newerWallpaper);
     }
 
-    if (related.length < limit && newerWallpaper) {
-      related.push(newerWallpaper);
+    if (related.length < limit && olderWallpaper) {
+      related.push(olderWallpaper);
     }
   }
 

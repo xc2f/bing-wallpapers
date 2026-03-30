@@ -3,6 +3,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import DetailAmbientBackground from "@/components/detail-ambient-background";
+import DetailKeyboardNavigation from "@/components/detail-keyboard-navigation";
+import DetailPrefetchLinks from "@/components/detail-prefetch-links";
+import DetailRelatedStrip from "@/components/detail-related-strip";
 import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import SmartBackButton from "@/components/smart-back-button";
@@ -26,6 +29,25 @@ import {
   localizePath,
   type Locale,
 } from "@/lib/i18n";
+
+function splitDescriptionIntoParagraphs(description: string) {
+  const normalized = description.trim();
+
+  if (!normalized) {
+    return [];
+  }
+
+  const blocks = normalized
+    .split(/\n{2,}/)
+    .flatMap((block) =>
+      block
+        .split(/(?<=[.!?。！？])\s+/)
+        .map((part) => part.trim())
+        .filter(Boolean)
+    );
+
+  return blocks.length > 0 ? blocks : [normalized];
+}
 
 export async function generateStaticParams() {
   return locales.flatMap((locale) =>
@@ -104,6 +126,7 @@ export default async function LocalizedWallpaperDetailPage({
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.noDescription;
+  const descriptionParagraphs = splitDescriptionIntoParagraphs(description);
   const formattedDate = formatArchiveDate(
     currentLocale,
     wallpaper.Ssd,
@@ -114,8 +137,8 @@ export default async function LocalizedWallpaperDetailPage({
   const downloadUrl = imageUrl || previewUrl;
   const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
   const relatedWallpapers = hasFilteredMatch
-    ? getRelatedWallpapersFromList(filteredWallpapers, wallpaper.Ssd, 3)
-    : getRelatedWallpapers(wallpaper.Ssd, 3);
+    ? getRelatedWallpapersFromList(filteredWallpapers, wallpaper.Ssd, 8)
+    : getRelatedWallpapers(wallpaper.Ssd, 8);
   const { previous, next } = hasFilteredMatch
     ? getAdjacentWallpapersFromList(filteredWallpapers, wallpaper.Ssd)
     : getAdjacentWallpapers(wallpaper.Ssd);
@@ -150,6 +173,16 @@ export default async function LocalizedWallpaperDetailPage({
 
   return (
     <DetailAmbientBackground imageUrl={previewUrl || imageUrl}>
+      <DetailKeyboardNavigation
+        previousHref={previous ? createDetailHref(previous.Ssd) : undefined}
+        nextHref={next ? createDetailHref(next.Ssd) : undefined}
+      />
+      <DetailPrefetchLinks
+        hrefs={[
+          previous ? createDetailHref(previous.Ssd) : "",
+          next ? createDetailHref(next.Ssd) : "",
+        ]}
+      />
       <main className="min-h-screen bg-stone-950/84 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
@@ -165,12 +198,16 @@ export default async function LocalizedWallpaperDetailPage({
             <SmartBackButton
               fallbackHref={backHref}
               className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
-              label={dictionary.detailBack}
+              label={
+                view === "waterfall"
+                  ? dictionary.detailBackToWaterfall
+                  : dictionary.detailBack
+              }
             />
           </div>
 
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
+          <div className="flex flex-col gap-3">
+              <div className="max-w-5xl">
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.detailLabel}
               </p>
@@ -186,21 +223,6 @@ export default async function LocalizedWallpaperDetailPage({
                 </div>
               ) : null}
             </div>
-
-            <dl className="grid grid-cols-1 gap-y-3 border-l border-white/10 pl-6 text-sm text-stone-400 sm:w-fit">
-              <div>
-                <dt className="uppercase tracking-[0.2em]">{dictionary.detailDate}</dt>
-                <dd className="mt-1 text-base font-medium text-stone-100">
-                  {formattedDate}
-                </dd>
-              </div>
-              <div>
-                <dt className="uppercase tracking-[0.2em]">
-                  {dictionary.detailArchiveId}
-                </dt>
-                <dd className="mt-1 font-mono text-sm text-white">{wallpaper.Ssd}</dd>
-              </div>
-            </dl>
           </div>
           </section>
 
@@ -223,41 +245,30 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
 
             <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
-            <div>
-              <h2 className="text-lg font-semibold text-white">
+            <div className="max-w-3xl">
+              <h2 className="text-sm uppercase tracking-[0.22em] text-stone-500">
                 {dictionary.detailDescription}
               </h2>
-              <p className="mt-4 text-sm leading-7 text-stone-300">{description}</p>
+              <div className="mt-5 space-y-5">
+                {descriptionParagraphs.map((paragraph, index) => (
+                  <p
+                    key={`${wallpaper.Ssd}-description-${index}`}
+                    className="text-[1.03rem] leading-8 text-stone-200 sm:text-[1.08rem]"
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
             </div>
 
-              <aside className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5 backdrop-blur-md">
-              <h2 className="text-lg font-semibold text-white">{dictionary.detailInfo}</h2>
-              <dl className="mt-4 flex flex-col gap-4 text-sm text-stone-300">
-                <div>
-                  <dt className="text-stone-400">{dictionary.detailTitle}</dt>
-                  <dd className="mt-1 text-white">{title}</dd>
-                </div>
-                <div>
-                  <dt className="text-stone-400">{dictionary.detailCopyright}</dt>
-                  <dd className="mt-1">
-                    {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
-                  </dd>
-                </div>
-                <div>
-                  <dt className="text-stone-400">{dictionary.detailDate}</dt>
-                  <dd className="mt-1">
-                    {formattedDate}
-                  </dd>
-                </div>
-              </dl>
-
-              <div className="mt-6 flex flex-wrap gap-3">
+              <aside className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5 lg:sticky lg:top-6 lg:self-start">
+                <div className="grid gap-3 border-b border-white/10 pb-5">
                 {downloadUrl ? (
                   <a
                     href={downloadUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full bg-amber-300 px-4 py-2 text-sm font-medium text-stone-950 transition hover:bg-amber-200"
+                      className="inline-flex items-center justify-center rounded-full bg-amber-300 px-4 py-2.5 text-sm font-medium text-stone-950 transition hover:bg-amber-200"
                   >
                     {dictionary.detailOpenFull}
                   </a>
@@ -267,61 +278,126 @@ export default async function LocalizedWallpaperDetailPage({
                     href={previewUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white transition hover:bg-white/10"
+                      className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
                   >
                     {dictionary.detailOpenPreview}
                   </a>
                 ) : null}
-              </div>
+                </div>
+
+                <dl className="mt-3 flex flex-col text-sm">
+                  <div className="grid gap-2 border-b border-white/10 py-3">
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                      {dictionary.detailCopyright}
+                    </dt>
+                    <dd className="leading-6 text-stone-200">
+                    {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
+                  </dd>
+                </div>
+                  <div className="flex items-start justify-between gap-4 border-b border-white/10 py-3">
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                      {dictionary.detailDate}
+                    </dt>
+                    <dd className="text-right text-stone-200">
+                    {formattedDate}
+                  </dd>
+                </div>
+                  <div className="flex items-start justify-between gap-4 py-3">
+                    <dt className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                      {dictionary.detailArchiveId}
+                    </dt>
+                    <dd className="font-mono text-right text-stone-300">
+                      {wallpaper.Ssd}
+                    </dd>
+                  </div>
+              </dl>
               </aside>
             </div>
           </section>
 
         {previous || next ? (
           <section className="grid gap-4 border-t border-white/10 pt-8 md:grid-cols-2">
-            {previous ? (
-            <Link
-              href={createDetailHref(previous.Ssd)}
-              replace
-              className="rounded-3xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                {dictionary.detailOlder}
-              </p>
-              <p className="mt-2 text-sm text-stone-400">
-                {formatArchiveDate(currentLocale, previous.Ssd, previous.FullDateString)}
-              </p>
-              <h3 className="mt-1 text-lg font-semibold text-white">
-                {previous.ImageContent?.Title ?? previous.Ssd}
-              </h3>
-            </Link>
-            ) : null}
-
             {next ? (
             <Link
               href={createDetailHref(next.Ssd)}
               replace
-              className="rounded-3xl border border-white/10 bg-white/5 p-5 text-right transition hover:bg-white/10"
+              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-x-1 hover:bg-white/10"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                {dictionary.detailNewer}
-              </p>
-              <p className="mt-2 text-sm text-stone-400">
-                {formatArchiveDate(currentLocale, next.Ssd, next.FullDateString)}
-              </p>
-              <h3 className="mt-1 text-lg font-semibold text-white">
-                {next.ImageContent?.Title ?? next.Ssd}
-              </h3>
+              <div className="grid min-h-[10rem] gap-0 grid-cols-[132px_minmax(0,1fr)]">
+                <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
+                  {toProxyImageUrl(next.ImageContent?.Image?.Url) ? (
+                    <Image
+                      src={toProxyImageUrl(next.ImageContent?.Image?.Url)}
+                      alt={next.ImageContent?.Title ?? next.Ssd}
+                      width={1920}
+                      height={1080}
+                      sizes="132px"
+                      quality={62}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : null}
+                </div>
+                <div className="flex flex-col justify-between p-5">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                      ← {dictionary.detailNewerShort}
+                    </p>
+                    <p className="mt-2 text-sm text-stone-400">
+                      {formatArchiveDate(currentLocale, next.Ssd, next.FullDateString)}
+                    </p>
+                    <h3 className="mt-1 line-clamp-2 text-lg font-semibold text-white">
+                      {next.ImageContent?.Title ?? next.Ssd}
+                    </h3>
+                  </div>
+                </div>
+              </div>
             </Link>
-            ) : null}
+            ) : <div aria-hidden="true" className="hidden md:block" />}
+
+            {previous ? (
+            <Link
+              href={createDetailHref(previous.Ssd)}
+              replace
+              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
+            >
+              <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_132px]">
+                <div className="flex flex-col justify-between p-5 text-right">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                      {dictionary.detailOlderShort} →
+                    </p>
+                    <p className="mt-2 text-sm text-stone-400">
+                      {formatArchiveDate(currentLocale, previous.Ssd, previous.FullDateString)}
+                    </p>
+                    <h3 className="mt-1 line-clamp-2 text-lg font-semibold text-white">
+                      {previous.ImageContent?.Title ?? previous.Ssd}
+                    </h3>
+                  </div>
+                </div>
+                <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
+                  {toProxyImageUrl(previous.ImageContent?.Image?.Url) ? (
+                    <Image
+                      src={toProxyImageUrl(previous.ImageContent?.Image?.Url)}
+                      alt={previous.ImageContent?.Title ?? previous.Ssd}
+                      width={1920}
+                      height={1080}
+                      sizes="132px"
+                      quality={62}
+                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : null}
+                </div>
+              </div>
+            </Link>
+            ) : <div aria-hidden="true" className="hidden md:block" />}
           </section>
         ) : null}
 
         <section className="flex flex-col gap-4 border-t border-white/10 pt-8">
           <h2 className="text-2xl font-semibold text-white">{dictionary.detailMore}</h2>
 
-          <div className="grid gap-6 md:grid-cols-3">
-            {relatedWallpapers.map((item) => {
+          <DetailRelatedStrip>
+            {relatedWallpapers.map((item, index) => {
               const relatedTitle = item.ImageContent?.Title ?? item.Ssd;
               const relatedPreviewUrl = toProxyImageUrl(item.ImageContent?.Image?.Url);
 
@@ -330,33 +406,39 @@ export default async function LocalizedWallpaperDetailPage({
                   key={item.Ssd}
                   href={createDetailHref(item.Ssd)}
                   replace
-                  className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition hover:bg-white/10"
+                  className={`group ${
+                    index >= 4 ? "hidden md:flex" : "flex"
+                  } w-[16.5rem] shrink-0 overflow-hidden rounded-[1.375rem] border border-white/10 bg-white/[0.03] transition duration-300 hover:border-white/15 hover:bg-white/[0.06]`}
                 >
-                  {relatedPreviewUrl ? (
-                    <Image
-                      src={relatedPreviewUrl}
-                      alt={relatedTitle}
-                      width={1920}
-                      height={1080}
-                      className="h-44 w-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-44 items-center justify-center bg-stone-900 text-sm text-stone-400">
-                      {dictionary.noPreviewImage}
-                    </div>
-                  )}
-                  <div className="p-4">
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                  <div className="relative h-[6.5rem] w-[6.5rem] shrink-0 overflow-hidden bg-stone-900">
+                    {relatedPreviewUrl ? (
+                      <Image
+                        src={relatedPreviewUrl}
+                        alt={relatedTitle}
+                        width={1920}
+                        height={1080}
+                        sizes="104px"
+                        quality={62}
+                        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-sm text-stone-400">
+                        {dictionary.noPreviewImage}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 p-3.5">
+                    <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
                       {formatArchiveDate(currentLocale, item.Ssd, item.FullDateString)}
                     </p>
-                    <h3 className="mt-2 text-lg font-semibold text-white">
+                    <h3 className="line-clamp-2 text-[0.96rem] font-semibold leading-snug text-white">
                       {relatedTitle}
                     </h3>
                   </div>
                 </Link>
               );
             })}
-          </div>
+          </DetailRelatedStrip>
         </section>
         </div>
       </main>

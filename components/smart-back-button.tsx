@@ -16,11 +16,6 @@ export default function SmartBackButton({
   const router = useRouter();
 
   function handleClick() {
-    if (window.history.length > 1) {
-      router.back();
-      return;
-    }
-
     router.push(fallbackHref, { scroll: false });
   }
 

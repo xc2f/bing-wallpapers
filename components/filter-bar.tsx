@@ -1,70 +1,73 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+} from "react";
 import { useRouter } from "next/navigation";
 import { type Dictionary, type Locale, formatMonthLabel, localizePath } from "@/lib/i18n";
 
 const FILTER_BAR_COLLAPSED_STORAGE_KEY = "bing-wallpapers-filter-bar-collapsed";
 
-interface CustomSelectOption {
-  label: string;
-  value: string;
-}
-
-interface CustomSelectProps {
+interface DateCascadeSelectProps {
   label: string;
   name: string;
-  options: CustomSelectOption[];
-  value: string;
-  onChange: (value: string) => void;
+  yearOptions: string[];
+  yearToMonths: Record<string, string[]>;
+  locale: Locale;
+  dictionary: Dictionary;
+  yearValue: string;
+  monthValue: string;
+  onChange: (nextYear: string, nextMonth: string) => void;
   widthClassName?: string;
 }
 
-function CustomSelect({
+function DateCascadeSelect({
   label,
   name,
-  options,
-  value,
+  yearOptions,
+  yearToMonths,
+  locale,
+  dictionary,
+  yearValue,
+  monthValue,
   onChange,
   widthClassName,
-}: CustomSelectProps) {
+}: DateCascadeSelectProps) {
   const [open, setOpen] = useState(false);
-  const [highlightedIndex, setHighlightedIndex] = useState(0);
+  const [activeYear, setActiveYear] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const optionRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const listboxId = useId();
-  const selectedIndex = Math.max(
-    0,
-    options.findIndex((option) => option.value === value)
-  );
-  const selectedOption = options[selectedIndex] ?? options[0];
 
-  useEffect(() => {
-    setHighlightedIndex(selectedIndex);
-  }, [selectedIndex]);
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    optionRefs.current[highlightedIndex]?.scrollIntoView({
-      block: "nearest",
-    });
-  }, [highlightedIndex, open]);
+  const triggerLabel = monthValue
+    ? `${yearValue} / ${formatMonthLabel(locale, monthValue)}`
+    : yearValue || dictionary.filterAllTime;
 
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
       if (!containerRef.current?.contains(event.target as Node)) {
         setOpen(false);
+        setActiveYear(null);
       }
     }
 
     function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        setOpen(false);
+      if (event.key !== "Escape") {
+        return;
       }
+
+      if (activeYear) {
+        setActiveYear(null);
+        return;
+      }
+
+      setOpen(false);
     }
 
     document.addEventListener("mousedown", handlePointerDown);
@@ -74,95 +77,66 @@ function CustomSelect({
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, []);
+  }, [activeYear]);
 
-  function handleSelect(nextValue: string) {
-    onChange(nextValue);
+  const activeMonths = activeYear ? yearToMonths[activeYear] ?? [] : [];
+
+  function handleSelectAll() {
+    onChange("", "");
     setOpen(false);
+    setActiveYear(null);
   }
 
-  function handleTriggerKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      setOpen(true);
-      setHighlightedIndex((current) => Math.min(current + 1, options.length - 1));
-      return;
-    }
+  function handleSelectYear(nextYear: string) {
+    const months = yearToMonths[nextYear] ?? [];
 
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      setOpen(true);
-      setHighlightedIndex((current) => Math.max(current - 1, 0));
-      return;
-    }
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-
-      if (open) {
-        handleSelect(options[highlightedIndex]?.value ?? value);
-      } else {
-        setOpen(true);
-        setHighlightedIndex(selectedIndex);
-      }
-    }
-  }
-
-  function handleOptionKeyDown(
-    event: React.KeyboardEvent<HTMLButtonElement>,
-    optionIndex: number
-  ) {
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      setHighlightedIndex(Math.min(optionIndex + 1, options.length - 1));
-      return;
-    }
-
-    if (event.key === "ArrowUp") {
-      event.preventDefault();
-      setHighlightedIndex(Math.max(optionIndex - 1, 0));
-      return;
-    }
-
-    if (event.key === "Home") {
-      event.preventDefault();
-      setHighlightedIndex(0);
-      return;
-    }
-
-    if (event.key === "End") {
-      event.preventDefault();
-      setHighlightedIndex(options.length - 1);
-      return;
-    }
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleSelect(options[optionIndex]?.value ?? value);
-      return;
-    }
-
-    if (event.key === "Escape") {
-      event.preventDefault();
+    if (!months.length) {
+      onChange(nextYear, "");
       setOpen(false);
+      setActiveYear(null);
+      return;
     }
+
+    setActiveYear(nextYear);
+  }
+
+  function handleSelectMonth(nextMonth: string) {
+    if (!activeYear) {
+      return;
+    }
+
+    onChange(activeYear, nextMonth);
+    setOpen(false);
+    setActiveYear(null);
+  }
+
+  function handleSelectWholeYear() {
+    if (!activeYear) {
+      return;
+    }
+
+    onChange(activeYear, "");
+    setOpen(false);
+    setActiveYear(null);
   }
 
   return (
     <label className={`flex flex-col gap-2 ${widthClassName ?? ""}`}>
       <span className="text-sm text-stone-300">{label}</span>
       <div ref={containerRef} className="relative">
-        <input type="hidden" name={name} value={value} />
+        <input type="hidden" name={name} value={monthValue ? `${yearValue}-${monthValue}` : yearValue} />
         <button
           type="button"
           aria-haspopup="listbox"
           aria-expanded={open}
           aria-controls={listboxId}
-          onClick={() => setOpen((current) => !current)}
-          onKeyDown={handleTriggerKeyDown}
-          className="inline-flex h-12 w-full items-center justify-between rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 pr-4 text-left text-white outline-none backdrop-blur-[12px] transition hover:bg-white/[0.05] focus:border-amber-300/45 focus:bg-white/[0.05]"
+          onClick={() => {
+            setOpen((current) => !current);
+            setActiveYear(null);
+          }}
+          className="inline-flex h-12 w-full items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 pr-4 text-left text-white outline-none transition hover:bg-white/[0.04] focus:border-amber-300/35 focus:bg-white/[0.04]"
         >
-          <span className="truncate">{selectedOption?.label}</span>
+          <span className="truncate">{triggerLabel}</span>
           <span
             aria-hidden="true"
             className={`ml-3 shrink-0 text-stone-500 transition ${open ? "rotate-180" : ""}`}
@@ -185,40 +159,105 @@ function CustomSelect({
         </button>
 
         {open ? (
-          <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950/95 shadow-[0_18px_50px_rgba(0,0,0,0.32)] backdrop-blur-xl">
-            <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
-              {options.map((option, index) => {
-                const isSelected = option.value === value;
-                const isHighlighted = highlightedIndex === index;
+          <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950">
+            {!activeYear ? (
+              <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
+                <li role="option" aria-selected={!yearValue && !monthValue}>
+                  <button
+                    type="button"
+                    onClick={handleSelectAll}
+                    className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
+                      !yearValue && !monthValue
+                        ? "bg-white/[0.06] text-white"
+                        : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                    }`}
+                  >
+                    <span>{dictionary.filterAllTime}</span>
+                    {!yearValue && !monthValue ? (
+                      <span aria-hidden="true" className="text-amber-300">•</span>
+                    ) : null}
+                  </button>
+                </li>
+                {yearOptions.map((optionYear) => {
+                  const isSelectedYear = optionYear === yearValue && !monthValue;
+                  const hasMonths = (yearToMonths[optionYear] ?? []).length > 0;
 
-                return (
-                  <li key={option.value || "__empty__"} role="option" aria-selected={isSelected}>
+                  return (
+                    <li key={optionYear} role="option" aria-selected={isSelectedYear}>
+                      <button
+                        type="button"
+                        onClick={() => handleSelectYear(optionYear)}
+                        className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
+                          isSelectedYear
+                            ? "bg-white/[0.06] text-white"
+                            : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                        }`}
+                      >
+                        <span>{optionYear}</span>
+                        <span aria-hidden="true" className={hasMonths ? "text-stone-500" : "text-amber-300"}>
+                          {hasMonths ? "›" : "•"}
+                        </span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <div className="py-1">
+                <div className="flex items-center justify-between border-b border-white/[0.06] px-3 py-2">
+                  <button
+                    type="button"
+                    onClick={() => setActiveYear(null)}
+                    className="inline-flex items-center gap-2 text-xs tracking-[0.14em] text-stone-400 transition hover:text-white"
+                  >
+                    <span aria-hidden="true">‹</span>
+                    <span>{dictionary.filterBackToYears}</span>
+                  </button>
+                  <span className="text-sm text-stone-300">{activeYear}</span>
+                </div>
+                <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
+                  <li role="option" aria-selected={activeYear === yearValue && !monthValue}>
                     <button
-                      ref={(element) => {
-                        optionRefs.current[index] = element;
-                      }}
                       type="button"
-                      onClick={() => handleSelect(option.value)}
-                      onMouseEnter={() => setHighlightedIndex(index)}
-                      onFocus={() => setHighlightedIndex(index)}
-                      onKeyDown={(event) => handleOptionKeyDown(event, index)}
+                      onClick={handleSelectWholeYear}
                       className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
-                        isHighlighted || isSelected
-                          ? "bg-white/[0.08] text-white"
-                          : "text-stone-300 hover:bg-white/[0.06] hover:text-white"
+                        activeYear === yearValue && !monthValue
+                          ? "bg-white/[0.06] text-white"
+                          : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                       }`}
                     >
-                      <span>{option.label}</span>
-                      {isSelected ? (
-                        <span aria-hidden="true" className="text-amber-300">
-                          •
-                        </span>
+                      <span>{activeYear}</span>
+                      {activeYear === yearValue && !monthValue ? (
+                        <span aria-hidden="true" className="text-amber-300">•</span>
                       ) : null}
                     </button>
                   </li>
-                );
-              })}
-            </ul>
+                  {activeMonths.map((optionMonth) => {
+                    const isSelectedMonth =
+                      activeYear === yearValue && optionMonth === monthValue;
+
+                    return (
+                      <li key={`${activeYear}-${optionMonth}`} role="option" aria-selected={isSelectedMonth}>
+                        <button
+                          type="button"
+                          onClick={() => handleSelectMonth(optionMonth)}
+                          className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
+                            isSelectedMonth
+                              ? "bg-white/[0.06] text-white"
+                              : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                          }`}
+                        >
+                          <span>{formatMonthLabel(locale, optionMonth)}</span>
+                          {isSelectedMonth ? (
+                            <span aria-hidden="true" className="text-amber-300">•</span>
+                          ) : null}
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            )}
           </div>
         ) : null}
       </div>
@@ -233,7 +272,6 @@ interface FilterBarProps {
   initialYear: string;
   initialMonth: string;
   yearOptions: string[];
-  allMonthOptions: string[];
   yearToMonths: Record<string, string[]>;
   footer?: ReactNode;
   resultSummary: ReactNode;
@@ -246,7 +284,6 @@ export default function FilterBar({
   initialYear,
   initialMonth,
   yearOptions,
-  allMonthOptions,
   yearToMonths,
   footer,
   resultSummary,
@@ -257,6 +294,7 @@ export default function FilterBar({
   const [month, setMonth] = useState(initialMonth);
   const [collapsed, setCollapsed] = useState(false);
   const [showSearchHelp, setShowSearchHelp] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     setQuery(initialQuery);
@@ -289,16 +327,6 @@ export default function FilterBar({
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  const monthOptions = useMemo(() => {
-    return year ? yearToMonths[year] ?? [] : allMonthOptions;
-  }, [allMonthOptions, year, yearToMonths]);
-
-  useEffect(() => {
-    if (month && !monthOptions.includes(month)) {
-      setMonth("");
-    }
-  }, [month, monthOptions]);
-
   const summaryItems = useMemo(() => {
     const items: string[] = [];
 
@@ -317,29 +345,12 @@ export default function FilterBar({
     return items;
   }, [dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
 
-  const yearSelectOptions = useMemo(
-    () => [
-      { label: dictionary.filterAllYears, value: "" },
-      ...yearOptions.map((optionYear) => ({
-        label: optionYear,
-        value: optionYear,
-      })),
-    ],
-    [dictionary.filterAllYears, yearOptions]
-  );
-
-  const monthSelectOptions = useMemo(
-    () => [
-      { label: dictionary.filterAllMonths, value: "" },
-      ...monthOptions.map((optionMonth) => ({
-        label: formatMonthLabel(locale, optionMonth),
-        value: optionMonth,
-      })),
-    ],
-    [dictionary.filterAllMonths, locale, monthOptions]
-  );
-
   const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const lastAppliedRef = useRef({
+    query: initialQuery,
+    year: initialYear,
+    month: initialMonth,
+  });
 
   useEffect(() => {
     function updateViewportState() {
@@ -354,7 +365,11 @@ export default function FilterBar({
     };
   }, []);
 
-  function applyFilters(nextQuery: string, nextYear: string, nextMonth: string) {
+  const applyFilters = useCallback((
+    nextQuery: string,
+    nextYear: string,
+    nextMonth: string
+  ) => {
     const params = new URLSearchParams();
 
     if (nextQuery.trim()) {
@@ -371,29 +386,90 @@ export default function FilterBar({
 
     const search = params.toString();
     const href = localizePath(locale, search ? `?${search}` : "");
-    router.push(href);
-  }
+    startTransition(() => {
+      router.push(href);
+    });
+  }, [locale, router, startTransition]);
+
+  const applyAndRemember = useCallback((
+    nextQuery: string,
+    nextYear: string,
+    nextMonth: string
+  ) => {
+    lastAppliedRef.current = {
+      query: nextQuery,
+      year: nextYear,
+      month: nextMonth,
+    };
+    applyFilters(nextQuery, nextYear, nextMonth);
+  }, [applyFilters]);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    applyFilters(query, year, month);
+    applyAndRemember(query, year, month);
   }
 
   function handleClear() {
     setQuery("");
     setYear("");
     setMonth("");
-    router.push(localizePath(locale));
+    lastAppliedRef.current = {
+      query: "",
+      year: "",
+      month: "",
+    };
+    startTransition(() => {
+      router.push(localizePath(locale));
+    });
   }
 
+  useEffect(() => {
+    const lastApplied = lastAppliedRef.current;
+
+    if (query !== initialQuery) {
+      return;
+    }
+
+    if (year === lastApplied.year && month === lastApplied.month) {
+      return;
+    }
+
+    if (year !== initialYear || month !== initialMonth) {
+      applyAndRemember(query, year, month);
+    }
+  }, [applyAndRemember, initialMonth, initialQuery, initialYear, month, query, year]);
+
+  useEffect(() => {
+    const trimmedQuery = query.trim();
+    const lastApplied = lastAppliedRef.current;
+
+    if (
+      trimmedQuery === lastApplied.query.trim() &&
+      year === lastApplied.year &&
+      month === lastApplied.month
+    ) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      applyAndRemember(query, year, month);
+    }, 280);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [applyAndRemember, month, query, year]);
+
   return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl sm:p-5">
+    <div
+      className={`rounded-[1.25rem] border border-white/[0.08] bg-stone-950 p-4 transition duration-200 sm:p-5 ${
+        isPending ? "border-amber-300/20" : ""
+      }`}
+    >
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <div className="flex items-center justify-end">
           <button
             type="button"
             onClick={() => setCollapsed((current) => !current)}
-            className="inline-flex items-center gap-2 text-xs tracking-[0.16em] text-stone-400 transition hover:text-white"
+            className="inline-flex items-center gap-2 text-xs tracking-[0.16em] text-stone-500 transition hover:text-stone-200"
           >
             <span>{collapsed ? dictionary.filterExpand : dictionary.filterCollapse}</span>
             <span aria-hidden="true" className="text-sm leading-none">
@@ -446,7 +522,7 @@ export default function FilterBar({
                       ? dictionary.filterSearchHelpHint
                       : dictionary.filterSearchPlaceholder
                   }
-                  className="h-12 w-full rounded-xl border border-white/[0.08] bg-white/[0.04] pl-12 pr-12 text-white outline-none backdrop-blur-[12px] transition placeholder:text-stone-500 focus:border-amber-300/45 focus:bg-white/[0.05] [&::-webkit-search-cancel-button]:hidden"
+                  className="h-12 w-full rounded-xl border border-white/[0.06] bg-white/[0.02] pl-12 pr-20 text-white outline-none transition placeholder:text-stone-500 focus:border-amber-300/35 focus:bg-white/[0.04] [&::-webkit-search-cancel-button]:hidden"
                 />
                 {query ? (
                   <button
@@ -460,8 +536,18 @@ export default function FilterBar({
                     </span>
                   </button>
                 ) : null}
+                <button
+                  type="button"
+                  onClick={() => setShowSearchHelp((current) => !current)}
+                  className={`absolute top-3 inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-white/[0.08] px-1.5 text-[11px] tracking-[0.16em] text-stone-500 transition hover:border-white/[0.14] hover:text-stone-200 ${
+                    query ? "right-11" : "right-3"
+                  }`}
+                  aria-expanded={showSearchHelp}
+                >
+                  ?
+                </button>
                 {showSearchHelp ? (
-                  <div className="absolute left-0 right-0 top-[calc(100%+0.75rem)] z-20 rounded-xl border border-white/[0.08] bg-stone-950/95 p-4 text-sm text-stone-300 shadow-[0_18px_50px_rgba(0,0,0,0.32)] backdrop-blur-xl">
+                  <div className="absolute left-0 right-0 top-[calc(100%+0.75rem)] z-20 rounded-xl border border-white/[0.08] bg-stone-950 p-4 text-sm text-stone-300">
                     <div className="flex items-start justify-between gap-4">
                       <div className="space-y-2">
                         <p className="text-xs uppercase tracking-[0.18em] text-stone-400">
@@ -486,48 +572,67 @@ export default function FilterBar({
               </div>
             </label>
 
-            <CustomSelect
-              label={dictionary.filterYear}
-              name="year"
-              value={year}
-              onChange={setYear}
-              options={yearSelectOptions}
-              widthClassName="xl:w-[180px]"
+            <DateCascadeSelect
+              label={dictionary.filterArchiveTime}
+              name="date"
+              yearOptions={yearOptions}
+              yearToMonths={yearToMonths}
+              locale={locale}
+              dictionary={dictionary}
+              yearValue={year}
+              monthValue={month}
+              onChange={(nextYear, nextMonth) => {
+                setYear(nextYear);
+                setMonth(nextMonth);
+              }}
+              widthClassName="xl:w-[240px]"
             />
 
-            <CustomSelect
-              label={dictionary.filterMonth}
-              name="month"
-              value={month}
-              onChange={setMonth}
-              options={monthSelectOptions}
-              widthClassName="xl:w-[160px]"
-            />
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
+            <span className="min-w-0 truncate">
+              {summaryItems.length > 0 ? summaryItems.join(" / ") : dictionary.filterSummaryAll}
+            </span>
+            {summaryItems.length > 0 ? (
+              <button
+                type="button"
+                onClick={handleClear}
+                disabled={isPending}
+                className="shrink-0 text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
+              >
+                {dictionary.filterReset}
+              </button>
+            ) : null}
+          </div>
+        )}
 
-            <button
-              type="submit"
-              className="inline-flex h-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,rgba(252,211,77,0.98),rgba(245,158,11,0.86))] px-5 text-sm font-medium text-stone-950 transition duration-200 hover:scale-[1.05] hover:brightness-105"
-            >
-              {dictionary.filterSubmit}
-            </button>
-
+        {!collapsed && summaryItems.length > 0 ? (
+          <div className="flex items-start justify-between gap-4">
+            <div className="-mx-1 flex flex-wrap gap-2 px-1">
+              {summaryItems.map((item) => (
+                <span
+                  key={item}
+                  className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
             <button
               type="button"
               onClick={handleClear}
-              className="inline-flex h-12 items-center justify-center rounded-xl px-4 text-sm font-medium text-stone-300 opacity-60 transition hover:bg-white/[0.06] hover:text-white hover:opacity-100"
+              disabled={isPending}
+              className="shrink-0 px-1 py-1 text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
             >
               {dictionary.filterReset}
             </button>
           </div>
-        ) : (
-          <div className="rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
-            {summaryItems.length > 0 ? summaryItems.join(" / ") : dictionary.filterSummaryAll}
-          </div>
-        )}
+        ) : null}
 
-        <div className="flex flex-col gap-3 border-t border-white/[0.05] pt-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-white/[0.04] pt-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-h-8">{footer}</div>
-          <div className="text-right text-sm tracking-[0.1em] text-stone-500">
+          <div className="text-right text-sm tracking-[0.08em] text-stone-500">
             {resultSummary}
           </div>
         </div>

@@ -4,6 +4,7 @@ import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollRestorer from "@/components/scroll-restorer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import WaterfallGallery from "@/components/waterfall-gallery";
+import YearFilterStrip from "@/components/year-filter-strip";
 import {
   filterWallpapersByDate,
   getAllWallpapers,
@@ -81,12 +82,27 @@ export default async function LocalizedWaterfallPage({
   const yearOptions = getYearOptions(allWallpapers);
   const wallpapers = filterWallpapersByDate(allWallpapers, year);
   const waterfallPath = createWaterfallHref(locale, year, mode);
+  const yearFilterItems = [
+    {
+      href: createWaterfallHref(locale, "", mode),
+      label: dictionary.filterAllYears,
+      active: !year,
+    },
+    ...yearOptions.map((optionYear) => ({
+      href: createWaterfallHref(locale, optionYear, mode),
+      label: optionYear,
+      active: optionYear === year,
+    })),
+  ];
   const items = wallpapers.map((wallpaper) => ({
     ssd: wallpaper.Ssd,
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
-    description:
-      wallpaper.ImageContent?.Description ?? dictionary.noDescription,
+    ...(initialShowMeta
+      ? {
+          description: wallpaper.ImageContent?.Description ?? dictionary.noDescription,
+        }
+      : {}),
     previewUrl: toProxyImageUrl(wallpaper.ImageContent?.Image?.Url),
     detailHref: createDetailHref(locale, wallpaper.Ssd),
   }));
@@ -140,36 +156,15 @@ export default async function LocalizedWaterfallPage({
             </dl>
           </div>
 
-          <div className="flex flex-col gap-2">
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href={createWaterfallHref(locale, "", mode)}
-                className={`inline-flex items-center rounded-full px-3 py-1.5 text-sm transition ${!year
-                  ? "bg-amber-300 text-stone-950"
-                  : "border border-white/10 text-stone-300 hover:bg-white/10 hover:text-white"
-                  }`}
-              >
-                {dictionary.filterAllYears}
-              </Link>
-              {yearOptions.map((optionYear) => {
-                const isActive = optionYear === year;
-
-                return (
-                  <Link
-                    key={optionYear}
-                    href={createWaterfallHref(locale, optionYear, mode)}
-                    className={`inline-flex items-center rounded-full px-3 py-1.5 text-sm transition ${isActive
-                      ? "bg-amber-300 text-stone-950"
-                      : "border border-white/10 text-stone-300 hover:bg-white/10 hover:text-white"
-                      }`}
-                  >
-                    {optionYear}
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
         </section>
+
+        <div className="sticky top-4 z-20 -mx-2 rounded-[1.5rem] border border-white/10 bg-stone-950/78 px-2 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl">
+          <YearFilterStrip
+            allYearsLabel={dictionary.filterAllYears}
+            currentYear={year}
+            items={yearFilterItems}
+          />
+        </div>
 
         <WaterfallGallery
           dictionary={dictionary}

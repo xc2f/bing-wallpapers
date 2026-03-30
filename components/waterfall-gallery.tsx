@@ -11,8 +11,8 @@ const SCROLL_STORAGE_PREFIX = "scroll-position:";
 const SCROLL_ANCHOR_PREFIX = "scroll-anchor:";
 const SCROLL_ANCHOR_SSD_PREFIX = "scroll-anchor-ssd:";
 const SCROLL_ANCHOR_OFFSET_PREFIX = "scroll-anchor-offset:";
-const INITIAL_BATCH_SIZE = 48;
-const LOAD_MORE_BATCH_SIZE = 24;
+const INITIAL_BATCH_SIZE = 24;
+const LOAD_MORE_BATCH_SIZE = 16;
 
 interface WaterfallGalleryProps {
   allowStoredPreference: boolean;
@@ -21,28 +21,29 @@ interface WaterfallGalleryProps {
   storageKey: string;
   items: {
     ssd: string;
-    fullDate: string;
+    fullDate?: string;
     title: string;
-    description: string;
+    description?: string;
     previewUrl: string;
     detailHref: string;
   }[];
 }
 
 const imageOnlyHeights = [
-  272,
-  344,
-  416,
-  308,
-  492,
-  356,
-  448,
-  288,
+  264,
+  332,
+  388,
+  300,
+  436,
+  348,
+  404,
+  284,
 ] as const;
 
 function estimateMetaHeight(item: WaterfallGalleryProps["items"][number]) {
   const titleLines = Math.max(1, Math.ceil(item.title.length / 26));
-  const descriptionLines = Math.max(2, Math.min(7, Math.ceil(item.description.length / 92)));
+  const description = item.description ?? "";
+  const descriptionLines = Math.max(2, Math.min(7, Math.ceil(description.length / 92)));
   return 260 + titleLines * 28 + descriptionLines * 24;
 }
 
@@ -113,10 +114,27 @@ export default function WaterfallGallery({
   const [columnCount, setColumnCount] = useState(1);
   const [isReady, setIsReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const sentinelRef = useRef<HTMLDivElement | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const hasRestoredAnchorRef = useRef(false);
   const hasMountedRef = useRef(false);
   const fallbackStorageKey = storageKey.split("?")[0];
+  const hasMetaPayload = useMemo(
+    () => items.some((item) => Boolean(item.fullDate || item.description)),
+    [items]
+  );
+  const detailSearch = useMemo(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("view", "waterfall");
+    const nextSearch = params.toString();
+    return nextSearch ? `?${nextSearch}` : "";
+  }, [searchParams]);
+
+  function createDetailHref(detailHref: string) {
+    return `${detailHref}${detailSearch}`;
+  }
 
   function clearStoredRestoration() {
     window.sessionStorage.removeItem(`${SCROLL_STORAGE_PREFIX}${storageKey}`);
@@ -134,6 +152,34 @@ export default function WaterfallGallery({
     hasRestoredAnchorRef.current = true;
     setShowMeta((current) => !current);
     window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  function handleSelectMode(nextShowMeta: boolean) {
+    if (nextShowMeta === showMeta) {
+      return;
+    }
+
+    handleToggleMode();
+  }
+
+  function handleToggleDescription(ssd: string) {
+    setExpandedDescriptions((current) => ({
+      ...current,
+      [ssd]: !current[ssd],
+    }));
+  }
+
+  function handleImageLoad(ssd: string) {
+    setLoadedImages((current) => {
+      if (current[ssd]) {
+        return current;
+      }
+
+      return {
+        ...current,
+        [ssd]: true,
+      };
+    });
   }
 
   useLayoutEffect(() => {
@@ -259,6 +305,15 @@ export default function WaterfallGallery({
         : columnCount === 2
           ? "grid-cols-2"
           : "grid-cols-1";
+  const imageSizes =
+    columnCount === 4
+      ? "(min-width: 1536px) 24vw, (min-width: 1280px) 32vw, (min-width: 640px) 48vw, 96vw"
+      : columnCount === 3
+        ? "(min-width: 1280px) 32vw, (min-width: 640px) 48vw, 96vw"
+        : columnCount === 2
+          ? "(min-width: 640px) 48vw, 96vw"
+          : "96vw";
+  const shouldRenderMeta = showMeta && hasMetaPayload;
   const visibleItems = useMemo(
     () => items.slice(0, visibleCount),
     [items, visibleCount]
@@ -268,7 +323,7 @@ export default function WaterfallGallery({
     const columnHeights = Array.from({ length: columnCount }, () => 0);
 
     visibleItems.forEach((item, index) => {
-      const estimatedHeight = showMeta
+      const estimatedHeight = shouldRenderMeta
         ? estimateMetaHeight(item)
         : imageOnlyHeights[index % imageOnlyHeights.length];
       const targetColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
@@ -278,12 +333,59 @@ export default function WaterfallGallery({
     });
 
     return columns;
-  }, [columnCount, showMeta, visibleItems]);
+  }, [columnCount, shouldRenderMeta, visibleItems]);
   const visibleItemIndexMap = useMemo(
     () =>
       new Map(visibleItems.map((item, index) => [item.ssd, index + 1])),
     [visibleItems]
   );
+  const visibleItemOrderMap = useMemo(
+    () => new Map(visibleItems.map((item, index) => [item.ssd, index])),
+    [visibleItems]
+  );
+
+  useEffect(() => {
+    const root = sectionRef.current;
+
+    if (!isReady || !root) {
+      return;
+    }
+
+    const cards = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-reveal-card='true']")
+    );
+
+    if (!cards.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.setAttribute("data-revealed", "true");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "240px 0px 12% 0px",
+        threshold: 0.01,
+      }
+    );
+
+    cards.forEach((card) => {
+      if (card.getAttribute("data-revealed") === "true") {
+        return;
+      }
+
+      observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, [groupedItems, isReady]);
 
   useEffect(() => {
     if (!isReady) {
@@ -344,42 +446,91 @@ export default function WaterfallGallery({
   }, [groupedItems, isReady, storageKey, visibleItemIndexMap]);
 
   return (
-    <section className="flex flex-col gap-6">
+    <section ref={sectionRef} className="flex flex-col gap-6">
       <div className="flex justify-end">
-        <button
-          type="button"
-          onClick={handleToggleMode}
-          className="rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
-        >
-          {showMeta ? dictionary.waterfallHideMeta : dictionary.waterfallShowMeta}
-        </button>
+        <div className="inline-flex rounded-full border border-white/10 bg-white/5 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur">
+          <button
+            type="button"
+            onClick={() => handleSelectMode(false)}
+            aria-pressed={!showMeta}
+            className={`rounded-full px-4 py-2 text-sm transition ${
+              !showMeta
+                ? "bg-amber-300 text-stone-950 shadow-sm"
+                : "text-stone-300 hover:bg-white/10 hover:text-white"
+            }`}
+          >
+            {dictionary.waterfallHideMeta}
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSelectMode(true)}
+            aria-pressed={showMeta}
+            className={`rounded-full px-4 py-2 text-sm transition ${
+              showMeta
+                ? "bg-amber-300 text-stone-950 shadow-sm"
+                : "text-stone-300 hover:bg-white/10 hover:text-white"
+            }`}
+          >
+            {dictionary.waterfallShowMeta}
+          </button>
+        </div>
       </div>
 
       {!isReady ? <div className="min-h-[24rem]" aria-hidden="true" /> : null}
 
-      {isReady && showMeta ? (
-        <div className={`grid items-start gap-6 ${gridColumnsClass}`}>
+      {isReady && shouldRenderMeta ? (
+        <div className={`waterfall-view-stage grid items-start gap-4 ${gridColumnsClass}`}>
           {groupedItems.map((group, columnIndex) => (
-            <div key={`meta-column-${columnIndex}`} className="flex flex-col gap-6">
-              {group.map((item) => (
+            <div key={`meta-column-${columnIndex}`} className="flex flex-col gap-4">
+              {group.map((item) => {
+                const isExpanded = Boolean(expandedDescriptions[item.ssd]);
+                const imageLoaded = Boolean(loadedImages[item.ssd]);
+                const description = item.description ?? dictionary.noDescription;
+                const visibleIndex = visibleItemOrderMap.get(item.ssd) ?? 0;
+                const prioritizeImage = visibleIndex < 12;
+
+                return (
                 <article
                   key={item.ssd}
+                  data-reveal-card="true"
+                  data-revealed="false"
                   data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                   data-waterfall-ssd={item.ssd}
-                  className="overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/20"
+                  className="waterfall-card-reveal overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/20"
+                  style={{
+                    contentVisibility: "auto",
+                    containIntrinsicSize: "480px",
+                    transitionDelay: `${Math.min(
+                      visibleIndex % 8,
+                      7
+                    ) * 26}ms`,
+                  }}
                 >
                   <PreserveScrollLink
-                    href={item.detailHref}
+                    href={createDetailHref(item.detailHref)}
                     className="block"
                   >
                     {item.previewUrl ? (
-                      <Image
-                        src={item.previewUrl}
-                        alt={item.title}
-                        width={1920}
-                        height={1080}
-                        className="h-auto w-full object-cover transition duration-300 hover:scale-[1.01]"
-                      />
+                      <div className="relative aspect-[16/10] min-h-[15rem] overflow-hidden bg-stone-900/80">
+                        {!imageLoaded ? (
+                          <div className="absolute inset-0 animate-pulse bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03)_45%,rgba(245,158,11,0.06))]" />
+                        ) : null}
+                        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-20 bg-gradient-to-b from-black/12 to-transparent" />
+                        <Image
+                          src={item.previewUrl}
+                          alt={item.title}
+                          width={1920}
+                          height={1080}
+                          sizes={imageSizes}
+                          quality={68}
+                          priority={prioritizeImage}
+                          loading={prioritizeImage ? "eager" : "lazy"}
+                          onLoad={() => handleImageLoad(item.ssd)}
+                          className={`h-full w-full object-cover transition duration-500 hover:scale-[1.01] ${
+                            imageLoaded ? "opacity-100" : "opacity-0"
+                          }`}
+                        />
+                      </div>
                     ) : (
                       <div className="flex min-h-56 items-center justify-center bg-stone-900 px-6 text-sm text-stone-400">
                         {dictionary.noPreviewImage}
@@ -387,56 +538,94 @@ export default function WaterfallGallery({
                     )}
                   </PreserveScrollLink>
 
-                  <div className="space-y-3 p-5">
+                  <div className="space-y-4 p-5">
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                      {item.fullDate}
+                      {item.fullDate ?? ""}
                     </p>
                     <h2 className="text-lg font-semibold leading-6 text-white">
                       <PreserveScrollLink
-                        href={item.detailHref}
-                        className="transition hover:text-amber-200"
+                        href={createDetailHref(item.detailHref)}
+                        className="line-clamp-2 text-balance transition hover:text-amber-200"
                       >
                         {item.title}
                       </PreserveScrollLink>
                     </h2>
-                    <p className="text-sm leading-6 text-stone-400">{item.description}</p>
+                    <div className={isExpanded ? "" : "waterfall-description-fade relative"}>
+                      <p
+                        className={`text-sm leading-6 text-stone-400 ${
+                          isExpanded ? "" : "line-clamp-4"
+                        }`}
+                      >
+                        {description}
+                      </p>
+                    </div>
+                    {description.length > 220 ? (
+                      <button
+                        type="button"
+                        onClick={() => handleToggleDescription(item.ssd)}
+                        className="text-xs uppercase tracking-[0.22em] text-stone-400 transition hover:text-stone-200"
+                      >
+                        {isExpanded
+                          ? dictionary.waterfallCollapseDescription
+                          : dictionary.waterfallExpandDescription}
+                      </button>
+                    ) : null}
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
           ))}
         </div>
       ) : null}
 
-      {isReady && !showMeta ? (
-        <div className={`grid items-start gap-1 ${gridColumnsClass}`}>
+      {isReady && !shouldRenderMeta ? (
+        <div className={`waterfall-view-stage grid items-start gap-2 ${gridColumnsClass}`}>
           {groupedItems.map((group, columnIndex) => (
-            <div key={`column-${columnIndex}`} className="flex flex-col gap-1">
+            <div key={`column-${columnIndex}`} className="flex flex-col gap-2">
               {group.map((item) => {
-                const originalIndex = visibleItems.findIndex((entry) => entry.ssd === item.ssd);
+                const originalIndex = visibleItemOrderMap.get(item.ssd) ?? 0;
                 const imageOnlyHeight =
                   imageOnlyHeights[originalIndex % imageOnlyHeights.length];
                 const imageOnlyStyle = { height: `${imageOnlyHeight}px` };
+                const prioritizeImage = originalIndex < 16;
 
                 return (
                   <article
                     key={item.ssd}
+                    data-reveal-card="true"
+                    data-revealed="false"
                     data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                     data-waterfall-ssd={item.ssd}
-                    className="group relative overflow-hidden rounded-none border-0 bg-transparent shadow-none"
+                    className="waterfall-card-reveal group relative overflow-hidden rounded-[1.15rem] border border-white/5 bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+                    style={{
+                      contentVisibility: "auto",
+                      containIntrinsicSize: `${imageOnlyHeight}px`,
+                      transitionDelay: `${Math.min(originalIndex % 8, 7) * 22}ms`,
+                    }}
                   >
                     <PreserveScrollLink
-                      href={item.detailHref}
-                      className="block"
+                      href={createDetailHref(item.detailHref)}
+                      className="block overflow-hidden rounded-[1.15rem]"
                     >
                       {item.previewUrl ? (
-                        <div className="overflow-hidden" style={imageOnlyStyle}>
+                        <div className="relative overflow-hidden bg-stone-900/80" style={imageOnlyStyle}>
+                          {!loadedImages[item.ssd] ? (
+                            <div className="absolute inset-0 animate-pulse bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03)_45%,rgba(245,158,11,0.06))]" />
+                          ) : null}
                           <Image
                             src={item.previewUrl}
                             alt={item.title}
                             width={1920}
                             height={1080}
-                            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                            sizes={imageSizes}
+                            quality={68}
+                            priority={prioritizeImage}
+                            loading={prioritizeImage ? "eager" : "lazy"}
+                            onLoad={() => handleImageLoad(item.ssd)}
+                            className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] ${
+                              loadedImages[item.ssd] ? "opacity-100" : "opacity-0"
+                            }`}
                           />
                         </div>
                       ) : (
@@ -448,9 +637,12 @@ export default function WaterfallGallery({
                         </div>
                       )}
 
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 pb-4 pt-10 opacity-0 transition duration-300 group-hover:opacity-100">
-                        <p className="text-sm font-medium leading-6 text-white">
+                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
+                        <p className="line-clamp-2 text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
                           {item.title}
+                        </p>
+                        <p className="mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
+                          {item.fullDate ?? item.ssd}
                         </p>
                       </div>
                     </PreserveScrollLink>

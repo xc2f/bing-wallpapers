@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import FilterBar from "@/components/filter-bar";
+import ListPagination from "@/components/list-pagination";
 import LocaleSwitcher from "@/components/locale-switcher";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
 import ScrollRestorer from "@/components/scroll-restorer";
@@ -79,8 +80,37 @@ function createPageHref(
   return localizePath(locale, search ? `?${search}` : "");
 }
 
-function createDetailHref(locale: Locale, ssd: string) {
-  return localizePath(locale, `/wallpaper/${ssd}`);
+function createDetailHref(
+  locale: Locale,
+  ssd: string,
+  query?: string,
+  page?: number,
+  year?: string,
+  month?: string
+) {
+  const params = new URLSearchParams();
+
+  if (query?.trim()) params.set("q", query.trim());
+  if (year?.trim()) params.set("year", year.trim());
+  if (month?.trim()) params.set("month", month.trim());
+  if (page && page > 1) params.set("page", String(page));
+
+  const search = params.toString();
+  return localizePath(
+    locale,
+    `/wallpaper/${ssd}${search ? `?${search}` : ""}`
+  );
+}
+
+function createWaterfallEntryHref(locale: Locale, year?: string) {
+  const params = new URLSearchParams();
+
+  if (year?.trim()) {
+    params.set("year", year.trim());
+  }
+
+  const search = params.toString();
+  return localizePath(locale, `/waterfall${search ? `?${search}` : ""}`);
 }
 
 export async function generateStaticParams() {
@@ -129,7 +159,6 @@ export default async function LocalizedHomePage({
   const dictionary = getDictionary(locale);
   const allWallpapers = getAllWallpapers();
   const yearOptions = getYearOptions(allWallpapers);
-  const allMonthOptions = getMonthOptions(allWallpapers);
   const yearToMonths = Object.fromEntries(
     yearOptions.map((optionYear) => [
       optionYear,
@@ -152,8 +181,8 @@ export default async function LocalizedHomePage({
     <main className="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
       <ScrollRestorer storageKey={currentListPath} />
       <ScrollToTopButton label={dictionary.backToTop} />
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
-        <section className="flex flex-col gap-6 border-b border-white/10 pb-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
+        <section className="flex flex-col gap-6 pb-2">
           <div className="flex items-center justify-end">
             <LocaleSwitcher
               locale={locale}
@@ -162,31 +191,28 @@ export default async function LocalizedHomePage({
             />
           </div>
 
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
+          <div className="max-w-4xl">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-300/80">
                 {dictionary.archiveLabel}
-              </p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-                {dictionary.siteTitle}
-              </h1>
-            </div>
-            <dl className="flex flex-wrap items-start gap-x-5 gap-y-3 border-l border-white/10 pl-6 text-sm text-stone-400 sm:w-fit">
-              <div className="min-w-[7.5rem]">
-                <dt className="uppercase tracking-[0.2em]">{dictionary.archived}</dt>
-                <dd className="mt-1 text-base font-medium text-stone-100">
-                  {allWallpapers.length}
-                </dd>
+            </p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              {dictionary.siteTitle}
+            </h1>
+            <dl className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-400">
+              <div className="inline-flex items-center gap-2">
+                <dt className="text-stone-500">{dictionary.archived}</dt>
+                <dd className="font-medium text-stone-100">{allWallpapers.length}</dd>
               </div>
-              <div className="min-w-[9.5rem]">
-                <dt className="uppercase tracking-[0.2em]">{dictionary.latest}</dt>
-                <dd className="mt-1 text-base font-medium text-stone-100">
-                  {latestDate}
-                </dd>
+              <div className="inline-flex items-center gap-2">
+                <dt className="text-stone-500">{dictionary.latest}</dt>
+                <dd className="font-medium text-stone-100">{latestDate}</dd>
               </div>
             </dl>
           </div>
 
+        </section>
+
+        <div>
           <FilterBar
             locale={locale}
             dictionary={dictionary}
@@ -194,7 +220,6 @@ export default async function LocalizedHomePage({
             initialYear={year}
             initialMonth={month}
             yearOptions={yearOptions}
-            allMonthOptions={allMonthOptions}
             yearToMonths={yearToMonths}
             resultSummary={
               <p>
@@ -210,15 +235,15 @@ export default async function LocalizedHomePage({
             footer={
               <div className="flex flex-wrap items-center gap-2">
                 <Link
-                  href={localizePath(locale, "/waterfall")}
+                  href={createWaterfallEntryHref(locale, year)}
                   aria-label={dictionary.viewWaterfall}
                   title={dictionary.viewWaterfall}
-                  className="inline-flex h-8 items-center gap-2 rounded-md border border-white/10 px-2.5 text-stone-300 transition hover:bg-white/[0.06] hover:text-white"
+                  className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/10 px-3 text-stone-300 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
                 >
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 16 16"
-                    className="h-4 w-4 shrink-0"
+                    className="h-4 w-4 shrink-0 text-stone-400 transition group-hover:text-stone-200"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
@@ -227,15 +252,26 @@ export default async function LocalizedHomePage({
                     <rect x="1.5" y="9" width="5" height="5" stroke="currentColor" />
                     <rect x="9.5" y="9" width="5" height="5" stroke="currentColor" />
                   </svg>
-                  <span className="text-xs tracking-[0.14em]">{dictionary.viewWaterfall}</span>
+                  <span className="text-sm font-medium text-stone-200 transition group-hover:text-white">
+                    {dictionary.viewWaterfall}
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    className="text-stone-500 transition group-hover:translate-x-0.5 group-hover:text-stone-300"
+                  >
+                    →
+                  </span>
                 </Link>
               </div>
             }
           />
-        </section>
+        </div>
 
         {items.length === 0 ? (
-          <section className="rounded-3xl border border-dashed border-white/15 bg-white/5 p-10 text-center">
+          <section
+            key={currentListPath}
+            className="waterfall-view-stage rounded-3xl border border-dashed border-white/15 bg-white/5 p-10 text-center"
+          >
             <h2 className="text-xl font-semibold text-white">{dictionary.emptyTitle}</h2>
             {/* <p className="mt-3 text-sm text-stone-300">
               {dictionary.emptyDescriptionPrefix}{" "}
@@ -244,63 +280,92 @@ export default async function LocalizedHomePage({
             </p> */}
           </section>
         ) : (
-          <>
+          <div key={currentListPath} className="waterfall-view-stage flex flex-col gap-6">
             <section className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-              {items.map((wallpaper) => {
+              {items.map((wallpaper, index) => {
                 const title = wallpaper.ImageContent?.Title ?? dictionary.untitled;
                 const description =
                   wallpaper.ImageContent?.Description ?? dictionary.noDescription;
                 const previewUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Url);
+                const prioritizeImage = index < 6;
 
                 return (
                   <article
                     key={wallpaper.Ssd}
-                    className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/20"
+                    className="waterfall-card-reveal h-full"
+                    data-revealed="true"
+                    style={{
+                      transitionDelay: `${Math.min(index, 5) * 28}ms`,
+                    }}
                   >
-                    {previewUrl ? (
-                      <PreserveScrollLink
-                        href={createDetailHref(locale, wallpaper.Ssd)}
-                        className="block overflow-hidden bg-stone-900"
-                      >
-                        <Image
-                          src={previewUrl}
-                          alt={title}
-                          width={1920}
-                          height={1080}
-                          className="h-64 w-full object-cover transition duration-300 hover:scale-[1.02]"
-                        />
-                      </PreserveScrollLink>
-                    ) : (
-                      <div className="flex h-64 items-center justify-center bg-stone-900 text-sm text-stone-400">
-                        {dictionary.noPreviewImage}
-                      </div>
-                    )}
+                    <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
+                      {previewUrl ? (
+                        <PreserveScrollLink
+                          href={createDetailHref(
+                            locale,
+                            wallpaper.Ssd,
+                            query,
+                            page,
+                            year,
+                            month
+                          )}
+                          className="block overflow-hidden bg-stone-900"
+                        >
+                          <div className="relative h-64 overflow-hidden bg-stone-900/80">
+                            <div className="absolute inset-0 animate-pulse bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03)_45%,rgba(245,158,11,0.06))]" />
+                            <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-black/16 to-transparent" />
+                            <Image
+                              src={previewUrl}
+                              alt={title}
+                              width={1920}
+                              height={1080}
+                              priority={prioritizeImage}
+                              loading={prioritizeImage ? "eager" : "lazy"}
+                              sizes="(min-width: 1280px) 30vw, (min-width: 640px) 46vw, 96vw"
+                              quality={68}
+                              className="h-64 w-full object-cover transition duration-500 hover:scale-[1.012]"
+                            />
+                          </div>
+                        </PreserveScrollLink>
+                      ) : (
+                        <div className="flex h-64 items-center justify-center bg-stone-900 text-sm text-stone-400">
+                          {dictionary.noPreviewImage}
+                        </div>
+                      )}
 
-                    <div className="flex flex-col gap-4 p-5">
-                      <div className="flex items-center justify-between gap-3 text-xs uppercase tracking-[0.2em] text-stone-400">
-                        <span>
-                          {formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString)}
-                        </span>
-                        <span>{wallpaper.Ssd}</span>
-                      </div>
+                      <div className="flex flex-1 flex-col gap-4 p-5">
+                        <div className="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">
+                          <span>
+                            {formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString)}
+                          </span>
+                          <span className="text-stone-600">{wallpaper.Ssd}</span>
+                        </div>
 
-                      <div>
-                        <h2 className="text-xl font-semibold leading-tight text-white">
-                          <PreserveScrollLink
-                            href={createDetailHref(locale, wallpaper.Ssd)}
-                            className="transition hover:text-amber-200"
-                          >
-                            {highlightText(title, highlightTerms.title)}
-                          </PreserveScrollLink>
-                        </h2>
-                        <p className="mt-3 line-clamp-6 text-sm leading-6 text-stone-300">
-                          {highlightText(description, highlightTerms.description)}
+                        <div className="flex-1 border-t border-white/[0.06] pt-4">
+                          <h2 className="text-xl font-semibold leading-[1.2] text-white">
+                            <PreserveScrollLink
+                              href={createDetailHref(
+                                locale,
+                                wallpaper.Ssd,
+                                query,
+                                page,
+                                year,
+                                month
+                              )}
+                              className="line-clamp-2 text-balance transition hover:text-amber-100"
+                            >
+                              {highlightText(title, highlightTerms.title)}
+                            </PreserveScrollLink>
+                          </h2>
+                          <p className="mt-3 line-clamp-3 text-sm leading-6 text-stone-400">
+                            {highlightText(description, highlightTerms.description)}
+                          </p>
+                        </div>
+
+                        <p className="line-clamp-2 text-xs leading-5 text-stone-500">
+                          {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
                         </p>
                       </div>
-
-                      <p className="text-sm text-stone-400">
-                        {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
-                      </p>
                     </div>
                   </article>
                 );
@@ -311,32 +376,16 @@ export default async function LocalizedHomePage({
               <p className="inline-flex min-h-10 items-center text-stone-400">
                 {dictionary.paginationPageSize}
               </p>
-              <div className="flex items-center gap-3">
-                <Link
-                  href={createPageHref(locale, currentPage - 1, query, year, month)}
-                  aria-disabled={currentPage <= 1}
-                  className={`inline-flex min-h-10 items-center rounded-full px-4 py-2 transition ${
-                    currentPage <= 1
-                      ? "pointer-events-none border border-white/10 text-stone-600"
-                      : "border border-white/15 text-white hover:bg-white/10"
-                  }`}
-                >
-                  {dictionary.paginationPrev}
-                </Link>
-                <Link
-                  href={createPageHref(locale, currentPage + 1, query, year, month)}
-                  aria-disabled={currentPage >= totalPages}
-                  className={`inline-flex min-h-10 items-center rounded-full px-4 py-2 transition ${
-                    currentPage >= totalPages
-                      ? "pointer-events-none border border-white/10 text-stone-600"
-                      : "bg-amber-300 text-stone-950 hover:bg-amber-200"
-                  }`}
-                >
-                  {dictionary.paginationNext}
-                </Link>
-              </div>
+              <ListPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                prevHref={createPageHref(locale, currentPage - 1, query, year, month)}
+                nextHref={createPageHref(locale, currentPage + 1, query, year, month)}
+                prevLabel={dictionary.paginationPrev}
+                nextLabel={dictionary.paginationNext}
+              />
             </nav>
-          </>
+          </div>
         )}
       </div>
     </main>
