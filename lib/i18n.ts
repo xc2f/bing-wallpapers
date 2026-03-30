@@ -616,17 +616,28 @@ export function detectLocaleFromAcceptLanguage(header?: string | null): Locale {
 
   const languages = header
     .split(",")
-    .map((part) => part.trim().toLowerCase())
+    .map((part) => {
+      const [tagPart, ...params] = part.trim().toLowerCase().split(";");
+      const qParam = params.find((param) => param.trim().startsWith("q="));
+      const parsedQ = qParam ? Number(qParam.trim().slice(2)) : 1;
+
+      return {
+        tag: tagPart,
+        q: Number.isFinite(parsedQ) ? parsedQ : 0,
+      };
+    })
     .filter(Boolean);
 
-  for (const language of languages) {
-    if (language.startsWith("zh")) return "zh";
-    if (language.startsWith("es")) return "es";
-    if (language.startsWith("fr")) return "fr";
-    if (language.startsWith("de")) return "de";
-    if (language.startsWith("ja")) return "ja";
-    if (language.startsWith("ko")) return "ko";
-    if (language.startsWith("en")) return "en";
+  languages.sort((left, right) => right.q - left.q);
+
+  for (const { tag } of languages) {
+    if (tag.startsWith("zh")) return "zh";
+    if (tag.startsWith("es")) return "es";
+    if (tag.startsWith("fr")) return "fr";
+    if (tag.startsWith("de")) return "de";
+    if (tag.startsWith("ja")) return "ja";
+    if (tag.startsWith("ko")) return "ko";
+    if (tag.startsWith("en")) return "en";
   }
 
   return defaultLocale;
