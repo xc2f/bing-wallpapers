@@ -2,6 +2,7 @@ import data from "@/db/media_contents.json";
 
 export const BING_BASE_URL = process.env.BASE_URL || "https://www.bing.com";
 export const PAGE_SIZE = 12;
+const APP_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ?? "";
 
 export interface WallpaperItem {
   Ssd: string;
@@ -36,12 +37,8 @@ export function toAbsoluteUrl(path?: string) {
 export function toProxyImageUrl(path?: string) {
   const absoluteUrl = toAbsoluteUrl(path);
   if (!absoluteUrl) return "";
-
-  const params = new URLSearchParams({
-    url: absoluteUrl,
-  });
-
-  return `/api/image?${params.toString()}`;
+  const encodedUrl = Buffer.from(absoluteUrl, "utf8").toString("base64url");
+  return `${APP_BASE_PATH}/api/image/${encodedUrl}`;
 }
 
 export function getAllWallpapers() {
