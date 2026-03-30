@@ -109,7 +109,7 @@ export const dictionaries = {
     resultSummaryPrefix: "找到",
     resultSummaryMiddle: "条结果，当前第",
     resultSummaryPageJoin: "/",
-    resultSummarySuffix: "页。",
+    resultSummarySuffix: "页",
     activeQuery: "当前关键词",
     activeYear: "年份",
     activeMonth: "月份",
