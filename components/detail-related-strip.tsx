@@ -195,9 +195,9 @@ export default function DetailRelatedStrip({ children }: DetailRelatedStripProps
         onPointerCancel={handlePointerUp}
         onClickCapture={handleClickCapture}
         onDragStartCapture={(event) => event.preventDefault()}
-        className="cursor-grab overflow-x-auto overscroll-x-contain px-4 pb-2 [touch-action:pan-y] [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
+        className="cursor-grab overflow-x-auto overscroll-x-contain px-4 pb-2 [touch-action:pan-x_pinch-zoom] [-webkit-overflow-scrolling:touch] [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
       >
-        <div className="flex min-w-max gap-3 select-none">{children}</div>
+        <div className="flex min-w-max snap-x snap-proximity gap-3 select-none">{children}</div>
       </div>
     </div>
   );

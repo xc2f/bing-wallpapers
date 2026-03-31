@@ -192,7 +192,7 @@ export default async function LocalizedHomePage({
           </div>
 
           <div className="max-w-4xl">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-amber-300/80">
+            <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.archiveLabel}
             </p>
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -312,7 +312,6 @@ export default async function LocalizedHomePage({
                           className="block overflow-hidden bg-stone-900"
                         >
                           <div className="relative h-64 overflow-hidden bg-stone-900/80">
-                            <div className="absolute inset-0 animate-pulse bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03)_45%,rgba(245,158,11,0.06))]" />
                             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-black/16 to-transparent" />
                             <Image
                               src={previewUrl}

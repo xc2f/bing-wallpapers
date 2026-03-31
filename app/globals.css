@@ -59,6 +59,24 @@ code {
   -webkit-line-clamp: 4;
 }
 
+.detail-description-prose {
+  max-width: 42rem;
+}
+
+.detail-description-prose p {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.95;
+  letter-spacing: 0;
+  color: rgba(231, 229, 228, 0.88);
+}
+
+@media (min-width: 640px) {
+  .detail-description-prose p {
+    font-size: 1.02rem;
+  }
+}
+
 .waterfall-description-fade::after {
   content: "";
   position: absolute;
@@ -117,5 +135,40 @@ code {
 @media (prefers-reduced-motion: reduce) {
   .waterfall-view-stage {
     animation: none;
+  }
+}
+
+.filter-loading-bar {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0),
+    rgba(245, 158, 11, 0.24) 28%,
+    rgba(251, 191, 36, 0.48) 52%,
+    rgba(245, 158, 11, 0.24) 72%,
+    rgba(251, 191, 36, 0)
+  );
+  transform: translateX(-45%);
+  transition: opacity 180ms ease;
+  animation: filter-loading-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes filter-loading-sweep {
+  from {
+    transform: translateX(-65%);
+  }
+
+  to {
+    transform: translateX(65%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-loading-bar {
+    animation: none;
+    transform: none;
   }
 }

@@ -19,6 +19,7 @@ interface WaterfallGalleryProps {
   dictionary: Dictionary;
   initialShowMeta: boolean;
   storageKey: string;
+  totalCount: number;
   items: {
     ssd: string;
     fullDate?: string;
@@ -105,6 +106,7 @@ export default function WaterfallGallery({
   dictionary,
   initialShowMeta,
   storageKey,
+  totalCount,
   items,
 }: WaterfallGalleryProps) {
   const router = useRouter();
@@ -115,7 +117,6 @@ export default function WaterfallGallery({
   const [isReady, setIsReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
-  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasRestoredAnchorRef = useRef(false);
@@ -167,19 +168,6 @@ export default function WaterfallGallery({
       ...current,
       [ssd]: !current[ssd],
     }));
-  }
-
-  function handleImageLoad(ssd: string) {
-    setLoadedImages((current) => {
-      if (current[ssd]) {
-        return current;
-      }
-
-      return {
-        ...current,
-        [ssd]: true,
-      };
-    });
   }
 
   useLayoutEffect(() => {
@@ -447,8 +435,12 @@ export default function WaterfallGallery({
 
   return (
     <section ref={sectionRef} className="flex flex-col gap-6">
-      <div className="flex justify-end">
-        <div className="inline-flex rounded-full border border-white/10 bg-white/5 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur">
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2 text-sm text-stone-400">
+          <span className="text-stone-500">{dictionary.archived}</span>
+          <span className="font-medium text-stone-100">{totalCount}</span>
+        </div>
+        <div className="inline-flex max-w-full shrink-0 rounded-full border border-white/10 bg-white/5 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur">
           <button
             type="button"
             onClick={() => handleSelectMode(false)}
@@ -484,7 +476,6 @@ export default function WaterfallGallery({
             <div key={`meta-column-${columnIndex}`} className="flex flex-col gap-4">
               {group.map((item) => {
                 const isExpanded = Boolean(expandedDescriptions[item.ssd]);
-                const imageLoaded = Boolean(loadedImages[item.ssd]);
                 const description = item.description ?? dictionary.noDescription;
                 const visibleIndex = visibleItemOrderMap.get(item.ssd) ?? 0;
                 const prioritizeImage = visibleIndex < 12;
@@ -512,9 +503,6 @@ export default function WaterfallGallery({
                   >
                     {item.previewUrl ? (
                       <div className="relative aspect-[16/10] min-h-[15rem] overflow-hidden bg-stone-900/80">
-                        {!imageLoaded ? (
-                          <div className="absolute inset-0 animate-pulse bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03)_45%,rgba(245,158,11,0.06))]" />
-                        ) : null}
                         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-20 bg-gradient-to-b from-black/12 to-transparent" />
                         <Image
                           src={item.previewUrl}
@@ -525,10 +513,7 @@ export default function WaterfallGallery({
                           quality={68}
                           priority={prioritizeImage}
                           loading={prioritizeImage ? "eager" : "lazy"}
-                          onLoad={() => handleImageLoad(item.ssd)}
-                          className={`h-full w-full object-cover transition duration-500 hover:scale-[1.01] ${
-                            imageLoaded ? "opacity-100" : "opacity-0"
-                          }`}
+                          className="h-full w-full object-cover transition duration-500 hover:scale-[1.01]"
                         />
                       </div>
                     ) : (
@@ -610,9 +595,6 @@ export default function WaterfallGallery({
                     >
                       {item.previewUrl ? (
                         <div className="relative overflow-hidden bg-stone-900/80" style={imageOnlyStyle}>
-                          {!loadedImages[item.ssd] ? (
-                            <div className="absolute inset-0 animate-pulse bg-[linear-gradient(135deg,rgba(245,158,11,0.12),rgba(255,255,255,0.03)_45%,rgba(245,158,11,0.06))]" />
-                          ) : null}
                           <Image
                             src={item.previewUrl}
                             alt={item.title}
@@ -622,10 +604,7 @@ export default function WaterfallGallery({
                             quality={68}
                             priority={prioritizeImage}
                             loading={prioritizeImage ? "eager" : "lazy"}
-                            onLoad={() => handleImageLoad(item.ssd)}
-                            className={`h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] ${
-                              loadedImages[item.ssd] ? "opacity-100" : "opacity-0"
-                            }`}
+                            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                           />
                         </div>
                       ) : (

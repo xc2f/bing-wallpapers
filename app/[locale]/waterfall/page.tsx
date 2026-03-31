@@ -116,7 +116,7 @@ export default async function LocalizedWaterfallPage({
         totalCount={wallpapers.length}
       />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
-        <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
+        <section className="flex flex-col gap-6 pb-2">
           <div className="flex flex-col gap-3">
             <div className="flex items-center justify-end">
               <LocaleSwitcher
@@ -136,24 +136,13 @@ export default async function LocalizedWaterfallPage({
             </Link>
           </div>
 
-          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
+          <div className="max-w-3xl">
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.archiveLabel}
               </p>
               <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                 {dictionary.waterfallTitle}
               </h1>
-            </div>
-
-            <dl className="grid grid-cols-1 gap-y-3 border-l border-white/10 pl-6 text-sm text-stone-400 sm:w-fit">
-              <div>
-                <dt className="uppercase tracking-[0.2em]">{dictionary.archived}</dt>
-                <dd className="mt-1 text-base font-medium text-stone-100">
-                  {wallpapers.length}
-                </dd>
-              </div>
-            </dl>
           </div>
 
         </section>
@@ -172,6 +161,7 @@ export default async function LocalizedWaterfallPage({
           items={items}
           initialShowMeta={initialShowMeta}
           storageKey={waterfallPath}
+          totalCount={wallpapers.length}
         />
       </div>
     </main>

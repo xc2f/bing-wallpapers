@@ -128,19 +128,22 @@ export default function DetailAmbientBackground({
   }, [imageUrl]);
 
   const highlightColor = ambientColor
-    ? shiftAmbientColor(ambientColor, 22, 10, -8)
+    ? shiftAmbientColor(ambientColor, 18, 6, -10)
+    : null;
+  const sideGlowColor = ambientColor
+    ? shiftAmbientColor(ambientColor, -6, 12, 18)
     : null;
   const shadowColor = ambientColor
-    ? shiftAmbientColor(ambientColor, -28, -12, 14)
+    ? shiftAmbientColor(ambientColor, -34, -16, 8)
     : null;
 
-  const backgroundStyle = ambientColor && highlightColor && shadowColor
+  const backgroundStyle = ambientColor && highlightColor && sideGlowColor && shadowColor
     ? {
         background: `
-          radial-gradient(circle at 12% 10%, rgba(${highlightColor.red}, ${highlightColor.green}, ${highlightColor.blue}, 0.24), transparent 28%),
-          radial-gradient(circle at 84% 14%, rgba(${ambientColor.red}, ${ambientColor.green}, ${ambientColor.blue}, 0.18), transparent 24%),
-          radial-gradient(circle at 58% 78%, rgba(${shadowColor.red}, ${shadowColor.green}, ${shadowColor.blue}, 0.16), transparent 30%),
-          linear-gradient(180deg, rgba(18, 15, 13, 0.88) 0%, rgba(11, 10, 10, 0.96) 45%, rgba(8, 8, 8, 0.99) 100%)
+          radial-gradient(circle at 14% 10%, rgba(${highlightColor.red}, ${highlightColor.green}, ${highlightColor.blue}, 0.18), transparent 26%),
+          radial-gradient(circle at 88% 18%, rgba(${sideGlowColor.red}, ${sideGlowColor.green}, ${sideGlowColor.blue}, 0.14), transparent 24%),
+          radial-gradient(circle at 52% 82%, rgba(${shadowColor.red}, ${shadowColor.green}, ${shadowColor.blue}, 0.18), transparent 34%),
+          linear-gradient(180deg, rgba(20, 18, 17, 0.82) 0%, rgba(10, 10, 10, 0.95) 42%, rgba(7, 7, 8, 1) 100%)
         `,
       }
     : undefined;
@@ -154,11 +157,15 @@ export default function DetailAmbientBackground({
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_52%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_28%)] mix-blend-screen opacity-60"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.035),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.02),transparent_20%)] mix-blend-screen opacity-55"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.18)_36%,rgba(0,0,0,0.32)_100%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.26)_34%,rgba(0,0,0,0.42)_100%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0),rgba(0,0,0,0.24)_68%,rgba(0,0,0,0.42)_100%)]"
       />
       {children}
     </div>

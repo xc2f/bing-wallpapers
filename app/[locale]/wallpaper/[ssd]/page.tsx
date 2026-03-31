@@ -183,7 +183,7 @@ export default async function LocalizedWallpaperDetailPage({
           next ? createDetailHref(next.Ssd) : "",
         ]}
       />
-      <main className="min-h-screen bg-stone-950/84 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-stone-950/58 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
           <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
@@ -226,7 +226,7 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
           </section>
 
-          <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.06] shadow-[0_24px_80px_rgba(0,0,0,0.22)] backdrop-blur-[2px]">
+          <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.045))] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
           <div className="bg-stone-900">
             {previewUrl ? (
               <Image
@@ -246,14 +246,14 @@ export default async function LocalizedWallpaperDetailPage({
 
             <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div className="max-w-3xl">
-              <h2 className="text-sm uppercase tracking-[0.22em] text-stone-500">
+              <h2 className="text-xs uppercase tracking-[0.22em] text-stone-500">
                 {dictionary.detailDescription}
               </h2>
-              <div className="mt-5 space-y-5">
+              <div className="detail-description-prose mt-5 max-w-2xl space-y-4">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
                     key={`${wallpaper.Ssd}-description-${index}`}
-                    className="text-[1.03rem] leading-8 text-stone-200 sm:text-[1.08rem]"
+                    className="text-pretty"
                   >
                     {paragraph}
                   </p>
@@ -287,23 +287,23 @@ export default async function LocalizedWallpaperDetailPage({
 
                 <dl className="mt-3 flex flex-col text-sm">
                   <div className="grid gap-2 border-b border-white/10 py-3">
-                    <dt className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                    <dt className="text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailCopyright}
                     </dt>
                     <dd className="leading-6 text-stone-200">
                     {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
                   </dd>
                 </div>
-                  <div className="flex items-start justify-between gap-4 border-b border-white/10 py-3">
-                    <dt className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                  <div className="flex items-center justify-between gap-4 border-b border-white/10 py-3">
+                    <dt className="text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailDate}
                     </dt>
                     <dd className="text-right text-stone-200">
                     {formattedDate}
                   </dd>
                 </div>
-                  <div className="flex items-start justify-between gap-4 py-3">
-                    <dt className="text-[11px] uppercase tracking-[0.18em] text-stone-500">
+                  <div className="flex items-center justify-between gap-4 py-3">
+                    <dt className="text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailArchiveId}
                     </dt>
                     <dd className="font-mono text-right text-stone-300">
@@ -408,7 +408,7 @@ export default async function LocalizedWallpaperDetailPage({
                   replace
                   className={`group ${
                     index >= 4 ? "hidden md:flex" : "flex"
-                  } w-[16.5rem] shrink-0 overflow-hidden rounded-[1.375rem] border border-white/10 bg-white/[0.03] transition duration-300 hover:border-white/15 hover:bg-white/[0.06]`}
+                  } w-[16.5rem] shrink-0 snap-start overflow-hidden rounded-[1.375rem] border border-white/10 bg-white/[0.03] transition duration-300 hover:border-white/15 hover:bg-white/[0.06]`}
                 >
                   <div className="relative h-[6.5rem] w-[6.5rem] shrink-0 overflow-hidden bg-stone-900">
                     {relatedPreviewUrl ? (
