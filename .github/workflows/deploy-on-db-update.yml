@@ -59,8 +59,8 @@ jobs:
           echo "Triggered by repo: ${SOURCE_REPO:-unknown}"
           echo "Triggered by sha: ${SOURCE_SHA:-unknown}"
         env:
-          SOURCE_REPO: ${{ github.event.inputs.source_repo || github.event.client_payload.source_repo }}
-          SOURCE_SHA: ${{ github.event.inputs.source_sha || github.event.client_payload.source_sha }}
+          SOURCE_REPO: ${{ github.event.inputs.source_repo || github.event.client_payload.source_repo || github.repository }}
+          SOURCE_SHA: ${{ github.event.inputs.source_sha || github.event.client_payload.source_sha || github.sha }}
 
       - name: Deploy worker
         env:

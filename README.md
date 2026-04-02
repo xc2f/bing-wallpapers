@@ -1,6 +1,6 @@
 # Bing Wallpapers Archive
 
-A multilingual Bing wallpaper archive built with Next.js, TypeScript, and local persistence.
+A multilingual Bing wallpaper archive built with Next.js, TypeScript, and an external DB repository.
 
 Online preview: [https://bing.xc2f.com](https://bing.xc2f.com)
 
@@ -110,7 +110,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 If you want to move [`db/`](./db/) into a separate repository, this project now supports pulling the data at build time.
 
-Set these environment variables in Cloudflare Pages or your CI:
+Set these environment variables in GitHub Actions or your deployment environment:
 
 ```bash
 DB_SYNC_ENABLED=true
@@ -123,17 +123,11 @@ If the DB repository is private, also set:
 DB_SYNC_BEARER_TOKEN=<token>
 ```
 
-Then use this build command for Cloudflare Pages:
-
-```bash
-npm run build:pages
-```
-
 Notes:
 
 - `DB_SYNC_JSON_URL` is required because the site reads [`db/media_contents.json`](./db/media_contents.json) directly at build/runtime.
 - For GitHub private repositories, prefer the GitHub Contents API URLs above instead of `raw.githubusercontent.com`; they work more reliably with `Bearer` tokens.
-- Local `npm run build` remains unchanged; external sync is only enabled when `DB_SYNC_ENABLED=true`.
+- `npm run dev`, `npm run preview`, and `npm run deploy` all sync the DB before starting.
 
 ### Migration steps
 
@@ -146,25 +140,38 @@ db/media_contents.json
 2. In this repository, stop tracking the old DB artifacts:
 
 ```bash
-git rm --cached db/media_contents.json db/media_contents.db
+git rm --cached db/media_contents.json
 git commit -m "Stop tracking local DB artifacts"
 ```
 
-3. In Cloudflare Pages, set:
+3. In the main repository GitHub Actions settings, add:
 
 ```bash
-Build command: npm run build:pages
+DB_SYNC_ENABLED=true
+DB_SYNC_JSON_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.json?ref=<branch>
 ```
 
-4. Add the environment variables shown above to Cloudflare Pages.
+4. If the DB repository is private, also add:
+
+```bash
+DB_SYNC_BEARER_TOKEN=<token>
+```
 
 5. Trigger one deploy to verify the remote DB can be downloaded before deleting local copies anywhere else.
 
-## Trigger Pages Deploy From DB Updates
+## Trigger Deploy From DB Updates
 
-In Cloudflare Pages, create a Deploy Hook for this project, then store that hook URL as a secret in the DB repository.
+The DB repository should trigger the main repository's deploy workflow through the GitHub Actions API.
 
-Example GitHub Actions workflow in the DB repository:
+Store a fine-grained GitHub token in the DB repository as:
+
+```bash
+TARGET_REPO_WORKFLOW_TOKEN=<token>
+```
+
+The token should be allowed to dispatch workflows in the main repository.
+
+Example workflow in the DB repository:
 
 ```yaml
 name: Notify site deploy
@@ -178,13 +185,27 @@ on:
   workflow_dispatch:
 
 jobs:
-  trigger-pages:
+  trigger-deploy-workflow:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Cloudflare Pages deploy hook
-        run: curl -X POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
+      - name: Trigger target repository workflow
+        run: |
+          curl --fail --request POST \
+            --url "https://api.github.com/repos/<owner>/<site-repo>/actions/workflows/deploy-on-db-update.yml/dispatches" \
+            --header "Accept: application/vnd.github+json" \
+            --header "Authorization: Bearer ${TARGET_REPO_WORKFLOW_TOKEN}" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --data @- <<JSON
+          {
+            "ref": "main",
+            "inputs": {
+              "source_repo": "${GITHUB_REPOSITORY}",
+              "source_sha": "${GITHUB_SHA}"
+            }
+          }
+          JSON
         env:
-          CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
+          TARGET_REPO_WORKFLOW_TOKEN: ${{ secrets.TARGET_REPO_WORKFLOW_TOKEN }}
 ```
 
 Suggested DB repository layout:
@@ -195,7 +216,6 @@ Suggested DB repository layout:
 │   └── workflows/
 │       └── notify-pages.yml
 └── db/
-    ├── media_contents.db
     └── media_contents.json
 ```
 
@@ -203,29 +223,28 @@ Recommended split:
 
 - DB repository owns `db/media_contents.json`
 - This repository only consumes them during build
-- DB repository push -> Deploy Hook -> Cloudflare Pages rebuilds this project -> build step pulls latest DB files
+- DB repository push -> trigger main repository workflow -> main repository deploys the worker with the latest DB data
 
 ## Scripts
 
 - `npm run dev`  
   Start local development
 - `npm run build`  
-  Production build
+  Production build without DB sync
 - `npm run start`  
   Start the production server
 - `npm run preview`  
-  Preview Cloudflare build locally
+  Sync DB and preview Cloudflare build locally
 - `npm run deploy`  
-  Deploy with OpenNext Cloudflare
+  Sync DB and deploy with OpenNext Cloudflare
 
 ## Deployment
 
-This project is configured for Cloudflare via OpenNext.
+This project is deployed as a Cloudflare Worker via OpenNext and GitHub Actions.
 
 Typical flow:
 
 ```bash
-npm run build
 npm run deploy
 ```
 

@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "next build",
-    "build:pages": "npm run sync-db && next build",
-    "dev": "next dev --turbopack",
+    "dev": "npm run sync-db && next dev --turbopack",
     "start": "next start",
     "lint": "next lint",
     "sync-db": "tsx bin/sync-db.ts",

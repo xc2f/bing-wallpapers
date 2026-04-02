@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { access, mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import "dotenv/config";
 
@@ -15,6 +15,9 @@ const remoteFiles: RemoteFile[] = [
     url: process.env.DB_SYNC_JSON_URL,
   },
 ];
+
+const fallbackJsonPath = resolve("db/media_contents.json");
+const fallbackJsonContent = JSON.stringify({ mediaContents: [] }, null, 2);
 
 function getHeaders() {
   const headers = new Headers();
@@ -52,11 +55,26 @@ async function downloadFile(file: RemoteFile) {
   return true;
 }
 
+async function ensureFallbackDbFile() {
+  try {
+    await access(fallbackJsonPath);
+    console.log(`Using existing DB file -> ${fallbackJsonPath}`);
+    return;
+  } catch {
+    // Fall through and create the placeholder file when it does not exist.
+  }
+
+  await mkdir(dirname(fallbackJsonPath), { recursive: true });
+  await writeFile(fallbackJsonPath, `${fallbackJsonContent}\n`);
+  console.log(`Created fallback DB file -> ${fallbackJsonPath}`);
+}
+
 async function main() {
   const enabled = process.env.DB_SYNC_ENABLED === "true";
 
   if (!enabled) {
     console.log("DB sync skipped because DB_SYNC_ENABLED is not true.");
+    await ensureFallbackDbFile();
     return;
   }
 
