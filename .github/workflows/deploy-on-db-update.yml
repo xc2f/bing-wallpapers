@@ -67,7 +67,6 @@ jobs:
           BASE_URL: ${{ vars.BASE_URL }}
           DB_SYNC_ENABLED: ${{ vars.DB_SYNC_ENABLED }}
           DB_SYNC_JSON_URL: ${{ vars.DB_SYNC_JSON_URL }}
-          DB_SYNC_SQLITE_URL: ${{ vars.DB_SYNC_SQLITE_URL }}
           DB_SYNC_BEARER_TOKEN: ${{ secrets.DB_SYNC_BEARER_TOKEN }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

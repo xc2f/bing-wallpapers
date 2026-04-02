@@ -9,7 +9,6 @@
     "dev": "next dev --turbopack",
     "start": "next start",
     "lint": "next lint",
-    "save": "tsx bin/run.ts",
     "sync-db": "tsx bin/sync-db.ts",
     "preview": "npm run sync-db && opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "npm run sync-db && opennextjs-cloudflare build && opennextjs-cloudflare deploy",
@@ -18,14 +17,10 @@
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.18.0",
-    "axios": "^1.7.9",
-    "cheerio": "^1.0.0",
     "dotenv": "^16.4.7",
-    "lowdb": "^7.0.1",
     "next": "^15.5.14",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "sqlite3": "^5.1.7"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

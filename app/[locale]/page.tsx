@@ -273,11 +273,6 @@ export default async function LocalizedHomePage({
             className="waterfall-view-stage rounded-3xl border border-dashed border-white/15 bg-white/5 p-10 text-center"
           >
             <h2 className="text-xl font-semibold text-white">{dictionary.emptyTitle}</h2>
-            {/* <p className="mt-3 text-sm text-stone-300">
-              {dictionary.emptyDescriptionPrefix}{" "}
-              <code className="rounded bg-white/10 px-2 py-1">npm run save</code>{" "}
-              {dictionary.emptyDescriptionSuffix}
-            </p> */}
           </section>
         ) : (
           <div key={currentListPath} className="waterfall-view-stage flex flex-col gap-6">

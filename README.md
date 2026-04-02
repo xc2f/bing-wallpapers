@@ -21,7 +21,7 @@ It supports locale-aware routing, local image proxying, advanced search, and Clo
 - Locale-aware UI routing
 - Dynamic detail-page ambient background based on wallpaper tones
 - Local Bing image proxy to avoid direct hotlink failures
-- Local persistence with SQLite and JSON
+- Build-time JSON sync from external DB repository
 
 ## Advanced Search
 
@@ -69,8 +69,6 @@ Related helpers live in [`lib/archive.ts`](./lib/archive.ts).
 - React 19
 - TypeScript
 - Tailwind CSS
-- SQLite
-- LowDB
 - OpenNext Cloudflare
 
 ## Project Structure
@@ -83,12 +81,8 @@ Related helpers live in [`lib/archive.ts`](./lib/archive.ts).
   Waterfall gallery
 - [`app/api/image/route.ts`](./app/api/image/route.ts)  
   Bing image proxy
-- [`lib/wallpaper.ts`](./lib/wallpaper.ts)  
-  Wallpaper fetching pipeline
-- [`lib/db.ts`](./lib/db.ts)  
-  SQLite persistence
-- [`lib/db_low.ts`](./lib/db_low.ts)  
-  JSON persistence
+- [`bin/sync-db.ts`](./bin/sync-db.ts)  
+  Build-time external DB sync
 
 ## Local Development
 
@@ -112,16 +106,6 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## Data Fetching
-
-Fetch the latest wallpapers:
-
-```bash
-npm run save
-```
-
-This updates local data under [`db/`](./db/).
-
 ## External DB Repository
 
 If you want to move [`db/`](./db/) into a separate repository, this project now supports pulling the data at build time.
@@ -131,7 +115,6 @@ Set these environment variables in Cloudflare Pages or your CI:
 ```bash
 DB_SYNC_ENABLED=true
 DB_SYNC_JSON_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.json?ref=<branch>
-DB_SYNC_SQLITE_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.db?ref=<branch>
 ```
 
 If the DB repository is private, also set:
@@ -149,7 +132,6 @@ npm run build:pages
 Notes:
 
 - `DB_SYNC_JSON_URL` is required because the site reads [`db/media_contents.json`](./db/media_contents.json) directly at build/runtime.
-- `DB_SYNC_SQLITE_URL` is optional and is mainly useful if you still want local SQLite files for scripts such as `npm run save`.
 - For GitHub private repositories, prefer the GitHub Contents API URLs above instead of `raw.githubusercontent.com`; they work more reliably with `Bearer` tokens.
 - Local `npm run build` remains unchanged; external sync is only enabled when `DB_SYNC_ENABLED=true`.
 
@@ -159,7 +141,6 @@ Notes:
 
 ```text
 db/media_contents.json
-db/media_contents.db
 ```
 
 2. In this repository, stop tracking the old DB artifacts:
@@ -220,7 +201,7 @@ Suggested DB repository layout:
 
 Recommended split:
 
-- DB repository owns `db/media_contents.json` and `db/media_contents.db`
+- DB repository owns `db/media_contents.json`
 - This repository only consumes them during build
 - DB repository push -> Deploy Hook -> Cloudflare Pages rebuilds this project -> build step pulls latest DB files
 
@@ -232,8 +213,6 @@ Recommended split:
   Production build
 - `npm run start`  
   Start the production server
-- `npm run save`  
-  Fetch and persist Bing wallpaper data
 - `npm run preview`  
   Preview Cloudflare build locally
 - `npm run deploy`  

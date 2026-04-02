@@ -14,11 +14,6 @@ const remoteFiles: RemoteFile[] = [
     outputPath: resolve("db/media_contents.json"),
     url: process.env.DB_SYNC_JSON_URL,
   },
-  {
-    label: "media_contents.db",
-    outputPath: resolve("db/media_contents.db"),
-    url: process.env.DB_SYNC_SQLITE_URL,
-  },
 ];
 
 function getHeaders() {
