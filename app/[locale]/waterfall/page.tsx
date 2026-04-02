@@ -21,11 +21,18 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
+const WATERFALL_BATCH_SIZE = 180;
+
 function createDetailHref(locale: Locale, ssd: string) {
   return localizePath(locale, `/wallpaper/${ssd}`);
 }
 
-function createWaterfallHref(locale: Locale, year?: string, mode?: string) {
+function createWaterfallHref(
+  locale: Locale,
+  year?: string,
+  mode?: string,
+  page = 1
+) {
   const params = new URLSearchParams();
 
   if (year?.trim()) {
@@ -34,6 +41,10 @@ function createWaterfallHref(locale: Locale, year?: string, mode?: string) {
 
   if (mode?.trim()) {
     params.set("mode", mode.trim());
+  }
+
+  if (page > 1) {
+    params.set("page", String(page));
   }
 
   const search = params.toString();
@@ -64,7 +75,7 @@ export default async function LocalizedWaterfallPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-    searchParams?: Promise<{ mode?: string; year?: string }>;
+    searchParams?: Promise<{ mode?: string; page?: string; year?: string }>;
 }) {
   const { locale } = await params;
   const resolvedSearchParams = (await searchParams) ?? {};
@@ -77,11 +88,17 @@ export default async function LocalizedWaterfallPage({
   const allWallpapers = getAllWallpapers();
   const mode = resolvedSearchParams.mode?.trim() ?? "";
   const year = resolvedSearchParams.year?.trim() ?? "";
+  const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);
   const initialShowMeta = mode === "meta";
   const allowStoredPreference = !mode;
   const yearOptions = getYearOptions(allWallpapers);
   const wallpapers = filterWallpapersByDate(allWallpapers, year);
-  const waterfallPath = createWaterfallHref(locale, year, mode);
+  const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
+  const currentPage = Number.isNaN(requestedPage)
+    ? 1
+    : Math.min(Math.max(1, requestedPage), totalPages);
+  const loadedWallpapers = wallpapers.slice(0, currentPage * WATERFALL_BATCH_SIZE);
+  const waterfallPath = createWaterfallHref(locale, year, mode, currentPage);
   const yearFilterItems = [
     {
       href: createWaterfallHref(locale, "", mode),
@@ -94,15 +111,11 @@ export default async function LocalizedWaterfallPage({
       active: optionYear === year,
     })),
   ];
-  const items = wallpapers.map((wallpaper) => ({
+  const items = loadedWallpapers.map((wallpaper) => ({
     ssd: wallpaper.Ssd,
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
-    ...(initialShowMeta
-      ? {
-          description: wallpaper.ImageContent?.Description ?? dictionary.noDescription,
-        }
-      : {}),
+    description: wallpaper.ImageContent?.Description ?? dictionary.noDescription,
     previewUrl: toProxyImageUrl(wallpaper.ImageContent?.Image?.Url),
     detailHref: createDetailHref(locale, wallpaper.Ssd),
   }));
@@ -158,10 +171,14 @@ export default async function LocalizedWaterfallPage({
         <WaterfallGallery
           dictionary={dictionary}
           allowStoredPreference={allowStoredPreference}
+          initialPage={currentPage}
           items={items}
           initialShowMeta={initialShowMeta}
+          locale={locale}
           storageKey={waterfallPath}
           totalCount={wallpapers.length}
+          totalPages={totalPages}
+          year={year}
         />
       </div>
     </main>

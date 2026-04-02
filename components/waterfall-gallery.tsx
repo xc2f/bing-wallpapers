@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
-import type { Dictionary } from "@/lib/i18n";
+import type { Dictionary, Locale } from "@/lib/i18n";
 
 const WATERFALL_META_STORAGE_KEY = "waterfall-show-meta";
 const SCROLL_STORAGE_PREFIX = "scroll-position:";
@@ -18,8 +18,12 @@ interface WaterfallGalleryProps {
   allowStoredPreference: boolean;
   dictionary: Dictionary;
   initialShowMeta: boolean;
+  initialPage: number;
+  locale: Locale;
   storageKey: string;
   totalCount: number;
+  totalPages: number;
+  year?: string;
   items: {
     ssd: string;
     fullDate?: string;
@@ -105,37 +109,73 @@ export default function WaterfallGallery({
   allowStoredPreference,
   dictionary,
   initialShowMeta,
+  initialPage,
+  locale,
   storageKey,
   totalCount,
+  totalPages,
+  year,
   items,
 }: WaterfallGalleryProps) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [loadedItems, setLoadedItems] = useState(items);
+  const [loadedPage, setLoadedPage] = useState(initialPage);
   const [showMeta, setShowMeta] = useState(initialShowMeta);
   const [columnCount, setColumnCount] = useState(1);
   const [isReady, setIsReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
+  const [isFetchingMore, setIsFetchingMore] = useState(false);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasRestoredAnchorRef = useRef(false);
   const hasMountedRef = useRef(false);
+  const hasRequestedMoreRef = useRef(false);
   const fallbackStorageKey = storageKey.split("?")[0];
   const hasMetaPayload = useMemo(
-    () => items.some((item) => Boolean(item.fullDate || item.description)),
-    [items]
+    () => loadedItems.some((item) => Boolean(item.fullDate || item.description)),
+    [loadedItems]
   );
-  const detailSearch = useMemo(() => {
+  const baseSearchParams = useMemo(() => {
     const params = new URLSearchParams(searchParams.toString());
+    params.delete("view");
+    params.delete("mode");
+    return params;
+  }, [searchParams]);
+  const detailSearch = useMemo(() => {
+    const params = new URLSearchParams(baseSearchParams.toString());
     params.set("view", "waterfall");
+    params.set("page", String(loadedPage));
+    params.set("mode", showMeta ? "meta" : "images");
     const nextSearch = params.toString();
     return nextSearch ? `?${nextSearch}` : "";
-  }, [searchParams]);
+  }, [baseSearchParams, loadedPage, showMeta]);
+  const hasMoreServerItems = loadedPage < totalPages;
 
   function createDetailHref(detailHref: string) {
     return `${detailHref}${detailSearch}`;
   }
+
+  const replaceCurrentUrl = useCallback((nextPage: number, nextShowMeta: boolean) => {
+    const params = new URLSearchParams(baseSearchParams.toString());
+
+    if (nextShowMeta) {
+      params.set("mode", "meta");
+    } else {
+      params.set("mode", "images");
+    }
+
+    if (nextPage > 1) {
+      params.set("page", String(nextPage));
+    } else {
+      params.delete("page");
+    }
+
+    const nextSearch = params.toString();
+    const nextHref = nextSearch ? `${pathname}?${nextSearch}` : pathname;
+    window.history.replaceState(null, "", nextHref);
+  }, [baseSearchParams, pathname]);
 
   function clearStoredRestoration() {
     window.sessionStorage.removeItem(`${SCROLL_STORAGE_PREFIX}${storageKey}`);
@@ -151,7 +191,11 @@ export default function WaterfallGallery({
   function handleToggleMode() {
     clearStoredRestoration();
     hasRestoredAnchorRef.current = true;
-    setShowMeta((current) => !current);
+    setShowMeta((current) => {
+      const nextValue = !current;
+      replaceCurrentUrl(loadedPage, nextValue);
+      return nextValue;
+    });
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
@@ -170,6 +214,59 @@ export default function WaterfallGallery({
     }));
   }
 
+  const fetchMoreItems = useCallback(async function fetchMoreItems() {
+    if (isFetchingMore || !hasMoreServerItems) {
+      return;
+    }
+
+    hasRequestedMoreRef.current = true;
+    setIsFetchingMore(true);
+
+    try {
+      const params = new URLSearchParams({
+        locale,
+        page: String(loadedPage + 1),
+      });
+
+      if (year?.trim()) {
+        params.set("year", year.trim());
+      }
+
+      const response = await fetch(`/api/waterfall?${params.toString()}`, {
+        cache: "no-store",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to load waterfall batch.");
+      }
+
+      const payload = (await response.json()) as {
+        items?: WaterfallGalleryProps["items"];
+        page?: number;
+      };
+
+      if (!payload.items?.length || !payload.page) {
+        return;
+      }
+
+      const nextBatchItems = payload.items;
+      const nextPage = payload.page;
+
+      setLoadedItems((current) => {
+        const seen = new Set(current.map((item) => item.ssd));
+        const nextItems = nextBatchItems.filter((item) => !seen.has(item.ssd));
+        return [...current, ...nextItems];
+      });
+      setLoadedPage(nextPage);
+      replaceCurrentUrl(nextPage, showMeta);
+    } finally {
+      setIsFetchingMore(false);
+      window.setTimeout(() => {
+        hasRequestedMoreRef.current = false;
+      }, 120);
+    }
+  }, [hasMoreServerItems, isFetchingMore, loadedPage, locale, replaceCurrentUrl, showMeta, year]);
+
   useLayoutEffect(() => {
     function updateColumns() {
       setColumnCount(getColumnCount(window.innerWidth));
@@ -187,6 +284,8 @@ export default function WaterfallGallery({
         )
       : INITIAL_BATCH_SIZE;
 
+    setLoadedItems(items);
+    setLoadedPage(initialPage);
     setShowMeta(nextShowMeta);
     setVisibleCount(nextVisibleCount);
     updateColumns();
@@ -194,7 +293,7 @@ export default function WaterfallGallery({
     window.addEventListener("resize", updateColumns);
 
     return () => window.removeEventListener("resize", updateColumns);
-  }, [allowStoredPreference, initialShowMeta, items, storageKey]);
+  }, [allowStoredPreference, initialPage, initialShowMeta, items, storageKey]);
 
   useEffect(() => {
     if (!isReady) {
@@ -206,28 +305,6 @@ export default function WaterfallGallery({
       showMeta ? "true" : "false"
     );
   }, [isReady, showMeta]);
-
-  useEffect(() => {
-    if (!isReady) {
-      return;
-    }
-
-    const params = new URLSearchParams(searchParams.toString());
-
-    if (showMeta) {
-      params.set("mode", "meta");
-    } else {
-      params.set("mode", "images");
-    }
-
-    const nextSearch = params.toString();
-    const nextHref = nextSearch ? `${pathname}?${nextSearch}` : pathname;
-    const currentHref = `${pathname}${searchParams.toString() ? `?${searchParams.toString()}` : ""}`;
-
-    if (nextHref !== currentHref) {
-      router.replace(nextHref, { scroll: false });
-    }
-  }, [isReady, pathname, router, searchParams, showMeta]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -243,7 +320,7 @@ export default function WaterfallGallery({
       return;
     }
 
-    const savedAnchorIndex = getSavedAnchorIndex(storageKey, items);
+    const savedAnchorIndex = getSavedAnchorIndex(storageKey, loadedItems);
 
     if (!savedAnchorIndex || Number.isNaN(savedAnchorIndex)) {
       return;
@@ -252,15 +329,15 @@ export default function WaterfallGallery({
     setVisibleCount((current) =>
       Math.min(
         Math.max(current, savedAnchorIndex + LOAD_MORE_BATCH_SIZE),
-        items.length
+        loadedItems.length
       )
     );
-  }, [isReady, items, items.length, storageKey]);
+  }, [isReady, loadedItems, loadedItems.length, storageKey]);
 
   useEffect(() => {
     const node = sentinelRef.current;
 
-    if (!isReady || !node || visibleCount >= items.length) {
+    if (!isReady || !node || visibleCount >= loadedItems.length) {
       return;
     }
 
@@ -272,7 +349,7 @@ export default function WaterfallGallery({
         }
 
         setVisibleCount((current) =>
-          Math.min(current + LOAD_MORE_BATCH_SIZE, items.length)
+          Math.min(current + LOAD_MORE_BATCH_SIZE, loadedItems.length)
         );
       },
       {
@@ -283,7 +360,36 @@ export default function WaterfallGallery({
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [isReady, items.length, visibleCount]);
+  }, [isReady, loadedItems.length, visibleCount]);
+
+  useEffect(() => {
+    const node = sentinelRef.current;
+
+    if (!isReady || !node || !hasMoreServerItems) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+
+        if (!entry?.isIntersecting || hasRequestedMoreRef.current) {
+          return;
+        }
+
+        if (visibleCount >= loadedItems.length - LOAD_MORE_BATCH_SIZE / 2) {
+          void fetchMoreItems();
+        }
+      },
+      {
+        rootMargin: "1400px 0px",
+      }
+    );
+
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, [fetchMoreItems, hasMoreServerItems, isReady, loadedItems.length, visibleCount]);
 
   const gridColumnsClass =
     columnCount === 4
@@ -303,8 +409,8 @@ export default function WaterfallGallery({
           : "96vw";
   const shouldRenderMeta = showMeta && hasMetaPayload;
   const visibleItems = useMemo(
-    () => items.slice(0, visibleCount),
-    [items, visibleCount]
+    () => loadedItems.slice(0, visibleCount),
+    [loadedItems, visibleCount]
   );
   const groupedItems = useMemo(() => {
     const columns = Array.from({ length: columnCount }, () => [] as typeof items);
@@ -633,8 +739,22 @@ export default function WaterfallGallery({
         </div>
       ) : null}
 
-      {isReady && visibleCount < items.length ? (
+      {isReady && (visibleCount < loadedItems.length || hasMoreServerItems) ? (
         <div ref={sentinelRef} className="h-12" aria-hidden="true" />
+      ) : null}
+
+      {isReady && (hasMoreServerItems || isFetchingMore) ? (
+        <div className="flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-sm">
+          <p className="text-stone-400">
+            {dictionary.waterfallLoaded}{" "}
+            <span className="text-stone-100">{loadedItems.length}</span> / {totalCount}
+          </p>
+          <p className="text-stone-500">
+            {isFetchingMore
+              ? dictionary.waterfallLoadingMore
+              : dictionary.waterfallBatchSize}
+          </p>
+        </div>
       ) : null}
     </section>
   );

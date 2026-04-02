@@ -30,6 +30,8 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
+const DETAIL_STATIC_PRERENDER_LIMIT = 180;
+
 function splitDescriptionIntoParagraphs(description: string) {
   const normalized = description.trim();
 
@@ -50,8 +52,10 @@ function splitDescriptionIntoParagraphs(description: string) {
 }
 
 export async function generateStaticParams() {
+  const recentWallpapers = getAllWallpapers().slice(0, DETAIL_STATIC_PRERENDER_LIMIT);
+
   return locales.flatMap((locale) =>
-    getAllWallpapers().map((wallpaper) => ({
+    recentWallpapers.map((wallpaper) => ({
       locale,
       ssd: wallpaper.Ssd,
     }))
@@ -104,7 +108,6 @@ export default async function LocalizedWallpaperDetailPage({
   const year = resolvedSearchParams.year?.trim() ?? "";
   const month = resolvedSearchParams.month?.trim() ?? "";
   const view = resolvedSearchParams.view?.trim() ?? "";
-  const mode = resolvedSearchParams.mode?.trim() ?? "";
   if (!isValidLocale(locale)) {
     notFound();
   }
@@ -152,10 +155,18 @@ export default async function LocalizedWallpaperDetailPage({
 
   const backHref =
     view === "waterfall"
-      ? localizePath(
-          currentLocale,
-          mode ? `/waterfall?mode=${mode}` : "/waterfall"
-        )
+      ? (() => {
+          const waterfallQuery = new URLSearchParams(backQuery.toString());
+          waterfallQuery.delete("view");
+          waterfallQuery.delete("q");
+          waterfallQuery.delete("month");
+          const waterfallSearch = waterfallQuery.toString();
+
+          return localizePath(
+            currentLocale,
+            `/waterfall${waterfallSearch ? `?${waterfallSearch}` : ""}`
+          );
+        })()
       : localizePath(
           currentLocale,
           backQuery.toString() ? `?${backQuery.toString()}` : ""

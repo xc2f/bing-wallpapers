@@ -22,6 +22,14 @@ interface WallpaperArchive {
   mediaContents: WallpaperItem[];
 }
 
+const wallpaperArchive = data as WallpaperArchive;
+const sortedWallpapers = [...wallpaperArchive.mediaContents].sort((a, b) =>
+  b.Ssd.localeCompare(a.Ssd)
+);
+const wallpaperBySsd = new Map(
+  sortedWallpapers.map((wallpaper) => [wallpaper.Ssd, wallpaper] as const)
+);
+
 interface DateParts {
   year: string;
   month: string;
@@ -45,12 +53,11 @@ export function toProxyImageUrl(path?: string) {
 }
 
 export function getAllWallpapers() {
-  const wallpapers = (data as WallpaperArchive).mediaContents;
-  return [...wallpapers].sort((a, b) => b.Ssd.localeCompare(a.Ssd));
+  return sortedWallpapers;
 }
 
 export function getWallpaperBySsd(ssd: string) {
-  return getAllWallpapers().find((wallpaper) => wallpaper.Ssd === ssd);
+  return wallpaperBySsd.get(ssd);
 }
 
 export function getRelatedWallpapers(ssd: string, limit = 3) {
