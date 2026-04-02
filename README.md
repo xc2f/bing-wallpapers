@@ -122,6 +122,108 @@ npm run save
 
 This updates local data under [`db/`](./db/).
 
+## External DB Repository
+
+If you want to move [`db/`](./db/) into a separate repository, this project now supports pulling the data at build time.
+
+Set these environment variables in Cloudflare Pages or your CI:
+
+```bash
+DB_SYNC_ENABLED=true
+DB_SYNC_JSON_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.json?ref=<branch>
+DB_SYNC_SQLITE_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.db?ref=<branch>
+```
+
+If the DB repository is private, also set:
+
+```bash
+DB_SYNC_BEARER_TOKEN=<token>
+```
+
+Then use this build command for Cloudflare Pages:
+
+```bash
+npm run build:pages
+```
+
+Notes:
+
+- `DB_SYNC_JSON_URL` is required because the site reads [`db/media_contents.json`](./db/media_contents.json) directly at build/runtime.
+- `DB_SYNC_SQLITE_URL` is optional and is mainly useful if you still want local SQLite files for scripts such as `npm run save`.
+- For GitHub private repositories, prefer the GitHub Contents API URLs above instead of `raw.githubusercontent.com`; they work more reliably with `Bearer` tokens.
+- Local `npm run build` remains unchanged; external sync is only enabled when `DB_SYNC_ENABLED=true`.
+
+### Migration steps
+
+1. Create a dedicated DB repository and keep these files there:
+
+```text
+db/media_contents.json
+db/media_contents.db
+```
+
+2. In this repository, stop tracking the old DB artifacts:
+
+```bash
+git rm --cached db/media_contents.json db/media_contents.db
+git commit -m "Stop tracking local DB artifacts"
+```
+
+3. In Cloudflare Pages, set:
+
+```bash
+Build command: npm run build:pages
+```
+
+4. Add the environment variables shown above to Cloudflare Pages.
+
+5. Trigger one deploy to verify the remote DB can be downloaded before deleting local copies anywhere else.
+
+## Trigger Pages Deploy From DB Updates
+
+In Cloudflare Pages, create a Deploy Hook for this project, then store that hook URL as a secret in the DB repository.
+
+Example GitHub Actions workflow in the DB repository:
+
+```yaml
+name: Notify site deploy
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "db/**"
+  workflow_dispatch:
+
+jobs:
+  trigger-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Cloudflare Pages deploy hook
+        run: curl -X POST "$CLOUDFLARE_PAGES_DEPLOY_HOOK"
+        env:
+          CLOUDFLARE_PAGES_DEPLOY_HOOK: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY_HOOK }}
+```
+
+Suggested DB repository layout:
+
+```text
+.
+├── .github/
+│   └── workflows/
+│       └── notify-pages.yml
+└── db/
+    ├── media_contents.db
+    └── media_contents.json
+```
+
+Recommended split:
+
+- DB repository owns `db/media_contents.json` and `db/media_contents.db`
+- This repository only consumes them during build
+- DB repository push -> Deploy Hook -> Cloudflare Pages rebuilds this project -> build step pulls latest DB files
+
 ## Scripts
 
 - `npm run dev`  

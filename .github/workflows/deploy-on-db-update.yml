@@ -1,0 +1,74 @@
+name: Deploy on DB Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app/**"
+      - "bin/**"
+      - "components/**"
+      - "lib/**"
+      - "public/**"
+      - ".github/workflows/deploy-on-db-update.yml"
+      - "middleware.ts"
+      - "next.config.ts"
+      - "open-next.config.ts"
+      - "package.json"
+      - "package-lock.json"
+      - "postcss.config.mjs"
+      - "tailwind.config.ts"
+      - "tsconfig.json"
+      - "wrangler.jsonc"
+  workflow_dispatch:
+    inputs:
+      source_repo:
+        description: Source repository that triggered this deploy
+        required: false
+        type: string
+      source_sha:
+        description: Source commit SHA that triggered this deploy
+        required: false
+        type: string
+  repository_dispatch:
+    types:
+      - db-updated
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Log trigger metadata
+        run: |
+          echo "Triggered by repo: ${SOURCE_REPO:-unknown}"
+          echo "Triggered by sha: ${SOURCE_SHA:-unknown}"
+        env:
+          SOURCE_REPO: ${{ github.event.inputs.source_repo || github.event.client_payload.source_repo }}
+          SOURCE_SHA: ${{ github.event.inputs.source_sha || github.event.client_payload.source_sha }}
+
+      - name: Deploy worker
+        env:
+          BASE_URL: ${{ vars.BASE_URL }}
+          DB_SYNC_ENABLED: ${{ vars.DB_SYNC_ENABLED }}
+          DB_SYNC_JSON_URL: ${{ vars.DB_SYNC_JSON_URL }}
+          DB_SYNC_SQLITE_URL: ${{ vars.DB_SYNC_SQLITE_URL }}
+          DB_SYNC_BEARER_TOKEN: ${{ secrets.DB_SYNC_BEARER_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npm run deploy

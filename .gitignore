@@ -43,3 +43,7 @@ next-env.d.ts
 # OpenNext
 .open-next
 .wrangler
+
+# External DB artifacts
+db/*.json
+db/*.db
