@@ -16,10 +16,11 @@ import {
   getDictionary,
   getLocaleFromParam,
   isValidLocale,
-  locales,
   localizePath,
   type Locale,
 } from "@/lib/i18n";
+
+export const dynamic = "force-dynamic";
 
 const WATERFALL_BATCH_SIZE = 180;
 
@@ -49,10 +50,6 @@ function createWaterfallHref(
 
   const search = params.toString();
   return localizePath(locale, `/waterfall${search ? `?${search}` : ""}`);
-}
-
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
@@ -85,7 +82,7 @@ export default async function LocalizedWaterfallPage({
   }
 
   const dictionary = getDictionary(locale);
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = await getAllWallpapers();
   const mode = resolvedSearchParams.mode?.trim() ?? "";
   const year = resolvedSearchParams.year?.trim() ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);

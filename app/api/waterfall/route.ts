@@ -13,6 +13,8 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
+export const dynamic = "force-dynamic";
+
 const WATERFALL_BATCH_SIZE = 180;
 
 function createDetailHref(locale: Locale, ssd: string) {
@@ -33,7 +35,7 @@ export async function GET(request: NextRequest) {
 
   const locale = getLocaleFromParam(localeParam);
   const dictionary = getDictionary(locale);
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = await getAllWallpapers();
   const wallpapers = filterWallpapersByDate(allWallpapers, year);
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
   const page = Number.isNaN(pageValue)

@@ -25,12 +25,11 @@ import {
   getDictionary,
   getLocaleFromParam,
   isValidLocale,
-  locales,
   localizePath,
   type Locale,
 } from "@/lib/i18n";
 
-const DETAIL_STATIC_PRERENDER_LIMIT = 180;
+export const dynamic = "force-dynamic";
 
 function splitDescriptionIntoParagraphs(description: string) {
   const normalized = description.trim();
@@ -51,17 +50,6 @@ function splitDescriptionIntoParagraphs(description: string) {
   return blocks.length > 0 ? blocks : [normalized];
 }
 
-export async function generateStaticParams() {
-  const recentWallpapers = getAllWallpapers().slice(0, DETAIL_STATIC_PRERENDER_LIMIT);
-
-  return locales.flatMap((locale) =>
-    recentWallpapers.map((wallpaper) => ({
-      locale,
-      ssd: wallpaper.Ssd,
-    }))
-  );
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -70,7 +58,7 @@ export async function generateMetadata({
   const { locale, ssd } = await params;
   const resolvedLocale = getLocaleFromParam(locale);
   const dictionary = getDictionary(resolvedLocale);
-  const wallpaper = getWallpaperBySsd(ssd);
+  const wallpaper = await getWallpaperBySsd(ssd);
 
   if (!wallpaper) {
     return {
@@ -114,13 +102,14 @@ export default async function LocalizedWallpaperDetailPage({
   const currentLocale: Locale = locale;
 
   const dictionary = getDictionary(currentLocale);
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = await getAllWallpapers();
   const filteredWallpapers = searchWallpapers(
     filterWallpapersByDate(allWallpapers, year, month),
     query
   );
   const wallpaper =
-    filteredWallpapers.find((item) => item.Ssd === ssd) ?? getWallpaperBySsd(ssd);
+    filteredWallpapers.find((item) => item.Ssd === ssd) ??
+    (await getWallpaperBySsd(ssd));
 
   if (!wallpaper) {
     notFound();
@@ -141,10 +130,10 @@ export default async function LocalizedWallpaperDetailPage({
   const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
   const relatedWallpapers = hasFilteredMatch
     ? getRelatedWallpapersFromList(filteredWallpapers, wallpaper.Ssd, 8)
-    : getRelatedWallpapers(wallpaper.Ssd, 8);
+    : await getRelatedWallpapers(wallpaper.Ssd, 8);
   const { previous, next } = hasFilteredMatch
     ? getAdjacentWallpapersFromList(filteredWallpapers, wallpaper.Ssd)
-    : getAdjacentWallpapers(wallpaper.Ssd);
+    : await getAdjacentWallpapers(wallpaper.Ssd);
   const backQuery = new URLSearchParams();
 
   Object.entries(resolvedSearchParams).forEach(([key, value]) => {

@@ -23,10 +23,11 @@ import {
   getLocaleFromParam,
   isValidLocale,
   localizePath,
-  locales,
   type Locale,
 } from "@/lib/i18n";
 import type { ReactNode } from "react";
+
+export const dynamic = "force-dynamic";
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -113,10 +114,6 @@ function createWaterfallEntryHref(locale: Locale, year?: string) {
   return localizePath(locale, `/waterfall${search ? `?${search}` : ""}`);
 }
 
-export async function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
 export async function generateMetadata({
   params,
 }: {
@@ -157,7 +154,7 @@ export default async function LocalizedHomePage({
   const page = Number.isNaN(requestedPage) ? 1 : requestedPage;
 
   const dictionary = getDictionary(locale);
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = await getAllWallpapers();
   const yearOptions = getYearOptions(allWallpapers);
   const yearToMonths = Object.fromEntries(
     yearOptions.map((optionYear) => [

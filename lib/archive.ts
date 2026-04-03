@@ -1,4 +1,7 @@
-import data from "@/db/media_contents.json";
+import { unstable_noStore as noStore } from "next/cache";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { cache } from "react";
+import fallbackData from "@/db/media_contents.json";
 
 export const BING_BASE_URL = process.env.BASE_URL || "https://www.bing.com";
 export const PAGE_SIZE = 12;
@@ -22,19 +25,107 @@ interface WallpaperArchive {
   mediaContents: WallpaperItem[];
 }
 
-const wallpaperArchive = data as WallpaperArchive;
-const sortedWallpapers = [...wallpaperArchive.mediaContents].sort((a, b) =>
-  b.Ssd.localeCompare(a.Ssd)
-);
-const wallpaperBySsd = new Map(
-  sortedWallpapers.map((wallpaper) => [wallpaper.Ssd, wallpaper] as const)
-);
+interface WallpaperArchiveIndex {
+  sortedWallpapers: WallpaperItem[];
+  wallpaperBySsd: Map<string, WallpaperItem>;
+}
 
 interface DateParts {
   year: string;
   month: string;
   day: string;
 }
+
+interface D1Row {
+  raw_data?: string | null;
+}
+
+interface D1PreparedStatementLike {
+  bind(...values: unknown[]): D1PreparedStatementLike;
+  all<T>(): Promise<{ results: T[] }>;
+  first<T>(): Promise<T | null>;
+}
+
+interface D1DatabaseLike {
+  prepare(query: string): D1PreparedStatementLike;
+}
+
+interface CloudflareEnvLike {
+  BING_WALLPAPERS_DB?: D1DatabaseLike;
+}
+
+function toWallpaperArchive(data: unknown): WallpaperArchive {
+  const mediaContents = (data as WallpaperArchive | undefined)?.mediaContents;
+
+  return {
+    mediaContents: Array.isArray(mediaContents) ? mediaContents : [],
+  };
+}
+
+function createArchiveIndex(wallpaperArchive: WallpaperArchive): WallpaperArchiveIndex {
+  const sortedWallpapers = [...wallpaperArchive.mediaContents].sort((a, b) =>
+    b.Ssd.localeCompare(a.Ssd)
+  );
+
+  return {
+    sortedWallpapers,
+    wallpaperBySsd: new Map(
+      sortedWallpapers.map((wallpaper) => [wallpaper.Ssd, wallpaper] as const)
+    ),
+  };
+}
+
+function parseD1WallpaperRow(row: D1Row): WallpaperItem | null {
+  if (!row.raw_data) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(row.raw_data) as WallpaperItem;
+    return parsed?.Ssd ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+async function getD1Database() {
+  try {
+    const { env } = (await getCloudflareContext({
+      async: true,
+    })) as { env: CloudflareEnvLike };
+
+    return env.BING_WALLPAPERS_DB;
+  } catch {
+    return undefined;
+  }
+}
+
+const loadWallpaperArchive = cache(async (): Promise<WallpaperArchive> => {
+  const database = await getD1Database();
+
+  if (!database) {
+    return toWallpaperArchive(fallbackData);
+  }
+
+  try {
+    const { results } = await database
+      .prepare("SELECT raw_data FROM media_contents ORDER BY ssd DESC")
+      .all<D1Row>();
+
+    return {
+      mediaContents: results
+        .map((row) => parseD1WallpaperRow(row))
+        .filter((wallpaper): wallpaper is WallpaperItem => Boolean(wallpaper)),
+    };
+  } catch {
+    return toWallpaperArchive(fallbackData);
+  }
+});
+
+const loadWallpaperArchiveIndex = cache(async (): Promise<WallpaperArchiveIndex> => {
+  const wallpaperArchive = await loadWallpaperArchive();
+  return createArchiveIndex(wallpaperArchive);
+});
 
 export function toAbsoluteUrl(path?: string) {
   if (!path) return "";
@@ -52,16 +143,20 @@ export function toProxyImageUrl(path?: string) {
   return `/api/image?${params.toString()}`;
 }
 
-export function getAllWallpapers() {
+export async function getAllWallpapers() {
+  noStore();
+  const { sortedWallpapers } = await loadWallpaperArchiveIndex();
   return sortedWallpapers;
 }
 
-export function getWallpaperBySsd(ssd: string) {
+export async function getWallpaperBySsd(ssd: string) {
+  noStore();
+  const { wallpaperBySsd } = await loadWallpaperArchiveIndex();
   return wallpaperBySsd.get(ssd);
 }
 
-export function getRelatedWallpapers(ssd: string, limit = 3) {
-  return getRelatedWallpapersFromList(getAllWallpapers(), ssd, limit);
+export async function getRelatedWallpapers(ssd: string, limit = 3) {
+  return getRelatedWallpapersFromList(await getAllWallpapers(), ssd, limit);
 }
 
 export function getRelatedWallpapersFromList(
@@ -97,28 +192,27 @@ export function getRelatedWallpapersFromList(
   return related;
 }
 
-export function getAdjacentWallpapers(ssd: string) {
-  const wallpapers = getAllWallpapers()
-  return getAdjacentWallpapersFromList(wallpapers, ssd)
+export async function getAdjacentWallpapers(ssd: string) {
+  return getAdjacentWallpapersFromList(await getAllWallpapers(), ssd);
 }
 
 export function getAdjacentWallpapersFromList(
   wallpapers: WallpaperItem[],
   ssd: string
 ) {
-  const currentIndex = wallpapers.findIndex((wallpaper) => wallpaper.Ssd === ssd)
+  const currentIndex = wallpapers.findIndex((wallpaper) => wallpaper.Ssd === ssd);
 
   if (currentIndex === -1) {
     return {
       previous: null,
       next: null,
-    }
+    };
   }
 
   return {
     previous: wallpapers[currentIndex + 1] ?? null,
     next: wallpapers[currentIndex - 1] ?? null,
-  }
+  };
 }
 
 export function getDateParts(ssd: string): DateParts | null {
@@ -356,7 +450,9 @@ export function searchWallpapers(wallpapers: WallpaperItem[], query?: string) {
 
   return wallpapers
     .map((wallpaper) => {
-      const matchingClauses = clauses.filter((clause) => matchesSearchClause(wallpaper, clause));
+      const matchingClauses = clauses.filter((clause) =>
+        matchesSearchClause(wallpaper, clause)
+      );
       const score = matchingClauses.reduce(
         (highest, clause) => Math.max(highest, scoreSearchClause(wallpaper, clause)),
         0

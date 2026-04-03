@@ -1,12 +1,12 @@
 # Bing Wallpapers Archive
 
-A multilingual Bing wallpaper archive built with Next.js, TypeScript, and an external DB repository.
+A multilingual Bing wallpaper archive built with Next.js, TypeScript, and Cloudflare.
 
 Online preview: [https://bing.xc2f.com](https://bing.xc2f.com)
 
 ## Overview
 
-This project archives Bing wallpapers locally and presents them in three browsing modes:
+This project reads Bing wallpapers from Cloudflare D1 and presents them in three browsing modes:
 
 - Archive list
 - Wallpaper detail
@@ -21,7 +21,7 @@ It supports locale-aware routing, local image proxying, advanced search, and Clo
 - Locale-aware UI routing
 - Dynamic detail-page ambient background based on wallpaper tones
 - Local Bing image proxy to avoid direct hotlink failures
-- Build-time JSON sync from external DB repository
+- Cloudflare D1-backed archive reads with local JSON fallback
 
 ## Advanced Search
 
@@ -82,7 +82,7 @@ Related helpers live in [`lib/archive.ts`](./lib/archive.ts).
 - [`app/api/image/route.ts`](./app/api/image/route.ts)  
   Bing image proxy
 - [`bin/sync-db.ts`](./bin/sync-db.ts)  
-  Build-time external DB sync
+  Legacy JSON sync fallback utility
 
 ## Local Development
 
@@ -108,116 +108,39 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## External DB Repository
 
-If you want to move [`db/`](./db/) into a separate repository, this project now supports pulling the data at build time.
+The site now reads wallpaper records from Cloudflare D1 using the `BING_WALLPAPERS_DB` binding. When the binding is unavailable, it falls back to the checked-in [`db/media_contents.json`](./db/media_contents.json) file so local work can still start cleanly.
 
-Set these environment variables in GitHub Actions or your deployment environment:
+The companion repository at `/Users/fen/workspace/bing-wallpapers-db` can keep refreshing the source data and push it into the same D1 database on a schedule.
 
-```bash
-DB_SYNC_ENABLED=true
-DB_SYNC_JSON_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.json?ref=<branch>
-```
+### D1 binding
 
-If the DB repository is private, also set:
+Bind the D1 database as `BING_WALLPAPERS_DB` in the deployed worker.
 
-```bash
-DB_SYNC_BEARER_TOKEN=<token>
-```
-
-Notes:
-
-- `DB_SYNC_JSON_URL` is required because the site reads [`db/media_contents.json`](./db/media_contents.json) directly at build/runtime.
-- For GitHub private repositories, prefer the GitHub Contents API URLs above instead of `raw.githubusercontent.com`; they work more reliably with `Bearer` tokens.
-- `npm run dev`, `npm run preview`, and `npm run deploy` all sync the DB before starting.
-
-### Migration steps
-
-1. Create a dedicated DB repository and keep these files there:
-
-```text
-db/media_contents.json
-```
-
-2. In this repository, stop tracking the old DB artifacts:
+If you use Wrangler config, add a `d1_databases` entry similar to:
 
 ```bash
-git rm --cached db/media_contents.json
-git commit -m "Stop tracking local DB artifacts"
+{
+  "binding": "BING_WALLPAPERS_DB",
+  "database_name": "<your-d1-database-name>",
+  "database_id": "<your-d1-database-id>"
+}
 ```
 
-3. In the main repository GitHub Actions settings, add:
+The table schema expected by this app is:
 
 ```bash
-DB_SYNC_ENABLED=true
-DB_SYNC_JSON_URL=https://api.github.com/repos/<owner>/<db-repo>/contents/db/media_contents.json?ref=<branch>
+CREATE TABLE IF NOT EXISTS media_contents (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  raw_data TEXT,
+  ssd TEXT UNIQUE
+);
 ```
 
-4. If the DB repository is private, also add:
+## Deploys
 
-```bash
-DB_SYNC_BEARER_TOKEN=<token>
-```
+Code updates in this repository deploy automatically through [`.github/workflows/deploy.yml`](./.github/workflows/deploy.yml).
 
-5. Trigger one deploy to verify the remote DB can be downloaded before deleting local copies anywhere else.
-
-## Trigger Deploy From DB Updates
-
-The DB repository should trigger the main repository's deploy workflow through the GitHub Actions API.
-
-Store a fine-grained GitHub token in the DB repository as:
-
-```bash
-TARGET_REPO_WORKFLOW_TOKEN=<token>
-```
-
-The token should be allowed to dispatch workflows in the main repository.
-
-Example workflow in the DB repository:
-
-```yaml
-name: Notify site deploy
-
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - "db/**"
-  workflow_dispatch:
-
-jobs:
-  trigger-deploy-workflow:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger target repository workflow
-        run: |
-          curl --fail --request POST \
-            --url "https://api.github.com/repos/<owner>/<site-repo>/actions/workflows/deploy-on-db-update.yml/dispatches" \
-            --header "Accept: application/vnd.github+json" \
-            --header "Authorization: Bearer ${TARGET_REPO_WORKFLOW_TOKEN}" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            --data @- <<JSON
-          {
-            "ref": "main",
-            "inputs": {
-              "source_repo": "${GITHUB_REPOSITORY}",
-              "source_sha": "${GITHUB_SHA}"
-            }
-          }
-          JSON
-        env:
-          TARGET_REPO_WORKFLOW_TOKEN: ${{ secrets.TARGET_REPO_WORKFLOW_TOKEN }}
-```
-
-Suggested DB repository layout:
-
-```text
-.
-├── .github/
-│   └── workflows/
-│       └── notify-pages.yml
-└── db/
-    └── media_contents.json
-```
+Because the app reads wallpaper data from D1 at request time, D1 data updates do not need to trigger a rebuild or redeploy. Once the database is updated, subsequent requests will read the latest rows directly.
 
 Recommended split:
 
