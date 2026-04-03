@@ -194,7 +194,7 @@ export default async function LocalizedWallpaperDetailPage({
           next ? createDetailHref(next.Ssd) : "",
         ]}
       />
-      <main className="min-h-screen bg-stone-950/58 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+      <main className="min-h-screen bg-[linear-gradient(180deg,rgba(8,8,9,0.08),rgba(8,8,9,0.24)_24%,rgba(8,8,9,0.48)_100%)] px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
           <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
@@ -237,8 +237,8 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
           </section>
 
-          <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.045))] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
-          <div className="bg-stone-900">
+          <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
+          <div className="bg-stone-900/58">
             {previewUrl ? (
               <Image
                 src={previewUrl}
@@ -272,7 +272,7 @@ export default async function LocalizedWallpaperDetailPage({
               </div>
             </div>
 
-              <aside className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5 lg:sticky lg:top-6 lg:self-start">
+              <aside className="rounded-[1.5rem] border border-white/10 bg-black/12 backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">
                 <div className="grid gap-3 border-b border-white/10 pb-5">
                 {downloadUrl ? (
                   <a
