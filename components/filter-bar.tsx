@@ -157,7 +157,7 @@ function DateCascadeSelect({
         </button>
 
         {open ? (
-          <div className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950">
+          <div className="theme-floating-panel absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950">
             {!activeYear ? (
               <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
                 <li role="option" aria-selected={!yearValue && !monthValue}>
@@ -592,14 +592,14 @@ export default function FilterBar({
                   </button>
                 </div>
                 {showSearchHelp ? (
-                  <div className="absolute left-0 right-0 top-[calc(100%+0.75rem)] z-20 overflow-hidden rounded-[1.15rem] border border-white/[0.08] bg-stone-950/95 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
-                    <div className="border-b border-white/[0.06] bg-white/[0.02] px-4 py-3 sm:px-5">
+                  <div className="theme-search-help-panel absolute left-0 right-0 top-[calc(100%+0.75rem)] z-20 overflow-hidden rounded-[1.15rem] border border-white/[0.08] bg-stone-950/95 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
+                    <div className="theme-search-help-header border-b border-white/[0.06] bg-white/[0.02] px-4 py-3 sm:px-5">
                       <div className="flex items-center justify-between gap-4">
                         <div className="flex min-w-0 items-center gap-2.5">
                           <p className="truncate text-sm font-medium text-stone-100">
                             {dictionary.filterHelpTitle}
                           </p>
-                          <span className="inline-flex shrink-0 items-center rounded-full border border-white/[0.08] bg-black/20 px-2 py-0.5 text-[10px] tracking-[0.16em] text-stone-400">
+                          <span className="theme-search-help-badge inline-flex shrink-0 items-center rounded-full border border-white/[0.08] bg-black/20 px-2 py-0.5 text-[10px] tracking-[0.16em] text-stone-400">
                             {dictionary.filterHelpExamplesTitle}
                           </span>
                         </div>
@@ -620,7 +620,7 @@ export default function FilterBar({
                           key={item.query}
                           type="button"
                           onClick={() => handleApplyExample(item.query)}
-                          className="group rounded-xl border border-white/[0.06] bg-black/20 px-3 py-3 text-left transition hover:border-amber-300/25 hover:bg-amber-300/8"
+                          className="theme-search-help-card group rounded-xl border border-white/[0.06] bg-black/20 px-3 py-3 text-left transition hover:border-amber-300/25 hover:bg-amber-300/8"
                         >
                           <div className="flex items-center justify-between gap-3">
                             <code className="text-sm text-amber-100">{item.query}</code>

@@ -191,11 +191,7 @@ export default function WaterfallGallery({
   function handleToggleMode() {
     clearStoredRestoration();
     hasRestoredAnchorRef.current = true;
-    setShowMeta((current) => {
-      const nextValue = !current;
-      replaceCurrentUrl(loadedPage, nextValue);
-      return nextValue;
-    });
+    setShowMeta((current) => !current);
     window.scrollTo({ top: 0, behavior: "auto" });
   }
 
@@ -258,14 +254,13 @@ export default function WaterfallGallery({
         return [...current, ...nextItems];
       });
       setLoadedPage(nextPage);
-      replaceCurrentUrl(nextPage, showMeta);
     } finally {
       setIsFetchingMore(false);
       window.setTimeout(() => {
         hasRequestedMoreRef.current = false;
       }, 120);
     }
-  }, [hasMoreServerItems, isFetchingMore, loadedPage, locale, replaceCurrentUrl, showMeta, year]);
+  }, [hasMoreServerItems, isFetchingMore, loadedPage, locale, year]);
 
   useLayoutEffect(() => {
     function updateColumns() {
@@ -305,6 +300,14 @@ export default function WaterfallGallery({
       showMeta ? "true" : "false"
     );
   }, [isReady, showMeta]);
+
+  useEffect(() => {
+    if (!isReady) {
+      return;
+    }
+
+    replaceCurrentUrl(loadedPage, showMeta);
+  }, [isReady, loadedPage, replaceCurrentUrl, showMeta]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -546,7 +549,7 @@ export default function WaterfallGallery({
           <span className="text-stone-500">{dictionary.archived}</span>
           <span className="font-medium text-stone-100">{totalCount}</span>
         </div>
-        <div className="inline-flex max-w-full shrink-0 rounded-full border border-white/10 bg-white/5 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur">
+        <div className="theme-waterfall-mode-switch inline-flex max-w-full shrink-0 rounded-full border border-white/10 bg-white/5 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur">
           <button
             type="button"
             onClick={() => handleSelectMode(false)}
@@ -722,11 +725,11 @@ export default function WaterfallGallery({
                         </div>
                       )}
 
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
-                        <p className="line-clamp-2 text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
+                      <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
+                        <p className="theme-waterfall-image-title line-clamp-2 text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
                           {item.title}
                         </p>
-                        <p className="mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
+                        <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
                           {item.fullDate ?? item.ssd}
                         </p>
                       </div>

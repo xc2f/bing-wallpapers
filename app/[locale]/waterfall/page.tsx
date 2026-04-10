@@ -1,8 +1,10 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollRestorer from "@/components/scroll-restorer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
+import ThemeSwitcher from "@/components/theme-switcher";
 import WaterfallGallery from "@/components/waterfall-gallery";
 import YearFilterStrip from "@/components/year-filter-strip";
 import {
@@ -20,6 +22,7 @@ import {
   localizePath,
   type Locale,
 } from "@/lib/i18n";
+import { THEME_COOKIE_KEY, normalizeThemeMode } from "@/lib/theme";
 
 const WATERFALL_BATCH_SIZE = 180;
 
@@ -85,6 +88,10 @@ export default async function LocalizedWaterfallPage({
   }
 
   const dictionary = getDictionary(locale);
+  const cookieStore = await cookies();
+  const initialThemeMode = normalizeThemeMode(
+    cookieStore.get(THEME_COOKIE_KEY)?.value
+  );
   const allWallpapers = getAllWallpapers();
   const mode = resolvedSearchParams.mode?.trim() ?? "";
   const year = resolvedSearchParams.year?.trim() ?? "";
@@ -131,7 +138,15 @@ export default async function LocalizedWaterfallPage({
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
         <section className="flex flex-col gap-6 pb-2">
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-end">
+            <div className="flex flex-wrap items-center justify-end gap-3">
+              <ThemeSwitcher
+                initialMode={initialThemeMode}
+                labels={{
+                  system: dictionary.themeAuto,
+                  light: dictionary.themeLight,
+                  dark: dictionary.themeDark,
+                }}
+              />
               <LocaleSwitcher
                 locale={locale}
                 pathname="/waterfall"
@@ -160,7 +175,7 @@ export default async function LocalizedWaterfallPage({
 
         </section>
 
-        <div className="sticky top-4 z-20 -mx-2 rounded-[1.5rem] border border-white/10 bg-stone-950/78 px-2 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl">
+        <div className="theme-waterfall-year-strip sticky top-4 z-20 -mx-2 rounded-[1.5rem] border border-white/10 bg-stone-950/78 px-2 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl">
           <YearFilterStrip
             allYearsLabel={dictionary.filterAllYears}
             currentYear={year}

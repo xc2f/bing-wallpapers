@@ -100,7 +100,7 @@ export default function ScrollToTopButton({
       type="button"
       aria-label={label}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-5 right-5 z-30 inline-flex items-center gap-3 rounded-full border border-white/10 bg-stone-950/78 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-stone-200 shadow-[0_12px_30px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 hover:border-amber-300/40 hover:bg-stone-900/90 hover:text-white sm:bottom-6 sm:right-6"
+      className="theme-scroll-top fixed bottom-5 right-5 z-30 inline-flex items-center gap-3 rounded-full border border-white/10 bg-stone-950/78 px-3 py-2 text-[11px] uppercase tracking-[0.24em] text-stone-200 shadow-[0_12px_30px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 hover:border-amber-300/40 hover:bg-stone-900/90 hover:text-white sm:bottom-6 sm:right-6"
     >
       <span className="relative flex h-9 w-9 shrink-0 items-center justify-center">
         <svg
@@ -121,7 +121,7 @@ export default function ScrollToTopButton({
             cy="18"
             r={ringRadius}
             fill="none"
-            stroke="rgb(252 211 77)"
+            stroke="rgb(var(--theme-accent-ring-rgb))"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeDasharray={ringCircumference}

@@ -153,7 +153,7 @@ export default function DetailAmbientBackground({
       {imageUrl ? (
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-[-6%] -z-10 scale-110 opacity-35 blur-3xl saturate-150"
+          className="theme-detail-ambient-image pointer-events-none absolute inset-[-6%] -z-10 scale-110 opacity-35 blur-3xl saturate-150"
           style={{
             backgroundImage: `url(${imageUrl})`,
             backgroundPosition: "center",
@@ -163,24 +163,24 @@ export default function DetailAmbientBackground({
       ) : null}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 transition-[background] duration-700 ease-out"
+        className="theme-detail-ambient-color pointer-events-none absolute inset-0 -z-10 transition-[background] duration-700 ease-out"
         style={backgroundStyle}
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-[-10%] top-[-8%] h-[42rem] -z-10 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.16),rgba(255,255,255,0.04)_42%,transparent_72%)] opacity-85 blur-3xl"
+        className="theme-detail-ambient-topglow pointer-events-none absolute inset-x-[-10%] top-[-8%] h-[42rem] -z-10 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.16),rgba(255,255,255,0.04)_42%,transparent_72%)] opacity-85 blur-3xl"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_22%)] mix-blend-screen opacity-80"
+        className="theme-detail-ambient-sheen pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.04),transparent_22%)] mix-blend-screen opacity-80"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.14)_34%,rgba(0,0,0,0.28)_100%)]"
+        className="theme-detail-ambient-shade pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.14)_34%,rgba(0,0,0,0.28)_100%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0),rgba(0,0,0,0.14)_68%,rgba(0,0,0,0.32)_100%)]"
+        className="theme-detail-ambient-vignette pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0),rgba(0,0,0,0.14)_68%,rgba(0,0,0,0.32)_100%)]"
       />
       {children}
     </div>

@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import FilterBar from "@/components/filter-bar";
 import ListPagination from "@/components/list-pagination";
 import LocaleSwitcher from "@/components/locale-switcher";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
 import ScrollRestorer from "@/components/scroll-restorer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
+import ThemeSwitcher from "@/components/theme-switcher";
 import {
   filterWallpapersByDate,
   getSearchHighlightTerms,
@@ -26,6 +28,7 @@ import {
   locales,
   type Locale,
 } from "@/lib/i18n";
+import { THEME_COOKIE_KEY, normalizeThemeMode } from "@/lib/theme";
 import type { ReactNode } from "react";
 
 function escapeRegExp(value: string) {
@@ -157,6 +160,10 @@ export default async function LocalizedHomePage({
   const page = Number.isNaN(requestedPage) ? 1 : requestedPage;
 
   const dictionary = getDictionary(locale);
+  const cookieStore = await cookies();
+  const initialThemeMode = normalizeThemeMode(
+    cookieStore.get(THEME_COOKIE_KEY)?.value
+  );
   const allWallpapers = getAllWallpapers();
   const yearOptions = getYearOptions(allWallpapers);
   const yearToMonths = Object.fromEntries(
@@ -183,7 +190,15 @@ export default async function LocalizedHomePage({
       <ScrollToTopButton label={dictionary.backToTop} />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
         <section className="flex flex-col gap-6 pb-2">
-          <div className="flex items-center justify-end">
+          <div className="flex flex-wrap items-center justify-end gap-3">
+            <ThemeSwitcher
+              initialMode={initialThemeMode}
+              labels={{
+                system: dictionary.themeAuto,
+                light: dictionary.themeLight,
+                dark: dictionary.themeDark,
+              }}
+            />
             <LocaleSwitcher
               locale={locale}
               pathname="/"

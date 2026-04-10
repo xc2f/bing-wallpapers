@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import DetailAmbientBackground from "@/components/detail-ambient-background";
@@ -9,6 +10,7 @@ import DetailRelatedStrip from "@/components/detail-related-strip";
 import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import SmartBackButton from "@/components/smart-back-button";
+import ThemeSwitcher from "@/components/theme-switcher";
 import {
   getAdjacentWallpapers,
   getAdjacentWallpapersFromList,
@@ -29,6 +31,7 @@ import {
   localizePath,
   type Locale,
 } from "@/lib/i18n";
+import { THEME_COOKIE_KEY, normalizeThemeMode } from "@/lib/theme";
 
 const DETAIL_STATIC_PRERENDER_LIMIT = 180;
 
@@ -114,6 +117,10 @@ export default async function LocalizedWallpaperDetailPage({
   const currentLocale: Locale = locale;
 
   const dictionary = getDictionary(currentLocale);
+  const cookieStore = await cookies();
+  const initialThemeMode = normalizeThemeMode(
+    cookieStore.get(THEME_COOKIE_KEY)?.value
+  );
   const allWallpapers = getAllWallpapers();
   const filteredWallpapers = searchWallpapers(
     filterWallpapersByDate(allWallpapers, year, month),
@@ -194,12 +201,20 @@ export default async function LocalizedWallpaperDetailPage({
           next ? createDetailHref(next.Ssd) : "",
         ]}
       />
-      <main className="min-h-screen bg-[linear-gradient(180deg,rgba(8,8,9,0.08),rgba(8,8,9,0.24)_24%,rgba(8,8,9,0.48)_100%)] px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+      <main className="theme-detail-page min-h-screen bg-[linear-gradient(180deg,rgba(8,8,9,0.08),rgba(8,8,9,0.24)_24%,rgba(8,8,9,0.48)_100%)] px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
           <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
           <div className="flex flex-col gap-3">
-            <div className="flex items-center justify-end">
+            <div className="flex flex-wrap items-center justify-end gap-3">
+              <ThemeSwitcher
+                initialMode={initialThemeMode}
+                labels={{
+                  system: dictionary.themeAuto,
+                  light: dictionary.themeLight,
+                  dark: dictionary.themeDark,
+                }}
+              />
               <LocaleSwitcher
                 locale={currentLocale}
                 pathname={`/wallpaper/${ssd}`}
@@ -237,7 +252,7 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
           </section>
 
-          <section className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
+          <section className="theme-detail-panel overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
           <div className="bg-stone-900/58">
             {previewUrl ? (
               <Image
