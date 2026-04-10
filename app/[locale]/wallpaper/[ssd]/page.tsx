@@ -347,7 +347,7 @@ export default async function LocalizedWallpaperDetailPage({
             <Link
               href={createDetailHref(next.Ssd)}
               replace
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-x-1 hover:bg-white/10"
+              className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-x-1 hover:bg-white/10"
             >
               <div className="grid min-h-[10rem] gap-0 grid-cols-[132px_minmax(0,1fr)]">
                 <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
@@ -384,7 +384,7 @@ export default async function LocalizedWallpaperDetailPage({
             <Link
               href={createDetailHref(previous.Ssd)}
               replace
-              className="group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
+              className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
             >
               <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_132px]">
                 <div className="flex flex-col justify-between p-5 text-right">
@@ -432,7 +432,7 @@ export default async function LocalizedWallpaperDetailPage({
                   key={item.Ssd}
                   href={createDetailHref(item.Ssd)}
                   replace
-                  className={`group ${
+                  className={`theme-detail-related-card group ${
                     index >= 4 ? "hidden md:flex" : "flex"
                   } w-[16.5rem] shrink-0 snap-start overflow-hidden rounded-[1.375rem] border border-white/10 bg-white/[0.03] transition duration-300 hover:border-white/15 hover:bg-white/[0.06]`}
                 >
