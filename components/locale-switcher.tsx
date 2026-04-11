@@ -30,7 +30,7 @@ export default function LocaleSwitcher({
   const search = query.toString();
 
   return (
-    <nav className="flex flex-wrap items-center gap-1.5 text-xs tracking-[0.08em] text-stone-400">
+    <nav className="theme-locale-switcher flex flex-wrap items-center gap-1.5 text-xs tracking-[0.08em] text-stone-400">
       {locales.map((option) => {
         const isActive = option === locale;
 
@@ -39,8 +39,9 @@ export default function LocaleSwitcher({
             key={option}
             href={localizePath(option, `${targetPath}${search ? `?${search}` : ""}`)}
             replace
-            className={`inline-flex min-w-[2rem] items-center justify-center px-1.5 py-1 text-center ${isActive ? "text-amber-300" : "transition hover:text-white"
-              }`}
+            className={`theme-locale-switcher-link inline-flex min-w-[2rem] items-center justify-center px-1.5 py-1 text-center ${
+              isActive ? "theme-locale-switcher-link-active text-amber-300" : "transition hover:text-white"
+            }`}
           >
             {localeLabels[option]}
           </Link>

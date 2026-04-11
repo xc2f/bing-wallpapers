@@ -372,6 +372,14 @@ html[data-theme-resolved="light"] .theme-search-help-card {
   background: rgba(31, 41, 55, 0.04) !important;
 }
 
+html[data-theme-resolved="light"] .theme-locale-switcher .theme-locale-switcher-link:hover {
+  color: rgb(var(--theme-text-strong-rgb)) !important;
+}
+
+html[data-theme-resolved] .theme-locale-switcher .theme-locale-switcher-link-active:hover {
+  color: rgb(var(--theme-accent-text-rgb)) !important;
+}
+
 html[data-theme-resolved="light"] .theme-floating-panel {
   background: rgba(255, 251, 245, 0.94) !important;
   border-color: rgba(41, 37, 36, 0.09) !important;
