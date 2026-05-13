@@ -48,7 +48,7 @@ export default function YearFilterStrip({
   return (
     <div
       ref={containerRef}
-      className="-mx-2 overflow-x-auto px-2 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [scroll-snap-type:x_proximity] [&::-webkit-scrollbar]:hidden"
+      className="-mx-2 overflow-x-auto px-2 [scrollbar-width:none] [-ms-overflow-style:none] [scroll-snap-type:x_proximity] [&::-webkit-scrollbar]:hidden"
     >
       <div className="flex min-w-max gap-2">
         {items.map((item) => (
