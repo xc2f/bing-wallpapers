@@ -556,7 +556,7 @@ export default function WaterfallGallery({
             aria-pressed={!showMeta}
             className={`rounded-full px-4 py-2 text-sm transition ${
               !showMeta
-                ? "bg-amber-300 text-stone-950 shadow-sm"
+                ? "bg-amber-300 text-stone-950 shadow-sm hover:bg-amber-200"
                 : "text-stone-300 hover:bg-white/10 hover:text-white"
             }`}
           >
@@ -568,7 +568,7 @@ export default function WaterfallGallery({
             aria-pressed={showMeta}
             className={`rounded-full px-4 py-2 text-sm transition ${
               showMeta
-                ? "bg-amber-300 text-stone-950 shadow-sm"
+                ? "bg-amber-300 text-stone-950 shadow-sm hover:bg-amber-200"
                 : "text-stone-300 hover:bg-white/10 hover:text-white"
             }`}
           >

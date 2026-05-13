@@ -166,7 +166,7 @@ function DateCascadeSelect({
                     onClick={handleSelectAll}
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       !yearValue && !monthValue
-                        ? "bg-white/[0.06] text-white"
+                        ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                         : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                     }`}
                   >
@@ -187,7 +187,7 @@ function DateCascadeSelect({
                         onClick={() => handleSelectYear(optionYear)}
                         className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                           isSelectedYear
-                            ? "bg-white/[0.06] text-white"
+                            ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                             : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                         }`}
                       >
@@ -220,7 +220,7 @@ function DateCascadeSelect({
                     onClick={handleSelectWholeYear}
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       activeYear === yearValue && !monthValue
-                        ? "bg-white/[0.06] text-white"
+                        ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                         : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                     }`}
                     >
@@ -241,7 +241,7 @@ function DateCascadeSelect({
                           onClick={() => handleSelectMonth(optionMonth)}
                           className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                             isSelectedMonth
-                              ? "bg-white/[0.06] text-white"
+                              ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                               : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                           }`}
                         >
@@ -583,7 +583,7 @@ export default function FilterBar({
                     onClick={() => setShowSearchHelp((current) => !current)}
                     className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-2 text-[11px] tracking-[0.16em] transition ${
                       showSearchHelp
-                        ? "border-amber-300/30 bg-amber-300/10 text-amber-100"
+                        ? "border-amber-300/30 bg-amber-300/10 text-amber-100 hover:border-amber-300/40 hover:bg-amber-300/14"
                         : "border-white/[0.08] text-stone-500 hover:border-white/[0.14] hover:text-stone-200"
                     }`}
                     aria-expanded={showSearchHelp}

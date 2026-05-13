@@ -203,7 +203,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
         aria-expanded={open}
         aria-controls={menuId}
         onClick={() => setOpen((current) => !current)}
-        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition hover:text-white"
+        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition hover:bg-white/[0.06] hover:text-white"
       >
         <span className="inline-flex min-w-0 items-center gap-2">
           <ThemeIcon mode={themeMode} />
@@ -244,7 +244,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
                 onClick={() => handleThemeChange(option.value)}
                 className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
                   isActive
-                    ? "bg-white/[0.06] text-white"
+                    ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                     : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                 }`}
               >

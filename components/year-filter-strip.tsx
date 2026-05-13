@@ -58,7 +58,7 @@ export default function YearFilterStrip({
             data-active={item.active ? "true" : "false"}
             className={`inline-flex snap-start items-center rounded-full px-3 py-1.5 text-sm transition ${
               item.active
-                ? "bg-amber-300 text-stone-950 shadow-sm"
+                ? "bg-amber-300 text-stone-950 shadow-sm hover:bg-amber-200"
                 : "border border-white/10 bg-white/[0.03] text-stone-300 hover:bg-white/10 hover:text-white"
             }`}
           >
