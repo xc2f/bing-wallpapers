@@ -201,7 +201,7 @@ export default async function LocalizedWallpaperDetailPage({
           next ? createDetailHref(next.Ssd) : "",
         ]}
       />
-      <main className="theme-detail-page min-h-screen bg-[linear-gradient(180deg,rgba(8,8,9,0.08),rgba(8,8,9,0.24)_24%,rgba(8,8,9,0.48)_100%)] px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+      <main className="theme-detail-page min-h-screen px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
           <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
@@ -252,7 +252,7 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
           </section>
 
-          <section className="theme-detail-panel overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),rgba(255,255,255,0.06))] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
+          <section className="theme-detail-panel overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
           <div className="bg-stone-900/58">
             {previewUrl ? (
               <Image

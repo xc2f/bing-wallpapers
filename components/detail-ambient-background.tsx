@@ -128,22 +128,27 @@ export default function DetailAmbientBackground({
   }, [imageUrl]);
 
   const highlightColor = ambientColor
-    ? shiftAmbientColor(ambientColor, 18, 6, -10)
+    ? shiftAmbientColor(ambientColor, 28, 10, -12)
     : null;
   const sideGlowColor = ambientColor
-    ? shiftAmbientColor(ambientColor, -6, 12, 18)
+    ? shiftAmbientColor(ambientColor, -8, 18, 28)
     : null;
   const shadowColor = ambientColor
-    ? shiftAmbientColor(ambientColor, -34, -16, 8)
+    ? shiftAmbientColor(ambientColor, -18, -6, 14)
     : null;
 
   const backgroundStyle = ambientColor && highlightColor && sideGlowColor && shadowColor
     ? {
         background: `
-          radial-gradient(circle at 16% 10%, rgba(${highlightColor.red}, ${highlightColor.green}, ${highlightColor.blue}, 0.34), transparent 30%),
-          radial-gradient(circle at 84% 16%, rgba(${sideGlowColor.red}, ${sideGlowColor.green}, ${sideGlowColor.blue}, 0.28), transparent 28%),
-          radial-gradient(circle at 50% 82%, rgba(${shadowColor.red}, ${shadowColor.green}, ${shadowColor.blue}, 0.24), transparent 38%),
-          linear-gradient(180deg, rgba(26, 23, 20, 0.7) 0%, rgba(11, 10, 10, 0.88) 40%, rgba(7, 7, 8, 0.98) 100%)
+          radial-gradient(circle at 16% 10%, rgba(${highlightColor.red}, ${highlightColor.green}, ${highlightColor.blue}, 0.46), transparent 36%),
+          radial-gradient(circle at 84% 16%, rgba(${sideGlowColor.red}, ${sideGlowColor.green}, ${sideGlowColor.blue}, 0.38), transparent 34%),
+          radial-gradient(circle at 50% 82%, rgba(${shadowColor.red}, ${shadowColor.green}, ${shadowColor.blue}, 0.32), transparent 42%),
+          linear-gradient(
+            180deg,
+            rgb(var(--theme-detail-ambient-base-top-rgb) / 0.58) 0%,
+            rgb(var(--theme-detail-ambient-base-mid-rgb) / 0.74) 40%,
+            rgb(var(--theme-detail-ambient-base-bottom-rgb) / 0.88) 100%
+          )
         `,
       }
     : undefined;

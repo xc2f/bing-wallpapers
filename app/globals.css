@@ -21,6 +21,14 @@
   --theme-accent-muted-rgb: 252 211 77;
   --theme-accent-surface-rgb: 252 211 77;
   --theme-accent-ring-rgb: 252 211 77;
+  --theme-detail-page-top-rgb: 8 8 9;
+  --theme-detail-page-mid-rgb: 8 8 9;
+  --theme-detail-page-bottom-rgb: 8 8 9;
+  --theme-detail-panel-top-rgb: 255 255 255;
+  --theme-detail-panel-bottom-rgb: 255 255 255;
+  --theme-detail-ambient-base-top-rgb: 26 23 20;
+  --theme-detail-ambient-base-mid-rgb: 11 10 10;
+  --theme-detail-ambient-base-bottom-rgb: 7 7 8;
   --font-body:
     "Avenir Next", Avenir, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
     "Microsoft YaHei", "Noto Sans SC", "Noto Sans JP", system-ui, sans-serif;
@@ -48,6 +56,14 @@ html[data-theme-resolved="light"] {
   --theme-accent-muted-rgb: 184 128 26;
   --theme-accent-surface-rgb: 226 170 52;
   --theme-accent-ring-rgb: 226 170 52;
+  --theme-detail-page-top-rgb: 255 252 249;
+  --theme-detail-page-mid-rgb: 247 243 237;
+  --theme-detail-page-bottom-rgb: 236 231 225;
+  --theme-detail-panel-top-rgb: 255 255 253;
+  --theme-detail-panel-bottom-rgb: 245 240 234;
+  --theme-detail-ambient-base-top-rgb: 255 252 248;
+  --theme-detail-ambient-base-mid-rgb: 245 240 233;
+  --theme-detail-ambient-base-bottom-rgb: 234 228 221;
 }
 
 html[data-theme-resolved="dark"] {
@@ -252,9 +268,53 @@ html[data-theme-resolved="light"] .theme-detail-page {
   background:
     linear-gradient(
       180deg,
-      rgba(255, 252, 247, 0.56),
-      rgba(255, 249, 241, 0.68) 24%,
-      rgba(250, 242, 231, 0.82) 100%
+      rgba(255, 252, 248, 0.74),
+      rgba(246, 241, 234, 0.82) 26%,
+      rgba(235, 229, 222, 0.92) 100%
+    );
+}
+
+.theme-detail-page {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(var(--theme-detail-page-top-rgb) / 0.08),
+      rgb(var(--theme-detail-page-mid-rgb) / 0.24) 24%,
+      rgb(var(--theme-detail-page-bottom-rgb) / 0.48) 100%
+    );
+}
+
+.theme-detail-panel {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(var(--theme-detail-panel-top-rgb) / 0.12),
+      rgb(var(--theme-detail-panel-bottom-rgb) / 0.06)
+    );
+}
+
+.theme-detail-ambient-color {
+  background:
+    radial-gradient(
+      circle at 16% 10%,
+      rgb(var(--theme-overlay-rgb) / 0.08),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 84% 16%,
+      rgb(var(--theme-overlay-rgb) / 0.06),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 50% 82%,
+      rgb(var(--theme-overlay-rgb) / 0.05),
+      transparent 40%
+    ),
+    linear-gradient(
+      180deg,
+      rgb(var(--theme-detail-ambient-base-top-rgb) / 0.7) 0%,
+      rgb(var(--theme-detail-ambient-base-mid-rgb) / 0.88) 40%,
+      rgb(var(--theme-detail-ambient-base-bottom-rgb) / 0.98) 100%
     );
 }
 
@@ -262,44 +322,37 @@ html[data-theme-resolved="light"] .theme-detail-panel {
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.78),
-      rgba(255, 252, 247, 0.58)
+      rgba(255, 255, 253, 0.88),
+      rgba(245, 240, 234, 0.72)
     ) !important;
-  box-shadow: 0 26px 80px rgba(128, 116, 101, 0.14) !important;
+  box-shadow: 0 28px 84px rgba(84, 74, 63, 0.12) !important;
 }
 
 html[data-theme-resolved="light"] .theme-detail-ambient-image {
-  opacity: 0.22 !important;
+  opacity: 0.38 !important;
+  filter: blur(52px) saturate(2.05) contrast(1.12) brightness(1.02) !important;
 }
 
 html[data-theme-resolved="light"] .theme-detail-ambient-color {
-  background:
-    radial-gradient(circle at 16% 10%, rgba(255, 214, 153, 0.2), transparent 32%),
-    radial-gradient(circle at 84% 16%, rgba(246, 200, 140, 0.15), transparent 30%),
-    radial-gradient(circle at 50% 82%, rgba(221, 184, 148, 0.14), transparent 38%),
-    linear-gradient(
-      180deg,
-      rgba(255, 252, 247, 0.72) 0%,
-      rgba(250, 244, 236, 0.82) 42%,
-      rgba(244, 236, 226, 0.92) 100%
-    ) !important;
+  opacity: 1 !important;
+  filter: saturate(1.38) contrast(1.08) brightness(1.03) !important;
 }
 
 html[data-theme-resolved="light"] .theme-detail-ambient-topglow {
-  opacity: 0.56 !important;
+  opacity: 0.24 !important;
 }
 
 html[data-theme-resolved="light"] .theme-detail-ambient-sheen {
-  opacity: 0.44 !important;
+  opacity: 0.12 !important;
 }
 
 html[data-theme-resolved="light"] .theme-detail-ambient-shade {
   background:
     linear-gradient(
       180deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(209, 190, 165, 0.04) 34%,
-      rgba(191, 167, 138, 0.08) 100%
+      rgba(255, 255, 255, 0),
+      rgba(31, 41, 55, 0.012) 34%,
+      rgba(31, 41, 55, 0.032) 100%
     ) !important;
 }
 
@@ -308,8 +361,8 @@ html[data-theme-resolved="light"] .theme-detail-ambient-vignette {
     radial-gradient(
       circle at center,
       rgba(255, 255, 255, 0),
-      rgba(214, 196, 173, 0.06) 68%,
-      rgba(191, 167, 138, 0.1) 100%
+      rgba(31, 41, 55, 0.018) 68%,
+      rgba(31, 41, 55, 0.04) 100%
     ) !important;
 }
 
