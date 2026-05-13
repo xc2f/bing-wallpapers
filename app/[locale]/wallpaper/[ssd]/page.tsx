@@ -359,11 +359,11 @@ export default async function LocalizedWallpaperDetailPage({
                       height={1080}
                       sizes="132px"
                       quality={62}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      className="block h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                     />
                   ) : null}
                 </div>
-                <div className="flex flex-col justify-between p-5">
+                <div className="flex min-w-0 flex-col justify-between p-5">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
                       ← {dictionary.detailNewerShort}
@@ -371,7 +371,7 @@ export default async function LocalizedWallpaperDetailPage({
                     <p className="mt-2 text-sm text-stone-400">
                       {formatArchiveDate(currentLocale, next.Ssd, next.FullDateString)}
                     </p>
-                    <h3 className="mt-1 line-clamp-2 text-lg font-semibold text-white">
+                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-semibold text-white">
                       {next.ImageContent?.Title ?? next.Ssd}
                     </h3>
                   </div>
@@ -387,7 +387,7 @@ export default async function LocalizedWallpaperDetailPage({
               className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
             >
               <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_132px]">
-                <div className="flex flex-col justify-between p-5 text-right">
+                <div className="flex min-w-0 flex-col justify-between p-5 text-right">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
                       {dictionary.detailOlderShort} →
@@ -395,7 +395,7 @@ export default async function LocalizedWallpaperDetailPage({
                     <p className="mt-2 text-sm text-stone-400">
                       {formatArchiveDate(currentLocale, previous.Ssd, previous.FullDateString)}
                     </p>
-                    <h3 className="mt-1 line-clamp-2 text-lg font-semibold text-white">
+                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-semibold text-white">
                       {previous.ImageContent?.Title ?? previous.Ssd}
                     </h3>
                   </div>
@@ -409,7 +409,7 @@ export default async function LocalizedWallpaperDetailPage({
                       height={1080}
                       sizes="132px"
                       quality={62}
-                      className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                      className="block h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                     />
                   ) : null}
                 </div>
@@ -436,7 +436,7 @@ export default async function LocalizedWallpaperDetailPage({
                     index >= 4 ? "hidden md:flex" : "flex"
                   } w-[16.5rem] shrink-0 snap-start overflow-hidden rounded-[1.375rem] border border-white/10 bg-white/[0.03] transition duration-300 hover:border-white/15 hover:bg-white/[0.06]`}
                 >
-                  <div className="relative h-[6.5rem] w-[6.5rem] shrink-0 overflow-hidden bg-stone-900">
+                  <div className="relative min-h-[6.5rem] w-[6.5rem] shrink-0 self-stretch overflow-hidden bg-stone-900">
                     {relatedPreviewUrl ? (
                       <Image
                         src={relatedPreviewUrl}
@@ -445,7 +445,7 @@ export default async function LocalizedWallpaperDetailPage({
                         height={1080}
                         sizes="104px"
                         quality={62}
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                        className="block h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center text-sm text-stone-400">
@@ -457,7 +457,7 @@ export default async function LocalizedWallpaperDetailPage({
                     <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
                       {formatArchiveDate(currentLocale, item.Ssd, item.FullDateString)}
                     </p>
-                    <h3 className="line-clamp-2 text-[0.96rem] font-semibold leading-snug text-white">
+                    <h3 className="min-w-0 line-clamp-2 text-[0.96rem] font-semibold leading-snug text-white">
                       {relatedTitle}
                     </h3>
                   </div>

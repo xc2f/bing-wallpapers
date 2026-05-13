@@ -394,19 +394,24 @@ html[data-theme-resolved="light"] .theme-switcher-menu {
 .line-clamp-3,
 .line-clamp-4 {
   display: -webkit-box;
+  text-overflow: ellipsis;
+  line-clamp: var(--line-clamp-lines);
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 .line-clamp-2 {
+  --line-clamp-lines: 2;
   -webkit-line-clamp: 2;
 }
 
 .line-clamp-3 {
+  --line-clamp-lines: 3;
   -webkit-line-clamp: 3;
 }
 
 .line-clamp-4 {
+  --line-clamp-lines: 4;
   -webkit-line-clamp: 4;
 }
 
