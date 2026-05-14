@@ -140,12 +140,14 @@ export default async function LocalizedWaterfallPage({
           <div className="flex flex-col gap-3">
             <div className="flex flex-wrap items-center justify-end gap-3">
               <ThemeSwitcher
-                initialMode={initialThemeMode}
-                labels={{
-                  system: dictionary.themeAuto,
-                  light: dictionary.themeLight,
-                  dark: dictionary.themeDark,
-                }}
+              initialMode={initialThemeMode}
+              labels={{
+                trigger: dictionary.themeLabel,
+                dialog: dictionary.themeDialogLabel,
+                system: dictionary.themeAuto,
+                light: dictionary.themeLight,
+                dark: dictionary.themeDark,
+              }}
               />
               <LocaleSwitcher
                 locale={locale}

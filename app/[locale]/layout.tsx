@@ -29,7 +29,7 @@ export default async function LocalizedLayout({
       <footer className="border-t border-white/10 px-4 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-3">
           <div className="flex items-center justify-between gap-4">
-            <p className="text-[11px] uppercase tracking-[0.22em] text-stone-600">
+            <p className="text-[11px] uppercase tracking-[0.22em] text-stone-400">
               {dictionary.archiveLabel}
             </p>
             <a

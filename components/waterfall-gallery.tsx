@@ -127,11 +127,13 @@ export default function WaterfallGallery({
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
   const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [liveAnnouncement, setLiveAnnouncement] = useState("");
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const hasRestoredAnchorRef = useRef(false);
   const hasMountedRef = useRef(false);
   const hasRequestedMoreRef = useRef(false);
+  const previousLoadedCountRef = useRef(items.length);
   const fallbackStorageKey = storageKey.split("?")[0];
   const hasMetaPayload = useMemo(
     () => loadedItems.some((item) => Boolean(item.fullDate || item.description)),
@@ -208,6 +210,13 @@ export default function WaterfallGallery({
       ...current,
       [ssd]: !current[ssd],
     }));
+  }
+
+  function announceStatus(message: string) {
+    setLiveAnnouncement("");
+    window.requestAnimationFrame(() => {
+      setLiveAnnouncement(message);
+    });
   }
 
   const fetchMoreItems = useCallback(async function fetchMoreItems() {
@@ -308,6 +317,24 @@ export default function WaterfallGallery({
 
     replaceCurrentUrl(loadedPage, showMeta);
   }, [isReady, loadedPage, replaceCurrentUrl, showMeta]);
+
+  useEffect(() => {
+    if (!isReady) {
+      previousLoadedCountRef.current = loadedItems.length;
+      return;
+    }
+
+    if (isFetchingMore) {
+      announceStatus(dictionary.waterfallLoadingMore);
+      return;
+    }
+
+    if (loadedItems.length > previousLoadedCountRef.current) {
+      announceStatus(`${dictionary.waterfallLoaded} ${loadedItems.length} / ${totalCount}`);
+    }
+
+    previousLoadedCountRef.current = loadedItems.length;
+  }, [dictionary.waterfallLoaded, dictionary.waterfallLoadingMore, isFetchingMore, isReady, loadedItems.length, totalCount]);
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -577,6 +604,10 @@ export default function WaterfallGallery({
         </div>
       </div>
 
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {liveAnnouncement}
+      </p>
+
       {!isReady ? <div className="min-h-[24rem]" aria-hidden="true" /> : null}
 
       {isReady && shouldRenderMeta ? (
@@ -748,7 +779,7 @@ export default function WaterfallGallery({
 
       {isReady && (hasMoreServerItems || isFetchingMore) ? (
         <div className="flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-sm">
-          <p className="text-stone-400">
+          <p className="text-stone-400" role="status" aria-live="polite" aria-atomic="true">
             {dictionary.waterfallLoaded}{" "}
             <span className="text-stone-100">{loadedItems.length}</span> / {totalCount}
           </p>
@@ -757,6 +788,18 @@ export default function WaterfallGallery({
               ? dictionary.waterfallLoadingMore
               : dictionary.waterfallBatchSize}
           </p>
+          {hasMoreServerItems ? (
+            <button
+              type="button"
+              onClick={() => {
+                void fetchMoreItems();
+              }}
+              disabled={isFetchingMore}
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10 disabled:pointer-events-none disabled:opacity-50 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
+            >
+              {isFetchingMore ? dictionary.waterfallLoadingMore : dictionary.waterfallLoadMore}
+            </button>
+          ) : null}
         </div>
       ) : null}
     </section>

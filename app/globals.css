@@ -11,7 +11,7 @@
   --theme-text-strong-rgb: 255 255 255;
   --theme-text-soft-rgb: 245 245 244;
   --theme-text-muted-rgb: 168 162 158;
-  --theme-text-faint-rgb: 120 113 108;
+  --theme-text-faint-rgb: 136 130 126;
   --theme-text-disabled-rgb: 87 83 78;
   --theme-border-rgb: 255 255 255;
   --theme-accent-solid-rgb: 252 211 77;
@@ -46,13 +46,13 @@ html[data-theme-resolved="light"] {
   --theme-text-strong-rgb: 17 24 39;
   --theme-text-soft-rgb: 51 65 85;
   --theme-text-muted-rgb: 87 83 78;
-  --theme-text-faint-rgb: 120 113 108;
+  --theme-text-faint-rgb: 104 96 90;
   --theme-text-disabled-rgb: 168 162 158;
   --theme-border-rgb: 41 37 36;
   --theme-accent-solid-rgb: 226 170 52;
   --theme-accent-solid-hover-rgb: 211 156 40;
-  --theme-accent-text-rgb: 156 106 20;
-  --theme-accent-text-soft-rgb: 184 128 26;
+  --theme-accent-text-rgb: 130 86 12;
+  --theme-accent-text-soft-rgb: 122 80 10;
   --theme-accent-muted-rgb: 184 128 26;
   --theme-accent-surface-rgb: 226 170 52;
   --theme-accent-ring-rgb: 226 170 52;

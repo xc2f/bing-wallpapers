@@ -42,17 +42,29 @@ function DateCascadeSelect({
   const [open, setOpen] = useState(false);
   const [activeYear, setActiveYear] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const listboxId = useId();
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const panelId = useId();
 
   const triggerLabel = monthValue
     ? `${yearValue} / ${formatMonthLabel(locale, monthValue)}`
     : yearValue || dictionary.filterAllTime;
 
+  function closePanel({ restoreFocus = false } = {}) {
+    setOpen(false);
+    setActiveYear(null);
+
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        triggerRef.current?.focus();
+      });
+    }
+  }
+
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
       if (!containerRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-        setActiveYear(null);
+        closePanel();
       }
     }
 
@@ -66,7 +78,7 @@ function DateCascadeSelect({
         return;
       }
 
-      setOpen(false);
+      closePanel({ restoreFocus: true });
     }
 
     document.addEventListener("mousedown", handlePointerDown);
@@ -78,12 +90,26 @@ function DateCascadeSelect({
     };
   }, [activeYear]);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const focusTimer = window.requestAnimationFrame(() => {
+      const nextFocusTarget = panelRef.current?.querySelector<HTMLButtonElement>(
+        "[data-date-option='true']"
+      );
+      nextFocusTarget?.focus();
+    });
+
+    return () => window.cancelAnimationFrame(focusTimer);
+  }, [activeYear, open]);
+
   const activeMonths = activeYear ? yearToMonths[activeYear] ?? [] : [];
 
   function handleSelectAll() {
     onChange("", "");
-    setOpen(false);
-    setActiveYear(null);
+    closePanel({ restoreFocus: true });
   }
 
   function handleSelectYear(nextYear: string) {
@@ -91,8 +117,7 @@ function DateCascadeSelect({
 
     if (!months.length) {
       onChange(nextYear, "");
-      setOpen(false);
-      setActiveYear(null);
+      closePanel({ restoreFocus: true });
       return;
     }
 
@@ -105,8 +130,7 @@ function DateCascadeSelect({
     }
 
     onChange(activeYear, nextMonth);
-    setOpen(false);
-    setActiveYear(null);
+    closePanel({ restoreFocus: true });
   }
 
   function handleSelectWholeYear() {
@@ -115,8 +139,51 @@ function DateCascadeSelect({
     }
 
     onChange(activeYear, "");
-    setOpen(false);
-    setActiveYear(null);
+    closePanel({ restoreFocus: true });
+  }
+
+  function handlePanelKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (!panelRef.current) {
+      return;
+    }
+
+    const focusableOptions = Array.from(
+      panelRef.current.querySelectorAll<HTMLButtonElement>("[data-date-option='true']")
+    );
+
+    if (!focusableOptions.length) {
+      return;
+    }
+
+    const currentIndex = focusableOptions.findIndex((option) => option === document.activeElement);
+
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      event.preventDefault();
+      const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % focusableOptions.length;
+      focusableOptions[nextIndex]?.focus();
+      return;
+    }
+
+    if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+      event.preventDefault();
+      const nextIndex =
+        currentIndex < 0
+          ? focusableOptions.length - 1
+          : (currentIndex - 1 + focusableOptions.length) % focusableOptions.length;
+      focusableOptions[nextIndex]?.focus();
+      return;
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      focusableOptions[0]?.focus();
+      return;
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      focusableOptions[focusableOptions.length - 1]?.focus();
+    }
   }
 
   return (
@@ -124,15 +191,17 @@ function DateCascadeSelect({
       <div ref={containerRef} className="relative">
         <input type="hidden" name={name} value={monthValue ? `${yearValue}-${monthValue}` : yearValue} />
         <button
+          ref={triggerRef}
           type="button"
-          aria-haspopup="listbox"
+          aria-haspopup="dialog"
           aria-expanded={open}
-          aria-controls={listboxId}
+          aria-controls={panelId}
+          aria-label={`${dictionary.filterDateLabel}: ${triggerLabel}`}
           onClick={() => {
             setOpen((current) => !current);
             setActiveYear(null);
           }}
-          className="inline-flex h-12 w-full touch-manipulation items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 pr-4 text-left text-white outline-none transition hover:bg-white/[0.04] focus:border-amber-300/35 focus:bg-white/[0.04]"
+          className="inline-flex h-12 w-full touch-manipulation items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 pr-4 text-left text-white outline-none transition hover:bg-white/[0.04] focus:border-amber-300/35 focus:bg-white/[0.04] focus-visible:border-amber-300/35 focus-visible:bg-white/[0.04] focus-visible:shadow-[0_0_0_4px_rgba(251,191,36,0.08)]"
         >
           <span className="truncate">{triggerLabel}</span>
           <span
@@ -157,18 +226,28 @@ function DateCascadeSelect({
         </button>
 
         {open ? (
-          <div className="theme-floating-panel absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950">
+          <div
+            ref={panelRef}
+            id={panelId}
+            role="dialog"
+            aria-modal="false"
+            aria-label={dictionary.filterDateDialogLabel}
+            onKeyDown={handlePanelKeyDown}
+            className="theme-floating-panel absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950"
+          >
             {!activeYear ? (
-              <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
-                <li role="option" aria-selected={!yearValue && !monthValue}>
+              <ul className="max-h-72 overflow-y-auto py-1">
+                <li>
                   <button
+                    data-date-option="true"
                     type="button"
                     onClick={handleSelectAll}
+                    aria-pressed={!yearValue && !monthValue}
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       !yearValue && !monthValue
                         ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                         : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
-                    }`}
+                    } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                   >
                     <span>{dictionary.filterAllTime}</span>
                     {!yearValue && !monthValue ? (
@@ -181,15 +260,17 @@ function DateCascadeSelect({
                   const hasMonths = (yearToMonths[optionYear] ?? []).length > 0;
 
                   return (
-                    <li key={optionYear} role="option" aria-selected={isSelectedYear}>
+                    <li key={optionYear}>
                       <button
+                        data-date-option="true"
                         type="button"
                         onClick={() => handleSelectYear(optionYear)}
+                        aria-pressed={isSelectedYear}
                         className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                           isSelectedYear
                             ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                             : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
-                        }`}
+                        } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                       >
                         <span>{optionYear}</span>
                         <span aria-hidden="true" className={hasMonths ? "text-stone-500" : "text-amber-300"}>
@@ -204,25 +285,28 @@ function DateCascadeSelect({
               <div className="py-1">
                 <div className="flex items-center justify-between border-b border-white/[0.06] px-3 py-2">
                   <button
+                    data-date-option="true"
                     type="button"
                     onClick={() => setActiveYear(null)}
-                    className="inline-flex touch-manipulation items-center gap-2 text-xs tracking-[0.14em] text-stone-400 transition hover:text-white"
+                    className="inline-flex touch-manipulation items-center gap-2 text-xs tracking-[0.14em] text-stone-400 transition hover:text-white focus-visible:text-white focus-visible:outline-none"
                   >
                     <span aria-hidden="true">‹</span>
                     <span>{dictionary.filterBackToYears}</span>
                   </button>
                   <span className="text-sm text-stone-300">{activeYear}</span>
                 </div>
-                <ul id={listboxId} role="listbox" className="max-h-72 overflow-y-auto py-1">
-                  <li role="option" aria-selected={activeYear === yearValue && !monthValue}>
+                <ul className="max-h-72 overflow-y-auto py-1">
+                  <li>
                   <button
+                    data-date-option="true"
                     type="button"
                     onClick={handleSelectWholeYear}
+                    aria-pressed={activeYear === yearValue && !monthValue}
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       activeYear === yearValue && !monthValue
                         ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                         : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
-                    }`}
+                    } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                     >
                       <span>{activeYear}</span>
                       {activeYear === yearValue && !monthValue ? (
@@ -235,15 +319,17 @@ function DateCascadeSelect({
                       activeYear === yearValue && optionMonth === monthValue;
 
                     return (
-                      <li key={`${activeYear}-${optionMonth}`} role="option" aria-selected={isSelectedMonth}>
+                      <li key={`${activeYear}-${optionMonth}`}>
                         <button
+                          data-date-option="true"
                           type="button"
                           onClick={() => handleSelectMonth(optionMonth)}
+                          aria-pressed={isSelectedMonth}
                           className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                             isSelectedMonth
                               ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                               : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
-                          }`}
+                          } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                         >
                           <span>{formatMonthLabel(locale, optionMonth)}</span>
                           {isSelectedMonth ? (

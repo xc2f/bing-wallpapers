@@ -194,6 +194,8 @@ export default async function LocalizedHomePage({
             <ThemeSwitcher
               initialMode={initialThemeMode}
               labels={{
+                trigger: dictionary.themeLabel,
+                dialog: dictionary.themeDialogLabel,
                 system: dictionary.themeAuto,
                 light: dictionary.themeLight,
                 dark: dictionary.themeDark,
@@ -347,7 +349,7 @@ export default async function LocalizedHomePage({
                           <span>
                             {formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString)}
                           </span>
-                          <span className="text-stone-600">{wallpaper.Ssd}</span>
+                          <span className="text-stone-400">{wallpaper.Ssd}</span>
                         </div>
 
                         <div className="flex-1 border-t border-white/[0.06] pt-4">

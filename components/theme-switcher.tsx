@@ -7,6 +7,8 @@ type ResolvedTheme = "light" | "dark";
 interface ThemeSwitcherProps {
   initialMode?: ThemeMode;
   labels: {
+    trigger: string;
+    dialog: string;
     system: string;
     light: string;
     dark: string;
@@ -136,8 +138,20 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
     );
   });
   const [open, setOpen] = useState(false);
-  const menuId = useId();
+  const panelId = useId();
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const panelRef = useRef<HTMLDivElement | null>(null);
+
+  function closePanel({ restoreFocus = false } = {}) {
+    setOpen(false);
+
+    if (restoreFocus) {
+      window.requestAnimationFrame(() => {
+        triggerRef.current?.focus();
+      });
+    }
+  }
 
   useEffect(() => {
     const initialMode = getStoredTheme();
@@ -163,13 +177,13 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
   useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
       if (!containerRef.current?.contains(event.target as Node)) {
-        setOpen(false);
+        closePanel();
       }
     }
 
     function handleEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setOpen(false);
+        closePanel({ restoreFocus: true });
       }
     }
 
@@ -182,10 +196,67 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
     };
   }, []);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const focusTimer = window.requestAnimationFrame(() => {
+      const nextFocusTarget = panelRef.current?.querySelector<HTMLButtonElement>(
+        "[data-theme-option='true']"
+      );
+      nextFocusTarget?.focus();
+    });
+
+    return () => window.cancelAnimationFrame(focusTimer);
+  }, [open]);
+
   function handleThemeChange(nextMode: ThemeMode) {
     setThemeMode(nextMode);
     applyTheme(nextMode);
-    setOpen(false);
+    closePanel({ restoreFocus: true });
+  }
+
+  function handlePanelKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
+    if (!panelRef.current) {
+      return;
+    }
+
+    const options = Array.from(
+      panelRef.current.querySelectorAll<HTMLButtonElement>("[data-theme-option='true']")
+    );
+
+    if (!options.length) {
+      return;
+    }
+
+    const currentIndex = options.findIndex((option) => option === document.activeElement);
+
+    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      event.preventDefault();
+      const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % options.length;
+      options[nextIndex]?.focus();
+      return;
+    }
+
+    if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+      event.preventDefault();
+      const nextIndex =
+        currentIndex < 0 ? options.length - 1 : (currentIndex - 1 + options.length) % options.length;
+      options[nextIndex]?.focus();
+      return;
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      options[0]?.focus();
+      return;
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      options[options.length - 1]?.focus();
+    }
   }
 
   const options: Array<{ value: ThemeMode; label: string }> = [
@@ -198,12 +269,14 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
   return (
     <div ref={containerRef} className="relative">
       <button
+        ref={triggerRef}
         type="button"
-        aria-haspopup="menu"
+        aria-haspopup="dialog"
         aria-expanded={open}
-        aria-controls={menuId}
+        aria-controls={panelId}
+        aria-label={`${labels.trigger}: ${currentLabel}`}
         onClick={() => setOpen((current) => !current)}
-        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition hover:bg-white/[0.06] hover:text-white"
+        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
       >
         <span className="inline-flex min-w-0 items-center gap-2">
           <ThemeIcon mode={themeMode} />
@@ -228,8 +301,12 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
 
       {open ? (
         <div
-          id={menuId}
-          role="menu"
+          ref={panelRef}
+          id={panelId}
+          role="dialog"
+          aria-modal="false"
+          aria-label={labels.dialog}
+          onKeyDown={handlePanelKeyDown}
           className="theme-floating-panel theme-switcher-menu absolute right-0 top-[calc(100%+0.5rem)] z-30 min-w-[9rem] overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950 py-1 shadow-[0_10px_28px_rgba(0,0,0,0.16)] backdrop-blur-xl"
         >
           {options.map((option) => {
@@ -238,15 +315,15 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
             return (
               <button
                 key={option.value}
+                data-theme-option="true"
                 type="button"
-                role="menuitemradio"
-                aria-checked={isActive}
+                aria-pressed={isActive}
                 onClick={() => handleThemeChange(option.value)}
                 className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
                   isActive
                     ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
                     : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
-                }`}
+                } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
               >
                 <span className="inline-flex items-center gap-2">
                   <ThemeIcon mode={option.value} />
