@@ -16,7 +16,16 @@ function getPreferredLocale(request: NextRequest): Locale {
   return detectLocaleFromAcceptLanguage(request.headers.get("accept-language"));
 }
 
-function withLocaleCookie(response: NextResponse, locale: Locale) {
+function withLocaleCookie(request: NextRequest, response: NextResponse, locale: Locale) {
+  // Background prefetches must not change the user's language preference.
+  const isPrefetch = request.headers.has("next-router-prefetch") ||
+    /\bprefetch\b/i.test(request.headers.get("purpose") ?? "") ||
+    /\bprefetch\b/i.test(request.headers.get("sec-purpose") ?? "");
+
+  if (isPrefetch) {
+    return response;
+  }
+
   response.cookies.set(localeCookieName, locale, {
     path: "/",
     sameSite: "lax",
@@ -32,7 +41,7 @@ export function middleware(request: NextRequest) {
   const maybeLocale = segments[0];
 
   if (maybeLocale && isValidLocale(maybeLocale)) {
-    return withLocaleCookie(NextResponse.next(), maybeLocale);
+    return withLocaleCookie(request, NextResponse.next(), maybeLocale);
   }
 
   if (pathname === "/") {
@@ -40,7 +49,7 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}`;
     url.search = search;
-    return withLocaleCookie(NextResponse.redirect(url), locale);
+    return withLocaleCookie(request, NextResponse.redirect(url), locale);
   }
 
   if (pathname.startsWith("/wallpaper/")) {
@@ -48,7 +57,7 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     url.search = search;
-    return withLocaleCookie(NextResponse.redirect(url), locale);
+    return withLocaleCookie(request, NextResponse.redirect(url), locale);
   }
 
   return NextResponse.next();

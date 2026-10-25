@@ -38,6 +38,7 @@ export default function LocaleSwitcher({
           <Link
             key={option}
             href={localizePath(option, `${targetPath}${search ? `?${search}` : ""}`)}
+            prefetch={false}
             replace
             className={`theme-locale-switcher-link inline-flex min-w-[2rem] items-center justify-center px-1.5 py-1 text-center ${
               isActive ? "theme-locale-switcher-link-active text-amber-300" : "transition hover:text-white"
