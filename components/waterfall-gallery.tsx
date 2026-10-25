@@ -645,6 +645,7 @@ export default function WaterfallGallery({
                       <div className="relative aspect-[16/10] min-h-[15rem] overflow-hidden bg-stone-900/80">
                         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-20 bg-gradient-to-b from-black/12 to-transparent" />
                         <Image
+                          referrerPolicy="no-referrer"
                           src={item.previewUrl}
                           alt={item.title}
                           width={1920}
@@ -736,6 +737,7 @@ export default function WaterfallGallery({
                       {item.previewUrl ? (
                         <div className="relative overflow-hidden bg-stone-900/80" style={imageOnlyStyle}>
                           <Image
+                            referrerPolicy="no-referrer"
                             src={item.previewUrl}
                             alt={item.title}
                             width={1920}

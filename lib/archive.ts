@@ -41,17 +41,6 @@ export function toAbsoluteUrl(path?: string) {
   return path.startsWith("http") ? path : `${BING_BASE_URL}${path}`;
 }
 
-export function toProxyImageUrl(path?: string) {
-  const absoluteUrl = toAbsoluteUrl(path);
-  if (!absoluteUrl) return "";
-
-  const params = new URLSearchParams({
-    url: absoluteUrl,
-  });
-
-  return `/api/image?${params.toString()}`;
-}
-
 export function getAllWallpapers() {
   return sortedWallpapers;
 }

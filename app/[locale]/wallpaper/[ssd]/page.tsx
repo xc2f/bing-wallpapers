@@ -20,7 +20,7 @@ import {
   getRelatedWallpapersFromList,
   getWallpaperBySsd,
   searchWallpapers,
-  toProxyImageUrl,
+  toAbsoluteUrl,
 } from "@/lib/archive";
 import {
   formatArchiveDate,
@@ -142,8 +142,8 @@ export default async function LocalizedWallpaperDetailPage({
     wallpaper.Ssd,
     wallpaper.FullDateString
   );
-  const previewUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Url);
-  const imageUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Wallpaper);
+  const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
+  const imageUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
   const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
   const relatedWallpapers = hasFilteredMatch
@@ -258,6 +258,7 @@ export default async function LocalizedWallpaperDetailPage({
           <div className="bg-stone-900/58">
             {previewUrl ? (
               <Image
+                referrerPolicy="no-referrer"
                 src={previewUrl}
                 alt={title}
                 width={1920}
@@ -353,9 +354,10 @@ export default async function LocalizedWallpaperDetailPage({
             >
               <div className="grid min-h-[10rem] gap-0 grid-cols-[132px_minmax(0,1fr)]">
                 <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
-                  {toProxyImageUrl(next.ImageContent?.Image?.Url) ? (
+                  {toAbsoluteUrl(next.ImageContent?.Image?.Url) ? (
                     <Image
-                      src={toProxyImageUrl(next.ImageContent?.Image?.Url)}
+                      referrerPolicy="no-referrer"
+                      src={toAbsoluteUrl(next.ImageContent?.Image?.Url)}
                       alt={next.ImageContent?.Title ?? next.Ssd}
                       width={1920}
                       height={1080}
@@ -403,9 +405,10 @@ export default async function LocalizedWallpaperDetailPage({
                   </div>
                 </div>
                 <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
-                  {toProxyImageUrl(previous.ImageContent?.Image?.Url) ? (
+                  {toAbsoluteUrl(previous.ImageContent?.Image?.Url) ? (
                     <Image
-                      src={toProxyImageUrl(previous.ImageContent?.Image?.Url)}
+                      referrerPolicy="no-referrer"
+                      src={toAbsoluteUrl(previous.ImageContent?.Image?.Url)}
                       alt={previous.ImageContent?.Title ?? previous.Ssd}
                       width={1920}
                       height={1080}
@@ -427,7 +430,7 @@ export default async function LocalizedWallpaperDetailPage({
           <DetailRelatedStrip>
             {relatedWallpapers.map((item, index) => {
               const relatedTitle = item.ImageContent?.Title ?? item.Ssd;
-              const relatedPreviewUrl = toProxyImageUrl(item.ImageContent?.Image?.Url);
+              const relatedPreviewUrl = toAbsoluteUrl(item.ImageContent?.Image?.Url);
 
               return (
                 <Link
@@ -441,6 +444,7 @@ export default async function LocalizedWallpaperDetailPage({
                   <div className="relative min-h-[6.5rem] w-[6.5rem] shrink-0 self-stretch overflow-hidden bg-stone-900">
                     {relatedPreviewUrl ? (
                       <Image
+                        referrerPolicy="no-referrer"
                         src={relatedPreviewUrl}
                         alt={relatedTitle}
                         width={1920}

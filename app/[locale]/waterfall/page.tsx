@@ -11,7 +11,7 @@ import {
   filterWallpapersByDate,
   getAllWallpapers,
   getYearOptions,
-  toProxyImageUrl,
+  toAbsoluteUrl,
 } from "@/lib/archive";
 import {
   formatArchiveDate,
@@ -123,7 +123,7 @@ export default async function LocalizedWaterfallPage({
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
     description: wallpaper.ImageContent?.Description ?? dictionary.noDescription,
-    previewUrl: toProxyImageUrl(wallpaper.ImageContent?.Image?.Url),
+    previewUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url),
     detailHref: createDetailHref(locale, wallpaper.Ssd),
   }));
 

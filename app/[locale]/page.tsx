@@ -17,7 +17,7 @@ import {
   getYearOptions,
   paginateWallpapers,
   searchWallpapers,
-  toProxyImageUrl,
+  toAbsoluteUrl,
 } from "@/lib/archive";
 import {
   formatArchiveDate,
@@ -298,7 +298,7 @@ export default async function LocalizedHomePage({
                 const title = wallpaper.ImageContent?.Title ?? dictionary.untitled;
                 const description =
                   wallpaper.ImageContent?.Description ?? dictionary.noDescription;
-                const previewUrl = toProxyImageUrl(wallpaper.ImageContent?.Image?.Url);
+                const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
                 const prioritizeImage = index < 6;
 
                 return (
@@ -326,6 +326,7 @@ export default async function LocalizedHomePage({
                           <div className="relative h-64 overflow-hidden bg-stone-900/80">
                             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-24 bg-gradient-to-t from-black/16 to-transparent" />
                             <Image
+                              referrerPolicy="no-referrer"
                               src={previewUrl}
                               alt={title}
                               width={1920}

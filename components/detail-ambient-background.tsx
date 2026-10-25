@@ -54,7 +54,8 @@ export default function DetailAmbientBackground({
     const image = new Image();
 
     image.decoding = "async";
-    image.referrerPolicy = "same-origin";
+    image.crossOrigin = "anonymous";
+    image.referrerPolicy = "no-referrer";
 
     image.onload = () => {
       if (cancelled) {
@@ -76,7 +77,13 @@ export default function DetailAmbientBackground({
       canvas.height = sampleHeight;
       context.drawImage(image, 0, 0, sampleWidth, sampleHeight);
 
-      const { data } = context.getImageData(0, 0, sampleWidth, sampleHeight);
+      let data: Uint8ClampedArray;
+      try {
+        data = context.getImageData(0, 0, sampleWidth, sampleHeight).data;
+      } catch {
+        setAmbientColor(null);
+        return;
+      }
       let red = 0;
       let green = 0;
       let blue = 0;
