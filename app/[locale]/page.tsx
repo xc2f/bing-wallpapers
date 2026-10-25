@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { pageMetadata, pageTitle, siteUrl } from "@/lib/seo";
+import JsonLd from "@/components/json-ld";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
@@ -120,19 +122,28 @@ export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
+export async function generateMetadata({ params, searchParams }: {
   params: Promise<{ locale: string }>;
+  searchParams?: Promise<{ q?: string; page?: string; year?: string; month?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const resolvedLocale = getLocaleFromParam(locale);
   const dictionary = getDictionary(resolvedLocale);
-
-  return {
-    title: dictionary.siteTitle,
+  const filters = (await searchParams) ?? {};
+  const query = filters.q?.trim() ?? "";
+  const year = filters.year?.trim() ?? "";
+  const month = filters.month?.trim() ?? "";
+  const wallpapers = searchWallpapers(filterWallpapersByDate(getAllWallpapers(), year, month), query);
+  const requestedPage = Number.parseInt(filters.page ?? "1", 10);
+  const { currentPage } = paginateWallpapers(wallpapers, Number.isNaN(requestedPage) ? 1 : requestedPage);
+  const href = createPageHref(resolvedLocale, currentPage, query, year, month);
+  return pageMetadata({
+    locale: resolvedLocale,
+    path: href.slice(`/${resolvedLocale}`.length),
+    title: pageTitle(resolvedLocale, dictionary.siteTitle, currentPage),
     description: dictionary.siteDescription,
-  };
+    noIndex: Boolean(query || year || month || !wallpapers.length),
+  });
 }
 
 export default async function LocalizedHomePage({
@@ -186,6 +197,21 @@ export default async function LocalizedHomePage({
 
   return (
     <main className="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: dictionary.siteTitle,
+        description: dictionary.siteDescription,
+        url: siteUrl(currentListPath),
+        mainEntity: {
+          "@type": "ItemList",
+          itemListElement: items.map((wallpaper, index) => ({
+            "@type": "ListItem", position: index + 1,
+            url: siteUrl(localizePath(locale, `/wallpaper/${wallpaper.Ssd}`)),
+            name: wallpaper.ImageContent?.Title ?? wallpaper.Ssd,
+          })),
+        },
+      }} />
       <ScrollRestorer storageKey={currentListPath} />
       <ScrollToTopButton label={dictionary.backToTop} />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
@@ -215,6 +241,7 @@ export default async function LocalizedHomePage({
             <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               {dictionary.siteTitle}
             </h1>
+            <p className="mt-4 text-sm leading-6 text-stone-400">{dictionary.siteDescription}</p>
             <dl className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-stone-400">
               <div className="inline-flex items-center gap-2">
                 <dt className="text-stone-500">{dictionary.archived}</dt>

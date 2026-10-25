@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { pageMetadata, siteUrl } from "@/lib/seo";
+import JsonLd from "@/components/json-ld";
 import Link from "next/link";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
@@ -78,6 +80,7 @@ export async function generateMetadata({
   if (!wallpaper) {
     return {
       title: dictionary.metadataNotFound,
+      robots: { index: false, follow: true },
     };
   }
 
@@ -85,10 +88,14 @@ export async function generateMetadata({
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.metadataFallbackDescription;
 
-  return {
+  const image = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
+  return pageMetadata({
+    locale: resolvedLocale,
+    path: `/wallpaper/${ssd}`,
     title: `${title} | ${dictionary.siteTitle}`,
     description,
-  };
+    image: image ? { url: image, alt: title } : undefined,
+  });
 }
 
 export default async function LocalizedWallpaperDetailPage({
@@ -191,6 +198,26 @@ export default async function LocalizedWallpaperDetailPage({
 
   return (
     <DetailAmbientBackground imageUrl={previewUrl || imageUrl}>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: title,
+        url: siteUrl(localizePath(currentLocale, `/wallpaper/${ssd}`)),
+        description,
+        breadcrumb: {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: dictionary.siteTitle, item: siteUrl(localizePath(currentLocale)) },
+            { "@type": "ListItem", position: 2, name: title, item: siteUrl(localizePath(currentLocale, `/wallpaper/${ssd}`)) },
+          ],
+        },
+        ...((imageUrl || previewUrl) ? { mainEntity: {
+          "@type": "ImageObject", name: title, description,
+          contentUrl: imageUrl || previewUrl,
+          thumbnailUrl: previewUrl || imageUrl,
+          copyrightNotice: wallpaper.ImageContent?.Copyright,
+        } } : {}),
+      }} />
       <DetailKeyboardNavigation
         previousHref={previous ? createDetailHref(previous.Ssd) : undefined}
         nextHref={next ? createDetailHref(next.Ssd) : undefined}

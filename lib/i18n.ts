@@ -6,7 +6,7 @@ export type Locale = (typeof locales)[number];
 
 const baseEn = {
   siteTitle: "Bing Wallpapers Archive",
-  siteDescription: "Browse locally archived Bing wallpapers.",
+  siteDescription: "Explore the Bing wallpaper archive with daily landscapes, wildlife and travel photography. Browse by date, search image stories and view full-size wallpapers.",
   archiveLabel: "Bing Wallpapers Archive",
   archived: "Archived",
   latest: "Last Updated",
@@ -91,7 +91,7 @@ export const dictionaries = {
   zh: {
     ...baseEn,
     siteTitle: "Bing 壁纸档案馆",
-    siteDescription: "浏览本地归档的 Bing 壁纸。",
+    siteDescription: "探索 Bing 每日壁纸档案，欣赏世界风景、自然生态与旅行摄影。按年份和月份浏览、搜索图片故事，查看高清壁纸及版权信息。",
     archived: "存档数",
     latest: "上次更新",
     filterSearchPlaceholder: "例如: Spain, turtle, lake...",
@@ -169,7 +169,7 @@ export const dictionaries = {
     ...baseEn,
     siteTitle: "Archivo de Fondos de Bing",
     siteDescription:
-      "Explora fondos de pantalla de Bing archivados localmente.",
+      "Explora el archivo de fondos de Bing: paisajes, fauna y fotografía de viajes. Busca por fecha, descubre sus historias y consulta imágenes en tamaño completo.",
     archived: "Archivados",
     latest: "Última actualización",
     filterSearchPlaceholder: "Por ejemplo: Spain, turtle, lake...",
@@ -245,7 +245,7 @@ export const dictionaries = {
   fr: {
     ...baseEn,
     siteTitle: "Archive des Fonds Bing",
-    siteDescription: "Parcourez les fonds d'écran Bing archivés localement.",
+    siteDescription: "Explorez les fonds d'écran Bing : paysages, faune et voyages. Parcourez les archives par date, découvrez leurs histoires et affichez les images en grand format.",
     archived: "Archives",
     latest: "Dernière mise à jour",
     filterSearchPlaceholder: "Par exemple : Spain, turtle, lake...",
@@ -321,7 +321,7 @@ export const dictionaries = {
   de: {
     ...baseEn,
     siteTitle: "Bing-Hintergrundarchiv",
-    siteDescription: "Durchsuche lokal archivierte Bing-Hintergründe.",
+    siteDescription: "Entdecke das Bing-Hintergrundarchiv mit Landschaften, Tierwelt und Reisefotografie. Suche nach Datum, lies die Bildgeschichten und sieh Bilder in voller Größe.",
     archived: "Archiviert",
     latest: "Zuletzt aktualisiert",
     filterSearchPlaceholder: "Zum Beispiel: Spain, turtle, lake...",
@@ -397,7 +397,7 @@ export const dictionaries = {
   ja: {
     ...baseEn,
     siteTitle: "Bing 壁紙アーカイブ",
-    siteDescription: "ローカルに保存された Bing 壁紙を閲覧します。",
+    siteDescription: "Bing の日替わり壁紙アーカイブで、世界の風景や野生動物、旅の写真を楽しめます。年月で絞り込み、写真の物語や高解像度の壁紙、著作権情報を確認できます。",
     archived: "アーカイブ数",
     latest: "最終更新",
     filterSearchPlaceholder: "例: Spain, turtle, lake...",
@@ -471,7 +471,7 @@ export const dictionaries = {
   ko: {
     ...baseEn,
     siteTitle: "Bing 배경화면 아카이브",
-    siteDescription: "로컬에 보관된 Bing 배경화면을 둘러보세요.",
+    siteDescription: "세계의 풍경, 야생동물, 여행 사진을 담은 Bing 일일 배경화면 아카이브를 둘러보세요. 날짜별 검색으로 사진 이야기와 고해상도 배경화면, 저작권 정보를 확인하세요.",
     archived: "보관 수",
     latest: "마지막 업데이트",
     filterSearchPlaceholder: "예: Spain, turtle, lake...",

@@ -41,7 +41,11 @@ export function middleware(request: NextRequest) {
   const maybeLocale = segments[0];
 
   if (maybeLocale && isValidLocale(maybeLocale)) {
-    return withLocaleCookie(request, NextResponse.next(), maybeLocale);
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set("x-site-locale", maybeLocale);
+    return withLocaleCookie(request, NextResponse.next({
+      request: { headers: requestHeaders },
+    }), maybeLocale);
   }
 
   if (pathname === "/") {

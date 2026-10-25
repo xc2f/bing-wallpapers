@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import LocaleSwitcher from "@/components/locale-switcher";
@@ -67,10 +68,12 @@ export async function generateMetadata({
   const resolvedLocale = getLocaleFromParam(locale);
   const dictionary = getDictionary(resolvedLocale);
 
-  return {
+  return pageMetadata({
+    locale: resolvedLocale,
+    path: "/waterfall",
     title: `${dictionary.waterfallTitle} | ${dictionary.siteTitle}`,
     description: dictionary.waterfallDescription,
-  };
+  });
 }
 
 export default async function LocalizedWaterfallPage({

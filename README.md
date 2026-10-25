@@ -102,6 +102,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+## SEO
+
+Canonical URLs, language alternates, social sharing metadata and JSON-LD are generated on the server. The archive exposes `/robots.txt` and `/sitemap.xml`, including all wallpaper details and archive pagination in every supported language.
+
+Set `SITE_URL=https://bing.xc2f.com` to the public site origin when deploying on a different domain. This is separate from `BASE_URL`, which configures the Bing image host. Rebuild after changing the origin or archive data to refresh the sitemap.
+
+Search and date-filtered archive pages use `noindex,follow`. Unfiltered pagination keeps its own canonical URL; detail navigation parameters and waterfall display parameters canonicalize to their clean page URLs.
+
+After deployment, submit `/sitemap.xml` to Google Search Console and Bing Webmaster Tools.
+
 ## External DB Repository
 
 If you want to move [`db/`](./db/) into a separate repository, this project now supports pulling the data at build time.

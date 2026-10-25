@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
+import { defaultLocale, htmlLangMap, isValidLocale } from "@/lib/i18n";
+import { SITE_URL } from "@/lib/seo";
 import Script from "next/script";
 import { THEME_COOKIE_KEY, normalizeThemeMode, type ThemeMode } from "@/lib/theme";
 import "./globals.css";
@@ -15,6 +17,7 @@ function resolveTheme(mode: ThemeMode): ResolvedTheme {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Bing Wallpapers Archive",
   description: "Browse locally archived Bing wallpapers.",
   icons: {
@@ -33,13 +36,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const requestHeaders = await headers();
+  const requestLocale = requestHeaders.get("x-site-locale") ?? "";
+  const locale = isValidLocale(requestLocale) ? requestLocale : defaultLocale;
   const cookieStore = await cookies();
   const themeMode = normalizeThemeMode(cookieStore.get(THEME_COOKIE_KEY)?.value);
   const resolvedTheme = resolveTheme(themeMode);
 
   return (
     <html
-      lang="en"
+      lang={htmlLangMap[locale]}
       suppressHydrationWarning
       data-theme-mode={themeMode}
       data-theme-resolved={resolvedTheme}

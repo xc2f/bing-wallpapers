@@ -6,11 +6,12 @@ import { middleware } from "../middleware";
 const origin = "https://bing.xc2f.com";
 
 test("language prefetches preserve the saved language and root redirect", () => {
-  for (const headers of [
+  const prefetchHeaders: Record<string, string>[] = [
     { "next-router-prefetch": "1" },
     { purpose: "prefetch" },
     { "sec-purpose": "prefetch;prerender" },
-  ]) {
+  ];
+  for (const headers of prefetchHeaders) {
     const requestHeaders = new Headers(headers);
     requestHeaders.set("cookie", "preferred-locale=zh");
 
@@ -47,4 +48,12 @@ test("first visits use the browser language and preserve the query string", () =
   }));
   assert.equal(response.headers.get("location"), `${origin}/zh?year=2026`);
   assert.equal(response.cookies.get("preferred-locale")?.value, "zh");
+});
+
+
+test("localized HTML language comes from the URL rather than a supplied header", () => {
+  const response = middleware(new NextRequest(`${origin}/zh/wallpaper/20260512`, {
+    headers: { "x-site-locale": "en" },
+  }));
+  assert.equal(response.headers.get("x-middleware-request-x-site-locale"), "zh");
 });
