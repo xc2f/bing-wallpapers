@@ -282,26 +282,26 @@ export default async function LocalizedHomePage({
                   href={createWaterfallEntryHref(locale, year)}
                   aria-label={dictionary.viewWaterfall}
                   title={dictionary.viewWaterfall}
-                  className="group inline-flex h-9 items-center gap-2 rounded-full border border-white/10 px-3 text-stone-300 transition hover:border-white/15 hover:bg-white/[0.06] hover:text-white"
+                  className="group inline-flex min-h-11 items-center gap-2.5 rounded-xl bg-amber-300 px-4 py-2.5 text-stone-950 shadow-sm transition hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--theme-app-rgb))]"
                 >
                   <svg
                     aria-hidden="true"
                     viewBox="0 0 16 16"
-                    className="h-4 w-4 shrink-0 text-stone-400 transition group-hover:text-stone-200"
+                    className="h-5 w-5 shrink-0"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
                   >
-                    <rect x="1.5" y="2" width="5" height="5" stroke="currentColor" />
-                    <rect x="9.5" y="2" width="5" height="5" stroke="currentColor" />
-                    <rect x="1.5" y="9" width="5" height="5" stroke="currentColor" />
-                    <rect x="9.5" y="9" width="5" height="5" stroke="currentColor" />
+                    <rect x="1.5" y="1.5" width="5" height="7" rx="1" stroke="currentColor" />
+                    <rect x="9.5" y="1.5" width="5" height="4" rx="1" stroke="currentColor" />
+                    <rect x="1.5" y="11" width="5" height="3.5" rx="1" stroke="currentColor" />
+                    <rect x="9.5" y="8" width="5" height="6.5" rx="1" stroke="currentColor" />
                   </svg>
-                  <span className="text-sm font-medium text-stone-200 transition group-hover:text-white">
+                  <span className="text-sm font-semibold">
                     {dictionary.viewWaterfall}
                   </span>
                   <span
                     aria-hidden="true"
-                    className="text-stone-500 transition group-hover:translate-x-0.5 group-hover:text-stone-300"
+                    className="transition-transform motion-safe:group-hover:translate-x-1"
                   >
                     →
                   </span>

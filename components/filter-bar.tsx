@@ -742,11 +742,9 @@ export default function FilterBar({
 
             </div>
           ) : (
-            <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
-              <span className="min-w-0 truncate">
-                {summaryItems.length > 0 ? summaryItems.join(" / ") : dictionary.filterSummaryAll}
-              </span>
-              {summaryItems.length > 0 ? (
+            summaryItems.length > 0 ? (
+              <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
+                <span className="min-w-0 truncate">{summaryItems.join(" / ")}</span>
                 <button
                   type="button"
                   onClick={handleClear}
@@ -755,8 +753,22 @@ export default function FilterBar({
                 >
                   {dictionary.filterReset}
                 </button>
-              ) : null}
-            </div>
+              </div>
+            ) : (
+              <div className="flex items-center gap-2 px-1 text-xs leading-5 tracking-[0.08em] text-stone-500">
+                {dictionary.filterSummaryAll}
+                <span aria-hidden="true" className="text-stone-700">
+                  ·
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setCollapsed(false)}
+                  className="text-amber-200/80 transition hover:text-amber-100"
+                >
+                  {dictionary.filterExpand}
+                </button>
+              </div>
+            )
           )}
 
           {!collapsed && summaryItems.length > 0 ? (
