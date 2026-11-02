@@ -1,4 +1,5 @@
 import data from "@/db/media_contents.json";
+import { defaultLocale, locales, type Locale } from "@/lib/i18n";
 
 export const BING_BASE_URL = process.env.BASE_URL || "https://www.bing.com";
 export const PAGE_SIZE = 12;
@@ -19,16 +20,27 @@ export interface WallpaperItem {
 }
 
 interface WallpaperArchive {
-  mediaContents: WallpaperItem[];
+  schemaVersion: 2;
+  defaultLocale: Locale;
+  fallbackLocale: Locale;
+  mediaContents: Record<Locale, WallpaperItem[]>;
 }
 
 const wallpaperArchive = data as WallpaperArchive;
-const sortedWallpapers = [...wallpaperArchive.mediaContents].sort((a, b) =>
-  b.Ssd.localeCompare(a.Ssd)
-);
-const wallpaperBySsd = new Map(
-  sortedWallpapers.map((wallpaper) => [wallpaper.Ssd, wallpaper] as const)
-);
+// Fill missing archive records from the fallback language; localized records take priority.
+const wallpapersByLocale = new Map(locales.map((locale) => {
+  const wallpapers = new Map(
+    wallpaperArchive.mediaContents[wallpaperArchive.fallbackLocale].map((item) => [item.Ssd, item])
+  );
+  for (const item of wallpaperArchive.mediaContents[locale]) {
+    wallpapers.set(item.Ssd, item);
+  }
+  return [locale, [...wallpapers.values()].sort((a, b) => b.Ssd.localeCompare(a.Ssd))] as const;
+}));
+const wallpaperIndexes = new Map(locales.map((locale) => [
+  locale,
+  new Map(wallpapersByLocale.get(locale)!.map((wallpaper) => [wallpaper.Ssd, wallpaper])),
+] as const));
 
 interface DateParts {
   year: string;
@@ -41,16 +53,16 @@ export function toAbsoluteUrl(path?: string) {
   return path.startsWith("http") ? path : `${BING_BASE_URL}${path}`;
 }
 
-export function getAllWallpapers() {
-  return sortedWallpapers;
+export function getAllWallpapers(locale: Locale = defaultLocale) {
+  return wallpapersByLocale.get(locale)!;
 }
 
-export function getWallpaperBySsd(ssd: string) {
-  return wallpaperBySsd.get(ssd);
+export function getWallpaperBySsd(ssd: string, locale: Locale = defaultLocale) {
+  return wallpaperIndexes.get(locale)!.get(ssd);
 }
 
-export function getRelatedWallpapers(ssd: string, limit = 3) {
-  return getRelatedWallpapersFromList(getAllWallpapers(), ssd, limit);
+export function getRelatedWallpapers(ssd: string, limit = 3, locale: Locale = defaultLocale) {
+  return getRelatedWallpapersFromList(getAllWallpapers(locale), ssd, limit);
 }
 
 export function getRelatedWallpapersFromList(
@@ -86,8 +98,8 @@ export function getRelatedWallpapersFromList(
   return related;
 }
 
-export function getAdjacentWallpapers(ssd: string) {
-  const wallpapers = getAllWallpapers()
+export function getAdjacentWallpapers(ssd: string, locale: Locale = defaultLocale) {
+  const wallpapers = getAllWallpapers(locale)
   return getAdjacentWallpapersFromList(wallpapers, ssd)
 }
 

@@ -228,7 +228,8 @@ html[data-theme-resolved="light"] .text-amber-300 {
 }
 
 html[data-theme-resolved="light"] .text-amber-300\/80,
-html[data-theme-resolved="light"] .text-amber-200\/85 {
+html[data-theme-resolved="light"] .text-amber-200\/85,
+html[data-theme-resolved="light"] .text-amber-200\/80 {
   color: rgb(var(--theme-accent-text-soft-rgb) / 0.9) !important;
 }
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getWallpaperBySsd } from "@/lib/archive";
 import { localeLabels, type Locale, localizePath, locales } from "@/lib/i18n";
 
 interface LocaleSwitcherProps {
@@ -27,17 +28,24 @@ export default function LocaleSwitcher({
     });
   }
 
-  const search = query.toString();
+  const detailSsd = targetPath.match(/^\/wallpaper\/([^/]+)$/)?.[1];
 
   return (
     <nav className="theme-locale-switcher flex flex-wrap items-center gap-1.5 text-xs tracking-[0.08em] text-stone-400">
       {locales.map((option) => {
         const isActive = option === locale;
+        const targetQuery = new URLSearchParams(query);
+        if (!isActive) targetQuery.delete("page");
+        const search = targetQuery.toString();
+        const hasDetail = !detailSsd || Boolean(getWallpaperBySsd(detailSsd, option));
+        const href = hasDetail
+          ? localizePath(option, `${targetPath}${search ? `?${search}` : ""}`)
+          : localizePath(option);
 
         return (
           <Link
             key={option}
-            href={localizePath(option, `${targetPath}${search ? `?${search}` : ""}`)}
+            href={href}
             prefetch={false}
             replace
             className={`theme-locale-switcher-link inline-flex min-w-[2rem] items-center justify-center px-1.5 py-1 text-center ${

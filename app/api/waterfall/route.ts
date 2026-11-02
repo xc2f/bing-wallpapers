@@ -33,7 +33,7 @@ export async function GET(request: NextRequest) {
 
   const locale = getLocaleFromParam(localeParam);
   const dictionary = getDictionary(locale);
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = getAllWallpapers(locale);
   const wallpapers = filterWallpapersByDate(allWallpapers, year);
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
   const page = Number.isNaN(pageValue)

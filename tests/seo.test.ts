@@ -24,16 +24,20 @@ test("filtered archives can be excluded while links remain crawlable", () => {
 
 test("sitemap covers every locale, wallpaper and archive page without duplicates", () => {
   const entries = sitemap();
-  const wallpapers = getAllWallpapers();
-  const { totalPages } = paginateWallpapers(wallpapers, 1);
-  assert.equal(entries.length, locales.length * (wallpapers.length + totalPages + 1));
+  const expectedCount = locales.reduce((total, locale) => {
+    const wallpapers = getAllWallpapers(locale);
+    return total + wallpapers.length + paginateWallpapers(wallpapers, 1).totalPages + 1;
+  }, 0);
+  assert.equal(entries.length, expectedCount);
   assert.equal(new Set(entries.map((entry) => entry.url)).size, entries.length);
   for (const locale of locales) {
-    for (const wallpaper of wallpapers) {
+    for (const wallpaper of getAllWallpapers(locale)) {
       const url = siteUrl(`/${locale}/wallpaper/${wallpaper.Ssd}`);
       const entry = entries.find((entry) => entry.url === url);
       assert.ok(entry, url);
-      assert.equal(Object.keys(entry.alternates?.languages ?? {}).length, locales.length + 1);
+      for (const [language, alternateUrl] of Object.entries(entry.alternates?.languages ?? {})) {
+        assert.ok(entries.some((candidate) => candidate.url === alternateUrl), language);
+      }
     }
   }
   assert.equal(robots().sitemap, siteUrl("/sitemap.xml"));

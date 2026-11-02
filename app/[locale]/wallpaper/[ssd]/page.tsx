@@ -57,10 +57,8 @@ function splitDescriptionIntoParagraphs(description: string) {
 }
 
 export async function generateStaticParams() {
-  const recentWallpapers = getAllWallpapers().slice(0, DETAIL_STATIC_PRERENDER_LIMIT);
-
   return locales.flatMap((locale) =>
-    recentWallpapers.map((wallpaper) => ({
+    getAllWallpapers(locale).slice(0, DETAIL_STATIC_PRERENDER_LIMIT).map((wallpaper) => ({
       locale,
       ssd: wallpaper.Ssd,
     }))
@@ -75,7 +73,7 @@ export async function generateMetadata({
   const { locale, ssd } = await params;
   const resolvedLocale = getLocaleFromParam(locale);
   const dictionary = getDictionary(resolvedLocale);
-  const wallpaper = getWallpaperBySsd(ssd);
+  const wallpaper = getWallpaperBySsd(ssd, resolvedLocale);
 
   if (!wallpaper) {
     return {
@@ -128,13 +126,13 @@ export default async function LocalizedWallpaperDetailPage({
   const initialThemeMode = normalizeThemeMode(
     cookieStore.get(THEME_COOKIE_KEY)?.value
   );
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = getAllWallpapers(currentLocale);
   const filteredWallpapers = searchWallpapers(
     filterWallpapersByDate(allWallpapers, year, month),
     query
   );
   const wallpaper =
-    filteredWallpapers.find((item) => item.Ssd === ssd) ?? getWallpaperBySsd(ssd);
+    filteredWallpapers.find((item) => item.Ssd === ssd) ?? getWallpaperBySsd(ssd, currentLocale);
 
   if (!wallpaper) {
     notFound();
@@ -155,10 +153,10 @@ export default async function LocalizedWallpaperDetailPage({
   const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
   const relatedWallpapers = hasFilteredMatch
     ? getRelatedWallpapersFromList(filteredWallpapers, wallpaper.Ssd, 8)
-    : getRelatedWallpapers(wallpaper.Ssd, 8);
+    : getRelatedWallpapers(wallpaper.Ssd, 8, currentLocale);
   const { previous, next } = hasFilteredMatch
     ? getAdjacentWallpapersFromList(filteredWallpapers, wallpaper.Ssd)
-    : getAdjacentWallpapers(wallpaper.Ssd);
+    : getAdjacentWallpapers(wallpaper.Ssd, currentLocale);
   const backQuery = new URLSearchParams();
 
   Object.entries(resolvedSearchParams).forEach(([key, value]) => {
@@ -262,11 +260,11 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
 
           <div className="flex flex-col gap-3">
-              <div className="max-w-5xl">
+              <div className="w-full min-w-0">
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.detailLabel}
               </p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h1 className="mt-3 w-full break-words text-4xl font-semibold tracking-tight text-white sm:text-5xl">
                 {title}
               </h1>
               {query ? (

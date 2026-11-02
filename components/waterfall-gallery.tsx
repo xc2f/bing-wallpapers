@@ -671,7 +671,7 @@ export default function WaterfallGallery({
                     <h2 className="text-lg font-semibold leading-6 text-white">
                       <PreserveScrollLink
                         href={createDetailHref(item.detailHref)}
-                        className="line-clamp-2 text-balance transition hover:text-amber-200"
+                        className="block break-words transition hover:text-amber-200"
                       >
                         {item.title}
                       </PreserveScrollLink>
@@ -759,7 +759,7 @@ export default function WaterfallGallery({
                       )}
 
                       <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
-                        <p className="theme-waterfall-image-title line-clamp-2 text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
+                        <p className="theme-waterfall-image-title break-words text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
                           {item.title}
                         </p>
                         <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">

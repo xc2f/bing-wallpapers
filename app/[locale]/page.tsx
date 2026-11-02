@@ -133,7 +133,7 @@ export async function generateMetadata({ params, searchParams }: {
   const query = filters.q?.trim() ?? "";
   const year = filters.year?.trim() ?? "";
   const month = filters.month?.trim() ?? "";
-  const wallpapers = searchWallpapers(filterWallpapersByDate(getAllWallpapers(), year, month), query);
+  const wallpapers = searchWallpapers(filterWallpapersByDate(getAllWallpapers(resolvedLocale), year, month), query);
   const requestedPage = Number.parseInt(filters.page ?? "1", 10);
   const { currentPage } = paginateWallpapers(wallpapers, Number.isNaN(requestedPage) ? 1 : requestedPage);
   const href = createPageHref(resolvedLocale, currentPage, query, year, month);
@@ -175,7 +175,7 @@ export default async function LocalizedHomePage({
   const initialThemeMode = normalizeThemeMode(
     cookieStore.get(THEME_COOKIE_KEY)?.value
   );
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = getAllWallpapers(locale);
   const yearOptions = getYearOptions(allWallpapers);
   const yearToMonths = Object.fromEntries(
     yearOptions.map((optionYear) => [
@@ -391,7 +391,7 @@ export default async function LocalizedHomePage({
                                 year,
                                 month
                               )}
-                              className="line-clamp-2 text-balance transition hover:text-amber-100"
+                              className="block break-words transition hover:text-amber-100"
                             >
                               {highlightText(title, highlightTerms.title)}
                             </PreserveScrollLink>

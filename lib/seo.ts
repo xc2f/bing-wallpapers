@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getAllWallpapers, getWallpaperBySsd, paginateWallpapers } from "@/lib/archive";
 import { defaultLocale, getDictionary, htmlLangMap, locales, localizePath, type Locale } from "@/lib/i18n";
 
 // BASE_URL belongs to the Bing image host; the public site has its own origin.
@@ -9,9 +10,16 @@ export function siteUrl(path = "/") {
 }
 
 export function languageAlternates(path = "") {
+  const detailSsd = path.match(/^\/wallpaper\/([^/?]+)/)?.[1];
+  const page = Number(new URLSearchParams(path.startsWith("?") ? path.slice(1) : "").get("page") ?? 1);
+  const availableLocales = locales.filter((locale) => detailSsd
+    ? Boolean(getWallpaperBySsd(detailSsd, locale))
+    : page <= paginateWallpapers(getAllWallpapers(locale), 1).totalPages);
   return Object.fromEntries([
-    ...locales.map((locale) => [htmlLangMap[locale], siteUrl(localizePath(locale, path))]),
-    ["x-default", siteUrl(localizePath(defaultLocale, path))],
+    ...availableLocales.map((locale) => [htmlLangMap[locale], siteUrl(localizePath(locale, path))]),
+    ...(availableLocales.includes(defaultLocale)
+      ? [["x-default", siteUrl(localizePath(defaultLocale, path))]]
+      : []),
   ]);
 }
 

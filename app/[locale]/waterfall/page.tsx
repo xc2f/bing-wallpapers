@@ -95,7 +95,7 @@ export default async function LocalizedWaterfallPage({
   const initialThemeMode = normalizeThemeMode(
     cookieStore.get(THEME_COOKIE_KEY)?.value
   );
-  const allWallpapers = getAllWallpapers();
+  const allWallpapers = getAllWallpapers(locale);
   const mode = resolvedSearchParams.mode?.trim() ?? "";
   const year = resolvedSearchParams.year?.trim() ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);

@@ -1,6 +1,7 @@
 import { access, mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import "dotenv/config";
+import { defaultLocale, locales } from "../lib/i18n";
 
 interface RemoteFile {
   label: string;
@@ -17,7 +18,12 @@ const remoteFiles: RemoteFile[] = [
 ];
 
 const fallbackJsonPath = resolve("db/media_contents.json");
-const fallbackJsonContent = JSON.stringify({ mediaContents: [] }, null, 2);
+const fallbackJsonContent = JSON.stringify({
+  schemaVersion: 2,
+  defaultLocale,
+  fallbackLocale: defaultLocale,
+  mediaContents: Object.fromEntries(locales.map((locale) => [locale, []])),
+}, null, 2);
 
 function getHeaders() {
   const headers = new Headers();

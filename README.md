@@ -129,6 +129,9 @@ If the DB repository is private, also set:
 DB_SYNC_BEARER_TOKEN=<token>
 ```
 
+The site reads schema version 2: `mediaContents` is an object with `en`, `zh`, `es`, `fr`, `de`, `ja`, and `ko` arrays, alongside `schemaVersion: 2`, `defaultLocale: "en"`, and `fallbackLocale: "en"`.
+Each route uses its language's records for browsing, search, details, and waterfall loading. Each language includes English fallback records for missing archive IDs (`Ssd`), with localized records taking priority when the same ID exists in both languages. Sitemap entries and language alternates follow the available records and pagination for each language.
+
 Notes:
 
 - `DB_SYNC_JSON_URL` is required because the site reads [`db/media_contents.json`](./db/media_contents.json) directly at build/runtime.
