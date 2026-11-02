@@ -1,3 +1,4 @@
+import { getSearchExamples } from "@/lib/search-examples";
 import Image from "next/image";
 import { pageMetadata, pageTitle, siteUrl } from "@/lib/seo";
 import JsonLd from "@/components/json-ld";
@@ -260,6 +261,7 @@ export default async function LocalizedHomePage({
           <FilterBar
             locale={locale}
             dictionary={dictionary}
+            searchHelpExamples={getSearchExamples(dateFilteredWallpapers, locale)}
             initialQuery={query}
             initialYear={year}
             initialMonth={month}
@@ -331,13 +333,13 @@ export default async function LocalizedHomePage({
                 return (
                   <article
                     key={wallpaper.Ssd}
-                    className="waterfall-card-reveal h-full"
+                    className="waterfall-card-reveal row-span-5 grid grid-rows-subgrid gap-y-0"
                     data-revealed="true"
                     style={{
                       transitionDelay: `${Math.min(index, 5) * 28}ms`,
                     }}
                   >
-                    <div className="flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
+                    <div className="row-span-5 grid grid-rows-subgrid gap-y-0 overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/20">
                       {previewUrl ? (
                         <PreserveScrollLink
                           href={createDetailHref(
@@ -372,7 +374,7 @@ export default async function LocalizedHomePage({
                         </div>
                       )}
 
-                      <div className="flex flex-1 flex-col gap-4 p-5">
+                      <div className="row-span-4 grid grid-rows-subgrid gap-y-4 p-5">
                         <div className="flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.22em] text-stone-500">
                           <span>
                             {formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString)}
@@ -380,8 +382,8 @@ export default async function LocalizedHomePage({
                           <span className="text-stone-400">{wallpaper.Ssd}</span>
                         </div>
 
-                        <div className="flex-1 border-t border-white/[0.06] pt-4">
-                          <h2 className="text-xl font-semibold leading-[1.2] text-white">
+                        <div className="contents">
+                          <h2 className="min-h-[calc(2.4em+1rem)] border-t border-white/[0.06] pt-4 text-xl font-semibold leading-[1.2] text-white">
                             <PreserveScrollLink
                               href={createDetailHref(
                                 locale,
@@ -396,7 +398,7 @@ export default async function LocalizedHomePage({
                               {highlightText(title, highlightTerms.title)}
                             </PreserveScrollLink>
                           </h2>
-                          <p className="mt-3 line-clamp-3 text-sm leading-6 text-stone-400">
+                          <p className="line-clamp-3 text-sm leading-6 text-stone-400">
                             {highlightText(description, highlightTerms.description)}
                           </p>
                         </div>

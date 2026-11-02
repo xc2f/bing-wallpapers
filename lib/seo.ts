@@ -15,10 +15,13 @@ export function languageAlternates(path = "") {
   const availableLocales = locales.filter((locale) => detailSsd
     ? Boolean(getWallpaperBySsd(detailSsd, locale))
     : page <= paginateWallpapers(getAllWallpapers(locale), 1).totalPages);
+  const localizedUrl = (locale: Locale) => siteUrl(localizePath(locale, detailSsd
+    ? `/wallpaper/${getWallpaperBySsd(detailSsd, locale)!.Ssd}`
+    : path));
   return Object.fromEntries([
-    ...availableLocales.map((locale) => [htmlLangMap[locale], siteUrl(localizePath(locale, path))]),
+    ...availableLocales.map((locale) => [htmlLangMap[locale], localizedUrl(locale)]),
     ...(availableLocales.includes(defaultLocale)
-      ? [["x-default", siteUrl(localizePath(defaultLocale, path))]]
+      ? [["x-default", localizedUrl(defaultLocale)]]
       : []),
   ]);
 }

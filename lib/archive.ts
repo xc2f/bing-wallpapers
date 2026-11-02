@@ -4,7 +4,15 @@ import { defaultLocale, locales, type Locale } from "@/lib/i18n";
 export const BING_BASE_URL = process.env.BASE_URL || "https://www.bing.com";
 export const PAGE_SIZE = 12;
 
+export interface TranslationMetadata {
+  generatedBy: string;
+  reviewedByHuman?: boolean;
+  sourceLocale?: Locale;
+  sourceSsd?: string;
+}
+
 export interface WallpaperItem {
+  Translation?: TranslationMetadata;
   Ssd: string;
   FullDateString?: string;
   ImageContent?: {
@@ -27,16 +35,35 @@ interface WallpaperArchive {
 }
 
 const wallpaperArchive = data as WallpaperArchive;
-// Fill missing archive records from the fallback language; localized records take priority.
-const wallpapersByLocale = new Map(locales.map((locale) => {
-  const wallpapers = new Map(
-    wallpaperArchive.mediaContents[wallpaperArchive.fallbackLocale].map((item) => [item.Ssd, item])
+function archiveDateKey(ssd: string) {
+  return /^\d{8}(?:_|$)/.test(ssd) ? ssd.slice(0, 8) : ssd;
+}
+
+export function mergeWallpaperArchives(fallback: WallpaperItem[], localized: WallpaperItem[]) {
+  const byDate = new Map<string, WallpaperItem>();
+  // Prefer the latest ID within one source, and official records over AI translations.
+  const preferredOrder = (items: WallpaperItem[]) => [...items].sort((a, b) =>
+    Number(b.Translation?.generatedBy === "AI") - Number(a.Translation?.generatedBy === "AI") ||
+    a.Ssd.localeCompare(b.Ssd)
   );
-  for (const item of wallpaperArchive.mediaContents[locale]) {
-    wallpapers.set(item.Ssd, item);
+  for (const item of [...preferredOrder(fallback), ...preferredOrder(localized)]) {
+    byDate.set(archiveDateKey(item.Ssd), item);
   }
-  return [locale, [...wallpapers.values()].sort((a, b) => b.Ssd.localeCompare(a.Ssd))] as const;
-}));
+  return [...byDate.values()].sort((a, b) => b.Ssd.localeCompare(a.Ssd));
+}
+
+const wallpapersByLocale = new Map(locales.map((locale) => [
+  locale,
+  mergeWallpaperArchives(
+    wallpaperArchive.mediaContents[wallpaperArchive.fallbackLocale],
+    wallpaperArchive.mediaContents[locale]
+  ),
+] as const));
+const knownArchiveIds = new Set(Object.values(wallpaperArchive.mediaContents).flat().map((item) => item.Ssd));
+const wallpaperDates = new Map(locales.map((locale) => [
+  locale,
+  new Map(wallpapersByLocale.get(locale)!.map((item) => [archiveDateKey(item.Ssd), item])),
+] as const));
 const wallpaperIndexes = new Map(locales.map((locale) => [
   locale,
   new Map(wallpapersByLocale.get(locale)!.map((wallpaper) => [wallpaper.Ssd, wallpaper])),
@@ -58,7 +85,19 @@ export function getAllWallpapers(locale: Locale = defaultLocale) {
 }
 
 export function getWallpaperBySsd(ssd: string, locale: Locale = defaultLocale) {
-  return wallpaperIndexes.get(locale)!.get(ssd);
+  return wallpaperIndexes.get(locale)!.get(ssd) ?? (knownArchiveIds.has(ssd)
+    ? wallpaperDates.get(locale)!.get(archiveDateKey(ssd))
+    : undefined);
+}
+
+export function getTranslationSource(wallpaper: WallpaperItem) {
+  const translation = wallpaper.Translation;
+  if (translation?.generatedBy !== "AI" || !translation.sourceLocale || !translation.sourceSsd) {
+    return undefined;
+  }
+  return wallpaperArchive.mediaContents[translation.sourceLocale]?.find(
+    (item) => item.Ssd === translation.sourceSsd
+  );
 }
 
 export function getRelatedWallpapers(ssd: string, limit = 3, locale: Locale = defaultLocale) {

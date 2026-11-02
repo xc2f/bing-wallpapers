@@ -1,9 +1,10 @@
+import TranslationNotice from "@/components/translation-notice";
 import Image from "next/image";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 import JsonLd from "@/components/json-ld";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import DetailAmbientBackground from "@/components/detail-ambient-background";
 import DetailKeyboardNavigation from "@/components/detail-keyboard-navigation";
@@ -21,6 +22,7 @@ import {
   getRelatedWallpapers,
   getRelatedWallpapersFromList,
   getWallpaperBySsd,
+  getTranslationSource,
   searchWallpapers,
   toAbsoluteUrl,
 } from "@/lib/archive";
@@ -89,7 +91,7 @@ export async function generateMetadata({
   const image = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
   return pageMetadata({
     locale: resolvedLocale,
-    path: `/wallpaper/${ssd}`,
+    path: `/wallpaper/${wallpaper.Ssd}`,
     title: `${title} | ${dictionary.siteTitle}`,
     description,
     image: image ? { url: image, alt: title } : undefined,
@@ -136,6 +138,15 @@ export default async function LocalizedWallpaperDetailPage({
 
   if (!wallpaper) {
     notFound();
+  }
+
+  if (wallpaper.Ssd !== ssd) {
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries(resolvedSearchParams)) {
+      if (typeof value === "string" && value) params.set(key, value);
+    }
+    const search = params.toString();
+    permanentRedirect(localizePath(currentLocale, `/wallpaper/${wallpaper.Ssd}${search ? `?${search}` : ""}`));
   }
 
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
@@ -303,6 +314,12 @@ export default async function LocalizedWallpaperDetailPage({
               <h2 className="text-xs uppercase tracking-[0.22em] text-stone-500">
                 {dictionary.detailDescription}
               </h2>
+              <TranslationNotice
+                translation={wallpaper.Translation}
+                source={getTranslationSource(wallpaper)}
+                dictionary={dictionary}
+                className="mt-3"
+              />
               <div className="detail-description-prose mt-5 max-w-2xl space-y-4">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p

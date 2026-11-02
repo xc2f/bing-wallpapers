@@ -1,6 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
+import type { SearchExample } from "@/lib/search-examples";
 import {
   useCallback,
   useDeferredValue,
@@ -352,6 +353,7 @@ function DateCascadeSelect({
 interface FilterBarProps {
   locale: Locale;
   dictionary: Dictionary;
+  searchHelpExamples: SearchExample[];
   initialQuery: string;
   initialYear: string;
   initialMonth: string;
@@ -364,6 +366,7 @@ interface FilterBarProps {
 export default function FilterBar({
   locale,
   dictionary,
+  searchHelpExamples,
   initialQuery,
   initialYear,
   initialMonth,
@@ -439,33 +442,6 @@ export default function FilterBar({
 
     return items;
   }, [dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
-
-  const searchHelpExamples = useMemo(
-    () => [
-      {
-        query: "lake bled",
-        description: dictionary.filterHelpExamplePhrase,
-      },
-      {
-        query: "turtle, butterfly",
-        description: dictionary.filterHelpExampleOr,
-      },
-      {
-        query: "lake -bled",
-        description: dictionary.filterHelpExampleExclude,
-      },
-      {
-        query: "title:lake",
-        description: dictionary.filterHelpExampleFields,
-      },
-    ],
-    [
-      dictionary.filterHelpExampleExclude,
-      dictionary.filterHelpExampleFields,
-      dictionary.filterHelpExampleOr,
-      dictionary.filterHelpExamplePhrase,
-    ]
-  );
 
   const lastAppliedRef = useRef({
     query: initialQuery,
@@ -648,7 +624,7 @@ export default function FilterBar({
                       setShowSearchHelp(true);
                     }
                   }}
-                  placeholder={dictionary.filterSearchPlaceholder}
+                  placeholder={searchHelpExamples[1]?.query ?? dictionary.filterSearchPlaceholder}
                   className="peer h-12 w-full rounded-xl border border-white/[0.06] bg-white/[0.03] pl-12 pr-32 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)] outline-none transition placeholder:text-stone-500 focus:border-amber-300/35 focus:bg-white/[0.05] focus:shadow-[0_0_0_4px_rgba(251,191,36,0.08)] [&::-webkit-search-cancel-button]:hidden"
                 />
                 <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-2">
