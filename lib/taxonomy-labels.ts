@@ -1,76 +1,10 @@
-import { locales, type Locale } from "@/lib/i18n";
+import data from "@/db/image_tags.json";
+import type { Locale } from "@/lib/i18n";
+import { resolveTaxonomyLabel, type TaxonomyNames, type TaxonomyKind } from "@/lib/taxonomy-names";
 
-const labels: Record<string, string[]> = {
-  "expand": ["Expand", "展开", "Mostrar más", "Développer", "Aufklappen", "展開", "펼치기"],
-  "collapse": ["Collapse", "收起", "Mostrar menos", "Réduire", "Einklappen", "折りたたむ", "접기"],
-  "remove": ["Remove", "移除", "Quitar", "Retirer", "Entfernen", "解除", "해제"],
-  "animals": ["Animals", "动物", "Animales", "Animaux", "Tiere", "動物", "동물"],
-  "nature": ["Nature", "自然", "Naturaleza", "Nature", "Natur", "自然", "자연"],
-  "plants": ["Plants", "植物", "Plantas", "Plantes", "Pflanzen", "植物", "식물"],
-  "architecture": ["Architecture", "建筑", "Arquitectura", "Architecture", "Architektur", "建築", "건축"],
-  "cities": ["Cities", "城市", "Ciudades", "Villes", "Städte", "都市", "도시"],
-  "culture": ["Culture", "文化", "Cultura", "Culture", "Kultur", "文化", "문화"],
-  "space": ["Space", "太空", "Espacio", "Espace", "Weltraum", "宇宙", "우주"],
-  "other": ["Other", "其他", "Otros", "Autres", "Sonstige", "その他", "기타"],
-  "marine-life": ["Marine life", "海洋生物", "Vida marina", "Vie marine", "Meeresleben", "海洋生物", "해양 생물"],
-  "waterfall": ["Waterfall", "瀑布", "Cascada", "Cascade", "Wasserfall", "滝", "폭포"],
-  "bird": ["Bird", "鸟类", "Ave", "Oiseau", "Vogel", "鳥", "새"],
-  "wetland": ["Wetland", "湿地", "Humedal", "Zone humide", "Feuchtgebiet", "湿地", "습지"],
-  "mountain": ["Mountain", "山峰", "Montaña", "Montagne", "Berg", "山", "산"],
-  "rock": ["Rock", "岩石", "Roca", "Roche", "Felsen", "岩", "바위"],
-  "stars": ["Stars", "星空", "Estrellas", "Étoiles", "Sterne", "星空", "별"],
-  "tree": ["Tree", "树木", "Árbol", "Arbre", "Baum", "木", "나무"],
-  "night": ["Night", "夜景", "Noche", "Nuit", "Nacht", "夜", "밤"],
-  "lake": ["Lake", "湖泊", "Lago", "Lac", "See", "湖", "호수"],
-  "mammal": ["Mammal", "哺乳动物", "Mamífero", "Mammifère", "Säugetier", "哺乳類", "포유류"],
-  "forest": ["Forest", "森林", "Bosque", "Forêt", "Wald", "森林", "숲"],
-  "historic-site": ["Historic site", "历史遗迹", "Sitio histórico", "Site historique", "Historische Stätte", "史跡", "유적지"],
-  "village": ["Village", "村庄", "Pueblo", "Village", "Dorf", "村", "마을"],
-  "bridge": ["Bridge", "桥梁", "Puente", "Pont", "Brücke", "橋", "다리"],
-  "festival": ["Festival", "节日", "Festival", "Festival", "Fest", "祭り", "축제"],
-  "ice": ["Ice", "冰", "Hielo", "Glace", "Eis", "氷", "얼음"],
-  "flower": ["Flower", "花卉", "Flor", "Fleur", "Blume", "花", "꽃"],
-  "spring": ["Spring", "春季", "Primavera", "Printemps", "Frühling", "春", "봄"],
-  "agriculture": ["Agriculture", "农业", "Agricultura", "Agriculture", "Landwirtschaft", "農業", "농업"],
-  "river": ["River", "河流", "Río", "Rivière", "Fluss", "川", "강"],
-  "train": ["Train", "火车", "Tren", "Train", "Zug", "列車", "기차"],
-  "ocean": ["Ocean", "海洋", "Océano", "Océan", "Ozean", "海", "바다"],
-  "castle": ["Castle", "城堡", "Castillo", "Château", "Burg", "城", "성"],
-  "moon": ["Moon", "月亮", "Luna", "Lune", "Mond", "月", "달"],
-  "insect": ["Insect", "昆虫", "Insecto", "Insecte", "Insekt", "昆虫", "곤충"],
-  "autumn": ["Autumn", "秋季", "Otoño", "Automne", "Herbst", "秋", "가을"],
-  "aurora": ["Aurora", "极光", "Aurora", "Aurore polaire", "Polarlicht", "オーロラ", "오로라"],
-  "island": ["Island", "岛屿", "Isla", "Île", "Insel", "島", "섬"],
-  "monument": ["Monument", "纪念碑", "Monumento", "Monument", "Denkmal", "記念碑", "기념비"],
-  "sunset": ["Sunset", "日落", "Atardecer", "Coucher de soleil", "Sonnenuntergang", "夕日", "일몰"],
-  "desert": ["Desert", "沙漠", "Desierto", "Désert", "Wüste", "砂漠", "사막"],
-  "beach": ["Beach", "海滩", "Playa", "Plage", "Strand", "ビーチ", "해변"],
-  "people": ["People", "人物", "Personas", "Personnes", "Menschen", "人々", "사람"],
-  "snow": ["Snow", "雪景", "Nieve", "Neige", "Schnee", "雪", "눈"],
-  "temple": ["Temple", "寺庙", "Templo", "Temple", "Tempel", "寺院", "사원"],
-  "cave": ["Cave", "洞穴", "Cueva", "Grotte", "Höhle", "洞窟", "동굴"],
-  "street": ["Street", "街道", "Calle", "Rue", "Straße", "街路", "거리"],
-  "boat": ["Boat", "船只", "Barco", "Bateau", "Boot", "船", "배"],
-  "winter": ["Winter", "冬季", "Invierno", "Hiver", "Winter", "冬", "겨울"],
-  "sunrise": ["Sunrise", "日出", "Amanecer", "Lever de soleil", "Sonnenaufgang", "日の出", "일출"],
-  "canyon": ["Canyon", "峡谷", "Cañón", "Canyon", "Schlucht", "峡谷", "협곡"],
-  "garden": ["Garden", "花园", "Jardín", "Jardin", "Garten", "庭園", "정원"],
-  "reptile": ["Reptile", "爬行动物", "Reptil", "Reptile", "Reptil", "爬虫類", "파충류"],
-  "lighthouse": ["Lighthouse", "灯塔", "Faro", "Phare", "Leuchtturm", "灯台", "등대"],
-  "foliage": ["Foliage", "树叶", "Follaje", "Feuillage", "Laub", "木の葉", "나뭇잎"],
-  "church": ["Church", "教堂", "Iglesia", "Église", "Kirche", "教会", "교회"],
-  "art": ["Art", "艺术", "Arte", "Art", "Kunst", "芸術", "예술"],
-  "volcano": ["Volcano", "火山", "Volcán", "Volcan", "Vulkan", "火山", "화산"],
-  "summer": ["Summer", "夏季", "Verano", "Été", "Sommer", "夏", "여름"],
-  "skyline": ["Skyline", "城市天际线", "Perfil urbano", "Panorama urbain", "Skyline", "スカイライン", "스카이라인"],
-  "amphibian": ["Amphibian", "两栖动物", "Anfibio", "Amphibien", "Amphibie", "両生類", "양서류"],
-  "glacier": ["Glacier", "冰川", "Glaciar", "Glacier", "Gletscher", "氷河", "빙하"],
-  "grassland": ["Grassland", "草原", "Pradera", "Prairie", "Grasland", "草原", "초원"],
-  "categories": ["Categories", "分类", "Categorías", "Catégories", "Kategorien", "カテゴリ", "분류"],
-  "tags": ["Tags", "标签", "Etiquetas", "Étiquettes", "Tags", "タグ", "태그"],
-  "all": ["All", "全部", "Todos", "Tous", "Alle", "すべて", "전체"],
-};
+// Resolve names on the server so image assignments stay out of client bundles.
+const taxonomy = (data as { taxonomy?: TaxonomyNames }).taxonomy;
 
-export function taxonomyLabel(id: string, locale: Locale) {
-  return labels[id]?.[locales.indexOf(locale)] ?? id;
+export function taxonomyLabel(id: string, locale: Locale, kind: TaxonomyKind) {
+  return resolveTaxonomyLabel(taxonomy, id, locale, kind);
 }

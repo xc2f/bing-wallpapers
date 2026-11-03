@@ -56,10 +56,11 @@ export default function YearFilterStrip({
             key={item.href}
             href={item.href}
             data-active={item.active ? "true" : "false"}
-            className={`inline-flex snap-start items-center rounded-full px-3 py-1.5 text-sm transition ${
+            aria-current={item.active ? "true" : undefined}
+            className={`inline-flex snap-start items-center rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
               item.active
-                ? "bg-amber-300 text-stone-950 shadow-sm hover:bg-amber-200"
-                : "border border-white/10 bg-white/[0.03] text-stone-300 hover:bg-white/10 hover:text-white"
+                ? "bg-amber-300/10 text-amber-200"
+                : "text-stone-400 hover:bg-white/5 hover:text-white"
             }`}
           >
             {item.active && !item.label.trim() ? allYearsLabel : item.label}

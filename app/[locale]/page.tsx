@@ -276,6 +276,8 @@ export default async function LocalizedHomePage({
           <FilterBar
             category={category}
             tag={tag}
+            categoryLabel={category ? taxonomyLabel(category, locale, "category") : undefined}
+            tagLabel={tag ? taxonomyLabel(tag, locale, "tag") : undefined}
             locale={locale}
             dictionary={dictionary}
             searchHelpExamples={getSearchExamples(dateFilteredWallpapers, locale)}
@@ -407,7 +409,7 @@ export default async function LocalizedHomePage({
                             {formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString)}
                           </span>
                           {wallpaperCategory ? (
-                            <span className="text-stone-400">{taxonomyLabel(wallpaperCategory, locale)}</span>
+                            <span className="text-stone-400">{taxonomyLabel(wallpaperCategory, locale, "category")}</span>
                           ) : null}
                         </div>
 

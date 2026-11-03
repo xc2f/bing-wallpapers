@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { WallpaperItem } from "@/lib/archive";
 import { filterWallpapersByTaxonomy, getTaxonomyCounts } from "@/lib/image-taxonomy";
 import { localizePath, type Locale } from "@/lib/i18n";
+import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 import { taxonomyLabel } from "@/lib/taxonomy-labels";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
@@ -40,20 +41,25 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
     if (selected && !options.some(([id]) => id === selected)) {
       options.push([selected, countsById.get(selected) ?? 0]);
     }
-    const label = taxonomyLabel(field === "category" ? "categories" : "tags", locale);
+    const label = taxonomyUiLabel(field === "category" ? "categories" : "tags", locale);
 
     function option(id: string, count?: number) {
       const active = selected === id;
-      const text = `${taxonomyLabel(id || "all", locale)}${count === undefined ? "" : ` · ${count}`}`;
-      const className = `inline-flex shrink-0 whitespace-nowrap items-center gap-2 rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${active ? "bg-amber-300/10 text-amber-200" : "text-stone-400 hover:bg-white/5 hover:text-white"}`;
+      const name = id ? taxonomyLabel(id, locale, field) : taxonomyUiLabel("all", locale);
+      const text = `${name}${count === undefined ? "" : ` · ${count}`}`;
+      const content = <>
+        <span>{name}</span>
+        {count !== undefined ? <span className="text-xs tabular-nums opacity-60"><span aria-hidden="true">· </span>{count}</span> : null}
+      </>;
+      const className = `inline-flex shrink-0 whitespace-nowrap items-baseline gap-2 rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${active ? "bg-amber-300/10 text-amber-200" : "text-stone-400 hover:bg-white/5 hover:text-white"}`;
       if (count === 0 && !active) {
-        return <span key={id} aria-disabled="true" className="shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-sm text-stone-500 opacity-50">{text}</span>;
+        return <span key={id} aria-disabled="true" className="inline-flex shrink-0 items-baseline gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm text-stone-500 opacity-50">{content}</span>;
       }
       return (
         <FilterLink key={id} href={href(field, active ? "" : id)} scroll={false} aria-current={active ? "true" : undefined}
-          aria-label={active && id ? `${taxonomyLabel("remove", locale)}: ${text}` : undefined}
+          aria-label={active && id ? `${taxonomyUiLabel("remove", locale)}: ${text}` : undefined}
           className={className}>
-          {text}
+          {content}
         </FilterLink>
       );
     }
@@ -62,8 +68,8 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
       <TaxonomyRow
         key={field}
         label={label}
-        expandLabel={taxonomyLabel("expand", locale)}
-        collapseLabel={taxonomyLabel("collapse", locale)}
+        expandLabel={taxonomyUiLabel("expand", locale)}
+        collapseLabel={taxonomyUiLabel("collapse", locale)}
       >
         {option("")}
         {options.map(([id, count]) => option(id, count))}

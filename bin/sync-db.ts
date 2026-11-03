@@ -1,6 +1,7 @@
 import { access, mkdir, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import "dotenv/config";
+import { isTaxonomyNames } from "../lib/taxonomy-names";
 import { defaultLocale, locales } from "../lib/i18n";
 
 interface RemoteFile {
@@ -69,6 +70,9 @@ async function downloadFile(file: RemoteFile) {
           return value && typeof value.category === "string" && Array.isArray(value.tags) && value.tags.every((tag) => typeof tag === "string");
         })) {
       throw new Error("Invalid image_tags.json: expected schemaVersion 1 and image category/tag records.");
+    }
+    if (tags.taxonomy !== undefined && !isTaxonomyNames(tags.taxonomy)) {
+      throw new Error("Invalid image_tags.json: taxonomy must contain locale-to-name maps for categories and tags.");
     }
   }
   await mkdir(dirname(file.outputPath), { recursive: true });

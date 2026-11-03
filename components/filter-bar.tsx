@@ -1,6 +1,6 @@
 "use client";
 
-import { taxonomyLabel } from "@/lib/taxonomy-labels";
+import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 
 import type { ReactNode } from "react";
 import type { SearchExample } from "@/lib/search-examples";
@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { type Dictionary, type Locale, formatMonthLabel, localizePath } from "@/lib/i18n";
 
 const FILTER_BAR_COLLAPSED_STORAGE_KEY = "bing-wallpapers-filter-bar-collapsed";
+const FILTER_FIELD_CLASS_NAME = "theme-filter-field h-12 w-full rounded-xl border border-white/[0.06] text-white outline-none transition focus:border-amber-300/35 focus:shadow-[0_0_0_4px_rgba(251,191,36,0.08)]";
 
 interface DateCascadeSelectProps {
   name: string;
@@ -204,7 +205,7 @@ function DateCascadeSelect({
             setOpen((current) => !current);
             setActiveYear(null);
           }}
-          className="inline-flex h-12 w-full touch-manipulation items-center justify-between rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 pr-4 text-left text-white outline-none transition hover:bg-white/[0.04] focus:border-amber-300/35 focus:bg-white/[0.04] focus-visible:border-amber-300/35 focus-visible:bg-white/[0.04] focus-visible:shadow-[0_0_0_4px_rgba(251,191,36,0.08)]"
+          className={`${FILTER_FIELD_CLASS_NAME} inline-flex touch-manipulation items-center justify-between px-5 pr-4 text-left`}
         >
           <span className="truncate">{triggerLabel}</span>
           <span
@@ -248,7 +249,7 @@ function DateCascadeSelect({
                     aria-pressed={!yearValue && !monthValue}
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       !yearValue && !monthValue
-                        ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
+                        ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
                         : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                     } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                   >
@@ -271,14 +272,18 @@ function DateCascadeSelect({
                         aria-pressed={isSelectedYear}
                         className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                           isSelectedYear
-                            ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
+                            ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
                             : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                         } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                       >
                         <span>{optionYear}</span>
-                        <span aria-hidden="true" className={hasMonths ? "text-stone-500" : "text-amber-300"}>
-                          {hasMonths ? "›" : "•"}
-                        </span>
+                        {hasMonths ? (
+                          <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0 text-stone-500">
+                            <path d="m6.5 4 4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        ) : (
+                          <span aria-hidden="true" className="text-amber-300">•</span>
+                        )}
                       </button>
                     </li>
                   );
@@ -293,7 +298,9 @@ function DateCascadeSelect({
                     onClick={() => setActiveYear(null)}
                     className="inline-flex touch-manipulation items-center gap-2 text-xs tracking-[0.14em] text-stone-400 transition hover:text-white focus-visible:text-white focus-visible:outline-none"
                   >
-                    <span aria-hidden="true">‹</span>
+                    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0">
+                      <path d="m9.5 4-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
                     <span>{dictionary.filterBackToYears}</span>
                   </button>
                   <span className="text-sm text-stone-300">{activeYear}</span>
@@ -307,7 +314,7 @@ function DateCascadeSelect({
                     aria-pressed={activeYear === yearValue && !monthValue}
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       activeYear === yearValue && !monthValue
-                        ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
+                        ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
                         : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                     } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                     >
@@ -330,7 +337,7 @@ function DateCascadeSelect({
                           aria-pressed={isSelectedMonth}
                           className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                             isSelectedMonth
-                              ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
+                              ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
                               : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
                           } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                         >
@@ -356,6 +363,8 @@ interface FilterBarProps {
   locale: Locale;
   category?: string;
   tag?: string;
+  categoryLabel?: string;
+  tagLabel?: string;
   dictionary: Dictionary;
   searchHelpExamples: SearchExample[];
   initialQuery: string;
@@ -372,6 +381,8 @@ export default function FilterBar({
   locale,
   category,
   tag,
+  categoryLabel,
+  tagLabel,
   dictionary,
   searchHelpExamples,
   initialQuery,
@@ -436,8 +447,8 @@ export default function FilterBar({
   const summaryItems = useMemo(() => {
     const items: Array<{ field: "category" | "tag" | "q" | "year" | "month"; label: string }> = [];
 
-    if (category) items.push({ field: "category", label: `${taxonomyLabel("categories", locale)}: ${taxonomyLabel(category, locale)}` });
-    if (tag) items.push({ field: "tag", label: `${taxonomyLabel("tags", locale)}: ${taxonomyLabel(tag, locale)}` });
+    if (category) items.push({ field: "category", label: `${taxonomyUiLabel("categories", locale)}: ${(categoryLabel || category)}` });
+    if (tag) items.push({ field: "tag", label: `${taxonomyUiLabel("tags", locale)}: ${(tagLabel || tag)}` });
 
     if (query.trim()) {
       items.push({ field: "q", label: `${dictionary.activeQuery}: ${query.trim()}` });
@@ -452,7 +463,7 @@ export default function FilterBar({
     }
 
     return items;
-  }, [category, tag, dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
+  }, [category, tag, categoryLabel, tagLabel, dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
 
   const lastAppliedRef = useRef({
     query: initialQuery,
@@ -548,7 +559,7 @@ export default function FilterBar({
     return summaryItems
       .map(({ field, label }) => (
         <button key={field} type="button" disabled={isPending} onClick={() => removeFilter(field)}
-          aria-label={`${taxonomyLabel("remove", locale)}: ${label}`}
+          aria-label={`${taxonomyUiLabel("remove", locale)}: ${label}`}
           className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400 transition hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40">
           {label}
         </button>
@@ -608,9 +619,10 @@ export default function FilterBar({
         className="absolute right-0 top-[-1.5rem] inline-flex items-center gap-2 text-xs tracking-[0.16em] text-stone-500 transition hover:text-stone-200"
       >
         <span>{collapsed ? dictionary.filterExpand : dictionary.filterCollapse}</span>
-        <span aria-hidden="true" className="text-sm leading-none">
-          {collapsed ? "+" : "-"}
-        </span>
+        <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"
+          className={`h-4 w-4 shrink-0 ${collapsed ? "" : "rotate-180"}`}>
+          <path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
       </button>
 
       <div
@@ -673,7 +685,7 @@ export default function FilterBar({
                     }
                   }}
                   placeholder={searchHelpExamples[1]?.query ?? dictionary.filterSearchPlaceholder}
-                  className="peer h-12 w-full rounded-xl border border-white/[0.06] bg-white/[0.03] pl-12 pr-32 text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)] outline-none transition placeholder:text-stone-500 focus:border-amber-300/35 focus:bg-white/[0.05] focus:shadow-[0_0_0_4px_rgba(251,191,36,0.08)] [&::-webkit-search-cancel-button]:hidden"
+                  className={`${FILTER_FIELD_CLASS_NAME} peer pl-12 pr-32 placeholder:text-stone-500 [&::-webkit-search-cancel-button]:hidden`}
                 />
                 <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-2">
                   {query ? (
@@ -709,9 +721,6 @@ export default function FilterBar({
                           <p className="truncate text-sm font-medium text-stone-100">
                             {dictionary.filterHelpTitle}
                           </p>
-                          <span className="theme-search-help-badge inline-flex shrink-0 items-center rounded-full border border-white/[0.08] bg-black/20 px-2 py-0.5 text-[10px] tracking-[0.16em] text-stone-400">
-                            {dictionary.filterHelpExamplesTitle}
-                          </span>
                         </div>
                         <button
                           type="button"

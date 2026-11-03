@@ -6,7 +6,7 @@ export type Locale = (typeof locales)[number];
 
 const baseEn = {
   siteTitle: "Bing Wallpapers Archive",
-  siteDescription: "Explore the Bing wallpaper archive with daily landscapes, wildlife and travel photography. Browse by date, search image stories and view full-size wallpapers.",
+  siteDescription: "Explore Bing’s daily wallpapers and discover landscapes and natural wonders from around the world. Browse by date, category or tag, search the stories behind the images, and view high-resolution wallpapers and copyright information.",
   archiveLabel: "Bing Wallpapers Archive",
   archived: "Archived",
   latest: "Last Updated",
@@ -51,7 +51,7 @@ const baseEn = {
   paginationPageSize: "12 wallpapers per page",
   paginationPrev: "Previous",
   paginationNext: "Next",
-  viewWaterfall: "Waterfall view",
+  viewWaterfall: "Browse in waterfall view",
   waterfallTitle: "All Wallpapers",
   waterfallDescription: "Browse every archived wallpaper in a flowing grid.",
   waterfallBack: "Back to archive",
@@ -90,7 +90,7 @@ const baseEn = {
     "This project does not store or redistribute any images.",
   footerDisclaimerLine4:
     "If there is any infringement, please contact for removal.",
-  footerGithub: "View on GitHub",
+  footerGithub: "GitHub repository",
 } as const
 
 export const dictionaries = {
@@ -105,7 +105,7 @@ export const dictionaries = {
     aiTranslationNotice: "内容由 AI 翻译，仅供参考。",
     aiTranslationUnreviewedNotice: "内容由 AI 翻译，未经人工校对，仅供参考。",
     siteTitle: "Bing 壁纸档案馆",
-    siteDescription: "探索 Bing 每日壁纸档案，欣赏世界风景、自然生态与旅行摄影。按年份和月份浏览、搜索图片故事，查看高清壁纸及版权信息。",
+    siteDescription: "探索 Bing 每日壁纸，发现世界风景与自然之美。按日期、分类和标签浏览，搜索图片背后的故事，查看高清壁纸与版权信息。",
     archived: "存档数",
     latest: "上次更新",
     filterSearchPlaceholder: "例如：西班牙、海龟、湖泊…",
@@ -142,7 +142,7 @@ export const dictionaries = {
     paginationPageSize: "每页展示 12 张",
     paginationPrev: "上一页",
     paginationNext: "下一页",
-    viewWaterfall: "瀑布流查看",
+    viewWaterfall: "瀑布流浏览",
     waterfallTitle: "全部壁纸",
     waterfallDescription: "以瀑布流方式浏览全部归档壁纸。",
     waterfallBack: "返回列表",
@@ -177,7 +177,7 @@ export const dictionaries = {
     footerDisclaimerLine2: "所有版权归各自权利人所有。",
     footerDisclaimerLine3: "本项目不存储或再分发任何图片。",
     footerDisclaimerLine4: "如有侵权，请联系删除。",
-    footerGithub: "查看 GitHub 仓库",
+    footerGithub: "GitHub 仓库",
   },
   es: {
     ...baseEn,
@@ -190,7 +190,7 @@ export const dictionaries = {
     aiTranslationUnreviewedNotice: "Traducción por IA sin revisión humana. Solo como referencia.",
     siteTitle: "Archivo de Fondos de Bing",
     siteDescription:
-      "Explora el archivo de fondos de Bing: paisajes, fauna y fotografía de viajes. Busca por fecha, descubre sus historias y consulta imágenes en tamaño completo.",
+      "Explora los fondos diarios de Bing y descubre paisajes y maravillas naturales de todo el mundo. Navega por fecha, categoría o etiqueta, busca las historias detrás de las imágenes y consulta fondos en alta resolución e información de derechos de autor.",
     archived: "Archivados",
     latest: "Última actualización",
     filterSearchPlaceholder: "Por ejemplo: España, tortuga, lago...",
@@ -224,7 +224,7 @@ export const dictionaries = {
     paginationPageSize: "12 fondos por página",
     paginationPrev: "Anterior",
     paginationNext: "Siguiente",
-    viewWaterfall: "Vista en cascada",
+    viewWaterfall: "Explorar en cascada",
     waterfallTitle: "Todos los fondos",
     waterfallDescription:
       "Explora todos los fondos archivados en una cuadrícula fluida.",
@@ -261,7 +261,7 @@ export const dictionaries = {
       "Este proyecto no almacena ni redistribuye ninguna imagen.",
     footerDisclaimerLine4:
       "Si existe alguna infracción, póngase en contacto para su eliminación.",
-    footerGithub: "Ver en GitHub",
+    footerGithub: "Repositorio de GitHub",
   },
   fr: {
     ...baseEn,
@@ -273,7 +273,7 @@ export const dictionaries = {
     aiTranslationNotice: "Contenu traduit par IA, à titre indicatif.",
     aiTranslationUnreviewedNotice: "Traduction par IA sans relecture humaine, à titre indicatif.",
     siteTitle: "Archive des Fonds Bing",
-    siteDescription: "Explorez les fonds d'écran Bing : paysages, faune et voyages. Parcourez les archives par date, découvrez leurs histoires et affichez les images en grand format.",
+    siteDescription: "Explorez les fonds d’écran quotidiens de Bing et découvrez les paysages et merveilles naturelles du monde. Parcourez-les par date, catégorie ou étiquette, recherchez les histoires derrière les images et consultez les fonds en haute résolution et les informations sur les droits d’auteur.",
     archived: "Archives",
     latest: "Dernière mise à jour",
     filterSearchPlaceholder: "Par exemple : Espagne, tortue, lac...",
@@ -307,7 +307,7 @@ export const dictionaries = {
     paginationPageSize: "12 fonds par page",
     paginationPrev: "Précédent",
     paginationNext: "Suivant",
-    viewWaterfall: "Vue en cascade",
+    viewWaterfall: "Parcourir en cascade",
     waterfallTitle: "Tous les fonds",
     waterfallDescription:
       "Parcourez tous les fonds archivés dans une grille fluide.",
@@ -344,7 +344,7 @@ export const dictionaries = {
       "Ce projet ne stocke ni ne redistribue aucune image.",
     footerDisclaimerLine4:
       "En cas d'atteinte aux droits, veuillez nous contacter pour suppression.",
-    footerGithub: "Voir sur GitHub",
+    footerGithub: "Dépôt GitHub",
   },
   de: {
     ...baseEn,
@@ -356,7 +356,7 @@ export const dictionaries = {
     aiTranslationNotice: "KI-übersetzter Inhalt. Nur zur Orientierung.",
     aiTranslationUnreviewedNotice: "KI-Übersetzung ohne menschliche Prüfung. Nur zur Orientierung.",
     siteTitle: "Bing-Hintergrundarchiv",
-    siteDescription: "Entdecke das Bing-Hintergrundarchiv mit Landschaften, Tierwelt und Reisefotografie. Suche nach Datum, lies die Bildgeschichten und sieh Bilder in voller Größe.",
+    siteDescription: "Entdecke die täglichen Bing-Hintergrundbilder mit Landschaften und Naturwundern aus aller Welt. Stöbere nach Datum, Kategorie oder Tag, suche nach den Geschichten hinter den Bildern und finde hochauflösende Bilder sowie Urheberrechtsinformationen.",
     archived: "Archiviert",
     latest: "Zuletzt aktualisiert",
     filterSearchPlaceholder: "Zum Beispiel: Spanien, Schildkröte, See...",
@@ -390,7 +390,7 @@ export const dictionaries = {
     paginationPageSize: "12 Hintergründe pro Seite",
     paginationPrev: "Zurück",
     paginationNext: "Weiter",
-    viewWaterfall: "Wasserfallansicht",
+    viewWaterfall: "In Wasserfallansicht stöbern",
     waterfallTitle: "Alle Hintergründe",
     waterfallDescription:
       "Durchsuche alle archivierten Hintergründe in einem fließenden Raster.",
@@ -427,7 +427,7 @@ export const dictionaries = {
       "Dieses Projekt speichert oder verbreitet keine Bilder weiter.",
     footerDisclaimerLine4:
       "Bei Rechtsverletzungen kontaktieren Sie uns bitte zur Entfernung.",
-    footerGithub: "Auf GitHub ansehen",
+    footerGithub: "GitHub-Repository",
   },
   ja: {
     ...baseEn,
@@ -439,7 +439,7 @@ export const dictionaries = {
     aiTranslationNotice: "AI による翻訳です。参考情報としてご覧ください。",
     aiTranslationUnreviewedNotice: "AI による翻訳で、人による校正は行われていません。参考情報としてご覧ください。",
     siteTitle: "Bing 壁紙アーカイブ",
-    siteDescription: "Bing の日替わり壁紙アーカイブで、世界の風景や野生動物、旅の写真を楽しめます。年月で絞り込み、写真の物語や高解像度の壁紙、著作権情報を確認できます。",
+    siteDescription: "Bing の日替わり壁紙で、世界の風景や自然の美しさを発見。日付・カテゴリ・タグで探し、写真にまつわる物語を検索して、高解像度の壁紙や著作権情報を確認できます。",
     archived: "アーカイブ数",
     latest: "最終更新",
     filterSearchPlaceholder: "例：スペイン、ウミガメ、湖…",
@@ -474,7 +474,7 @@ export const dictionaries = {
     paginationPageSize: "1ページに12枚表示",
     paginationPrev: "前へ",
     paginationNext: "次へ",
-    viewWaterfall: "ウォーターフォール表示",
+    viewWaterfall: "ウォーターフォールで閲覧",
     waterfallTitle: "すべての壁紙",
     waterfallDescription:
       "保存されたすべての壁紙を流れるようなグリッドで閲覧します。",
@@ -508,7 +508,7 @@ export const dictionaries = {
     footerDisclaimerLine2: "すべての著作権は各権利者に帰属します。",
     footerDisclaimerLine3: "このプロジェクトは画像を保存または再配布しません。",
     footerDisclaimerLine4: "権利侵害がある場合は、削除のためご連絡ください。",
-    footerGithub: "GitHub で見る",
+    footerGithub: "GitHub リポジトリ",
   },
   ko: {
     ...baseEn,
@@ -520,7 +520,7 @@ export const dictionaries = {
     aiTranslationNotice: "AI로 번역한 내용입니다. 참고용으로만 이용해 주세요.",
     aiTranslationUnreviewedNotice: "AI로 번역했으며 사람의 검수를 거치지 않았습니다. 참고용으로만 이용해 주세요.",
     siteTitle: "Bing 배경화면 아카이브",
-    siteDescription: "세계의 풍경, 야생동물, 여행 사진을 담은 Bing 일일 배경화면 아카이브를 둘러보세요. 날짜별 검색으로 사진 이야기와 고해상도 배경화면, 저작권 정보를 확인하세요.",
+    siteDescription: "Bing의 매일 바뀌는 배경화면에서 세계의 풍경과 자연의 아름다움을 만나보세요. 날짜, 분류, 태그별로 둘러보고 사진 속 이야기를 검색하며 고해상도 배경화면과 저작권 정보를 확인하세요.",
     archived: "보관 수",
     latest: "마지막 업데이트",
     filterSearchPlaceholder: "예: 스페인, 거북, 호수...",
@@ -555,7 +555,7 @@ export const dictionaries = {
     paginationPageSize: "페이지당 12개",
     paginationPrev: "이전",
     paginationNext: "다음",
-    viewWaterfall: "워터폴 보기",
+    viewWaterfall: "워터폴로 둘러보기",
     waterfallTitle: "전체 배경화면",
     waterfallDescription: "보관된 모든 배경화면을 워터폴 그리드로 둘러보세요.",
     waterfallBack: "목록으로 돌아가기",
@@ -589,7 +589,7 @@ export const dictionaries = {
     footerDisclaimerLine3:
       "이 프로젝트는 어떤 이미지도 저장하거나 재배포하지 않습니다.",
     footerDisclaimerLine4: "침해 사항이 있다면 삭제를 위해 연락해 주세요.",
-    footerGithub: "GitHub에서 보기",
+    footerGithub: "GitHub 저장소",
   },
 } as const
 

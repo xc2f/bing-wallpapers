@@ -93,6 +93,18 @@ code {
     "Liberation Mono", "Courier New", monospace;
 }
 
+.theme-filter-field {
+  background-color: rgb(var(--theme-overlay-rgb) / 0.03);
+}
+
+.theme-filter-field:hover {
+  background-color: rgb(var(--theme-overlay-rgb) / 0.04);
+}
+
+.theme-filter-field:focus {
+  background-color: rgb(var(--theme-overlay-rgb) / 0.05);
+}
+
 html[data-theme-resolved] .bg-stone-950 {
   background-color: rgb(var(--theme-app-rgb)) !important;
 }
