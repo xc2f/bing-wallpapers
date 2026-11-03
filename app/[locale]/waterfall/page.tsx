@@ -110,7 +110,7 @@ export default async function LocalizedWaterfallPage({
   const allowStoredPreference = !mode;
   const yearOptions = getYearOptions(allWallpapers);
   const searchedWallpapers = searchWallpapers(filterWallpapersByDate(allWallpapers, year, filters.month), filters.q ?? "");
-  const wallpapers = filterWallpapersByTaxonomy(searchedWallpapers, filters.category, filters.tag);
+  const wallpapers = filterWallpapersByTaxonomy(searchedWallpapers, filters.category, filters.tag, filters.country);
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
   const currentPage = Number.isNaN(requestedPage)
     ? 1
@@ -193,6 +193,7 @@ export default async function LocalizedWaterfallPage({
         <WaterfallFilters
           yearFilters={<YearFilterStrip allYearsLabel={dictionary.filterAllYears} currentYear={year} items={yearFilterItems} />}
           categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["category"]} />}
+          countries={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["country"]} />}
           tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["tag"]} />}
         />
 

@@ -112,6 +112,7 @@ export default async function LocalizedWallpaperDetailPage({
     month?: string;
     category?: string;
     tag?: string;
+    country?: string;
     view?: string;
     mode?: string;
   }>;
@@ -121,6 +122,7 @@ export default async function LocalizedWallpaperDetailPage({
   const query = resolvedSearchParams.q?.trim() ?? "";
   const category = resolvedSearchParams.category?.trim() ?? "";
   const tag = resolvedSearchParams.tag?.trim() ?? "";
+  const country = resolvedSearchParams.country?.trim() ?? "";
   const year = resolvedSearchParams.year?.trim() ?? "";
   const month = resolvedSearchParams.month?.trim() ?? "";
   const view = resolvedSearchParams.view?.trim() ?? "";
@@ -138,7 +140,7 @@ export default async function LocalizedWallpaperDetailPage({
   const filteredWallpapers = filterWallpapersByTaxonomy(searchWallpapers(
     filterWallpapersByDate(allWallpapers, year, month),
     query
-  ), category, tag);
+  ), category, tag, country);
   const wallpaper =
     filteredWallpapers.find((item) => item.Ssd === ssd) ?? getWallpaperBySsd(ssd, currentLocale);
 
@@ -314,7 +316,7 @@ export default async function LocalizedWallpaperDetailPage({
             )}
           </div>
 
-            {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} locale={currentLocale} /> : null}
+            {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
             <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div className="max-w-3xl">

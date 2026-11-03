@@ -363,8 +363,10 @@ interface FilterBarProps {
   locale: Locale;
   category?: string;
   tag?: string;
+  country?: string;
   categoryLabel?: string;
   tagLabel?: string;
+  countryLabel?: string;
   dictionary: Dictionary;
   searchHelpExamples: SearchExample[];
   initialQuery: string;
@@ -381,8 +383,10 @@ export default function FilterBar({
   locale,
   category,
   tag,
+  country,
   categoryLabel,
   tagLabel,
+  countryLabel,
   dictionary,
   searchHelpExamples,
   initialQuery,
@@ -445,10 +449,12 @@ export default function FilterBar({
   }, []);
 
   const summaryItems = useMemo(() => {
-    const items: Array<{ field: "category" | "tag" | "q" | "year" | "month"; label: string }> = [];
+    const items: Array<{ field: "category" | "tag" | "country" | "q" | "year" | "month"; label: string }> = [];
 
     if (category) items.push({ field: "category", label: `${taxonomyUiLabel("categories", locale)}: ${(categoryLabel || category)}` });
     if (tag) items.push({ field: "tag", label: `${taxonomyUiLabel("tags", locale)}: ${(tagLabel || tag)}` });
+
+    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
 
     if (query.trim()) {
       items.push({ field: "q", label: `${dictionary.activeQuery}: ${query.trim()}` });
@@ -463,7 +469,7 @@ export default function FilterBar({
     }
 
     return items;
-  }, [category, tag, categoryLabel, tagLabel, dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
+  }, [category, tag, country, categoryLabel, tagLabel, countryLabel, dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
 
   const lastAppliedRef = useRef({
     query: initialQuery,
@@ -495,13 +501,14 @@ export default function FilterBar({
     if (!searchOrDateChanged) {
       if (category) params.set("category", category);
       if (tag) params.set("tag", tag);
+      if (country) params.set("country", country);
     }
     const search = params.toString();
     const href = localizePath(locale, search ? `?${search}` : "");
     startTransition(() => {
       router.replace(href, { scroll: false });
     });
-  }, [category, tag, initialQuery, initialYear, initialMonth, locale, router, startTransition]);
+  }, [category, tag, country, initialQuery, initialYear, initialMonth, locale, router, startTransition]);
 
   const applyAndRemember = useCallback((
     nextQuery: string,
@@ -547,7 +554,7 @@ export default function FilterBar({
       return;
     }
     const params = new URLSearchParams();
-    for (const [key, value] of Object.entries({ q: query.trim(), year, month, category, tag })) {
+    for (const [key, value] of Object.entries({ q: query.trim(), year, month, category, tag, country })) {
       if (value) params.set(key, value);
     }
     params.delete(field);

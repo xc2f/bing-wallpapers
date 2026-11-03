@@ -66,13 +66,14 @@ async function downloadFile(file: RemoteFile) {
     const tags = JSON.parse(Buffer.from(arrayBuffer).toString("utf8"));
     if (tags.schemaVersion !== 1 || !tags.images || typeof tags.images !== "object" || Array.isArray(tags.images) ||
         !Object.values(tags.images).every((entry) => {
-          const value = entry as { category?: unknown; tags?: unknown } | null;
-          return value && typeof value.category === "string" && Array.isArray(value.tags) && value.tags.every((tag) => typeof tag === "string");
+          const value = entry as { category?: unknown; tags?: unknown; countries?: unknown } | null;
+          return value && typeof value.category === "string" && Array.isArray(value.tags) && value.tags.every((tag) => typeof tag === "string") &&
+            (value.countries === undefined || (Array.isArray(value.countries) && value.countries.every((country) => typeof country === "string")));
         })) {
-      throw new Error("Invalid image_tags.json: expected schemaVersion 1 and image category/tag records.");
+      throw new Error("Invalid image_tags.json: expected schemaVersion 1 and image category/tag/country records.");
     }
     if (tags.taxonomy !== undefined && !isTaxonomyNames(tags.taxonomy)) {
-      throw new Error("Invalid image_tags.json: taxonomy must contain locale-to-name maps for categories and tags.");
+      throw new Error("Invalid image_tags.json: taxonomy must contain locale-to-name maps for categories, tags, and countries.");
     }
   }
   await mkdir(dirname(file.outputPath), { recursive: true });

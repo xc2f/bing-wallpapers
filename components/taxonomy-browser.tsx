@@ -9,17 +9,17 @@ import { taxonomyLabel } from "@/lib/taxonomy-labels";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
 
-export default function TaxonomyBrowser({ items, locale, filters, pathname = "", mode, fields = ["category", "tag"] }: {
+export default function TaxonomyBrowser({ items, locale, filters, pathname = "", mode, fields = ["category", "tag", "country"] }: {
   items: WallpaperItem[];
   locale: Locale;
   pathname?: string;
   mode?: string;
-  fields?: Array<"category" | "tag">;
-  filters: { q?: string; year?: string; month?: string; category?: string; tag?: string };
+  fields?: Array<"category" | "tag" | "country">;
+  filters: { q?: string; year?: string; month?: string; category?: string; tag?: string; country?: string };
 }) {
   const FilterLink = pathname === "/waterfall" ? WaterfallFilterLink : Link;
 
-  function href(field: "category" | "tag", value: string) {
+  function href(field: "category" | "tag" | "country", value: string) {
     const params = new URLSearchParams();
     for (const [key, current] of Object.entries({ ...filters, [field]: value })) {
       if (current) params.set(key, current);
@@ -29,10 +29,12 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
     return localizePath(locale, `${pathname}${params.size ? `?${params}` : ""}`);
   }
 
-  function row(field: "category" | "tag") {
+  function row(field: "category" | "tag" | "country") {
     const selected = filters[field] ?? "";
-    const candidates = field === "tag" ? filterWallpapersByTaxonomy(items, filters.category) : items;
-    const counts = getTaxonomyCounts(candidates, field === "category" ? "category" : "tags");
+    const candidates = field === "tag" ? filterWallpapersByTaxonomy(items, filters.category, "", filters.country)
+      : field === "category" ? filterWallpapersByTaxonomy(items, "", "", filters.country)
+      : filterWallpapersByTaxonomy(items, filters.category, filters.tag);
+    const counts = getTaxonomyCounts(candidates, field === "category" ? "category" : field === "tag" ? "tags" : "countries");
     const countsById = new Map(counts);
     const orderedCategories = [...categoryOrder, ...counts.map(([id]) => id).filter((id) => !categoryOrder.includes(id))];
     const options: Array<[string, number]> = field === "category"
@@ -41,7 +43,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
     if (selected && !options.some(([id]) => id === selected)) {
       options.push([selected, countsById.get(selected) ?? 0]);
     }
-    const label = taxonomyUiLabel(field === "category" ? "categories" : "tags", locale);
+    const label = taxonomyUiLabel(field === "category" ? "categories" : field === "tag" ? "tags" : "countries", locale);
 
     function option(id: string, count?: number) {
       const active = selected === id;

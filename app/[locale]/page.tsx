@@ -78,7 +78,8 @@ function createPageHref(
   year?: string,
   month?: string,
   category?: string,
-  tag?: string
+  tag?: string,
+  country?: string
 ) {
   const params = new URLSearchParams();
 
@@ -87,6 +88,7 @@ function createPageHref(
   if (month?.trim()) params.set("month", month.trim());
   if (category) params.set("category", category);
   if (tag) params.set("tag", tag);
+  if (country) params.set("country", country);
   if (page > 1) params.set("page", String(page));
 
   const search = params.toString();
@@ -101,7 +103,8 @@ function createDetailHref(
   year?: string,
   month?: string,
   category?: string,
-  tag?: string
+  tag?: string,
+  country?: string
 ) {
   const params = new URLSearchParams();
 
@@ -110,6 +113,7 @@ function createDetailHref(
   if (month?.trim()) params.set("month", month.trim());
   if (category) params.set("category", category);
   if (tag) params.set("tag", tag);
+  if (country) params.set("country", country);
   if (page && page > 1) params.set("page", String(page));
 
   const search = params.toString();
@@ -119,9 +123,9 @@ function createDetailHref(
   );
 }
 
-function createWaterfallEntryHref(locale: Locale, year?: string, q?: string, month?: string, category?: string, tag?: string) {
+function createWaterfallEntryHref(locale: Locale, year?: string, q?: string, month?: string, category?: string, tag?: string, country?: string) {
   const params = new URLSearchParams();
-  for (const [key, value] of Object.entries({ q, year, month, category, tag })) {
+  for (const [key, value] of Object.entries({ q, year, month, category, tag, country })) {
     if (value?.trim()) params.set(key, value.trim());
   }
   return localizePath(locale, `/waterfall${params.size ? `?${params}` : ""}`);
@@ -133,7 +137,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params, searchParams }: {
   params: Promise<{ locale: string }>;
-  searchParams?: Promise<{ q?: string; page?: string; year?: string; month?: string; category?: string; tag?: string }>;
+  searchParams?: Promise<{ q?: string; page?: string; year?: string; month?: string; category?: string; tag?: string; country?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const resolvedLocale = getLocaleFromParam(locale);
@@ -142,18 +146,19 @@ export async function generateMetadata({ params, searchParams }: {
   const query = filters.q?.trim() ?? "";
   const category = filters.category?.trim() ?? "";
   const tag = filters.tag?.trim() ?? "";
+  const country = filters.country?.trim() ?? "";
   const year = filters.year?.trim() ?? "";
   const month = filters.month?.trim() ?? "";
-  const wallpapers = filterWallpapersByTaxonomy(searchWallpapers(filterWallpapersByDate(getAllWallpapers(resolvedLocale), year, month), query), category, tag);
+  const wallpapers = filterWallpapersByTaxonomy(searchWallpapers(filterWallpapersByDate(getAllWallpapers(resolvedLocale), year, month), query), category, tag, country);
   const requestedPage = Number.parseInt(filters.page ?? "1", 10);
   const { currentPage } = paginateWallpapers(wallpapers, Number.isNaN(requestedPage) ? 1 : requestedPage);
-  const href = createPageHref(resolvedLocale, currentPage, query, year, month, category, tag);
+  const href = createPageHref(resolvedLocale, currentPage, query, year, month, category, tag, country);
   return pageMetadata({
     locale: resolvedLocale,
     path: href.slice(`/${resolvedLocale}`.length),
     title: pageTitle(resolvedLocale, dictionary.siteTitle, currentPage),
     description: dictionary.siteDescription,
-    noIndex: Boolean(query || year || month || category || tag || !wallpapers.length),
+    noIndex: Boolean(query || year || month || category || tag || country || !wallpapers.length),
   });
 }
 
@@ -169,6 +174,7 @@ export default async function LocalizedHomePage({
     month?: string;
     category?: string;
     tag?: string;
+    country?: string;
   }>;
 }) {
   const { locale } = await params;
@@ -180,6 +186,7 @@ export default async function LocalizedHomePage({
   const query = resolvedParams.q?.trim() ?? "";
   const category = resolvedParams.category?.trim() ?? "";
   const tag = resolvedParams.tag?.trim() ?? "";
+  const country = resolvedParams.country?.trim() ?? "";
   const year = resolvedParams.year?.trim() ?? "";
   const month = resolvedParams.month?.trim() ?? "";
   const requestedPage = Number.parseInt(resolvedParams.page ?? "1", 10);
@@ -200,7 +207,7 @@ export default async function LocalizedHomePage({
   );
   const dateFilteredWallpapers = filterWallpapersByDate(allWallpapers, year, month);
   const searchedWallpapers = searchWallpapers(dateFilteredWallpapers, query);
-  const filteredWallpapers = filterWallpapersByTaxonomy(searchedWallpapers, category, tag);
+  const filteredWallpapers = filterWallpapersByTaxonomy(searchedWallpapers, category, tag, country);
   const highlightTerms = getSearchHighlightTerms(query);
   const { currentPage, totalPages, items } = paginateWallpapers(
     filteredWallpapers,
@@ -209,7 +216,7 @@ export default async function LocalizedHomePage({
   const latestDate = allWallpapers[0]
     ? formatArchiveDate(locale, allWallpapers[0].Ssd, allWallpapers[0].FullDateString)
     : dictionary.notAvailable;
-  const currentListPath = createPageHref(locale, currentPage, query, year, month, category, tag);
+  const currentListPath = createPageHref(locale, currentPage, query, year, month, category, tag, country);
 
   return (
     <main className="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
@@ -276,6 +283,8 @@ export default async function LocalizedHomePage({
           <FilterBar
             category={category}
             tag={tag}
+            country={country}
+            countryLabel={country ? taxonomyLabel(country, locale, "country") : undefined}
             categoryLabel={category ? taxonomyLabel(category, locale, "category") : undefined}
             tagLabel={tag ? taxonomyLabel(tag, locale, "tag") : undefined}
             locale={locale}
@@ -290,7 +299,7 @@ export default async function LocalizedHomePage({
               <TaxonomyBrowser
                 items={searchedWallpapers}
                 locale={locale}
-                filters={{ q: query, year, month, category, tag }}
+                filters={{ q: query, year, month, category, tag, country }}
               />
             }
             resultSummary={
@@ -307,7 +316,7 @@ export default async function LocalizedHomePage({
             footer={
               <div className="flex flex-wrap items-center gap-2">
                 <Link
-                  href={createWaterfallEntryHref(locale, year, query, month, category, tag)}
+                  href={createWaterfallEntryHref(locale, year, query, month, category, tag, country)}
                   aria-label={dictionary.viewWaterfall}
                   title={dictionary.viewWaterfall}
                   className="group inline-flex min-h-11 items-center gap-2.5 rounded-xl bg-amber-300 px-4 py-2.5 text-stone-950 shadow-sm transition hover:bg-amber-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 focus-visible:ring-offset-2 focus-visible:ring-offset-[rgb(var(--theme-app-rgb))]"
@@ -377,7 +386,8 @@ export default async function LocalizedHomePage({
                             year,
                             month,
                             category,
-                            tag
+                            tag,
+                            country
                           )}
                           className="block overflow-hidden bg-stone-900"
                         >
@@ -424,7 +434,8 @@ export default async function LocalizedHomePage({
                                 year,
                                 month,
                                 category,
-                                tag
+                                tag,
+                                country
                               )}
                               className="block break-words transition hover:text-amber-100"
                             >
@@ -453,8 +464,8 @@ export default async function LocalizedHomePage({
               <ListPagination
                 currentPage={currentPage}
                 totalPages={totalPages}
-                prevHref={createPageHref(locale, currentPage - 1, query, year, month, category, tag)}
-                nextHref={createPageHref(locale, currentPage + 1, query, year, month, category, tag)}
+                prevHref={createPageHref(locale, currentPage - 1, query, year, month, category, tag, country)}
+                nextHref={createPageHref(locale, currentPage + 1, query, year, month, category, tag, country)}
                 prevLabel={dictionary.paginationPrev}
                 nextLabel={dictionary.paginationNext}
               />

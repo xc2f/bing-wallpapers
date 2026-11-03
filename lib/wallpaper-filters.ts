@@ -1,4 +1,4 @@
-export const wallpaperFilterKeys = ["q", "year", "month", "category", "tag"] as const;
+export const wallpaperFilterKeys = ["q", "year", "month", "category", "tag", "country"] as const;
 export type WallpaperFilters = Partial<Record<(typeof wallpaperFilterKeys)[number], string>>;
 
 export function getWallpaperFilters(source: WallpaperFilters): WallpaperFilters {

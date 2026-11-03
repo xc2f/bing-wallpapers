@@ -39,7 +39,7 @@ export async function GET(request: NextRequest) {
   const allWallpapers = getAllWallpapers(locale);
   const wallpapers = filterWallpapersByTaxonomy(
     searchWallpapers(filterWallpapersByDate(allWallpapers, filters.year, filters.month), filters.q),
-    filters.category, filters.tag
+    filters.category, filters.tag, filters.country
   );
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
   const page = Number.isNaN(pageValue)
