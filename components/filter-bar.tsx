@@ -451,10 +451,9 @@ export default function FilterBar({
   const summaryItems = useMemo(() => {
     const items: Array<{ field: "category" | "tag" | "country" | "q" | "year" | "month"; label: string }> = [];
 
+    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
     if (category) items.push({ field: "category", label: `${taxonomyUiLabel("categories", locale)}: ${(categoryLabel || category)}` });
     if (tag) items.push({ field: "tag", label: `${taxonomyUiLabel("tags", locale)}: ${(tagLabel || tag)}` });
-
-    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
 
     if (query.trim()) {
       items.push({ field: "q", label: `${dictionary.activeQuery}: ${query.trim()}` });

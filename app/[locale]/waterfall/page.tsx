@@ -192,8 +192,8 @@ export default async function LocalizedWaterfallPage({
 
         <WaterfallFilters
           yearFilters={<YearFilterStrip allYearsLabel={dictionary.filterAllYears} currentYear={year} items={yearFilterItems} />}
-          categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["category"]} />}
           countries={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["country"]} />}
+          categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["category"]} />}
           tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["tag"]} />}
         />
 

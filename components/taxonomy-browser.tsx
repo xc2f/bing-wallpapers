@@ -9,7 +9,7 @@ import { taxonomyLabel } from "@/lib/taxonomy-labels";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
 
-export default function TaxonomyBrowser({ items, locale, filters, pathname = "", mode, fields = ["category", "tag", "country"] }: {
+export default function TaxonomyBrowser({ items, locale, filters, pathname = "", mode, fields = ["country", "category", "tag"] }: {
   items: WallpaperItem[];
   locale: Locale;
   pathname?: string;
