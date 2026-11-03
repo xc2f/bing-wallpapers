@@ -1,3 +1,7 @@
+import TaxonomyBrowser from "@/components/taxonomy-browser";
+import WaterfallFilters from "@/components/waterfall-filters";
+import { filterWallpapersByTaxonomy } from "@/lib/image-taxonomy";
+import { getWallpaperFilters, wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
@@ -11,6 +15,7 @@ import YearFilterStrip from "@/components/year-filter-strip";
 import {
   filterWallpapersByDate,
   getAllWallpapers,
+  searchWallpapers,
   getYearOptions,
   toAbsoluteUrl,
 } from "@/lib/archive";
@@ -33,15 +38,11 @@ function createDetailHref(locale: Locale, ssd: string) {
 
 function createWaterfallHref(
   locale: Locale,
-  year?: string,
+  filters: WallpaperFilters = {},
   mode?: string,
   page = 1
 ) {
-  const params = new URLSearchParams();
-
-  if (year?.trim()) {
-    params.set("year", year.trim());
-  }
+  const params = wallpaperFilterParams(filters);
 
   if (mode?.trim()) {
     params.set("mode", mode.trim());
@@ -61,18 +62,23 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ locale: string }>;
+  searchParams?: Promise<WallpaperFilters & { mode?: string; page?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const resolvedLocale = getLocaleFromParam(locale);
   const dictionary = getDictionary(resolvedLocale);
+
+  const filters = getWallpaperFilters((await searchParams) ?? {});
 
   return pageMetadata({
     locale: resolvedLocale,
     path: "/waterfall",
     title: `${dictionary.waterfallTitle} | ${dictionary.siteTitle}`,
     description: dictionary.waterfallDescription,
+    noIndex: wallpaperFilterParams(filters).size > 0,
   });
 }
 
@@ -81,7 +87,7 @@ export default async function LocalizedWaterfallPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-    searchParams?: Promise<{ mode?: string; page?: string; year?: string }>;
+  searchParams?: Promise<WallpaperFilters & { mode?: string; page?: string }>;
 }) {
   const { locale } = await params;
   const resolvedSearchParams = (await searchParams) ?? {};
@@ -97,30 +103,34 @@ export default async function LocalizedWaterfallPage({
   );
   const allWallpapers = getAllWallpapers(locale);
   const mode = resolvedSearchParams.mode?.trim() ?? "";
-  const year = resolvedSearchParams.year?.trim() ?? "";
+  const filters = getWallpaperFilters(resolvedSearchParams);
+  const year = filters.year ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);
   const initialShowMeta = mode === "meta";
   const allowStoredPreference = !mode;
   const yearOptions = getYearOptions(allWallpapers);
-  const wallpapers = filterWallpapersByDate(allWallpapers, year);
+  const searchedWallpapers = searchWallpapers(filterWallpapersByDate(allWallpapers, year, filters.month), filters.q ?? "");
+  const wallpapers = filterWallpapersByTaxonomy(searchedWallpapers, filters.category, filters.tag);
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
   const currentPage = Number.isNaN(requestedPage)
     ? 1
     : Math.min(Math.max(1, requestedPage), totalPages);
   const loadedWallpapers = wallpapers.slice(0, currentPage * WATERFALL_BATCH_SIZE);
-  const waterfallPath = createWaterfallHref(locale, year, mode, currentPage);
+  const waterfallPath = createWaterfallHref(locale, filters, mode, currentPage);
   const yearFilterItems = [
     {
-      href: createWaterfallHref(locale, "", mode),
+      href: createWaterfallHref(locale, { q: filters.q }, mode),
       label: dictionary.filterAllYears,
       active: !year,
     },
     ...yearOptions.map((optionYear) => ({
-      href: createWaterfallHref(locale, optionYear, mode),
+      href: createWaterfallHref(locale, { q: filters.q, year: optionYear }, mode),
       label: optionYear,
       active: optionYear === year,
     })),
   ];
+  const archiveParams = wallpaperFilterParams(filters);
+  const archiveHref = localizePath(locale, archiveParams.size ? `?${archiveParams}` : "");
   const items = loadedWallpapers.map((wallpaper) => ({
     ssd: wallpaper.Ssd,
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
@@ -159,7 +169,7 @@ export default async function LocalizedWaterfallPage({
               />
             </div>
             <Link
-              href={localizePath(locale)}
+              href={archiveHref}
               className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
             >
               <span aria-hidden="true" className="text-sm leading-none">
@@ -180,15 +190,15 @@ export default async function LocalizedWaterfallPage({
 
         </section>
 
-        <div className="theme-waterfall-year-strip sticky top-4 z-20 -mx-2 rounded-[1.5rem] border border-white/10 bg-stone-950/78 px-2 py-3 shadow-[0_18px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl">
-          <YearFilterStrip
-            allYearsLabel={dictionary.filterAllYears}
-            currentYear={year}
-            items={yearFilterItems}
-          />
-        </div>
+        <WaterfallFilters
+          yearFilters={<YearFilterStrip allYearsLabel={dictionary.filterAllYears} currentYear={year} items={yearFilterItems} />}
+          categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["category"]} />}
+          tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["tag"]} />}
+        />
 
+        {wallpapers.length === 0 ? <p className="py-12 text-center text-stone-400">{dictionary.emptyTitle}</p> : null}
         <WaterfallGallery
+          key={wallpaperFilterParams(filters).toString()}
           dictionary={dictionary}
           allowStoredPreference={allowStoredPreference}
           initialPage={currentPage}
@@ -198,7 +208,7 @@ export default async function LocalizedWaterfallPage({
           storageKey={waterfallPath}
           totalCount={wallpapers.length}
           totalPages={totalPages}
-          year={year}
+          filters={filters}
         />
       </div>
     </main>

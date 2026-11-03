@@ -1,5 +1,7 @@
 "use client";
 
+import { taxonomyLabel } from "@/lib/taxonomy-labels";
+
 import type { ReactNode } from "react";
 import type { SearchExample } from "@/lib/search-examples";
 import {
@@ -352,6 +354,8 @@ function DateCascadeSelect({
 
 interface FilterBarProps {
   locale: Locale;
+  category?: string;
+  tag?: string;
   dictionary: Dictionary;
   searchHelpExamples: SearchExample[];
   initialQuery: string;
@@ -359,12 +363,15 @@ interface FilterBarProps {
   initialMonth: string;
   yearOptions: string[];
   yearToMonths: Record<string, string[]>;
+  taxonomyFilters?: ReactNode;
   footer?: ReactNode;
   resultSummary: ReactNode;
 }
 
 export default function FilterBar({
   locale,
+  category,
+  tag,
   dictionary,
   searchHelpExamples,
   initialQuery,
@@ -372,6 +379,7 @@ export default function FilterBar({
   initialMonth,
   yearOptions,
   yearToMonths,
+  taxonomyFilters,
   footer,
   resultSummary,
 }: FilterBarProps) {
@@ -426,22 +434,25 @@ export default function FilterBar({
   }, []);
 
   const summaryItems = useMemo(() => {
-    const items: string[] = [];
+    const items: Array<{ field: "category" | "tag" | "q" | "year" | "month"; label: string }> = [];
+
+    if (category) items.push({ field: "category", label: `${taxonomyLabel("categories", locale)}: ${taxonomyLabel(category, locale)}` });
+    if (tag) items.push({ field: "tag", label: `${taxonomyLabel("tags", locale)}: ${taxonomyLabel(tag, locale)}` });
 
     if (query.trim()) {
-      items.push(`${dictionary.activeQuery}: ${query.trim()}`);
+      items.push({ field: "q", label: `${dictionary.activeQuery}: ${query.trim()}` });
     }
 
     if (year) {
-      items.push(`${dictionary.activeYear}: ${year}`);
+      items.push({ field: "year", label: `${dictionary.activeYear}: ${year}` });
     }
 
     if (month) {
-      items.push(`${dictionary.activeMonth}: ${formatMonthLabel(locale, month)}`);
+      items.push({ field: "month", label: `${dictionary.activeMonth}: ${formatMonthLabel(locale, month)}` });
     }
 
     return items;
-  }, [dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
+  }, [category, tag, dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
 
   const lastAppliedRef = useRef({
     query: initialQuery,
@@ -468,12 +479,18 @@ export default function FilterBar({
       params.set("month", nextMonth);
     }
 
+    const searchOrDateChanged = nextQuery.trim() !== initialQuery.trim() ||
+      nextYear !== initialYear || nextMonth !== initialMonth;
+    if (!searchOrDateChanged) {
+      if (category) params.set("category", category);
+      if (tag) params.set("tag", tag);
+    }
     const search = params.toString();
     const href = localizePath(locale, search ? `?${search}` : "");
     startTransition(() => {
       router.replace(href, { scroll: false });
     });
-  }, [locale, router, startTransition]);
+  }, [category, tag, initialQuery, initialYear, initialMonth, locale, router, startTransition]);
 
   const applyAndRemember = useCallback((
     nextQuery: string,
@@ -505,6 +522,37 @@ export default function FilterBar({
     startTransition(() => {
       router.push(localizePath(locale));
     });
+  }
+
+  function removeFilter(field: (typeof summaryItems)[number]["field"]) {
+    if (field === "q" || field === "year" || field === "month") {
+      const nextQuery = field === "q" ? "" : query;
+      const nextYear = field === "year" ? "" : year;
+      const nextMonth = field === "year" || field === "month" ? "" : month;
+      setQuery(nextQuery);
+      setYear(nextYear);
+      setMonth(nextMonth);
+      applyAndRemember(nextQuery, nextYear, nextMonth);
+      return;
+    }
+    const params = new URLSearchParams();
+    for (const [key, value] of Object.entries({ q: query.trim(), year, month, category, tag })) {
+      if (value) params.set(key, value);
+    }
+    params.delete(field);
+    if (field === "category") params.delete("tag");
+    startTransition(() => router.replace(localizePath(locale, params.size ? `?${params}` : ""), { scroll: false }));
+  }
+
+  function summaryChips() {
+    return summaryItems
+      .map(({ field, label }) => (
+        <button key={field} type="button" disabled={isPending} onClick={() => removeFilter(field)}
+          aria-label={`${taxonomyLabel("remove", locale)}: ${label}`}
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400 transition hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40">
+          {label}
+        </button>
+      ));
   }
 
   function handleApplyExample(nextQuery: string) {
@@ -720,7 +768,7 @@ export default function FilterBar({
           ) : (
             summaryItems.length > 0 ? (
               <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
-                <span className="min-w-0 truncate">{summaryItems.join(" / ")}</span>
+                <div className="flex min-w-0 flex-wrap gap-2">{summaryChips()}</div>
                 <button
                   type="button"
                   onClick={handleClear}
@@ -747,17 +795,12 @@ export default function FilterBar({
             )
           )}
 
+          {!collapsed ? taxonomyFilters : null}
+
           {!collapsed && summaryItems.length > 0 ? (
             <div className="flex items-start justify-between gap-4">
               <div className="-mx-1 flex flex-wrap gap-2 px-1">
-                {summaryItems.map((item) => (
-                  <span
-                    key={item}
-                    className="inline-flex items-center rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400"
-                  >
-                    {item}
-                  </span>
-                ))}
+                {summaryChips()}
               </div>
               <button
                 type="button"

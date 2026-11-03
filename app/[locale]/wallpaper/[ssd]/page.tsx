@@ -1,3 +1,5 @@
+import { filterWallpapersByTaxonomy, getImageTaxonomy } from "@/lib/image-taxonomy";
+import DetailTaxonomy from "@/components/detail-taxonomy";
 import TranslationNotice from "@/components/translation-notice";
 import Image from "next/image";
 import { pageMetadata, siteUrl } from "@/lib/seo";
@@ -108,6 +110,8 @@ export default async function LocalizedWallpaperDetailPage({
     page?: string;
     year?: string;
     month?: string;
+    category?: string;
+    tag?: string;
     view?: string;
     mode?: string;
   }>;
@@ -115,6 +119,8 @@ export default async function LocalizedWallpaperDetailPage({
   const { locale, ssd } = await params;
   const resolvedSearchParams = (await searchParams) ?? {};
   const query = resolvedSearchParams.q?.trim() ?? "";
+  const category = resolvedSearchParams.category?.trim() ?? "";
+  const tag = resolvedSearchParams.tag?.trim() ?? "";
   const year = resolvedSearchParams.year?.trim() ?? "";
   const month = resolvedSearchParams.month?.trim() ?? "";
   const view = resolvedSearchParams.view?.trim() ?? "";
@@ -129,10 +135,10 @@ export default async function LocalizedWallpaperDetailPage({
     cookieStore.get(THEME_COOKIE_KEY)?.value
   );
   const allWallpapers = getAllWallpapers(currentLocale);
-  const filteredWallpapers = searchWallpapers(
+  const filteredWallpapers = filterWallpapersByTaxonomy(searchWallpapers(
     filterWallpapersByDate(allWallpapers, year, month),
     query
-  );
+  ), category, tag);
   const wallpaper =
     filteredWallpapers.find((item) => item.Ssd === ssd) ?? getWallpaperBySsd(ssd, currentLocale);
 
@@ -149,6 +155,7 @@ export default async function LocalizedWallpaperDetailPage({
     permanentRedirect(localizePath(currentLocale, `/wallpaper/${wallpaper.Ssd}${search ? `?${search}` : ""}`));
   }
 
+  const taxonomy = getImageTaxonomy(wallpaper);
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.noDescription;
@@ -181,8 +188,6 @@ export default async function LocalizedWallpaperDetailPage({
       ? (() => {
           const waterfallQuery = new URLSearchParams(backQuery.toString());
           waterfallQuery.delete("view");
-          waterfallQuery.delete("q");
-          waterfallQuery.delete("month");
           const waterfallSearch = waterfallQuery.toString();
 
           return localizePath(
@@ -308,6 +313,8 @@ export default async function LocalizedWallpaperDetailPage({
               </div>
             )}
           </div>
+
+            {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} locale={currentLocale} /> : null}
 
             <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div className="max-w-3xl">

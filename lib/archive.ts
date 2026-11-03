@@ -1,3 +1,4 @@
+import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import data from "@/db/media_contents.json";
 import { defaultLocale, locales, type Locale } from "@/lib/i18n";
 
@@ -12,6 +13,7 @@ export interface TranslationMetadata {
 }
 
 export interface WallpaperItem {
+  imageId?: string;
   Translation?: TranslationMetadata;
   Ssd: string;
   FullDateString?: string;
@@ -112,24 +114,25 @@ export function getRelatedWallpapersFromList(
     return wallpapers.filter((wallpaper) => wallpaper.Ssd !== ssd).slice(0, limit);
   }
 
-  const related: WallpaperItem[] = [];
-
-  for (let offset = 2; related.length < limit; offset += 1) {
-    const newerWallpaper = wallpapers[currentIndex - offset];
-    const olderWallpaper = wallpapers[currentIndex + offset];
-
-    if (!newerWallpaper && !olderWallpaper) {
-      break;
-    }
-
-    if (newerWallpaper) {
-      related.push(newerWallpaper);
-    }
-
-    if (related.length < limit && olderWallpaper) {
-      related.push(olderWallpaper);
-    }
-  }
+  const current = wallpapers[currentIndex];
+  const taxonomy = getImageTaxonomy(current);
+  const currentTags = new Set(taxonomy?.tags ?? []);
+  const indexes = new Map(wallpapers.map((item, index) => [item, index]));
+  const related = wallpapers
+    .filter((item) => item.Ssd !== ssd && (!current.imageId || item.imageId !== current.imageId))
+    .map((item) => {
+      const candidate = getImageTaxonomy(item);
+      const sharedTags = candidate?.tags.filter((tag) => currentTags.has(tag)).length ?? 0;
+      return {
+        item,
+        sharedTags,
+        sameCategory: Number(Boolean(taxonomy && candidate?.category === taxonomy.category)),
+        distance: Math.abs(indexes.get(item)! - currentIndex),
+      };
+    })
+    .sort((a, b) => b.sharedTags - a.sharedTags || b.sameCategory - a.sameCategory || a.distance - b.distance)
+    .slice(0, Math.max(0, limit))
+    .map(({ item }) => item);
 
   return related;
 }

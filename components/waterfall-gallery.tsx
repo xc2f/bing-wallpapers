@@ -5,6 +5,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } fr
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
+import { wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
 const WATERFALL_META_STORAGE_KEY = "waterfall-show-meta";
@@ -24,7 +25,7 @@ interface WaterfallGalleryProps {
   storageKey: string;
   totalCount: number;
   totalPages: number;
-  year?: string;
+  filters: WallpaperFilters;
   items: {
     ssd: string;
     fullDate?: string;
@@ -115,7 +116,7 @@ export default function WaterfallGallery({
   storageKey,
   totalCount,
   totalPages,
-  year,
+  filters,
   items,
 }: WaterfallGalleryProps) {
   const pathname = usePathname();
@@ -234,9 +235,7 @@ export default function WaterfallGallery({
         page: String(loadedPage + 1),
       });
 
-      if (year?.trim()) {
-        params.set("year", year.trim());
-      }
+      wallpaperFilterParams(filters).forEach((value, key) => params.set(key, value));
 
       const response = await fetch(`/api/waterfall?${params.toString()}`, {
         cache: "no-store",
@@ -270,7 +269,7 @@ export default function WaterfallGallery({
         hasRequestedMoreRef.current = false;
       }, 120);
     }
-  }, [hasMoreServerItems, isFetchingMore, loadedPage, locale, year]);
+  }, [hasMoreServerItems, isFetchingMore, loadedPage, locale, filters]);
 
   useLayoutEffect(() => {
     function updateColumns() {

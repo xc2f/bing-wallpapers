@@ -9,12 +9,19 @@ interface RemoteFile {
   url?: string;
 }
 
+const tagsPath = resolve("db/image_tags.json");
+const inferredTagsUrl = process.env.DB_SYNC_JSON_URL?.replace(/media_contents\.json(?=[?#]|$)/, "image_tags.json");
+const tagsUrl = process.env.DB_SYNC_TAGS_URL || (
+  inferredTagsUrl !== process.env.DB_SYNC_JSON_URL ? inferredTagsUrl : undefined
+);
+
 const remoteFiles: RemoteFile[] = [
   {
     label: "media_contents.json",
     outputPath: resolve("db/media_contents.json"),
     url: process.env.DB_SYNC_JSON_URL,
   },
+  { label: "image_tags.json", outputPath: tagsPath, url: tagsUrl },
 ];
 
 const fallbackJsonPath = resolve("db/media_contents.json");
@@ -54,6 +61,16 @@ async function downloadFile(file: RemoteFile) {
   }
 
   const arrayBuffer = await response.arrayBuffer();
+  if (file.label === "image_tags.json") {
+    const tags = JSON.parse(Buffer.from(arrayBuffer).toString("utf8"));
+    if (tags.schemaVersion !== 1 || !tags.images || typeof tags.images !== "object" || Array.isArray(tags.images) ||
+        !Object.values(tags.images).every((entry) => {
+          const value = entry as { category?: unknown; tags?: unknown } | null;
+          return value && typeof value.category === "string" && Array.isArray(value.tags) && value.tags.every((tag) => typeof tag === "string");
+        })) {
+      throw new Error("Invalid image_tags.json: expected schemaVersion 1 and image category/tag records.");
+    }
+  }
   await mkdir(dirname(file.outputPath), { recursive: true });
   await writeFile(file.outputPath, Buffer.from(arrayBuffer));
 
@@ -81,11 +98,21 @@ async function main() {
   if (!enabled) {
     console.log("DB sync skipped because DB_SYNC_ENABLED is not true.");
     await ensureFallbackDbFile();
+    try {
+      await access(tagsPath);
+    } catch {
+      await writeFile(tagsPath, `${JSON.stringify({ schemaVersion: 1, taxonomyVersion: 1, images: {} }, null, 2)}\n`);
+      console.log(`Created fallback tags file -> ${tagsPath}`);
+    }
     return;
   }
 
   if (!process.env.DB_SYNC_JSON_URL) {
     throw new Error("DB_SYNC_JSON_URL is required when DB_SYNC_ENABLED=true.");
+  }
+
+  if (!tagsUrl) {
+    throw new Error("DB_SYNC_TAGS_URL is required when the tags URL cannot be inferred from DB_SYNC_JSON_URL.");
   }
 
   const results = await Promise.all(remoteFiles.map((file) => downloadFile(file)));

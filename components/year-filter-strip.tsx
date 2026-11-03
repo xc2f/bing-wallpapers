@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import WaterfallFilterLink from "@/components/waterfall-filter-link";
 
 interface YearFilterStripProps {
   allYearsLabel: string;
@@ -52,7 +52,7 @@ export default function YearFilterStrip({
     >
       <div className="flex min-w-max gap-2">
         {items.map((item) => (
-          <Link
+          <WaterfallFilterLink
             key={item.href}
             href={item.href}
             data-active={item.active ? "true" : "false"}
@@ -63,7 +63,7 @@ export default function YearFilterStrip({
             }`}
           >
             {item.active && !item.label.trim() ? allYearsLabel : item.label}
-          </Link>
+          </WaterfallFilterLink>
         ))}
       </div>
     </div>

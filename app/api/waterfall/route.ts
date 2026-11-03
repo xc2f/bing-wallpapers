@@ -1,7 +1,10 @@
+import { filterWallpapersByTaxonomy } from "@/lib/image-taxonomy";
+import { wallpaperFilterKeys } from "@/lib/wallpaper-filters";
 import { NextRequest, NextResponse } from "next/server";
 import {
   filterWallpapersByDate,
   getAllWallpapers,
+  searchWallpapers,
   toAbsoluteUrl,
 } from "@/lib/archive";
 import {
@@ -21,7 +24,7 @@ function createDetailHref(locale: Locale, ssd: string) {
 
 export async function GET(request: NextRequest) {
   const localeParam = request.nextUrl.searchParams.get("locale")?.trim() ?? "";
-  const year = request.nextUrl.searchParams.get("year")?.trim() ?? "";
+  const filters = Object.fromEntries(wallpaperFilterKeys.map((key) => [key, request.nextUrl.searchParams.get(key)?.trim() ?? ""]));
   const pageValue = Number.parseInt(
     request.nextUrl.searchParams.get("page")?.trim() ?? "1",
     10
@@ -34,7 +37,10 @@ export async function GET(request: NextRequest) {
   const locale = getLocaleFromParam(localeParam);
   const dictionary = getDictionary(locale);
   const allWallpapers = getAllWallpapers(locale);
-  const wallpapers = filterWallpapersByDate(allWallpapers, year);
+  const wallpapers = filterWallpapersByTaxonomy(
+    searchWallpapers(filterWallpapersByDate(allWallpapers, filters.year, filters.month), filters.q),
+    filters.category, filters.tag
+  );
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
   const page = Number.isNaN(pageValue)
     ? 1
