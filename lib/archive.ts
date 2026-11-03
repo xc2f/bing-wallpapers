@@ -39,14 +39,14 @@ function archiveDateKey(ssd: string) {
   return /^\d{8}(?:_|$)/.test(ssd) ? ssd.slice(0, 8) : ssd;
 }
 
-export function mergeWallpaperArchives(fallback: WallpaperItem[], localized: WallpaperItem[]) {
+export function selectWallpaperRecords(items: WallpaperItem[]) {
   const byDate = new Map<string, WallpaperItem>();
   // Prefer the latest ID within one source, and official records over AI translations.
-  const preferredOrder = (items: WallpaperItem[]) => [...items].sort((a, b) =>
+  const preferredOrder = [...items].sort((a, b) =>
     Number(b.Translation?.generatedBy === "AI") - Number(a.Translation?.generatedBy === "AI") ||
     a.Ssd.localeCompare(b.Ssd)
   );
-  for (const item of [...preferredOrder(fallback), ...preferredOrder(localized)]) {
+  for (const item of preferredOrder) {
     byDate.set(archiveDateKey(item.Ssd), item);
   }
   return [...byDate.values()].sort((a, b) => b.Ssd.localeCompare(a.Ssd));
@@ -54,10 +54,7 @@ export function mergeWallpaperArchives(fallback: WallpaperItem[], localized: Wal
 
 const wallpapersByLocale = new Map(locales.map((locale) => [
   locale,
-  mergeWallpaperArchives(
-    wallpaperArchive.mediaContents[wallpaperArchive.fallbackLocale],
-    wallpaperArchive.mediaContents[locale]
-  ),
+  selectWallpaperRecords(wallpaperArchive.mediaContents[locale]),
 ] as const));
 const knownArchiveIds = new Set(Object.values(wallpaperArchive.mediaContents).flat().map((item) => item.Ssd));
 const wallpaperDates = new Map(locales.map((locale) => [

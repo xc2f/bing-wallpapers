@@ -4,22 +4,22 @@ import { NextRequest } from "next/server";
 import data from "../db/media_contents.json";
 import { GET } from "../app/api/waterfall/route";
 import {
-  getAllWallpapers, getWallpaperBySsd, getAdjacentWallpapers, mergeWallpaperArchives,
+  getAllWallpapers, getWallpaperBySsd, getAdjacentWallpapers, selectWallpaperRecords,
   getRelatedWallpapers, getTranslationSource, searchWallpapers,
 } from "../lib/archive";
 import { locales } from "../lib/i18n";
 
-test("localized records take priority while missing records fall back to English", () => {
+test("each locale only shows its own records without English fallback", () => {
   const fallback = data.mediaContents[data.fallbackLocale as typeof locales[number]];
   for (const locale of locales) {
     const localized = data.mediaContents[locale];
     const wallpapers = getAllWallpapers(locale);
-    const expectedDates = new Set([...fallback, ...localized].map((item) => item.Ssd.slice(0, 8)));
+    const expectedDates = new Set(localized.map((item) => item.Ssd.slice(0, 8)));
     assert.equal(wallpapers.length, expectedDates.size);
     assert.equal(new Set(wallpapers.map((item) => item.Ssd.slice(0, 8))).size, wallpapers.length);
     for (const item of wallpapers) {
       const sameDay = localized.filter((record) => record.Ssd.slice(0, 8) === item.Ssd.slice(0, 8));
-      if (sameDay.length) assert.ok(sameDay.includes(item as typeof sameDay[number]));
+      assert.ok(sameDay.includes(item as typeof sameDay[number]));
       assert.deepEqual(getWallpaperBySsd(item.Ssd, locale), item);
     }
     for (const item of fallback) {
@@ -71,12 +71,11 @@ test("AI translation sources resolve from their recorded locale and archive ID",
   }
 });
 
-test("same-day regional images replace English even when timestamp suffixes differ", () => {
-  const english = { Ssd: "20261101_0700", ImageContent: { Title: "English image" } };
+test("same-day records prefer official content and empty archives stay empty", () => {
   const local = { Ssd: "20261101_1600", ImageContent: { Title: "本地图片" } };
   const translated = { Ssd: "20261101_1800", Translation: { generatedBy: "AI" } };
   const older = { Ssd: "20261031" };
-  assert.deepEqual(mergeWallpaperArchives([english, older], [local, translated]), [local, older]);
-  assert.deepEqual(mergeWallpaperArchives([english, older], [translated, local]), [local, older]);
-  assert.deepEqual(mergeWallpaperArchives([english, older], []), [english, older]);
+  assert.deepEqual(selectWallpaperRecords([older, local, translated]), [local, older]);
+  assert.deepEqual(selectWallpaperRecords([translated, local, older]), [local, older]);
+  assert.deepEqual(selectWallpaperRecords([]), []);
 });

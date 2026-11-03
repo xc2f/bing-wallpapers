@@ -130,7 +130,7 @@ DB_SYNC_BEARER_TOKEN=<token>
 ```
 
 The site reads schema version 2: `mediaContents` is an object with `en`, `zh`, `es`, `fr`, `de`, `ja`, and `ko` arrays, alongside `schemaVersion: 2`, `defaultLocale: "en"`, and `fallbackLocale: "en"`.
-Each route uses its language's records for browsing, search, details, and waterfall loading. Each language includes English fallback records for missing dates (the first eight digits of `Ssd`), with localized records taking priority for the same date even when archive IDs differ. Official records take priority over AI translations within a language. Older detail URLs redirect to the selected record for that date. Sitemap entries and language alternates follow the available records and pagination for each language.
+Each route uses only its language's records for browsing, search, details, and waterfall loading; missing dates are not filled with English records, and empty language archives show an empty state. Records are deduplicated by date (the first eight digits of `Ssd`). Official records take priority over AI translations within a language. Older detail URLs redirect to the selected record for that date when available in that language. Sitemap entries and language alternates follow the available records and pagination for each language.
 
 Notes:
 
