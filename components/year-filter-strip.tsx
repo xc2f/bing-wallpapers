@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import WaterfallFilterLink from "@/components/waterfall-filter-link";
 
 interface YearFilterStripProps {
-  allYearsLabel: string;
+  label: string;
   currentYear: string;
   items: Array<{
     href: string;
@@ -14,7 +14,7 @@ interface YearFilterStripProps {
 }
 
 export default function YearFilterStrip({
-  allYearsLabel,
+  label,
   currentYear,
   items,
 }: YearFilterStripProps) {
@@ -46,27 +46,30 @@ export default function YearFilterStrip({
   }, [currentYear, items]);
 
   return (
-    <div
-      ref={containerRef}
-      className="-mx-2 overflow-x-auto px-2 [scrollbar-width:none] [-ms-overflow-style:none] [scroll-snap-type:x_proximity] [&::-webkit-scrollbar]:hidden"
-    >
-      <div className="flex min-w-max gap-2">
-        {items.map((item) => (
-          <WaterfallFilterLink
-            key={item.href}
-            href={item.href}
-            data-active={item.active ? "true" : "false"}
-            aria-current={item.active ? "true" : undefined}
-            className={`inline-flex snap-start items-center rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
-              item.active
-                ? "bg-amber-300/10 text-amber-200"
-                : "text-stone-400 hover:bg-white/5 hover:text-white"
-            }`}
-          >
-            {item.active && !item.label.trim() ? allYearsLabel : item.label}
-          </WaterfallFilterLink>
-        ))}
+    <nav aria-label={label} className="flex min-w-0 items-start gap-x-[var(--waterfall-filter-column-gap)]">
+      <span className="w-[var(--waterfall-filter-label-width)] shrink-0 py-2 text-sm text-stone-400">{label}</span>
+      <div
+        ref={containerRef}
+        className="relative min-w-0 flex-1 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [scroll-snap-type:x_proximity] [&::-webkit-scrollbar]:hidden"
+      >
+        <div className="flex min-w-max gap-2">
+          {items.map((item) => (
+            <WaterfallFilterLink
+              key={item.href}
+              href={item.href}
+              data-active={item.active ? "true" : "false"}
+              aria-current={item.active ? "true" : undefined}
+              className={`inline-flex snap-start items-center rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
+                item.active
+                  ? "bg-amber-300/10 text-amber-200"
+                  : "text-stone-400 hover:bg-white/5 hover:text-white"
+              }`}
+            >
+              {item.label}
+            </WaterfallFilterLink>
+          ))}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 }

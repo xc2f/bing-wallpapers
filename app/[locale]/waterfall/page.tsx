@@ -11,6 +11,7 @@ import ScrollRestorer from "@/components/scroll-restorer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import ThemeSwitcher from "@/components/theme-switcher";
 import WaterfallGallery from "@/components/waterfall-gallery";
+import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 import YearFilterStrip from "@/components/year-filter-strip";
 import {
   filterWallpapersByDate,
@@ -117,10 +118,11 @@ export default async function LocalizedWaterfallPage({
     : Math.min(Math.max(1, requestedPage), totalPages);
   const loadedWallpapers = wallpapers.slice(0, currentPage * WATERFALL_BATCH_SIZE);
   const waterfallPath = createWaterfallHref(locale, filters, mode, currentPage);
+  const yearLabel = taxonomyUiLabel("years", locale);
   const yearFilterItems = [
     {
       href: createWaterfallHref(locale, { q: filters.q }, mode),
-      label: dictionary.filterAllYears,
+      label: taxonomyUiLabel("all", locale),
       active: !year,
     },
     ...yearOptions.map((optionYear) => ({
@@ -191,7 +193,8 @@ export default async function LocalizedWaterfallPage({
         </section>
 
         <WaterfallFilters
-          yearFilters={<YearFilterStrip allYearsLabel={dictionary.filterAllYears} currentYear={year} items={yearFilterItems} />}
+          locale={locale}
+          yearFilters={<YearFilterStrip label={yearLabel} currentYear={year} items={yearFilterItems} />}
           countries={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["country"]} />}
           categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["category"]} />}
           tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["tag"]} />}
