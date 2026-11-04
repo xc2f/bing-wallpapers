@@ -32,9 +32,9 @@ export default function TaxonomyRow({ label, children, expandLabel, collapseLabe
 
   return (
     <nav aria-label={label} className="flex min-w-0 items-start gap-3">
-      <span className="shrink-0 py-2 text-sm text-stone-400">{label}</span>
+      <span className={`shrink-0 text-sm text-stone-400 ${open ? "py-1.5" : "py-2"}`}>{label}</span>
       <div id={listId} ref={listRef}
-        className={`flex min-w-0 flex-1 flex-wrap items-start gap-2 ${open ? "" : "max-h-10 overflow-hidden"}`}>
+        className={`flex min-w-0 flex-1 flex-wrap items-start gap-x-2 ${open ? "gap-y-1 [&>span>*]:py-1.5" : "max-h-10 gap-y-2 overflow-hidden"}`}>
         {options.map((option, index) => (
           <span key={index} className="inline-flex shrink-0" inert={!open && index >= visibleCount} aria-hidden={!open && index >= visibleCount ? true : undefined}>
             {option}
