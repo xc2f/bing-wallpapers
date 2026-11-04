@@ -49,7 +49,7 @@ export default function LocaleSwitcher({
             prefetch={false}
             replace
             className={`theme-locale-switcher-link inline-flex min-w-[2rem] items-center justify-center px-1.5 py-1 text-center ${
-              isActive ? "theme-locale-switcher-link-active text-amber-300" : "transition hover:text-white"
+              isActive ? "theme-locale-switcher-link-active text-amber-300" : "theme-button-hover rounded-md transition hover:text-white"
             }`}
           >
             {localeLabels[option]}

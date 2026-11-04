@@ -115,7 +115,6 @@ export default async function LocalizedWallpaperDetailPage({
     tag?: string;
     country?: string;
     view?: string;
-    mode?: string;
   }>;
 }) {
   const { locale, ssd } = await params;
@@ -264,12 +263,12 @@ export default async function LocalizedWallpaperDetailPage({
               <LocaleSwitcher
                 locale={currentLocale}
                 pathname={`/wallpaper/${ssd}`}
-                searchParams={resolvedSearchParams}
+                searchParams={Object.fromEntries(Object.entries(resolvedSearchParams).filter(([key]) => key !== "mode"))}
               />
             </div>
             <SmartBackButton
               fallbackHref={backHref}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover"
               label={
                 view === "waterfall"
                   ? dictionary.detailBackToWaterfall
@@ -359,7 +358,7 @@ export default async function LocalizedWallpaperDetailPage({
                     href={previewUrl}
                     target="_blank"
                     rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+                      className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition theme-button-hover"
                   >
                     {dictionary.detailOpenPreview}
                   </a>

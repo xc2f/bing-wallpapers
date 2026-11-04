@@ -175,6 +175,8 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
   }, [themeMode]);
 
   useEffect(() => {
+    if (!open) return;
+
     function handlePointerDown(event: MouseEvent) {
       if (!containerRef.current?.contains(event.target as Node)) {
         closePanel();
@@ -182,7 +184,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
     }
 
     function handleEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
+      if (event.key === "Escape" && !event.defaultPrevented) {
         closePanel({ restoreFocus: true });
       }
     }
@@ -194,7 +196,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
       document.removeEventListener("mousedown", handlePointerDown);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     if (!open) {
@@ -276,7 +278,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
         aria-controls={panelId}
         aria-label={`${labels.trigger}: ${currentLabel}`}
         onClick={() => setOpen((current) => !current)}
-        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition hover:bg-white/[0.06] hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
+        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition theme-button-hover hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
       >
         <span className="inline-flex min-w-0 items-center gap-2">
           <ThemeIcon mode={themeMode} />
@@ -322,7 +324,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
                 className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
                   isActive
                     ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
-                    : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                    : "text-stone-300 theme-button-hover hover:text-white"
                 } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
               >
                 <span className="inline-flex items-center gap-2">

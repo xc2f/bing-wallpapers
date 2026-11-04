@@ -1,13 +1,16 @@
 "use client";
 
 
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
+import WaterfallViewOptions, { manualColumnChoices, type WaterfallView, viewDefaults } from "@/components/waterfall-view-options";
+import WaterfallSlideshow from "@/components/waterfall-slideshow";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
 import { wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
+const WATERFALL_VIEW_STORAGE_KEY = "waterfall-view";
 const WATERFALL_META_STORAGE_KEY = "waterfall-show-meta";
 const SCROLL_STORAGE_PREFIX = "scroll-position:";
 const SCROLL_ANCHOR_PREFIX = "scroll-anchor:";
@@ -17,9 +20,7 @@ const INITIAL_BATCH_SIZE = 24;
 const LOAD_MORE_BATCH_SIZE = 16;
 
 interface WaterfallGalleryProps {
-  allowStoredPreference: boolean;
   dictionary: Dictionary;
-  initialShowMeta: boolean;
   initialPage: number;
   locale: Locale;
   storageKey: string;
@@ -36,6 +37,12 @@ interface WaterfallGalleryProps {
   }[];
 }
 
+const cardAppearance = [
+  { imageGap: 4, detailGap: 8, imageRadius: "0.375rem", detailRadius: "0.5rem" },
+  { imageGap: 8, detailGap: 16, imageRadius: "1.15rem", detailRadius: "1.75rem" },
+  { imageGap: 16, detailGap: 24, imageRadius: "1.5rem", detailRadius: "2rem" },
+] as const;
+
 const imageOnlyHeights = [
   264,
   332,
@@ -47,39 +54,35 @@ const imageOnlyHeights = [
   284,
 ] as const;
 
-function estimateMetaHeight(item: WaterfallGalleryProps["items"][number]) {
+function estimateMetaHeight(item: WaterfallGalleryProps["items"][number], info: number) {
   const titleLines = Math.max(1, Math.ceil(item.title.length / 26));
   const description = item.description ?? "";
   const descriptionLines = Math.max(2, Math.min(7, Math.ceil(description.length / 92)));
-  return 260 + titleLines * 28 + descriptionLines * 24;
+  return 280 + (info & 1 ? titleLines * 28 : 0) + (info & 2 ? 32 : 0) + descriptionLines * 24;
 }
 
-function getColumnCount(width: number) {
-  if (width >= 1536) return 4;
-  if (width >= 1280) return 3;
-  if (width >= 640) return 2;
-  return 1;
+function getFittingColumnCount(width: number, minColumnWidth: number, gap: number, maxColumns: number) {
+  return Math.max(1, Math.min(maxColumns, Math.floor((width + gap) / (minColumnWidth + gap))));
 }
 
-function getInitialShowMetaPreference(
-  initialShowMeta: boolean,
-  allowStoredPreference: boolean
-) {
-  if (typeof window === "undefined" || !allowStoredPreference) {
-    return initialShowMeta;
+function getInitialView(): WaterfallView {
+  try {
+    const fallbackInfo = window.localStorage.getItem(WATERFALL_META_STORAGE_KEY) === "true" ? 7 : viewDefaults.info;
+    const saved = JSON.parse(window.localStorage.getItem(WATERFALL_VIEW_STORAGE_KEY) ?? "null");
+    if (!saved) return { ...viewDefaults, info: fallbackInfo };
+    const storedInfo = Number.isInteger(saved.info) && saved.info >= 0 && saved.info <= 7 ? saved.info : fallbackInfo;
+    // Older preferences allowed arbitrary combinations; keep the highest enabled information level.
+    const info = storedInfo & 4 ? 7 : storedInfo & 2 ? 3 : storedInfo & 1 ? 1 : 0;
+    return {
+      info,
+      grid: saved.grid === true,
+      columns: manualColumnChoices.find((count) => count === saved.columns) ?? 0,
+      wide: saved.wide === true,
+      appearance: saved.appearance === 0 || saved.appearance === 2 ? saved.appearance : viewDefaults.appearance,
+    };
+  } catch {
+    return viewDefaults;
   }
-
-  const savedValue = window.localStorage.getItem(WATERFALL_META_STORAGE_KEY);
-
-  if (savedValue === "false") {
-    return false;
-  }
-
-  if (savedValue === "true") {
-    return true;
-  }
-
-  return initialShowMeta;
 }
 
 function getSavedAnchorIndex(
@@ -107,10 +110,54 @@ function getSavedAnchorIndex(
   );
 }
 
+function WaterfallDescription({ text, expanded, onToggle, dictionary }: {
+  text: string;
+  expanded: boolean;
+  onToggle: () => void;
+  dictionary: Dictionary;
+}) {
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const [overflows, setOverflows] = useState(false);
+
+  useLayoutEffect(() => {
+    const paragraph = paragraphRef.current;
+    if (!paragraph) return;
+
+    function measure() {
+      if (!paragraph) return;
+      const lineHeight = Number.parseFloat(getComputedStyle(paragraph).lineHeight);
+      setOverflows(paragraph.scrollHeight > lineHeight * 4 + 1);
+    }
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(paragraph);
+    return () => observer.disconnect();
+  }, [expanded, text]);
+
+  return (
+    <>
+      <div className={!expanded && overflows ? "waterfall-description-fade relative" : undefined}>
+        <p ref={paragraphRef} className={`text-sm leading-6 text-stone-400 ${expanded ? "" : "line-clamp-4"}`}>
+          {text}
+        </p>
+      </div>
+      {overflows && (
+        <button
+          type="button"
+          onClick={onToggle}
+          aria-expanded={expanded}
+          className="theme-button-hover rounded-md text-xs uppercase tracking-[0.22em] text-stone-400 transition hover:text-stone-200"
+        >
+          {expanded ? dictionary.waterfallCollapseDescription : dictionary.waterfallExpandDescription}
+        </button>
+      )}
+    </>
+  );
+}
+
 export default function WaterfallGallery({
-  allowStoredPreference,
   dictionary,
-  initialShowMeta,
   initialPage,
   locale,
   storageKey,
@@ -123,8 +170,14 @@ export default function WaterfallGallery({
   const searchParams = useSearchParams();
   const [loadedItems, setLoadedItems] = useState(items);
   const [loadedPage, setLoadedPage] = useState(initialPage);
-  const [showMeta, setShowMeta] = useState(initialShowMeta);
-  const [columnCount, setColumnCount] = useState(1);
+  const [view, setView] = useState(viewDefaults);
+  const [galleryWidth, setGalleryWidth] = useState(0);
+  const showMeta = Boolean(view.info & 4);
+  const appearance = cardAppearance[view.appearance];
+  const columnGap = appearance.detailGap;
+  const autoColumns = getFittingColumnCount(galleryWidth, 300, columnGap, 6);
+  const columnCount = view.columns ? Math.min(view.columns, autoColumns) : autoColumns;
+  const viewAnchorRef = useRef<{ ssd: string; top: number } | null>(null);
   const [isReady, setIsReady] = useState(false);
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
@@ -132,11 +185,40 @@ export default function WaterfallGallery({
   const [liveAnnouncement, setLiveAnnouncement] = useState("");
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const toolbarRef = useRef<HTMLDivElement | null>(null);
+  const toolbarStartRef = useRef<HTMLSpanElement | null>(null);
+  const [toolbarStuck, setToolbarStuck] = useState(false);
   const hasRestoredAnchorRef = useRef(false);
-  const hasMountedRef = useRef(false);
-  const hasRequestedMoreRef = useRef(false);
+  const fetchInFlightRef = useRef<Promise<WaterfallGalleryProps["items"]> | null>(null);
+  const [preview, setPreview] = useState<{ item: WaterfallGalleryProps["items"][number]; trigger: HTMLAnchorElement } | null>(null);
   const previousLoadedCountRef = useRef(items.length);
-  const fallbackStorageKey = storageKey.split("?")[0];
+
+  useEffect(() => {
+    const gallery = sectionRef.current;
+    if (!gallery) return;
+
+    let lastScroll = -Infinity;
+    function pauseImageHover() {
+      lastScroll = performance.now();
+      if (!gallery?.hasAttribute("data-scroll-hover-paused")) {
+        gallery?.setAttribute("data-scroll-hover-paused", "");
+      }
+    }
+
+    function resumeImageHover(event: PointerEvent) {
+      if (event.pointerType === "mouse" && performance.now() - lastScroll > 120) {
+        gallery?.removeAttribute("data-scroll-hover-paused");
+      }
+    }
+
+    window.addEventListener("scroll", pauseImageHover, { passive: true });
+    gallery.addEventListener("pointermove", resumeImageHover, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", pauseImageHover);
+      gallery.removeEventListener("pointermove", resumeImageHover);
+    };
+  }, []);
+
   const hasMetaPayload = useMemo(
     () => loadedItems.some((item) => Boolean(item.fullDate || item.description)),
     [loadedItems]
@@ -151,24 +233,17 @@ export default function WaterfallGallery({
     const params = new URLSearchParams(baseSearchParams.toString());
     params.set("view", "waterfall");
     params.set("page", String(loadedPage));
-    params.set("mode", showMeta ? "meta" : "images");
     const nextSearch = params.toString();
     return nextSearch ? `?${nextSearch}` : "";
-  }, [baseSearchParams, loadedPage, showMeta]);
+  }, [baseSearchParams, loadedPage]);
   const hasMoreServerItems = loadedPage < totalPages;
 
   function createDetailHref(detailHref: string) {
     return `${detailHref}${detailSearch}`;
   }
 
-  const replaceCurrentUrl = useCallback((nextPage: number, nextShowMeta: boolean) => {
+  const replaceCurrentUrl = useCallback((nextPage: number) => {
     const params = new URLSearchParams(baseSearchParams.toString());
-
-    if (nextShowMeta) {
-      params.set("mode", "meta");
-    } else {
-      params.set("mode", "images");
-    }
 
     if (nextPage > 1) {
       params.set("page", String(nextPage));
@@ -178,34 +253,57 @@ export default function WaterfallGallery({
 
     const nextSearch = params.toString();
     const nextHref = nextSearch ? `${pathname}?${nextSearch}` : pathname;
-    window.history.replaceState(null, "", nextHref);
+    if (nextHref !== `${window.location.pathname}${window.location.search}`) {
+      window.history.replaceState(null, "", nextHref);
+    }
   }, [baseSearchParams, pathname]);
 
-  function clearStoredRestoration() {
-    window.sessionStorage.removeItem(`${SCROLL_STORAGE_PREFIX}${storageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_STORAGE_PREFIX}${fallbackStorageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_ANCHOR_PREFIX}${storageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_ANCHOR_PREFIX}${fallbackStorageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_ANCHOR_SSD_PREFIX}${storageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_ANCHOR_SSD_PREFIX}${fallbackStorageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_ANCHOR_OFFSET_PREFIX}${storageKey}`);
-    window.sessionStorage.removeItem(`${SCROLL_ANCHOR_OFFSET_PREFIX}${fallbackStorageKey}`);
-  }
+  function handleViewChange(nextView: WaterfallView) {
+    const layoutChanges =
+      view.grid !== nextView.grid ||
+      view.columns !== nextView.columns ||
+      view.wide !== nextView.wide ||
+      view.appearance !== nextView.appearance ||
+      (view.info !== nextView.info && ((view.info | nextView.info) & 4) !== 0);
 
-  function handleToggleMode() {
-    clearStoredRestoration();
-    hasRestoredAnchorRef.current = true;
-    setShowMeta((current) => !current);
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }
-
-  function handleSelectMode(nextShowMeta: boolean) {
-    if (nextShowMeta === showMeta) {
-      return;
+    if (layoutChanges) {
+      const toolbar = toolbarRef.current?.getBoundingClientRect();
+      if (toolbar && toolbar.bottom < window.innerHeight) {
+        // Sample the first visible row below the sticky toolbar. Avoid measuring every loaded card.
+        for (const offset of [8, 40, 96]) {
+          const y = toolbar.bottom + offset;
+          if (y >= window.innerHeight) break;
+          const card = document.elementFromPoint(toolbar.left + 24, y)
+            ?.closest<HTMLElement>("[data-waterfall-ssd]");
+          if (card?.dataset.waterfallSsd) {
+            viewAnchorRef.current = {
+              ssd: card.dataset.waterfallSsd,
+              top: card.getBoundingClientRect().top,
+            };
+            break;
+          }
+        }
+      }
     }
 
-    handleToggleMode();
+    setView(nextView);
   }
+
+  useLayoutEffect(() => {
+    const anchor = viewAnchorRef.current;
+    if (!anchor) return;
+
+    viewAnchorRef.current = null;
+    const frame = window.requestAnimationFrame(() => {
+      const card = sectionRef.current?.querySelector<HTMLElement>(
+        `[data-waterfall-ssd="${CSS.escape(anchor.ssd)}"]`
+      );
+      if (card) {
+        window.scrollBy(0, card.getBoundingClientRect().top - anchor.top);
+      }
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [view]);
 
   function handleToggleDescription(ssd: string) {
     setExpandedDescriptions((current) => ({
@@ -221,65 +319,77 @@ export default function WaterfallGallery({
     });
   }
 
-  const fetchMoreItems = useCallback(async function fetchMoreItems() {
-    if (isFetchingMore || !hasMoreServerItems) {
-      return;
+  const fetchWaterfallPage = useCallback(async (page: number) => {
+    const params = new URLSearchParams({ locale, page: String(page) });
+    wallpaperFilterParams(filters).forEach((value, key) => params.set(key, value));
+    const response = await fetch(`/api/waterfall?${params.toString()}`, { cache: "no-store" });
+    if (!response.ok) return null;
+
+    const payload = (await response.json()) as { items?: WaterfallGalleryProps["items"]; page?: number };
+    return payload.items && payload.page === page ? payload.items : null;
+  }, [filters, locale]);
+
+  const fetchMoreItems = useCallback(() => {
+    if (fetchInFlightRef.current) return fetchInFlightRef.current;
+    if (!hasMoreServerItems) return Promise.resolve([]);
+
+    async function requestBatch() {
+      setIsFetchingMore(true);
+      try {
+        const nextPage = loadedPage + 1;
+        const nextItems = await fetchWaterfallPage(nextPage);
+        if (!nextItems) return [];
+
+        const seen = new Set(loadedItems.map((item) => item.ssd));
+        const batch = nextItems.filter((item) => !seen.has(item.ssd));
+        setLoadedItems((current) => [...current, ...batch]);
+        setLoadedPage(nextPage);
+        return batch;
+      } catch {
+        return [];
+      } finally {
+        fetchInFlightRef.current = null;
+        setIsFetchingMore(false);
+      }
     }
 
-    hasRequestedMoreRef.current = true;
-    setIsFetchingMore(true);
+    const request = requestBatch();
+    fetchInFlightRef.current = request;
+    return request;
+  }, [fetchWaterfallPage, hasMoreServerItems, loadedItems, loadedPage]);
 
-    try {
-      const params = new URLSearchParams({
-        locale,
-        page: String(loadedPage + 1),
-      });
+  function openPreview(event: MouseEvent<HTMLAnchorElement>, item: WaterfallGalleryProps["items"][number]) {
+    if (event.defaultPrevented || !item.previewUrl || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    event.preventDefault();
+    setPreview({ item, trigger: event.currentTarget });
+  }
 
-      wallpaperFilterParams(filters).forEach((value, key) => params.set(key, value));
+  useEffect(() => {
+    const start = toolbarStartRef.current;
+    if (!start) return;
 
-      const response = await fetch(`/api/waterfall?${params.toString()}`, {
-        cache: "no-store",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to load waterfall batch.");
-      }
-
-      const payload = (await response.json()) as {
-        items?: WaterfallGalleryProps["items"];
-        page?: number;
-      };
-
-      if (!payload.items?.length || !payload.page) {
-        return;
-      }
-
-      const nextBatchItems = payload.items;
-      const nextPage = payload.page;
-
-      setLoadedItems((current) => {
-        const seen = new Set(current.map((item) => item.ssd));
-        const nextItems = nextBatchItems.filter((item) => !seen.has(item.ssd));
-        return [...current, ...nextItems];
-      });
-      setLoadedPage(nextPage);
-    } finally {
-      setIsFetchingMore(false);
-      window.setTimeout(() => {
-        hasRequestedMoreRef.current = false;
-      }, 120);
-    }
-  }, [hasMoreServerItems, isFetchingMore, loadedPage, locale, filters]);
+    // Match the toolbar's top-2 offset.
+    const observer = new IntersectionObserver(([entry]) => {
+      setToolbarStuck(entry.boundingClientRect.bottom < (entry.rootBounds?.top ?? 0));
+    }, { rootMargin: "-8px 0px 0px" });
+    observer.observe(start);
+    return () => observer.disconnect();
+  }, []);
 
   useLayoutEffect(() => {
-    function updateColumns() {
-      setColumnCount(getColumnCount(window.innerWidth));
-    }
+    const section = sectionRef.current;
+    if (!section) return;
 
-    const nextShowMeta = getInitialShowMetaPreference(
-      initialShowMeta,
-      allowStoredPreference
-    );
+    const updateWidth = () => setGalleryWidth(section.clientWidth);
+    updateWidth();
+
+    const observer = new ResizeObserver(updateWidth);
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [view.wide]);
+
+  useLayoutEffect(() => {
+    const nextView = getInitialView();
     const savedAnchorIndex = getSavedAnchorIndex(storageKey, items);
     const nextVisibleCount = savedAnchorIndex
       ? Math.min(
@@ -290,33 +400,26 @@ export default function WaterfallGallery({
 
     setLoadedItems(items);
     setLoadedPage(initialPage);
-    setShowMeta(nextShowMeta);
+    setView(nextView);
     setVisibleCount(nextVisibleCount);
-    updateColumns();
     setIsReady(true);
-    window.addEventListener("resize", updateColumns);
-
-    return () => window.removeEventListener("resize", updateColumns);
-  }, [allowStoredPreference, initialPage, initialShowMeta, items, storageKey]);
+  }, [initialPage, items, storageKey]);
 
   useEffect(() => {
     if (!isReady) {
       return;
     }
 
-    window.localStorage.setItem(
-      WATERFALL_META_STORAGE_KEY,
-      showMeta ? "true" : "false"
-    );
-  }, [isReady, showMeta]);
+    window.localStorage.setItem(WATERFALL_VIEW_STORAGE_KEY, JSON.stringify(view));
+  }, [isReady, view]);
 
   useEffect(() => {
     if (!isReady) {
       return;
     }
 
-    replaceCurrentUrl(loadedPage, showMeta);
-  }, [isReady, loadedPage, replaceCurrentUrl, showMeta]);
+    replaceCurrentUrl(loadedPage);
+  }, [isReady, loadedPage, replaceCurrentUrl]);
 
   useEffect(() => {
     if (!isReady) {
@@ -335,15 +438,6 @@ export default function WaterfallGallery({
 
     previousLoadedCountRef.current = loadedItems.length;
   }, [dictionary.waterfallLoaded, dictionary.waterfallLoadingMore, isFetchingMore, isReady, loadedItems.length, totalCount]);
-
-  useEffect(() => {
-    if (!hasMountedRef.current) {
-      hasMountedRef.current = true;
-      return;
-    }
-
-    setVisibleCount(INITIAL_BATCH_SIZE);
-  }, [showMeta]);
 
   useEffect(() => {
     if (!isReady) {
@@ -403,7 +497,7 @@ export default function WaterfallGallery({
       (entries) => {
         const [entry] = entries;
 
-        if (!entry?.isIntersecting || hasRequestedMoreRef.current) {
+        if (!entry?.isIntersecting || fetchInFlightRef.current) {
           return;
         }
 
@@ -421,34 +515,26 @@ export default function WaterfallGallery({
     return () => observer.disconnect();
   }, [fetchMoreItems, hasMoreServerItems, isReady, loadedItems.length, visibleCount]);
 
-  const gridColumnsClass =
-    columnCount === 4
-      ? "grid-cols-4"
-      : columnCount === 3
-        ? "grid-cols-3"
-        : columnCount === 2
-          ? "grid-cols-2"
-          : "grid-cols-1";
-  const imageSizes =
-    columnCount === 4
-      ? "(min-width: 1536px) 24vw, (min-width: 1280px) 32vw, (min-width: 640px) 48vw, 96vw"
-      : columnCount === 3
-        ? "(min-width: 1280px) 32vw, (min-width: 640px) 48vw, 96vw"
-        : columnCount === 2
-          ? "(min-width: 640px) 48vw, 96vw"
-          : "96vw";
+  const gridTemplateColumns = `repeat(${columnCount}, minmax(0, 1fr))`;
+  const imageSizes = view.wide
+    ? `${Math.ceil(100 / columnCount)}vw`
+    : `(min-width: 1280px) ${Math.ceil(1280 / columnCount)}px, ${Math.ceil(100 / columnCount)}vw`;
+  const showTitle = Boolean(view.info & 1);
+  const showDate = Boolean(view.info & 2);
   const shouldRenderMeta = showMeta && hasMetaPayload;
   const visibleItems = useMemo(
     () => loadedItems.slice(0, visibleCount),
     [loadedItems, visibleCount]
   );
   const groupedItems = useMemo(() => {
+    if (view.grid) return [visibleItems];
+
     const columns = Array.from({ length: columnCount }, () => [] as typeof items);
     const columnHeights = Array.from({ length: columnCount }, () => 0);
 
     visibleItems.forEach((item, index) => {
       const estimatedHeight = shouldRenderMeta
-        ? estimateMetaHeight(item)
+        ? estimateMetaHeight(item, view.info)
         : imageOnlyHeights[index % imageOnlyHeights.length];
       const targetColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
 
@@ -457,7 +543,7 @@ export default function WaterfallGallery({
     });
 
     return columns;
-  }, [columnCount, shouldRenderMeta, visibleItems]);
+  }, [columnCount, shouldRenderMeta, view.grid, view.info, visibleItems]);
   const visibleItemIndexMap = useMemo(
     () =>
       new Map(visibleItems.map((item, index) => [item.ssd, index + 1])),
@@ -467,49 +553,6 @@ export default function WaterfallGallery({
     () => new Map(visibleItems.map((item, index) => [item.ssd, index])),
     [visibleItems]
   );
-
-  useEffect(() => {
-    const root = sectionRef.current;
-
-    if (!isReady || !root) {
-      return;
-    }
-
-    const cards = Array.from(
-      root.querySelectorAll<HTMLElement>("[data-reveal-card='true']")
-    );
-
-    if (!cards.length) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) {
-            return;
-          }
-
-          entry.target.setAttribute("data-revealed", "true");
-          observer.unobserve(entry.target);
-        });
-      },
-      {
-        rootMargin: "240px 0px 12% 0px",
-        threshold: 0.01,
-      }
-    );
-
-    cards.forEach((card) => {
-      if (card.getAttribute("data-revealed") === "true") {
-        return;
-      }
-
-      observer.observe(card);
-    });
-
-    return () => observer.disconnect();
-  }, [groupedItems, isReady]);
 
   useEffect(() => {
     if (!isReady) {
@@ -570,38 +613,21 @@ export default function WaterfallGallery({
   }, [groupedItems, isReady, storageKey, visibleItemIndexMap]);
 
   return (
-    <section ref={sectionRef} className="flex flex-col gap-6">
-      <div className="flex items-center justify-between gap-3">
-        <div className="flex items-center gap-2 text-sm text-stone-400">
+    <section ref={sectionRef} data-waterfall-wide={view.wide} className="relative flex min-w-0 flex-col gap-6">
+      <span ref={toolbarStartRef} aria-hidden="true" className="pointer-events-none absolute -top-px left-0 size-px" />
+      <div
+        ref={toolbarRef}
+        className={`sticky top-2 z-20 flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 ${
+          toolbarStuck
+            ? "pointer-events-none border-transparent"
+            : "border-white/10 bg-stone-950/78 backdrop-blur"
+        }`}
+      >
+        <div aria-hidden={toolbarStuck} className={`flex items-center gap-2 text-sm text-stone-400 ${toolbarStuck ? "invisible" : ""}`}>
           <span className="text-stone-500">{dictionary.archived}</span>
           <span className="font-medium text-stone-100">{totalCount}</span>
         </div>
-        <div className="theme-waterfall-mode-switch inline-flex max-w-full shrink-0 rounded-full border border-white/10 bg-white/5 p-1 shadow-[0_12px_30px_rgba(0,0,0,0.22)] backdrop-blur">
-          <button
-            type="button"
-            onClick={() => handleSelectMode(false)}
-            aria-pressed={!showMeta}
-            className={`rounded-full px-4 py-2 text-sm transition ${
-              !showMeta
-                ? "bg-amber-300 text-stone-950 shadow-sm hover:bg-amber-200"
-                : "text-stone-300 hover:bg-white/10 hover:text-white"
-            }`}
-          >
-            {dictionary.waterfallHideMeta}
-          </button>
-          <button
-            type="button"
-            onClick={() => handleSelectMode(true)}
-            aria-pressed={showMeta}
-            className={`rounded-full px-4 py-2 text-sm transition ${
-              showMeta
-                ? "bg-amber-300 text-stone-950 shadow-sm hover:bg-amber-200"
-                : "text-stone-300 hover:bg-white/10 hover:text-white"
-            }`}
-          >
-            {dictionary.waterfallShowMeta}
-          </button>
-        </div>
+        <WaterfallViewOptions locale={locale} view={view} autoColumns={autoColumns} onChange={handleViewChange} compact={toolbarStuck} />
       </div>
 
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
@@ -611,9 +637,9 @@ export default function WaterfallGallery({
       {!isReady ? <div className="min-h-[24rem]" aria-hidden="true" /> : null}
 
       {isReady && shouldRenderMeta ? (
-        <div className={`waterfall-view-stage grid items-start gap-4 ${gridColumnsClass}`}>
+        <div className="grid items-start" style={{ gridTemplateColumns, gap: appearance.detailGap }}>
           {groupedItems.map((group, columnIndex) => (
-            <div key={`meta-column-${columnIndex}`} className="flex flex-col gap-4">
+            <div key={`meta-column-${columnIndex}`} className={view.grid ? "contents" : "flex min-w-0 flex-col"} style={{ gap: appearance.detailGap }}>
               {group.map((item) => {
                 const isExpanded = Boolean(expandedDescriptions[item.ssd]);
                 const description = item.description ?? dictionary.noDescription;
@@ -623,26 +649,19 @@ export default function WaterfallGallery({
                 return (
                 <article
                   key={item.ssd}
-                  data-reveal-card="true"
-                  data-revealed="false"
                   data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                   data-waterfall-ssd={item.ssd}
-                  className="waterfall-card-reveal overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/5 shadow-2xl shadow-black/20"
-                  style={{
-                    contentVisibility: "auto",
-                    containIntrinsicSize: "480px",
-                    transitionDelay: `${Math.min(
-                      visibleIndex % 8,
-                      7
-                    ) * 26}ms`,
-                  }}
+                  className="min-w-0 overflow-hidden border border-white/10 bg-white/5 shadow-2xl shadow-black/20"
+                  style={{ borderRadius: appearance.detailRadius }}
                 >
                   <PreserveScrollLink
                     href={createDetailHref(item.detailHref)}
+                    onClick={(event) => openPreview(event, item)}
+                    aria-haspopup={item.previewUrl ? "dialog" : undefined}
                     className="block"
                   >
                     {item.previewUrl ? (
-                      <div className="relative aspect-[16/10] min-h-[15rem] overflow-hidden bg-stone-900/80">
+                      <div className={`waterfall-image-frame relative overflow-hidden bg-stone-900/80 ${view.grid ? "aspect-video" : "aspect-[16/10] min-h-[15rem]"}`}>
                         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-20 bg-gradient-to-b from-black/12 to-transparent" />
                         <Image
                           referrerPolicy="no-referrer"
@@ -654,48 +673,34 @@ export default function WaterfallGallery({
                           quality={68}
                           priority={prioritizeImage}
                           loading={prioritizeImage ? "eager" : "lazy"}
-                          className="h-full w-full object-cover transition duration-500 hover:scale-[1.01]"
+                          className="waterfall-image-preview h-full w-full object-cover"
                         />
                       </div>
                     ) : (
-                      <div className="flex min-h-56 items-center justify-center bg-stone-900 px-6 text-sm text-stone-400">
+                      <div className={`flex items-center justify-center bg-stone-900 px-6 text-sm text-stone-400 ${view.grid ? "aspect-video" : "min-h-56"}`}>
                         {dictionary.noPreviewImage}
                       </div>
                     )}
                   </PreserveScrollLink>
 
                   <div className="space-y-4 p-5">
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
-                      {item.fullDate ?? ""}
-                    </p>
-                    <h2 className="text-lg font-semibold leading-6 text-white">
+                    {showDate && <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                      {item.fullDate ?? item.ssd}
+                    </p>}
+                    {showTitle && <h2 className="text-lg font-semibold leading-6 text-white">
                       <PreserveScrollLink
                         href={createDetailHref(item.detailHref)}
                         className="block break-words transition hover:text-amber-200"
                       >
                         {item.title}
                       </PreserveScrollLink>
-                    </h2>
-                    <div className={isExpanded ? "" : "waterfall-description-fade relative"}>
-                      <p
-                        className={`text-sm leading-6 text-stone-400 ${
-                          isExpanded ? "" : "line-clamp-4"
-                        }`}
-                      >
-                        {description}
-                      </p>
-                    </div>
-                    {description.length > 220 ? (
-                      <button
-                        type="button"
-                        onClick={() => handleToggleDescription(item.ssd)}
-                        className="text-xs uppercase tracking-[0.22em] text-stone-400 transition hover:text-stone-200"
-                      >
-                        {isExpanded
-                          ? dictionary.waterfallCollapseDescription
-                          : dictionary.waterfallExpandDescription}
-                      </button>
-                    ) : null}
+                    </h2>}
+                    <WaterfallDescription
+                      text={description}
+                      expanded={isExpanded}
+                      onToggle={() => handleToggleDescription(item.ssd)}
+                      dictionary={dictionary}
+                    />
                   </div>
                 </article>
                 );
@@ -706,36 +711,32 @@ export default function WaterfallGallery({
       ) : null}
 
       {isReady && !shouldRenderMeta ? (
-        <div className={`waterfall-view-stage grid items-start gap-2 ${gridColumnsClass}`}>
+        <div className="grid items-start" style={{ gridTemplateColumns, gap: appearance.imageGap }}>
           {groupedItems.map((group, columnIndex) => (
-            <div key={`column-${columnIndex}`} className="flex flex-col gap-2">
+            <div key={`column-${columnIndex}`} className={view.grid ? "contents" : "flex min-w-0 flex-col"} style={{ gap: appearance.imageGap }}>
               {group.map((item) => {
                 const originalIndex = visibleItemOrderMap.get(item.ssd) ?? 0;
                 const imageOnlyHeight =
                   imageOnlyHeights[originalIndex % imageOnlyHeights.length];
-                const imageOnlyStyle = { height: `${imageOnlyHeight}px` };
+                const imageOnlyStyle = view.grid ? { aspectRatio: "16 / 9" } : { height: `${imageOnlyHeight}px` };
                 const prioritizeImage = originalIndex < 16;
 
                 return (
                   <article
                     key={item.ssd}
-                    data-reveal-card="true"
-                    data-revealed="false"
                     data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                     data-waterfall-ssd={item.ssd}
-                    className="waterfall-card-reveal group relative overflow-hidden rounded-[1.15rem] border border-white/5 bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
-                    style={{
-                      contentVisibility: "auto",
-                      containIntrinsicSize: `${imageOnlyHeight}px`,
-                      transitionDelay: `${Math.min(originalIndex % 8, 7) * 22}ms`,
-                    }}
+                    className="group relative min-w-0 overflow-hidden border border-white/5 bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+                    style={{ borderRadius: appearance.imageRadius }}
                   >
                     <PreserveScrollLink
                       href={createDetailHref(item.detailHref)}
-                      className="block overflow-hidden rounded-[1.15rem]"
+                      onClick={(event) => openPreview(event, item)}
+                      aria-haspopup={item.previewUrl ? "dialog" : undefined}
+                      className="block"
                     >
                       {item.previewUrl ? (
-                        <div className="relative overflow-hidden bg-stone-900/80" style={imageOnlyStyle}>
+                        <div className="waterfall-image-frame relative overflow-hidden bg-stone-900/80" style={imageOnlyStyle}>
                           <Image
                             referrerPolicy="no-referrer"
                             src={item.previewUrl}
@@ -746,7 +747,7 @@ export default function WaterfallGallery({
                             quality={68}
                             priority={prioritizeImage}
                             loading={prioritizeImage ? "eager" : "lazy"}
-                            className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                            className="waterfall-image-preview h-full w-full object-cover"
                           />
                         </div>
                       ) : (
@@ -758,14 +759,14 @@ export default function WaterfallGallery({
                         </div>
                       )}
 
-                      <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
-                        <p className="theme-waterfall-image-title break-words text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
+                      {(showTitle || showDate) && <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
+                        {showTitle && <p className="theme-waterfall-image-title break-words text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
                           {item.title}
-                        </p>
-                        <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
+                        </p>}
+                        {showDate && <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
                           {item.fullDate ?? item.ssd}
-                        </p>
-                      </div>
+                        </p>}
+                      </div>}
                     </PreserveScrollLink>
                   </article>
                 );
@@ -797,13 +798,26 @@ export default function WaterfallGallery({
                 void fetchMoreItems();
               }}
               disabled={isFetchingMore}
-              className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10 disabled:pointer-events-none disabled:opacity-50 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover disabled:pointer-events-none disabled:opacity-50 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
             >
               {isFetchingMore ? dictionary.waterfallLoadingMore : dictionary.waterfallLoadMore}
             </button>
           ) : null}
         </div>
       ) : null}
+      {preview && (
+        <WaterfallSlideshow
+          initialItem={preview.item}
+          trigger={preview.trigger}
+          items={loadedItems}
+          totalCount={totalCount}
+          loadPage={fetchWaterfallPage}
+          onClose={() => setPreview(null)}
+          detailHref={createDetailHref}
+          locale={locale}
+          loadingLabel={dictionary.waterfallLoadingMore}
+        />
+      )}
     </section>
   );
 }

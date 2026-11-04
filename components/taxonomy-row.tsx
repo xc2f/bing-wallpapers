@@ -79,7 +79,7 @@ export default function TaxonomyRow({ label, children, expandLabel, collapseLabe
       {canExpand || open ? (
         <button type="button" aria-expanded={open} aria-controls={listId}
           onClick={toggleExpanded}
-          className="col-start-2 row-start-1 inline-flex h-9 shrink-0 items-center gap-1 rounded-lg px-3 text-sm text-stone-400 transition hover:bg-white/5 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300">
+          className="col-start-2 row-start-1 inline-flex h-9 shrink-0 items-center gap-1 rounded-lg px-3 text-sm text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300">
           {open ? collapseLabel : expandLabel}
           <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"
             className={`block h-4 w-4 shrink-0 ${open ? "rotate-180" : ""}`}>

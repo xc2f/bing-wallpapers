@@ -250,7 +250,7 @@ function DateCascadeSelect({
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       !yearValue && !monthValue
                         ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                        : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                        : "text-stone-300 theme-button-hover hover:text-white"
                     } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                   >
                     <span>{dictionary.filterAllTime}</span>
@@ -273,7 +273,7 @@ function DateCascadeSelect({
                         className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                           isSelectedYear
                             ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                            : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                            : "text-stone-300 theme-button-hover hover:text-white"
                         } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                       >
                         <span>{optionYear}</span>
@@ -296,7 +296,7 @@ function DateCascadeSelect({
                     data-date-option="true"
                     type="button"
                     onClick={() => setActiveYear(null)}
-                    className="inline-flex touch-manipulation items-center gap-2 text-xs tracking-[0.14em] text-stone-400 transition hover:text-white focus-visible:text-white focus-visible:outline-none"
+                    className="theme-button-hover inline-flex touch-manipulation items-center gap-2 rounded-md text-xs tracking-[0.14em] text-stone-400 transition hover:text-white focus-visible:text-white focus-visible:outline-none"
                   >
                     <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0">
                       <path d="m9.5 4-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -315,7 +315,7 @@ function DateCascadeSelect({
                     className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                       activeYear === yearValue && !monthValue
                         ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                        : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                        : "text-stone-300 theme-button-hover hover:text-white"
                     } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                     >
                       <span>{activeYear}</span>
@@ -338,7 +338,7 @@ function DateCascadeSelect({
                           className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
                             isSelectedMonth
                               ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                              : "text-stone-300 hover:bg-white/[0.04] hover:text-white"
+                              : "text-stone-300 theme-button-hover hover:text-white"
                           } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
                         >
                           <span>{formatMonthLabel(locale, optionMonth)}</span>
@@ -566,7 +566,7 @@ export default function FilterBar({
       .map(({ field, label }) => (
         <button key={field} type="button" disabled={isPending} onClick={() => removeFilter(field)}
           aria-label={`${taxonomyUiLabel("remove", locale)}: ${label}`}
-          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400 transition hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40">
+          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40">
           {label}
         </button>
       ));
@@ -698,7 +698,7 @@ export default function FilterBar({
                     <button
                       type="button"
                       onClick={() => setQuery("")}
-                      className="inline-flex h-7 w-7 items-center justify-center rounded-full text-stone-500 transition hover:bg-white/[0.06] hover:text-white"
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full text-stone-500 transition theme-button-hover hover:text-white"
                       aria-label={dictionary.filterReset}
                     >
                       <span aria-hidden="true" className="text-base leading-none">
@@ -712,7 +712,7 @@ export default function FilterBar({
                     className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-2 text-[11px] tracking-[0.16em] transition ${
                       showSearchHelp
                         ? "border-amber-300/30 bg-amber-300/10 text-amber-100 hover:border-amber-300/40 hover:bg-amber-300/14"
-                        : "border-white/[0.08] text-stone-500 hover:border-white/[0.14] hover:text-stone-200"
+                        : "theme-button-hover border-white/[0.08] text-stone-500 hover:border-white/[0.14] hover:text-stone-200"
                     }`}
                     aria-expanded={showSearchHelp}
                   >
@@ -731,7 +731,7 @@ export default function FilterBar({
                         <button
                           type="button"
                           onClick={() => setShowSearchHelp(false)}
-                          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base leading-none text-stone-500 transition hover:bg-white/[0.06] hover:text-white"
+                          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base leading-none text-stone-500 transition theme-button-hover hover:text-white"
                           aria-label={dictionary.filterHelpClose}
                         >
                           ×
@@ -788,7 +788,7 @@ export default function FilterBar({
                   type="button"
                   onClick={handleClear}
                   disabled={isPending}
-                  className="shrink-0 text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
+                  className="theme-button-hover shrink-0 rounded-md text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
                 >
                   {dictionary.filterReset}
                 </button>
@@ -821,7 +821,7 @@ export default function FilterBar({
                 type="button"
                 onClick={handleClear}
                 disabled={isPending}
-                className="shrink-0 px-1 py-1 text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
+                className="theme-button-hover shrink-0 rounded-md px-1 py-1 text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
               >
                 {dictionary.filterReset}
               </button>

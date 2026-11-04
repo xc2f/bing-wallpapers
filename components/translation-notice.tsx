@@ -18,7 +18,7 @@ export default function TranslationNotice({ translation, source, dictionary, cla
       </p>
       {source?.ImageContent?.Description ? (
         <details className="mt-2">
-          <summary className="w-fit cursor-pointer text-xs leading-5 text-amber-200 transition hover:text-amber-100">
+          <summary className="theme-button-hover w-fit cursor-pointer rounded-md text-xs leading-5 text-amber-200 transition hover:text-amber-100">
             {dictionary.showOriginal}
           </summary>
           <div

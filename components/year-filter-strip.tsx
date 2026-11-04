@@ -62,7 +62,7 @@ export default function YearFilterStrip({
               className={`inline-flex snap-start items-center rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
                 item.active
                   ? "bg-amber-300/10 text-amber-200"
-                  : "text-stone-400 hover:bg-white/5 hover:text-white"
+                  : "text-stone-400 theme-button-hover hover:text-white"
               }`}
             >
               {item.label}

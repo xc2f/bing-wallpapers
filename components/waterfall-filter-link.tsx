@@ -7,10 +7,8 @@ import { wallpaperFilterKeys } from "@/lib/wallpaper-filters";
 
 export default function WaterfallFilterLink({ href, ...props }: Omit<ComponentProps<typeof Link>, "href"> & { href: string }) {
   const currentParams = useSearchParams();
-  const mode = currentParams.get("mode");
   const [pathname, search = ""] = href.split("?");
   const params = new URLSearchParams(search);
-  if (mode === "meta" || mode === "images") params.set("mode", mode);
   const target = params.size ? `${pathname}?${params}` : pathname;
   return <Link {...props} href={target} scroll={false} onNavigate={(event) => {
     props.onNavigate?.(event);

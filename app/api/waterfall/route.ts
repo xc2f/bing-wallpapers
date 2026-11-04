@@ -16,7 +16,7 @@ import {
   type Locale,
 } from "@/lib/i18n";
 
-const WATERFALL_BATCH_SIZE = 180;
+import { WATERFALL_BATCH_SIZE } from "@/lib/waterfall-pagination";
 
 function createDetailHref(locale: Locale, ssd: string) {
   return localizePath(locale, `/wallpaper/${ssd}`);

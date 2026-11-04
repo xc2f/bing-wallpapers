@@ -31,7 +31,7 @@ import {
 } from "@/lib/i18n";
 import { THEME_COOKIE_KEY, normalizeThemeMode } from "@/lib/theme";
 
-const WATERFALL_BATCH_SIZE = 180;
+import { WATERFALL_BATCH_SIZE } from "@/lib/waterfall-pagination";
 
 function createDetailHref(locale: Locale, ssd: string) {
   return localizePath(locale, `/wallpaper/${ssd}`);
@@ -40,14 +40,9 @@ function createDetailHref(locale: Locale, ssd: string) {
 function createWaterfallHref(
   locale: Locale,
   filters: WallpaperFilters = {},
-  mode?: string,
   page = 1
 ) {
   const params = wallpaperFilterParams(filters);
-
-  if (mode?.trim()) {
-    params.set("mode", mode.trim());
-  }
 
   if (page > 1) {
     params.set("page", String(page));
@@ -66,7 +61,7 @@ export async function generateMetadata({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams?: Promise<WallpaperFilters & { mode?: string; page?: string }>;
+  searchParams?: Promise<WallpaperFilters & { page?: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
   const resolvedLocale = getLocaleFromParam(locale);
@@ -88,7 +83,7 @@ export default async function LocalizedWaterfallPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams?: Promise<WallpaperFilters & { mode?: string; page?: string }>;
+  searchParams?: Promise<WallpaperFilters & { page?: string }>;
 }) {
   const { locale } = await params;
   const resolvedSearchParams = (await searchParams) ?? {};
@@ -103,12 +98,9 @@ export default async function LocalizedWaterfallPage({
     cookieStore.get(THEME_COOKIE_KEY)?.value
   );
   const allWallpapers = getAllWallpapers(locale);
-  const mode = resolvedSearchParams.mode?.trim() ?? "";
   const filters = getWallpaperFilters(resolvedSearchParams);
   const year = filters.year ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);
-  const initialShowMeta = mode === "meta";
-  const allowStoredPreference = !mode;
   const yearOptions = getYearOptions(allWallpapers);
   const searchedWallpapers = searchWallpapers(filterWallpapersByDate(allWallpapers, year, filters.month), filters.q ?? "");
   const wallpapers = filterWallpapersByTaxonomy(searchedWallpapers, filters.category, filters.tag, filters.country);
@@ -117,16 +109,16 @@ export default async function LocalizedWaterfallPage({
     ? 1
     : Math.min(Math.max(1, requestedPage), totalPages);
   const loadedWallpapers = wallpapers.slice(0, currentPage * WATERFALL_BATCH_SIZE);
-  const waterfallPath = createWaterfallHref(locale, filters, mode, currentPage);
+  const waterfallPath = createWaterfallHref(locale, filters, currentPage);
   const yearLabel = taxonomyUiLabel("years", locale);
   const yearFilterItems = [
     {
-      href: createWaterfallHref(locale, { q: filters.q }, mode),
+      href: createWaterfallHref(locale, { q: filters.q }),
       label: taxonomyUiLabel("all", locale),
       active: !year,
     },
     ...yearOptions.map((optionYear) => ({
-      href: createWaterfallHref(locale, { q: filters.q, year: optionYear }, mode),
+      href: createWaterfallHref(locale, { q: filters.q, year: optionYear }),
       label: optionYear,
       active: optionYear === year,
     })),
@@ -150,7 +142,7 @@ export default async function LocalizedWaterfallPage({
         showPosition
         totalCount={wallpapers.length}
       />
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 has-[[data-waterfall-wide=true]]:max-w-none">
         <section className="flex flex-col gap-6 pb-2">
           <div className="flex flex-col gap-3">
             <div className="flex flex-wrap items-center justify-end gap-3">
@@ -167,12 +159,12 @@ export default async function LocalizedWaterfallPage({
               <LocaleSwitcher
                 locale={locale}
                 pathname="/waterfall"
-                searchParams={resolvedSearchParams}
+                searchParams={Object.fromEntries(Object.entries(resolvedSearchParams).filter(([key]) => key !== "mode"))}
               />
             </div>
             <Link
               href={archiveHref}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition hover:bg-white/10"
+              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover"
             >
               <span aria-hidden="true" className="text-sm leading-none">
                 ←
@@ -195,19 +187,17 @@ export default async function LocalizedWaterfallPage({
         <WaterfallFilters
           locale={locale}
           yearFilters={<YearFilterStrip label={yearLabel} currentYear={year} items={yearFilterItems} />}
-          countries={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["country"]} />}
-          categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["category"]} />}
-          tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" mode={mode} fields={["tag"]} />}
+          countries={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" fields={["country"]} />}
+          categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" fields={["category"]} />}
+          tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" fields={["tag"]} />}
         />
 
         {wallpapers.length === 0 ? <p className="py-12 text-center text-stone-400">{dictionary.emptyTitle}</p> : null}
         <WaterfallGallery
           key={wallpaperFilterParams(filters).toString()}
           dictionary={dictionary}
-          allowStoredPreference={allowStoredPreference}
           initialPage={currentPage}
           items={items}
-          initialShowMeta={initialShowMeta}
           locale={locale}
           storageKey={waterfallPath}
           totalCount={wallpapers.length}

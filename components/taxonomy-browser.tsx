@@ -9,11 +9,10 @@ import { taxonomyLabel } from "@/lib/taxonomy-labels";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
 
-export default function TaxonomyBrowser({ items, locale, filters, pathname = "", mode, fields = ["country", "category", "tag"] }: {
+export default function TaxonomyBrowser({ items, locale, filters, pathname = "", fields = ["country", "category", "tag"] }: {
   items: WallpaperItem[];
   locale: Locale;
   pathname?: string;
-  mode?: string;
   fields?: Array<"category" | "tag" | "country">;
   filters: { q?: string; year?: string; month?: string; category?: string; tag?: string; country?: string };
 }) {
@@ -25,7 +24,6 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
       if (current) params.set(key, current);
     }
     if (field === "category") params.delete("tag");
-    if (mode) params.set("mode", mode);
     return localizePath(locale, `${pathname}${params.size ? `?${params}` : ""}`);
   }
 
@@ -53,7 +51,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
         <span>{name}</span>
         {count !== undefined ? <span className="text-xs tabular-nums opacity-60"><span aria-hidden="true">· </span>{count}</span> : null}
       </>;
-      const className = `inline-flex shrink-0 whitespace-nowrap items-baseline gap-2 rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${active ? "bg-amber-300/10 text-amber-200" : "text-stone-400 hover:bg-white/5 hover:text-white"}`;
+      const className = `inline-flex shrink-0 whitespace-nowrap items-baseline gap-2 rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${active ? "bg-amber-300/10 text-amber-200" : "text-stone-400 theme-button-hover hover:text-white"}`;
       if (count === 0 && !active) {
         return <span key={id} aria-disabled="true" className="inline-flex shrink-0 items-baseline gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm text-stone-500 opacity-50">{content}</span>;
       }

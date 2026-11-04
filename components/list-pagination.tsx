@@ -18,7 +18,7 @@ export default function ListPagination({
   return (
     <div className="flex items-center gap-3">
       {currentPage > 1 ? (
-        <Link href={prevHref} rel="prev" className={`${baseClass} border border-white/15 text-white hover:bg-white/10`}>
+        <Link href={prevHref} rel="prev" className={`${baseClass} border border-white/15 text-white theme-button-hover`}>
           {prevLabel}
         </Link>
       ) : <span aria-disabled="true" className={disabledClass}>{prevLabel}</span>}

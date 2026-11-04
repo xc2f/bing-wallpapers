@@ -11,15 +11,22 @@ const SCROLL_ANCHOR_OFFSET_PREFIX = "scroll-anchor-offset:";
 interface PreserveScrollLinkProps extends LinkProps {
   children: React.ReactNode;
   className?: string;
+  title?: string;
+  scrollAnchor?: HTMLElement | null;
 }
 
 export default function PreserveScrollLink({
   href,
   children,
   className,
+  onClick,
+  scrollAnchor,
   ...props
 }: PreserveScrollLinkProps) {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+    onClick?.(event);
+    if (event.defaultPrevented) return;
+
     const currentUrl = `${window.location.pathname}${window.location.search}`;
     const pathnameKey = window.location.pathname;
 
@@ -32,9 +39,7 @@ export default function PreserveScrollLink({
       String(window.scrollY)
     );
 
-    const anchorElement = event.currentTarget.closest(
-      "[data-waterfall-index]"
-    ) as HTMLElement | null;
+    const anchorElement = scrollAnchor ?? event.currentTarget.closest<HTMLElement>("[data-waterfall-index]");
     const anchorIndex = anchorElement?.dataset.waterfallIndex;
     const anchorSsd = anchorElement?.dataset.waterfallSsd;
     const anchorOffset = anchorElement?.getBoundingClientRect().top;
