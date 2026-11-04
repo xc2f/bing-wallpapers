@@ -146,7 +146,7 @@ export default function ScrollToTopButton({
         </svg>
       </span>
       {hasPosition ? <span>{currentIndex}/{totalCount}</span> : null}
-      <span className="hidden sm:inline">{label}</span>
+      {!showPosition && <span className="hidden sm:inline">{label}</span>}
     </button>
   );
 }

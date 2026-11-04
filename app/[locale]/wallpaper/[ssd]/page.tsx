@@ -319,7 +319,7 @@ export default async function LocalizedWallpaperDetailPage({
             {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
             <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
-            <div className="min-w-0 w-full lg:max-w-3xl">
+            <div className="min-w-0 w-full">
               <h2 className="text-xs uppercase tracking-[0.22em] text-stone-500">
                 {dictionary.detailDescription}
               </h2>
@@ -329,7 +329,7 @@ export default async function LocalizedWallpaperDetailPage({
                 dictionary={dictionary}
                 className="mt-3"
               />
-              <div className="detail-description-prose mt-5 w-full space-y-4 break-words lg:max-w-2xl">
+              <div className="detail-description-prose mt-5 w-full space-y-4 break-words">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
                     key={`${wallpaper.Ssd}-description-${index}`}
