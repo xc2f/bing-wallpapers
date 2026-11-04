@@ -379,6 +379,29 @@ html[data-theme-resolved="light"] .theme-detail-ambient-vignette {
     ) !important;
 }
 
+/* Keep long detail pages off large filtered/composited surfaces on touch
+   devices. The sampled-color gradients retain the wallpaper's ambient tint. */
+@media (max-width: 767px), (pointer: coarse) {
+  .theme-detail-ambient-image,
+  .theme-detail-ambient-topglow,
+  .theme-detail-ambient-sheen {
+    display: none;
+  }
+
+  .theme-detail-ambient-color,
+  html[data-theme-resolved="light"] .theme-detail-ambient-color {
+    filter: none !important;
+    transition: none;
+  }
+
+  .theme-detail-panel,
+  .theme-detail-aside,
+  .theme-detail-page .theme-scroll-top {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 html[data-theme-resolved="light"] .theme-detail-nav-card {
   background:
     linear-gradient(

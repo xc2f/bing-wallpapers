@@ -12,6 +12,7 @@ import DetailAmbientBackground from "@/components/detail-ambient-background";
 import DetailKeyboardNavigation from "@/components/detail-keyboard-navigation";
 import DetailPrefetchLinks from "@/components/detail-prefetch-links";
 import DetailRelatedStrip from "@/components/detail-related-strip";
+import { resizeBingImage } from "@/lib/bing-image";
 import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import SmartBackButton from "@/components/smart-back-button";
@@ -318,8 +319,8 @@ export default async function LocalizedWallpaperDetailPage({
 
             {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
-            <div className="grid gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
-            <div className="max-w-3xl">
+            <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
+            <div className="min-w-0 w-full lg:max-w-3xl">
               <h2 className="text-xs uppercase tracking-[0.22em] text-stone-500">
                 {dictionary.detailDescription}
               </h2>
@@ -329,11 +330,11 @@ export default async function LocalizedWallpaperDetailPage({
                 dictionary={dictionary}
                 className="mt-3"
               />
-              <div className="detail-description-prose mt-5 max-w-2xl space-y-4">
+              <div className="detail-description-prose mt-5 w-full space-y-4 break-words lg:max-w-2xl">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
                     key={`${wallpaper.Ssd}-description-${index}`}
-                    className="text-pretty"
+                    className="sm:text-pretty"
                   >
                     {paragraph}
                   </p>
@@ -341,7 +342,7 @@ export default async function LocalizedWallpaperDetailPage({
               </div>
             </div>
 
-              <aside className="rounded-[1.5rem] border border-white/10 bg-black/12 backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">
+              <aside className="theme-detail-aside min-w-0 w-full break-words rounded-[1.5rem] border border-white/10 bg-black/12 backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">
                 <div className="grid gap-3 border-b border-white/10 pb-5">
                 {downloadUrl ? (
                   <a
@@ -408,7 +409,7 @@ export default async function LocalizedWallpaperDetailPage({
                   {toAbsoluteUrl(next.ImageContent?.Image?.Url) ? (
                     <Image
                       referrerPolicy="no-referrer"
-                      src={toAbsoluteUrl(next.ImageContent?.Image?.Url)}
+                      src={resizeBingImage(toAbsoluteUrl(next.ImageContent?.Image?.Url), 320, 180)}
                       alt={next.ImageContent?.Title ?? next.Ssd}
                       width={1920}
                       height={1080}
@@ -459,7 +460,7 @@ export default async function LocalizedWallpaperDetailPage({
                   {toAbsoluteUrl(previous.ImageContent?.Image?.Url) ? (
                     <Image
                       referrerPolicy="no-referrer"
-                      src={toAbsoluteUrl(previous.ImageContent?.Image?.Url)}
+                      src={resizeBingImage(toAbsoluteUrl(previous.ImageContent?.Image?.Url), 320, 180)}
                       alt={previous.ImageContent?.Title ?? previous.Ssd}
                       width={1920}
                       height={1080}
@@ -496,7 +497,7 @@ export default async function LocalizedWallpaperDetailPage({
                     {relatedPreviewUrl ? (
                       <Image
                         referrerPolicy="no-referrer"
-                        src={relatedPreviewUrl}
+                        src={resizeBingImage(relatedPreviewUrl, 320, 180)}
                         alt={relatedTitle}
                         width={1920}
                         height={1080}

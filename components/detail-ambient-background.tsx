@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { resizeBingImage } from "@/lib/bing-image";
 
 interface DetailAmbientBackgroundProps {
   children: ReactNode;
@@ -43,9 +44,10 @@ export default function DetailAmbientBackground({
   imageUrl,
 }: DetailAmbientBackgroundProps) {
   const [ambientColor, setAmbientColor] = useState<AmbientColor | null>(null);
+  const ambientImageUrl = imageUrl ? resizeBingImage(imageUrl, 320, 180) : undefined;
 
   useEffect(() => {
-    if (!imageUrl) {
+    if (!ambientImageUrl) {
       setAmbientColor(null);
       return;
     }
@@ -127,12 +129,15 @@ export default function DetailAmbientBackground({
       }
     };
 
-    image.src = imageUrl;
+    image.src = ambientImageUrl;
 
     return () => {
       cancelled = true;
+      image.onload = null;
+      image.onerror = null;
+      image.removeAttribute("src");
     };
-  }, [imageUrl]);
+  }, [ambientImageUrl]);
 
   const highlightColor = ambientColor
     ? shiftAmbientColor(ambientColor, 28, 10, -12)
@@ -162,12 +167,12 @@ export default function DetailAmbientBackground({
 
   return (
     <div className="relative isolate overflow-hidden">
-      {imageUrl ? (
+      {ambientImageUrl ? (
         <div
           aria-hidden="true"
-          className="theme-detail-ambient-image pointer-events-none absolute inset-[-6%] -z-10 scale-110 opacity-35 blur-3xl saturate-150"
+          className="theme-detail-ambient-image pointer-events-none absolute inset-x-[-6%] top-0 h-[min(72rem,100%)] -z-10 scale-110 opacity-35 blur-3xl saturate-150"
           style={{
-            backgroundImage: `url(${imageUrl})`,
+            backgroundImage: `url(${ambientImageUrl})`,
             backgroundPosition: "center",
             backgroundSize: "cover",
           }}
