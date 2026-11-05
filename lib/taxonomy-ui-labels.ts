@@ -1,5 +1,15 @@
 import { locales, type Locale } from "@/lib/i18n";
 
+export const filterLabelWidths: Record<Locale, string> = {
+  en: "4.75rem",
+  zh: "1.75rem",
+  es: "4.75rem",
+  fr: "4.75rem",
+  de: "5rem",
+  ja: "3.5rem",
+  ko: "1.75rem",
+};
+
 const labels = {
   expand: ["Expand", "展开", "Mostrar más", "Développer", "Aufklappen", "展開", "펼치기"],
   collapse: ["Collapse", "收起", "Mostrar menos", "Réduire", "Einklappen", "折りたたむ", "접기"],

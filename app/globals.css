@@ -461,6 +461,11 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   box-shadow: 0 12px 28px rgba(128, 116, 101, 0.09) !important;
 }
 
+.filter-label-columns {
+  --filter-column-gap: 1rem;
+  --filter-options-inset: calc(var(--filter-label-width) + var(--filter-column-gap));
+}
+
 html[data-theme-resolved="light"] .theme-waterfall-year-strip {
   box-shadow: 0 10px 24px rgba(120, 113, 108, 0.1) !important;
 }

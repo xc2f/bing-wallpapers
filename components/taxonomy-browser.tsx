@@ -1,10 +1,11 @@
+import type { CSSProperties } from "react";
 import WaterfallFilterLink from "@/components/waterfall-filter-link";
 import TaxonomyRow from "@/components/taxonomy-row";
 import Link from "next/link";
 import type { WallpaperItem } from "@/lib/archive";
 import { filterWallpapersByTaxonomy, getTaxonomyCounts } from "@/lib/image-taxonomy";
 import { localizePath, type Locale } from "@/lib/i18n";
-import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
+import { filterLabelWidths, taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 import { taxonomyLabel } from "@/lib/taxonomy-labels";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
@@ -76,5 +77,9 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
       </TaxonomyRow>
     );
   }
-  return <section className="space-y-3">{fields.map((field) => <div key={field}>{row(field)}</div>)}</section>;
+  return (
+    <section className="filter-label-columns space-y-3" style={{ "--filter-label-width": filterLabelWidths[locale] } as CSSProperties}>
+      {fields.map((field) => <div key={field}>{row(field)}</div>)}
+    </section>
+  );
 }

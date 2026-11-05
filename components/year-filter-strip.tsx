@@ -46,8 +46,8 @@ export default function YearFilterStrip({
   }, [currentYear, items]);
 
   return (
-    <nav aria-label={label} className="flex min-w-0 items-start gap-x-[var(--waterfall-filter-column-gap)]">
-      <span className="w-[var(--waterfall-filter-label-width)] shrink-0 py-2 text-sm text-stone-400">{label}</span>
+    <nav aria-label={label} className="flex min-w-0 items-start gap-x-[var(--filter-column-gap)]">
+      <span className="w-[var(--filter-label-width)] shrink-0 py-2 text-sm text-stone-400">{label}</span>
       <div
         ref={containerRef}
         className="relative min-w-0 flex-1 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [scroll-snap-type:x_proximity] [&::-webkit-scrollbar]:hidden"

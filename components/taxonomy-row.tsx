@@ -60,10 +60,10 @@ export default function TaxonomyRow({ label, children, expandLabel, collapseLabe
   }
 
   return (
-    <nav aria-label={label} className={`relative min-w-0 items-start gap-x-[var(--waterfall-filter-column-gap,0.75rem)] ${open ? "grid grid-cols-[minmax(0,1fr)_auto] gap-y-1 sm:flex" : "flex"}`}>
-      <span className={`w-[var(--waterfall-filter-label-width,auto)] shrink-0 text-sm text-stone-400 ${open ? "py-1.5" : "py-2"}`}>{label}</span>
+    <nav aria-label={label} className={`relative min-w-0 items-start gap-x-[var(--filter-column-gap,0.75rem)] ${open ? "grid grid-cols-[minmax(0,1fr)_auto] gap-y-1 sm:flex" : "flex"}`}>
+      <span className={`w-[var(--filter-label-width,auto)] shrink-0 text-sm text-stone-400 ${open ? "py-1.5" : "py-2"}`}>{label}</span>
       <div id={listId} ref={listRef}
-        className={`flex min-w-0 flex-1 flex-wrap items-start gap-x-2 ${open ? "col-span-2 row-start-2 max-sm:ml-[var(--waterfall-filter-options-inset,0px)] max-h-48 content-start gap-y-1 overflow-y-auto sm:max-h-none sm:overflow-visible [&>span>*]:py-1.5" : "max-h-10 gap-y-2 overflow-hidden supports-[overflow:clip]:overflow-clip"} ${showScrollCue ? "max-sm:[mask-image:linear-gradient(black_calc(100%-1.5rem),transparent)]" : ""}`}>
+        className={`flex min-w-0 flex-1 flex-wrap items-start gap-x-2 ${open ? "col-span-2 row-start-2 max-sm:ml-[var(--filter-options-inset,0px)] max-h-48 content-start gap-y-1 overflow-y-auto sm:max-h-none sm:overflow-visible [&>span>*]:py-1.5" : "max-h-10 gap-y-2 overflow-hidden supports-[overflow:clip]:overflow-clip"} ${showScrollCue ? "max-sm:[mask-image:linear-gradient(black_calc(100%-1.5rem),transparent)]" : ""}`}>
         {options.map((option, index) => (
           <span key={index} className="inline-flex shrink-0" inert={!open && index >= visibleCount} aria-hidden={!open && index >= visibleCount ? true : undefined}>
             {option}
