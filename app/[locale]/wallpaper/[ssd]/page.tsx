@@ -162,6 +162,16 @@ export default async function LocalizedWallpaperDetailPage({
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.noDescription;
   const descriptionParagraphs = splitDescriptionIntoParagraphs(description);
+  const translation = wallpaper.Translation;
+  const translationNotice = translation?.generatedBy === "AI"
+    ? translation.reviewedByHuman === false
+      ? dictionary.aiTranslationUnreviewedNotice
+      : dictionary.aiTranslationNotice
+    : undefined;
+  const backstagePath = wallpaper.ImageContent?.BackstageUrl;
+  const backstageUrl = backstagePath?.startsWith("/search?")
+    ? `https://www.bing.com${backstagePath}`
+    : undefined;
   const formattedDate = formatArchiveDate(
     currentLocale,
     wallpaper.Ssd,
@@ -320,15 +330,16 @@ export default async function LocalizedWallpaperDetailPage({
 
             <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div className="min-w-0 w-full">
-              <h2 className="text-xs uppercase tracking-[0.22em] text-stone-500">
-                {dictionary.detailDescription}
-              </h2>
-              <TranslationNotice
-                translation={wallpaper.Translation}
-                source={getTranslationSource(wallpaper)}
-                dictionary={dictionary}
-                className="mt-3"
-              />
+              <div className="text-xs text-stone-500" data-display-text="true">
+                <h2 className="inline uppercase tracking-[0.22em]">{dictionary.detailDescription}</h2>
+                {translationNotice ? (
+                  <span>
+                    {currentLocale === "zh" || currentLocale === "ja"
+                      ? `（${translationNotice}）`
+                      : ` (${translationNotice})`}
+                  </span>
+                ) : null}
+              </div>
               <div className="detail-description-prose mt-5 w-full space-y-4 break-words">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
@@ -339,6 +350,30 @@ export default async function LocalizedWallpaperDetailPage({
                   </p>
                 ))}
               </div>
+              <TranslationNotice
+                translation={translation}
+                source={getTranslationSource(wallpaper)}
+                dictionary={dictionary}
+                className="mt-3"
+              />
+              {backstageUrl ? (
+                <a
+                  href={backstageUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mt-5 inline-flex items-center gap-1.5 text-xs text-stone-500 underline-offset-4 hover:underline focus-visible:underline"
+                >
+                  <Image
+                    src="/images/bing-icon.png"
+                    alt=""
+                    width={14}
+                    height={14}
+                    unoptimized
+                    className="shrink-0"
+                  />
+                  {dictionary.detailLearnMoreOnBing}
+                </a>
+              ) : null}
             </div>
 
               <aside className="theme-detail-aside min-w-0 w-full break-words rounded-[1.5rem] border border-white/10 bg-black/12 backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">

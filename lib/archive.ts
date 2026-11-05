@@ -21,6 +21,7 @@ export interface WallpaperItem {
     Title?: string;
     Description?: string;
     Copyright?: string;
+    BackstageUrl?: string;
     Image?: {
       Url?: string;
       Wallpaper?: string;
