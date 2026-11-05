@@ -52,6 +52,7 @@ export async function GET(request: NextRequest) {
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
     description: wallpaper.ImageContent?.Description ?? dictionary.noDescription,
     previewUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url),
+    wallpaperUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper),
     detailHref: createDetailHref(locale, wallpaper.Ssd),
   }));
 

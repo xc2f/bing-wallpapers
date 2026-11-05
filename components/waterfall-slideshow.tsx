@@ -10,6 +10,7 @@ export interface SlideshowItem {
   ssd: string;
   title: string;
   previewUrl: string;
+  wallpaperUrl?: string;
   detailHref: string;
 }
 
@@ -64,6 +65,7 @@ export default function WaterfallSlideshow({
   }));
   const [displayed, setDisplayed] = useState({ item, index });
   const [previousImage, setPreviousImage] = useState<SlideshowItem | null>(null);
+  const [failedWallpaperUrls, setFailedWallpaperUrls] = useState<ReadonlySet<string>>(() => new Set());
   const pendingImageRef = useRef<HTMLImageElement>(null);
   const waitingForImage = displayed.item.ssd !== item.ssd;
   const pageCacheRef = useRef(new Map<number, SlideshowItem[]>());
@@ -81,6 +83,18 @@ export default function WaterfallSlideshow({
   const canPlay = totalCount > 1;
   const controlsVisible = !playing || !controlsHidden;
   const controlsVisibility = controlsVisible ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0";
+  const getSlideUrl = useCallback((slide: SlideshowItem) => {
+    const { wallpaperUrl, previewUrl } = slide;
+    return wallpaperUrl && !failedWallpaperUrls.has(wallpaperUrl) ? wallpaperUrl : previewUrl;
+  }, [failedWallpaperUrls]);
+
+  const fallBackToPreview = useCallback((slide: SlideshowItem) => {
+    const { wallpaperUrl, previewUrl } = slide;
+    if (!wallpaperUrl || !previewUrl || previewUrl === wallpaperUrl || getSlideUrl(slide) !== wallpaperUrl) return false;
+
+    setFailedWallpaperUrls((current) => new Set(current).add(wallpaperUrl));
+    return true;
+  }, [getSlideUrl]);
 
   function togglePlayback() {
     if (canPlay) setPlaying((current) => !current);
@@ -157,7 +171,7 @@ export default function WaterfallSlideshow({
           target = batch[nextIndex % WATERFALL_BATCH_SIZE];
         }
 
-        if (target?.previewUrl) {
+        if (target && getSlideUrl(target)) {
           setSlide({ item: target, index: nextIndex });
           return;
         }
@@ -172,7 +186,7 @@ export default function WaterfallSlideshow({
       loadingRef.current = false;
       if (mountedRef.current) setLoading(false);
     }
-  }, [canPlay, getPage, index, items, totalCount]);
+  }, [canPlay, getPage, getSlideUrl, index, items, totalCount]);
 
   useEffect(() => {
     const image = pendingImageRef.current;
@@ -190,6 +204,7 @@ export default function WaterfallSlideshow({
       });
     }).catch(() => {
       if (cancelled) return;
+      if (fallBackToPreview(item)) return;
       setSlide(displayed);
       setPlaying(false);
       setFailed(true);
@@ -198,7 +213,7 @@ export default function WaterfallSlideshow({
       cancelled = true;
       window.cancelAnimationFrame(frame);
     };
-  }, [displayed, index, item, waitingForImage]);
+  }, [displayed, index, item, fallBackToPreview, waitingForImage]);
 
   useEffect(() => {
     if (!previousImage) return;
@@ -221,7 +236,7 @@ export default function WaterfallSlideshow({
         nextImage = batch?.[nextIndex % WATERFALL_BATCH_SIZE];
       }
 
-      const url = nextImage?.previewUrl;
+      const url = nextImage && getSlideUrl(nextImage);
       if (cancelled || document.hidden || !url || preloadedImageRef.current?.getAttribute("src") === url) return;
 
       const image = new window.Image();
@@ -241,7 +256,7 @@ export default function WaterfallSlideshow({
       cancelled = true;
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [canPlay, displayed.index, getPage, items, totalCount, waitingForImage]);
+  }, [canPlay, displayed.index, getPage, getSlideUrl, items, totalCount, waitingForImage]);
 
   useEffect(() => {
     if (!playing || loading || waitingForImage) return;
@@ -377,7 +392,8 @@ export default function WaterfallSlideshow({
             <Image
               key={image.ssd}
               ref={pending ? pendingImageRef : undefined}
-              src={image.previewUrl}
+              src={getSlideUrl(image)}
+              onError={pending ? undefined : () => { fallBackToPreview(image); }}
               alt={active ? image.title : ""}
               aria-hidden={!active}
               fill

@@ -5,7 +5,7 @@ import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, typ
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
 import WaterfallViewOptions, { manualColumnChoices, type WaterfallView, viewDefaults } from "@/components/waterfall-view-options";
-import WaterfallSlideshow from "@/components/waterfall-slideshow";
+import WaterfallSlideshow, { type SlideshowItem } from "@/components/waterfall-slideshow";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
 import { wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import type { Dictionary, Locale } from "@/lib/i18n";
@@ -27,14 +27,10 @@ interface WaterfallGalleryProps {
   totalCount: number;
   totalPages: number;
   filters: WallpaperFilters;
-  items: {
-    ssd: string;
+  items: (SlideshowItem & {
     fullDate?: string;
-    title: string;
     description?: string;
-    previewUrl: string;
-    detailHref: string;
-  }[];
+  })[];
 }
 
 const cardAppearance = [
@@ -359,7 +355,7 @@ export default function WaterfallGallery({
   }, [fetchWaterfallPage, hasMoreServerItems, loadedItems, loadedPage]);
 
   function openPreview(event: MouseEvent<HTMLAnchorElement>, item: WaterfallGalleryProps["items"][number]) {
-    if (event.defaultPrevented || !item.previewUrl || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.defaultPrevented || !(item.wallpaperUrl || item.previewUrl) || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
     event.preventDefault();
     setPreview({ item, trigger: event.currentTarget });
   }
@@ -657,7 +653,7 @@ export default function WaterfallGallery({
                   <PreserveScrollLink
                     href={createDetailHref(item.detailHref)}
                     onClick={(event) => openPreview(event, item)}
-                    aria-haspopup={item.previewUrl ? "dialog" : undefined}
+                    aria-haspopup={item.wallpaperUrl || item.previewUrl ? "dialog" : undefined}
                     className="block"
                   >
                     {item.previewUrl ? (
@@ -732,7 +728,7 @@ export default function WaterfallGallery({
                     <PreserveScrollLink
                       href={createDetailHref(item.detailHref)}
                       onClick={(event) => openPreview(event, item)}
-                      aria-haspopup={item.previewUrl ? "dialog" : undefined}
+                      aria-haspopup={item.wallpaperUrl || item.previewUrl ? "dialog" : undefined}
                       className="block"
                     >
                       {item.previewUrl ? (
