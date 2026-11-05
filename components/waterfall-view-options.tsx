@@ -25,41 +25,21 @@ const labels = {
   ko: ["보기", "정보", "이미지만", "제목", "제목과 날짜", "상세 정보", "레이아웃", "벽돌형", "격자", "열 수", "자동", "페이지 너비"],
 } as const satisfies Record<Locale, readonly string[]>;
 
-function ViewSlider({ label, value, values, onChange, disabled = false }: {
+function ViewChoice({ label, value, values, onChange, disabled = false, preview = false, wrap = false }: {
   label: string;
   value: number;
   values: readonly string[];
   onChange: (value: number) => void;
   disabled?: boolean;
+  preview?: boolean;
+  wrap?: boolean;
 }) {
-  const sliderId = useId();
-
   return (
-    <div className="waterfall-slider-row grid grid-cols-subgrid items-center gap-y-0.5 py-1.5">
-      <label htmlFor={sliderId} className="whitespace-nowrap text-xs font-medium leading-tight text-stone-300">{label}</label>
-      <span className="relative block">
-        <span aria-hidden="true" className="waterfall-slider-rail pointer-events-none absolute inset-x-[12.5%] top-1/2 h-0.5 -translate-y-1/2 rounded-full">
-          <span className="waterfall-slider-fill absolute inset-y-0 left-0 rounded-full" style={{ width: `${values.length > 1 ? value / (values.length - 1) * 100 : 0}%` }} />
-          {values.length > 1 && values.map((text, index) => (
-            <span key={text} className="waterfall-slider-tick absolute top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ left: `${index / (values.length - 1) * 100}%` }} />
-          ))}
-        </span>
-        <input
-          id={sliderId}
-          type="range"
-          min={0}
-          max={values.length - 1}
-          step={1}
-          value={value}
-          disabled={disabled}
-          aria-valuetext={values[value]}
-          onChange={(event) => onChange(event.currentTarget.valueAsNumber)}
-          className="waterfall-slider-input relative mx-auto block h-5 w-[calc(75%+10px)] cursor-pointer disabled:cursor-default"
-        />
-      </span>
+    <fieldset disabled={disabled} className="waterfall-view-section min-w-0">
+      <legend className="mb-2.5 text-xs font-medium text-stone-300">{label}</legend>
       <div
-        className={`col-start-2 flex w-full justify-self-center text-center text-[11px] leading-tight ${values.length === 1 ? "justify-center" : "justify-between"}`}
-        style={values.length > 4 ? { width: `${75 + 75 / (values.length - 1)}%` } : undefined}
+        className={`waterfall-view-choices ${preview ? "waterfall-view-layouts" : ""}`}
+        style={{ gridTemplateColumns: `repeat(${wrap ? 2 : values.length}, minmax(0, 1fr))` }}
       >
         {values.map((text, index) => (
           <button
@@ -71,13 +51,29 @@ function ViewSlider({ label, value, values, onChange, disabled = false }: {
             onClick={() => {
               if (index !== value) onChange(index);
             }}
-            className={`flex min-h-6 min-w-0 w-1/4 items-center justify-center rounded-md px-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-amber-400 disabled:cursor-default ${index === value ? "waterfall-slider-current" : "text-stone-400 theme-button-hover"}`}
+            className="waterfall-view-choice"
           >
-            <span title={text} className="min-w-0 truncate px-0.5 py-0.5">{text}</span>
+            {preview ? (
+              <svg aria-hidden="true" viewBox="0 0 56 36" fill="currentColor" className="h-9 w-14">
+                {index === 0 ? (
+                  <>
+                    <rect x="2" y="2" width="15" height="19" rx="2" />
+                    <rect x="2" y="24" width="15" height="10" rx="2" />
+                    <rect x="20" y="2" width="15" height="12" rx="2" />
+                    <rect x="20" y="17" width="15" height="17" rx="2" />
+                    <rect x="38" y="2" width="15" height="19" rx="2" />
+                    <rect x="38" y="24" width="15" height="10" rx="2" />
+                  </>
+                ) : (
+                  [2, 20, 38].flatMap((x) => [2, 19].map((y) => <rect key={`${x}-${y}`} x={x} y={y} width="15" height="15" rx="2" />))
+                )}
+              </svg>
+            ) : null}
+            <span>{text}</span>
           </button>
         ))}
       </div>
-    </div>
+    </fieldset>
   );
 }
 
@@ -174,34 +170,44 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
 
   const controls = (
     <>
-      <ViewSlider label={layout} value={Number(view.grid)} values={[masonry, grid]} onChange={(value) => onChange({ ...view, grid: value === 1 })} />
-      <ViewSlider
+      <div className="waterfall-view-header flex items-center justify-between gap-3">
+        <span id={`${panelId}-title`} className="text-sm font-semibold text-stone-100">{heading}</span>
+        <button type="button" onClick={() => setOpen(false)} aria-label={close} className="waterfall-view-close theme-button-hover inline-flex size-8 items-center justify-center rounded-lg text-stone-400">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"><path d="m4 4 8 8M12 4l-8 8" /></svg>
+        </button>
+      </div>
+      <div className="waterfall-view-controls">
+      <ViewChoice preview label={layout} value={Number(view.grid)} values={[masonry, grid]} onChange={(value) => onChange({ ...view, grid: value === 1 })} />
+      <ViewChoice
+        wrap
         label={info}
         value={preset}
         values={[images, title, captions, details]}
         onChange={(index) => onChange({ ...view, info: presets[index] })}
       />
-      <ViewSlider
+      <ViewChoice
         label={columns}
         value={Math.max(0, activeColumns)}
         values={columnChoices.map((count) => count ? String(count) : `${auto} · ${autoColumns}`)}
         disabled={autoColumns < 2}
         onChange={(index) => onChange({ ...view, columns: columnChoices[index] })}
       />
-      <ViewSlider label={wide} value={Number(view.wide)} values={[standard, wideValue]} onChange={(value) => onChange({ ...view, wide: value === 1 })} />
-      <ViewSlider
+      <ViewChoice label={wide} value={Number(view.wide)} values={[standard, wideValue]} onChange={(value) => onChange({ ...view, wide: value === 1 })} />
+      <ViewChoice
         label={appearanceLabel}
         value={view.appearance}
         values={appearanceValues}
         onChange={(index) => onChange({ ...view, appearance: appearanceOptions[index] })}
       />
-      <div className="waterfall-view-footer col-span-full mt-1 flex justify-end pt-1">
+      </div>
+      <div className="waterfall-view-footer flex justify-end">
         <button
           type="button"
-          aria-disabled={isDefault}
+          disabled={isDefault}
           onClick={() => { if (!isDefault) onChange(viewDefaults); }}
-          className="rounded-md px-2 py-1.5 text-xs text-stone-300 theme-button-hover aria-disabled:text-stone-500"
+          className="waterfall-view-reset theme-button-hover inline-flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-xs text-stone-300 disabled:cursor-default disabled:opacity-40"
         >
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6a5 5 0 1 1 .5 5M3 2.5V6h3.5" /></svg>
           {reset}
         </button>
       </div>
@@ -214,6 +220,7 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
         ref={triggerRef}
         type="button"
         aria-expanded={open}
+        aria-haspopup="dialog"
         aria-controls={panelId}
         onClick={() => setOpen((current) => !current)}
         className={`flex cursor-pointer items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-stone-100 transition-colors duration-200 ${
@@ -239,7 +246,7 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
         <dialog
           ref={sheetRef}
           id={panelId}
-          aria-label={heading}
+          aria-labelledby={`${panelId}-title`}
           onCancel={(event) => {
             event.preventDefault();
             setOpen(false);
@@ -247,20 +254,14 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
           onClick={(event) => {
             if (event.target === event.currentTarget) setOpen(false);
           }}
-          className="waterfall-view-sheet fixed inset-x-0 bottom-0 top-auto m-0 max-h-[calc(100dvh-1rem)] w-full max-w-none overscroll-contain rounded-t-2xl border border-white/10 p-0 text-sm text-stone-100 shadow-xl backdrop:bg-black/50"
+          className="waterfall-view-sheet fixed inset-x-0 bottom-0 top-auto m-0 max-h-[calc(100dvh-1rem)] w-full max-w-none overflow-y-auto overscroll-contain rounded-t-2xl border border-white/10 p-0 text-sm text-stone-100 shadow-xl backdrop:bg-black/50"
         >
-          <div className="px-3 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
-            <div className="mb-1 flex items-center justify-between gap-3 border-b border-white/10 px-1 pb-1">
-              <span className="font-semibold">{heading}</span>
-              <button type="button" onClick={() => setOpen(false)} className="rounded-md px-3 py-2 text-sm text-stone-300 theme-button-hover">
-                {close}
-              </button>
-            </div>
-            <div className="waterfall-view-panel">{controls}</div>
+          <div className="pb-[env(safe-area-inset-bottom)]">
+            {controls}
           </div>
         </dialog>
       ) : (
-        <div id={panelId} hidden={!open} className="absolute right-0 top-full mt-2 w-[26rem] max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-5rem)] waterfall-view-panel overflow-y-auto rounded-2xl border border-white/10 px-3 py-2 text-stone-100 shadow-xl">
+        <div id={panelId} role="dialog" aria-labelledby={`${panelId}-title`} hidden={!open} className="absolute right-0 top-full mt-3 w-[23rem] max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-5rem)] waterfall-view-panel overflow-y-auto rounded-2xl border border-white/10 text-stone-100 shadow-xl">
           {controls}
         </div>
       )}

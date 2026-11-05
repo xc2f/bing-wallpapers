@@ -6,6 +6,7 @@
   --background: #0b0b0c;
   --foreground: #ededed;
   --theme-app-rgb: 10 10 10;
+  --theme-panel-background: rgb(var(--theme-app-rgb));
   --theme-surface-strong-rgb: 23 23 23;
   --theme-overlay-rgb: 255 255 255;
   --theme-button-hover-opacity: 4%;
@@ -42,6 +43,7 @@ html[data-theme-resolved="light"] {
   --background: #f5f0e8;
   --foreground: #1f2937;
   --theme-app-rgb: 245 240 232;
+  --theme-panel-background: #fefaf4;
   --theme-surface-strong-rgb: 232 223 210;
   --theme-overlay-rgb: 31 41 55;
   --theme-text-strong-rgb: 17 24 39;
@@ -109,29 +111,17 @@ code {
 }
 
 .theme-filter-field {
-  background-color: rgb(255 255 255 / 0.06);
+  background-color: var(--theme-panel-background);
   border-color: rgb(var(--theme-border-rgb) / 0.16);
 }
 
 .theme-filter-field:hover {
-  background-color: rgb(255 255 255 / 0.09);
   border-color: rgb(var(--theme-border-rgb) / 0.24);
 }
 
 .theme-filter-field:focus,
 .theme-filter-field[aria-expanded="true"] {
-  background-color: rgb(255 255 255 / 0.1);
   border-color: rgb(var(--theme-accent-ring-rgb) / 0.55);
-}
-
-html[data-theme-resolved="light"] .theme-filter-field {
-  background-color: color-mix(in srgb, rgb(var(--theme-app-rgb)), rgb(var(--theme-accent-surface-rgb)) 5%);
-}
-
-html[data-theme-resolved="light"] .theme-filter-field:hover,
-html[data-theme-resolved="light"] .theme-filter-field:focus,
-html[data-theme-resolved="light"] .theme-filter-field[aria-expanded="true"] {
-  background-color: color-mix(in srgb, rgb(var(--theme-app-rgb)), rgb(var(--theme-accent-surface-rgb)) 9%);
 }
 
 html[data-theme-resolved] .bg-stone-950 {
@@ -546,7 +536,7 @@ html[data-theme-resolved] .theme-locale-switcher .theme-locale-switcher-link-act
 }
 
 html[data-theme-resolved="light"] .theme-floating-panel {
-  background: rgba(255, 251, 245, 0.94) !important;
+  background: var(--theme-panel-background) !important;
   border-color: rgba(41, 37, 36, 0.09) !important;
   box-shadow: 0 12px 30px rgba(120, 113, 108, 0.12) !important;
 }
@@ -727,71 +717,111 @@ html[data-theme-resolved="light"] .theme-switcher-menu {
 
 .waterfall-view-panel,
 .waterfall-view-sheet {
-  background: rgb(var(--theme-app-rgb));
-  background: color-mix(in srgb, rgb(var(--theme-app-rgb)) 80%, rgb(var(--theme-surface-strong-rgb)));
+  background: var(--theme-panel-background);
 }
 
-.waterfall-view-panel:not([hidden]) {
+/* Keep the panel opaque above photographs in both themes. */
+.waterfall-view-panel,
+.waterfall-view-sheet {
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.16), 0 2px 8px rgb(0 0 0 / 0.06);
+}
+
+.waterfall-view-header {
+  padding: 12px 16px 12px 20px;
+  border-bottom: 1px solid rgb(var(--theme-border-rgb) / 0.08);
+}
+
+.waterfall-view-controls {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr);
-  column-gap: 0.5rem;
+  gap: 20px;
+  padding: 20px;
 }
 
-.waterfall-slider-row {
-  grid-column: 1 / -1;
+.waterfall-view-choices {
+  display: grid;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgb(var(--theme-border-rgb) / 0.06);
+  border-radius: 10px;
+  background: rgb(var(--theme-overlay-rgb) / 0.035);
 }
 
-.waterfall-slider-row + .waterfall-slider-row,
-.waterfall-view-footer {
-  border-top: 1px solid rgb(var(--theme-border-rgb) / 0.08);
+.waterfall-view-choice {
+  display: flex;
+  min-width: 0;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 6px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  color: rgb(var(--theme-text-muted-rgb));
+  font-size: 12px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
-.waterfall-slider-rail {
-  background: rgb(var(--theme-overlay-rgb) / 0.14);
+@media (hover: hover) {
+  .waterfall-view-choice:hover:not(:disabled) {
+    background: rgb(var(--theme-overlay-rgb) / 0.05);
+    color: rgb(var(--theme-text-strong-rgb));
+  }
 }
 
-.waterfall-slider-fill {
-  background: rgb(var(--theme-accent-solid-rgb) / 0.62);
+.waterfall-view-choice[aria-pressed="true"] {
+  border-color: rgb(var(--theme-accent-ring-rgb) / 0.35);
+  background: var(--theme-panel-background);
+  color: rgb(var(--theme-accent-text-rgb));
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.07);
 }
 
-.waterfall-slider-tick {
-  background: rgb(var(--theme-text-muted-rgb));
+.waterfall-view-choice[aria-pressed="true"]:hover:not(:disabled) {
+  background: var(--theme-panel-background);
+  color: rgb(var(--theme-accent-text-rgb));
 }
 
-.waterfall-slider-current {
-  color: rgb(var(--theme-accent-text-soft-rgb));
-}
-
-.waterfall-slider-input {
-  appearance: none;
-  background: transparent;
-  border-radius: 9999px;
-}
-
-.waterfall-slider-input:focus-visible {
-  outline: 2px solid rgb(var(--theme-accent-ring-rgb) / 0.7);
+.waterfall-view-choice:focus-visible,
+.waterfall-view-close:focus-visible,
+.waterfall-view-reset:focus-visible {
+  outline: 2px solid rgb(var(--theme-accent-ring-rgb));
   outline-offset: 2px;
 }
 
-.waterfall-slider-input::-webkit-slider-thumb {
-  appearance: none;
-  width: 10px;
-  height: 10px;
-  border: 0;
-  border-radius: 50%;
-  background: rgb(var(--theme-accent-solid-rgb));
-  box-shadow: 0 0 0 2px rgb(var(--theme-app-rgb));
+.waterfall-view-section:disabled {
+  opacity: 0.5;
 }
 
-.waterfall-slider-input::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
-  border: 0;
-  border-radius: 50%;
-  background: rgb(var(--theme-accent-solid-rgb));
-  box-shadow: 0 0 0 2px rgb(var(--theme-app-rgb));
+.waterfall-view-section:disabled button {
+  cursor: default;
 }
 
-.waterfall-slider-input:disabled {
-  opacity: 0.45;
+.waterfall-view-layouts .waterfall-view-choice {
+  flex-direction: column;
+  padding: 12px 8px 10px;
+}
+
+.waterfall-view-layouts svg {
+  opacity: 0.65;
+}
+
+.waterfall-view-layouts [aria-pressed="true"] svg {
+  opacity: 1;
+}
+
+.waterfall-view-footer {
+  padding: 8px 12px;
+  border-top: 1px solid rgb(var(--theme-border-rgb) / 0.08);
+}
+
+@media (max-width: 639px) {
+  .waterfall-view-choice {
+    min-height: 44px;
+  }
+
+  .waterfall-view-controls {
+    gap: 16px;
+  }
 }
