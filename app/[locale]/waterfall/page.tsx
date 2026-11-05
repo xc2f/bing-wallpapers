@@ -145,9 +145,17 @@ export default async function LocalizedWaterfallPage({
       />
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 has-[[data-waterfall-wide=true]]:max-w-none">
         <section className="flex flex-col gap-6 pb-2">
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-wrap items-center justify-end gap-3">
-              <ThemeSwitcher
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
+            <Link
+              href={archiveHref}
+              className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+            >
+              <span aria-hidden="true" className="text-sm leading-none">
+                ←
+              </span>
+              {dictionary.waterfallBack}
+            </Link>
+            <ThemeSwitcher
               initialMode={initialThemeMode}
               labels={{
                 trigger: dictionary.themeLabel,
@@ -156,22 +164,14 @@ export default async function LocalizedWaterfallPage({
                 light: dictionary.themeLight,
                 dark: dictionary.themeDark,
               }}
-              />
+            />
+            <div className="col-span-2 min-w-0 justify-self-end sm:col-span-1">
               <LocaleSwitcher
                 locale={locale}
                 pathname="/waterfall"
                 searchParams={Object.fromEntries(Object.entries(resolvedSearchParams).filter(([key]) => key !== "mode"))}
               />
             </div>
-            <Link
-              href={archiveHref}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover"
-            >
-              <span aria-hidden="true" className="text-sm leading-none">
-                ←
-              </span>
-              {dictionary.waterfallBack}
-            </Link>
           </div>
 
           <div className="max-w-3xl">
