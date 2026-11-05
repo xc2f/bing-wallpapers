@@ -109,15 +109,29 @@ code {
 }
 
 .theme-filter-field {
-  background-color: rgb(var(--theme-overlay-rgb) / 0.03);
+  background-color: rgb(255 255 255 / 0.06);
+  border-color: rgb(var(--theme-border-rgb) / 0.16);
 }
 
 .theme-filter-field:hover {
-  background-color: rgb(var(--theme-overlay-rgb) / 0.04);
+  background-color: rgb(255 255 255 / 0.09);
+  border-color: rgb(var(--theme-border-rgb) / 0.24);
 }
 
-.theme-filter-field:focus {
-  background-color: rgb(var(--theme-overlay-rgb) / 0.05);
+.theme-filter-field:focus,
+.theme-filter-field[aria-expanded="true"] {
+  background-color: rgb(255 255 255 / 0.1);
+  border-color: rgb(var(--theme-accent-ring-rgb) / 0.55);
+}
+
+html[data-theme-resolved="light"] .theme-filter-field {
+  background-color: color-mix(in srgb, rgb(var(--theme-app-rgb)), rgb(var(--theme-accent-surface-rgb)) 5%);
+}
+
+html[data-theme-resolved="light"] .theme-filter-field:hover,
+html[data-theme-resolved="light"] .theme-filter-field:focus,
+html[data-theme-resolved="light"] .theme-filter-field[aria-expanded="true"] {
+  background-color: color-mix(in srgb, rgb(var(--theme-app-rgb)), rgb(var(--theme-accent-surface-rgb)) 9%);
 }
 
 html[data-theme-resolved] .bg-stone-950 {

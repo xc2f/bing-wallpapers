@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 import { type Dictionary, type Locale, formatMonthLabel, localizePath } from "@/lib/i18n";
 
 const FILTER_BAR_COLLAPSED_STORAGE_KEY = "bing-wallpapers-filter-bar-collapsed";
-const FILTER_FIELD_CLASS_NAME = "theme-filter-field h-12 w-full rounded-xl border border-white/[0.06] text-white outline-none transition focus:border-amber-300/35 focus:shadow-[0_0_0_4px_rgba(251,191,36,0.08)]";
+const FILTER_FIELD_CLASS_NAME = "theme-filter-field h-12 w-full rounded-xl border text-white outline-none transition focus:shadow-[0_0_0_4px_rgba(251,191,36,0.08)]";
 
 interface DateCascadeSelectProps {
   name: string;
