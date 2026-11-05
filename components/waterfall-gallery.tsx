@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import WaterfallViewOptions, { manualColumnChoices, type WaterfallView, viewDefaults } from "@/components/waterfall-view-options";
 import WaterfallSlideshow, { type SlideshowItem } from "@/components/waterfall-slideshow";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
+import { slideshowReturnKey } from "@/lib/slideshow-return";
 import { wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import type { Dictionary, Locale } from "@/lib/i18n";
 
@@ -186,7 +187,7 @@ export default function WaterfallGallery({
   const [toolbarStuck, setToolbarStuck] = useState(false);
   const hasRestoredAnchorRef = useRef(false);
   const fetchInFlightRef = useRef<Promise<WaterfallGalleryProps["items"]> | null>(null);
-  const [preview, setPreview] = useState<{ item: WaterfallGalleryProps["items"][number]; trigger: HTMLAnchorElement } | null>(null);
+  const [preview, setPreview] = useState<{ item: SlideshowItem; index?: number; trigger: HTMLAnchorElement } | null>(null);
   const previousLoadedCountRef = useRef(items.length);
 
   useEffect(() => {
@@ -551,6 +552,34 @@ export default function WaterfallGallery({
   );
 
   useEffect(() => {
+    if (!isReady || preview) return;
+    const key = slideshowReturnKey(storageKey);
+    const saved = window.sessionStorage.getItem(key);
+    if (!saved) return;
+
+    try {
+      const state = JSON.parse(saved) as { item: SlideshowItem; index: number; triggerSsd: string };
+      if (!state.item?.ssd || !Number.isInteger(state.index) || state.index < 0 || state.index >= totalCount || typeof state.triggerSsd !== "string") {
+        window.sessionStorage.removeItem(key);
+        return;
+      }
+      const trigger = sectionRef.current?.querySelector<HTMLAnchorElement>(
+        `[data-waterfall-ssd="${CSS.escape(state.triggerSsd)}"] a[aria-haspopup="dialog"]`
+      );
+      if (!trigger) return;
+
+      // Let the gallery's scroll restoration finish before locking the dialog's scroll.
+      const frame = window.requestAnimationFrame(() => {
+        window.sessionStorage.removeItem(key);
+        setPreview({ item: state.item, index: state.index, trigger });
+      });
+      return () => window.cancelAnimationFrame(frame);
+    } catch {
+      window.sessionStorage.removeItem(key);
+    }
+  }, [groupedItems, isReady, preview, storageKey, totalCount]);
+
+  useEffect(() => {
     if (!isReady) {
       return;
     }
@@ -804,11 +833,22 @@ export default function WaterfallGallery({
       {preview && (
         <WaterfallSlideshow
           initialItem={preview.item}
+          initialIndex={preview.index}
           trigger={preview.trigger}
           items={loadedItems}
           totalCount={totalCount}
           loadPage={fetchWaterfallPage}
-          onClose={() => setPreview(null)}
+          onClose={() => {
+            window.sessionStorage.removeItem(slideshowReturnKey(storageKey));
+            setPreview(null);
+          }}
+          onDetails={(item, index) => {
+            window.sessionStorage.setItem(slideshowReturnKey(storageKey), JSON.stringify({
+              item,
+              index,
+              triggerSsd: preview.trigger.closest<HTMLElement>("[data-waterfall-ssd]")?.dataset.waterfallSsd,
+            }));
+          }}
           detailHref={createDetailHref}
           locale={locale}
           loadingLabel={dictionary.waterfallLoadingMore}

@@ -115,6 +115,7 @@ export default async function LocalizedWallpaperDetailPage({
     tag?: string;
     country?: string;
     view?: string;
+    from?: string;
   }>;
 }) {
   const { locale, ssd } = await params;
@@ -200,6 +201,7 @@ export default async function LocalizedWallpaperDetailPage({
       ? (() => {
           const waterfallQuery = new URLSearchParams(backQuery.toString());
           waterfallQuery.delete("view");
+          waterfallQuery.delete("from");
           const waterfallSearch = waterfallQuery.toString();
 
           return localizePath(
@@ -258,34 +260,36 @@ export default async function LocalizedWallpaperDetailPage({
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
           <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
-          <div className="flex flex-col gap-3">
-            <div className="flex flex-wrap items-center justify-end gap-3">
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
+              <SmartBackButton
+                fallbackHref={backHref}
+                className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
+                label={
+                  view === "waterfall" && resolvedSearchParams.from === "slideshow"
+                    ? dictionary.detailBackToSlideshow
+                    : view === "waterfall"
+                      ? dictionary.detailBackToWaterfall
+                      : dictionary.detailBack
+                }
+              />
               <ThemeSwitcher
-              initialMode={initialThemeMode}
-              labels={{
-                trigger: dictionary.themeLabel,
-                dialog: dictionary.themeDialogLabel,
-                system: dictionary.themeAuto,
-                light: dictionary.themeLight,
-                dark: dictionary.themeDark,
-              }}
+                initialMode={initialThemeMode}
+                labels={{
+                  trigger: dictionary.themeLabel,
+                  dialog: dictionary.themeDialogLabel,
+                  system: dictionary.themeAuto,
+                  light: dictionary.themeLight,
+                  dark: dictionary.themeDark,
+                }}
               />
-              <LocaleSwitcher
-                locale={currentLocale}
-                pathname={`/wallpaper/${ssd}`}
-                searchParams={Object.fromEntries(Object.entries(resolvedSearchParams).filter(([key]) => key !== "mode"))}
-              />
+              <div className="col-span-2 min-w-0 justify-self-end sm:col-span-1">
+                <LocaleSwitcher
+                  locale={currentLocale}
+                  pathname={`/wallpaper/${ssd}`}
+                  searchParams={Object.fromEntries(Object.entries(resolvedSearchParams).filter(([key]) => key !== "mode"))}
+                />
+              </div>
             </div>
-            <SmartBackButton
-              fallbackHref={backHref}
-              className="inline-flex w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover"
-              label={
-                view === "waterfall"
-                  ? dictionary.detailBackToWaterfall
-                  : dictionary.detailBack
-              }
-            />
-          </div>
 
           <div className="flex flex-col gap-3">
               <div className="w-full min-w-0">

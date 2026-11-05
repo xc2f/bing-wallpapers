@@ -46,14 +46,16 @@ function ControlIcon({ name }: { name: keyof typeof controlPaths }) {
 }
 
 export default function WaterfallSlideshow({
-  initialItem, trigger, items, totalCount, loadPage, onClose, detailHref, locale, loadingLabel,
+  initialItem, initialIndex, trigger, items, totalCount, loadPage, onClose, onDetails, detailHref, locale, loadingLabel,
 }: {
   initialItem: SlideshowItem;
+  initialIndex?: number;
   trigger: HTMLAnchorElement;
   items: SlideshowItem[];
   totalCount: number;
   loadPage: (page: number) => Promise<SlideshowItem[] | null>;
   onClose: () => void;
+  onDetails: (item: SlideshowItem, index: number) => void;
   detailHref: (href: string) => string;
   locale: Locale;
   loadingLabel: string;
@@ -61,7 +63,7 @@ export default function WaterfallSlideshow({
   const [heading, close, previous, next, play, pause, details, loadError] = labels[locale];
   const [{ item, index }, setSlide] = useState(() => ({
     item: initialItem,
-    index: items.findIndex((entry) => entry.ssd === initialItem.ssd),
+    index: initialIndex ?? items.findIndex((entry) => entry.ssd === initialItem.ssd),
   }));
   const [displayed, setDisplayed] = useState({ item, index });
   const [previousImage, setPreviousImage] = useState<SlideshowItem | null>(null);
@@ -442,7 +444,11 @@ export default function WaterfallSlideshow({
               <button type="button" aria-label={next} title={next} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(1)}>
                 <ControlIcon name="next" />
               </button>
-              <PreserveScrollLink href={detailHref(displayed.item.detailHref)} scrollAnchor={trigger.closest<HTMLElement>("[data-waterfall-index]")} aria-label={details} title={details} className={controlClass}>
+              <PreserveScrollLink href={`${detailHref(displayed.item.detailHref)}&from=slideshow`} onClick={(event) => {
+                if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+                setPlaying(false);
+                onDetails(displayed.item, displayed.index);
+              }} scrollAnchor={trigger.closest<HTMLElement>("[data-waterfall-index]")} aria-label={details} title={details} className={controlClass}>
                 <ControlIcon name="details" />
               </PreserveScrollLink>
             </div>
