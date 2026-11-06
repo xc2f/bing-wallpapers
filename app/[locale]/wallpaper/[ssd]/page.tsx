@@ -397,27 +397,27 @@ export default async function LocalizedWallpaperDetailPage({
                 </div>
 
                 <dl className="mt-3 flex flex-col text-sm">
-                  <div className="grid gap-2 border-b border-white/10 py-3">
-                    <dt className="text-xs uppercase tracking-[0.16em] text-stone-500">
+                  <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-4 border-b border-white/10 py-3">
+                    <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailCopyright}
                     </dt>
-                    <dd className="leading-6 text-stone-200">
+                    <dd className="min-w-0 break-words text-right leading-6 text-stone-200">
                     {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
                   </dd>
                 </div>
-                  <div className="flex items-center justify-between gap-4 border-b border-white/10 py-3">
-                    <dt className="text-xs uppercase tracking-[0.16em] text-stone-500">
+                  <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-4 border-b border-white/10 py-3">
+                    <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailDate}
                     </dt>
-                    <dd className="text-right text-stone-200">
+                    <dd className="min-w-0 break-words text-right leading-6 text-stone-200">
                     {formattedDate}
                   </dd>
                 </div>
-                  <div className="flex items-center justify-between gap-4 py-3">
-                    <dt className="text-xs uppercase tracking-[0.16em] text-stone-500">
+                  <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-4 py-3">
+                    <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailArchiveId}
                     </dt>
-                    <dd className="font-mono text-right text-stone-300">
+                    <dd className="min-w-0 break-words text-right font-mono leading-6 text-stone-300">
                       {wallpaper.Ssd}
                     </dd>
                   </div>
