@@ -334,17 +334,8 @@ export default async function LocalizedWallpaperDetailPage({
 
             <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div className="min-w-0 w-full">
-              <div className="text-xs text-stone-500" data-display-text="true">
-                <h2 className="inline uppercase tracking-[0.22em]">{dictionary.detailDescription}</h2>
-                {translationNotice ? (
-                  <span>
-                    {currentLocale === "zh" || currentLocale === "ja"
-                      ? `（${translationNotice}）`
-                      : ` (${translationNotice})`}
-                  </span>
-                ) : null}
-              </div>
-              <div className="detail-description-prose mt-5 w-full space-y-4 break-words">
+              <h2 className="sr-only">{dictionary.detailDescription}</h2>
+              <div className="detail-description-prose w-full space-y-4 break-words">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
                     key={`${wallpaper.Ssd}-description-${index}`}
@@ -358,6 +349,7 @@ export default async function LocalizedWallpaperDetailPage({
                 translation={translation}
                 source={getTranslationSource(wallpaper)}
                 dictionary={dictionary}
+                notice={translationNotice}
                 className="mt-3"
               />
               {backstageUrl ? (
