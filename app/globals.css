@@ -920,6 +920,11 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   color: rgb(var(--theme-text-muted-rgb));
 }
 
+.date-filter-anytime:disabled {
+  color: rgb(var(--theme-text-disabled-rgb));
+  cursor: default;
+}
+
 .date-filter button:focus-visible {
   outline: 2px solid rgb(var(--theme-accent-ring-rgb));
   outline-offset: -2px;
@@ -927,7 +932,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 
 @media (hover: hover) {
   .date-filter-months button:hover:not(:disabled):not([aria-pressed="true"]),
-  .date-filter-anytime:hover,
+  .date-filter-anytime:hover:not(:disabled),
   .date-filter-close:hover {
     background: rgb(var(--theme-overlay-rgb) / 0.06);
   }

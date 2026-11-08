@@ -119,13 +119,13 @@ export default function DateFilter({ name, locale, dictionary, yearOptions, year
 
       <ResponsivePanel open={open} onClose={() => close(true)} id={panelId} contentRef={panelRef} returnFocusRef={triggerRef} label={dictionary.filterDateDialogLabel} className="date-filter-panel absolute right-0 top-[calc(100%+0.625rem)] z-30">
         <div className="date-filter-header">
-          <div><p className="date-filter-caption">{dictionary.filterDateLabel}</p><p className="date-filter-year">{viewYear || dictionary.filterAllTime}</p></div>
+          <div className="min-w-0"><p className="date-filter-caption">{dictionary.filterDateLabel}</p><p className="date-filter-year">{yearValue || dictionary.filterAllTime}</p></div>
           <button type="button" onClick={() => close(true)} aria-label={taxonomyUiLabel("close", locale)} className="date-filter-close">
             <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4"><path d="m5 5 6 6m0-6-6 6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" /></svg>
           </button>
         </div>
         <div className="date-filter-years" role="group" aria-label={dictionary.activeYear} data-date-group>
-          {yearOptions.map((year) => <button key={year} type="button" data-year aria-pressed={viewYear === year} onClick={() => {
+          {yearOptions.map((year) => <button key={year} type="button" data-year aria-pressed={yearValue === year} onClick={() => {
             setViewYear(year);
             onChange(year, "");
           }}>{year}</button>)}
@@ -140,7 +140,7 @@ export default function DateFilter({ name, locale, dictionary, yearOptions, year
           </button>)}
         </div>
         <div className="date-filter-footer">
-          <button type="button" aria-pressed={!yearValue} onClick={() => select("", "")} className="date-filter-anytime">{dictionary.filterAllTime}</button>
+          <button type="button" disabled={!yearValue && !monthValue} onClick={() => select("", "")} className="date-filter-anytime">{dictionary.filterAllTime}</button>
         </div>
       </ResponsivePanel>
     </div>
