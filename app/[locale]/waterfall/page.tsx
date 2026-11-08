@@ -1,4 +1,3 @@
-import TaxonomyBrowser from "@/components/taxonomy-browser";
 import WaterfallFilters from "@/components/waterfall-filters";
 import { filterWallpapersByTaxonomy } from "@/lib/image-taxonomy";
 import { getWallpaperFilters, wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
@@ -11,13 +10,10 @@ import ScrollRestorer from "@/components/scroll-restorer";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
 import ThemeSwitcher from "@/components/theme-switcher";
 import WaterfallGallery from "@/components/waterfall-gallery";
-import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
-import YearFilterStrip from "@/components/year-filter-strip";
 import {
   filterWallpapersByDate,
   getAllWallpapers,
   searchWallpapers,
-  getYearOptions,
   toAbsoluteUrl,
 } from "@/lib/archive";
 import {
@@ -101,7 +97,6 @@ export default async function LocalizedWaterfallPage({
   const filters = getWallpaperFilters(resolvedSearchParams);
   const year = filters.year ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);
-  const yearOptions = getYearOptions(allWallpapers);
   const searchedWallpapers = searchWallpapers(filterWallpapersByDate(allWallpapers, year, filters.month), filters.q ?? "");
   const wallpapers = filterWallpapersByTaxonomy(searchedWallpapers, filters.category, filters.tag, filters.country);
   const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
@@ -110,19 +105,6 @@ export default async function LocalizedWaterfallPage({
     : Math.min(Math.max(1, requestedPage), totalPages);
   const loadedWallpapers = wallpapers.slice(0, currentPage * WATERFALL_BATCH_SIZE);
   const waterfallPath = createWaterfallHref(locale, filters, currentPage);
-  const yearLabel = taxonomyUiLabel("years", locale);
-  const yearFilterItems = [
-    {
-      href: createWaterfallHref(locale, { q: filters.q }),
-      label: taxonomyUiLabel("all", locale),
-      active: !year,
-    },
-    ...yearOptions.map((optionYear) => ({
-      href: createWaterfallHref(locale, { q: filters.q, year: optionYear }),
-      label: optionYear,
-      active: optionYear === year,
-    })),
-  ];
   const archiveParams = wallpaperFilterParams(filters);
   const archiveHref = localizePath(locale, archiveParams.size ? `?${archiveParams}` : "");
   const items = loadedWallpapers.map((wallpaper) => ({
@@ -136,15 +118,15 @@ export default async function LocalizedWaterfallPage({
   }));
 
   return (
-    <main className="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+    <main className="bg-stone-950 px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
       <ScrollRestorer storageKey={waterfallPath} />
       <ScrollToTopButton
         label={dictionary.backToTop}
         showPosition
         totalCount={wallpapers.length}
       />
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-10 has-[[data-waterfall-wide=true]]:max-w-none">
-        <section className="flex flex-col gap-6 pb-2">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:gap-10 has-[[data-waterfall-wide=true]]:max-w-none">
+        <section className="flex flex-col gap-4 pb-2 sm:gap-6">
           <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
             <Link
               href={archiveHref}
@@ -178,7 +160,7 @@ export default async function LocalizedWaterfallPage({
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.archiveLabel}
               </p>
-              <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                 {dictionary.waterfallTitle}
               </h1>
           </div>
@@ -187,10 +169,9 @@ export default async function LocalizedWaterfallPage({
 
         <WaterfallFilters
           locale={locale}
-          yearFilters={<YearFilterStrip label={yearLabel} currentYear={year} items={yearFilterItems} />}
-          countries={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" fields={["country"]} />}
-          categories={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" fields={["category"]} />}
-          tags={<TaxonomyBrowser items={searchedWallpapers} locale={locale} filters={filters} pathname="/waterfall" fields={["tag"]} />}
+          filters={filters}
+          allWallpapers={allWallpapers}
+          items={searchedWallpapers}
         />
 
         {wallpapers.length === 0 ? <p className="py-12 text-center text-stone-400">{dictionary.emptyTitle}</p> : null}

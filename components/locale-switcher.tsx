@@ -48,7 +48,7 @@ export default function LocaleSwitcher({
             href={href}
             prefetch={false}
             replace
-            className={`theme-locale-switcher-link inline-flex min-w-[2rem] items-center justify-center px-1.5 py-1 text-center ${
+            className={`theme-locale-switcher-link inline-flex min-h-9 min-w-[2rem] items-center justify-center px-1.5 py-1 text-center sm:min-h-7 ${
               isActive ? "theme-locale-switcher-link-active text-amber-300" : "theme-button-hover rounded-md transition hover:text-white"
             }`}
           >

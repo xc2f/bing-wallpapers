@@ -2,15 +2,17 @@ import type { CSSProperties } from "react";
 import WaterfallFilterLink from "@/components/waterfall-filter-link";
 import TaxonomyRow from "@/components/taxonomy-row";
 import Link from "next/link";
-import type { WallpaperItem } from "@/lib/archive";
-import { filterWallpapersByTaxonomy, getTaxonomyCounts } from "@/lib/image-taxonomy";
+import Image from "next/image";
+import { toAbsoluteUrl, type WallpaperItem } from "@/lib/archive";
+import { filterWallpapersByTaxonomy, getImageTaxonomy, getTaxonomyCounts } from "@/lib/image-taxonomy";
 import { localizePath, type Locale } from "@/lib/i18n";
 import { filterLabelWidths, taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
-import { taxonomyLabel } from "@/lib/taxonomy-labels";
+import { countryFlag, taxonomyLabel } from "@/lib/taxonomy-labels";
+import { resizeBingImage } from "@/lib/bing-image";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
 
-export default function TaxonomyBrowser({ items, locale, filters, pathname = "", fields = ["country", "category", "tag"] }: {
+export default function TaxonomyBrowser({ items, locale, filters, pathname = "", fields = ["category", "country", "tag"] }: {
   items: WallpaperItem[];
   locale: Locale;
   pathname?: string;
@@ -44,17 +46,51 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
     }
     const label = taxonomyUiLabel(field === "category" ? "categories" : field === "tag" ? "tags" : "countries", locale);
 
+    if (field === "category") {
+      const previews = new Map<string, string>();
+      for (const item of candidates) {
+        const category = getImageTaxonomy(item)?.category;
+        const url = toAbsoluteUrl(item.ImageContent?.Image?.Url);
+        if (category && url && !previews.has(category)) previews.set(category, resizeBingImage(url, 320, 320));
+      }
+
+      function categoryTile(id: string, count?: number) {
+        const active = selected === id;
+        const name = id ? taxonomyLabel(id, locale, "category") : taxonomyUiLabel("all", locale);
+        const preview = previews.get(id);
+        const className = `filter-category-card ${!id ? "filter-category-all" : ""}`;
+        const content = <>
+          {preview ? <Image src={preview} alt="" fill sizes="160px" quality={50} referrerPolicy="no-referrer" className="filter-category-image" /> : (
+            <span className="filter-category-art" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><rect x="5" y="5" width="12" height="12" rx="3" /><rect x="23" y="5" width="12" height="12" rx="3" /><rect x="5" y="23" width="12" height="12" rx="3" /><rect x="23" y="23" width="12" height="12" rx="3" /></svg>
+            </span>
+          )}
+          <span className="filter-category-shade" aria-hidden="true" />
+          {active ? <span className="filter-category-check" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="m2.5 6 2.25 2.25 4.75-4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" /></svg></span> : null}
+          <span className="filter-category-caption"><span>{name}</span>{count !== undefined ? <span className="filter-category-count">{count}</span> : null}</span>
+        </>;
+        if (count === 0 && !active) return <span key={id} aria-disabled="true" className={className}>{content}</span>;
+        return <FilterLink key={id} href={href("category", active ? "" : id)} scroll={false} aria-current={active ? "true" : undefined} className={className} aria-label={active && id ? `${taxonomyUiLabel("remove", locale)}: ${name}` : name}>{content}</FilterLink>;
+      }
+
+      return <nav aria-label={label} className="filter-category-section">
+        <div className="filter-category-grid">{categoryTile("")}{options.map(([id, count]) => categoryTile(id, count))}</div>
+      </nav>;
+    }
+
     function option(id: string, count?: number) {
       const active = selected === id;
       const name = id ? taxonomyLabel(id, locale, field) : taxonomyUiLabel("all", locale);
       const text = `${name}${count === undefined ? "" : ` · ${count}`}`;
+      const flag = field === "country" ? countryFlag(id) : null;
       const content = <>
+        {flag ? <Image src={flag} alt="" width={20} height={14} className="filter-country-flag" /> : null}
         <span>{name}</span>
-        {count !== undefined ? <span className="text-xs tabular-nums opacity-60"><span aria-hidden="true">· </span>{count}</span> : null}
+        {count !== undefined ? <span className="filter-option-count">{count}</span> : null}
       </>;
-      const className = `inline-flex shrink-0 whitespace-nowrap items-baseline gap-2 rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${active ? "bg-amber-300/10 text-amber-200" : "text-stone-400 theme-button-hover hover:text-white"}`;
+      const className = "filter-option inline-flex shrink-0 whitespace-nowrap items-center gap-2 px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300";
       if (count === 0 && !active) {
-        return <span key={id} aria-disabled="true" className="inline-flex shrink-0 items-baseline gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm text-stone-500 opacity-50">{content}</span>;
+        return <span key={id} aria-disabled="true" className={`${className} opacity-40`}>{content}</span>;
       }
       return (
         <FilterLink key={id} href={href(field, active ? "" : id)} scroll={false} aria-current={active ? "true" : undefined}
@@ -78,7 +114,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
     );
   }
   return (
-    <section className="filter-label-columns space-y-3" style={{ "--filter-label-width": filterLabelWidths[locale] } as CSSProperties}>
+    <section className="filter-taxonomy filter-label-columns" style={{ "--filter-label-width": filterLabelWidths[locale] } as CSSProperties}>
       {fields.map((field) => <div key={field}>{row(field)}</div>)}
     </section>
   );

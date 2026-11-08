@@ -1,3 +1,4 @@
+import { normalizeSearchValue, parseSearchQuery, positiveSearchClauses, type SearchClause, type SearchExpression, type SearchField } from "@/lib/search-query";
 import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import data from "@/db/media_contents.json";
 import { defaultLocale, locales, type Locale } from "@/lib/i18n";
@@ -204,64 +205,9 @@ export function filterWallpapersByDate(
   });
 }
 
-type SearchField = "title" | "desc" | "copyright" | "date" | "ssd";
-
-interface SearchClause {
-  excludes: string[];
-  fields: Array<{ field: SearchField; value: string }>;
-  phrase: string;
-}
-
 interface SearchHighlightTerms {
   title: string[];
   description: string[];
-}
-
-function normalizeSearchValue(value?: string) {
-  return value?.normalize("NFKC").trim().toLowerCase() ?? "";
-}
-
-function parseSearchClause(clause: string): SearchClause {
-  const excludes: string[] = [];
-  const fields: Array<{ field: SearchField; value: string }> = [];
-  let remaining = clause;
-
-  remaining = remaining.replace(
-    /(^|\s)-(("[^"]+")|(\S+))/g,
-    (_match, leadingWhitespace: string, token: string) => {
-      const normalizedToken = normalizeSearchValue(token.replace(/^"|"$/g, ""));
-      if (normalizedToken) {
-        excludes.push(normalizedToken);
-      }
-      return leadingWhitespace;
-    }
-  );
-
-  remaining = remaining.replace(
-    /(^|\s)(title|desc|description|copyright|date|ssd):(("[^"]+")|(\S+))/g,
-    (
-      _match,
-      leadingWhitespace: string,
-      rawField: string,
-      token: string
-    ) => {
-      const field =
-        rawField === "description" ? "desc" : (rawField as SearchField);
-      const normalizedToken = normalizeSearchValue(token.replace(/^"|"$/g, ""));
-
-      if (normalizedToken) {
-        fields.push({ field, value: normalizedToken });
-      }
-
-      return leadingWhitespace;
-    }
-  );
-
-  return {
-    excludes,
-    fields,
-    phrase: normalizeSearchValue(remaining),
-  };
 }
 
 function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
@@ -274,7 +220,7 @@ function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
   ]
     .filter(Boolean)
     .join(" ")
-    .toLowerCase();
+    .normalize("NFKC").toLowerCase();
 
   const fieldHaystacks: Record<SearchField, string> = {
     title: normalizeSearchValue(wallpaper.ImageContent?.Title),
@@ -289,7 +235,14 @@ function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
   }
 
   if (
-    clause.fields.some(({ field, value }) => !fieldHaystacks[field].includes(value))
+    clause.fields.some(({ field, value, dateRange }) => {
+      if (dateRange === null) return true;
+      if (dateRange) {
+        const date = archiveDateKey(wallpaper.Ssd);
+        return !/^\d{8}$/.test(date) || date < dateRange.start || date > dateRange.end;
+      }
+      return !fieldHaystacks[field].includes(value);
+    })
   ) {
     return false;
   }
@@ -343,20 +296,10 @@ function scoreSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
 }
 
 export function getSearchHighlightTerms(query?: string): SearchHighlightTerms {
-  const normalizedQuery = normalizeSearchValue(query);
-  if (!normalizedQuery) {
-    return {
-      title: [],
-      description: [],
-    };
-  }
-
+  const expression = parseSearchQuery(query);
   const titleTerms = new Set<string>();
   const descriptionTerms = new Set<string>();
-  const clauses = normalizedQuery
-    .split(",")
-    .map((term) => parseSearchClause(term.trim()))
-    .filter(Boolean);
+  const clauses = expression ? positiveSearchClauses(expression) : [];
 
   for (const clause of clauses) {
     if (clause.phrase) {
@@ -373,7 +316,7 @@ export function getSearchHighlightTerms(query?: string): SearchHighlightTerms {
         descriptionTerms.add(fieldEntry.value);
       }
 
-      if (fieldEntry.field === "date" || fieldEntry.field === "ssd") {
+      if ((fieldEntry.field === "date" || fieldEntry.field === "ssd") && !fieldEntry.dateRange) {
         titleTerms.add(fieldEntry.value);
         descriptionTerms.add(fieldEntry.value);
       }
@@ -386,29 +329,29 @@ export function getSearchHighlightTerms(query?: string): SearchHighlightTerms {
   };
 }
 
-export function searchWallpapers(wallpapers: WallpaperItem[], query?: string) {
-  const normalizedQuery = normalizeSearchValue(query);
-  if (!normalizedQuery) return wallpapers;
+function evaluateSearch(wallpaper: WallpaperItem, expression: SearchExpression): number | null {
+  if (expression.kind === "clause") {
+    return matchesSearchClause(wallpaper, expression.clause)
+      ? Math.max(1, scoreSearchClause(wallpaper, expression.clause)) : null;
+  }
+  if (expression.kind === "not") return evaluateSearch(wallpaper, expression.child) === null ? 1 : null;
+  const scores = expression.children.map((child) => evaluateSearch(wallpaper, child));
+  if (expression.kind === "and") {
+    if (scores.some((score) => score === null)) return null;
+    return Math.max(...scores.map((score) => score ?? 0));
+  }
+  const matches = scores.filter((score): score is number => score !== null);
+  return matches.length ? Math.max(...matches) : null;
+}
 
-  const clauses = normalizedQuery
-    .split(",")
-    .map((term) => parseSearchClause(term.trim()))
-    .filter(Boolean);
+export function searchWallpapers(wallpapers: WallpaperItem[], query?: string) {
+  if (!query?.trim()) return wallpapers;
+  const expression = parseSearchQuery(query);
+  if (!expression) return [];
 
   return wallpapers
-    .map((wallpaper) => {
-      const matchingClauses = clauses.filter((clause) => matchesSearchClause(wallpaper, clause));
-      const score = matchingClauses.reduce(
-        (highest, clause) => Math.max(highest, scoreSearchClause(wallpaper, clause)),
-        0
-      );
-
-      return {
-        wallpaper,
-        score,
-      };
-    })
-    .filter(({ score }) => score > 0)
+    .map((wallpaper) => ({ wallpaper, score: evaluateSearch(wallpaper, expression) }))
+    .filter((entry): entry is { wallpaper: WallpaperItem; score: number } => entry.score !== null)
     .sort((left, right) => {
       if (right.score !== left.score) {
         return right.score - left.score;

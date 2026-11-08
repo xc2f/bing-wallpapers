@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import type { Locale } from "@/lib/i18n";
+import ResponsivePanel from "@/components/responsive-panel";
 
 export const manualColumnChoices = [2, 3, 4, 5, 6] as const;
 
@@ -117,35 +118,12 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
   const activeColumns = columnChoices.indexOf(Math.min(view.columns, autoColumns) as WaterfallView["columns"]);
 
   const [open, setOpen] = useState(false);
-  const [mobile, setMobile] = useState(false);
-  const sheetRef = useRef<HTMLDialogElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelId = `waterfall-view-${useId()}`;
 
   useEffect(() => {
-    const query = window.matchMedia("(max-width: 639px)");
-    const update = () => setMobile(query.matches);
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    const sheet = sheetRef.current;
-    if (!mobile || !open || !sheet) return;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    sheet.showModal();
-    return () => {
-      sheet.close();
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [mobile, open]);
-
-  useEffect(() => {
-    if (!open || mobile) return;
+    if (!open) return;
 
     function dismissOutside(event: PointerEvent) {
       if (rootRef.current && !event.composedPath().includes(rootRef.current)) {
@@ -166,7 +144,7 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
       document.removeEventListener("pointerdown", dismissOutside, true);
       document.removeEventListener("keydown", dismissOnEscape);
     };
-  }, [mobile, open]);
+  }, [open]);
 
   const controls = (
     <>
@@ -242,29 +220,10 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
           <path d="m4 6 4 4 4-4" />
         </svg>
       </button>
-      {mobile ? (
-        <dialog
-          ref={sheetRef}
-          id={panelId}
-          aria-labelledby={`${panelId}-title`}
-          onCancel={(event) => {
-            event.preventDefault();
-            setOpen(false);
-          }}
-          onClick={(event) => {
-            if (event.target === event.currentTarget) setOpen(false);
-          }}
-          className="waterfall-view-sheet fixed inset-x-0 bottom-0 top-auto m-0 max-h-[calc(100dvh-1rem)] w-full max-w-none overflow-y-auto overscroll-contain rounded-t-2xl border border-white/10 p-0 text-sm text-stone-100 shadow-xl backdrop:bg-black/50"
-        >
-          <div className="pb-[env(safe-area-inset-bottom)]">
-            {controls}
-          </div>
-        </dialog>
-      ) : (
-        <div id={panelId} role="dialog" aria-labelledby={`${panelId}-title`} hidden={!open} className="absolute right-0 top-full mt-3 w-[23rem] max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-5rem)] waterfall-view-panel overflow-y-auto rounded-2xl border border-white/10 text-stone-100 shadow-xl">
-          {controls}
-        </div>
-      )}
+      <ResponsivePanel open={open} onClose={() => setOpen(false)} id={panelId} label={heading} returnFocusRef={triggerRef}
+        className="absolute right-0 top-full mt-3 w-[23rem] max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-5rem)] waterfall-view-panel overflow-y-auto rounded-2xl border border-white/10 text-stone-100 shadow-xl">
+        {controls}
+      </ResponsivePanel>
     </div>
   );
 }

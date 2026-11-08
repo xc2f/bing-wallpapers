@@ -1,6 +1,10 @@
 "use client";
 
 import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
+import FilterHeading from "@/components/filter-heading";
+import DateFilter from "@/components/date-filter";
+import ResponsivePanel from "@/components/responsive-panel";
+import { resetWaterfallFilterScroll } from "@/lib/waterfall-filter-navigation";
 
 import type { ReactNode } from "react";
 import type { SearchExample } from "@/lib/search-examples";
@@ -18,349 +22,18 @@ import { useRouter } from "next/navigation";
 import { type Dictionary, type Locale, formatMonthLabel, localizePath } from "@/lib/i18n";
 
 const FILTER_BAR_COLLAPSED_STORAGE_KEY = "bing-wallpapers-filter-bar-collapsed";
-const FILTER_FIELD_CLASS_NAME = "theme-filter-field h-12 w-full rounded-xl border text-white outline-none transition focus:shadow-[0_0_0_4px_rgba(251,191,36,0.08)]";
-
-interface DateCascadeSelectProps {
-  name: string;
-  yearOptions: string[];
-  yearToMonths: Record<string, string[]>;
-  locale: Locale;
-  dictionary: Dictionary;
-  yearValue: string;
-  monthValue: string;
-  onChange: (nextYear: string, nextMonth: string) => void;
-  widthClassName?: string;
-}
-
-function DateCascadeSelect({
-  name,
-  yearOptions,
-  yearToMonths,
-  locale,
-  dictionary,
-  yearValue,
-  monthValue,
-  onChange,
-  widthClassName,
-}: DateCascadeSelectProps) {
-  const [open, setOpen] = useState(false);
-  const [activeYear, setActiveYear] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const triggerRef = useRef<HTMLButtonElement | null>(null);
-  const panelRef = useRef<HTMLDivElement | null>(null);
-  const panelId = useId();
-
-  const triggerLabel = monthValue
-    ? `${yearValue} / ${formatMonthLabel(locale, monthValue)}`
-    : yearValue || dictionary.filterAllTime;
-
-  function closePanel({ restoreFocus = false } = {}) {
-    setOpen(false);
-    setActiveYear(null);
-
-    if (restoreFocus) {
-      window.requestAnimationFrame(() => {
-        triggerRef.current?.focus();
-      });
-    }
-  }
-
-  useEffect(() => {
-    function handlePointerDown(event: MouseEvent) {
-      if (!containerRef.current?.contains(event.target as Node)) {
-        closePanel();
-      }
-    }
-
-    function handleEscape(event: KeyboardEvent) {
-      if (event.key !== "Escape") {
-        return;
-      }
-
-      if (activeYear) {
-        setActiveYear(null);
-        return;
-      }
-
-      closePanel({ restoreFocus: true });
-    }
-
-    document.addEventListener("mousedown", handlePointerDown);
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [activeYear]);
-
-  useEffect(() => {
-    if (!open) {
-      return;
-    }
-
-    const focusTimer = window.requestAnimationFrame(() => {
-      const nextFocusTarget = panelRef.current?.querySelector<HTMLButtonElement>(
-        "[data-date-option='true']"
-      );
-      nextFocusTarget?.focus();
-    });
-
-    return () => window.cancelAnimationFrame(focusTimer);
-  }, [activeYear, open]);
-
-  const activeMonths = activeYear ? yearToMonths[activeYear] ?? [] : [];
-
-  function handleSelectAll() {
-    onChange("", "");
-    closePanel({ restoreFocus: true });
-  }
-
-  function handleSelectYear(nextYear: string) {
-    const months = yearToMonths[nextYear] ?? [];
-
-    if (!months.length) {
-      onChange(nextYear, "");
-      closePanel({ restoreFocus: true });
-      return;
-    }
-
-    setActiveYear(nextYear);
-  }
-
-  function handleSelectMonth(nextMonth: string) {
-    if (!activeYear) {
-      return;
-    }
-
-    onChange(activeYear, nextMonth);
-    closePanel({ restoreFocus: true });
-  }
-
-  function handleSelectWholeYear() {
-    if (!activeYear) {
-      return;
-    }
-
-    onChange(activeYear, "");
-    closePanel({ restoreFocus: true });
-  }
-
-  function handlePanelKeyDown(event: React.KeyboardEvent<HTMLDivElement>) {
-    if (!panelRef.current) {
-      return;
-    }
-
-    const focusableOptions = Array.from(
-      panelRef.current.querySelectorAll<HTMLButtonElement>("[data-date-option='true']")
-    );
-
-    if (!focusableOptions.length) {
-      return;
-    }
-
-    const currentIndex = focusableOptions.findIndex((option) => option === document.activeElement);
-
-    if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-      event.preventDefault();
-      const nextIndex = currentIndex < 0 ? 0 : (currentIndex + 1) % focusableOptions.length;
-      focusableOptions[nextIndex]?.focus();
-      return;
-    }
-
-    if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-      event.preventDefault();
-      const nextIndex =
-        currentIndex < 0
-          ? focusableOptions.length - 1
-          : (currentIndex - 1 + focusableOptions.length) % focusableOptions.length;
-      focusableOptions[nextIndex]?.focus();
-      return;
-    }
-
-    if (event.key === "Home") {
-      event.preventDefault();
-      focusableOptions[0]?.focus();
-      return;
-    }
-
-    if (event.key === "End") {
-      event.preventDefault();
-      focusableOptions[focusableOptions.length - 1]?.focus();
-    }
-  }
-
-  return (
-    <div className={`flex flex-col gap-2 ${widthClassName ?? ""}`}>
-      <div ref={containerRef} className="relative">
-        <input type="hidden" name={name} value={monthValue ? `${yearValue}-${monthValue}` : yearValue} />
-        <button
-          ref={triggerRef}
-          type="button"
-          aria-haspopup="dialog"
-          aria-expanded={open}
-          aria-controls={panelId}
-          aria-label={`${dictionary.filterDateLabel}: ${triggerLabel}`}
-          onClick={() => {
-            setOpen((current) => !current);
-            setActiveYear(null);
-          }}
-          className={`${FILTER_FIELD_CLASS_NAME} inline-flex touch-manipulation items-center justify-between px-5 pr-4 text-left`}
-        >
-          <span className="truncate">{triggerLabel}</span>
-          <span
-            aria-hidden="true"
-            className={`ml-3 shrink-0 text-stone-500 transition ${open ? "rotate-180" : ""}`}
-          >
-            <svg
-              viewBox="0 0 16 16"
-              className="h-[18px] w-[18px]"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M4.5 6.25L8 9.75l3.5-3.5"
-                stroke="currentColor"
-                strokeWidth="1"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </button>
-
-        {open ? (
-          <div
-            ref={panelRef}
-            id={panelId}
-            role="dialog"
-            aria-modal="false"
-            aria-label={dictionary.filterDateDialogLabel}
-            onKeyDown={handlePanelKeyDown}
-            className="theme-floating-panel absolute left-0 right-0 top-[calc(100%+0.5rem)] z-20 overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950"
-          >
-            {!activeYear ? (
-              <ul className="max-h-72 overflow-y-auto py-1">
-                <li>
-                  <button
-                    data-date-option="true"
-                    type="button"
-                    onClick={handleSelectAll}
-                    aria-pressed={!yearValue && !monthValue}
-                    className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
-                      !yearValue && !monthValue
-                        ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                        : "text-stone-300 theme-button-hover hover:text-white"
-                    } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
-                  >
-                    <span>{dictionary.filterAllTime}</span>
-                    {!yearValue && !monthValue ? (
-                      <span aria-hidden="true" className="text-amber-300">•</span>
-                    ) : null}
-                  </button>
-                </li>
-                {yearOptions.map((optionYear) => {
-                  const isSelectedYear = optionYear === yearValue && !monthValue;
-                  const hasMonths = (yearToMonths[optionYear] ?? []).length > 0;
-
-                  return (
-                    <li key={optionYear}>
-                      <button
-                        data-date-option="true"
-                        type="button"
-                        onClick={() => handleSelectYear(optionYear)}
-                        aria-pressed={isSelectedYear}
-                        className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
-                          isSelectedYear
-                            ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                            : "text-stone-300 theme-button-hover hover:text-white"
-                        } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
-                      >
-                        <span>{optionYear}</span>
-                        {hasMonths ? (
-                          <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0 text-stone-500">
-                            <path d="m6.5 4 4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        ) : (
-                          <span aria-hidden="true" className="text-amber-300">•</span>
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : (
-              <div className="py-1">
-                <div className="flex items-center justify-between border-b border-white/[0.06] px-3 py-2">
-                  <button
-                    data-date-option="true"
-                    type="button"
-                    onClick={() => setActiveYear(null)}
-                    className="theme-button-hover inline-flex touch-manipulation items-center gap-2 rounded-md text-xs tracking-[0.14em] text-stone-400 transition hover:text-white focus-visible:text-white focus-visible:outline-none"
-                  >
-                    <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-4 w-4 shrink-0">
-                      <path d="m9.5 4-4 4 4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>{dictionary.filterBackToYears}</span>
-                  </button>
-                  <span className="text-sm text-stone-300">{activeYear}</span>
-                </div>
-                <ul className="max-h-72 overflow-y-auto py-1">
-                  <li>
-                  <button
-                    data-date-option="true"
-                    type="button"
-                    onClick={handleSelectWholeYear}
-                    aria-pressed={activeYear === yearValue && !monthValue}
-                    className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
-                      activeYear === yearValue && !monthValue
-                        ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                        : "text-stone-300 theme-button-hover hover:text-white"
-                    } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
-                    >
-                      <span>{activeYear}</span>
-                      {activeYear === yearValue && !monthValue ? (
-                        <span aria-hidden="true" className="text-amber-300">•</span>
-                      ) : null}
-                    </button>
-                  </li>
-                  {activeMonths.map((optionMonth) => {
-                    const isSelectedMonth =
-                      activeYear === yearValue && optionMonth === monthValue;
-
-                    return (
-                      <li key={`${activeYear}-${optionMonth}`}>
-                        <button
-                          data-date-option="true"
-                          type="button"
-                          onClick={() => handleSelectMonth(optionMonth)}
-                          aria-pressed={isSelectedMonth}
-                          className={`flex w-full touch-manipulation items-center justify-between px-4 py-3 text-left text-sm transition ${
-                            isSelectedMonth
-                              ? "bg-amber-300/10 text-amber-200 hover:bg-amber-300/10"
-                              : "text-stone-300 theme-button-hover hover:text-white"
-                          } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
-                        >
-                          <span>{formatMonthLabel(locale, optionMonth)}</span>
-                          {isSelectedMonth ? (
-                            <span aria-hidden="true" className="text-amber-300">•</span>
-                          ) : null}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            )}
-          </div>
-        ) : null}
-      </div>
-    </div>
-  );
-}
+const SEARCH_FIELD_HELP = [
+  ["title", "searchFieldTitle"],
+  ["desc", "searchFieldDescription"],
+  ["copyright", "searchFieldCopyright"],
+  ["date", "searchFieldDate"],
+  ["ssd", "searchFieldId"],
+] as const;
 
 interface FilterBarProps {
   locale: Locale;
+  pathname?: "" | "/waterfall";
+  defaultCollapsed?: boolean;
   category?: string;
   tag?: string;
   country?: string;
@@ -376,11 +49,13 @@ interface FilterBarProps {
   yearToMonths: Record<string, string[]>;
   taxonomyFilters?: ReactNode;
   footer?: ReactNode;
-  resultSummary: ReactNode;
+  resultSummary?: ReactNode;
 }
 
 export default function FilterBar({
   locale,
+  pathname = "",
+  defaultCollapsed = false,
   category,
   tag,
   country,
@@ -403,12 +78,18 @@ export default function FilterBar({
   const [year, setYear] = useState(initialYear);
   const [month, setMonth] = useState(initialMonth);
   const deferredQuery = useDeferredValue(query);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(defaultCollapsed);
+  const [storageReady, setStorageReady] = useState(false);
+  const collapseStorageKey = `${FILTER_BAR_COLLAPSED_STORAGE_KEY}${pathname ? "-waterfall" : ""}`;
   const [showSearchHelp, setShowSearchHelp] = useState(false);
   const [isComposing, setIsComposing] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isPending, startTransition] = useTransition();
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const searchAreaRef = useRef<HTMLDivElement | null>(null);
+  const searchInputId = useId();
+  const searchHelpId = useId();
+  const filterContentId = useId();
 
   useEffect(() => {
     setYear(initialYear);
@@ -424,29 +105,39 @@ export default function FilterBar({
   }, [initialQuery, isComposing, isSearchFocused]);
 
   useEffect(() => {
-    const savedValue = window.localStorage.getItem(FILTER_BAR_COLLAPSED_STORAGE_KEY);
-    if (savedValue === "true") {
-      setCollapsed(true);
-    }
-  }, []);
+    const savedValue = window.localStorage.getItem(collapseStorageKey);
+    setCollapsed(savedValue === null ? defaultCollapsed : savedValue === "true");
+    setStorageReady(true);
+  }, [collapseStorageKey, defaultCollapsed]);
 
   useEffect(() => {
+    if (!storageReady) return;
     window.localStorage.setItem(
-      FILTER_BAR_COLLAPSED_STORAGE_KEY,
+      collapseStorageKey,
       collapsed ? "true" : "false"
     );
-  }, [collapsed]);
+  }, [collapseStorageKey, collapsed, storageReady]);
 
   useEffect(() => {
+    if (!showSearchHelp) return;
     function handleEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setShowSearchHelp(false);
+        if (searchAreaRef.current?.contains(document.activeElement)) searchInputRef.current?.focus();
       }
     }
 
+    function handleOutside(event: PointerEvent) {
+      if (!searchAreaRef.current?.contains(event.target as Node)) setShowSearchHelp(false);
+    }
+
     document.addEventListener("keydown", handleEscape);
-    return () => document.removeEventListener("keydown", handleEscape);
-  }, []);
+    document.addEventListener("pointerdown", handleOutside);
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("pointerdown", handleOutside);
+    };
+  }, [showSearchHelp]);
 
   const summaryItems = useMemo(() => {
     const items: Array<{ field: "category" | "tag" | "country" | "q" | "year" | "month"; label: string }> = [];
@@ -476,6 +167,15 @@ export default function FilterBar({
     month: initialMonth,
   });
 
+  const navigate = useCallback((search = "", replace = true) => {
+    const href = localizePath(locale, `${pathname}${search ? `?${search}` : ""}`);
+    if (pathname === "/waterfall") resetWaterfallFilterScroll(href);
+    startTransition(() => {
+      if (replace) router.replace(href, { scroll: false });
+      else router.push(href, { scroll: pathname !== "/waterfall" });
+    });
+  }, [locale, pathname, router]);
+
   const applyFilters = useCallback((
     nextQuery: string,
     nextYear: string,
@@ -503,11 +203,8 @@ export default function FilterBar({
       if (country) params.set("country", country);
     }
     const search = params.toString();
-    const href = localizePath(locale, search ? `?${search}` : "");
-    startTransition(() => {
-      router.replace(href, { scroll: false });
-    });
-  }, [category, tag, country, initialQuery, initialYear, initialMonth, locale, router, startTransition]);
+    navigate(search);
+  }, [category, tag, country, initialQuery, initialYear, initialMonth, navigate]);
 
   const applyAndRemember = useCallback((
     nextQuery: string,
@@ -524,6 +221,7 @@ export default function FilterBar({
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isComposing) return;
     applyAndRemember(query, year, month);
   }
 
@@ -536,9 +234,7 @@ export default function FilterBar({
       year: "",
       month: "",
     };
-    startTransition(() => {
-      router.push(localizePath(locale));
-    });
+    navigate("", false);
   }
 
   function removeFilter(field: (typeof summaryItems)[number]["field"]) {
@@ -558,7 +254,7 @@ export default function FilterBar({
     }
     params.delete(field);
     if (field === "category") params.delete("tag");
-    startTransition(() => router.replace(localizePath(locale, params.size ? `?${params}` : ""), { scroll: false }));
+    navigate(params.toString());
   }
 
   function summaryChips() {
@@ -566,8 +262,11 @@ export default function FilterBar({
       .map(({ field, label }) => (
         <button key={field} type="button" disabled={isPending} onClick={() => removeFilter(field)}
           aria-label={`${taxonomyUiLabel("remove", locale)}: ${label}`}
-          className="inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs tracking-[0.12em] text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40">
-          {label}
+          className="inline-flex min-h-9 min-w-0 max-w-full items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40 sm:min-h-8">
+          <span className="min-w-0 text-left [overflow-wrap:anywhere]">{label}</span>
+          <svg aria-hidden="true" viewBox="0 0 12 12" fill="none" className="h-3 w-3 shrink-0 opacity-60">
+            <path d="m3 3 6 6m0-6-6 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+          </svg>
         </button>
       ));
   }
@@ -576,6 +275,15 @@ export default function FilterBar({
     setQuery(nextQuery);
     setShowSearchHelp(false);
     searchInputRef.current?.focus();
+  }
+
+  function summaryActions() {
+    return (
+      <button type="button" onClick={handleClear} disabled={isPending}
+        className="theme-button-hover min-h-8 shrink-0 whitespace-nowrap rounded-md px-2 text-xs tabular-nums text-amber-200/85 transition hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:pointer-events-none disabled:opacity-40">
+        {dictionary.filterReset}{locale === "zh" || locale === "ja" ? `（${summaryItems.length}）` : ` (${summaryItems.length})`}
+      </button>
+    );
   }
 
   useEffect(() => {
@@ -618,180 +326,155 @@ export default function FilterBar({
   }, [applyAndRemember, deferredQuery, isComposing, month, year]);
 
   return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={() => setCollapsed((current) => !current)}
-        className="absolute right-0 top-[-1.5rem] inline-flex items-center gap-2 text-xs tracking-[0.16em] text-stone-500 transition hover:text-stone-200"
-      >
-        <span>{collapsed ? dictionary.filterExpand : dictionary.filterCollapse}</span>
-        <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"
-          className={`h-4 w-4 shrink-0 ${collapsed ? "" : "rotate-180"}`}>
-          <path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </button>
-
+    <section aria-label={taxonomyUiLabel("filters", locale)} aria-busy={isPending} className="relative">
       <div
-        className={`relative rounded-[1.25rem] border border-white/[0.08] bg-stone-950 p-4 transition duration-200 sm:p-5 ${
-          isPending ? "border-amber-300/20" : ""
-        }`}
+        className="filter-panel relative rounded-[1.75rem] p-5 sm:p-7"
+        data-pending={isPending || undefined}
       >
+        <FilterHeading locale={locale} compact>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-expanded={!collapsed}
+              aria-controls={filterContentId}
+              onClick={() => setCollapsed((current) => !current)}
+              className="theme-button-hover inline-flex min-h-9 items-center gap-2 rounded-lg px-2 text-xs text-stone-400 transition hover:text-stone-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
+            >
+              <span>{collapsed ? dictionary.filterExpand : dictionary.filterCollapse}</span>
+              <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"
+                className={`h-4 w-4 shrink-0 ${collapsed ? "" : "rotate-180"}`}>
+                <path d="m4 6 4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </FilterHeading>
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-0 h-2 overflow-hidden rounded-t-[1.25rem]"
         >
           <div className={`filter-loading-bar ${isPending ? "opacity-100" : "opacity-0"}`} />
         </div>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-3">
 
-          {!collapsed ? (
-            <div className="flex flex-col gap-3 xl:flex-row xl:items-end">
-              <label className="flex min-w-0 flex-1 flex-col gap-2">
-                <div className="group relative">
-                <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-stone-500">
-                  <svg
-                    aria-hidden="true"
-                    viewBox="0 0 16 16"
-                    className="h-4 w-4"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle
-                      cx="7"
-                      cy="7"
-                      r="4.25"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                    />
-                    <path
-                      d="M10.5 10.5L13.25 13.25"
-                      stroke="currentColor"
-                      strokeWidth="1.2"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </span>
-                <input
-                  ref={searchInputRef}
-                  type="search"
-                  name="q"
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setIsSearchFocused(false)}
-                  onCompositionStart={() => setIsComposing(true)}
-                  onCompositionEnd={(event) => {
-                    setIsComposing(false);
-                    setQuery(event.currentTarget.value);
-                  }}
-                  onKeyDown={(event) => {
-                    if (event.key === "?" || event.key === "？") {
-                      event.preventDefault();
-                      setShowSearchHelp(true);
-                    }
-                  }}
-                  placeholder={searchHelpExamples[1]?.query ?? dictionary.filterSearchPlaceholder}
-                  className={`${FILTER_FIELD_CLASS_NAME} peer pl-12 pr-32 placeholder:text-stone-500 [&::-webkit-search-cancel-button]:hidden`}
-                />
-                <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-2">
-                  {query ? (
-                    <button
-                      type="button"
-                      onClick={() => setQuery("")}
-                      className="inline-flex h-7 w-7 items-center justify-center rounded-full text-stone-500 transition theme-button-hover hover:text-white"
-                      aria-label={dictionary.filterReset}
-                    >
-                      <span aria-hidden="true" className="text-base leading-none">
-                        ×
-                      </span>
+          <div id={filterContentId} hidden={collapsed} className="space-y-4">
+            {!collapsed && summaryItems.length > 0 ? (
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0 flex-1 flex flex-wrap gap-2">
+                  {summaryChips()}
+                </div>
+                {summaryActions()}
+              </div>
+            ) : null}
+            {!collapsed ? (
+              <div className="filter-search-toolbar flex flex-col gap-3 sm:flex-row sm:items-end">
+                <div ref={searchAreaRef} className="wallpaper-search relative min-w-0 flex-1">
+                  <div className="wallpaper-search-label-row">
+                    <label htmlFor={searchInputId}>{taxonomyUiLabel("search", locale)}</label>
+                    <button type="button" className="wallpaper-search-help-toggle" aria-expanded={showSearchHelp} aria-controls={searchHelpId}
+                      onClick={() => setShowSearchHelp((current) => !current)}>
+                      {dictionary.filterHelpTitle}
+                      <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className={`h-3 w-3 transition-transform ${showSearchHelp ? "rotate-180" : ""}`}>
+                        <path d="m4.5 6.5 3.5 3.5 3.5-3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </button>
-                  ) : null}
-                  <button
-                    type="button"
-                    onClick={() => setShowSearchHelp((current) => !current)}
-                    className={`inline-flex h-7 min-w-7 items-center justify-center rounded-full border px-2 text-[11px] tracking-[0.16em] transition ${
-                      showSearchHelp
-                        ? "border-amber-300/30 bg-amber-300/10 text-amber-100 hover:border-amber-300/40 hover:bg-amber-300/14"
-                        : "theme-button-hover border-white/[0.08] text-stone-500 hover:border-white/[0.14] hover:text-stone-200"
-                    }`}
-                    aria-expanded={showSearchHelp}
-                  >
-                    ?
-                  </button>
-                </div>
-                {showSearchHelp ? (
-                  <div className="theme-search-help-panel absolute left-0 right-0 top-[calc(100%+0.75rem)] z-20 overflow-hidden rounded-[1.15rem] border border-white/[0.08] bg-stone-950/95 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl">
-                    <div className="theme-search-help-header border-b border-white/[0.06] bg-white/[0.02] px-4 py-3 sm:px-5">
-                      <div className="flex items-center justify-between gap-4">
-                        <div className="flex min-w-0 items-center gap-2.5">
-                          <p className="truncate text-sm font-medium text-stone-100">
-                            {dictionary.filterHelpTitle}
-                          </p>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() => setShowSearchHelp(false)}
-                          className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base leading-none text-stone-500 transition theme-button-hover hover:text-white"
-                          aria-label={dictionary.filterHelpClose}
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="grid gap-2 p-4 sm:grid-cols-2 sm:p-5">
-                      {searchHelpExamples.map((item) => (
-                        <button
-                          key={item.query}
-                          type="button"
-                          onClick={() => handleApplyExample(item.query)}
-                          className="theme-search-help-card group rounded-xl border border-white/[0.06] bg-black/20 px-3 py-3 text-left transition hover:border-amber-300/25 hover:bg-amber-300/8"
-                        >
-                          <div className="flex items-center justify-between gap-3">
-                            <code className="text-sm text-amber-100">{item.query}</code>
-                            <span className="text-[10px] tracking-[0.16em] text-stone-500 transition group-hover:text-amber-100/80">
-                              {dictionary.filterHelpTryLabel}
-                            </span>
-                          </div>
-                          <p className="mt-2 text-sm leading-6 text-stone-400">
-                            {item.description}
-                          </p>
-                        </button>
-                      ))}
-                    </div>
                   </div>
-                ) : null}
+                  <div className="wallpaper-search-field">
+                    <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="wallpaper-search-icon">
+                      <circle cx="8.5" cy="8.5" r="5.25" stroke="currentColor" strokeWidth="1.4" />
+                      <path d="m12.5 12.5 4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+                    </svg>
+                    <input id={searchInputId} ref={searchInputRef} type="search" name="q" value={query}
+                      autoComplete="off" spellCheck={false}
+                      onChange={(event) => setQuery(event.target.value)}
+                      onFocus={() => setIsSearchFocused(true)} onBlur={() => setIsSearchFocused(false)}
+                      onCompositionStart={() => setIsComposing(true)}
+                      onCompositionEnd={(event) => {
+                        setIsComposing(false);
+                        setQuery(event.currentTarget.value);
+                      }}
+                      onKeyDown={(event) => {
+                        if (!event.nativeEvent.isComposing && (event.key === "?" || event.key === "？")) {
+                          event.preventDefault();
+                          setShowSearchHelp(true);
+                        }
+                      }}
+                      placeholder={dictionary.filterSearchPlaceholder}
+                    />
+                    {query ? <button type="button" className="wallpaper-search-clear" aria-label={dictionary.filterReset}
+                      onClick={() => { setQuery(""); searchInputRef.current?.focus(); }}>
+                      <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5"><path d="m5 5 6 6m0-6-6 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" /></svg>
+                    </button> : null}
+                  </div>
+                  <ResponsivePanel open={showSearchHelp} onClose={() => setShowSearchHelp(false)} id={searchHelpId} returnFocusRef={searchInputRef} label={dictionary.filterHelpTitle} className="wallpaper-search-help">
+                    <div className="wallpaper-search-help-header">
+                      <span>{dictionary.filterHelpExamplesTitle}</span>
+                      <button type="button" className="wallpaper-search-clear" aria-label={dictionary.filterHelpClose}
+                        onClick={() => { setShowSearchHelp(false); searchInputRef.current?.focus(); }}>
+                        <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5"><path d="m5 5 6 6m0-6-6 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" /></svg>
+                      </button>
+                    </div>
+                    <div className="wallpaper-search-examples">
+                      {searchHelpExamples.map((item, index) => <div key={item.query}>
+                      <button type="button" className="wallpaper-search-example" onClick={() => handleApplyExample(item.query)}>
+                        <span className="wallpaper-search-example-number" aria-hidden="true">0{index + 1}</span>
+                        <span className="min-w-0"><code>{item.query}</code><span className="wallpaper-search-example-description">{item.description}</span></span>
+                        <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className="h-3.5 w-3.5 shrink-0"><path d="M3 8h10m-4-4 4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                      </button>
+                      {item.isFieldSearch ? <section className="wallpaper-search-fields" aria-label={taxonomyUiLabel("searchFields", locale)}>
+                        <dl>
+                          {SEARCH_FIELD_HELP.map(([field, label]) => <div key={field}>
+                            <dt><code>{field}:</code></dt>
+                            <dd>{taxonomyUiLabel(label, locale)}</dd>
+                          </div>)}
+                        </dl>
+                        <p className="wallpaper-search-fields-hint">{taxonomyUiLabel("searchFieldHint", locale)}</p>
+                      </section> : null}
+                      {item.isCombinedSearch ? <section className="wallpaper-search-combination" aria-label={dictionary.filterHelpTitle}>
+                        <dl>
+                          {([
+                            ["AND", "searchCombineAnd"],
+                            ["OR", "searchCombineOr"],
+                            ["NOT", "searchCombineNot"],
+                            ["( )", "searchCombineGroup"],
+                          ] as const).map(([operator, label]) => <div key={operator}>
+                            <dt><code>{operator}</code></dt>
+                            <dd>{taxonomyUiLabel(label, locale)}</dd>
+                          </div>)}
+                        </dl>
+                        <p className="wallpaper-search-fields-hint">{taxonomyUiLabel("searchCombineOrder", locale)}</p>
+                      </section> : null}
+                      </div>)}
+                      {searchHelpExamples.length === 0 ? <p className="p-4 text-sm text-stone-500">{dictionary.emptyTitle}</p> : null}
+                    </div>
+                  </ResponsivePanel>
                 </div>
-              </label>
 
-              <DateCascadeSelect
-                name="date"
-                yearOptions={yearOptions}
-                yearToMonths={yearToMonths}
-                locale={locale}
-                dictionary={dictionary}
-                yearValue={year}
-                monthValue={month}
-                onChange={(nextYear, nextMonth) => {
-                  setYear(nextYear);
-                  setMonth(nextMonth);
-                }}
-                widthClassName="xl:w-[240px]"
-              />
+                <div className="flex flex-col gap-2 sm:w-[210px] sm:shrink-0">
+                  <span className="text-xs font-medium text-stone-400">{dictionary.filterDateLabel}</span>
+                  <DateFilter
+                    name="date"
+                    yearOptions={yearOptions}
+                    yearToMonths={yearToMonths}
+                    locale={locale}
+                    dictionary={dictionary}
+                    yearValue={year}
+                    monthValue={month}
+                    onChange={(nextYear, nextMonth) => {
+                      setYear(nextYear);
+                      setMonth(nextMonth);
+                    }}
+                  />
+                </div>
 
-            </div>
-          ) : (
+              </div>
+            ) : null}
+            {!collapsed ? taxonomyFilters : null}
+          </div>
+          {collapsed ? (
             summaryItems.length > 0 ? (
               <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
                 <div className="flex min-w-0 flex-wrap gap-2">{summaryChips()}</div>
-                <button
-                  type="button"
-                  onClick={handleClear}
-                  disabled={isPending}
-                  className="theme-button-hover shrink-0 rounded-md text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
-                >
-                  {dictionary.filterReset}
-                </button>
+                {summaryActions()}
               </div>
             ) : (
               <div className="flex items-center gap-2 px-1 text-xs leading-5 tracking-[0.08em] text-stone-500">
@@ -808,34 +491,18 @@ export default function FilterBar({
                 </button>
               </div>
             )
-          )}
-
-          {!collapsed ? taxonomyFilters : null}
-
-          {!collapsed && summaryItems.length > 0 ? (
-            <div className="flex items-start justify-between gap-4">
-              <div className="-mx-1 flex flex-wrap gap-2 px-1">
-                {summaryChips()}
-              </div>
-              <button
-                type="button"
-                onClick={handleClear}
-                disabled={isPending}
-                className="theme-button-hover shrink-0 rounded-md px-1 py-1 text-xs tracking-[0.16em] text-amber-200/85 transition hover:text-amber-100 disabled:pointer-events-none disabled:opacity-40"
-              >
-                {dictionary.filterReset}
-              </button>
-            </div>
           ) : null}
 
-          <div className="flex flex-col gap-3 border-t border-white/[0.04] pt-3 sm:flex-row sm:items-center sm:justify-between">
-            <div className="min-h-8">{footer}</div>
-            <div className="text-right text-sm tracking-[0.08em] text-stone-500">
+
+
+          {footer || resultSummary ? <div className="flex flex-col gap-3 border-t border-white/[0.06] pt-4 sm:flex-row sm:items-center sm:justify-between">
+            {footer ? <div className="min-h-8">{footer}</div> : null}
+            {resultSummary ? <div className="text-sm tabular-nums text-stone-500 sm:text-right" role="status" aria-live="polite">
               {resultSummary}
-            </div>
-          </div>
+            </div> : null}
+          </div> : null}
         </form>
       </div>
-    </div>
+    </section>
   );
 }

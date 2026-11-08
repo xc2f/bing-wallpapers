@@ -9,7 +9,7 @@ test("examples match available records in every language and selected date range
     const all = getAllWallpapers(locale);
     for (const records of [all, filterWallpapersByDate(all, "2026", "10"), all.slice(0, 1)]) {
       const examples = getSearchExamples(records, locale);
-      assert.equal(examples.length, records.length ? 4 : 0);
+      assert.equal(examples.length, records.length ? 6 : 0);
       for (const example of examples) {
         assert.ok(searchWallpapers(records, example.query).length > 0, `${locale}: ${example.query}`);
       }

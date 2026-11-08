@@ -46,8 +46,8 @@ export default function YearFilterStrip({
   }, [currentYear, items]);
 
   return (
-    <nav aria-label={label} className="flex min-w-0 items-start gap-x-[var(--filter-column-gap)]">
-      <span className="w-[var(--filter-label-width)] shrink-0 py-2 text-sm text-stone-400">{label}</span>
+    <nav aria-label={label} className="filter-row flex min-w-0 items-start gap-x-[var(--filter-column-gap)]">
+      <span className="filter-row-label w-[var(--filter-label-width)] shrink-0 py-2 text-sm font-medium text-stone-400">{label}</span>
       <div
         ref={containerRef}
         className="relative min-w-0 flex-1 overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [scroll-snap-type:x_proximity] [&::-webkit-scrollbar]:hidden"
@@ -59,11 +59,7 @@ export default function YearFilterStrip({
               href={item.href}
               data-active={item.active ? "true" : "false"}
               aria-current={item.active ? "true" : undefined}
-              className={`inline-flex snap-start items-center rounded-full px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 ${
-                item.active
-                  ? "bg-amber-300/10 text-amber-200"
-                  : "text-stone-400 theme-button-hover hover:text-white"
-              }`}
+              className="filter-option inline-flex snap-start items-center px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300"
             >
               {item.label}
             </WaterfallFilterLink>

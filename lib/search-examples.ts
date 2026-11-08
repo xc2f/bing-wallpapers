@@ -1,9 +1,12 @@
 import { searchWallpapers, type WallpaperItem } from "@/lib/archive";
 import { getDictionary, type Locale } from "@/lib/i18n";
+import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 
 export interface SearchExample {
   query: string;
   description: string;
+  isFieldSearch: boolean;
+  isCombinedSearch?: boolean;
 }
 
 export function getSearchExamples(wallpapers: WallpaperItem[], locale: Locale): SearchExample[] {
@@ -22,10 +25,25 @@ export function getSearchExamples(wallpapers: WallpaperItem[], locale: Locale): 
     { query: "filterHelpQueryFields", description: "filterHelpExampleFields", fallback: term ? `title:"${term}"` : `ssd:${first.Ssd}` },
   ] as const;
 
-  return definitions.map(({ query, description, fallback }) => ({
+  const examples: SearchExample[] = definitions.map(({ query, description, fallback }) => ({
     query: [dictionary[query], english[query], fallback].find((candidate) =>
       searchWallpapers(wallpapers, candidate).length > 0
     )!,
     description: dictionary[description],
+    isFieldSearch: query === "filterHelpQueryFields",
   }));
+
+  const dates = wallpapers.map((item) => item.Ssd.slice(0, 8)).filter((date) => /^\d{8}$/.test(date)).sort();
+  if (dates.length) {
+    const iso = (date: string) => `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
+    const range = `date:${iso(dates[0])}..${iso(dates[dates.length - 1])}`;
+    const field = term ? `title:"${term}"` : `ssd:${first.Ssd}`;
+    examples.splice(3, 0,
+      { query: range, description: taxonomyUiLabel("searchDateRange", locale), isFieldSearch: false },
+    );
+    examples.push(
+      { query: `(${field} OR ssd:${other}) AND ${range}`, description: taxonomyUiLabel("searchCombined", locale), isFieldSearch: false, isCombinedSearch: true },
+    );
+  }
+  return examples;
 }

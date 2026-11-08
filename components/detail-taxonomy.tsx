@@ -10,7 +10,7 @@ export default function DetailTaxonomy({ category, tags, countries = [], locale 
   locale: Locale;
 }) {
   return (
-    <div className="px-6 pt-5 lg:px-8">
+    <div className="px-5 pt-5 sm:px-6 lg:px-8">
       <nav aria-label={`${taxonomyUiLabel("countries", locale)} / ${taxonomyUiLabel("categories", locale)} / ${taxonomyUiLabel("tags", locale)}`}
         className="flex flex-wrap items-center gap-x-3 gap-y-2 border-b border-white/10 pb-5 text-xs">
         {countries.map((country) => (

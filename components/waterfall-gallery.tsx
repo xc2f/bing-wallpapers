@@ -10,6 +10,7 @@ import PreserveScrollLink from "@/components/preserve-scroll-link";
 import { slideshowReturnKey } from "@/lib/slideshow-return";
 import { wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import type { Dictionary, Locale } from "@/lib/i18n";
+import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 
 const WATERFALL_VIEW_STORAGE_KEY = "waterfall-view";
 const WATERFALL_META_STORAGE_KEY = "waterfall-show-meta";
@@ -165,6 +166,9 @@ export default function WaterfallGallery({
 }: WaterfallGalleryProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const hasFilters = wallpaperFilterParams(filters).size > 0;
+  const countLabel = taxonomyUiLabel(totalCount === 1 ? "galleryCountOne" : "galleryCount", locale)
+    .replace("{count}", new Intl.NumberFormat(locale).format(totalCount));
   const [loadedItems, setLoadedItems] = useState(items);
   const [loadedPage, setLoadedPage] = useState(initialPage);
   const [view, setView] = useState(viewDefaults);
@@ -649,8 +653,9 @@ export default function WaterfallGallery({
         }`}
       >
         <div aria-hidden={toolbarStuck} className={`flex items-center gap-2 text-sm text-stone-400 ${toolbarStuck ? "invisible" : ""}`}>
-          <span className="text-stone-500">{dictionary.archived}</span>
-          <span className="font-medium text-stone-100">{totalCount}</span>
+          <span className="text-stone-500">{taxonomyUiLabel(hasFilters ? "galleryMatched" : "galleryAll", locale)}</span>
+          <span aria-hidden="true" className="text-stone-500">·</span>
+          <span className="font-medium tabular-nums text-stone-100">{countLabel}</span>
         </div>
         <WaterfallViewOptions locale={locale} view={view} autoColumns={autoColumns} onChange={handleViewChange} compact={toolbarStuck} />
       </div>

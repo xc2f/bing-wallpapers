@@ -38,6 +38,13 @@ Supported patterns:
 - `copyright:spain`
 - `date:2024`
 - `ssd:20241229`
+- `date:2026-10-01..2026-10-31`
+  Match an inclusive date range using archive dates, independently of locale. Compact dates (`20261001`), month/year bounds (`date:2026-10..2026-11`), and open bounds (`date:2026-10-01..` or `date:..2026-10-31`) are also supported.
+- `(title:lake OR title:forest) AND date:2026-10-01..2026-10-31 AND NOT city`
+  Combine conditions with uppercase `AND`, `OR`, `NOT` and parentheses. `NOT` binds first, then `AND`, then `OR`. Commas also mean `OR`; adjacent fields or groups imply `AND`. Adjacent plain words retain phrase matching. Quote values containing spaces, commas, parentheses or operator words, e.g. `title:"Lake Bled"`.
+
+Search date ranges intersect the year/month controls and other filters. Invalid dates, reversed intervals and malformed expressions return no matches.
+Whitespace after a field colon is optional: `title:lake` and `title: lake` are equivalent, as are `title:"Lake Bled"` and `title: "Lake Bled"`.
 
 Press `?` in the search box to open the built-in search help panel.
 
@@ -137,7 +144,7 @@ Notes:
 - `image_tags.json` uses `schemaVersion: 1`, `taxonomyVersion`, and an `images` object keyed by the wallpaper record’s `imageId`. Each entry contains `category`, `tags`, and an optional `countries` array of country codes. Missing classification records leave wallpapers visible in the unfiltered archive.
 - Tags sync alongside the archive. By default, the tags URL is inferred by replacing `media_contents.json` with `image_tags.json` in `DB_SYNC_JSON_URL`. Set optional `DB_SYNC_TAGS_URL` for a different location (required if the archive URL has no such filename).
 - Category, tag, and country filters combine with search and date filters, and remain in pagination and detail navigation. Related wallpapers prioritize shared tags, then category, then nearby dates. Category and tag names come from `image_tags.json` → `taxonomy.categories` / `taxonomy.tags`; country names come from `taxonomy.country.tags`, keyed by ID and locale. Labels fall back from the current locale to `taxonomy.defaultLocale`, then English, then the raw ID. Name changes take effect after syncing and rebuilding; no site-side translation map needs updating. Interface labels such as “All” and “Expand” remain in the site translations.
-- The waterfall view carries search, year, month, category, tag, and country filters from the archive into batch loading and detail navigation. Its top filter bar shows years, categories, tags, and countries and scrolls normally with the page. Category, tag, and country rows stay on one line and can individually expand to show all options. Changing the year clears month, category, tag, and country filters; changing the category clears the tag. Filter changes restart loading from the first batch and preserve the image/info display mode.
+- The waterfall view carries search, year, month, category, tag, and country filters from the archive into batch loading and detail navigation. Its filter panel reuses the homepage search, year/month picker, category thumbnails, country/tag rows, removable conditions and clear-count action. It starts collapsed with active conditions visible and remembers expansion separately from the homepage. Country and tag rows can individually expand to show all options. Changing the year clears month, category, tag, and country filters; changing the category clears the tag. Filter changes restart loading from the first batch and preserve the image/info display mode.
 - `DB_SYNC_JSON_URL` is required because the site reads [`db/media_contents.json`](./db/media_contents.json) directly at build/runtime.
 - For GitHub private repositories, prefer the GitHub Contents API URLs above instead of `raw.githubusercontent.com`; they work more reliably with `Bearer` tokens.
 - `npm run dev`, `npm run preview`, and `npm run deploy` all sync the DB before starting.

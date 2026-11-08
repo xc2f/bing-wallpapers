@@ -219,7 +219,7 @@ export default async function LocalizedHomePage({
   const currentListPath = createPageHref(locale, currentPage, query, year, month, category, tag, country);
 
   return (
-    <main className="min-h-screen bg-stone-950 px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+    <main className="bg-stone-950 px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
       <JsonLd data={{
         "@context": "https://schema.org",
         "@type": "CollectionPage",
@@ -237,8 +237,8 @@ export default async function LocalizedHomePage({
       }} />
       <ScrollRestorer storageKey={currentListPath} />
       <ScrollToTopButton label={dictionary.backToTop} />
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-8">
-        <section className="flex flex-col gap-6 pb-2">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:gap-8">
+        <section className="flex flex-col gap-4 pb-2 sm:gap-6">
           <div className="flex flex-wrap items-center justify-end gap-3">
             <ThemeSwitcher
               initialMode={initialThemeMode}
@@ -261,7 +261,7 @@ export default async function LocalizedHomePage({
             <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.archiveLabel}
             </p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
               {dictionary.siteTitle}
             </h1>
             <p className="mt-4 text-sm leading-6 text-stone-400">{dictionary.siteDescription}</p>

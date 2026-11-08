@@ -256,10 +256,10 @@ export default async function LocalizedWallpaperDetailPage({
           next ? createDetailHref(next.Ssd) : "",
         ]}
       />
-      <main className="theme-detail-page min-h-screen px-4 py-10 text-stone-100 sm:px-6 lg:px-8">
+      <main className="theme-detail-page px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
-        <div className="mx-auto flex w-full max-w-7xl flex-col gap-10">
-          <section className="flex flex-col gap-6 border-b border-white/10 pb-8">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:gap-10">
+          <section className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:gap-6 sm:pb-8">
             <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
               <SmartBackButton
                 fallbackHref={backHref}
@@ -296,14 +296,14 @@ export default async function LocalizedWallpaperDetailPage({
               <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
                 {dictionary.detailLabel}
               </p>
-              <h1 className="mt-3 w-full break-words text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              <h1 className="mt-3 w-full break-words text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                 {title}
               </h1>
               {query ? (
                 <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-stone-300">
+                  <span className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-stone-300">
                     <span className="text-stone-500">{dictionary.activeQuery}</span>
-                    <span className="font-medium text-white">{query}</span>
+                    <span className="min-w-0 font-medium text-white [overflow-wrap:anywhere]">{query}</span>
                   </span>
                 </div>
               ) : null}
@@ -311,7 +311,7 @@ export default async function LocalizedWallpaperDetailPage({
           </div>
           </section>
 
-          <section className="theme-detail-panel overflow-hidden rounded-[2rem] border border-white/10 shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
+          <section className="theme-detail-panel overflow-hidden rounded-3xl border border-white/10 sm:rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
           <div className="bg-stone-900/58">
             {previewUrl ? (
               <Image
@@ -321,7 +321,7 @@ export default async function LocalizedWallpaperDetailPage({
                 width={1920}
                 height={1080}
                 priority
-                className="h-[22rem] w-full object-cover sm:h-[28rem] lg:h-[34rem]"
+                className="h-auto w-full object-cover sm:h-[28rem] lg:h-[34rem]"
               />
             ) : (
               <div className="flex min-h-[24rem] items-center justify-center text-stone-400">
@@ -332,7 +332,7 @@ export default async function LocalizedWallpaperDetailPage({
 
             {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
-            <div className="grid grid-cols-1 gap-6 p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
+            <div className="grid grid-cols-1 gap-6 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
             <div className="min-w-0 w-full">
               <h2 className="sr-only">{dictionary.detailDescription}</h2>
               <div className="detail-description-prose w-full space-y-4 break-words">
@@ -397,27 +397,27 @@ export default async function LocalizedWallpaperDetailPage({
                 </div>
 
                 <dl className="mt-3 flex flex-col text-sm">
-                  <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-4 border-b border-white/10 py-3">
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 border-b border-white/10 py-3">
                     <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailCopyright}
                     </dt>
-                    <dd className="min-w-0 break-words text-right leading-6 text-stone-200">
+                    <dd className="min-w-0 break-words text-left sm:text-right leading-6 text-stone-200">
                     {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
                   </dd>
                 </div>
-                  <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-4 border-b border-white/10 py-3">
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 border-b border-white/10 py-3">
                     <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailDate}
                     </dt>
-                    <dd className="min-w-0 break-words text-right leading-6 text-stone-200">
+                    <dd className="min-w-0 break-words text-left sm:text-right leading-6 text-stone-200">
                     {formattedDate}
                   </dd>
                 </div>
-                  <div className="grid grid-cols-[max-content_minmax(0,1fr)] items-baseline gap-4 py-3">
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
                     <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailArchiveId}
                     </dt>
-                    <dd className="min-w-0 break-words text-right font-mono leading-6 text-stone-300">
+                    <dd className="min-w-0 break-words text-left sm:text-right font-mono leading-6 text-stone-300">
                       {wallpaper.Ssd}
                     </dd>
                   </div>
@@ -434,7 +434,7 @@ export default async function LocalizedWallpaperDetailPage({
               replace
               className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-x-1 hover:bg-white/10"
             >
-              <div className="grid min-h-[10rem] gap-0 grid-cols-[132px_minmax(0,1fr)]">
+              <div className="grid min-h-[10rem] gap-0 grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[132px_minmax(0,1fr)]">
                 <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
                   {toAbsoluteUrl(next.ImageContent?.Image?.Url) ? (
                     <Image
@@ -449,7 +449,7 @@ export default async function LocalizedWallpaperDetailPage({
                     />
                   ) : null}
                 </div>
-                <div className="flex min-w-0 flex-col justify-between p-5">
+                <div className="flex min-w-0 flex-col justify-between p-4 sm:p-5">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
                       ← {dictionary.detailNewerShort}
@@ -472,8 +472,8 @@ export default async function LocalizedWallpaperDetailPage({
               replace
               className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
             >
-              <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_132px]">
-                <div className="flex min-w-0 flex-col justify-between p-5 text-right">
+              <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_96px] sm:grid-cols-[minmax(0,1fr)_132px]">
+                <div className="flex min-w-0 flex-col justify-between p-4 sm:p-5 text-right">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
                       {dictionary.detailOlderShort} →
