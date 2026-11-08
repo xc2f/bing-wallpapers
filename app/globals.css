@@ -863,6 +863,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   color: rgb(var(--theme-text-muted-rgb));
   font-size: 0.75rem;
   font-variant-numeric: tabular-nums;
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .date-filter-years button[aria-pressed="true"] {
@@ -931,6 +932,11 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 }
 
 @media (hover: hover) {
+  .date-filter-years button:hover:not([aria-pressed="true"]) {
+    background: rgb(var(--theme-overlay-rgb) / 0.06);
+    color: rgb(var(--theme-text-strong-rgb));
+  }
+
   .date-filter-months button:hover:not(:disabled):not([aria-pressed="true"]),
   .date-filter-anytime:hover:not(:disabled),
   .date-filter-close:hover {
