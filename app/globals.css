@@ -1095,7 +1095,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   flex-shrink: 0;
   border-radius: 2px;
   object-fit: contain;
-  background: rgb(var(--theme-overlay-rgb) / 0.025);
+  background: transparent;
 }
 
 .filter-option[aria-current="true"] .filter-option-count {

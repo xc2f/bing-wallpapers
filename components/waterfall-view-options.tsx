@@ -178,7 +178,7 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
         onChange={(index) => onChange({ ...view, appearance: appearanceOptions[index] })}
       />
       </div>
-      <div className="waterfall-view-footer flex justify-end">
+      <div className="waterfall-view-footer flex justify-start">
         <button
           type="button"
           disabled={isDefault}
