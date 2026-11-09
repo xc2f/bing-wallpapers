@@ -966,7 +966,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 }
 
 .filter-category-section {
-  padding-block: 1.25rem;
+  padding-block: 0.875rem;
 }
 
 .filter-category-grid {
@@ -1103,6 +1103,18 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   font-weight: 600;
 }
 
+.filter-tag-option {
+  border-radius: 999px;
+}
+
+.filter-tag-option:not([aria-current="true"]) {
+  background: rgb(var(--theme-overlay-rgb) / 0.035);
+}
+
+.filter-tags-row:not([data-expanded]) .filter-option-count {
+  display: none;
+}
+
 .filter-option-count {
   color: rgb(var(--theme-text-faint-rgb));
   font-size: 0.625rem;
@@ -1118,6 +1130,66 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   border-radius: 2px;
   object-fit: contain;
   background: transparent;
+}
+
+.country-filter-trigger,
+.country-filter-search {
+  color: rgb(var(--theme-text-soft-rgb));
+}
+
+.country-filter-trigger[data-selected] {
+  color: rgb(var(--theme-accent-text-rgb));
+}
+
+.country-filter-panel {
+  width: 22rem;
+  max-width: calc(100vw - 4rem);
+  border: 1px solid rgb(var(--theme-border-rgb) / 0.08);
+  border-radius: 1.25rem;
+  background: var(--theme-panel-background);
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.16);
+}
+
+.country-filter-search::placeholder {
+  color: rgb(var(--theme-text-faint-rgb));
+}
+
+.country-filter-option {
+  display: flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.625rem;
+  color: rgb(var(--theme-text-soft-rgb));
+  font-size: 0.8125rem;
+}
+
+.country-filter-option[aria-current="true"] {
+  background: rgb(var(--theme-accent-surface-rgb) / 0.12);
+  color: rgb(var(--theme-accent-text-rgb));
+  font-weight: 600;
+}
+
+.country-filter-option:focus-visible {
+  outline: 2px solid rgb(var(--theme-accent-ring-rgb));
+  outline-offset: -2px;
+}
+
+@media (hover: hover) {
+  .country-filter-option:hover {
+    background: rgb(var(--theme-overlay-rgb) / 0.04);
+  }
+}
+
+@media (max-width: 639px) {
+  .country-filter-search {
+    font-size: 1rem;
+  }
+
+  .mobile-action-sheet .country-filter-results {
+    max-height: min(24rem, 50dvh);
+  }
 }
 
 .filter-option[aria-current="true"] .filter-option-count {

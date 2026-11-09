@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import WaterfallFilterLink from "@/components/waterfall-filter-link";
 import TaxonomyRow from "@/components/taxonomy-row";
+import CountryFilter from "@/components/country-filter";
 import Image from "next/image";
 import { toAbsoluteUrl, type WallpaperItem } from "@/lib/archive";
 import { filterWallpapersByTaxonomy, getImageTaxonomy, getTaxonomyCounts } from "@/lib/image-taxonomy";
@@ -77,17 +78,25 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
       </nav>;
     }
 
+    if (field === "country") {
+      return <CountryFilter locale={locale} value={selected} clearHref={href("country", "")} options={options.map(([id, count]) => ({
+        id, count, label: taxonomyLabel(id, locale, "country"), flag: countryFlag(id), href: href("country", id),
+        searchText: `${taxonomyLabel(id, locale, "country")} ${taxonomyLabel(id, "en", "country")} ${id}`,
+      }))} />;
+    }
+
+    // Keep a selected tag in the compact preview even when it is less common.
+    const tagOptions = selected ? [...options.filter(([id]) => id === selected), ...options.filter(([id]) => id !== selected)] : options;
+
     function option(id: string, count?: number) {
       const active = selected === id;
       const name = id ? taxonomyLabel(id, locale, field) : taxonomyUiLabel("all", locale);
       const text = `${name}${count === undefined ? "" : ` · ${count}`}`;
-      const flag = field === "country" ? countryFlag(id) : null;
       const content = <>
-        {flag ? <Image src={flag} alt="" width={20} height={14} className="filter-country-flag" /> : null}
         <span>{name}</span>
         {count !== undefined ? <span className="filter-option-count">{count}</span> : null}
       </>;
-      const className = "filter-option inline-flex shrink-0 whitespace-nowrap items-center gap-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300";
+      const className = "filter-option filter-tag-option inline-flex shrink-0 whitespace-nowrap items-center gap-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300";
       if (count === 0 && !active) {
         return <span key={id} aria-disabled="true" className={`${className} opacity-40`}>{content}</span>;
       }
@@ -104,11 +113,11 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
       <TaxonomyRow
         key={field}
         label={label}
-        expandLabel={taxonomyUiLabel("expand", locale)}
+        expandLabel={taxonomyUiLabel("moreTags", locale)}
         collapseLabel={taxonomyUiLabel("collapse", locale)}
       >
         {option("")}
-        {options.map(([id, count]) => option(id, count))}
+        {tagOptions.map(([id, count]) => option(id, count))}
       </TaxonomyRow>
     );
   }

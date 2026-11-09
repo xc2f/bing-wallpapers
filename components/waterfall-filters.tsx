@@ -25,13 +25,14 @@ export default function WaterfallFilters({ locale, filters, allWallpapers, items
     country={country}
     categoryLabel={category ? taxonomyLabel(category, locale, "category") : undefined}
     tagLabel={tag ? taxonomyLabel(tag, locale, "tag") : undefined}
-    countryLabel={country ? taxonomyLabel(country, locale, "country") : undefined}
+    countryLabel={country ? `${taxonomyLabel(country, locale, "country")} ${country}` : undefined}
     initialQuery={q}
     initialYear={year}
     initialMonth={month}
     yearOptions={yearOptions}
     yearToMonths={yearToMonths}
     searchHelpExamples={getSearchExamples(filterWallpapersByDate(allWallpapers, year, month), locale)}
-    taxonomyFilters={<TaxonomyBrowser items={items} locale={locale} filters={filters} />}
+    countryFilter={<TaxonomyBrowser items={items} locale={locale} filters={filters} fields={["country"]} />}
+    taxonomyFilters={<TaxonomyBrowser items={items} locale={locale} filters={filters} fields={["category", "tag"]} />}
   />;
 }

@@ -40,6 +40,10 @@ const labels = {
   years: ["Year", "年份", "Año", "Année", "Jahr", "年", "연도"],
   categories: ["Categories", "分类", "Categorías", "Catégories", "Kategorien", "カテゴリ", "분류"],
   countries: ["Countries", "国家", "Países", "Pays", "Länder", "国", "국가"],
+  allCountries: ["All countries", "全部国家", "Todos los países", "Tous les pays", "Alle Länder", "すべての国", "모든 국가"],
+  searchCountries: ["Search country or code", "搜索国家或代码", "Buscar país o código", "Rechercher un pays ou un code", "Land oder Code suchen", "国名・コードで検索", "국가 또는 코드 검색"],
+  noCountries: ["No countries found", "未找到匹配的国家", "No se encontraron países", "Aucun pays trouvé", "Keine Länder gefunden", "該当する国がありません", "일치하는 국가가 없습니다"],
+  moreTags: ["More tags", "更多标签", "Más etiquetas", "Plus d’étiquettes", "Weitere Tags", "タグをもっと見る", "태그 더 보기"],
   tags: ["Tags", "标签", "Etiquetas", "Étiquettes", "Tags", "タグ", "태그"],
   all: ["All", "全部", "Todos", "Tous", "Alle", "すべて", "전체"],
 };

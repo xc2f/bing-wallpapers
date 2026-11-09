@@ -48,6 +48,7 @@ interface FilterBarProps {
   yearOptions: string[];
   yearToMonths: Record<string, string[]>;
   taxonomyFilters?: ReactNode;
+  countryFilter?: ReactNode;
   footer?: ReactNode;
   resultSummary?: ReactNode;
 }
@@ -70,6 +71,7 @@ export default function FilterBar({
   yearOptions,
   yearToMonths,
   taxonomyFilters,
+  countryFilter,
   footer,
   resultSummary,
 }: FilterBarProps) {
@@ -362,8 +364,8 @@ export default function FilterBar({
               </div>
             ) : null}
             {!collapsed ? (
-              <div className="filter-search-toolbar flex flex-col gap-3 sm:flex-row sm:items-end">
-                <div ref={searchAreaRef} className="wallpaper-search relative min-w-0 flex-1">
+              <div className="filter-search-toolbar grid grid-cols-2 items-end gap-3 lg:grid-cols-[minmax(0,1fr)_11rem_11rem]">
+                <div ref={searchAreaRef} className="wallpaper-search relative col-span-2 min-w-0 lg:col-span-1">
                   <div className="wallpaper-search-label-row">
                     <label htmlFor={searchInputId}>{taxonomyUiLabel("search", locale)}</label>
                     <button type="button" className="wallpaper-search-help-toggle" aria-expanded={showSearchHelp} aria-controls={searchHelpId}
@@ -445,7 +447,7 @@ export default function FilterBar({
                   </ResponsivePanel>
                 </div>
 
-                <div className="flex flex-col gap-2 sm:w-[210px] sm:shrink-0">
+                <div className="flex min-w-0 flex-col gap-2">
                   <span className="text-xs font-medium text-stone-400">{dictionary.filterDateLabel}</span>
                   <DateFilter
                     name="date"
@@ -461,6 +463,8 @@ export default function FilterBar({
                     }}
                   />
                 </div>
+
+                {countryFilter ? <div className="min-w-0">{countryFilter}</div> : null}
 
               </div>
             ) : null}
