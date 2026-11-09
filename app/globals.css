@@ -978,7 +978,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   color: #fff;
   scroll-snap-align: start;
   outline-offset: 3px;
-  transition: box-shadow 180ms ease, transform 180ms ease;
+  transition: box-shadow 180ms ease;
 }
 
 .filter-category-image {
@@ -1117,10 +1117,6 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 @media (hover: hover) {
   .filter-category-card:hover:not([aria-disabled="true"]) .filter-category-image {
     transform: scale(1.08);
-  }
-
-  .filter-category-card:hover:not([aria-disabled="true"]) {
-    transform: translateY(-2px);
   }
 
   .filter-option:hover:not([aria-disabled="true"]):not([aria-current="true"]) {

@@ -12,7 +12,7 @@ import { resizeBingImage } from "@/lib/bing-image";
 
 const categoryOrder = ["nature", "animals", "plants", "architecture", "cities", "culture", "space", "other"];
 
-export default function TaxonomyBrowser({ items, locale, filters, pathname = "", fields = ["category", "country", "tag"] }: {
+export default function TaxonomyBrowser({ items, locale, filters, pathname = "", fields = ["category", "tag", "country"] }: {
   items: WallpaperItem[];
   locale: Locale;
   pathname?: string;

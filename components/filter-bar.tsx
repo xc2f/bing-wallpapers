@@ -142,9 +142,9 @@ export default function FilterBar({
   const summaryItems = useMemo(() => {
     const items: Array<{ field: "category" | "tag" | "country" | "q" | "year" | "month"; label: string }> = [];
 
-    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
     if (category) items.push({ field: "category", label: `${taxonomyUiLabel("categories", locale)}: ${(categoryLabel || category)}` });
     if (tag) items.push({ field: "tag", label: `${taxonomyUiLabel("tags", locale)}: ${(tagLabel || tag)}` });
+    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
 
     if (query.trim()) {
       items.push({ field: "q", label: `${dictionary.activeQuery}: ${query.trim()}` });
@@ -195,16 +195,12 @@ export default function FilterBar({
       params.set("month", nextMonth);
     }
 
-    const searchOrDateChanged = nextQuery.trim() !== initialQuery.trim() ||
-      nextYear !== initialYear || nextMonth !== initialMonth;
-    if (!searchOrDateChanged) {
-      if (category) params.set("category", category);
-      if (tag) params.set("tag", tag);
-      if (country) params.set("country", country);
-    }
+    if (category) params.set("category", category);
+    if (tag) params.set("tag", tag);
+    if (country) params.set("country", country);
     const search = params.toString();
     navigate(search);
-  }, [category, tag, country, initialQuery, initialYear, initialMonth, navigate]);
+  }, [category, tag, country, navigate]);
 
   const applyAndRemember = useCallback((
     nextQuery: string,
