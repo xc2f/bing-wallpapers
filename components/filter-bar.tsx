@@ -169,10 +169,10 @@ export default function FilterBar({
 
   const navigate = useCallback((search = "", replace = true) => {
     const href = localizePath(locale, `${pathname}${search ? `?${search}` : ""}`);
-    if (pathname === "/waterfall") resetWaterfallFilterScroll(href);
+    resetWaterfallFilterScroll(href);
     startTransition(() => {
       if (replace) router.replace(href, { scroll: false });
-      else router.push(href, { scroll: pathname !== "/waterfall" });
+      else router.push(href, { scroll: false });
     });
   }, [locale, pathname, router]);
 
@@ -324,7 +324,7 @@ export default function FilterBar({
   return (
     <section aria-label={taxonomyUiLabel("filters", locale)} aria-busy={isPending} className="relative">
       <div
-        className="filter-panel relative rounded-[1.75rem] p-5 sm:p-7"
+        className="filter-panel relative rounded-[1.75rem] p-5 sm:px-7"
         data-pending={isPending || undefined}
       >
         <FilterHeading locale={locale} compact>

@@ -7,7 +7,7 @@ import {
   getAllWallpapers, getWallpaperBySsd, getAdjacentWallpapers, selectWallpaperRecords,
   getRelatedWallpapers, getTranslationSource, searchWallpapers,
 } from "../lib/archive";
-import { locales } from "../lib/i18n";
+import { locales, formatArchiveDate } from "../lib/i18n";
 
 test("each locale only shows its own records without English fallback", () => {
   const fallback = data.mediaContents[data.fallbackLocale as typeof locales[number]];
@@ -52,6 +52,11 @@ test("waterfall batches return the selected language's content and counts", asyn
     const result = await response.json();
     const wallpapers = getAllWallpapers(locale);
     assert.equal(result.totalCount, wallpapers.length);
+    for (const [index, item] of result.items.entries()) {
+      const source = wallpapers[index];
+      assert.equal(item.copyright, source.ImageContent?.Copyright);
+      assert.equal(item.fullDate, formatArchiveDate(locale, source.Ssd, source.FullDateString));
+    }
     assert.deepEqual(result.items.map((item: { ssd: string; title: string }) => [item.ssd, item.title]),
       wallpapers.slice(0, 180).map((item) => [item.Ssd, item.ImageContent?.Title]));
   }

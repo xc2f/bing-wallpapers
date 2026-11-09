@@ -1,16 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getAllWallpapers, paginateWallpapers, toAbsoluteUrl } from "@/lib/archive";
+import { getAllWallpapers, toAbsoluteUrl } from "@/lib/archive";
 import { locales, localizePath } from "@/lib/i18n";
 import { languageAlternates, siteUrl } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((locale) => {
     const wallpapers = getAllWallpapers(locale);
-    const { totalPages } = paginateWallpapers(wallpapers, 1);
-    const paths = [
-      "", "/waterfall",
-      ...Array.from({ length: totalPages - 1 }, (_, index) => `?page=${index + 2}`),
-    ];
+    const paths = [""];
 
     return [
       ...paths.map((path) => ({

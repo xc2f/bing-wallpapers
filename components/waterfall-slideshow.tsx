@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
 import { WATERFALL_BATCH_SIZE } from "@/lib/waterfall-pagination";
 import type { Locale } from "@/lib/i18n";
@@ -9,6 +9,8 @@ import type { Locale } from "@/lib/i18n";
 export interface SlideshowItem {
   ssd: string;
   title: string;
+  fullDate?: string;
+  copyright?: string;
   previewUrl: string;
   wallpaperUrl?: string;
   detailHref: string;
@@ -34,7 +36,6 @@ const controlPaths = {
   next: "m9 6 6 6-6 6",
   play: "M9 5v14l11-7z",
   pause: "M9 5v14m6-14v14",
-  details: "M12 11v5m0-8h.01M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z",
 } as const;
 
 function ControlIcon({ name }: { name: keyof typeof controlPaths }) {
@@ -84,7 +85,7 @@ export default function WaterfallSlideshow({
   const controlsTimerRef = useRef<number | undefined>(undefined);
   const imagePointerRef = useRef<{ id: number; x: number; y: number; toggleOnTap: boolean } | null>(null);
   const canPlay = totalCount > 1;
-  const controlsVisible = !playing || !controlsHidden;
+  const controlsVisible = !playing || !controlsHidden || loading || failed;
   const controlsVisibility = controlsVisible ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0";
   const getSlideUrl = useCallback((slide: SlideshowItem) => {
     const { wallpaperUrl, previewUrl } = slide;
@@ -327,6 +328,15 @@ export default function WaterfallSlideshow({
     };
   }, [canPlay, playing]);
 
+  function handleDetailsClick(event: MouseEvent<HTMLAnchorElement>) {
+    if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    setPlaying(false);
+    onDetails(displayed.item, displayed.index);
+  }
+
+  const detailsHref = `${detailHref(displayed.item.detailHref)}&from=slideshow`;
+  const detailsScrollAnchor = trigger.closest<HTMLElement>("[data-waterfall-index]");
+
   const imageLayers = Array.from(new Map(
     [previousImage, displayed.item, item].filter((image) => image !== null).map((image) => [image.ssd, image])
   ).values());
@@ -339,6 +349,7 @@ export default function WaterfallSlideshow({
         event.preventDefault();
         onClose();
       }}
+      onFocusCapture={revealControls}
       onPointerMove={revealControls}
       onPointerDown={revealControls}
       onKeyDown={(event) => {
@@ -428,10 +439,20 @@ export default function WaterfallSlideshow({
         <ControlIcon name="close" />
       </button>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/45 to-transparent pt-12">
+      <div className={`pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/45 to-transparent pt-12 motion-safe:transition-opacity motion-safe:duration-300 ${controlsVisible ? "opacity-100" : "opacity-0"}`}>
         <div className="flex flex-col gap-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-end sm:justify-between sm:px-6">
           <div className="min-w-0" aria-live={playing ? "off" : "polite"}>
-            <p className="break-words text-base font-semibold drop-shadow sm:text-xl">{displayed.item.title}</p>
+            <PreserveScrollLink
+              href={detailsHref}
+              onClick={handleDetailsClick}
+              scrollAnchor={detailsScrollAnchor}
+              title={details}
+              className={`block w-fit max-w-full rounded-sm hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${controlsVisibility}`}
+            >
+              <span className="line-clamp-2 break-words text-base font-semibold drop-shadow sm:text-xl">{displayed.item.title}</span>
+            </PreserveScrollLink>
+            {displayed.item.fullDate && <p className="mt-1 text-xs text-[#d6d3d1]">{displayed.item.fullDate}</p>}
+            {displayed.item.copyright && <p className="mt-2 line-clamp-2 break-words text-[10px] leading-relaxed text-[#d6d3d1] sm:text-xs">{displayed.item.copyright}</p>}
           </div>
           <div className="flex shrink-0 flex-col items-end gap-2 self-end">
             {(loading || failed) && <p className="text-right text-xs text-[#d6d3d1]" role="status">{loading ? loadingLabel : loadError}</p>}
@@ -445,13 +466,6 @@ export default function WaterfallSlideshow({
               <button type="button" aria-label={next} title={next} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(1)}>
                 <ControlIcon name="next" />
               </button>
-              <PreserveScrollLink href={`${detailHref(displayed.item.detailHref)}&from=slideshow`} onClick={(event) => {
-                if (event.defaultPrevented || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
-                setPlaying(false);
-                onDetails(displayed.item, displayed.index);
-              }} scrollAnchor={trigger.closest<HTMLElement>("[data-waterfall-index]")} aria-label={details} title={details} className={controlClass}>
-                <ControlIcon name="details" />
-              </PreserveScrollLink>
             </div>
           </div>
         </div>

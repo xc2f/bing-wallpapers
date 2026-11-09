@@ -2,15 +2,15 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import sitemap from "../app/sitemap";
 import robots from "../app/robots";
-import { getAllWallpapers, paginateWallpapers } from "../lib/archive";
+import { getAllWallpapers } from "../lib/archive";
 import { locales } from "../lib/i18n";
 import { pageMetadata, serializeJsonLd, siteUrl } from "../lib/seo";
 
-test("canonical and reciprocal language URLs preserve pagination", () => {
-  const metadata = pageMetadata({ locale: "zh", path: "?page=2", title: "壁纸", description: "测试" });
-  assert.equal(metadata.alternates?.canonical, siteUrl("/zh?page=2"));
-  assert.equal(metadata.alternates?.languages?.en, siteUrl("/en?page=2"));
-  assert.equal(metadata.alternates?.languages?.["x-default"], siteUrl("/en?page=2"));
+test("canonical and reciprocal language URLs point to the unified homepage", () => {
+  const metadata = pageMetadata({ locale: "zh", title: "壁纸", description: "测试" });
+  assert.equal(metadata.alternates?.canonical, siteUrl("/zh"));
+  assert.equal(metadata.alternates?.languages?.en, siteUrl("/en"));
+  assert.equal(metadata.alternates?.languages?.["x-default"], siteUrl("/en"));
   assert.equal(metadata.openGraph?.url, metadata.alternates?.canonical);
 });
 
@@ -22,14 +22,15 @@ test("filtered archives can be excluded while links remain crawlable", () => {
   });
 });
 
-test("sitemap covers every locale, wallpaper and archive page without duplicates", () => {
+test("sitemap covers every locale, wallpaper and homepage without duplicates", () => {
   const entries = sitemap();
   const expectedCount = locales.reduce((total, locale) => {
     const wallpapers = getAllWallpapers(locale);
-    return total + wallpapers.length + paginateWallpapers(wallpapers, 1).totalPages + 1;
+    return total + wallpapers.length + 1;
   }, 0);
   assert.equal(entries.length, expectedCount);
   assert.equal(new Set(entries.map((entry) => entry.url)).size, entries.length);
+  assert.ok(entries.every((entry) => !entry.url.includes("?") && !entry.url.includes("/waterfall")));
   for (const locale of locales) {
     for (const wallpaper of getAllWallpapers(locale)) {
       const url = siteUrl(`/${locale}/wallpaper/${wallpaper.Ssd}`);

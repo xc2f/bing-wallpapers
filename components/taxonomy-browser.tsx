@@ -1,7 +1,6 @@
 import type { CSSProperties } from "react";
 import WaterfallFilterLink from "@/components/waterfall-filter-link";
 import TaxonomyRow from "@/components/taxonomy-row";
-import Link from "next/link";
 import Image from "next/image";
 import { toAbsoluteUrl, type WallpaperItem } from "@/lib/archive";
 import { filterWallpapersByTaxonomy, getImageTaxonomy, getTaxonomyCounts } from "@/lib/image-taxonomy";
@@ -19,7 +18,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
   fields?: Array<"category" | "tag" | "country">;
   filters: { q?: string; year?: string; month?: string; category?: string; tag?: string; country?: string };
 }) {
-  const FilterLink = pathname === "/waterfall" ? WaterfallFilterLink : Link;
+  const FilterLink = WaterfallFilterLink;
 
   function href(field: "category" | "tag" | "country", value: string) {
     const params = new URLSearchParams();

@@ -18,7 +18,6 @@ export default function WaterfallFilters({ locale, filters, allWallpapers, items
 
   return <FilterBar
     locale={locale}
-    pathname="/waterfall"
     defaultCollapsed
     dictionary={getDictionary(locale)}
     category={category}
@@ -33,6 +32,6 @@ export default function WaterfallFilters({ locale, filters, allWallpapers, items
     yearOptions={yearOptions}
     yearToMonths={yearToMonths}
     searchHelpExamples={getSearchExamples(filterWallpapersByDate(allWallpapers, year, month), locale)}
-    taxonomyFilters={<TaxonomyBrowser items={items} locale={locale} filters={filters} pathname="/waterfall" />}
+    taxonomyFilters={<TaxonomyBrowser items={items} locale={locale} filters={filters} />}
   />;
 }

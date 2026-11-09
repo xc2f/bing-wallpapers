@@ -39,6 +39,7 @@ export async function GET(request: NextRequest) {
     ssd: wallpaper.Ssd,
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
+    copyright: wallpaper.ImageContent?.Copyright,
     description: wallpaper.ImageContent?.Description ?? dictionary.noDescription,
     previewUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url),
     wallpaperUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper),

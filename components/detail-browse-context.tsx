@@ -66,18 +66,16 @@ export function DetailBrowseProvider({ locale, ssd, initialNavigation, indexUrl,
     return () => { cancelled = true; };
   }, [filterKey, filters, hasFilters, indexUrl, ssd]);
   const backParams = new URLSearchParams(params);
-  if (params.get("view") === "waterfall") {
-    backParams.delete("view");
-    backParams.delete("from");
-  }
-  const backPath = params.get("view") === "waterfall" ? "/waterfall" : "";
+  backParams.delete("view");
+  backParams.delete("from");
+  backParams.delete("mode");
   const backSearch = backParams.toString();
   const value: BrowseContext = {
     currentLocale: locale,
     dictionary: getDictionary(locale),
     navigation: hasFilters && selection?.key === filterKey ? selection.navigation : initialNavigation,
     searchParams: Object.fromEntries(params),
-    backHref: localizePath(locale, `${backPath}${backSearch ? `?${backSearch}` : ""}`),
+    backHref: localizePath(locale, `${backSearch ? `?${backSearch}` : ""}`),
     createDetailHref: (target) => localizePath(locale, `/wallpaper/${target}${params.size ? `?${params}` : ""}`),
   };
   return <Context.Provider value={value}>

@@ -31,7 +31,6 @@ interface WaterfallGalleryProps {
   totalPages: number;
   filters: WallpaperFilters;
   items: (SlideshowItem & {
-    fullDate?: string;
     description?: string;
   })[];
 }
@@ -799,10 +798,11 @@ export default function WaterfallGallery({
                     {showDate && <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
                       {item.fullDate ?? item.ssd}
                     </p>}
-                    {showTitle && <h2 className="text-lg font-semibold leading-6 text-white">
+                    {showTitle && <h2 className={`text-lg font-semibold leading-6 text-white ${view.grid ? "h-12" : ""}`}>
                       <PreserveScrollLink
                         href={createDetailHref(item.detailHref)}
-                        className="block break-words transition hover:text-amber-200"
+                        title={item.title}
+                        className={`break-words transition hover:text-amber-200 ${view.grid ? "line-clamp-2" : "block"}`}
                       >
                         {item.title}
                       </PreserveScrollLink>
@@ -871,15 +871,20 @@ export default function WaterfallGallery({
                         </div>
                       )}
 
-                      {(showTitle || showDate) && <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100">
-                        {showTitle && <p className="theme-waterfall-image-title break-words text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
-                          {item.title}
-                        </p>}
-                        {showDate && <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
-                          {item.fullDate ?? item.ssd}
-                        </p>}
-                      </div>}
                     </PreserveScrollLink>
+                    {(showTitle || showDate) && <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+                      {showTitle && <p className="theme-waterfall-image-title break-words text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
+                        <PreserveScrollLink
+                          href={createDetailHref(item.detailHref)}
+                          className="pointer-events-auto block w-fit max-w-full rounded-sm hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                        >
+                          {item.title}
+                        </PreserveScrollLink>
+                      </p>}
+                      {showDate && <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
+                        {item.fullDate ?? item.ssd}
+                      </p>}
+                    </div>}
                   </article>
                 );
               })}

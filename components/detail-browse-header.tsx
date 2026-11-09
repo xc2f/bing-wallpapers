@@ -30,9 +30,7 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
                 label={
                   resolvedSearchParams.view === "waterfall" && resolvedSearchParams.from === "slideshow"
                     ? dictionary.detailBackToSlideshow
-                    : resolvedSearchParams.view === "waterfall"
-                      ? dictionary.detailBackToWaterfall
-                      : dictionary.detailBack
+                    : dictionary.detailBack
                 }
               />
               <ThemeSwitcher
