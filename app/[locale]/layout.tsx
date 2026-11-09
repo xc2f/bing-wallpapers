@@ -32,7 +32,7 @@ export default async function LocalizedLayout({
     <LocalePreference locale={currentLocale} />
     <div lang={htmlLangMap[currentLocale]} className="flex min-h-screen min-w-0 flex-col">
       <div className="min-w-0 flex-1">{children}</div>
-      <footer className="border-t border-white/10 px-4 py-6 sm:px-6 lg:px-8">
+      <footer className="section-divider px-4 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
             <p className="min-w-0 break-words text-[11px] uppercase tracking-[0.22em] text-stone-400">

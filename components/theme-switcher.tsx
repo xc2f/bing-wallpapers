@@ -268,7 +268,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
         aria-controls={panelId}
         aria-label={`${labels.trigger}: ${currentLabel}`}
         onClick={() => setOpen((current) => !current)}
-        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition theme-button-hover hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
+        className="inline-flex min-h-9 min-w-[5.75rem] items-center justify-between gap-2 rounded-full px-3 text-xs text-stone-300 transition theme-button-hover hover:text-white focus-visible:bg-white/[0.06] focus-visible:text-white focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgb(var(--theme-accent-ring-rgb)/0.2)]"
       >
         <span className="inline-flex min-w-0 items-center gap-2">
           <ThemeIcon mode={themeMode} />

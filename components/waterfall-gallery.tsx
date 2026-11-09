@@ -762,7 +762,7 @@ export default function WaterfallGallery({
                   key={item.ssd}
                   data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                   data-waterfall-ssd={item.ssd}
-                  className="min-w-0 overflow-hidden border border-white/10 bg-white/5 shadow-2xl shadow-black/20"
+                  className="min-w-0 overflow-hidden bg-white/[0.03] shadow-[0_8px_28px_rgba(0,0,0,0.10)]"
                   style={{ borderRadius: appearance.detailRadius }}
                 >
                   <PreserveScrollLink
@@ -838,7 +838,7 @@ export default function WaterfallGallery({
                     key={item.ssd}
                     data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                     data-waterfall-ssd={item.ssd}
-                    className="group relative min-w-0 overflow-hidden border border-white/5 bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+                    className="group relative min-w-0 overflow-hidden bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
                     style={{ borderRadius: appearance.imageRadius }}
                   >
                     <PreserveScrollLink
@@ -898,7 +898,7 @@ export default function WaterfallGallery({
       ) : null}
 
       {isReady && (hasMoreServerItems || isFetchingMore) ? (
-        <div className="flex flex-col items-center gap-2 border-t border-white/10 pt-6 text-sm">
+        <div className="flex flex-col items-center gap-2 section-divider pt-6 text-sm">
           <p className="text-stone-400" role="status" aria-live="polite" aria-atomic="true">
             {dictionary.waterfallLoaded}{" "}
             <span className="text-stone-100">{loadedItems.length}</span> / {totalCount}
@@ -915,7 +915,7 @@ export default function WaterfallGallery({
                 void fetchMoreItems();
               }}
               disabled={isFetchingMore}
-              className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover disabled:pointer-events-none disabled:opacity-50 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgba(251,191,36,0.2)]"
+              className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover disabled:pointer-events-none disabled:opacity-50 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgb(var(--theme-accent-ring-rgb)/0.2)]"
             >
               {isFetchingMore ? dictionary.waterfallLoadingMore : dictionary.waterfallLoadMore}
             </button>

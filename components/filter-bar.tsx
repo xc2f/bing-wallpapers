@@ -258,7 +258,7 @@ export default function FilterBar({
       .map(({ field, label }) => (
         <button key={field} type="button" disabled={isPending} onClick={() => removeFilter(field)}
           aria-label={`${taxonomyUiLabel("remove", locale)}: ${label}`}
-          className="inline-flex min-h-9 min-w-0 max-w-full items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.02] px-3 py-1 text-xs text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40 sm:min-h-8">
+          className="inline-flex min-h-9 min-w-0 max-w-full items-center gap-2 rounded-full bg-white/[0.05] px-3 py-1 text-xs text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 disabled:opacity-40 sm:min-h-8">
           <span className="min-w-0 text-left [overflow-wrap:anywhere]">{label}</span>
           <svg aria-hidden="true" viewBox="0 0 12 12" fill="none" className="h-3 w-3 shrink-0 opacity-60">
             <path d="m3 3 6 6m0-6-6 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
@@ -468,7 +468,7 @@ export default function FilterBar({
           </div>
           {collapsed ? (
             summaryItems.length > 0 ? (
-              <div className="flex items-center justify-between gap-4 rounded-xl border border-white/[0.05] bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
+              <div className="flex items-center justify-between gap-4 rounded-xl bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
                 <div className="flex min-w-0 flex-wrap gap-2">{summaryChips()}</div>
                 {summaryActions()}
               </div>
@@ -491,7 +491,7 @@ export default function FilterBar({
 
 
 
-          {footer || resultSummary ? <div className="flex flex-col gap-3 border-t border-white/[0.06] pt-4 sm:flex-row sm:items-center sm:justify-between">
+          {footer || resultSummary ? <div className="flex flex-col gap-3 section-divider pt-4 sm:flex-row sm:items-center sm:justify-between">
             {footer ? <div className="min-h-8">{footer}</div> : null}
             {resultSummary ? <div className="text-sm tabular-nums text-stone-500 sm:text-right" role="status" aria-live="polite">
               {resultSummary}

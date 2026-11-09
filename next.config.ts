@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const url = new URL(process.env.BASE_URL || "https://www.bing.com")
 
 const nextConfig: NextConfig = {
+  experimental: { globalNotFound: true },
   images: {
     unoptimized: true,
     remotePatterns: [

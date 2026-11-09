@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 interface DetailKeyboardNavigationProps {
-  previousHref?: string;
-  nextHref?: string;
+  leftHref?: string;
+  rightHref?: string;
 }
 
 function isEditableTarget(target: EventTarget | null) {
@@ -24,8 +24,8 @@ function isEditableTarget(target: EventTarget | null) {
 }
 
 export default function DetailKeyboardNavigation({
-  previousHref,
-  nextHref,
+  leftHref,
+  rightHref,
 }: DetailKeyboardNavigationProps) {
   const router = useRouter();
 
@@ -35,21 +35,21 @@ export default function DetailKeyboardNavigation({
         return;
       }
 
-      if (event.key === "ArrowLeft" && previousHref) {
+      if (event.key === "ArrowLeft" && leftHref) {
         event.preventDefault();
-        router.push(previousHref);
+        router.push(leftHref);
         return;
       }
 
-      if (event.key === "ArrowRight" && nextHref) {
+      if (event.key === "ArrowRight" && rightHref) {
         event.preventDefault();
-        router.push(nextHref);
+        router.push(rightHref);
       }
     }
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [nextHref, previousHref, router]);
+  }, [rightHref, leftHref, router]);
 
   return null;
 }

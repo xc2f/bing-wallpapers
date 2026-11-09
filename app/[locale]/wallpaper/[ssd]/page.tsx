@@ -141,6 +141,30 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
   const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
   const imageUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
+  const imageActions = downloadUrl || previewUrl ? (
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+      {downloadUrl ? (
+        <a
+          href={downloadUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center rounded-full bg-amber-300 px-4 py-2.5 text-sm font-medium text-stone-950 transition hover:bg-amber-200"
+        >
+          {dictionary.detailOpenFull}
+        </a>
+      ) : null}
+      {previewUrl ? (
+        <a
+          href={previewUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition theme-button-hover"
+        >
+          {dictionary.detailOpenPreview}
+        </a>
+      ) : null}
+    </div>
+  ) : null;
   return (
     <DetailBrowseProvider key={`${currentLocale}:${ssd}`} locale={currentLocale} ssd={ssd}
       initialNavigation={navigation} indexUrl={detailIndexManifest[currentLocale]}>
@@ -168,12 +192,12 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
       <main className="theme-detail-page px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:gap-10">
-          <section className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:gap-6 sm:pb-8">
+          <section className="flex flex-col gap-4 pb-2 sm:gap-6 sm:pb-8">
             <DetailBrowseHeader languagePaths={languagePaths} />
 
           <div className="flex flex-col gap-3">
               <div className="w-full min-w-0">
-              <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
+              <p className="theme-eyebrow text-sm uppercase tracking-[0.3em]">
                 {dictionary.detailLabel}
               </p>
               <h1 className="mt-3 w-full break-words text-3xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -184,7 +208,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           </div>
           </section>
 
-          <section className="theme-detail-panel overflow-hidden rounded-3xl border border-white/10 sm:rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
+          <section className="theme-detail-panel overflow-hidden rounded-3xl sm:rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
           <div className="bg-stone-900/58">
             {previewUrl ? (
               <Image
@@ -194,7 +218,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                 width={1920}
                 height={1080}
                 priority
-                className="h-auto w-full object-cover sm:h-[28rem] lg:h-[34rem]"
+                className="block h-auto w-full object-contain"
               />
             ) : (
               <div className="flex min-h-[24rem] items-center justify-center text-stone-400">
@@ -202,6 +226,8 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
               </div>
             )}
           </div>
+
+            {imageActions ? <div className="px-5 pt-5 sm:px-6 lg:hidden">{imageActions}</div> : null}
 
             {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
@@ -245,32 +271,11 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
               ) : null}
             </div>
 
-              <aside className="theme-detail-aside min-w-0 w-full break-words rounded-[1.5rem] border border-white/10 bg-black/12 backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">
-                <div className="grid gap-3 border-b border-white/10 pb-5">
-                {downloadUrl ? (
-                  <a
-                    href={downloadUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full bg-amber-300 px-4 py-2.5 text-sm font-medium text-stone-950 transition hover:bg-amber-200"
-                  >
-                    {dictionary.detailOpenFull}
-                  </a>
-                ) : null}
-                {previewUrl ? (
-                  <a
-                    href={previewUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition theme-button-hover"
-                  >
-                    {dictionary.detailOpenPreview}
-                  </a>
-                ) : null}
-                </div>
+              <aside className="theme-detail-aside min-w-0 w-full break-words rounded-[1.5rem] backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">
+                <div className="hidden lg:block">{imageActions}</div>
 
                 <dl className="mt-3 flex flex-col text-sm">
-                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 border-b border-white/10 py-3">
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
                     <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailCopyright}
                     </dt>
@@ -278,7 +283,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                     {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
                   </dd>
                 </div>
-                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 border-b border-white/10 py-3">
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
                     <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
                       {dictionary.detailDate}
                     </dt>

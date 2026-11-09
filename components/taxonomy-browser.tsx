@@ -87,7 +87,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
         <span>{name}</span>
         {count !== undefined ? <span className="filter-option-count">{count}</span> : null}
       </>;
-      const className = "filter-option inline-flex shrink-0 whitespace-nowrap items-center gap-2 px-3 py-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300";
+      const className = "filter-option inline-flex shrink-0 whitespace-nowrap items-center gap-2 text-sm transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300";
       if (count === 0 && !active) {
         return <span key={id} aria-disabled="true" className={`${className} opacity-40`}>{content}</span>;
       }

@@ -158,7 +158,7 @@ export default async function LocalizedHomePage({
           </div>
 
           <div className="max-w-3xl">
-              <p className="text-sm uppercase tracking-[0.3em] text-amber-300/80">
+              <p className="theme-eyebrow text-sm uppercase tracking-[0.3em]">
                 {dictionary.archiveLabel}
               </p>
               <h1 className="mt-3 text-3xl font-semibold tracking-tight text-white sm:text-5xl">
