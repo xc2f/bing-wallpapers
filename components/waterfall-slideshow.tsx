@@ -449,10 +449,10 @@ export default function WaterfallSlideshow({
               title={details}
               className={`block w-fit max-w-full rounded-sm hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${controlsVisibility}`}
             >
-              <span className="line-clamp-2 break-words text-base font-semibold drop-shadow sm:text-xl">{displayed.item.title}</span>
+              <span className="line-clamp-2 break-words text-base font-medium drop-shadow sm:text-xl">{displayed.item.title}</span>
             </PreserveScrollLink>
-            {displayed.item.fullDate && <p className="mt-1 text-xs text-[#d6d3d1]">{displayed.item.fullDate}</p>}
-            {displayed.item.copyright && <p className="mt-2 line-clamp-2 break-words text-[10px] leading-relaxed text-[#d6d3d1] sm:text-xs">{displayed.item.copyright}</p>}
+            {displayed.item.fullDate && <p className="mt-1 text-xs tabular-nums text-[#d6d3d1]">{displayed.item.fullDate}</p>}
+            {displayed.item.copyright && <p className="mt-2 line-clamp-2 break-words text-xs leading-relaxed text-[#d6d3d1]">{displayed.item.copyright}</p>}
           </div>
           <div className="flex shrink-0 flex-col items-end gap-2 self-end">
             {(loading || failed) && <p className="text-right text-xs text-[#d6d3d1]" role="status">{loading ? loadingLabel : loadError}</p>}

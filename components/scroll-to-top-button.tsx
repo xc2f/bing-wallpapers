@@ -103,7 +103,7 @@ export default function ScrollToTopButton({
       type="button"
       aria-label={label}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`theme-scroll-top fixed bottom-[calc(1.25rem_+_env(safe-area-inset-bottom))] right-5 z-30 inline-flex items-center justify-center rounded-full border border-white/10 bg-stone-950/78 text-[11px] uppercase tracking-[0.24em] text-stone-200 shadow-[0_12px_30px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 theme-floating-button-hover hover:text-white sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-3 sm:py-2 ${hasPosition ? "gap-3 px-3 py-2" : "h-14 w-14 p-0"}`}
+      className={`theme-scroll-top fixed bottom-[calc(1.25rem_+_env(safe-area-inset-bottom))] right-5 z-30 inline-flex items-center justify-center rounded-full border border-white/10 bg-stone-950/78 text-xs tabular-nums text-stone-200 shadow-[0_12px_30px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 theme-floating-button-hover hover:text-white sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-3 sm:py-2 ${hasPosition ? "gap-3 px-3 py-2" : "h-14 w-14 p-0"}`}
     >
       <span className="relative flex h-9 w-9 shrink-0 items-center justify-center">
         <svg

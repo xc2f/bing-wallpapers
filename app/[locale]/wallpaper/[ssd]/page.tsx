@@ -276,7 +276,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
 
                 <dl className="mt-3 flex flex-col text-sm">
                   <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
-                    <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
+                    <dt className="whitespace-nowrap text-xs text-stone-500">
                       {dictionary.detailCopyright}
                     </dt>
                     <dd className="min-w-0 break-words text-left sm:text-right leading-6 text-stone-200">
@@ -284,15 +284,15 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                   </dd>
                 </div>
                   <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
-                    <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
+                    <dt className="whitespace-nowrap text-xs text-stone-500">
                       {dictionary.detailDate}
                     </dt>
-                    <dd className="min-w-0 break-words text-left sm:text-right leading-6 text-stone-200">
+                    <dd className="min-w-0 break-words text-left sm:text-right tabular-nums leading-6 text-stone-200">
                     {formattedDate}
                   </dd>
                 </div>
                   <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
-                    <dt className="whitespace-nowrap text-xs uppercase tracking-[0.16em] text-stone-500">
+                    <dt className="whitespace-nowrap text-xs text-stone-500">
                       {dictionary.detailArchiveId}
                     </dt>
                     <dd className="min-w-0 break-words text-left sm:text-right font-mono leading-6 text-stone-300">

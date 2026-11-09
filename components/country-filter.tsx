@@ -99,7 +99,7 @@ export default function CountryFilter({ locale, value, options, clearHref }: {
           )}
           <span className="flex min-w-0 flex-1 items-baseline gap-1.5">
             <span className="truncate">{selected?.label ?? allLabel}</span>
-            {selected ? <span className="shrink-0 text-[10px] tracking-wide opacity-60">{selected.id}</span> : null}
+            {selected ? <span className="shrink-0 text-xs opacity-60">{selected.id}</span> : null}
           </span>
           <svg aria-hidden="true" viewBox="0 0 16 16" fill="none" className={`h-4 w-4 shrink-0 text-stone-500 ${open ? "rotate-180" : ""}`}>
             <path d="m4.5 6.5 3.5 3.5 3.5-3.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
@@ -122,17 +122,15 @@ export default function CountryFilter({ locale, value, options, clearHref }: {
             {!search ? <WaterfallFilterLink prefetch={false} href={clearHref} data-country-option aria-current={!value ? "true" : undefined}
               onClick={() => close(true)} className="country-filter-option">
               <span className="flex-1">{allLabel}</span>
-              {!value ? <span aria-hidden="true">✓</span> : null}
             </WaterfallFilterLink> : null}
             {results.map((option) => <WaterfallFilterLink prefetch={false} key={option.id} href={option.href} data-country-option
               aria-current={option.id === value ? "true" : undefined} onClick={() => close(true)} className="country-filter-option">
               {option.flag ? <Image src={option.flag} alt="" width={20} height={14} className="filter-country-flag" /> : null}
               <span className="flex min-w-0 flex-1 items-baseline gap-2">
                 <span className="min-w-0 break-words">{option.label}</span>
-                <span className="shrink-0 text-[10px] tracking-wide opacity-60">{option.id}</span>
+                <span className="shrink-0 text-xs opacity-60">{option.id}</span>
               </span>
               <span className="text-xs tabular-nums opacity-60">{option.count}</span>
-              {option.id === value ? <span aria-hidden="true">✓</span> : null}
             </WaterfallFilterLink>)}
             {results.length === 0 ? <p role="status" className="px-3 py-6 text-center text-sm text-stone-500">{taxonomyUiLabel("noCountries", locale)}</p> : null}
           </div>

@@ -146,7 +146,7 @@ function WaterfallDescription({ text, expanded, onToggle, dictionary }: {
           type="button"
           onClick={onToggle}
           aria-expanded={expanded}
-          className="theme-button-hover rounded-md text-xs uppercase tracking-[0.22em] text-stone-400 transition hover:text-stone-200"
+          className="theme-button-hover rounded-md text-xs font-medium text-stone-400 transition hover:text-stone-200"
         >
           {expanded ? dictionary.waterfallCollapseDescription : dictionary.waterfallExpandDescription}
         </button>
@@ -795,10 +795,10 @@ export default function WaterfallGallery({
                   </PreserveScrollLink>
 
                   <div className="space-y-4 p-5">
-                    {showDate && <p className="text-xs uppercase tracking-[0.2em] text-stone-500">
+                    {showDate && <p className="text-xs tabular-nums text-stone-500">
                       {item.fullDate ?? item.ssd}
                     </p>}
-                    {showTitle && <h2 className={`text-lg font-semibold leading-6 text-white ${view.grid ? "h-12" : ""}`}>
+                    {showTitle && <h2 className={`text-lg font-medium leading-6 text-white ${view.grid ? "h-12" : ""}`}>
                       <PreserveScrollLink
                         href={createDetailHref(item.detailHref)}
                         title={item.title}
@@ -881,7 +881,7 @@ export default function WaterfallGallery({
                           {item.title}
                         </PreserveScrollLink>
                       </p>}
-                      {showDate && <p className="theme-waterfall-image-date mt-1 text-[11px] uppercase tracking-[0.24em] text-stone-200/72">
+                      {showDate && <p className="theme-waterfall-image-date mt-1 text-xs tabular-nums text-stone-200/72">
                         {item.fullDate ?? item.ssd}
                       </p>}
                     </div>}

@@ -85,9 +85,6 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
       }))} />;
     }
 
-    // Keep a selected tag in the compact preview even when it is less common.
-    const tagOptions = selected ? [...options.filter(([id]) => id === selected), ...options.filter(([id]) => id !== selected)] : options;
-
     function option(id: string, count?: number) {
       const active = selected === id;
       const name = id ? taxonomyLabel(id, locale, field) : taxonomyUiLabel("all", locale);
@@ -117,7 +114,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
         collapseLabel={taxonomyUiLabel("collapse", locale)}
       >
         {option("")}
-        {tagOptions.map(([id, count]) => option(id, count))}
+        {options.map(([id, count]) => option(id, count))}
       </TaxonomyRow>
     );
   }

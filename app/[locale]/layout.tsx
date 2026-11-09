@@ -35,7 +35,7 @@ export default async function LocalizedLayout({
       <footer className="section-divider px-4 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-            <p className="min-w-0 break-words text-[11px] uppercase tracking-[0.22em] text-stone-400">
+            <p className="min-w-0 break-words text-xs uppercase tracking-[0.22em] text-stone-400">
               {dictionary.archiveLabel}
             </p>
             <a

@@ -40,13 +40,13 @@ export default function DetailBrowseNavigation() {
                 </div>
                 <div className="flex min-w-0 flex-col justify-between p-4 sm:p-5">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                    <p className="text-xs font-medium text-stone-400">
                       ← {dictionary.detailNewerShort}
                     </p>
-                    <p className="mt-2 text-sm text-stone-400">
+                    <p className="mt-2 text-xs tabular-nums text-stone-400">
                       {formatArchiveDate(currentLocale, next.Ssd, next.FullDateString)}
                     </p>
-                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-semibold text-white">
+                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-medium leading-6 text-white">
                       {next.ImageContent?.Title ?? next.Ssd}
                     </h3>
                   </div>
@@ -65,13 +65,13 @@ export default function DetailBrowseNavigation() {
               <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_96px] sm:grid-cols-[minmax(0,1fr)_132px]">
                 <div className="flex min-w-0 flex-col justify-between p-4 sm:p-5 text-right">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
+                    <p className="text-xs font-medium text-stone-400">
                       {dictionary.detailOlderShort} →
                     </p>
-                    <p className="mt-2 text-sm text-stone-400">
+                    <p className="mt-2 text-xs tabular-nums text-stone-400">
                       {formatArchiveDate(currentLocale, previous.Ssd, previous.FullDateString)}
                     </p>
-                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-semibold text-white">
+                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-medium leading-6 text-white">
                       {previous.ImageContent?.Title ?? previous.Ssd}
                     </h3>
                   </div>
@@ -97,7 +97,7 @@ export default function DetailBrowseNavigation() {
         ) : null}
 
         {moreWallpapers.length > 0 ? <section className="flex flex-col gap-4 section-divider pt-8">
-          <h2 className="text-2xl font-semibold text-white">{dictionary.detailMore}</h2>
+          <h2 className="text-xl font-semibold text-white">{dictionary.detailMore}</h2>
 
           <DetailRelatedStrip>
             {moreWallpapers.map((item) => {

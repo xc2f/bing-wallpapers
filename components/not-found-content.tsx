@@ -13,7 +13,7 @@ export default function NotFoundContent({ fallbackLocale = defaultLocale }: { fa
   return (
     <main lang={htmlLangMap[locale]} className="not-found-page flex min-h-[75svh] items-center justify-center px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-xl text-center">
-        <Link href={localizePath(locale)} className="theme-eyebrow rounded text-[11px] uppercase tracking-[0.22em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
+        <Link href={localizePath(locale)} className="theme-eyebrow rounded text-xs uppercase tracking-[0.22em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
           {dictionary.archiveLabel}
         </Link>
         <div aria-hidden="true" className="not-found-art relative mx-auto my-8 w-64 sm:my-10 sm:w-80">

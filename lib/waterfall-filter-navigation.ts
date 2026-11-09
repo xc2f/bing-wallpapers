@@ -1,4 +1,4 @@
-// Filter changes start a fresh gallery, without restoring an old page's anchor.
+// Clear stale destination anchors without moving the current filter viewport.
 export function resetWaterfallFilterScroll(target: string) {
   const [pathname] = target.split("?");
   for (const key of new Set([target, pathname])) {
@@ -6,5 +6,7 @@ export function resetWaterfallFilterScroll(target: string) {
       window.sessionStorage.removeItem(`${prefix}${key}`);
     }
   }
-  window.scrollTo({ top: 0, behavior: "instant" });
+  // The gallery can briefly shrink while new results mount. Restore this
+  // viewport after navigation instead of letting that layout change reset it.
+  window.sessionStorage.setItem(`scroll-position:${target}`, String(window.scrollY));
 }

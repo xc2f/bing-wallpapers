@@ -144,10 +144,6 @@ export default function FilterBar({
   const summaryItems = useMemo(() => {
     const items: Array<{ field: "category" | "tag" | "country" | "q" | "year" | "month"; label: string }> = [];
 
-    if (category) items.push({ field: "category", label: `${taxonomyUiLabel("categories", locale)}: ${(categoryLabel || category)}` });
-    if (tag) items.push({ field: "tag", label: `${taxonomyUiLabel("tags", locale)}: ${(tagLabel || tag)}` });
-    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
-
     if (query.trim()) {
       items.push({ field: "q", label: `${dictionary.activeQuery}: ${query.trim()}` });
     }
@@ -159,6 +155,10 @@ export default function FilterBar({
     if (month) {
       items.push({ field: "month", label: `${dictionary.activeMonth}: ${formatMonthLabel(locale, month)}` });
     }
+
+    if (country) items.push({ field: "country", label: `${taxonomyUiLabel("countries", locale)}: ${countryLabel || country}` });
+    if (category) items.push({ field: "category", label: `${taxonomyUiLabel("categories", locale)}: ${(categoryLabel || category)}` });
+    if (tag) items.push({ field: "tag", label: `${taxonomyUiLabel("tags", locale)}: ${(tagLabel || tag)}` });
 
     return items;
   }, [category, tag, country, categoryLabel, tagLabel, countryLabel, dictionary.activeMonth, dictionary.activeQuery, dictionary.activeYear, locale, month, query, year]);
@@ -355,14 +355,6 @@ export default function FilterBar({
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-3">
 
           <div id={filterContentId} hidden={collapsed} className="space-y-4">
-            {!collapsed && summaryItems.length > 0 ? (
-              <div className="flex items-start justify-between gap-4">
-                <div className="min-w-0 flex-1 flex flex-wrap gap-2">
-                  {summaryChips()}
-                </div>
-                {summaryActions()}
-              </div>
-            ) : null}
             {!collapsed ? (
               <div className="filter-search-toolbar grid grid-cols-2 items-end gap-3 lg:grid-cols-[minmax(0,1fr)_11rem_11rem]">
                 <div ref={searchAreaRef} className="wallpaper-search relative col-span-2 min-w-0 lg:col-span-1">
@@ -470,30 +462,26 @@ export default function FilterBar({
             ) : null}
             {!collapsed ? taxonomyFilters : null}
           </div>
-          {collapsed ? (
-            summaryItems.length > 0 ? (
-              <div className="flex items-center justify-between gap-4 rounded-xl bg-white/[0.02] px-4 py-3 text-sm text-stone-400">
-                <div className="flex min-w-0 flex-wrap gap-2">{summaryChips()}</div>
-                {summaryActions()}
-              </div>
-            ) : (
-              <div className="flex items-center gap-2 px-1 text-xs leading-5 tracking-[0.08em] text-stone-500">
-                {dictionary.filterSummaryAll}
-                <span aria-hidden="true" className="text-stone-700">
-                  ·
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setCollapsed(false)}
-                  className="text-amber-200/80 transition hover:text-amber-100"
-                >
-                  {dictionary.filterExpand}
-                </button>
-              </div>
-            )
+          {summaryItems.length > 0 ? (
+            <div className={`filter-selection-summary flex items-start justify-between gap-3 ${collapsed ? "" : "section-divider pt-4"}`}>
+              <div className="flex min-w-0 flex-1 flex-wrap gap-2">{summaryChips()}</div>
+              {summaryActions()}
+            </div>
+          ) : collapsed ? (
+            <div className="flex items-center gap-2 px-1 text-xs leading-5 tracking-[0.08em] text-stone-500">
+              {dictionary.filterSummaryAll}
+              <span aria-hidden="true" className="text-stone-700">
+                ·
+              </span>
+              <button
+                type="button"
+                onClick={() => setCollapsed(false)}
+                className="text-amber-200/80 transition hover:text-amber-100"
+              >
+                {dictionary.filterExpand}
+              </button>
+            </div>
           ) : null}
-
-
 
           {footer || resultSummary ? <div className="flex flex-col gap-3 section-divider pt-4 sm:flex-row sm:items-center sm:justify-between">
             {footer ? <div className="min-h-8">{footer}</div> : null}
