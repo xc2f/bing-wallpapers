@@ -7,6 +7,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import WaterfallViewOptions, { manualColumnChoices, type WaterfallView, viewDefaults } from "@/components/waterfall-view-options";
 import WaterfallSlideshow, { type SlideshowItem } from "@/components/waterfall-slideshow";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
+import { WATERFALL_BATCH_SIZE, waterfallPageForIndex } from "@/lib/waterfall-pagination";
 import { slideshowReturnKey } from "@/lib/slideshow-return";
 import { wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import type { Dictionary, Locale } from "@/lib/i18n";
@@ -85,7 +86,8 @@ function getInitialView(): WaterfallView {
 
 function getSavedAnchorIndex(
   storageKey: string,
-  items: WaterfallGalleryProps["items"]
+  items: WaterfallGalleryProps["items"],
+  itemsOffset = 0
 ) {
   if (typeof window === "undefined") {
     return 0;
@@ -101,11 +103,11 @@ function getSavedAnchorIndex(
     return items.findIndex((item) => item.ssd === savedAnchorSsd) + 1;
   }
 
-  return Number(
+  return Math.max(0, Number(
     window.sessionStorage.getItem(`${SCROLL_ANCHOR_PREFIX}${storageKey}`) ??
       window.sessionStorage.getItem(`${SCROLL_ANCHOR_PREFIX}${fallbackKey}`) ??
       "0"
-  );
+  ) - itemsOffset);
 }
 
 function WaterfallDescription({ text, expanded, onToggle, dictionary }: {
@@ -171,6 +173,8 @@ export default function WaterfallGallery({
     .replace("{count}", new Intl.NumberFormat(locale).format(totalCount));
   const [loadedItems, setLoadedItems] = useState(items);
   const [loadedPage, setLoadedPage] = useState(initialPage);
+  const [loadedStartPage, setLoadedStartPage] = useState(initialPage);
+  const itemsOffset = (loadedStartPage - 1) * WATERFALL_BATCH_SIZE;
   const [view, setView] = useState(viewDefaults);
   const [galleryWidth, setGalleryWidth] = useState(0);
   const showMeta = Boolean(view.info & 4);
@@ -193,6 +197,8 @@ export default function WaterfallGallery({
   const fetchInFlightRef = useRef<Promise<WaterfallGalleryProps["items"]> | null>(null);
   const [preview, setPreview] = useState<{ item: SlideshowItem; index?: number; trigger: HTMLAnchorElement } | null>(null);
   const previousLoadedCountRef = useRef(items.length);
+  const pageRequestsRef = useRef(new Map<number, Promise<WaterfallGalleryProps["items"] | null>>());
+  const hasRequestedAnchorRef = useRef(false);
 
   useEffect(() => {
     const gallery = sectionRef.current;
@@ -304,7 +310,7 @@ export default function WaterfallGallery({
       }
     });
     return () => window.cancelAnimationFrame(frame);
-  }, [view]);
+  }, [view, loadedStartPage]);
 
   function handleToggleDescription(ssd: string) {
     setExpandedDescriptions((current) => ({
@@ -320,14 +326,26 @@ export default function WaterfallGallery({
     });
   }
 
-  const fetchWaterfallPage = useCallback(async (page: number) => {
+  const fetchWaterfallPage = useCallback((page: number) => {
+    const cached = pageRequestsRef.current.get(page);
+    if (cached) return cached;
     const params = new URLSearchParams({ locale, page: String(page) });
     wallpaperFilterParams(filters).forEach((value, key) => params.set(key, value));
-    const response = await fetch(`/api/waterfall?${params.toString()}`, { cache: "no-store" });
-    if (!response.ok) return null;
-
-    const payload = (await response.json()) as { items?: WaterfallGalleryProps["items"]; page?: number };
-    return payload.items && payload.page === page ? payload.items : null;
+    const request = fetch(`/api/waterfall?${params.toString()}`).then(async (response) => {
+      if (!response.ok) return null;
+      const payload = (await response.json()) as { items?: WaterfallGalleryProps["items"]; page?: number };
+      return payload.items && payload.page === page ? payload.items : null;
+    }).catch(() => null).then((batch) => {
+      // Failed requests remain retryable.
+      if (!batch) pageRequestsRef.current.delete(page);
+      return batch;
+    });
+    // Share requests between scrolling, restoration and the slideshow; bound retained payloads.
+    if (pageRequestsRef.current.size >= 8) {
+      pageRequestsRef.current.delete(pageRequestsRef.current.keys().next().value!);
+    }
+    pageRequestsRef.current.set(page, request);
+    return request;
   }, [filters, locale]);
 
   const fetchMoreItems = useCallback(() => {
@@ -359,10 +377,66 @@ export default function WaterfallGallery({
     return request;
   }, [fetchWaterfallPage, hasMoreServerItems, loadedItems, loadedPage]);
 
+  const fetchPreviousItems = useCallback(() => {
+    if (fetchInFlightRef.current) return fetchInFlightRef.current;
+    if (loadedStartPage <= 1) return Promise.resolve([]);
+    const request = (async () => {
+      setIsFetchingMore(true);
+      try {
+        const previousPage = loadedStartPage - 1;
+        const batch = await fetchWaterfallPage(previousPage);
+        if (!batch) return [];
+        const anchor = Array.from(sectionRef.current?.querySelectorAll<HTMLElement>("[data-waterfall-ssd]") ?? [])
+          .find((card) => card.getBoundingClientRect().bottom > (toolbarRef.current?.getBoundingClientRect().bottom ?? 0));
+        if (anchor?.dataset.waterfallSsd) {
+          viewAnchorRef.current = { ssd: anchor.dataset.waterfallSsd, top: anchor.getBoundingClientRect().top };
+        }
+        setLoadedItems((current) => [...batch, ...current]);
+        setLoadedStartPage(previousPage);
+        setVisibleCount((current) => current + batch.length);
+        return batch;
+      } finally {
+        fetchInFlightRef.current = null;
+        setIsFetchingMore(false);
+      }
+    })();
+    fetchInFlightRef.current = request;
+    return request;
+  }, [fetchWaterfallPage, loadedStartPage]);
+
+  useEffect(() => {
+    if (!isReady || hasRequestedAnchorRef.current || hasRestoredAnchorRef.current) return;
+    const fallbackKey = storageKey.split("?")[0];
+    const savedSsd = window.sessionStorage.getItem(`${SCROLL_ANCHOR_SSD_PREFIX}${storageKey}`) ??
+      window.sessionStorage.getItem(`${SCROLL_ANCHOR_SSD_PREFIX}${fallbackKey}`);
+    const savedIndex = Number(window.sessionStorage.getItem(`${SCROLL_ANCHOR_PREFIX}${storageKey}`) ??
+      window.sessionStorage.getItem(`${SCROLL_ANCHOR_PREFIX}${fallbackKey}`));
+    if (savedSsd && loadedItems.some((item) => item.ssd === savedSsd)) return;
+    if (!Number.isInteger(savedIndex) || savedIndex < 1 || savedIndex > totalCount) return;
+    const page = waterfallPageForIndex(savedIndex - 1);
+    if (page >= loadedStartPage && page <= loadedPage) return;
+    hasRequestedAnchorRef.current = true;
+    let cancelled = false;
+    let completed = false;
+    void fetchWaterfallPage(page).then((batch) => {
+      completed = true;
+      if (cancelled || !batch) return;
+      // Restore only the anchor's batch, rather than downloading every preceding page.
+      setLoadedItems(batch);
+      setLoadedStartPage(page);
+      setLoadedPage(page);
+      setVisibleCount(Math.min(batch.length, savedIndex - (page - 1) * WATERFALL_BATCH_SIZE + LOAD_MORE_BATCH_SIZE));
+    });
+    return () => {
+      cancelled = true;
+      if (!completed) hasRequestedAnchorRef.current = false;
+    };
+  }, [fetchWaterfallPage, isReady, loadedItems, loadedPage, loadedStartPage, storageKey, totalCount]);
+
   function openPreview(event: MouseEvent<HTMLAnchorElement>, item: WaterfallGalleryProps["items"][number]) {
     if (event.defaultPrevented || !(item.wallpaperUrl || item.previewUrl) || event.button !== 0 || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
     event.preventDefault();
-    setPreview({ item, trigger: event.currentTarget });
+    setPreview({ item, index: itemsOffset + loadedItems.findIndex((entry) => entry.ssd === item.ssd), trigger: event.currentTarget });
   }
 
   useEffect(() => {
@@ -391,7 +465,7 @@ export default function WaterfallGallery({
 
   useLayoutEffect(() => {
     const nextView = getInitialView();
-    const savedAnchorIndex = getSavedAnchorIndex(storageKey, items);
+    const savedAnchorIndex = getSavedAnchorIndex(storageKey, items, (initialPage - 1) * WATERFALL_BATCH_SIZE);
     const nextVisibleCount = savedAnchorIndex
       ? Math.min(
           Math.max(INITIAL_BATCH_SIZE, savedAnchorIndex + LOAD_MORE_BATCH_SIZE),
@@ -401,6 +475,7 @@ export default function WaterfallGallery({
 
     setLoadedItems(items);
     setLoadedPage(initialPage);
+    setLoadedStartPage(initialPage);
     setView(nextView);
     setVisibleCount(nextVisibleCount);
     setIsReady(true);
@@ -445,7 +520,7 @@ export default function WaterfallGallery({
       return;
     }
 
-    const savedAnchorIndex = getSavedAnchorIndex(storageKey, loadedItems);
+    const savedAnchorIndex = getSavedAnchorIndex(storageKey, loadedItems, itemsOffset);
 
     if (!savedAnchorIndex || Number.isNaN(savedAnchorIndex)) {
       return;
@@ -457,7 +532,7 @@ export default function WaterfallGallery({
         loadedItems.length
       )
     );
-  }, [isReady, loadedItems, loadedItems.length, storageKey]);
+  }, [isReady, itemsOffset, loadedItems, loadedItems.length, storageKey]);
 
   useEffect(() => {
     const node = sentinelRef.current;
@@ -547,8 +622,8 @@ export default function WaterfallGallery({
   }, [columnCount, shouldRenderMeta, view.grid, view.info, visibleItems]);
   const visibleItemIndexMap = useMemo(
     () =>
-      new Map(visibleItems.map((item, index) => [item.ssd, index + 1])),
-    [visibleItems]
+      new Map(visibleItems.map((item, index) => [item.ssd, itemsOffset + index + 1])),
+    [itemsOffset, visibleItems]
   );
   const visibleItemOrderMap = useMemo(
     () => new Map(visibleItems.map((item, index) => [item.ssd, index])),
@@ -642,7 +717,7 @@ export default function WaterfallGallery({
   }, [groupedItems, isReady, storageKey, visibleItemIndexMap]);
 
   return (
-    <section ref={sectionRef} data-waterfall-wide={view.wide} className="relative flex min-w-0 flex-col gap-6">
+    <section ref={sectionRef} data-waterfall-start={itemsOffset} data-waterfall-wide={view.wide} className="relative flex min-w-0 flex-col gap-6">
       <span ref={toolbarStartRef} aria-hidden="true" className="pointer-events-none absolute -top-px left-0 size-px" />
       <div
         ref={toolbarRef}
@@ -665,6 +740,13 @@ export default function WaterfallGallery({
       </p>
 
       {!isReady ? <div className="min-h-[24rem]" aria-hidden="true" /> : null}
+
+      {isReady && loadedStartPage > 1 ? (
+        <button type="button" onClick={() => { void fetchPreviousItems(); }} disabled={isFetchingMore}
+          className="theme-button-hover mx-auto min-h-10 rounded-full border border-white/15 px-4 py-2 text-sm text-white disabled:opacity-50">
+          {isFetchingMore ? dictionary.waterfallLoadingMore : dictionary.waterfallLoadPrevious}
+        </button>
+      ) : null}
 
       {isReady && shouldRenderMeta ? (
         <div className="grid items-start" style={{ gridTemplateColumns, gap: appearance.detailGap }}>
@@ -841,6 +923,7 @@ export default function WaterfallGallery({
           initialIndex={preview.index}
           trigger={preview.trigger}
           items={loadedItems}
+          itemsOffset={itemsOffset}
           totalCount={totalCount}
           loadPage={fetchWaterfallPage}
           onClose={() => {

@@ -54,12 +54,14 @@ export default function ScrollToTopButton({
       const isAtPageBottom =
         window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 2;
-      let nextIndex = 1;
+      let nextIndex = Number(items[0]?.dataset.waterfallIndex ?? "1");
 
       if (isAtPageBottom) {
         setVisible(window.scrollY > 640);
-        setCurrentIndex(totalCount);
-        setProgressPercent(100);
+        // A batch boundary is not necessarily the end of the archive.
+        const lastIndex = Math.max(nextIndex, ...items.map((item) => Number(item.dataset.waterfallIndex ?? "1")));
+        setCurrentIndex(Math.min(lastIndex, totalCount));
+        setProgressPercent(Math.min(lastIndex / totalCount * 100, 100));
         return;
       }
 

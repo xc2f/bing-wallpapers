@@ -1,5 +1,5 @@
 import TaxonomyBrowser from "@/components/taxonomy-browser";
-import { filterWallpapersByTaxonomy, getImageTaxonomy } from "@/lib/image-taxonomy";
+import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import { taxonomyLabel } from "@/lib/taxonomy-labels";
 import { getSearchExamples } from "@/lib/search-examples";
 import Image from "next/image";
@@ -19,10 +19,10 @@ import {
   filterWallpapersByDate,
   getSearchHighlightTerms,
   getAllWallpapers,
+  getFilteredWallpapers,
   getMonthOptions,
   getYearOptions,
   paginateWallpapers,
-  searchWallpapers,
   toAbsoluteUrl,
 } from "@/lib/archive";
 import {
@@ -149,7 +149,7 @@ export async function generateMetadata({ params, searchParams }: {
   const country = filters.country?.trim() ?? "";
   const year = filters.year?.trim() ?? "";
   const month = filters.month?.trim() ?? "";
-  const wallpapers = filterWallpapersByTaxonomy(searchWallpapers(filterWallpapersByDate(getAllWallpapers(resolvedLocale), year, month), query), category, tag, country);
+  const wallpapers = getFilteredWallpapers(resolvedLocale, { q: query, year, month, category, tag, country });
   const requestedPage = Number.parseInt(filters.page ?? "1", 10);
   const { currentPage } = paginateWallpapers(wallpapers, Number.isNaN(requestedPage) ? 1 : requestedPage);
   const href = createPageHref(resolvedLocale, currentPage, query, year, month, category, tag, country);
@@ -206,8 +206,8 @@ export default async function LocalizedHomePage({
     ])
   );
   const dateFilteredWallpapers = filterWallpapersByDate(allWallpapers, year, month);
-  const searchedWallpapers = searchWallpapers(dateFilteredWallpapers, query);
-  const filteredWallpapers = filterWallpapersByTaxonomy(searchedWallpapers, category, tag, country);
+  const searchedWallpapers = getFilteredWallpapers(locale, { q: query, year, month });
+  const filteredWallpapers = getFilteredWallpapers(locale, { q: query, year, month, category, tag, country });
   const highlightTerms = getSearchHighlightTerms(query);
   const { currentPage, totalPages, items } = paginateWallpapers(
     filteredWallpapers,

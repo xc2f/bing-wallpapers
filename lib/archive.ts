@@ -1,7 +1,8 @@
 import { normalizeSearchValue, parseSearchQuery, positiveSearchClauses, type SearchClause, type SearchExpression, type SearchField } from "@/lib/search-query";
-import { getImageTaxonomy } from "@/lib/image-taxonomy";
+import { filterWallpapersByTaxonomy, getImageTaxonomy } from "@/lib/image-taxonomy";
 import data from "@/db/media_contents.json";
-import { defaultLocale, locales, type Locale } from "@/lib/i18n";
+import { getWallpaperFilters, wallpaperFilterKeys, type WallpaperFilters } from "@/lib/wallpaper-filters";
+import { defaultLocale, type Locale } from "@/lib/i18n";
 
 export const BING_BASE_URL = process.env.BASE_URL || "https://www.bing.com";
 export const PAGE_SIZE = 12;
@@ -45,30 +46,59 @@ function archiveDateKey(ssd: string) {
 
 export function selectWallpaperRecords(items: WallpaperItem[]) {
   const byDate = new Map<string, WallpaperItem>();
-  // Prefer the latest ID within one source, and official records over AI translations.
-  const preferredOrder = [...items].sort((a, b) =>
-    Number(b.Translation?.generatedBy === "AI") - Number(a.Translation?.generatedBy === "AI") ||
-    a.Ssd.localeCompare(b.Ssd)
-  );
-  for (const item of preferredOrder) {
-    byDate.set(archiveDateKey(item.Ssd), item);
+  // Select in one pass; only the final, deduplicated records need sorting.
+  for (const item of items) {
+    const key = archiveDateKey(item.Ssd);
+    const previous = byDate.get(key);
+    const isAI = item.Translation?.generatedBy === "AI";
+    const previousIsAI = previous?.Translation?.generatedBy === "AI";
+    if (!previous || (previousIsAI && !isAI) ||
+        (isAI === previousIsAI && item.Ssd.localeCompare(previous.Ssd) >= 0)) {
+      byDate.set(key, item);
+    }
   }
   return [...byDate.values()].sort((a, b) => b.Ssd.localeCompare(a.Ssd));
 }
 
-const wallpapersByLocale = new Map(locales.map((locale) => [
-  locale,
-  selectWallpaperRecords(wallpaperArchive.mediaContents[locale]),
-] as const));
-const knownArchiveIds = new Set(Object.values(wallpaperArchive.mediaContents).flat().map((item) => item.Ssd));
-const wallpaperDates = new Map(locales.map((locale) => [
-  locale,
-  new Map(wallpapersByLocale.get(locale)!.map((item) => [archiveDateKey(item.Ssd), item])),
-] as const));
-const wallpaperIndexes = new Map(locales.map((locale) => [
-  locale,
-  new Map(wallpapersByLocale.get(locale)!.map((wallpaper) => [wallpaper.Ssd, wallpaper])),
-] as const));
+// Initialize only the requested language in each Worker isolate.
+const archivesByLocale = new Map<Locale, {
+  items: WallpaperItem[];
+  dates: Map<string, WallpaperItem>;
+  indexes: Map<string, WallpaperItem>;
+}>();
+let knownArchiveIds: Set<string> | undefined;
+function getArchive(locale: Locale) {
+  let archive = archivesByLocale.get(locale);
+  if (!archive) {
+    const items = selectWallpaperRecords(wallpaperArchive.mediaContents[locale]);
+    archive = {
+      items,
+      dates: new Map(items.map((item) => [archiveDateKey(item.Ssd), item])),
+      indexes: new Map(items.map((item) => [item.Ssd, item])),
+    };
+    archivesByLocale.set(locale, archive);
+  }
+  return archive;
+}
+
+// Bounded caches: query parameters must not grow isolate memory indefinitely.
+function remember<K, V>(cache: Map<K, V>, key: K, value: V, limit: number) {
+  if (cache.size >= limit) cache.delete(cache.keys().next().value!);
+  cache.set(key, value);
+  return value;
+}
+const filteredArchives = new Map<string, WallpaperItem[]>();
+export function getFilteredWallpapers(locale: Locale, source: WallpaperFilters = {}) {
+  const filters = getWallpaperFilters(source);
+  const key = JSON.stringify([locale, ...wallpaperFilterKeys.map((field) => filters[field])]);
+  const cached = filteredArchives.get(key);
+  if (cached) return cached;
+  const result = filterWallpapersByTaxonomy(searchWallpapers(
+    filterWallpapersByDate(getAllWallpapers(locale), filters.year, filters.month), filters.q
+  ), filters.category, filters.tag, filters.country);
+  if (key.length <= 1024) remember(filteredArchives, key, result, 64);
+  return result;
+}
 
 interface DateParts {
   year: string;
@@ -82,13 +112,15 @@ export function toAbsoluteUrl(path?: string) {
 }
 
 export function getAllWallpapers(locale: Locale = defaultLocale) {
-  return wallpapersByLocale.get(locale)!;
+  return getArchive(locale).items;
 }
 
 export function getWallpaperBySsd(ssd: string, locale: Locale = defaultLocale) {
-  return wallpaperIndexes.get(locale)!.get(ssd) ?? (knownArchiveIds.has(ssd)
-    ? wallpaperDates.get(locale)!.get(archiveDateKey(ssd))
-    : undefined);
+  const archive = getArchive(locale);
+  const exact = archive.indexes.get(ssd);
+  if (exact) return exact;
+  knownArchiveIds ??= new Set(Object.values(wallpaperArchive.mediaContents).flatMap((items) => items.map((item) => item.Ssd)));
+  return knownArchiveIds.has(ssd) ? archive.dates.get(archiveDateKey(ssd)) : undefined;
 }
 
 export function getTranslationSource(wallpaper: WallpaperItem) {
@@ -105,38 +137,51 @@ export function getRelatedWallpapers(ssd: string, limit = 3, locale: Locale = de
   return getRelatedWallpapersFromList(getAllWallpapers(locale), ssd, limit);
 }
 
+const relatedByList = new WeakMap<WallpaperItem[], Map<string, WallpaperItem[]>>();
 export function getRelatedWallpapersFromList(
   wallpapers: WallpaperItem[],
   ssd: string,
   limit = 3
 ) {
-  const currentIndex = wallpapers.findIndex((wallpaper) => wallpaper.Ssd === ssd);
-
-  if (currentIndex === -1) {
-    return wallpapers.filter((wallpaper) => wallpaper.Ssd !== ssd).slice(0, limit);
+  const count = Math.min(wallpapers.length, Math.max(0, Math.trunc(limit)));
+  if (!count) return [];
+  let cache = relatedByList.get(wallpapers);
+  if (!cache) {
+    cache = new Map();
+    relatedByList.set(wallpapers, cache);
   }
-
+  const key = JSON.stringify([ssd, count]);
+  const cached = cache.get(key);
+  if (cached) return cached;
+  const currentIndex = wallpapers.findIndex((wallpaper) => wallpaper.Ssd === ssd);
+  if (currentIndex === -1) {
+    return remember(cache, key, wallpapers.slice(0, count), 64);
+  }
   const current = wallpapers[currentIndex];
   const taxonomy = getImageTaxonomy(current);
-  const currentTags = new Set(taxonomy?.tags ?? []);
-  const indexes = new Map(wallpapers.map((item, index) => [item, index]));
-  const related = wallpapers
-    .filter((item) => item.Ssd !== ssd && (!current.imageId || item.imageId !== current.imageId))
-    .map((item) => {
-      const candidate = getImageTaxonomy(item);
-      const sharedTags = candidate?.tags.filter((tag) => currentTags.has(tag)).length ?? 0;
-      return {
-        item,
-        sharedTags,
-        sameCategory: Number(Boolean(taxonomy && candidate?.category === taxonomy.category)),
-        distance: Math.abs(indexes.get(item)! - currentIndex),
-      };
-    })
-    .sort((a, b) => b.sharedTags - a.sharedTags || b.sameCategory - a.sameCategory || a.distance - b.distance)
-    .slice(0, Math.max(0, limit))
-    .map(({ item }) => item);
-
-  return related;
+  const tags = new Set(taxonomy?.tags ?? []);
+  type Candidate = { item: WallpaperItem; shared: number; category: number; distance: number };
+  const best: Candidate[] = [];
+  const compare = (a: Candidate, b: Candidate) =>
+    b.shared - a.shared || b.category - a.category || a.distance - b.distance;
+  // Keep just the best results. Equal scores retain the original archive order.
+  for (let index = 0; index < wallpapers.length; index++) {
+    const item = wallpapers[index];
+    if (item.Ssd === ssd || (current.imageId && item.imageId === current.imageId)) continue;
+    const candidateTaxonomy = getImageTaxonomy(item);
+    let shared = 0;
+    for (const tag of candidateTaxonomy?.tags ?? []) if (tags.has(tag)) shared++;
+    const candidate: Candidate = {
+      item, shared,
+      category: Number(Boolean(taxonomy && candidateTaxonomy?.category === taxonomy.category)),
+      distance: Math.abs(index - currentIndex),
+    };
+    if (best.length === count && compare(candidate, best[best.length - 1]) >= 0) continue;
+    const position = best.findIndex((entry) => compare(candidate, entry) < 0);
+    best.splice(position === -1 ? best.length : position, 0, candidate);
+    if (best.length > count) best.pop();
+  }
+  return remember(cache, key, best.map(({ item }) => item), 64);
 }
 
 export function getAdjacentWallpapers(ssd: string, locale: Locale = defaultLocale) {
@@ -189,6 +234,7 @@ export function getMonthOptions(wallpapers: WallpaperItem[], year?: string) {
   return [...new Set(months)].sort((a, b) => Number(a) - Number(b));
 }
 
+const datesByList = new WeakMap<WallpaperItem[], Map<string, WallpaperItem[]>>();
 export function filterWallpapersByDate(
   wallpapers: WallpaperItem[],
   year?: string,
@@ -196,13 +242,22 @@ export function filterWallpapersByDate(
 ) {
   if (!year && !month) return wallpapers;
 
-  return wallpapers.filter((wallpaper) => {
+  let cache = datesByList.get(wallpapers);
+  if (!cache) {
+    cache = new Map();
+    datesByList.set(wallpapers, cache);
+  }
+  const key = JSON.stringify([year ?? "", month ?? ""]);
+  const cached = cache.get(key);
+  if (cached) return cached;
+  const result = wallpapers.filter((wallpaper) => {
     const parts = getDateParts(wallpaper.Ssd);
     if (!parts) return false;
     if (year && parts.year !== year) return false;
     if (month && parts.month !== month) return false;
     return true;
   });
+  return remember(cache, key, result, 32);
 }
 
 interface SearchHighlightTerms {
@@ -210,7 +265,10 @@ interface SearchHighlightTerms {
   description: string[];
 }
 
-function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
+const searchDocuments = new WeakMap<WallpaperItem, { haystack: string; fields: Record<SearchField, string> }>();
+function getSearchDocument(wallpaper: WallpaperItem) {
+  const cached = searchDocuments.get(wallpaper);
+  if (cached) return cached;
   const haystack = [
     wallpaper.Ssd,
     wallpaper.FullDateString,
@@ -222,7 +280,7 @@ function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
     .join(" ")
     .normalize("NFKC").toLowerCase();
 
-  const fieldHaystacks: Record<SearchField, string> = {
+  const fields: Record<SearchField, string> = {
     title: normalizeSearchValue(wallpaper.ImageContent?.Title),
     desc: normalizeSearchValue(wallpaper.ImageContent?.Description),
     copyright: normalizeSearchValue(wallpaper.ImageContent?.Copyright),
@@ -230,6 +288,13 @@ function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
     ssd: normalizeSearchValue(wallpaper.Ssd),
   };
 
+  const document = { haystack, fields };
+  searchDocuments.set(wallpaper, document);
+  return document;
+}
+
+function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
+  const { haystack, fields: fieldHaystacks } = getSearchDocument(wallpaper);
   if (clause.excludes.some((term) => haystack.includes(term))) {
     return false;
   }
@@ -255,11 +320,7 @@ function matchesSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
 }
 
 function scoreSearchClause(wallpaper: WallpaperItem, clause: SearchClause) {
-  const title = normalizeSearchValue(wallpaper.ImageContent?.Title);
-  const description = normalizeSearchValue(wallpaper.ImageContent?.Description);
-  const copyright = normalizeSearchValue(wallpaper.ImageContent?.Copyright);
-  const date = normalizeSearchValue(wallpaper.FullDateString ?? wallpaper.Ssd);
-  const ssd = normalizeSearchValue(wallpaper.Ssd);
+  const { fields: { title, desc: description, copyright, date, ssd } } = getSearchDocument(wallpaper);
   let score = 0;
 
   if (clause.phrase) {
@@ -342,6 +403,11 @@ function evaluateSearch(wallpaper: WallpaperItem, expression: SearchExpression):
   }
   const matches = scores.filter((score): score is number => score !== null);
   return matches.length ? Math.max(...matches) : null;
+}
+
+export function hasWallpaperSearchMatch(wallpapers: WallpaperItem[], query: string) {
+  const expression = parseSearchQuery(query);
+  return Boolean(expression && wallpapers.some((wallpaper) => evaluateSearch(wallpaper, expression) !== null));
 }
 
 export function searchWallpapers(wallpapers: WallpaperItem[], query?: string) {

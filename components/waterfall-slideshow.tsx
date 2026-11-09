@@ -46,12 +46,13 @@ function ControlIcon({ name }: { name: keyof typeof controlPaths }) {
 }
 
 export default function WaterfallSlideshow({
-  initialItem, initialIndex, trigger, items, totalCount, loadPage, onClose, onDetails, detailHref, locale, loadingLabel,
+  initialItem, initialIndex, trigger, items, itemsOffset = 0, totalCount, loadPage, onClose, onDetails, detailHref, locale, loadingLabel,
 }: {
   initialItem: SlideshowItem;
   initialIndex?: number;
   trigger: HTMLAnchorElement;
   items: SlideshowItem[];
+  itemsOffset?: number;
   totalCount: number;
   loadPage: (page: number) => Promise<SlideshowItem[] | null>;
   onClose: () => void;
@@ -63,7 +64,7 @@ export default function WaterfallSlideshow({
   const [heading, close, previous, next, play, pause, details, loadError] = labels[locale];
   const [{ item, index }, setSlide] = useState(() => ({
     item: initialItem,
-    index: initialIndex ?? items.findIndex((entry) => entry.ssd === initialItem.ssd),
+    index: initialIndex ?? itemsOffset + items.findIndex((entry) => entry.ssd === initialItem.ssd),
   }));
   const [displayed, setDisplayed] = useState({ item, index });
   const [previousImage, setPreviousImage] = useState<SlideshowItem | null>(null);
@@ -159,7 +160,7 @@ export default function WaterfallSlideshow({
     try {
       for (let checked = 1; checked < totalCount; checked++) {
         nextIndex = (nextIndex + direction + totalCount) % totalCount;
-        let target = items[nextIndex];
+        let target = items[nextIndex - itemsOffset];
         if (!target) {
           const page = Math.floor(nextIndex / WATERFALL_BATCH_SIZE) + 1;
           let batch = pageCacheRef.current.get(page);
@@ -188,7 +189,7 @@ export default function WaterfallSlideshow({
       loadingRef.current = false;
       if (mountedRef.current) setLoading(false);
     }
-  }, [canPlay, getPage, getSlideUrl, index, items, totalCount]);
+  }, [canPlay, getPage, getSlideUrl, index, items, itemsOffset, totalCount]);
 
   useEffect(() => {
     const image = pendingImageRef.current;
@@ -231,7 +232,7 @@ export default function WaterfallSlideshow({
       if (document.hidden) return;
 
       const nextIndex = (displayed.index + 1) % totalCount;
-      let nextImage: SlideshowItem | undefined = items[nextIndex];
+      let nextImage: SlideshowItem | undefined = items[nextIndex - itemsOffset];
       if (!nextImage) {
         const page = Math.floor(nextIndex / WATERFALL_BATCH_SIZE) + 1;
         const batch = await getPage(page).catch(() => null);
@@ -258,7 +259,7 @@ export default function WaterfallSlideshow({
       cancelled = true;
       document.removeEventListener("visibilitychange", handleVisibility);
     };
-  }, [canPlay, displayed.index, getPage, getSlideUrl, items, totalCount, waitingForImage]);
+  }, [canPlay, displayed.index, getPage, getSlideUrl, items, itemsOffset, totalCount, waitingForImage]);
 
   useEffect(() => {
     if (!playing || loading || waitingForImage) return;

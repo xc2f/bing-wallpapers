@@ -1,4 +1,4 @@
-import { filterWallpapersByTaxonomy, getImageTaxonomy } from "@/lib/image-taxonomy";
+import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import DetailTaxonomy from "@/components/detail-taxonomy";
 import TranslationNotice from "@/components/translation-notice";
 import Image from "next/image";
@@ -10,7 +10,6 @@ import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import DetailAmbientBackground from "@/components/detail-ambient-background";
 import DetailKeyboardNavigation from "@/components/detail-keyboard-navigation";
-import DetailPrefetchLinks from "@/components/detail-prefetch-links";
 import DetailRelatedStrip from "@/components/detail-related-strip";
 import { resizeBingImage } from "@/lib/bing-image";
 import LocaleSwitcher from "@/components/locale-switcher";
@@ -21,12 +20,11 @@ import {
   getAdjacentWallpapers,
   getAdjacentWallpapersFromList,
   getAllWallpapers,
-  filterWallpapersByDate,
+  getFilteredWallpapers,
   getRelatedWallpapers,
   getRelatedWallpapersFromList,
   getWallpaperBySsd,
   getTranslationSource,
-  searchWallpapers,
   toAbsoluteUrl,
 } from "@/lib/archive";
 import {
@@ -137,13 +135,7 @@ export default async function LocalizedWallpaperDetailPage({
   const initialThemeMode = normalizeThemeMode(
     cookieStore.get(THEME_COOKIE_KEY)?.value
   );
-  const allWallpapers = getAllWallpapers(currentLocale);
-  const filteredWallpapers = filterWallpapersByTaxonomy(searchWallpapers(
-    filterWallpapersByDate(allWallpapers, year, month),
-    query
-  ), category, tag, country);
-  const wallpaper =
-    filteredWallpapers.find((item) => item.Ssd === ssd) ?? getWallpaperBySsd(ssd, currentLocale);
+  const wallpaper = getWallpaperBySsd(ssd, currentLocale);
 
   if (!wallpaper) {
     notFound();
@@ -181,6 +173,7 @@ export default async function LocalizedWallpaperDetailPage({
   const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
   const imageUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
+  const filteredWallpapers = getFilteredWallpapers(currentLocale, { q: query, year, month, category, tag, country });
   const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
   const relatedWallpapers = hasFilteredMatch
     ? getRelatedWallpapersFromList(filteredWallpapers, wallpaper.Ssd, 8)
@@ -249,12 +242,6 @@ export default async function LocalizedWallpaperDetailPage({
       <DetailKeyboardNavigation
         previousHref={previous ? createDetailHref(previous.Ssd) : undefined}
         nextHref={next ? createDetailHref(next.Ssd) : undefined}
-      />
-      <DetailPrefetchLinks
-        hrefs={[
-          previous ? createDetailHref(previous.Ssd) : "",
-          next ? createDetailHref(next.Ssd) : "",
-        ]}
       />
       <main className="theme-detail-page px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
@@ -430,6 +417,7 @@ export default async function LocalizedWallpaperDetailPage({
           <section className="grid gap-4 border-t border-white/10 pt-8 md:grid-cols-2">
             {next ? (
             <Link
+              prefetch={false}
               href={createDetailHref(next.Ssd)}
               replace
               className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-x-1 hover:bg-white/10"
@@ -468,6 +456,7 @@ export default async function LocalizedWallpaperDetailPage({
 
             {previous ? (
             <Link
+              prefetch={false}
               href={createDetailHref(previous.Ssd)}
               replace
               className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
@@ -516,6 +505,7 @@ export default async function LocalizedWallpaperDetailPage({
 
               return (
                 <Link
+                  prefetch={false}
                   key={item.Ssd}
                   href={createDetailHref(item.Ssd)}
                   replace

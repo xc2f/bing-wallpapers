@@ -1,5 +1,4 @@
 import WaterfallFilters from "@/components/waterfall-filters";
-import { filterWallpapersByTaxonomy } from "@/lib/image-taxonomy";
 import { getWallpaperFilters, wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
@@ -11,9 +10,8 @@ import ScrollToTopButton from "@/components/scroll-to-top-button";
 import ThemeSwitcher from "@/components/theme-switcher";
 import WaterfallGallery from "@/components/waterfall-gallery";
 import {
-  filterWallpapersByDate,
   getAllWallpapers,
-  searchWallpapers,
+  getFilteredWallpapers,
   toAbsoluteUrl,
 } from "@/lib/archive";
 import {
@@ -27,7 +25,7 @@ import {
 } from "@/lib/i18n";
 import { THEME_COOKIE_KEY, normalizeThemeMode } from "@/lib/theme";
 
-import { WATERFALL_BATCH_SIZE } from "@/lib/waterfall-pagination";
+import { waterfallPageWindow } from "@/lib/waterfall-pagination";
 
 function createDetailHref(locale: Locale, ssd: string) {
   return localizePath(locale, `/wallpaper/${ssd}`);
@@ -95,15 +93,11 @@ export default async function LocalizedWaterfallPage({
   );
   const allWallpapers = getAllWallpapers(locale);
   const filters = getWallpaperFilters(resolvedSearchParams);
-  const year = filters.year ?? "";
   const requestedPage = Number.parseInt(resolvedSearchParams.page ?? "1", 10);
-  const searchedWallpapers = searchWallpapers(filterWallpapersByDate(allWallpapers, year, filters.month), filters.q ?? "");
-  const wallpapers = filterWallpapersByTaxonomy(searchedWallpapers, filters.category, filters.tag, filters.country);
-  const totalPages = Math.max(1, Math.ceil(wallpapers.length / WATERFALL_BATCH_SIZE));
-  const currentPage = Number.isNaN(requestedPage)
-    ? 1
-    : Math.min(Math.max(1, requestedPage), totalPages);
-  const loadedWallpapers = wallpapers.slice(0, currentPage * WATERFALL_BATCH_SIZE);
+  const searchedWallpapers = getFilteredWallpapers(locale, { q: filters.q, year: filters.year, month: filters.month });
+  const wallpapers = getFilteredWallpapers(locale, filters);
+  const { page: currentPage, totalPages, start, end } = waterfallPageWindow(wallpapers.length, requestedPage);
+  const loadedWallpapers = wallpapers.slice(start, end);
   const waterfallPath = createWaterfallHref(locale, filters, currentPage);
   const archiveParams = wallpaperFilterParams(filters);
   const archiveHref = localizePath(locale, archiveParams.size ? `?${archiveParams}` : "");
@@ -176,7 +170,7 @@ export default async function LocalizedWaterfallPage({
 
         {wallpapers.length === 0 ? <p className="py-12 text-center text-stone-400">{dictionary.emptyTitle}</p> : null}
         <WaterfallGallery
-          key={wallpaperFilterParams(filters).toString()}
+          key={`${locale}:${wallpaperFilterParams(filters).toString()}`}
           dictionary={dictionary}
           initialPage={currentPage}
           items={items}

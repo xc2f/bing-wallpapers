@@ -62,6 +62,7 @@ const baseEn = {
   waterfallLoaded: "Loaded",
   waterfallLoadingMore: "Loading more...",
   waterfallLoadMore: "Load more",
+  waterfallLoadPrevious: "Load previous images",
   backToTop: "Back to top",
   themeLabel: "Theme",
   themeDialogLabel: "Choose a theme",
@@ -154,6 +155,7 @@ export const dictionaries = {
     waterfallLoaded: "已加载",
     waterfallLoadingMore: "正在加载更多...",
     waterfallLoadMore: "加载更多",
+    waterfallLoadPrevious: "加载前面的图片",
     backToTop: "回到顶部",
     themeLabel: "主题",
     themeDialogLabel: "选择主题",
@@ -235,6 +237,7 @@ export const dictionaries = {
     waterfallExpandDescription: "Leer más",
     waterfallCollapseDescription: "Mostrar menos",
     waterfallBatchSize: "180 fondos por lote",
+    waterfallLoadPrevious: "Cargar imágenes anteriores",
     waterfallLoaded: "Cargados",
     waterfallLoadingMore: "Cargando más...",
     backToTop: "Volver arriba",
@@ -319,6 +322,7 @@ export const dictionaries = {
     waterfallExpandDescription: "Lire la suite",
     waterfallCollapseDescription: "Réduire",
     waterfallBatchSize: "180 fonds par lot",
+    waterfallLoadPrevious: "Charger les images précédentes",
     waterfallLoaded: "Chargés",
     waterfallLoadingMore: "Chargement en cours...",
     backToTop: "Retour en haut",
@@ -403,6 +407,7 @@ export const dictionaries = {
     waterfallExpandDescription: "Mehr lesen",
     waterfallCollapseDescription: "Weniger anzeigen",
     waterfallBatchSize: "180 Hintergründe pro Abschnitt",
+    waterfallLoadPrevious: "Vorherige Bilder laden",
     waterfallLoaded: "Geladen",
     waterfallLoadingMore: "Weitere werden geladen...",
     backToTop: "Nach oben",
@@ -488,6 +493,7 @@ export const dictionaries = {
     waterfallExpandDescription: "続きを読む",
     waterfallCollapseDescription: "折りたたむ",
     waterfallBatchSize: "1回につき180枚を表示",
+    waterfallLoadPrevious: "前の画像を読み込む",
     waterfallLoaded: "読み込み済み",
     waterfallLoadingMore: "さらに読み込み中...",
     backToTop: "トップへ戻る",
@@ -569,6 +575,7 @@ export const dictionaries = {
     waterfallExpandDescription: "더 보기",
     waterfallCollapseDescription: "접기",
     waterfallBatchSize: "한 번에 180개씩 표시",
+    waterfallLoadPrevious: "이전 이미지 불러오기",
     waterfallLoaded: "불러옴",
     waterfallLoadingMore: "더 불러오는 중...",
     backToTop: "맨 위로",
@@ -680,14 +687,21 @@ export function localizePath(locale: Locale, path = "") {
   return `/${locale}${path}`;
 }
 
+// Intl constructors are expensive; share one formatter per language and style.
+const monthFormatters = new Map<Locale, Intl.DateTimeFormat>();
+const archiveDateFormatters = new Map<Locale, Intl.DateTimeFormat>();
+
 export function formatMonthLabel(locale: Locale, month: string) {
   if (locale === "zh") return `${Number(month)}月`;
   if (locale === "ja") return `${Number(month)}月`;
   if (locale === "ko") return `${Number(month)}월`;
 
-  return new Intl.DateTimeFormat(intlLocaleMap[locale], { month: "long" }).format(
-    new Date(`2000-${month}-01`)
-  );
+  let formatter = monthFormatters.get(locale);
+  if (!formatter) {
+    formatter = new Intl.DateTimeFormat(intlLocaleMap[locale], { month: "long" });
+    monthFormatters.set(locale, formatter);
+  }
+  return formatter.format(new Date(`2000-${month}-01`));
 }
 
 export function formatArchiveDate(locale: Locale, ssd?: string, fallback?: string) {
@@ -703,10 +717,15 @@ export function formatArchiveDate(locale: Locale, ssd?: string, fallback?: strin
   const [, year, month, day] = match;
   const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
 
-  return new Intl.DateTimeFormat(intlLocaleMap[locale], {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    timeZone: "UTC",
-  }).format(date);
+  let formatter = archiveDateFormatters.get(locale);
+  if (!formatter) {
+    formatter = new Intl.DateTimeFormat(intlLocaleMap[locale], {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      timeZone: "UTC",
+    });
+    archiveDateFormatters.set(locale, formatter);
+  }
+  return formatter.format(date);
 }

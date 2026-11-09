@@ -67,7 +67,7 @@ export default function PreserveScrollLink({
   }
 
   return (
-    <Link href={href} className={className} onClick={handleClick} {...props}>
+    <Link prefetch={false} href={href} className={className} onClick={handleClick} {...props}>
       {children}
     </Link>
   );

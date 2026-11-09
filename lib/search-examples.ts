@@ -1,4 +1,4 @@
-import { searchWallpapers, type WallpaperItem } from "@/lib/archive";
+import { hasWallpaperSearchMatch, type WallpaperItem } from "@/lib/archive";
 import { getDictionary, type Locale } from "@/lib/i18n";
 import { taxonomyUiLabel } from "@/lib/taxonomy-ui-labels";
 
@@ -9,8 +9,12 @@ export interface SearchExample {
   isCombinedSearch?: boolean;
 }
 
+const examplesByList = new WeakMap<WallpaperItem[], Map<Locale, SearchExample[]>>();
+
 export function getSearchExamples(wallpapers: WallpaperItem[], locale: Locale): SearchExample[] {
   if (!wallpapers.length) return [];
+  const cached = examplesByList.get(wallpapers)?.get(locale);
+  if (cached) return cached;
   const dictionary = getDictionary(locale);
   const english = getDictionary("en");
   const first = wallpapers[0];
@@ -27,7 +31,7 @@ export function getSearchExamples(wallpapers: WallpaperItem[], locale: Locale): 
 
   const examples: SearchExample[] = definitions.map(({ query, description, fallback }) => ({
     query: [dictionary[query], english[query], fallback].find((candidate) =>
-      searchWallpapers(wallpapers, candidate).length > 0
+      hasWallpaperSearchMatch(wallpapers, candidate)
     )!,
     description: dictionary[description],
     isFieldSearch: query === "filterHelpQueryFields",
@@ -45,5 +49,11 @@ export function getSearchExamples(wallpapers: WallpaperItem[], locale: Locale): 
       { query: `(${field} OR ssd:${other}) AND ${range}`, description: taxonomyUiLabel("searchCombined", locale), isFieldSearch: false, isCombinedSearch: true },
     );
   }
+  let cache = examplesByList.get(wallpapers);
+  if (!cache) {
+    cache = new Map();
+    examplesByList.set(wallpapers, cache);
+  }
+  cache.set(locale, examples);
   return examples;
 }
