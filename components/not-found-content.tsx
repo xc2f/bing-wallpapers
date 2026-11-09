@@ -24,7 +24,7 @@ export default function NotFoundContent({ fallbackLocale = defaultLocale }: { fa
           </svg>
         </div>
         <h1 className="text-2xl font-medium tracking-tight text-stone-100 sm:text-3xl">{dictionary.notFoundTitle}</h1>
-        <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-stone-400">{dictionary.notFoundDescription}</p>
+        <p className="mx-auto mt-4 max-w-md whitespace-pre-line text-sm leading-7 text-stone-400">{dictionary.notFoundDescription}</p>
         <Link href={localizePath(locale)} className="mt-8 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-amber-300 px-6 py-3 text-sm font-medium transition hover:bg-amber-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-300">
           <span aria-hidden="true">←</span>
           {dictionary.notFoundBrowse}
