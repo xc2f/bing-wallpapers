@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import { THEME_COOKIE_KEY, type ThemeMode } from "@/lib/theme";
+import ResponsivePanel from "@/components/responsive-panel";
 type ResolvedTheme = "light" | "dark";
 
 interface ThemeSwitcherProps {
@@ -291,46 +292,22 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
         </svg>
       </button>
 
-      {open ? (
-        <div
-          ref={panelRef}
-          id={panelId}
-          role="dialog"
-          aria-modal="false"
-          aria-label={labels.dialog}
-          onKeyDown={handlePanelKeyDown}
-          className="theme-floating-panel theme-switcher-menu absolute right-0 top-[calc(100%+0.5rem)] z-30 min-w-[9rem] overflow-hidden rounded-xl border border-white/[0.08] bg-stone-950 py-1 shadow-[0_10px_28px_rgba(0,0,0,0.16)] backdrop-blur-xl"
-        >
-          {options.map((option) => {
-            const isActive = option.value === themeMode;
-
-            return (
-              <button
-                key={option.value}
-                data-theme-option="true"
-                type="button"
-                aria-pressed={isActive}
-                onClick={() => handleThemeChange(option.value)}
-                className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition ${
-                  isActive
-                    ? "bg-white/[0.06] text-white hover:bg-white/[0.08]"
-                    : "text-stone-300 theme-button-hover hover:text-white"
-                } focus-visible:bg-white/[0.08] focus-visible:text-white focus-visible:outline-none`}
-              >
-                <span className="inline-flex items-center gap-2">
-                  <ThemeIcon mode={option.value} />
-                  <span>{option.label}</span>
-                </span>
-                {isActive ? (
-                  <span aria-hidden="true" className="text-amber-300">
-                    •
-                  </span>
-                ) : null}
-              </button>
-            );
-          })}
+      <ResponsivePanel open={open} onClose={() => closePanel({ restoreFocus: true })}
+        id={panelId} label={labels.dialog} contentRef={panelRef} returnFocusRef={triggerRef}
+        className="selection-menu-panel theme-switcher-menu absolute right-0 top-[calc(100%+0.625rem)] z-30">
+        <div onKeyDown={handlePanelKeyDown}>
+          <div className="p-1.5">
+            {options.map((option) => {
+              const isActive = option.value === themeMode;
+              return <button key={option.value} data-theme-option="true" type="button"
+                aria-pressed={isActive} onClick={() => handleThemeChange(option.value)}
+                className="selection-menu-option flex w-full items-center justify-between text-left transition">
+                <span className="inline-flex items-center gap-3"><ThemeIcon mode={option.value} /><span>{option.label}</span></span>
+              </button>;
+            })}
+          </div>
         </div>
-      ) : null}
+      </ResponsivePanel>
     </div>
   );
 }

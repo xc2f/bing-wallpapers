@@ -192,7 +192,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
       <main className="theme-detail-page px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:gap-10">
-          <section className="flex flex-col gap-4 pb-2 sm:gap-6 sm:pb-8">
+          <section className="flex flex-col gap-4 sm:-mb-2 sm:gap-6">
             <DetailBrowseHeader languagePaths={languagePaths} />
 
           <div className="flex flex-col gap-3">

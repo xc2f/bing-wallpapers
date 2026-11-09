@@ -106,7 +106,7 @@ export default function CountryFilter({ locale, value, options, clearHref }: {
           </svg>
         </button>
         <ResponsivePanel open={open} onClose={() => close(true)} id={panelId} contentRef={panelRef} returnFocusRef={triggerRef}
-          label={label} className="country-filter-panel absolute right-0 top-[calc(100%+0.625rem)] z-30">
+          label={label} className="selection-menu-panel country-filter-panel absolute right-0 top-[calc(100%+0.625rem)] z-30">
           <div className="flex items-center justify-between gap-3 px-4 pb-3 pt-4">
             <span className="text-sm font-medium text-stone-200">{label}</span>
             <button type="button" onClick={() => close(true)} aria-label={taxonomyUiLabel("close", locale)} className="date-filter-close">
@@ -120,11 +120,11 @@ export default function CountryFilter({ locale, value, options, clearHref }: {
           </div>
           <div className="country-filter-results max-h-64 overflow-y-auto overscroll-contain p-1.5 pt-0">
             {!search ? <WaterfallFilterLink prefetch={false} href={clearHref} data-country-option aria-current={!value ? "true" : undefined}
-              onClick={() => close(true)} className="country-filter-option">
+              onClick={() => close(true)} className="country-filter-option selection-menu-option">
               <span className="flex-1">{allLabel}</span>
             </WaterfallFilterLink> : null}
             {results.map((option) => <WaterfallFilterLink prefetch={false} key={option.id} href={option.href} data-country-option
-              aria-current={option.id === value ? "true" : undefined} onClick={() => close(true)} className="country-filter-option">
+              aria-current={option.id === value ? "true" : undefined} onClick={() => close(true)} className="country-filter-option selection-menu-option">
               {option.flag ? <Image src={option.flag} alt="" width={20} height={14} className="filter-country-flag" /> : null}
               <span className="flex min-w-0 flex-1 items-baseline gap-2">
                 <span className="min-w-0 break-words">{option.label}</span>

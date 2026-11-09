@@ -1,0 +1,76 @@
+body:has(.earth-page){overflow:hidden;background:#020408}
+body:has(.earth-page) footer{display:none}
+.earth-page{position:fixed;inset:0;z-index:30;overflow:hidden;background:#020408;color:#fff;touch-action:none;cursor:grab;outline:none;font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif}
+.earth-page:active{cursor:grabbing}
+.earth-canvas{display:block;width:100%;height:100%}
+.earth-locations{position:absolute;inset:0;pointer-events:none}
+.earth-location{position:absolute;left:0;top:0;width:28px;height:28px;margin:-14px 0 0 -14px;overflow:visible;pointer-events:auto;cursor:pointer;border:0;padding:0;background:transparent}
+.earth-location[hidden]{display:none}
+.earth-location-dot{position:absolute;left:10px;top:10px;width:8px;height:8px;border:1.5px solid #d2e9ff;border-radius:50%;background:#74b7f4;box-shadow:0 0 0 4px #7bb9ef18,0 1px 6px #0009;transition:box-shadow .18s,background .18s}
+.earth-location-cover{position:absolute;left:50%;bottom:31px;display:block;opacity:0;visibility:hidden;pointer-events:none;width:104px;height:74px;border:1px solid #ffffff50;border-radius:9px;background:#15202a;box-shadow:0 4px 14px #0007;transform:translateX(-50%) scale(1);transform-origin:bottom center;transition:transform .18s,border-color .18s,opacity .18s,visibility .18s;isolation:isolate}
+.earth-location-stack{position:absolute;inset:0;border:1px solid #dce7f17a;border-radius:inherit;background:#15202a;box-shadow:0 2px 5px #0005;overflow:hidden;pointer-events:none;transform-origin:50% 85%}
+.earth-location-stack img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.85);pointer-events:none}
+.earth-location-stack-middle{transform:translate(5px,-6px) rotate(3deg);z-index:-1}
+.earth-location-stack-back{transform:translate(10px,-12px) rotate(5deg);z-index:-2;border-color:#dce7f155}
+.earth-location:after{content:"";position:absolute;left:50%;top:-3px;width:1px;height:17px;transform:translateX(-50%);background:linear-gradient(#afc9df99,#8bb4db33);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,visibility .18s}
+.earth-location[data-cover=true]:after,.earth-page:not([data-interacting=true]) .earth-location:hover:after,.earth-location:focus-visible:after,.earth-location[aria-pressed=true]:after{opacity:1;visibility:visible}
+.earth-location[data-cover=true] .earth-location-cover,.earth-page:not([data-interacting=true]) .earth-location:hover .earth-location-cover,.earth-location:focus-visible .earth-location-cover,.earth-location[aria-pressed=true] .earth-location-cover{opacity:1;visibility:visible;pointer-events:auto}
+.earth-location-cover>img{display:block;width:100%;height:100%;object-fit:cover;border-radius:8px;pointer-events:none}
+.earth-location-label{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:20px 7px 7px;border-radius:8px;background:linear-gradient(transparent 25%,#06101a66 48%,#06101af2);font-size:13px;font-weight:500;line-height:18px;letter-spacing:.02em;text-shadow:0 1px 4px #000b;text-wrap:balance}
+.earth-location-count{position:absolute;right:5px;top:5px;display:flex;align-items:center;gap:3px;min-height:20px;padding:2px 4px;border:1px solid #ffffff26;border-radius:4px;background:#0c1727e6;color:#f1f5f9;font-size:10px;line-height:14px;font-variant-numeric:tabular-nums}
+.earth-location-count svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.2}
+.earth-location:hover,.earth-location:focus-visible{z-index:6!important}
+.earth-location:hover .earth-location-cover,.earth-location:focus-visible .earth-location-cover{transform:translateX(-50%) scale(1.06);border-color:#b6dcff}
+.earth-location[aria-pressed=true]{z-index:5!important}
+.earth-location[aria-pressed=true] .earth-location-cover{border-color:#b4dbff;box-shadow:0 0 0 2px #80baf32e,0 8px 24px #0008}
+.earth-location[aria-pressed=true] .earth-location-dot{background:#d2eaff;box-shadow:0 0 0 5px #91c6ff24,0 0 16px #a5d6ff70}
+.earth-location:focus-visible{outline:none}
+.earth-location:focus-visible .earth-location-dot{outline:2px solid #9bcfff;outline-offset:5px}
+.earth-page[data-collection-open=true] .earth-location[data-cover=true]:not([aria-pressed=true]):not(:hover):not(:focus-visible) .earth-location-cover{opacity:.62}
+.earth-album{position:absolute;top:24px;right:24px;bottom:24px;display:flex;flex-direction:column;width:360px;max-height:820px;border:1px solid #a0bbd530;border-radius:18px;background:linear-gradient(145deg,#15202bf5,#0a1019f5);box-shadow:0 24px 80px #0007,inset 0 1px #ffffff08;backdrop-filter:blur(22px);cursor:default;touch-action:pan-y;overflow:hidden;animation:earth-panel-enter .22s ease-out}
+.earth-album-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 12px 20px;flex-shrink:0;border-bottom:1px solid #ffffff0b;color:#c1cedb;font-size:11px;font-weight:500;letter-spacing:.13em}
+.earth-album-code{margin-left:10px;color:#698095;font-size:10px;letter-spacing:.1em}
+.earth-album-close{display:grid;place-items:center;width:30px;height:30px;border:1px solid #ffffff14;border-radius:50%;background:#ffffff04;color:#9cadbd;transition:background .15s,color .15s}
+.earth-album-close:hover{background:#ffffff12;color:#fff}
+.earth-album-close svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
+.earth-album-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#546b7a55 transparent}
+.earth-album-hero{position:relative;display:block;margin:16px 16px 0;border:1px solid #ffffff12;border-radius:10px;overflow:hidden;aspect-ratio:1.55;isolation:isolate;background:#0b1620}
+.earth-album-hero>img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+.earth-album-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,#060c1480 65%,#060c14dd);z-index:1;pointer-events:none}
+.earth-album-hero:hover>img{transform:scale(1.035)}
+.earth-album-hero-title{position:absolute;left:13px;right:13px;bottom:12px;z-index:2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px;line-height:1.7;color:#eef2f5;text-shadow:0 1px 4px #0007}
+.earth-album-body{padding:20px}
+.earth-album-heading{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:25px}
+.earth-album-heading h2{margin:0;color:#f2f6fa;font-size:26px;font-weight:500;line-height:1.4;letter-spacing:-.035em}
+.earth-album-heading>span{color:#8d9fb0;font-size:12px;font-variant-numeric:tabular-nums}
+.earth-album-section-label{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;color:#9aafc1;font-size:11px;letter-spacing:.1em}
+.earth-album-images{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+.earth-album-tile{min-width:0}
+.earth-album-tile-image{position:relative;display:block;border-radius:6px;overflow:hidden;border:1px solid #ffffff0d;background:#0a131b;aspect-ratio:1.5}
+.earth-album-tile-image img{width:100%;height:100%;object-fit:cover;transition:transform .35s,filter .35s}
+.earth-album-tile-image>span{position:absolute;left:6px;bottom:5px;font-size:10px;color:#fff9;font-variant-numeric:tabular-nums;text-shadow:0 1px 4px #000}
+.earth-album-tile-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:7px;color:#b8c7d4;font-size:12px;line-height:1.7;transition:color .15s}
+.earth-album-tile:hover .earth-album-tile-image img{transform:scale(1.045);filter:brightness(1.08)}
+.earth-album-tile:hover .earth-album-tile-title{color:#e0eaf2}
+.earth-album-footer{padding:14px 20px 18px;flex-shrink:0;border-top:1px solid #ffffff0c;background:#0c131b80}
+.earth-album-footer>a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:42px;padding:0 14px;border:1px solid #accde02b;border-radius:7px;background:#bdddf00c;color:#cfe2ee;font-size:13px;letter-spacing:.02em;transition:background .15s,border-color .15s}
+.earth-album-footer>a:hover{background:#bdddf018;border-color:#accde061}
+.earth-album-footer svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.earth-album a:focus-visible,.earth-album button:focus-visible{outline:2px solid #8ac3ff;outline-offset:-2px}
+.earth-retry{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;background:#172638;border:1px solid #517da1;border-radius:8px;cursor:pointer}
+@keyframes earth-panel-enter{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:640px){.earth-location-cover{width:84px;height:62px;border-radius:7px}.earth-location-cover>img,.earth-location-label{border-radius:6px}.earth-location-label{font-size:12px;line-height:16px;padding:16px 5px 5px}.earth-location-count{font-size:10px;top:4px;right:4px;padding:2px 4px;min-height:20px}.earth-location-count svg{width:10px;height:10px}.earth-album{left:12px;right:12px;top:auto;bottom:12px;width:auto;max-height:55svh;border-radius:16px}.earth-album-topbar{padding:10px 12px 10px 16px}.earth-album-hero{aspect-ratio:2.1;margin:12px 12px 0}.earth-album-body{padding:16px}.earth-album-heading{margin-bottom:20px}.earth-album-heading h2{font-size:23px}.earth-album-images{gap:16px 10px}.earth-album-footer{padding:12px 16px}.earth-album-close{width:32px;height:32px}}
+@media(prefers-reduced-motion:reduce){.earth-album{animation:none}.earth-location-cover,.earth-location:after,.earth-location-dot,.earth-album-hero>img,.earth-album-tile-image img{transition:none}}
+
+@media(max-width:640px){.earth-location-stack-middle{transform:translate(4px,-5px) rotate(2deg)}.earth-location-stack-back{transform:translate(8px,-10px) rotate(4deg)}}
+
+.earth-canvas{transition:opacity .25s ease-out}
+.earth-locations{transition:opacity .3s ease-out}
+.earth-page[data-transition=entering]:not([data-render-ready=true]) .earth-canvas{opacity:0}
+.earth-page[data-transition=entering] .earth-locations,.earth-page[data-transition=leaving] .earth-locations{opacity:0;pointer-events:none}
+.earth-page[data-transition=entering] .earth-location,.earth-page[data-transition=leaving] .earth-location{pointer-events:none!important}
+.earth-page[data-transition=leaving]{cursor:progress}
+.earth-page[data-transition=leaving] .earth-album{opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .25s ease-out,transform .35s ease-out}
+@media(prefers-reduced-motion:reduce){.earth-canvas,.earth-locations{transition:none}}
+
+.earth-page[data-transition=leaving] .earth-canvas{opacity:var(--earth-flight-opacity,1);transition:none}

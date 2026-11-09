@@ -6,7 +6,7 @@ import { languageAlternates, siteUrl } from "@/lib/seo";
 export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((locale) => {
     const wallpapers = getAllWallpapers(locale);
-    const paths = [""];
+    const paths = ["", "/earth"];
 
     return [
       ...paths.map((path) => ({

@@ -1,3 +1,4 @@
+import EarthGalleryLink from "@/components/earth-gallery-link";
 import WaterfallFilters from "@/components/waterfall-filters";
 import { getWallpaperFilters, wallpaperFilterParams, type WallpaperFilters } from "@/lib/wallpaper-filters";
 import JsonLd from "@/components/json-ld";
@@ -138,6 +139,7 @@ export default async function LocalizedHomePage({
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 has-[[data-waterfall-wide=true]]:max-w-none">
         <section className="flex flex-col gap-4 pb-2 sm:gap-6">
           <div className="flex flex-wrap items-center justify-end gap-3">
+            <EarthGalleryLink locale={locale} />
             <ThemeSwitcher
               initialMode={initialThemeMode}
               labels={{

@@ -2,6 +2,7 @@
 import Link from "next/link";
 import SmartBackButton from "@/components/smart-back-button";
 import ThemeSwitcher from "@/components/theme-switcher";
+import EarthGalleryLink from "@/components/earth-gallery-link";
 import { localeLabels, locales, type Locale } from "@/lib/i18n";
 import { useDetailBrowse } from "@/components/detail-browse-context";
 function LocaleSwitcher({ locale, languagePaths }: { locale: Locale; languagePaths: Record<Locale, string> }) {
@@ -23,7 +24,7 @@ function LocaleSwitcher({ locale, languagePaths }: { locale: Locale; languagePat
 export default function DetailBrowseHeader({ languagePaths }: { languagePaths: Record<Locale, string> }) {
   const { currentLocale, dictionary, searchParams: resolvedSearchParams, backHref } = useDetailBrowse();
   return (
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
+            <div className="flex flex-wrap items-center justify-between gap-3">
               <SmartBackButton
                 fallbackHref={backHref}
                 className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
@@ -33,6 +34,8 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
                     : dictionary.detailBack
                 }
               />
+              <div className="ml-auto flex min-w-0 flex-wrap items-center justify-end gap-3">
+              <EarthGalleryLink locale={currentLocale} />
               <ThemeSwitcher
                 labels={{
                   trigger: dictionary.themeLabel,
@@ -42,11 +45,12 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
                   dark: dictionary.themeDark,
                 }}
               />
-              <div className="col-span-2 min-w-0 justify-self-end sm:col-span-1">
+              <div className="min-w-0">
                 <LocaleSwitcher
                   locale={currentLocale}
                   languagePaths={languagePaths}
                 />
+              </div>
               </div>
             </div>
   );
