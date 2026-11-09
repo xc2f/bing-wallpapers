@@ -51,9 +51,9 @@ test("first visits use the browser language and preserve the query string", () =
 });
 
 
-test("localized HTML language comes from the URL rather than a supplied header", () => {
+test("localized requests do not inject dynamic layout headers", () => {
   const response = middleware(new NextRequest(`${origin}/zh/wallpaper/20260512`, {
     headers: { "x-site-locale": "en" },
   }));
-  assert.equal(response.headers.get("x-middleware-request-x-site-locale"), "zh");
+  assert.equal(response.headers.get("x-middleware-request-x-site-locale"), null);
 });

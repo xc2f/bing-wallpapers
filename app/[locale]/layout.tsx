@@ -1,3 +1,7 @@
+import SiteDocument, { siteMetadata } from "@/components/site-document";
+import LocalePreference from "@/components/locale-preference";
+import "../globals.css";
+export const metadata = siteMetadata;
 import { notFound } from "next/navigation";
 import {
   getDictionary,
@@ -24,6 +28,8 @@ export default async function LocalizedLayout({
   const githubUrl = "https://github.com/xc2f/bing-wallpapers";
 
   return (
+    <SiteDocument locale={currentLocale}>
+    <LocalePreference locale={currentLocale} />
     <div lang={htmlLangMap[currentLocale]} className="flex min-h-screen min-w-0 flex-col">
       <div className="min-w-0 flex-1">{children}</div>
       <footer className="border-t border-white/10 px-4 py-6 sm:px-6 lg:px-8">
@@ -52,5 +58,6 @@ export default async function LocalizedLayout({
         </div>
       </footer>
     </div>
+    </SiteDocument>
   );
 }

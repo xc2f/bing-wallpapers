@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
-    "dev": "npm run sync-db && next dev --turbopack",
+    "build": "tsx bin/build-detail-index.ts && next build",
+    "dev": "npm run sync-db && tsx bin/build-detail-index.ts && next dev --turbopack",
     "start": "next start",
     "lint": "next lint",
     "sync-db": "tsx bin/sync-db.ts",

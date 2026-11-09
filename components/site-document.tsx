@@ -1,22 +1,9 @@
 import type { Metadata } from "next";
-import { cookies, headers } from "next/headers";
-import { defaultLocale, htmlLangMap, isValidLocale } from "@/lib/i18n";
+import { htmlLangMap, type Locale } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/seo";
 import Script from "next/script";
-import { THEME_COOKIE_KEY, normalizeThemeMode, type ThemeMode } from "@/lib/theme";
-import "./globals.css";
 
-type ResolvedTheme = "light" | "dark";
-
-function resolveTheme(mode: ThemeMode): ResolvedTheme {
-  if (mode === "light" || mode === "dark") {
-    return mode;
-  }
-
-  return "dark";
-}
-
-export const metadata: Metadata = {
+export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Bing Wallpapers Archive",
   description: "Browse locally archived Bing wallpapers.",
@@ -31,26 +18,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const requestHeaders = await headers();
-  const requestLocale = requestHeaders.get("x-site-locale") ?? "";
-  const locale = isValidLocale(requestLocale) ? requestLocale : defaultLocale;
-  const cookieStore = await cookies();
-  const themeMode = normalizeThemeMode(cookieStore.get(THEME_COOKIE_KEY)?.value);
-  const resolvedTheme = resolveTheme(themeMode);
-
+export default function SiteDocument({ children, locale }: { children: React.ReactNode; locale: Locale }) {
   return (
     <html
       lang={htmlLangMap[locale]}
       suppressHydrationWarning
-      data-theme-mode={themeMode}
-      data-theme-resolved={resolvedTheme}
+      data-theme-mode="system"
+      data-theme-resolved="dark"
     >
       <body className="bg-stone-950 text-stone-100 antialiased">
+        {/* This shell is rendered exclusively by the App Router root layouts. */}
+        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
         <Script id="theme-init" strategy="beforeInteractive">{`
           (function () {
             var storageKey = "bing-wallpapers-theme";

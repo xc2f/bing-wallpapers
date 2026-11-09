@@ -41,11 +41,7 @@ export function middleware(request: NextRequest) {
   const maybeLocale = segments[0];
 
   if (maybeLocale && isValidLocale(maybeLocale)) {
-    const requestHeaders = new Headers(request.headers);
-    requestHeaders.set("x-site-locale", maybeLocale);
-    return withLocaleCookie(request, NextResponse.next({
-      request: { headers: requestHeaders },
-    }), maybeLocale);
+    return withLocaleCookie(request, NextResponse.next(), maybeLocale);
   }
 
   if (pathname === "/") {
@@ -68,5 +64,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/wallpaper/:path*", "/((?!_next|api|favicon.ico|.*\\..*).*)"],
+  matcher: ["/", "/wallpaper/:path*"],
 };

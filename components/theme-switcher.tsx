@@ -126,17 +126,7 @@ function ThemeIcon({ mode }: { mode: ThemeMode }) {
 }
 
 export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeSwitcherProps) {
-  const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
-    if (typeof document === "undefined") {
-      return initialMode;
-    }
-
-    return (
-      (document.documentElement.dataset.themeMode as ThemeMode | undefined) ??
-      getStoredTheme() ??
-      initialMode
-    );
-  });
+  const [themeMode, setThemeMode] = useState<ThemeMode>(initialMode);
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const containerRef = useRef<HTMLDivElement | null>(null);

@@ -49,3 +49,6 @@ next-env.d.ts
 # External DB artifacts
 db/*.json
 db/*.db
+
+# Generated, content-addressed browser navigation indexes
+/public/detail-index/

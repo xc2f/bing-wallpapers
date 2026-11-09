@@ -1,28 +1,21 @@
+import detailIndexManifest from "@/db/detail-index-manifest.json";
+import { DetailBrowseProvider } from "@/components/detail-browse-context";
+import DetailBrowseHeader, { DetailQueryBadge } from "@/components/detail-browse-header";
+import DetailBrowseNavigation from "@/components/detail-browse-navigation";
 import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import DetailTaxonomy from "@/components/detail-taxonomy";
 import TranslationNotice from "@/components/translation-notice";
 import Image from "next/image";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 import JsonLd from "@/components/json-ld";
-import Link from "next/link";
-import { cookies } from "next/headers";
 import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
 import DetailAmbientBackground from "@/components/detail-ambient-background";
-import DetailKeyboardNavigation from "@/components/detail-keyboard-navigation";
-import DetailRelatedStrip from "@/components/detail-related-strip";
-import { resizeBingImage } from "@/lib/bing-image";
-import LocaleSwitcher from "@/components/locale-switcher";
 import ScrollToTopButton from "@/components/scroll-to-top-button";
-import SmartBackButton from "@/components/smart-back-button";
-import ThemeSwitcher from "@/components/theme-switcher";
 import {
   getAdjacentWallpapers,
-  getAdjacentWallpapersFromList,
   getAllWallpapers,
-  getFilteredWallpapers,
   getRelatedWallpapers,
-  getRelatedWallpapersFromList,
   getWallpaperBySsd,
   getTranslationSource,
   toAbsoluteUrl,
@@ -36,9 +29,9 @@ import {
   localizePath,
   type Locale,
 } from "@/lib/i18n";
-import { THEME_COOKIE_KEY, normalizeThemeMode } from "@/lib/theme";
 
-const DETAIL_STATIC_PRERENDER_LIMIT = 180;
+// All known detail pages are generated at build time. Unknown IDs return 404.
+export const dynamicParams = false;
 
 function splitDescriptionIntoParagraphs(description: string) {
   const normalized = description.trim();
@@ -61,7 +54,7 @@ function splitDescriptionIntoParagraphs(description: string) {
 
 export async function generateStaticParams() {
   return locales.flatMap((locale) =>
-    getAllWallpapers(locale).slice(0, DETAIL_STATIC_PRERENDER_LIMIT).map((wallpaper) => ({
+    getAllWallpapers(locale).map((wallpaper) => ({
       locale,
       ssd: wallpaper.Ssd,
     }))
@@ -99,57 +92,32 @@ export async function generateMetadata({
   });
 }
 
-export default async function LocalizedWallpaperDetailPage({
-  params,
-  searchParams,
-}: {
+export default async function LocalizedWallpaperDetailPage({ params }: {
   params: Promise<{ locale: string; ssd: string }>;
-  searchParams?: Promise<{
-    q?: string;
-    page?: string;
-    year?: string;
-    month?: string;
-    category?: string;
-    tag?: string;
-    country?: string;
-    view?: string;
-    from?: string;
-  }>;
 }) {
   const { locale, ssd } = await params;
-  const resolvedSearchParams = (await searchParams) ?? {};
-  const query = resolvedSearchParams.q?.trim() ?? "";
-  const category = resolvedSearchParams.category?.trim() ?? "";
-  const tag = resolvedSearchParams.tag?.trim() ?? "";
-  const country = resolvedSearchParams.country?.trim() ?? "";
-  const year = resolvedSearchParams.year?.trim() ?? "";
-  const month = resolvedSearchParams.month?.trim() ?? "";
-  const view = resolvedSearchParams.view?.trim() ?? "";
-  if (!isValidLocale(locale)) {
-    notFound();
-  }
+  if (!isValidLocale(locale)) notFound();
   const currentLocale: Locale = locale;
-
   const dictionary = getDictionary(currentLocale);
-  const cookieStore = await cookies();
-  const initialThemeMode = normalizeThemeMode(
-    cookieStore.get(THEME_COOKIE_KEY)?.value
-  );
   const wallpaper = getWallpaperBySsd(ssd, currentLocale);
-
-  if (!wallpaper) {
-    notFound();
-  }
-
-  if (wallpaper.Ssd !== ssd) {
-    const params = new URLSearchParams();
-    for (const [key, value] of Object.entries(resolvedSearchParams)) {
-      if (typeof value === "string" && value) params.set(key, value);
-    }
-    const search = params.toString();
-    permanentRedirect(localizePath(currentLocale, `/wallpaper/${wallpaper.Ssd}${search ? `?${search}` : ""}`));
-  }
-
+  if (!wallpaper) notFound();
+  if (wallpaper.Ssd !== ssd) permanentRedirect(localizePath(currentLocale, `/wallpaper/${wallpaper.Ssd}`));
+  const initialNavigation = {
+    ...getAdjacentWallpapers(ssd, currentLocale),
+    related: getRelatedWallpapers(ssd, 8, currentLocale),
+  };
+  const toCard = (item: typeof wallpaper | null) => item ? {
+    Ssd: item.Ssd, FullDateString: item.FullDateString,
+    ImageContent: { Title: item.ImageContent?.Title, Image: { Url: toAbsoluteUrl(item.ImageContent?.Image?.Url) } },
+  } : null;
+  const navigation = {
+    previous: toCard(initialNavigation.previous), next: toCard(initialNavigation.next),
+    related: initialNavigation.related.map((item) => toCard(item)!),
+  };
+  const languagePaths = Object.fromEntries(locales.map((option) => {
+    const target = getWallpaperBySsd(ssd, option);
+    return [option, localizePath(option, target ? `/wallpaper/${target.Ssd}` : "")];
+  })) as Record<Locale, string>;
   const taxonomy = getImageTaxonomy(wallpaper);
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
   const description =
@@ -173,51 +141,9 @@ export default async function LocalizedWallpaperDetailPage({
   const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
   const imageUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
-  const filteredWallpapers = getFilteredWallpapers(currentLocale, { q: query, year, month, category, tag, country });
-  const hasFilteredMatch = filteredWallpapers.some((item) => item.Ssd === wallpaper.Ssd);
-  const relatedWallpapers = hasFilteredMatch
-    ? getRelatedWallpapersFromList(filteredWallpapers, wallpaper.Ssd, 8)
-    : getRelatedWallpapers(wallpaper.Ssd, 8, currentLocale);
-  const { previous, next } = hasFilteredMatch
-    ? getAdjacentWallpapersFromList(filteredWallpapers, wallpaper.Ssd)
-    : getAdjacentWallpapers(wallpaper.Ssd, currentLocale);
-  const backQuery = new URLSearchParams();
-
-  Object.entries(resolvedSearchParams).forEach(([key, value]) => {
-    if (typeof value === "string" && value) {
-      backQuery.set(key, value);
-    }
-  });
-
-  const backHref =
-    view === "waterfall"
-      ? (() => {
-          const waterfallQuery = new URLSearchParams(backQuery.toString());
-          waterfallQuery.delete("view");
-          waterfallQuery.delete("from");
-          const waterfallSearch = waterfallQuery.toString();
-
-          return localizePath(
-            currentLocale,
-            `/waterfall${waterfallSearch ? `?${waterfallSearch}` : ""}`
-          );
-        })()
-      : localizePath(
-          currentLocale,
-          backQuery.toString() ? `?${backQuery.toString()}` : ""
-        );
-
-  function createDetailHref(targetSsd: string) {
-    const nextQuery = new URLSearchParams(backQuery.toString());
-    const nextQueryString = nextQuery.toString();
-
-    return localizePath(
-      currentLocale,
-      `/wallpaper/${targetSsd}${nextQueryString ? `?${nextQueryString}` : ""}`
-    )
-  }
-
   return (
+    <DetailBrowseProvider key={`${currentLocale}:${ssd}`} locale={currentLocale} ssd={ssd}
+      initialNavigation={navigation} indexUrl={detailIndexManifest[currentLocale]}>
     <DetailAmbientBackground imageUrl={previewUrl || imageUrl}>
       <JsonLd data={{
         "@context": "https://schema.org",
@@ -239,44 +165,11 @@ export default async function LocalizedWallpaperDetailPage({
           copyrightNotice: wallpaper.ImageContent?.Copyright,
         } } : {}),
       }} />
-      <DetailKeyboardNavigation
-        previousHref={previous ? createDetailHref(previous.Ssd) : undefined}
-        nextHref={next ? createDetailHref(next.Ssd) : undefined}
-      />
       <main className="theme-detail-page px-4 pb-10 pt-5 text-stone-100 sm:px-6 sm:pt-10 lg:px-8">
         <ScrollToTopButton label={dictionary.backToTop} />
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 sm:gap-10">
           <section className="flex flex-col gap-4 border-b border-white/10 pb-6 sm:gap-6 sm:pb-8">
-            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_auto_auto]">
-              <SmartBackButton
-                fallbackHref={backHref}
-                className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-                label={
-                  view === "waterfall" && resolvedSearchParams.from === "slideshow"
-                    ? dictionary.detailBackToSlideshow
-                    : view === "waterfall"
-                      ? dictionary.detailBackToWaterfall
-                      : dictionary.detailBack
-                }
-              />
-              <ThemeSwitcher
-                initialMode={initialThemeMode}
-                labels={{
-                  trigger: dictionary.themeLabel,
-                  dialog: dictionary.themeDialogLabel,
-                  system: dictionary.themeAuto,
-                  light: dictionary.themeLight,
-                  dark: dictionary.themeDark,
-                }}
-              />
-              <div className="col-span-2 min-w-0 justify-self-end sm:col-span-1">
-                <LocaleSwitcher
-                  locale={currentLocale}
-                  pathname={`/wallpaper/${ssd}`}
-                  searchParams={Object.fromEntries(Object.entries(resolvedSearchParams).filter(([key]) => key !== "mode"))}
-                />
-              </div>
-            </div>
+            <DetailBrowseHeader languagePaths={languagePaths} />
 
           <div className="flex flex-col gap-3">
               <div className="w-full min-w-0">
@@ -286,14 +179,7 @@ export default async function LocalizedWallpaperDetailPage({
               <h1 className="mt-3 w-full break-words text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                 {title}
               </h1>
-              {query ? (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  <span className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-stone-300">
-                    <span className="text-stone-500">{dictionary.activeQuery}</span>
-                    <span className="min-w-0 font-medium text-white [overflow-wrap:anywhere]">{query}</span>
-                  </span>
-                </div>
-              ) : null}
+              <DetailQueryBadge />
             </div>
           </div>
           </section>
@@ -413,139 +299,10 @@ export default async function LocalizedWallpaperDetailPage({
             </div>
           </section>
 
-        {previous || next ? (
-          <section className="grid gap-4 border-t border-white/10 pt-8 md:grid-cols-2">
-            {next ? (
-            <Link
-              prefetch={false}
-              href={createDetailHref(next.Ssd)}
-              replace
-              className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-x-1 hover:bg-white/10"
-            >
-              <div className="grid min-h-[10rem] gap-0 grid-cols-[96px_minmax(0,1fr)] sm:grid-cols-[132px_minmax(0,1fr)]">
-                <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
-                  {toAbsoluteUrl(next.ImageContent?.Image?.Url) ? (
-                    <Image
-                      referrerPolicy="no-referrer"
-                      src={resizeBingImage(toAbsoluteUrl(next.ImageContent?.Image?.Url), 320, 180)}
-                      alt={next.ImageContent?.Title ?? next.Ssd}
-                      width={1920}
-                      height={1080}
-                      sizes="132px"
-                      quality={62}
-                      className="block h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                    />
-                  ) : null}
-                </div>
-                <div className="flex min-w-0 flex-col justify-between p-4 sm:p-5">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                      ← {dictionary.detailNewerShort}
-                    </p>
-                    <p className="mt-2 text-sm text-stone-400">
-                      {formatArchiveDate(currentLocale, next.Ssd, next.FullDateString)}
-                    </p>
-                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-semibold text-white">
-                      {next.ImageContent?.Title ?? next.Ssd}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </Link>
-            ) : <div aria-hidden="true" className="hidden md:block" />}
-
-            {previous ? (
-            <Link
-              prefetch={false}
-              href={createDetailHref(previous.Ssd)}
-              replace
-              className="theme-detail-nav-card group overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:translate-x-1 hover:bg-white/10"
-            >
-              <div className="grid min-h-[10rem] gap-0 grid-cols-[minmax(0,1fr)_96px] sm:grid-cols-[minmax(0,1fr)_132px]">
-                <div className="flex min-w-0 flex-col justify-between p-4 sm:p-5 text-right">
-                  <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-stone-400">
-                      {dictionary.detailOlderShort} →
-                    </p>
-                    <p className="mt-2 text-sm text-stone-400">
-                      {formatArchiveDate(currentLocale, previous.Ssd, previous.FullDateString)}
-                    </p>
-                    <h3 className="mt-1 min-w-0 line-clamp-2 text-lg font-semibold text-white">
-                      {previous.ImageContent?.Title ?? previous.Ssd}
-                    </h3>
-                  </div>
-                </div>
-                <div className="relative h-full min-h-[10rem] overflow-hidden bg-stone-900">
-                  {toAbsoluteUrl(previous.ImageContent?.Image?.Url) ? (
-                    <Image
-                      referrerPolicy="no-referrer"
-                      src={resizeBingImage(toAbsoluteUrl(previous.ImageContent?.Image?.Url), 320, 180)}
-                      alt={previous.ImageContent?.Title ?? previous.Ssd}
-                      width={1920}
-                      height={1080}
-                      sizes="132px"
-                      quality={62}
-                      className="block h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                    />
-                  ) : null}
-                </div>
-              </div>
-            </Link>
-            ) : <div aria-hidden="true" className="hidden md:block" />}
-          </section>
-        ) : null}
-
-        <section className="flex flex-col gap-4 border-t border-white/10 pt-8">
-          <h2 className="text-2xl font-semibold text-white">{dictionary.detailMore}</h2>
-
-          <DetailRelatedStrip>
-            {relatedWallpapers.map((item, index) => {
-              const relatedTitle = item.ImageContent?.Title ?? item.Ssd;
-              const relatedPreviewUrl = toAbsoluteUrl(item.ImageContent?.Image?.Url);
-
-              return (
-                <Link
-                  prefetch={false}
-                  key={item.Ssd}
-                  href={createDetailHref(item.Ssd)}
-                  replace
-                  className={`theme-detail-related-card group ${
-                    index >= 4 ? "hidden md:flex" : "flex"
-                  } w-[16.5rem] shrink-0 snap-start overflow-hidden rounded-[1.375rem] border border-white/10 bg-white/[0.03] transition duration-300 hover:border-white/15 hover:bg-white/[0.06]`}
-                >
-                  <div className="relative min-h-[6.5rem] w-[6.5rem] shrink-0 self-stretch overflow-hidden bg-stone-900">
-                    {relatedPreviewUrl ? (
-                      <Image
-                        referrerPolicy="no-referrer"
-                        src={resizeBingImage(relatedPreviewUrl, 320, 180)}
-                        alt={relatedTitle}
-                        width={1920}
-                        height={1080}
-                        sizes="104px"
-                        quality={62}
-                        className="block h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center text-sm text-stone-400">
-                        {dictionary.noPreviewImage}
-                      </div>
-                    )}
-                  </div>
-                  <div className="flex min-w-0 flex-1 flex-col justify-center gap-1.5 p-3.5">
-                    <p className="text-[11px] uppercase tracking-[0.2em] text-stone-500">
-                      {formatArchiveDate(currentLocale, item.Ssd, item.FullDateString)}
-                    </p>
-                    <h3 className="min-w-0 line-clamp-2 text-[0.96rem] font-semibold leading-snug text-white">
-                      {relatedTitle}
-                    </h3>
-                  </div>
-                </Link>
-              );
-            })}
-          </DetailRelatedStrip>
-        </section>
+        <DetailBrowseNavigation />
         </div>
       </main>
     </DetailAmbientBackground>
+    </DetailBrowseProvider>
   );
 }
