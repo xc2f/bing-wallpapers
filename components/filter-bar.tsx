@@ -348,10 +348,8 @@ export default function FilterBar({
         </FilterHeading>
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-2 overflow-hidden rounded-t-[1.25rem]"
-        >
-          <div className={`filter-loading-bar ${isPending ? "opacity-100" : "opacity-0"}`} />
-        </div>
+          className="filter-loading-top"
+        />
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-3">
 
           <div id={filterContentId} hidden={collapsed} className="space-y-4">

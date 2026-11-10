@@ -1,6 +1,6 @@
 import detailIndexManifest from "@/db/detail-index-manifest.json";
 import { DetailBrowseProvider } from "@/components/detail-browse-context";
-import DetailBrowseHeader, { DetailQueryBadge } from "@/components/detail-browse-header";
+import DetailBrowseHeader from "@/components/detail-browse-header";
 import DetailBrowseNavigation from "@/components/detail-browse-navigation";
 import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import DetailTaxonomy from "@/components/detail-taxonomy";
@@ -203,7 +203,6 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
               <h1 className="mt-3 w-full break-words text-3xl font-semibold tracking-tight text-white sm:text-5xl">
                 {title}
               </h1>
-              <DetailQueryBadge />
             </div>
           </div>
           </section>

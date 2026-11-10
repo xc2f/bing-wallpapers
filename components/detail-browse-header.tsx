@@ -55,12 +55,3 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
             </div>
   );
 }
-export function DetailQueryBadge() {
-  const { dictionary, searchParams: { q: query } } = useDetailBrowse();
-  return query ? <div className="mt-4 flex flex-wrap gap-2">
-    <span className="inline-flex min-w-0 max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-stone-300">
-      <span className="text-stone-500">{dictionary.activeQuery}</span>
-      <span className="min-w-0 font-medium text-white [overflow-wrap:anywhere]">{query}</span>
-    </span>
-  </div> : null;
-}

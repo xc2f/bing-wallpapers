@@ -13,8 +13,8 @@ export default function EarthGalleryLink({ locale }: { locale: Locale }) {
     onNavigate={() => {
       try { sessionStorage.setItem("earth-return-path", window.location.href); } catch { /* Storage may be disabled. */ }
     }}
-    className="inline-flex min-h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-stone-500/30 px-3 py-1.5 text-xs text-stone-300 transition theme-button-hover hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300">
-    <svg viewBox="0 0 20 20" className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true">
+    className="earth-gallery-entry inline-flex min-h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+    <svg viewBox="0 0 20 20" className="h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
       <circle cx="10" cy="10" r="7.5" /><ellipse cx="10" cy="10" rx="3.3" ry="7.5" /><path d="M2.5 10h15" />
     </svg>
     {labels[locale]}

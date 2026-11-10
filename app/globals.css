@@ -1160,7 +1160,8 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 }
 
 .theme-switcher-menu {
-  width: 16rem;
+  width: max-content;
+  min-width: 9rem;
 }
 
 .selection-menu-panel {
@@ -1469,38 +1470,89 @@ html[data-theme-resolved="light"] .theme-floating-panel {
   }
 }
 
-.filter-loading-bar {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    rgb(var(--theme-accent-rgb) / 0),
-    rgb(var(--theme-accent-rgb) / 0.24) 28%,
-    rgb(var(--theme-accent-rgb) / 0.48) 52%,
-    rgb(var(--theme-accent-rgb) / 0.24) 72%,
-    rgb(var(--theme-accent-rgb) / 0)
-  );
-  transform: translateX(-45%);
-  transition: opacity 180ms ease;
-  animation: filter-loading-sweep 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  pointer-events: none;
+.earth-gallery-entry {
+  border: 1px solid rgb(var(--theme-accent-ring-rgb) / 0.22);
+  background: rgb(var(--theme-accent-surface-rgb) / 0.06);
+  color: rgb(var(--theme-accent-text-rgb));
+  transition: background-color 180ms ease, border-color 180ms ease;
 }
 
-@keyframes filter-loading-sweep {
-  from {
-    transform: translateX(-65%);
-  }
+.earth-gallery-entry:focus-visible {
+  outline-color: rgb(var(--theme-accent-ring-rgb));
+}
 
-  to {
-    transform: translateX(65%);
+@media (hover: hover) {
+  .earth-gallery-entry:hover {
+    background: rgb(var(--theme-accent-surface-rgb) / 0.11);
+    border-color: rgb(var(--theme-accent-ring-rgb) / 0.35);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .filter-loading-bar {
+  .earth-gallery-entry {
+    transition: none;
+  }
+}
+
+.filter-loading-top {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+}
+
+.filter-loading-top::before {
+  content: "";
+  position: absolute;
+  /* Keep the light on the straight top edge, clear of both 28px corners.
+     Clip this overlay only; filter popovers must remain free to overflow. */
+  inset: 0 1.75rem auto;
+  height: 2px;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    calc(100% - 16px) 100%,
+    16px 100%
+  );
+  background-image: linear-gradient(
+    90deg,
+    rgb(var(--theme-accent-ring-rgb) / 0),
+    rgb(var(--theme-accent-ring-rgb) / 0.65),
+    rgb(var(--theme-accent-ring-rgb) / 0)
+  );
+  background-size: 45% 100%;
+  background-repeat: no-repeat;
+  background-position: -85% 0;
+}
+
+.filter-panel[data-pending] > .filter-loading-top {
+  opacity: 1;
+}
+
+.filter-panel[data-pending] > .filter-loading-top::before {
+  animation: filter-loading-sweep 1.2s linear infinite;
+}
+
+@keyframes filter-loading-sweep {
+  to {
+    background-position: 185% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-loading-top {
+    transition: none;
+  }
+
+  .filter-panel[data-pending] > .filter-loading-top::before {
     animation: none;
-    transform: none;
+    background-size: 100% 100%;
+    background-position: center;
   }
 }
 
