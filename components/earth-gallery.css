@@ -1,7 +1,7 @@
 body:has(.earth-page){overflow:hidden;background:#020408}
 body:has(.earth-page) footer{display:none}
 .earth-page{--earth-accent-rgb:var(--theme-accent-solid-rgb,252 211 77);position:fixed;inset:0;z-index:30;overflow:hidden;background:#020408;color:#fff;touch-action:none;cursor:grab;outline:none;font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif}
-.earth-page:active{cursor:grabbing}
+.earth-page[data-dragging=true]{cursor:grabbing}
 .earth-canvas{position:relative;display:block;width:100%;height:100%}
 .earth-back{position:absolute;z-index:2;top:max(24px,env(safe-area-inset-top));left:max(24px,env(safe-area-inset-left));display:flex;align-items:center;gap:8px;min-height:44px;padding:0 8px;border:0;background:transparent;color:#8d9baa;font-size:13px;cursor:pointer;touch-action:manipulation;transition:color .2s}
 .earth-back svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
@@ -9,11 +9,11 @@ body:has(.earth-page) footer{display:none}
 .earth-back:focus-visible{outline:2px solid rgb(var(--earth-accent-rgb));outline-offset:3px}
 @media(max-width:640px){.earth-back{top:max(12px,env(safe-area-inset-top));left:max(12px,env(safe-area-inset-left))}}
 /* Keep marker depth ordering inside the globe layer, below the album panel. */
-.earth-locations{position:absolute;inset:0;z-index:0;pointer-events:none}
+.earth-locations{position:absolute;inset:0;z-index:0;pointer-events:none;user-select:none}
 .earth-location{position:absolute;left:0;top:0;width:28px;height:28px;margin:-14px 0 0 -14px;overflow:visible;pointer-events:auto;cursor:pointer;border:0;padding:0;background:transparent}
 .earth-location[hidden]{display:none}
 .earth-location-dot{position:absolute;left:10px;top:10px;width:8px;height:8px;border:1.5px solid #d2e9ff;border-radius:50%;background:#74b7f4;box-shadow:0 0 0 4px #7bb9ef18,0 1px 6px #0009;transition:box-shadow .18s,background .18s}
-.earth-location-cover{position:absolute;left:50%;bottom:31px;display:block;opacity:0;visibility:hidden;pointer-events:none;width:104px;height:74px;border:1px solid #ffffff50;border-radius:9px;background:#15202a;box-shadow:0 4px 14px #0007;transform:translateX(-50%) scale(1);transform-origin:bottom center;transition:transform .18s,border-color .18s,opacity .18s,visibility .18s;isolation:isolate}
+.earth-location-cover{position:absolute;left:50%;bottom:31px;display:block;opacity:0;visibility:hidden;pointer-events:none;width:96px;height:68px;border:1px solid #ffffff50;border-radius:9px;background:#15202a;box-shadow:0 4px 14px #0007;transform:translateX(-50%) scale(1);transform-origin:bottom center;transition:transform .18s,border-color .18s,opacity .18s,visibility .18s;isolation:isolate}
 .earth-location-stack{position:absolute;inset:0;border:1px solid #dce7f17a;border-radius:inherit;background:#15202a;box-shadow:0 2px 5px #0005;overflow:hidden;pointer-events:none;transform-origin:50% 85%}
 .earth-location-stack img{display:block;width:100%;height:100%;object-fit:cover;filter:brightness(.85);pointer-events:none}
 .earth-location-stack-middle{transform:translate(5px,-6px) rotate(3deg);z-index:-1}
@@ -26,20 +26,20 @@ body:has(.earth-page) footer{display:none}
 .earth-location-count{position:absolute;right:5px;top:5px;display:flex;align-items:center;gap:3px;min-height:20px;padding:2px 4px;border:1px solid #ffffff26;border-radius:4px;background:#0c1727e6;color:#f1f5f9;font-size:10px;line-height:14px;font-variant-numeric:tabular-nums}
 .earth-location-count svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.2}
 .earth-location:hover,.earth-location:focus-visible{z-index:6!important}
-.earth-location:hover .earth-location-cover,.earth-location:focus-visible .earth-location-cover{transform:translateX(-50%) scale(1.06);border-color:rgb(var(--earth-accent-rgb) / .85)}
+.earth-page:not([data-interacting=true]) .earth-location:hover .earth-location-cover,.earth-location:focus-visible .earth-location-cover{transform:translateX(-50%) scale(1.06);border-color:rgb(var(--earth-accent-rgb) / .85)}
 .earth-location[aria-pressed=true]{z-index:5!important}
 .earth-location[aria-pressed=true] .earth-location-cover{border-color:rgb(var(--earth-accent-rgb));box-shadow:0 0 0 2px rgb(var(--earth-accent-rgb) / .18),0 8px 24px #0008}
 .earth-location[aria-pressed=true] .earth-location-dot{border-color:rgb(var(--earth-accent-rgb));background:rgb(var(--earth-accent-rgb));box-shadow:0 0 0 5px rgb(var(--earth-accent-rgb) / .14),0 0 16px rgb(var(--earth-accent-rgb) / .44)}
 .earth-location:focus-visible{outline:none}
 .earth-location:focus-visible .earth-location-dot{outline:2px solid rgb(var(--earth-accent-rgb));outline-offset:5px}
 .earth-page[data-collection-open=true] .earth-location[data-cover=true]:not([aria-pressed=true]):not(:hover):not(:focus-visible) .earth-location-cover{opacity:.62}
-.earth-album{position:absolute;z-index:1;top:24px;right:24px;bottom:24px;display:flex;flex-direction:column;width:360px;max-height:820px;border:1px solid #a0bbd530;border-radius:18px;background:linear-gradient(145deg,#15202bf5,#0a1019f5);box-shadow:0 24px 80px #0007,inset 0 1px #ffffff08;backdrop-filter:blur(22px);cursor:default;touch-action:pan-y;overflow:hidden;animation:earth-panel-enter .2s ease-out}
+.earth-album{position:absolute;z-index:1;top:24px;right:24px;bottom:24px;display:flex;flex-direction:column;width:360px;height:calc(100svh - 48px);border:1px solid #a0bbd530;border-radius:18px;background:linear-gradient(145deg,#15202bf5,#0a1019f5);box-shadow:0 24px 80px #0007,inset 0 1px #ffffff08;backdrop-filter:blur(22px);cursor:default;touch-action:pan-y;overflow:hidden;animation:earth-panel-enter .2s ease-out}
 .earth-album-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px 12px 20px;flex-shrink:0;border-bottom:1px solid #ffffff0b;color:#c1cedb;font-size:11px;font-weight:500;letter-spacing:.13em}
 .earth-album-code{margin-left:10px;color:#698095;font-size:10px;letter-spacing:.1em}
-.earth-album-close{display:grid;place-items:center;width:30px;height:30px;border:1px solid #ffffff14;border-radius:50%;background:#ffffff04;color:#9cadbd;transition:background .15s,color .15s}
+.earth-album-close{display:grid;place-items:center;width:36px;height:36px;border:1px solid #ffffff14;border-radius:50%;background:#ffffff04;color:#9cadbd;transition:background .15s,color .15s}
 .earth-album-close:hover{background:rgb(var(--earth-accent-rgb) / .1);color:rgb(var(--earth-accent-rgb))}
 .earth-album-close svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round}
-.earth-album-scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#546b7a55 transparent}
+.earth-album-scroll{scrollbar-gutter:stable;touch-action:pan-y;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#546b7a55 transparent}
 .earth-album-hero{position:relative;display:block;margin:16px 16px 0;border:1px solid #ffffff12;border-radius:10px;overflow:hidden;aspect-ratio:1.55;isolation:isolate;background:#0b1620}
 .earth-album-hero>img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
 .earth-album-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 35%,#060c1480 65%,#060c14dd);z-index:1;pointer-events:none}
@@ -66,7 +66,7 @@ body:has(.earth-page) footer{display:none}
 .earth-retry{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:12px 20px;background:#172638;border:1px solid #517da1;border-radius:8px;cursor:pointer}
 @keyframes earth-panel-enter{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
 @keyframes earth-panel-enter-mobile{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:640px){.earth-location-cover{width:84px;height:62px;border-radius:7px}.earth-location-cover>img,.earth-location-label{border-radius:6px}.earth-location-label{font-size:12px;line-height:16px;padding:16px 5px 5px}.earth-location-count{font-size:10px;top:4px;right:4px;padding:2px 4px;min-height:20px}.earth-location-count svg{width:10px;height:10px}.earth-album{left:12px;right:12px;top:auto;bottom:12px;width:auto;max-height:55svh;border-radius:16px;animation-name:earth-panel-enter-mobile}.earth-album-topbar{padding:10px 12px 10px 16px}.earth-album-hero{aspect-ratio:2.1;margin:12px 12px 0}.earth-album-body{padding:16px}.earth-album-heading{margin-bottom:20px}.earth-album-heading h2{font-size:23px}.earth-album-images{gap:16px 10px}.earth-album-footer{padding:12px 16px}.earth-album-close{width:32px;height:32px}}
+@media(max-width:640px){.earth-location-cover{width:80px;height:60px;border-radius:7px}.earth-location-cover>img,.earth-location-label{border-radius:6px}.earth-location-label{font-size:12px;line-height:16px;padding:16px 5px 5px}.earth-location-count{font-size:10px;top:4px;right:4px;padding:2px 4px;min-height:20px}.earth-location-count svg{width:10px;height:10px}.earth-album{left:12px;right:12px;top:auto;bottom:max(12px,env(safe-area-inset-bottom));width:auto;height:55svh;border-radius:16px;animation-name:earth-panel-enter-mobile}.earth-album-topbar{padding:10px 12px 10px 16px}.earth-album-hero{aspect-ratio:2.1;margin:12px 12px 0}.earth-album-body{padding:16px}.earth-album-heading{margin-bottom:20px}.earth-album-heading h2{font-size:23px}.earth-album-images{gap:16px 10px}.earth-album-footer{padding:12px 16px}.earth-album-close{width:40px;height:40px}}
 @media(prefers-reduced-motion:reduce){.earth-album{animation:none}.earth-location-cover,.earth-location:after,.earth-location-dot,.earth-album-hero>img,.earth-album-tile-image img,.earth-back{transition:none}}
 
 @media(max-width:640px){.earth-location-stack-middle{transform:translate(4px,-5px) rotate(2deg)}.earth-location-stack-back{transform:translate(8px,-10px) rotate(4deg)}}
@@ -83,7 +83,7 @@ body:has(.earth-page) footer{display:none}
 .earth-page[data-transition=leaving] .earth-canvas{opacity:var(--earth-flight-opacity,1);transition:none}
 
 /* These cards live in screen space, outside the globe's geographic layer. */
-.earth-orbit{position:absolute;inset:0;z-index:0;pointer-events:none;transition:opacity .3s ease-out}
+.earth-orbit{position:absolute;inset:0;z-index:0;pointer-events:none;user-select:none;transition:opacity .3s ease-out}
 .earth-orbit-card{position:absolute;left:0;top:0;width:88px;height:84px;padding:0;border:0;background:transparent;color:#b8c7d4;cursor:pointer;text-align:left;transition:opacity .2s,color .2s}
 .earth-orbit-card[hidden]{display:none}
 .earth-orbit-cover{display:block;height:58px;border:1px solid #c2d8ed40;border-radius:7px;overflow:hidden;background:#0a1019;box-shadow:0 5px 24px #0006;transition:border-color .2s}

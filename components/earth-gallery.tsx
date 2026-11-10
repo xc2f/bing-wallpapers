@@ -9,6 +9,8 @@ import { localizePath, type Locale } from "@/lib/i18n";
 import type { EarthInitialView } from "@/lib/earth-initial-view";
 import { resizeBingImage } from "@/lib/bing-image";
 import { createEarthZoomNavigation, EARTH_MIN_DISTANCE, EARTH_MAX_DISTANCE, type EarthZoomAnchor } from "@/lib/earth-navigation";
+import { earthRenderQuality } from "@/lib/earth-render-quality";
+import { createEarthInertia } from "@/lib/earth-inertia";
 import { createStarfield } from "@/lib/starfield";
 import { loadEarthSurface } from "@/lib/earth-surface";
 import { spaceOrbitLayout } from "@/lib/space-orbit-layout";
@@ -58,7 +60,8 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
   const lastActivity = useRef(0);
   const hoveringCollection = useRef(false);
   const focusingCollection = useRef(false);
-  const pointers = useRef(new Map<number, { x: number; y: number }>());
+  const pointers = useRef(new Map<number, { x: number; y: number; time: number }>());
+  const inertia = useRef(createEarthInertia());
   const [selected, setSelected] = useState<Album | null>(null);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
@@ -72,6 +75,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
   }, []);
 
   useEffect(() => {
+    const rotationInertia = inertia.current;
     const container = stage.current;
     if (!container || !canvas.current) return;
     let renderer: THREE.WebGLRenderer;
@@ -101,6 +105,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     }
     let surfaceReady = false;
     let disposed = false;
+    let contextLost = false;
     let frame = 0;
     let dirty = true;
     let width = 1;
@@ -108,8 +113,9 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(38, 1, .01, 100);
     const zoomNavigation = createEarthZoomNavigation(camera);
-    const restingPixelRatio = Math.min(window.devicePixelRatio, 2);
-    const interactionPixelRatio = Math.min(restingPixelRatio, 1.25);
+    const initialQuality = earthRenderQuality(container.clientWidth, container.clientHeight, window.devicePixelRatio);
+    let restingPixelRatio = initialQuality.resting;
+    let interactionPixelRatio = initialQuality.interacting;
     renderer.setPixelRatio(restingPixelRatio);
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -439,12 +445,21 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       || Number(coverIds.has(b.album.id)) - Number(coverIds.has(a.album.id))
       || b.album.count - a.album.count);
     let interacting = false;
+    let lastSkyReport = -Infinity;
+    let hiddenAt: number | null = null;
     let lastWheelTime = -Infinity;
+    const wheelPointer = new THREE.Vector2();
     const lastWheelPointer = new THREE.Vector2(Infinity, Infinity);
     const resize = new ResizeObserver(() => {
       width = container.clientWidth;
       height = container.clientHeight;
       zoomAnchor.current = null;
+      const quality = earthRenderQuality(width, height, window.devicePixelRatio);
+      restingPixelRatio = quality.resting;
+      interactionPixelRatio = quality.interacting;
+      const pixelRatio = interacting ? interactionPixelRatio : restingPixelRatio;
+      renderer.setPixelRatio(pixelRatio);
+      starMaterial.uniforms.pixelRatio.value = pixelRatio;
       renderer.setSize(width, height, false);
       camera.aspect = width / Math.max(height, 1);
       camera.updateProjectionMatrix();
@@ -453,7 +468,8 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     resize.observe(container);
 
     function draw(time: number) {
-      if (disposed) return;
+      frame = 0;
+      if (disposed || contextLost || document.hidden) return;
       const deltaSeconds = Math.min((time - previousFrame) / 1000, .05);
       previousFrame = time;
       const target = view.current;
@@ -482,6 +498,15 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
             if (currentFlight.back) router.back();
             else router.push(currentFlight.href);
           }
+        }
+      }
+      if (flight.current || selectedId.current || reducedMotion.matches || document.hidden) rotationInertia.reset();
+      else if (pointers.current.size === 0) {
+        const coast = rotationInertia.step(deltaSeconds, target.lat);
+        if (coast.active) {
+          zoomAnchor.current = null;
+          target.lon += coast.longitude;
+          target.lat = coast.latitude;
         }
       }
       const lonDelta = (((target.lon - actual.lon) % 360 + 540) % 360) - 180;
@@ -523,6 +548,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
         lastMarkerSelection = selectedId.current;
         sortedPoints = orderPoints();
       }
+      // Screen-space markers must follow every rendered camera frame to avoid judder.
       const updateMarkers = moving || autoRotating || dirty || selectionChanged;
       const animateClouds = !reducedMotion.matches && !document.hidden && time - lastCloudFrame >= 100;
       if (animateClouds) {
@@ -538,21 +564,19 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
         starMaterial.uniforms.starOpacity.value = 1 - opacity;
         if (progress === 1) stars.visible = false;
       }
-      if (moving || autoRotating || dirty || animateClouds || selectionChanged || skyFading) {
+      if (moving || autoRotating || dirty || animateClouds || selectionChanged || skyFading || updateMarkers) {
         // Time-based damping gives the same response at different display refresh rates.
-        const damping = 1 - Math.exp(-18 * deltaSeconds);
+        const damping = 1 - Math.exp(-22 * deltaSeconds);
+        const zoomDamping = 1 - Math.exp(-12 * deltaSeconds);
         if (moving) {
           actual.lon += lonDelta * damping;
           actual.lat += (target.lat - actual.lat) * damping;
-          actual.distance = Math.exp(THREE.MathUtils.lerp(Math.log(actual.distance), Math.log(target.distance), damping));
+          actual.distance = Math.exp(THREE.MathUtils.lerp(Math.log(actual.distance), Math.log(target.distance), zoomDamping));
         } else {
           actual.lon = target.lon;
           actual.lat = target.lat;
           actual.distance = target.distance;
         }
-        renderedView.current.lon = actual.lon;
-        renderedView.current.lat = actual.lat;
-        renderedView.current.distance = actual.distance;
         // Pull back on portrait screens so the whole globe initially fits.
         const distance = actual.distance * Math.max(1, 1 / camera.aspect);
         if (zoomAnchor.current) {
@@ -560,6 +584,9 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
           actual.lon = target.lon = orientation.lon;
           actual.lat = target.lat = orientation.lat;
         }
+        renderedView.current.lon = actual.lon;
+        renderedView.current.lat = actual.lat;
+        renderedView.current.distance = actual.distance;
         direction.copy(location(actual.lon, actual.lat));
         camera.position.copy(direction).multiplyScalar(distance);
         stars.position.copy(camera.position);
@@ -574,7 +601,10 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
         camera.updateMatrixWorld();
         skyRotation.setFromEuler(skyEuler);
         sky.quaternion.copy(camera.quaternion).multiply(skyRotation);
-        container?.setAttribute("data-sky-rotation", skyEuler.y.toFixed(6));
+        if (time - lastSkyReport >= 250) {
+          container?.setAttribute("data-sky-rotation", skyEuler.y.toFixed(6));
+          lastSkyReport = time;
+        }
         // Side lighting leaves a shaded crescent at screen lower-right.
         // Keep this direction relative to the camera throughout globe rotation.
         sunlight.position.set(-.7, .8, 1).normalize()
@@ -582,67 +612,75 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
         cloudUniforms.cloudSun.value.copy(sunlight.position).normalize();
         atmosphereMaterial.uniforms.sunDirection.value.copy(cloudUniforms.cloudSun.value);
         renderer.render(scene, camera);
-        const orbitLayout = spaceOrbitLayout(width, height, actual.distance);
-        const visibleOrbitBounds: { x: number; y: number; width: number; height: number }[] = [];
-        spaceAlbums.forEach((album, index) => {
-          const card = orbitCards.current.get(album.id);
-          const layout = orbitLayout[index];
-          if (!card || !layout) return;
-          const panelOverlap = selectedId.current && width > 640 && layout.x + layout.width > width - 408;
-          const bottomOverlap = selectedId.current && width <= 640 && layout.y + layout.height > height * .45 - 24;
-          const opacity = panelOverlap || bottomOverlap || flight.current?.kind === "entering" ? 0 : layout.opacity;
-          card.hidden = opacity <= .01;
-          card.inert = opacity < .25;
-          card.style.opacity = String(opacity);
-          card.style.pointerEvents = opacity >= .25 ? "auto" : "none";
-          card.style.transform = `translate(${layout.x}px,${layout.y}px)`;
-          if (opacity >= .25) visibleOrbitBounds.push(layout);
-        });
-        const covers: { x: number; y: number }[] = [];
-        const nextCoverIds = new Set<string>();
-        if (updateMarkers) for (const { album, point } of sortedPoints) {
-          const marker = markers.current.get(album.id);
-          if (!marker) continue;
-          projected.copy(point).multiplyScalar(1.008).project(camera);
-          const x = (projected.x + 1) * width / 2;
-          const y = (1 - projected.y) * height / 2;
-          const horizonDepth = point.dot(direction) - 1 / distance;
-          const screenMargin = Math.min(x, width - x, y, height - y);
-          // Enter and exit at different thresholds, fading out before occlusion.
-          const visible = horizonDepth > (marker.hidden ? .05 : .025)
-            && screenMargin > (marker.hidden ? 20 : 8);
-          if (marker.hidden === visible) marker.hidden = !visible;
-          if (!visible) continue;
-          marker.style.transform = `translate(${x}px, ${y}px)`;
-          const opacity = THREE.MathUtils.smoothstep(horizonDepth, .06, .15)
-            * THREE.MathUtils.smoothstep(screenMargin, 24, 48);
-          marker.style.opacity = String(opacity);
-          marker.style.pointerEvents = opacity > .1 ? "auto" : "none";
-          marker.inert = opacity <= .1;
-          const compact = width <= 640;
-          const coverWidth = compact ? 84 : 104;
-          const coverTop = y - 31 - (compact ? 62 : 74) - 12;
-          const spaceBlocked = visibleOrbitBounds.some(rect => x + coverWidth / 2 + 16 > rect.x && x - coverWidth / 2 - 6 < rect.x + rect.width && y - 25 > rect.y && coverTop < rect.y + rect.height);
-          marker.dataset.spaceBlocked = String(spaceBlocked);
-          const spacing = compact ? 108 : 132;
-          const panelOverlap = selectedId.current && !compact && x > width - 420;
-          const incumbent = coverIds.has(album.id);
-          const edgeMargin = incumbent ? 56 : 68;
-          const cover = !spaceBlocked && !panelOverlap && y > (incumbent ? 104 : 120)
-            && x > edgeMargin && x < width - edgeMargin
-            && covers.length < (compact ? 7 : 10)
-            && covers.every(p => Math.hypot(p.x - x, p.y - y) > spacing + (incumbent ? 0 : 14));
-          if (marker.dataset.cover !== String(cover)) marker.dataset.cover = String(cover);
-          const zIndex = album.id === selectedId.current ? "4" : cover ? "3" : "2";
-          if (marker.style.zIndex !== zIndex) marker.style.zIndex = zIndex;
-          if (cover) {
-            covers.push({ x, y });
-            nextCoverIds.add(album.id);
+        if (updateMarkers) {
+          const orbitLayout = spaceOrbitLayout(width, height, actual.distance);
+          const visibleOrbitBounds: { x: number; y: number; width: number; height: number }[] = [];
+          spaceAlbums.forEach((album, index) => {
+            const card = orbitCards.current.get(album.id);
+            const layout = orbitLayout[index];
+            if (!card || !layout) return;
+            const panelOverlap = selectedId.current && width > 640 && layout.x + layout.width > width - 408;
+            const bottomOverlap = selectedId.current && width <= 640 && layout.y + layout.height > height * .45 - 24;
+            const opacity = panelOverlap || bottomOverlap || flight.current?.kind === "entering" ? 0 : layout.opacity;
+            if (card.hidden !== (opacity <= .01)) card.hidden = opacity <= .01;
+            if (card.inert !== (opacity < .25)) card.inert = opacity < .25;
+            const alpha = String(Math.round(opacity * 1000) / 1000);
+            const hitTarget = opacity >= .25 ? "auto" : "none";
+            const transform = `translate(${Math.round(layout.x * 10) / 10}px, ${Math.round(layout.y * 10) / 10}px)`;
+            if (card.style.opacity !== alpha) card.style.opacity = alpha;
+            if (card.style.pointerEvents !== hitTarget) card.style.pointerEvents = hitTarget;
+            if (card.style.transform !== transform) card.style.transform = transform;
+            if (opacity >= .25) visibleOrbitBounds.push(layout);
+          });
+          const covers: { x: number; y: number }[] = [];
+          const nextCoverIds = new Set<string>();
+          for (const { album, point } of sortedPoints) {
+            const marker = markers.current.get(album.id);
+            if (!marker) continue;
+            projected.copy(point).multiplyScalar(1.008).project(camera);
+            const x = (projected.x + 1) * width / 2;
+            const y = (1 - projected.y) * height / 2;
+            const horizonDepth = point.dot(direction) - 1 / distance;
+            const screenMargin = Math.min(x, width - x, y, height - y);
+            // Enter and exit at different thresholds, fading out before occlusion.
+            const visible = horizonDepth > (marker.hidden ? .05 : .025)
+              && screenMargin > (marker.hidden ? 20 : 8);
+            if (marker.hidden === visible) marker.hidden = !visible;
+            if (!visible) continue;
+            const transform = `translate(${Math.round(x * 10) / 10}px, ${Math.round(y * 10) / 10}px)`;
+            if (marker.style.transform !== transform) marker.style.transform = transform;
+            const opacity = THREE.MathUtils.smoothstep(horizonDepth, .06, .15)
+              * THREE.MathUtils.smoothstep(screenMargin, 24, 48);
+            const alpha = String(Math.round(opacity * 1000) / 1000);
+            const hitTarget = opacity > .1 ? "auto" : "none";
+            if (marker.style.opacity !== alpha) marker.style.opacity = alpha;
+            if (marker.style.pointerEvents !== hitTarget) marker.style.pointerEvents = hitTarget;
+            if (marker.inert !== (opacity <= .1)) marker.inert = opacity <= .1;
+            const compact = width <= 640;
+            const coverWidth = compact ? 80 : 96;
+            const coverTop = y - 31 - (compact ? 60 : 68) - 12;
+            const spaceBlocked = visibleOrbitBounds.some(rect => x + coverWidth / 2 + 16 > rect.x && x - coverWidth / 2 - 6 < rect.x + rect.width && y - 25 > rect.y && coverTop < rect.y + rect.height);
+            if (marker.dataset.spaceBlocked !== String(spaceBlocked)) marker.dataset.spaceBlocked = String(spaceBlocked);
+            const spacing = compact ? 104 : 124;
+            const panelOverlap = selectedId.current && !compact && x > width - 420;
+            const incumbent = coverIds.has(album.id);
+            const edgeMargin = incumbent ? 56 : 68;
+            const cover = !spaceBlocked && !panelOverlap && y > (incumbent ? 104 : 120)
+              && x > edgeMargin && x < width - edgeMargin
+              && covers.length < (compact ? 5 : 8)
+              && covers.every(p => Math.hypot(p.x - x, p.y - y) > spacing + (incumbent ? 0 : 14));
+            if (marker.dataset.cover !== String(cover)) marker.dataset.cover = String(cover);
+            const zIndex = album.id === selectedId.current ? "4" : cover ? "3" : "2";
+            if (marker.style.zIndex !== zIndex) marker.style.zIndex = zIndex;
+            if (cover) {
+              covers.push({ x, y });
+              nextCoverIds.add(album.id);
+            }
           }
-        }
-        if (updateMarkers && (coverIds.size !== nextCoverIds.size || [...coverIds].some(id => !nextCoverIds.has(id)))) {
-          coverIds = nextCoverIds;
-          sortedPoints = orderPoints();
+          if ((coverIds.size !== nextCoverIds.size || [...coverIds].some(id => !nextCoverIds.has(id)))) {
+            coverIds = nextCoverIds;
+            sortedPoints = orderPoints();
+          }
         }
         dirty = false;
       }
@@ -653,18 +691,18 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       lastActivity.current = performance.now();
       if (flight.current || (event.target as Element).closest("aside")) return;
       event.preventDefault();
+      rotationInertia.reset();
       // Normalize mouse-wheel lines/pages and trackpad pixels before applying zoom.
       const unit = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? 16
         : event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? height : 1;
       const delta = THREE.MathUtils.clamp(event.deltaY * unit, -120, 120);
-      const bounds = container.getBoundingClientRect();
       const now = performance.now();
       const sameGesture = zoomAnchor.current && now - lastWheelTime < 280
         && Math.hypot(event.clientX - lastWheelPointer.x, event.clientY - lastWheelPointer.y) < 8;
       if (!sameGesture) {
-        zoomAnchor.current = zoomNavigation.capture(new THREE.Vector2(
-          (event.clientX - bounds.left) / bounds.width * 2 - 1,
-          1 - (event.clientY - bounds.top) / bounds.height * 2,
+        zoomAnchor.current = zoomNavigation.capture(wheelPointer.set(
+          event.clientX / width * 2 - 1,
+          1 - event.clientY / height * 2,
         ));
         lastWheelPointer.set(event.clientX, event.clientY);
       }
@@ -673,20 +711,50 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       lastMotion = performance.now();
     };
     const resetIdle = () => { lastActivity.current = performance.now(); };
-    document.addEventListener("visibilitychange", resetIdle);
+    const visibilityChanged = () => {
+      const now = performance.now();
+      rotationInertia.reset();
+      pointers.current.clear();
+      container.removeAttribute("data-dragging");
+      if (document.hidden) {
+        hiddenAt = now;
+        cancelAnimationFrame(frame);
+        frame = 0;
+      } else {
+        const paused = hiddenAt === null ? 0 : now - hiddenAt;
+        if (flight.current?.startedAt != null) flight.current.startedAt += paused;
+        if (skyFadeStarted !== null) skyFadeStarted += paused;
+        hiddenAt = null;
+        previousFrame = lastAutoRotation = lastCloudFrame = now;
+        resetIdle();
+        dirty = true;
+        if (!frame && !disposed) frame = requestAnimationFrame(draw);
+      }
+    };
+    document.addEventListener("visibilitychange", visibilityChanged);
     reducedMotion.addEventListener("change", resetIdle);
-    const lost = (event: Event) => { event.preventDefault(); setError(true); };
+    const lost = (event: Event) => {
+      event.preventDefault();
+      contextLost = true;
+      rotationInertia.reset();
+      cancelAnimationFrame(frame);
+      frame = 0;
+      flight.current = null;
+      setTransitionPhase("ready");
+      setError(true);
+    };
     container.addEventListener("wheel", wheel, { passive: false });
     const canvasElement = canvas.current;
     canvasElement.addEventListener("webglcontextlost", lost);
     return () => {
       disposed = true;
+      rotationInertia.reset();
       zoomAnchor.current = null;
       flight.current = null;
       cancelAnimationFrame(frame);
       resize.disconnect();
       container.removeEventListener("wheel", wheel);
-      document.removeEventListener("visibilitychange", resetIdle);
+      document.removeEventListener("visibilitychange", visibilityChanged);
       reducedMotion.removeEventListener("change", resetIdle);
       canvasElement.removeEventListener("webglcontextlost", lost);
       surface.dispose();
@@ -709,10 +777,14 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     const id = selectedId.current;
     selectedId.current = null;
     setSelected(null);
-    if (restoreFocus && id) (markers.current.get(id) ?? orbitCards.current.get(id))?.focus();
+    if (restoreFocus && id) {
+      const source = markers.current.get(id) ?? orbitCards.current.get(id);
+      requestAnimationFrame(() => source?.focus({ preventScroll: true }));
+    }
   }
 
   function choose(album: Album) {
+    inertia.current.reset();
     lastActivity.current = performance.now();
     zoomAnchor.current = null;
     selectedId.current = album.id;
@@ -723,6 +795,27 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     }
   }
 
+
+  function movePointer(pointerId: number, x: number, y: number, time: number) {
+    const old = pointers.current.get(pointerId);
+    if (!old) return;
+    const next = { x, y, time };
+    const other = [...pointers.current].find(([id]) => id !== pointerId)?.[1];
+    if (other) {
+      inertia.current.reset();
+      const before = Math.hypot(old.x - other.x, old.y - other.y);
+      const after = Math.hypot(next.x - other.x, next.y - other.y);
+      if (after > 0) view.current.distance = THREE.MathUtils.clamp(view.current.distance * before / after, EARTH_MIN_DISTANCE, EARTH_MAX_DISTANCE);
+    } else {
+      const sensitivity = .16 * view.current.distance / 3;
+      const longitude = -(next.x - old.x) * sensitivity;
+      const latitude = THREE.MathUtils.clamp(view.current.lat + (next.y - old.y) * sensitivity, -85, 85);
+      inertia.current.record(longitude, latitude - view.current.lat, next.time - old.time, next.time);
+      view.current.lon += longitude;
+      view.current.lat = latitude;
+    }
+    pointers.current.set(pointerId, next);
+  }
 
   return <main ref={stage} className="earth-page" data-transition={transitionPhase} onClickCapture={event => {
     const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
@@ -767,6 +860,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       if ((event.target as Element).closest(".earth-back")) return;
       if (flight.current) { event.preventDefault(); return; }
       lastActivity.current = performance.now();
+      inertia.current.reset();
       if (event.key === "Escape" && selected) {
         event.preventDefault();
         closeCollection();
@@ -790,33 +884,37 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       if (flight.current) return;
       lastActivity.current = performance.now();
       if ((event.target as Element).closest("button, a, aside")) return;
+      inertia.current.reset();
+      if (pointers.current.size === 0) Object.assign(view.current, renderedView.current);
       zoomAnchor.current = null;
+      event.currentTarget.setAttribute("data-dragging", "true");
       event.currentTarget.focus();
       event.currentTarget.setPointerCapture(event.pointerId);
-      pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY });
+      pointers.current.set(event.pointerId, { x: event.clientX, y: event.clientY, time: event.timeStamp });
       setSelected(null);
       selectedId.current = null;
     }}
     onPointerMove={event => {
       lastActivity.current = performance.now();
-      const old = pointers.current.get(event.pointerId);
-      if (!old) return;
-      const next = { x: event.clientX, y: event.clientY };
-      const other = [...pointers.current].find(([id]) => id !== event.pointerId)?.[1];
-      if (other) {
-        const before = Math.hypot(old.x - other.x, old.y - other.y);
-        const after = Math.hypot(next.x - other.x, next.y - other.y);
-        if (after > 0) view.current.distance = THREE.MathUtils.clamp(view.current.distance * before / after, EARTH_MIN_DISTANCE, EARTH_MAX_DISTANCE);
-      } else {
-        const sensitivity = .16 * view.current.distance / 3;
-        view.current.lon -= (next.x - old.x) * sensitivity;
-        view.current.lat = THREE.MathUtils.clamp(view.current.lat + (next.y - old.y) * sensitivity, -85, 85);
-      }
-      pointers.current.set(event.pointerId, next);
+      movePointer(event.pointerId, event.clientX, event.clientY, event.timeStamp);
     }}
-    onPointerUp={event => pointers.current.delete(event.pointerId)}
-    onPointerCancel={event => pointers.current.delete(event.pointerId)}
-    onLostPointerCapture={event => pointers.current.delete(event.pointerId)}>
+    onPointerUp={event => {
+      if (!pointers.current.has(event.pointerId)) return;
+      if (pointers.current.size === 1) movePointer(event.pointerId, event.clientX, event.clientY, event.timeStamp);
+      pointers.current.delete(event.pointerId);
+      if (pointers.current.size === 0) {
+        event.currentTarget.removeAttribute("data-dragging");
+        inertia.current.release(event.timeStamp);
+      } else inertia.current.reset();
+    }}
+    onPointerCancel={event => {
+      if (pointers.current.delete(event.pointerId)) inertia.current.reset();
+      if (!pointers.current.size) event.currentTarget.removeAttribute("data-dragging");
+    }}
+    onLostPointerCapture={event => {
+      if (pointers.current.delete(event.pointerId)) inertia.current.reset();
+      if (!pointers.current.size) event.currentTarget.removeAttribute("data-dragging");
+    }}>
     <canvas ref={canvas} className="earth-canvas" aria-hidden="true" />
     <button type="button" className="earth-back" onClick={() => {
       if (flight.current?.kind === "leaving") return;
@@ -855,12 +953,12 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       <span className="earth-location-dot" />
       <span className="earth-location-cover" data-depth={album.count === 1 ? "single" : album.count < 10 ? "double" : "triple"}>
         {album.count >= 10 && album.images[2] && <span className="earth-location-stack earth-location-stack-back" aria-hidden="true">
-          <Image src={resizeBingImage(album.images[2].image, 208, 144)} alt="" width={208} height={144} sizes="104px" draggable={false} loading="lazy" />
+          <Image src={resizeBingImage(album.images[2].image, 192, 136)} alt="" width={192} height={136} sizes="(max-width:640px) 80px, 96px" draggable={false} loading="lazy" />
         </span>}
         {album.count > 1 && album.images[1] && <span className="earth-location-stack earth-location-stack-middle" aria-hidden="true">
-          <Image src={resizeBingImage(album.images[1].image, 208, 144)} alt="" width={208} height={144} sizes="104px" draggable={false} loading="lazy" />
+          <Image src={resizeBingImage(album.images[1].image, 192, 136)} alt="" width={192} height={136} sizes="(max-width:640px) 80px, 96px" draggable={false} loading="lazy" />
         </span>}
-        <Image src={resizeBingImage(album.images[0].image, 208, 144)} alt="" width={208} height={144} sizes="104px" draggable={false} />
+        <Image src={resizeBingImage(album.images[0].image, 192, 136)} alt="" width={192} height={136} sizes="(max-width:640px) 80px, 96px" draggable={false} />
         <span className="earth-location-count"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="2" width="9" height="9" rx="2"/>{album.count > 1 && <path d="M11 14H4a2 2 0 0 1-2-2V5"/>}</svg>{album.count}</span>
         <span className="earth-location-label">{album.label}</span>
       </span>
@@ -868,7 +966,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     {error && <button className="earth-retry" onClick={() => { setError(false); setRetry(n => n + 1); }}>{zh ? "地球加载失败，点击重试" : "Unable to load Earth. Retry"}</button>}
     {selected && <aside id="earth-collection" className="earth-album" aria-label={selected.label} key={selected.id}>
       <div className="earth-album-topbar">
-        <span>{zh ? (!selected.coordinates ? "太空图集" : "地区图集") : "COLLECTION"}<span className="earth-album-code">/ {selected.id}</span></span>
+        <span>{zh ? (!selected.coordinates ? "太空图集" : "地区图集") : "COLLECTION"}{selected.coordinates && <span className="earth-album-code">/ {selected.id}</span>}</span>
         <button className="earth-album-close" aria-label={zh ? "关闭图集" : "Close collection"} onClick={() => closeCollection()}>
           <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
         </button>
