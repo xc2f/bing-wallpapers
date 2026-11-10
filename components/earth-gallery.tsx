@@ -36,6 +36,7 @@ type EarthFlight = {
   startedAt: number | null;
   duration: number;
   href?: string;
+  back?: boolean;
   navigated?: boolean;
 };
 
@@ -478,7 +479,8 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
             setTransitionPhase("ready");
           } else if (currentFlight.href && !currentFlight.navigated) {
             currentFlight.navigated = true;
-            router.push(currentFlight.href);
+            if (currentFlight.back) router.back();
+            else router.push(currentFlight.href);
           }
         }
       }
@@ -817,8 +819,20 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     onLostPointerCapture={event => pointers.current.delete(event.pointerId)}>
     <canvas ref={canvas} className="earth-canvas" aria-hidden="true" />
     <button type="button" className="earth-back" onClick={() => {
-      if (canReturn.current) router.back();
-      else router.push(localizePath(locale, ""));
+      if (flight.current?.kind === "leaving") return;
+      const home = localizePath(locale, "");
+      if (error || !stage.current?.hasAttribute("data-render-ready") || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        if (canReturn.current) router.back();
+        else router.push(home);
+        return;
+      }
+      pointers.current.clear();
+      zoomAnchor.current = null;
+      flight.current = {
+        kind: "leaving", from: { ...renderedView.current }, to: { ...renderedView.current },
+        startedAt: performance.now(), duration: 360, href: home, back: canReturn.current,
+      };
+      setTransitionPhase("leaving");
     }}>
       <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4m5-5-5 5 5 5" /></svg>
       {{ zh: "返回", en: "Back", es: "Volver", fr: "Retour", de: "Zurück", ja: "戻る", ko: "뒤로" }[locale]}
