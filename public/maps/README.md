@@ -21,3 +21,11 @@ License: public domain (https://www.naturalearthdata.com/about/terms-of-use/).
 `earth-normal.jpg` and `earth-specular.jpg` are the Earth normal and specular textures from the Three.js official examples: https://threejs.org/examples/textures/planets/earth_normal_2048.jpg and https://threejs.org/examples/textures/planets/earth_specular_2048.jpg . They add shading relief and ocean-only highlights; they do not alter terrain geometry.
 
 `earth-clouds.webp` is the extracted alpha channel of `fair_clouds_4k.png` from https://github.com/turban/webgl-earth/blob/master/images/fair_clouds_4k.png (the public Earth visualization example). It is used as a cloud coverage mask for both a separate elevated cloud sphere and sun-projected cloud shadows. The mask is static source imagery with simulated drift, not live weather. Attribution: original Earth imagery NASA / Visible Earth; example by turban/webgl-earth.
+
+`earth-day-preview.jpg`: 1024 × 512 compressed derivative of the Solar System Scope 8K day map (same CC BY 4.0 attribution above). Preloaded for the first frame; the 4K/8K surface and optional cloud/relief maps load after the globe is visible.
+
+## Full-sky star background
+
+`nasa-starmap-2k.webp` (2048 × 1024) and `nasa-starmap-4k.webp` (4096 × 2048): derivatives of NASA SVS **Deep Star Maps 2020**, celestial-coordinate plate carrée projection. Source: https://svs.gsfc.nasa.gov/4851/ ; original: https://svs.gsfc.nasa.gov/vis/a000000/a004800/a004851/starmap_2020_4k.exr . Linear HDR RGB was clipped to the display range, converted to sRGB and compressed to WebP for web delivery. Loaded locally at low priority after the globe appears. The full sphere supports continuous slow movement without a photograph's crop boundaries.
+
+Credit: NASA/Goddard Space Flight Center Scientific Visualization Studio. Gaia DR2: ESA/Gaia/DPAC. Media usage guidelines: https://www.nasa.gov/nasa-brand-center/images-and-media/ .

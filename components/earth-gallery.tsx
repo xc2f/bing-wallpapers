@@ -5,10 +5,13 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
-import type { Locale } from "@/lib/i18n";
+import { localizePath, type Locale } from "@/lib/i18n";
 import type { EarthInitialView } from "@/lib/earth-initial-view";
 import { resizeBingImage } from "@/lib/bing-image";
 import { createEarthZoomNavigation, EARTH_MIN_DISTANCE, EARTH_MAX_DISTANCE, type EarthZoomAnchor } from "@/lib/earth-navigation";
+import { createStarfield } from "@/lib/starfield";
+import { loadEarthSurface } from "@/lib/earth-surface";
+import { spaceOrbitLayout } from "@/lib/space-orbit-layout";
 import "./earth-gallery.css";
 
 type Album = {
@@ -36,9 +39,12 @@ type EarthFlight = {
   navigated?: boolean;
 };
 
-export default function EarthGallery({ albums, locale, initialView }: { albums: Album[]; locale: Locale; initialView: EarthInitialView }) {
+export default function EarthGallery({ albums, spaceAlbums, locale, initialView }: { albums: Album[]; spaceAlbums: Album[]; locale: Locale; initialView: EarthInitialView }) {
   const zh = locale === "zh";
   const router = useRouter();
+  const canReturn = useRef(false);
+  const orbitCards = useRef(new Map<string, HTMLButtonElement>());
+  const spaceLabel = { zh: "太空图集", en: "Space collections", es: "Colecciones del espacio", fr: "Collections spatiales", de: "Weltraumgalerien", ja: "宇宙の写真集", ko: "우주 사진집" }[locale];
   const stage = useRef<HTMLElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const markers = useRef(new Map<string, HTMLButtonElement>());
@@ -57,6 +63,14 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
   const [retry, setRetry] = useState(0);
 
   useEffect(() => {
+    try {
+      const source = sessionStorage.getItem("earth-return-path");
+      sessionStorage.removeItem("earth-return-path");
+      if (source) canReturn.current = new URL(source).origin === window.location.origin && window.history.length > 1;
+    } catch { /* Direct visits and disabled storage fall back to the home page. */ }
+  }, []);
+
+  useEffect(() => {
     const container = stage.current;
     if (!container || !canvas.current) return;
     let renderer: THREE.WebGLRenderer;
@@ -68,6 +82,9 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
       return;
     }
     container.removeAttribute("data-render-ready");
+    container.removeAttribute("data-surface-quality");
+    container.removeAttribute("data-clouds-ready");
+    container.removeAttribute("data-sky-ready");
     container.style.removeProperty("--earth-flight-opacity");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (!reducedMotion.matches) {
@@ -75,7 +92,7 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
       const portraitScale = Math.max(1, container.clientHeight / Math.max(container.clientWidth, 1));
       flight.current = {
         kind: "entering", from: { ...view.current, distance: 1.8 / portraitScale },
-        to: { ...view.current }, startedAt: null, duration: 1100,
+        to: { ...view.current }, startedAt: null, duration: 650,
       };
     } else {
       flight.current = null;
@@ -99,28 +116,13 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     renderer.setClearColor(0x020408, 1);
 
     // Distant stars surround the camera, so zooming keeps them in the background.
-    const starCount = 10000;
-    const starPositions = new Float32Array(starCount * 3);
-    const starColors = new Float32Array(starCount * 3);
-    const starSizes = new Float32Array(starCount);
-    const starColor = new THREE.Color();
-    for (let i = 0; i < starCount; i++) {
-      const y = Math.random() * 2 - 1;
-      const angle = Math.random() * Math.PI * 2;
-      const ring = Math.sqrt(1 - y * y);
-      starPositions.set([ring * Math.cos(angle) * 40, y * 40, ring * Math.sin(angle) * 40], i * 3);
-      const tint = Math.random();
-      starColor.set(tint < .15 ? 0xaacbff : tint > .9 ? 0xffdfb4 : 0xe9efff);
-      starColor.multiplyScalar(.25 + Math.random() * .65);
-      starColors.set([starColor.r, starColor.g, starColor.b], i * 3);
-      starSizes[i] = .7 + Math.pow(Math.random(), 4) * 2;
-    }
+    const { positions: starPositions, colors: starColors, sizes: starSizes } = createStarfield();
     const starGeometry = new THREE.BufferGeometry();
     starGeometry.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
     starGeometry.setAttribute("color", new THREE.BufferAttribute(starColors, 3));
     starGeometry.setAttribute("pointSize", new THREE.BufferAttribute(starSizes, 1));
     const starMaterial = new THREE.ShaderMaterial({
-      uniforms: { pixelRatio: { value: restingPixelRatio } },
+      uniforms: { pixelRatio: { value: restingPixelRatio }, starOpacity: { value: 1 } },
       transparent: true,
       depthWrite: false,
       vertexColors: true,
@@ -131,15 +133,53 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
           gl_PointSize = pointSize * pixelRatio;
           gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
         }`,
-      fragmentShader: `varying vec3 starColor;
+      fragmentShader: `uniform float starOpacity; varying vec3 starColor;
         void main() {
-          float radius = length(gl_PointCoord - 0.5) * 2.0;
-          float glow = 1.0 - smoothstep(0.0, 1.0, radius);
-          gl_FragColor = vec4(starColor, glow);
+          vec2 point = (gl_PointCoord - 0.5) * 2.0;
+          float radiusSquared = dot(point, point);
+          float core = exp(-radiusSquared * 7.0);
+          float halo = exp(-radiusSquared * 2.5) * 0.08;
+          float edge = 1.0 - smoothstep(0.65, 1.0, radiusSquared);
+          gl_FragColor = vec4(starColor, (core + halo) * edge * starOpacity);
+          #include <tonemapping_fragment>
+          #include <colorspace_fragment>
         }`,
     });
     const stars = new THREE.Points(starGeometry, starMaterial);
     scene.add(stars);
+    const previousSkyView = { lon: view.current.lon, lat: view.current.lat };
+    const skyEuler = new THREE.Euler(-.3, .3, -.25);
+    const skyRotation = new THREE.Quaternion();
+    const skyGeometry = new THREE.SphereGeometry(44, 48, 24);
+    const skyMaterial = new THREE.ShaderMaterial({
+      uniforms: { skyMap: { value: null }, skyOpacity: { value: 0 } },
+      side: THREE.BackSide,
+      depthWrite: false,
+      depthTest: false,
+      vertexShader: `varying vec2 skyUv;
+        void main() {
+          skyUv = uv;
+          vec4 projected = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          // Widen only the sky projection so stars appear smaller behind the globe.
+          projected.xy *= 0.55;
+          gl_Position = projected;
+        }`,
+      fragmentShader: `uniform sampler2D skyMap; uniform float skyOpacity; varying vec2 skyUv;
+        void main() {
+          // NASA's complete 2:1 celestial map wraps seamlessly around the viewer.
+          vec3 starlight = texture2D(skyMap, skyUv).rgb;
+          gl_FragColor = vec4(starlight * 0.22 * pow(skyOpacity, 2.2), 1.0);
+          #include <tonemapping_fragment>
+          #include <colorspace_fragment>
+        }`,
+    });
+    const sky = new THREE.Mesh(skyGeometry, skyMaterial);
+    sky.visible = false;
+    sky.renderOrder = -10;
+    sky.frustumCulled = false;
+    scene.add(sky);
+    let skyTexture: THREE.Texture | null = null;
+    let skyFadeStarted: number | null = null;
     const geometry = new THREE.SphereGeometry(1, 192, 128);
     // Keep ocean glints faint and contained instead of a broad white hotspot.
     const material = new THREE.MeshPhongMaterial({ color: 0xffffff, shininess: 80, specular: 0x111820 });
@@ -238,31 +278,76 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     const texturePath = renderer.capabilities.maxTextureSize >= 8192 && window.innerWidth >= 768
       ? "/maps/earth-day-8k.jpg"
       : "/maps/earth-day-4k.jpg";
-    const texture = new THREE.TextureLoader().load(texturePath, () => {
-      if (disposed) { texture.dispose(); return; }
-      surfaceReady = true;
-      container.setAttribute("data-render-ready", "true");
-      setError(false);
+    const detailTextures: THREE.Texture[] = [];
+    const detailTasks: (() => void)[] = [];
+    const detailLoader = new THREE.TextureLoader().setPriority("low");
+    const prepareSurface = (texture: THREE.Texture) => {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      material.map = texture;
+      material.needsUpdate = true;
       dirty = true;
-    }, undefined, () => {
-      if (!disposed) {
+    };
+    const surfaceLoader = new THREE.TextureLoader().setPriority("high");
+    const surface = loadEarthSurface(surfaceLoader, texturePath, {
+      onSurface: texture => {
+        prepareSurface(texture);
+        surfaceReady = true;
+        container.dataset.surfaceQuality = texture.image instanceof HTMLImageElement && texture.image.naturalWidth >= 4096 ? "full" : "preview";
+        surfaceLoader.setPriority("low");
+        container.setAttribute("data-render-ready", "true");
+        setError(false);
+      },
+      onUpgrade: texture => { prepareSurface(texture); container.dataset.surfaceQuality = "full"; },
+      onEnhance: () => {
+        for (const task of detailTasks) task();
+        skyTexture = new THREE.TextureLoader().setPriority("low").load(window.innerWidth >= 768 ? "/maps/nasa-starmap-4k.webp" : "/maps/nasa-starmap-2k.webp", loaded => {
+          if (disposed) { loaded.dispose(); return; }
+          loaded.colorSpace = THREE.SRGBColorSpace;
+          loaded.wrapS = THREE.RepeatWrapping;
+          loaded.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 4);
+          skyMaterial.uniforms.skyMap.value = loaded;
+          sky.visible = true;
+          skyFadeStarted = performance.now();
+          container.dataset.skyReady = "true";
+          dirty = true;
+        }, undefined, () => { /* Keep the generated stars if the sky map is unavailable. */ });
+      },
+      onError: () => {
         flight.current = null;
         setTransitionPhase("ready");
         setError(true);
-      }
+      },
     });
-    texture.colorSpace = THREE.SRGBColorSpace;
-    texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
-    material.map = texture;
+    surface.texture.colorSpace = THREE.SRGBColorSpace;
+    material.map = surface.texture;
 
-    const detailTextures: THREE.Texture[] = [];
-    const detailLoader = new THREE.TextureLoader();
     const loadDetail = (path: string, onLoad?: () => void) => {
-      const detail = detailLoader.load(path, () => {
-        if (!disposed) { onLoad?.(); dirty = true; }
-      }, undefined, () => { /* Keep the globe usable if an optional detail fails. */ });
+      // Neutral texels keep shaders stable while detail downloads are deferred.
+      const pixel = document.createElement("canvas");
+      pixel.width = pixel.height = 1;
+      const context = pixel.getContext("2d");
+      if (context) {
+        context.fillStyle = path.includes("normal") ? "rgb(128,128,255)" : "#000";
+        context.fillRect(0, 0, 1, 1);
+      }
+      const detail = new THREE.Texture<HTMLImageElement | HTMLCanvasElement>(pixel);
+      detail.needsUpdate = true;
       detail.anisotropy = renderer.capabilities.getMaxAnisotropy();
       detailTextures.push(detail);
+      detailTasks.push(() => {
+        detailLoader.load(path, loaded => {
+          if (!disposed) {
+            // Reallocate GPU storage when replacing the 1px neutral texture.
+            detail.dispose();
+            detail.image = loaded.image;
+            detail.needsUpdate = true;
+            onLoad?.();
+            dirty = true;
+          }
+          loaded.dispose();
+        }, undefined, () => { /* Optional details never block browsing. */ });
+      });
       return detail;
     };
     material.normalMap = loadDetail("/maps/earth-normal.jpg");
@@ -274,6 +359,7 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     const cloudTexture = loadDetail("/maps/earth-clouds.webp", () => {
       clouds.visible = true;
       cloudReady.value = 1;
+      container.dataset.cloudsReady = "true";
     });
     cloudTexture.wrapS = THREE.RepeatWrapping;
     const cloudMaterial = new THREE.MeshPhongMaterial({
@@ -413,6 +499,9 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
         zoomAnchor.current = null;
         target.lon -= rotation;
         actual.lon -= rotation;
+        // Advance the sky directly on idle ticks, independently of camera cancellation.
+        // One sky revolution takes roughly 37.5 minutes (five times slower than Earth).
+        skyEuler.y -= THREE.MathUtils.degToRad(rotation * .2);
         lastAutoRotation = time;
       }
       const nextInteracting = Boolean(flight.current) || time - lastMotion < 180;
@@ -439,7 +528,15 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
         cloudUniforms.cloudOffset.value = clouds.rotation.y / (Math.PI * 2);
         lastCloudFrame = time;
       }
-      if (moving || autoRotating || dirty || animateClouds || selectionChanged) {
+      const skyFading = skyFadeStarted !== null && skyMaterial.uniforms.skyOpacity.value < 1;
+      if (skyFading) {
+        const progress = reducedMotion.matches ? 1 : Math.min(1, Math.max(0, (time - skyFadeStarted!) / 1000));
+        const opacity = progress * progress * (3 - 2 * progress);
+        skyMaterial.uniforms.skyOpacity.value = opacity;
+        starMaterial.uniforms.starOpacity.value = 1 - opacity;
+        if (progress === 1) stars.visible = false;
+      }
+      if (moving || autoRotating || dirty || animateClouds || selectionChanged || skyFading) {
         // Time-based damping gives the same response at different display refresh rates.
         const damping = 1 - Math.exp(-18 * deltaSeconds);
         if (moving) {
@@ -464,8 +561,18 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
         direction.copy(location(actual.lon, actual.lat));
         camera.position.copy(direction).multiplyScalar(distance);
         stars.position.copy(camera.position);
+        sky.position.copy(camera.position);
+        // Manual movement stays subtle; idle sky motion is advanced by time above.
+        const skyLonTravel = (((actual.lon - previousSkyView.lon) % 360 + 540) % 360) - 180;
+        if (!autoRotating) skyEuler.y += THREE.MathUtils.degToRad(skyLonTravel) * .008;
+        skyEuler.x += THREE.MathUtils.degToRad(actual.lat - previousSkyView.lat) * .006;
+        previousSkyView.lon = actual.lon;
+        previousSkyView.lat = actual.lat;
         camera.lookAt(0, 0, 0);
         camera.updateMatrixWorld();
+        skyRotation.setFromEuler(skyEuler);
+        sky.quaternion.copy(camera.quaternion).multiply(skyRotation);
+        container?.setAttribute("data-sky-rotation", skyEuler.y.toFixed(6));
         // Side lighting leaves a shaded crescent at screen lower-right.
         // Keep this direction relative to the camera throughout globe rotation.
         sunlight.position.set(-.7, .8, 1).normalize()
@@ -473,6 +580,22 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
         cloudUniforms.cloudSun.value.copy(sunlight.position).normalize();
         atmosphereMaterial.uniforms.sunDirection.value.copy(cloudUniforms.cloudSun.value);
         renderer.render(scene, camera);
+        const orbitLayout = spaceOrbitLayout(width, height, actual.distance);
+        const visibleOrbitBounds: { x: number; y: number; width: number; height: number }[] = [];
+        spaceAlbums.forEach((album, index) => {
+          const card = orbitCards.current.get(album.id);
+          const layout = orbitLayout[index];
+          if (!card || !layout) return;
+          const panelOverlap = selectedId.current && width > 640 && layout.x + layout.width > width - 408;
+          const bottomOverlap = selectedId.current && width <= 640 && layout.y + layout.height > height * .45 - 24;
+          const opacity = panelOverlap || bottomOverlap || flight.current?.kind === "entering" ? 0 : layout.opacity;
+          card.hidden = opacity <= .01;
+          card.inert = opacity < .25;
+          card.style.opacity = String(opacity);
+          card.style.pointerEvents = opacity >= .25 ? "auto" : "none";
+          card.style.transform = `translate(${layout.x}px,${layout.y}px)`;
+          if (opacity >= .25) visibleOrbitBounds.push(layout);
+        });
         const covers: { x: number; y: number }[] = [];
         const nextCoverIds = new Set<string>();
         if (updateMarkers) for (const { album, point } of sortedPoints) {
@@ -495,11 +618,15 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
           marker.style.pointerEvents = opacity > .1 ? "auto" : "none";
           marker.inert = opacity <= .1;
           const compact = width <= 640;
+          const coverWidth = compact ? 84 : 104;
+          const coverTop = y - 31 - (compact ? 62 : 74) - 12;
+          const spaceBlocked = visibleOrbitBounds.some(rect => x + coverWidth / 2 + 16 > rect.x && x - coverWidth / 2 - 6 < rect.x + rect.width && y - 25 > rect.y && coverTop < rect.y + rect.height);
+          marker.dataset.spaceBlocked = String(spaceBlocked);
           const spacing = compact ? 108 : 132;
           const panelOverlap = selectedId.current && !compact && x > width - 420;
           const incumbent = coverIds.has(album.id);
           const edgeMargin = incumbent ? 56 : 68;
-          const cover = !panelOverlap && y > (incumbent ? 104 : 120)
+          const cover = !spaceBlocked && !panelOverlap && y > (incumbent ? 104 : 120)
             && x > edgeMargin && x < width - edgeMargin
             && covers.length < (compact ? 7 : 10)
             && covers.every(p => Math.hypot(p.x - x, p.y - y) > spacing + (incumbent ? 0 : 14));
@@ -560,7 +687,7 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
       document.removeEventListener("visibilitychange", resetIdle);
       reducedMotion.removeEventListener("change", resetIdle);
       canvasElement.removeEventListener("webglcontextlost", lost);
-      texture.dispose();
+      surface.dispose();
       geometry.dispose();
       material.dispose();
       atmosphereMaterial.dispose();
@@ -568,16 +695,19 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
       for (const detail of detailTextures) detail.dispose();
       starGeometry.dispose();
       starMaterial.dispose();
+      skyTexture?.dispose();
+      skyGeometry.dispose();
+      skyMaterial.dispose();
       renderer.dispose();
     };
-  }, [albums, retry, router]);
+  }, [albums, spaceAlbums, retry, router]);
 
   function closeCollection(restoreFocus = true) {
     lastActivity.current = performance.now();
     const id = selectedId.current;
     selectedId.current = null;
     setSelected(null);
-    if (restoreFocus && id) markers.current.get(id)?.focus();
+    if (restoreFocus && id) (markers.current.get(id) ?? orbitCards.current.get(id))?.focus();
   }
 
   function choose(album: Album) {
@@ -591,6 +721,7 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     }
   }
 
+
   return <main ref={stage} className="earth-page" data-transition={transitionPhase} onClickCapture={event => {
     const link = (event.target as Element).closest<HTMLAnchorElement>("a[href]");
     if (!link || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey
@@ -603,13 +734,14 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     const bounds = stage.current!.getBoundingClientRect();
     const portraitScale = Math.max(1, bounds.height / bounds.width);
     const destinationView = selected?.coordinates;
+    const isSpaceCollection = Boolean(selected && !selected.coordinates);
     zoomAnchor.current = null;
     pointers.current.clear();
     router.prefetch(destination.pathname + destination.search);
     flight.current = {
       kind: "leaving", from: { ...renderedView.current },
-      to: { lon: destinationView?.[0] ?? renderedView.current.lon, lat: destinationView?.[1] ?? renderedView.current.lat, distance: 1.6 / portraitScale },
-      startedAt: performance.now(), duration: 700, href: destination.pathname + destination.search + destination.hash,
+      to: isSpaceCollection ? { ...renderedView.current } : { lon: destinationView?.[0] ?? renderedView.current.lon, lat: destinationView?.[1] ?? renderedView.current.lat, distance: 1.6 / portraitScale },
+      startedAt: performance.now(), duration: isSpaceCollection ? 360 : 700, href: destination.pathname + destination.search + destination.hash,
     };
     setTransitionPhase("leaving");
   }} data-collection-open={selected ? "true" : undefined} tabIndex={0}
@@ -630,6 +762,7 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     }}
     onPointerLeave={() => { hoveringCollection.current = false; lastActivity.current = performance.now(); }}
     onKeyDown={event => {
+      if ((event.target as Element).closest(".earth-back")) return;
       if (flight.current) { event.preventDefault(); return; }
       lastActivity.current = performance.now();
       if (event.key === "Escape" && selected) {
@@ -683,6 +816,22 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     onPointerCancel={event => pointers.current.delete(event.pointerId)}
     onLostPointerCapture={event => pointers.current.delete(event.pointerId)}>
     <canvas ref={canvas} className="earth-canvas" aria-hidden="true" />
+    <button type="button" className="earth-back" onClick={() => {
+      if (canReturn.current) router.back();
+      else router.push(localizePath(locale, ""));
+    }}>
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4m5-5-5 5 5 5" /></svg>
+      {{ zh: "返回", en: "Back", es: "Volver", fr: "Retour", de: "Zurück", ja: "戻る", ko: "뒤로" }[locale]}
+    </button>
+    <div className="earth-orbit" aria-label={spaceLabel}>
+      {spaceAlbums.map(album => <button type="button" hidden key={album.id} className="earth-orbit-card"
+        ref={element => { if (element) orbitCards.current.set(album.id, element); else orbitCards.current.delete(album.id); }}
+        aria-label={`${album.label} · ${album.count} ${zh ? "张壁纸" : "wallpapers"}`} aria-pressed={selected?.id === album.id}
+        aria-controls={selected?.id === album.id ? "earth-collection" : undefined} onClick={() => choose(album)}>
+        <span className="earth-orbit-cover"><Image src={album.images[0].image} alt="" width={256} height={176} sizes="(max-width:640px) 64px, 88px" draggable={false} /></span>
+        <span className="earth-orbit-caption"><span>{album.label}</span><span>{album.count}</span></span>
+      </button>)}
+    </div>
     <div className="earth-locations">{albums.filter(a => a.coordinates).map(album => <button
       key={album.id} hidden ref={element => { if (element) markers.current.set(album.id, element); else markers.current.delete(album.id); }}
       className="earth-location" aria-label={`${album.label} · ${album.count} ${zh ? "张壁纸" : "wallpapers"}`}
@@ -705,7 +854,7 @@ export default function EarthGallery({ albums, locale, initialView }: { albums: 
     {error && <button className="earth-retry" onClick={() => { setError(false); setRetry(n => n + 1); }}>{zh ? "地球加载失败，点击重试" : "Unable to load Earth. Retry"}</button>}
     {selected && <aside id="earth-collection" className="earth-album" aria-label={selected.label} key={selected.id}>
       <div className="earth-album-topbar">
-        <span>{zh ? "地区图集" : "COLLECTION"}<span className="earth-album-code">/ {selected.id}</span></span>
+        <span>{zh ? (!selected.coordinates ? "太空图集" : "地区图集") : "COLLECTION"}<span className="earth-album-code">/ {selected.id}</span></span>
         <button className="earth-album-close" aria-label={zh ? "关闭图集" : "Close collection"} onClick={() => closeCollection()}>
           <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
         </button>
