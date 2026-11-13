@@ -5,6 +5,11 @@ import type { WallpaperFilters } from "@/lib/wallpaper-filters";
 export interface DetailIndexItem extends WallpaperItem {
   taxonomy?: { category: string; tags: string[]; countries?: string[] };
 }
+export interface DetailIndexSearchFields {
+  FullDateString?: string;
+  Description?: string;
+  Copyright?: string;
+}
 export interface DetailNavigation {
   previous: WallpaperItem | null;
   next: WallpaperItem | null;

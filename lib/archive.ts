@@ -89,14 +89,15 @@ function remember<K, V>(cache: Map<K, V>, key: K, value: V, limit: number) {
   return value;
 }
 const filteredArchives = new Map<string, WallpaperItem[]>();
-export function getFilteredWallpapers(locale: Locale, source: WallpaperFilters = {}) {
+export function getFilteredWallpapers(locale: Locale, source: WallpaperFilters = {}): WallpaperItem[] {
   const filters = getWallpaperFilters(source);
   const key = JSON.stringify([locale, ...wallpaperFilterKeys.map((field) => filters[field])]);
   const cached = filteredArchives.get(key);
   if (cached) return cached;
-  const result = filterWallpapersByTaxonomy(searchWallpapers(
-    filterWallpapersByDate(getAllWallpapers(locale), filters.year, filters.month), filters.q
-  ), filters.category, filters.tag, filters.country);
+  const { q, year, month, category, tag, country } = filters;
+  const result = category || tag || country
+    ? filterWallpapersByTaxonomy(getFilteredWallpapers(locale, { q, year, month }), category, tag, country)
+    : searchWallpapers(filterWallpapersByDate(getAllWallpapers(locale), year, month), q);
   if (key.length <= 1024) remember(filteredArchives, key, result, 64);
   return result;
 }

@@ -175,7 +175,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
   ) : null;
   return (
     <DetailBrowseProvider key={`${currentLocale}:${ssd}`} locale={currentLocale} ssd={ssd}
-      initialNavigation={navigation} indexUrl={detailIndexManifest[currentLocale]}>
+      initialNavigation={navigation} indexUrls={detailIndexManifest[currentLocale]}>
     <DetailAmbientBackground imageUrl={previewUrl || imageUrl}>
       <JsonLd data={{
         "@context": "https://schema.org",
