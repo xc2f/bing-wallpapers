@@ -186,6 +186,8 @@ export default function WaterfallGallery({
   const [visibleCount, setVisibleCount] = useState(INITIAL_BATCH_SIZE);
   const [expandedDescriptions, setExpandedDescriptions] = useState<Record<string, boolean>>({});
   const [isFetchingMore, setIsFetchingMore] = useState(false);
+  const [nextPageFailed, setNextPageFailed] = useState(false);
+  const [previousPageFailed, setPreviousPageFailed] = useState(false);
   const [liveAnnouncement, setLiveAnnouncement] = useState("");
   const sentinelRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -353,10 +355,14 @@ export default function WaterfallGallery({
 
     async function requestBatch() {
       setIsFetchingMore(true);
+      setNextPageFailed(false);
       try {
         const nextPage = loadedPage + 1;
         const nextItems = await fetchWaterfallPage(nextPage);
-        if (!nextItems) return [];
+        if (!nextItems) {
+          setNextPageFailed(true);
+          return [];
+        }
 
         const seen = new Set(loadedItems.map((item) => item.ssd));
         const batch = nextItems.filter((item) => !seen.has(item.ssd));
@@ -364,6 +370,7 @@ export default function WaterfallGallery({
         setLoadedPage(nextPage);
         return batch;
       } catch {
+        setNextPageFailed(true);
         return [];
       } finally {
         fetchInFlightRef.current = null;
@@ -381,10 +388,14 @@ export default function WaterfallGallery({
     if (loadedStartPage <= 1) return Promise.resolve([]);
     const request = (async () => {
       setIsFetchingMore(true);
+      setPreviousPageFailed(false);
       try {
         const previousPage = loadedStartPage - 1;
         const batch = await fetchWaterfallPage(previousPage);
-        if (!batch) return [];
+        if (!batch) {
+          setPreviousPageFailed(true);
+          return [];
+        }
         const visibleTop = Math.max(0, toolbarRef.current?.getBoundingClientRect().bottom ?? 0);
         const anchor = Array.from(sectionRef.current?.querySelectorAll<HTMLElement>("[data-waterfall-ssd]") ?? [])
           .find((card) => card.getBoundingClientRect().bottom > visibleTop);
@@ -489,6 +500,8 @@ export default function WaterfallGallery({
     setLoadedItems(items);
     setLoadedPage(initialPage);
     setLoadedStartPage(initialPage);
+    setNextPageFailed(false);
+    setPreviousPageFailed(false);
     setView(nextView);
     setVisibleCount(nextVisibleCount);
     setIsReady(true);
@@ -578,7 +591,7 @@ export default function WaterfallGallery({
   useEffect(() => {
     const node = sentinelRef.current;
 
-    if (!isReady || !node || !hasMoreServerItems) {
+    if (!isReady || !node || !hasMoreServerItems || nextPageFailed) {
       return;
     }
 
@@ -602,7 +615,7 @@ export default function WaterfallGallery({
     observer.observe(node);
 
     return () => observer.disconnect();
-  }, [fetchMoreItems, hasMoreServerItems, isReady, loadedItems.length, visibleCount]);
+  }, [fetchMoreItems, hasMoreServerItems, isReady, loadedItems.length, nextPageFailed, visibleCount]);
 
   const gridTemplateColumns = `repeat(${columnCount}, minmax(0, 1fr))`;
   const imageSizes = view.wide
@@ -752,13 +765,40 @@ export default function WaterfallGallery({
         {liveAnnouncement}
       </p>
 
-      {!isReady ? <div className="min-h-[24rem]" aria-hidden="true" /> : null}
+      {!isReady && totalCount > 0 ? (
+        <div className="relative">
+          <p role="status" className="pointer-events-none absolute inset-x-0 top-24 mx-auto w-fit rounded-full bg-stone-950 px-4 py-2 text-sm text-stone-300">
+            {dictionary.waterfallLoading}
+          </p>
+          <div
+            aria-hidden="true"
+            className="grid items-start overflow-hidden"
+            style={{
+              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
+              gridAutoRows: 0,
+              gridTemplateRows: "minmax(0, auto)",
+              columnGap: cardAppearance[viewDefaults.appearance].imageGap,
+            }}
+          >
+            {imageOnlyHeights.slice(0, Math.min(items.length, 6)).map((height) => (
+              <div
+                key={height}
+                className="bg-stone-900"
+                style={{ height, borderRadius: cardAppearance[viewDefaults.appearance].imageRadius }}
+              />
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       {isReady && loadedStartPage > 1 ? (
-        <button type="button" onClick={() => { void fetchPreviousItems(); }} disabled={isFetchingMore}
-          className="theme-button-hover mx-auto min-h-10 rounded-full border border-white/15 px-4 py-2 text-sm text-white disabled:opacity-50">
-          {isFetchingMore ? dictionary.waterfallLoadingMore : dictionary.waterfallLoadPrevious}
-        </button>
+        <div className="flex flex-col items-center gap-2">
+          {previousPageFailed ? <p role="status" className="text-sm text-stone-400">{dictionary.waterfallLoadFailed}</p> : null}
+          <button type="button" onClick={() => { void fetchPreviousItems(); }} disabled={isFetchingMore}
+            className="theme-button-hover min-h-10 rounded-full border border-white/15 px-4 py-2 text-sm text-white disabled:opacity-50">
+            {isFetchingMore ? dictionary.waterfallLoadingMore : previousPageFailed ? dictionary.waterfallRetry : dictionary.waterfallLoadPrevious}
+          </button>
+        </div>
       ) : null}
 
       {isReady && shouldRenderMeta ? (
@@ -917,10 +957,10 @@ export default function WaterfallGallery({
             {dictionary.waterfallLoaded}{" "}
             <span className="text-stone-100">{loadedItems.length}</span> / {totalCount}
           </p>
-          <p className="text-stone-500">
+          <p className="text-stone-500" role="status">
             {isFetchingMore
               ? dictionary.waterfallLoadingMore
-              : dictionary.waterfallBatchSize}
+              : nextPageFailed ? dictionary.waterfallLoadFailed : dictionary.waterfallBatchSize}
           </p>
           {hasMoreServerItems ? (
             <button
@@ -931,7 +971,7 @@ export default function WaterfallGallery({
               disabled={isFetchingMore}
               className="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover disabled:pointer-events-none disabled:opacity-50 focus-visible:bg-white/10 focus-visible:outline-none focus-visible:shadow-[0_0_0_3px_rgb(var(--theme-accent-ring-rgb)/0.2)]"
             >
-              {isFetchingMore ? dictionary.waterfallLoadingMore : dictionary.waterfallLoadMore}
+              {isFetchingMore ? dictionary.waterfallLoadingMore : nextPageFailed ? dictionary.waterfallRetry : dictionary.waterfallLoadMore}
             </button>
           ) : null}
         </div>
