@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import sitemap from "../app/sitemap";
-import robots from "../app/robots";
+import { GET as getRobots } from "../app/robots.txt/route";
 import { getAllWallpapers } from "../lib/archive";
 import { locales } from "../lib/i18n";
 import { pageMetadata, serializeJsonLd, siteUrl } from "../lib/seo";
@@ -22,16 +22,17 @@ test("filtered archives can be excluded while links remain crawlable", () => {
   });
 });
 
-test("sitemap covers every locale, wallpaper and homepage without duplicates", () => {
+test("sitemap covers every localized gallery, Earth page and wallpaper without duplicates", () => {
   const entries = sitemap();
   const expectedCount = locales.reduce((total, locale) => {
     const wallpapers = getAllWallpapers(locale);
-    return total + wallpapers.length + 1;
+    return total + wallpapers.length + 2;
   }, 0);
   assert.equal(entries.length, expectedCount);
   assert.equal(new Set(entries.map((entry) => entry.url)).size, entries.length);
   assert.ok(entries.every((entry) => !entry.url.includes("?") && !entry.url.includes("/waterfall")));
   for (const locale of locales) {
+    assert.ok(entries.some((entry) => entry.url === siteUrl(`/${locale}/earth`)));
     for (const wallpaper of getAllWallpapers(locale)) {
       const url = siteUrl(`/${locale}/wallpaper/${wallpaper.Ssd}`);
       const entry = entries.find((entry) => entry.url === url);
@@ -41,7 +42,20 @@ test("sitemap covers every locale, wallpaper and homepage without duplicates", (
       }
     }
   }
-  assert.equal(robots().sitemap, siteUrl("/sitemap.xml"));
+});
+
+test("robots.txt declares content preferences, allows crawling, and links the sitemap", async () => {
+  const response = getRobots();
+  assert.equal(response.status, 200);
+  assert.match(response.headers.get("content-type") ?? "", /^text\/plain\b/);
+  assert.equal(await response.text(), [
+    "User-agent: *",
+    "Content-Signal: search=yes, ai-input=yes, ai-train=no",
+    "Allow: /",
+    "",
+    `Sitemap: ${siteUrl("/sitemap.xml")}`,
+    "",
+  ].join("\n"));
 });
 
 test("archive text cannot terminate a JSON-LD script element", () => {
