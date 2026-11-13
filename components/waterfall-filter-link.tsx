@@ -11,7 +11,7 @@ export default function WaterfallFilterLink({ href, ...props }: Omit<ComponentPr
   const [pathname, search = ""] = href.split("?");
   const params = new URLSearchParams(search);
   const target = params.size ? `${pathname}?${params}` : pathname;
-  return <Link {...props} href={target} scroll={false} onNavigate={(event) => {
+  return <Link prefetch={false} {...props} href={target} scroll={false} onNavigate={(event) => {
     props.onNavigate?.(event);
     const filtersChanged = wallpaperFilterKeys.some((key) =>
       (params.get(key) ?? "") !== (currentParams.get(key) ?? "")

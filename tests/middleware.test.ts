@@ -5,6 +5,17 @@ import { middleware } from "../middleware";
 
 const origin = "https://bing.xc2f.com";
 
+test("legacy waterfall requests redirect in middleware and preserve supported filters", () => {
+  for (const method of ["GET", "HEAD"]) {
+    const response = middleware(new NextRequest(
+      `${origin}/ja/waterfall?tag=lake&tag=ocean&country=JP&page=3&mode=images`,
+      { method },
+    ));
+    assert.equal(response.status, 308);
+    assert.equal(response.headers.get("location"), `${origin}/ja?tag=lake&country=JP&page=3`);
+  }
+});
+
 test("language prefetches preserve the saved language and root redirect", () => {
   const prefetchHeaders: Record<string, string>[] = [
     { "next-router-prefetch": "1" },

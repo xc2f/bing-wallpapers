@@ -7,6 +7,7 @@ import {
 } from "@/lib/i18n"
 import { acceptsMarkdown } from "@/lib/markdown-negotiation";
 import { apiDiscoveryLinks } from "@/lib/api-discovery";
+import { legacyWaterfallQuery } from "@/lib/wallpaper-filters";
 
 function getPreferredLocale(request: NextRequest): Locale {
   const savedLocale = request.cookies.get(localeCookieName)?.value;
@@ -42,6 +43,13 @@ function routeRequest(request: NextRequest) {
   const segments = pathname.split("/").filter(Boolean);
   const maybeLocale = segments[0];
   const isDocumentRequest = request.method === "GET" || request.method === "HEAD";
+  if (isDocumentRequest && isValidLocale(maybeLocale) &&
+      (pathname === `/${maybeLocale}/waterfall` || pathname === `/${maybeLocale}/waterfall/`)) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${maybeLocale}`;
+    url.search = legacyWaterfallQuery(request.nextUrl.searchParams);
+    return NextResponse.redirect(url, 308);
+  }
   const isLocalizedDocument = isValidLocale(maybeLocale ?? "") &&
     /^\/[^/]+(?:\/earth|\/wallpaper\/[^/]+)?\/?$/.test(pathname);
 
@@ -103,6 +111,7 @@ export const config = {
     "/wallpaper/:path*",
     "/:locale(en|zh|es|fr|de|ja|ko)",
     "/:locale(en|zh|es|fr|de|ja|ko)/earth",
+    "/:locale(en|zh|es|fr|de|ja|ko)/waterfall",
     "/:locale(en|zh|es|fr|de|ja|ko)/wallpaper/:ssd",
   ],
 };
