@@ -115,6 +115,21 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## SEO
 
+Gallery, Earth, and wallpaper detail URLs serve Markdown when requested with
+`Accept: text/markdown`. They serve HTML by default. Gallery Markdown uses the
+same search filters and page numbers as the HTML gallery.
+
+```sh
+curl -iL -H 'Accept: text/markdown' https://bing.xc2f.com/
+curl -i -H 'Accept: text/markdown' https://bing.xc2f.com/en/wallpaper/20241224_0800
+```
+
+Agents can append `/text` to a localized wallpaper detail URL, for example
+`/en/wallpaper/20241224_0800/text`. The endpoint serves UTF-8 plain text with the
+wallpaper title, description, archive date, copyright, canonical detail URL, and
+image URL when available. Each detail page advertises its text endpoint through
+a `rel="alternate"` link with type `text/plain`.
+
 Canonical URLs, language alternates, social sharing metadata and JSON-LD are generated on the server. The archive exposes `/robots.txt` and `/sitemap.xml`, including all wallpaper details and the homepage in every supported language.
 
 Set `SITE_URL=https://bing.xc2f.com` to the public site origin when deploying on a different domain. This is separate from `BASE_URL`, which configures the Bing image host. Rebuild after changing the origin or archive data to refresh the sitemap.

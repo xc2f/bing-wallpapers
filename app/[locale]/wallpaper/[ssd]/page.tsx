@@ -83,13 +83,21 @@ export async function generateMetadata({
     wallpaper.ImageContent?.Description ?? dictionary.metadataFallbackDescription;
 
   const image = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
-  return pageMetadata({
+  const path = `/wallpaper/${wallpaper.Ssd}`;
+  const metadata = pageMetadata({
     locale: resolvedLocale,
-    path: `/wallpaper/${wallpaper.Ssd}`,
+    path,
     title: `${title} | ${dictionary.siteTitle}`,
     description,
     image: image ? { url: image, alt: title } : undefined,
   });
+  return {
+    ...metadata,
+    alternates: {
+      ...metadata.alternates,
+      types: { "text/plain": siteUrl(localizePath(resolvedLocale, `${path}/text`)) },
+    },
+  };
 }
 
 export default async function LocalizedWallpaperDetailPage({ params }: {

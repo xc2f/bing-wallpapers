@@ -1,0 +1,29 @@
+Bing Wallpapers Archive API
+
+GET /api/waterfall?locale=en&q=title%3Alake&page=1
+
+Use this read-only endpoint to search and browse the wallpaper archive. It
+returns JSON and requires no authentication. The locale parameter is required
+and accepts en, zh, es, fr, de, ja, or ko. A missing or unsupported locale
+returns HTTP 400.
+
+The optional q parameter accepts phrases, fields such as title:lake or
+desc:turtle, and date expressions such as date:2024-01-01..2024-01-31.
+Use uppercase AND, OR, and NOT with parentheses to combine conditions.
+URL-encode the search expression. Malformed expressions yield no matches.
+
+The year (YYYY), month (MM), category, tag, and country filters intersect
+with q and with one another. Use the category, tag, and country identifiers
+from the gallery URLs.
+
+The response contains items, page, totalCount, and totalPages. Page numbers
+start at 1. Request page + 1 with the same filters while page < totalPages.
+An empty result has items=[] and totalPages=1. Each item includes a title,
+description, localized archive date, and site-relative detailHref. Resolve
+detailHref against the site origin. Image URLs are empty when unavailable.
+
+The wallpaper detail URL also supports Accept: text/markdown. Append /text
+to a localized detail URL to request UTF-8 plain text.
+
+OpenAPI specification: /openapi.json
+API catalog: /.well-known/api-catalog

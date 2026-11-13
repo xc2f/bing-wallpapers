@@ -1,0 +1,119 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Bing Wallpapers Archive API",
+    "version": "1.0.0",
+    "description": "Search and browse the public wallpaper archive."
+  },
+  "servers": [{ "url": "/" }],
+  "externalDocs": { "url": "/api-guide.txt" },
+  "paths": {
+    "/api/waterfall": {
+      "get": {
+        "operationId": "listWallpapers",
+        "summary": "List a page of localized wallpapers",
+        "parameters": [
+          {
+            "name": "locale",
+            "in": "query",
+            "required": true,
+            "schema": { "type": "string", "enum": ["en", "zh", "es", "fr", "de", "ja", "ko"] }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "description": "Archive search expression. See the API guide for syntax.",
+            "schema": { "type": "string" },
+            "example": "title:lake"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "description": "Four-digit archive year.",
+            "schema": { "type": "string", "pattern": "^[0-9]{4}$" }
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "description": "Two-digit archive month, from 01 through 12.",
+            "schema": { "type": "string", "pattern": "^(0[1-9]|1[0-2])$" }
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "description": "Exact category identifier.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Exact tag identifier.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "description": "Exact country or region identifier used by the Earth gallery.",
+            "schema": { "type": "string" },
+            "example": "JP"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Requested page, clamped to the available range.",
+            "schema": { "type": "integer", "default": 1 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of matches, which may be empty.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["items", "page", "totalCount", "totalPages"],
+                  "properties": {
+                    "items": { "type": "array", "items": { "$ref": "#/components/schemas/Wallpaper" } },
+                    "page": { "type": "integer", "minimum": 1 },
+                    "totalCount": { "type": "integer", "minimum": 0 },
+                    "totalPages": { "type": "integer", "minimum": 1 }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The locale is missing or unsupported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": ["error"],
+                  "properties": { "error": { "type": "string" } }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Wallpaper": {
+        "type": "object",
+        "required": ["ssd", "fullDate", "title", "description", "previewUrl", "wallpaperUrl", "detailHref"],
+        "properties": {
+          "ssd": { "type": "string", "description": "Archive record identifier." },
+          "fullDate": { "type": "string", "description": "Localized archive date." },
+          "title": { "type": "string" },
+          "description": { "type": "string" },
+          "copyright": { "type": ["string", "null"] },
+          "previewUrl": { "type": "string", "description": "Absolute preview image URL, or an empty string when unavailable." },
+          "wallpaperUrl": { "type": "string", "description": "Absolute wallpaper image URL, or an empty string when unavailable." },
+          "detailHref": { "type": "string", "description": "Site-relative wallpaper detail path." }
+        }
+      }
+    }
+  }
+}

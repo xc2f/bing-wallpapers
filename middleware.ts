@@ -5,6 +5,8 @@ import {
   localeCookieName,
   type Locale,
 } from "@/lib/i18n"
+import { acceptsMarkdown } from "@/lib/markdown-negotiation";
+import { apiDiscoveryLinks } from "@/lib/api-discovery";
 
 function getPreferredLocale(request: NextRequest): Locale {
   const savedLocale = request.cookies.get(localeCookieName)?.value;
@@ -35,12 +37,29 @@ function withLocaleCookie(request: NextRequest, response: NextResponse, locale: 
   return response;
 }
 
-export function middleware(request: NextRequest) {
+function routeRequest(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const segments = pathname.split("/").filter(Boolean);
   const maybeLocale = segments[0];
+  const isDocumentRequest = request.method === "GET" || request.method === "HEAD";
+  const isLocalizedDocument = isValidLocale(maybeLocale ?? "") &&
+    /^\/[^/]+(?:\/earth|\/wallpaper\/[^/]+)?\/?$/.test(pathname);
+
+  if (isDocumentRequest && (pathname === "/" || isLocalizedDocument) &&
+      !request.headers.has("rsc") && acceptsMarkdown(request.headers.get("accept"))) {
+    const url = request.nextUrl.clone();
+    const documentPath = pathname === "/" ? `/${getPreferredLocale(request)}` : pathname.replace(/\/$/, "");
+    url.pathname = `/api/markdown${documentPath}`;
+    return NextResponse.rewrite(url);
+  }
 
   if (maybeLocale && isValidLocale(maybeLocale)) {
+    if (isLocalizedDocument && isDocumentRequest) {
+      const response = NextResponse.next();
+      // The prerender cache can replace Vary with the middleware value.
+      response.headers.set("Vary", "Accept, RSC, Next-Router-State-Tree, Next-Router-Prefetch, Next-Router-Segment-Prefetch, Next-Url");
+      return withLocaleCookie(request, response, maybeLocale);
+    }
     return withLocaleCookie(request, NextResponse.next(), maybeLocale);
   }
 
@@ -49,7 +68,10 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}`;
     url.search = search;
-    return withLocaleCookie(request, NextResponse.redirect(url), locale);
+    const response = NextResponse.redirect(url);
+    response.headers.set("Cache-Control", "private, no-store");
+    response.headers.set("Vary", "Accept, Accept-Language, Cookie, RSC");
+    return withLocaleCookie(request, response, locale);
   }
 
   if (pathname.startsWith("/wallpaper/")) {
@@ -57,12 +79,30 @@ export function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = `/${locale}${pathname}`;
     url.search = search;
-    return withLocaleCookie(request, NextResponse.redirect(url), locale);
+    const response = NextResponse.redirect(url);
+    response.headers.set("Cache-Control", "private, no-store");
+    return withLocaleCookie(request, response, locale);
   }
 
   return NextResponse.next();
 }
 
+export function middleware(request: NextRequest) {
+  const response = routeRequest(request);
+  const path = request.nextUrl.pathname.replace(/\/$/, "");
+  if ((request.method === "GET" || request.method === "HEAD") &&
+      (path === "" || isValidLocale(path.slice(1)))) {
+    response.headers.append("Link", apiDiscoveryLinks);
+  }
+  return response;
+}
+
 export const config = {
-  matcher: ["/", "/wallpaper/:path*"],
+  matcher: [
+    "/",
+    "/wallpaper/:path*",
+    "/:locale(en|zh|es|fr|de|ja|ko)",
+    "/:locale(en|zh|es|fr|de|ja|ko)/earth",
+    "/:locale(en|zh|es|fr|de|ja|ko)/wallpaper/:ssd",
+  ],
 };
