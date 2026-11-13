@@ -762,32 +762,27 @@ export default function WaterfallGallery({
       </div>
 
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
-        {liveAnnouncement}
+        {!isReady && totalCount > 0 ? dictionary.waterfallLoading : liveAnnouncement}
       </p>
 
       {!isReady && totalCount > 0 ? (
-        <div className="relative">
-          <p role="status" className="pointer-events-none absolute inset-x-0 top-24 mx-auto w-fit rounded-full bg-stone-950 px-4 py-2 text-sm text-stone-300">
-            {dictionary.waterfallLoading}
-          </p>
-          <div
-            aria-hidden="true"
-            className="grid items-start overflow-hidden"
-            style={{
-              gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
-              gridAutoRows: 0,
-              gridTemplateRows: "minmax(0, auto)",
-              columnGap: cardAppearance[viewDefaults.appearance].imageGap,
-            }}
-          >
-            {imageOnlyHeights.slice(0, Math.min(items.length, 6)).map((height) => (
-              <div
-                key={height}
-                className="bg-stone-900"
-                style={{ height, borderRadius: cardAppearance[viewDefaults.appearance].imageRadius }}
-              />
-            ))}
-          </div>
+        <div
+          aria-hidden="true"
+          className="grid items-start overflow-hidden motion-safe:animate-pulse"
+          style={{
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 300px), 1fr))",
+            gridAutoRows: 0,
+            gridTemplateRows: "minmax(0, auto)",
+            columnGap: cardAppearance[viewDefaults.appearance].imageGap,
+          }}
+        >
+          {imageOnlyHeights.slice(0, Math.min(items.length, 6)).map((height) => (
+            <div
+              key={height}
+              className="bg-stone-900"
+              style={{ height, borderRadius: cardAppearance[viewDefaults.appearance].imageRadius }}
+            />
+          ))}
         </div>
       ) : null}
 
