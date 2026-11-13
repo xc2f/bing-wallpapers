@@ -385,8 +385,9 @@ export default function WaterfallGallery({
         const previousPage = loadedStartPage - 1;
         const batch = await fetchWaterfallPage(previousPage);
         if (!batch) return [];
+        const visibleTop = Math.max(0, toolbarRef.current?.getBoundingClientRect().bottom ?? 0);
         const anchor = Array.from(sectionRef.current?.querySelectorAll<HTMLElement>("[data-waterfall-ssd]") ?? [])
-          .find((card) => card.getBoundingClientRect().bottom > (toolbarRef.current?.getBoundingClientRect().bottom ?? 0));
+          .find((card) => card.getBoundingClientRect().bottom > visibleTop);
         if (anchor?.dataset.waterfallSsd) {
           viewAnchorRef.current = { ssd: anchor.dataset.waterfallSsd, top: anchor.getBoundingClientRect().top };
         }
@@ -442,12 +443,25 @@ export default function WaterfallGallery({
     const start = toolbarStartRef.current;
     if (!start) return;
 
-    // Match the toolbar's top-2 offset.
+    // Match the toolbar's sm:sticky breakpoint and sm:top-2 offset.
+    const stickyViewport = window.matchMedia("(min-width: 640px)");
     const observer = new IntersectionObserver(([entry]) => {
-      setToolbarStuck(entry.boundingClientRect.bottom < (entry.rootBounds?.top ?? 0));
+      setToolbarStuck(stickyViewport.matches && entry.boundingClientRect.bottom < (entry.rootBounds?.top ?? 0));
     }, { rootMargin: "-8px 0px 0px" });
-    observer.observe(start);
-    return () => observer.disconnect();
+    const updateObservation = () => {
+      observer.disconnect();
+      if (stickyViewport.matches) {
+        observer.observe(start);
+      } else {
+        setToolbarStuck(false);
+      }
+    };
+    updateObservation();
+    stickyViewport.addEventListener("change", updateObservation);
+    return () => {
+      observer.disconnect();
+      stickyViewport.removeEventListener("change", updateObservation);
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -720,7 +734,7 @@ export default function WaterfallGallery({
       <span ref={toolbarStartRef} aria-hidden="true" className="pointer-events-none absolute -top-px left-0 size-px" />
       <div
         ref={toolbarRef}
-        className={`sticky top-2 z-20 flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 ${
+        className={`relative z-20 flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 sm:sticky sm:top-2 ${
           toolbarStuck
             ? "pointer-events-none border-transparent"
             : "border-white/10 bg-stone-950/78 backdrop-blur"

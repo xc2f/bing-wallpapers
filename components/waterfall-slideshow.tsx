@@ -27,6 +27,7 @@ const labels = {
 } as const satisfies Record<Locale, readonly string[]>;
 
 const SLIDE_DURATION_MS = 7000;
+const SLIDE_IMAGE_TIMEOUT_MS = 5000;
 
 const controlClass = "inline-flex size-11 items-center justify-center rounded-full bg-black/35 transition-colors hover:bg-black/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-40";
 
@@ -69,13 +70,16 @@ export default function WaterfallSlideshow({
   }));
   const [displayed, setDisplayed] = useState({ item, index });
   const [previousImage, setPreviousImage] = useState<SlideshowItem | null>(null);
+  const [initialImageReady, setInitialImageReady] = useState(false);
   const [failedWallpaperUrls, setFailedWallpaperUrls] = useState<ReadonlySet<string>>(() => new Set());
   const pendingImageRef = useRef<HTMLImageElement>(null);
+  const failedSlidesRef = useRef(new Set<string>());
   const waitingForImage = displayed.item.ssd !== item.ssd;
   const pageCacheRef = useRef(new Map<number, SlideshowItem[]>());
   const pageRequestsRef = useRef(new Map<number, Promise<SlideshowItem[] | null>>());
   const preloadedImageRef = useRef<HTMLImageElement | null>(null);
   const [playing, setPlaying] = useState(false);
+  const playingRef = useRef(false);
   const [loading, setLoading] = useState(false);
   const [failed, setFailed] = useState(false);
   const [controlsHidden, setControlsHidden] = useState(false);
@@ -103,6 +107,10 @@ export default function WaterfallSlideshow({
   function togglePlayback() {
     if (canPlay) setPlaying((current) => !current);
   }
+
+  useEffect(() => {
+    playingRef.current = playing;
+  }, [playing]);
 
   const revealControls = useCallback(() => {
     setControlsHidden(false);
@@ -153,7 +161,7 @@ export default function WaterfallSlideshow({
     return request;
   }, [loadPage]);
 
-  const move = useCallback(async (direction: -1 | 1) => {
+  const move = useCallback(async (direction: -1 | 1, skipIndex?: number) => {
     if (!canPlay || loadingRef.current) return;
     setFailed(false);
 
@@ -161,6 +169,7 @@ export default function WaterfallSlideshow({
     try {
       for (let checked = 1; checked < totalCount; checked++) {
         nextIndex = (nextIndex + direction + totalCount) % totalCount;
+        if (nextIndex === skipIndex) continue;
         let target = items[nextIndex - itemsOffset];
         if (!target) {
           const page = Math.floor(nextIndex / WATERFALL_BATCH_SIZE) + 1;
@@ -175,9 +184,9 @@ export default function WaterfallSlideshow({
           target = batch[nextIndex % WATERFALL_BATCH_SIZE];
         }
 
-        if (target && getSlideUrl(target)) {
+        if (target && getSlideUrl(target) && !failedSlidesRef.current.has(target.ssd)) {
           setSlide({ item: target, index: nextIndex });
-          return;
+          return true;
         }
       }
       setPlaying(false);
@@ -197,27 +206,50 @@ export default function WaterfallSlideshow({
     if (!waitingForImage || !image) return;
 
     let cancelled = false;
+    let settled = false;
     let frame = 0;
+    function handleFailure() {
+      if (cancelled || settled) return;
+      settled = true;
+      window.clearTimeout(timer);
+      if (fallBackToPreview(item)) return;
+
+      if (playingRef.current) {
+        failedSlidesRef.current.add(item.ssd);
+        void move(1, displayed.index).then((moved) => {
+          if (moved || cancelled) return;
+          failedSlidesRef.current.clear();
+          setSlide(displayed);
+          setPlaying(false);
+          setFailed(true);
+        });
+        return;
+      }
+
+      failedSlidesRef.current.clear();
+      setSlide(displayed);
+      setFailed(true);
+    }
+    const timer = window.setTimeout(handleFailure, SLIDE_IMAGE_TIMEOUT_MS);
+
     image.decode().then(() => {
-      if (cancelled) return;
+      if (cancelled || settled) return;
+      settled = true;
+      window.clearTimeout(timer);
       frame = window.requestAnimationFrame(() => {
         frame = window.requestAnimationFrame(() => {
+          failedSlidesRef.current.clear();
           setPreviousImage(displayed.item);
           setDisplayed({ item, index });
         });
       });
-    }).catch(() => {
-      if (cancelled) return;
-      if (fallBackToPreview(item)) return;
-      setSlide(displayed);
-      setPlaying(false);
-      setFailed(true);
-    });
+    }).catch(handleFailure);
     return () => {
       cancelled = true;
+      window.clearTimeout(timer);
       window.cancelAnimationFrame(frame);
     };
-  }, [displayed, index, item, fallBackToPreview, waitingForImage]);
+  }, [displayed, index, item, fallBackToPreview, move, waitingForImage]);
 
   useEffect(() => {
     if (!previousImage) return;
@@ -336,6 +368,8 @@ export default function WaterfallSlideshow({
 
   const detailsHref = `${detailHref(displayed.item.detailHref)}&from=slideshow`;
   const detailsScrollAnchor = trigger.closest<HTMLElement>("[data-waterfall-index]");
+  const hasInitialPreview = displayed.item.ssd === initialItem.ssd &&
+    Boolean(initialItem.previewUrl && initialItem.wallpaperUrl && initialItem.previewUrl !== initialItem.wallpaperUrl);
 
   const imageLayers = Array.from(new Map(
     [previousImage, displayed.item, item].filter((image) => image !== null).map((image) => [image.ssd, image])
@@ -398,15 +432,30 @@ export default function WaterfallSlideshow({
           }
         }}
       >
+        {hasInitialPreview && (
+          <Image
+            src={initialItem.previewUrl}
+            alt=""
+            aria-hidden="true"
+            fill
+            sizes="100vw"
+            loading="eager"
+            draggable={false}
+            referrerPolicy="no-referrer"
+            className="select-none object-cover"
+          />
+        )}
         {imageLayers.map((image) => {
           const active = image.ssd === displayed.item.ssd;
           const pending = waitingForImage && image.ssd === item.ssd;
           const outgoing = image.ssd === previousImage?.ssd;
+          const hidden = (pending && !outgoing) || (active && hasInitialPreview && !initialImageReady);
           return (
             <Image
               key={image.ssd}
               ref={pending ? pendingImageRef : undefined}
               src={getSlideUrl(image)}
+              onLoad={image.ssd === initialItem.ssd ? () => setInitialImageReady(true) : undefined}
               onError={pending ? undefined : () => { fallBackToPreview(image); }}
               alt={active ? image.title : ""}
               aria-hidden={!active}
@@ -419,7 +468,7 @@ export default function WaterfallSlideshow({
                 animationDuration: `${SLIDE_DURATION_MS}ms`,
                 animationPlayState: active && playing ? "running" : "paused",
               }}
-              className={`select-none bg-black object-cover motion-safe:transition-opacity motion-safe:duration-200 ${pending && !outgoing ? "opacity-0" : "opacity-100"} ${active || outgoing ? "waterfall-slideshow-zoom" : ""}`}
+              className={`select-none bg-black object-cover motion-safe:transition-opacity motion-safe:duration-200 ${hidden ? "opacity-0" : "opacity-100"} ${active || outgoing ? "waterfall-slideshow-zoom" : ""}`}
             />
           );
         })}
