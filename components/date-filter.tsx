@@ -117,7 +117,7 @@ export default function DateFilter({ name, locale, dictionary, yearOptions, year
         </svg>
       </button>
 
-      <ResponsivePanel open={open} onClose={() => close(true)} id={panelId} contentRef={panelRef} returnFocusRef={triggerRef} label={dictionary.filterDateDialogLabel} className="date-filter-panel absolute right-0 top-[calc(100%+0.625rem)] z-30">
+      <ResponsivePanel open={open} onClose={() => close(true)} id={panelId} contentRef={panelRef} returnFocusRef={triggerRef} label={dictionary.filterDateDialogLabel} className="date-filter-panel right-0 z-30">
         <div className="date-filter-header">
           <div className="min-w-0"><p className="date-filter-caption">{dictionary.filterDateLabel}</p><p className="date-filter-year">{yearValue || dictionary.filterAllTime}</p></div>
           <button type="button" onClick={() => close(true)} aria-label={taxonomyUiLabel("close", locale)} className="date-filter-close">

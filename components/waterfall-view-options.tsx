@@ -221,7 +221,7 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
         </svg>
       </button>
       <ResponsivePanel open={open} onClose={() => setOpen(false)} id={panelId} label={heading} returnFocusRef={triggerRef}
-        className="absolute right-0 top-full mt-3 w-[23rem] max-w-[calc(100vw-2rem)] max-h-[calc(100dvh-5rem)] waterfall-view-panel overflow-y-auto rounded-2xl border border-white/10 text-stone-100 shadow-xl">
+        className="right-0 w-[23rem] max-w-[calc(100vw-2rem)] waterfall-view-panel rounded-2xl border border-white/10 text-stone-100 shadow-xl">
         {controls}
       </ResponsivePanel>
     </div>

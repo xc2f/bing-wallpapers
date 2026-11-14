@@ -294,7 +294,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
 
       <ResponsivePanel open={open} onClose={() => closePanel({ restoreFocus: true })}
         id={panelId} label={labels.dialog} contentRef={panelRef} returnFocusRef={triggerRef}
-        className="selection-menu-panel theme-switcher-menu absolute right-0 top-[calc(100%+0.625rem)] z-30">
+        className="selection-menu-panel theme-switcher-menu right-0 z-30">
         <div onKeyDown={handlePanelKeyDown}>
           <div className="p-1.5">
             {options.map((option) => {

@@ -653,15 +653,29 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 }
 
 .wallpaper-search-help {
-  position: absolute;
   inset-inline: 0;
-  top: calc(100% + 0.625rem);
   z-index: 30;
-  overflow: hidden;
   border: 1px solid rgb(var(--theme-border-rgb) / 0.12);
   border-radius: 1rem;
   background: var(--theme-panel-background);
   box-shadow: 0 20px 60px rgb(0 0 0 / 0.2);
+}
+
+.desktop-popover {
+  position: absolute;
+  top: 100%;
+  margin-block: 0.625rem;
+  max-height: var(--panel-available-height, none);
+  overflow-y: auto;
+}
+
+.desktop-popover[data-placement="above"] {
+  top: auto;
+  bottom: 100%;
+}
+
+.desktop-popover.waterfall-view-panel {
+  margin-block: 0.75rem;
 }
 
 .wallpaper-search-help-header {
@@ -1157,6 +1171,27 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 
 .country-filter-panel {
   width: 22rem;
+}
+
+.desktop-popover.country-filter-panel,
+.mobile-action-sheet > .mobile-action-sheet-content.country-filter-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.country-filter-panel > :not(.country-filter-results) {
+  flex-shrink: 0;
+}
+
+.desktop-popover.country-filter-panel {
+  /* Match the date panel's regular desktop height. */
+  height: 27.3125rem;
+}
+
+.country-filter-results {
+  min-height: 0;
+  flex: 1 1 auto;
 }
 
 .theme-switcher-menu {
