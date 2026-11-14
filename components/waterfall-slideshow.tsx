@@ -84,12 +84,13 @@ export default function WaterfallSlideshow({
   const [failed, setFailed] = useState(false);
   const [controlsHidden, setControlsHidden] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const playbackButtonRef = useRef<HTMLButtonElement>(null);
   const mountedRef = useRef(false);
   const loadingRef = useRef(false);
   const controlsTimerRef = useRef<number | undefined>(undefined);
   const imagePointerRef = useRef<{ id: number; x: number; y: number; toggleOnTap: boolean } | null>(null);
   const canPlay = totalCount > 1;
-  const controlsVisible = !playing || !controlsHidden || loading || failed;
+  const controlsVisible = !playing || !controlsHidden || failed;
   const controlsVisibility = controlsVisible ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0";
   const getSlideUrl = useCallback((slide: SlideshowItem) => {
     const { wallpaperUrl, previewUrl } = slide;
@@ -121,9 +122,9 @@ export default function WaterfallSlideshow({
   }, [playing]);
 
   useEffect(() => {
-    revealControls();
+    setControlsHidden(playing);
     return () => window.clearTimeout(controlsTimerRef.current);
-  }, [revealControls]);
+  }, [playing]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -133,6 +134,7 @@ export default function WaterfallSlideshow({
     const overflow = document.body.style.overflow;
     const scrollTop = window.scrollY;
     dialog.showModal();
+    playbackButtonRef.current?.focus({ preventScroll: true });
     document.body.style.overflow = "hidden";
     window.scrollTo(0, scrollTop);
     return () => {
@@ -396,6 +398,16 @@ export default function WaterfallSlideshow({
         }
 
         if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+        if (event.key === " ") {
+          if (event.target instanceof HTMLElement &&
+              event.target.closest("button") &&
+              event.target !== playbackButtonRef.current) return;
+
+          event.preventDefault();
+          if (!event.repeat) togglePlayback();
+          return;
+        }
+
         if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
           event.preventDefault();
           void move(event.key === "ArrowLeft" ? -1 : 1);
@@ -488,35 +500,45 @@ export default function WaterfallSlideshow({
         <ControlIcon name="close" />
       </button>
 
-      <div className={`pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/45 to-transparent pt-12 motion-safe:transition-opacity motion-safe:duration-300 ${controlsVisible ? "opacity-100" : "opacity-0"}`}>
-        <div className="flex flex-col gap-3 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-end sm:justify-between sm:px-6">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 pt-12">
+        <div aria-hidden="true" className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-transparent motion-safe:transition-opacity motion-safe:duration-200 ${controlsVisible ? "opacity-100" : "opacity-0"}`} />
+        <div className="relative flex flex-col px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-end sm:justify-between sm:gap-3 sm:px-6">
           <div className="min-w-0" aria-live={playing ? "off" : "polite"}>
             <PreserveScrollLink
               href={detailsHref}
               onClick={handleDetailsClick}
               scrollAnchor={detailsScrollAnchor}
-              className={`flex min-h-11 w-fit max-w-full flex-wrap items-baseline content-center gap-x-3 gap-y-1 rounded-sm hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${controlsVisibility}`}
+              className={`group flex min-h-11 w-fit max-w-full flex-wrap items-center content-center gap-x-3 gap-y-2 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${controlsVisible ? "pointer-events-auto" : ""}`}
             >
-              <span className="line-clamp-2 min-w-0 max-w-full break-words text-base font-medium drop-shadow sm:text-xl">{displayed.item.title}</span>
-              <span className="whitespace-nowrap text-sm text-amber-200">
-                {details} <span aria-hidden="true">→</span>
+              <span className="line-clamp-2 min-w-0 max-w-full break-words text-base font-medium sm:text-xl">{displayed.item.title}</span>
+              <span className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-black/35 px-2.5 py-1 text-xs font-medium leading-5 text-stone-100 ring-1 ring-inset ring-white/25 transition-colors group-hover:bg-white/20 group-focus-visible:bg-white/20 ${controlsVisible ? "" : "invisible"}`}>
+                {details}
+                <svg aria-hidden="true" viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3.5 8h8.5m-3.5-3.5L12 8l-3.5 3.5" />
+                </svg>
               </span>
             </PreserveScrollLink>
-            {displayed.item.fullDate && <p className="mt-1 text-xs tabular-nums text-[#d6d3d1]">{displayed.item.fullDate}</p>}
-            {displayed.item.copyright && <p className="mt-2 line-clamp-2 break-words text-xs leading-relaxed text-[#d6d3d1]">{displayed.item.copyright}</p>}
+            <div aria-hidden={!controlsVisible} className={`grid motion-safe:transition-[grid-template-rows,opacity] motion-safe:duration-200 ${controlsVisible ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+              <div className="min-h-0 overflow-hidden">
+                {displayed.item.fullDate && <p className="mt-1 text-xs tabular-nums text-[#d6d3d1]">{displayed.item.fullDate}</p>}
+                {displayed.item.copyright && <p className="mt-2 line-clamp-2 break-words text-xs leading-relaxed text-[#d6d3d1]">{displayed.item.copyright}</p>}
+              </div>
+            </div>
           </div>
-          <div className="flex shrink-0 flex-col items-end gap-2 self-end">
-            {(loading || failed) && <p className="text-right text-xs text-[#d6d3d1]" role="status">{loading ? loadingLabel : loadError}</p>}
-            <div className={`flex flex-wrap justify-end gap-2 motion-safe:transition-opacity ${controlsVisibility}`}>
-              <button type="button" aria-label={previous} title={previous} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(-1)}>
-                <ControlIcon name="previous" />
-              </button>
-              <button type="button" aria-label={playing ? pause : play} title={playing ? pause : play} className={controlClass} disabled={!canPlay && !playing} onClick={togglePlayback}>
-                <ControlIcon name={playing ? "pause" : "play"} />
-              </button>
-              <button type="button" aria-label={next} title={next} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(1)}>
-                <ControlIcon name="next" />
-              </button>
+          <div className={`grid shrink-0 self-end motion-safe:transition-[grid-template-rows] motion-safe:duration-200 sm:grid-rows-[1fr] ${controlsVisible ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+            <div className="flex min-h-0 flex-col items-end gap-2 overflow-hidden sm:overflow-visible">
+              {(loading || failed) && <p className="text-right text-xs text-[#d6d3d1]" role="status">{loading ? loadingLabel : loadError}</p>}
+              <div className={`flex flex-wrap justify-end gap-2 p-1 pt-3 motion-safe:transition-opacity sm:p-0 ${controlsVisibility}`}>
+                <button type="button" aria-label={previous} title={previous} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(-1)}>
+                  <ControlIcon name="previous" />
+                </button>
+                <button ref={playbackButtonRef} type="button" aria-keyshortcuts="Space" aria-label={playing ? pause : play} title={playing ? pause : play} className={controlClass} disabled={!canPlay && !playing} onClick={togglePlayback}>
+                  <ControlIcon name={playing ? "pause" : "play"} />
+                </button>
+                <button type="button" aria-label={next} title={next} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(1)}>
+                  <ControlIcon name="next" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
