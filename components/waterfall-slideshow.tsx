@@ -510,8 +510,8 @@ export default function WaterfallSlideshow({
               scrollAnchor={detailsScrollAnchor}
               className={`group flex min-h-11 w-fit max-w-full flex-wrap items-center content-center gap-x-3 gap-y-2 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${controlsVisible ? "pointer-events-auto" : ""}`}
             >
-              <span className="line-clamp-2 min-w-0 max-w-full break-words text-base font-medium sm:text-xl">{displayed.item.title}</span>
-              <span className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-black/35 px-2.5 py-1 text-xs font-medium leading-5 text-stone-100 ring-1 ring-inset ring-white/25 transition-colors group-hover:bg-white/20 group-focus-visible:bg-white/20 ${controlsVisible ? "" : "invisible"}`}>
+              <span className="line-clamp-2 min-w-0 max-w-full break-words text-base font-medium [text-shadow:0_1px_2px_rgba(0,0,0,0.35)] sm:text-xl">{displayed.item.title}</span>
+              <span className={`inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-black/35 px-2.5 py-1 text-xs font-medium leading-5 text-[#f5f5f4] ring-1 ring-inset ring-white/25 transition-colors group-hover:bg-white/20 group-focus-visible:bg-white/20 ${controlsVisible ? "" : "invisible"}`}>
                 {details}
                 <svg aria-hidden="true" viewBox="0 0 16 16" className="size-3.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3.5 8h8.5m-3.5-3.5L12 8l-3.5 3.5" />
