@@ -2,6 +2,8 @@
 
 `world.json` contains the Natural Earth 1:110m admin-0 country outlines, with coordinates rounded to two decimal places and properties removed.
 
+`wallpaper-outline.svg` is the equirectangular projection of those outlines used on wallpaper detail pages. Its viewBox includes a five-degree margin on each edge, shared with the marker layout. The ocean grid uses 15-degree intervals in the same projection.
+
 Source: https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_110m_admin_0_countries.geojson
 License: public domain (https://www.naturalearthdata.com/about/terms-of-use/).
 

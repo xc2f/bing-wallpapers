@@ -3,7 +3,9 @@ import { DetailBrowseProvider } from "@/components/detail-browse-context";
 import DetailBrowseHeader from "@/components/detail-browse-header";
 import DetailBrowseNavigation from "@/components/detail-browse-navigation";
 import { getImageTaxonomy } from "@/lib/image-taxonomy";
+import DetailLocationMap from "@/components/detail-location-map";
 import DetailTaxonomy from "@/components/detail-taxonomy";
+import { getBingHeadline } from "@/lib/bing-headline";
 import TranslationNotice from "@/components/translation-notice";
 import Image from "next/image";
 import { pageMetadata, siteUrl } from "@/lib/seo";
@@ -33,11 +35,18 @@ import {
 // All known detail pages are generated at build time. Unknown IDs return 404.
 export const dynamicParams = false;
 
-function splitDescriptionIntoParagraphs(description: string) {
+function splitDescriptionIntoParagraphs(description: string, locale: Locale) {
   const normalized = description.trim();
 
   if (!normalized) {
     return [];
+  }
+
+  if (locale === "zh" || locale === "ja") {
+    const separator = normalized.includes("\n")
+      ? /\r?\n/
+      : /(?<=[。！？][”’」』）】]*)(?![。！？…”’」』）】])/;
+    return normalized.split(separator).map((part) => part.trim()).filter(Boolean);
   }
 
   const blocks = normalized
@@ -130,7 +139,9 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
   const title = wallpaper.ImageContent?.Title ?? wallpaper.Ssd;
   const description =
     wallpaper.ImageContent?.Description ?? dictionary.noDescription;
-  const descriptionParagraphs = splitDescriptionIntoParagraphs(description);
+  const descriptionParagraphs = splitDescriptionIntoParagraphs(description, currentLocale);
+  const headline = getBingHeadline(wallpaper.ImageContent?.Headline);
+  const quickFact = wallpaper.ImageContent?.QuickFact?.MainText?.trim();
   const translation = wallpaper.Translation;
   const translationNotice = translation?.generatedBy === "AI"
     ? translation.reviewedByHuman === false
@@ -149,14 +160,33 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
   const previewUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url);
   const imageUrl = toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper);
   const downloadUrl = imageUrl || previewUrl;
+  const imageHeadline = previewUrl && headline !== title ? headline : undefined;
+  const learnMoreLink = backstageUrl ? (
+    <a
+      href={backstageUrl}
+      target="_blank"
+      rel="noreferrer"
+      className={`inline-flex items-center gap-1.5 text-xs underline-offset-4 hover:underline focus-visible:underline ${previewUrl ? "detail-image-spot-link ml-auto max-w-full py-1" : "mt-5 text-stone-500"}`}
+    >
+      <Image
+        src="/images/bing-icon.png"
+        alt=""
+        width={14}
+        height={14}
+        unoptimized
+        className="shrink-0"
+      />
+      {dictionary.detailLearnMoreOnBing}
+    </a>
+  ) : null;
   const imageActions = downloadUrl || previewUrl ? (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+    <div className={previewUrl ? "grid grid-cols-2 gap-2.5" : "grid"}>
       {downloadUrl ? (
         <a
           href={downloadUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center justify-center rounded-full bg-amber-300 px-4 py-2.5 text-sm font-medium text-stone-950 transition hover:bg-amber-200"
+          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-amber-300 px-2 py-2 text-center text-sm font-medium text-stone-950 transition hover:bg-amber-200"
         >
           {dictionary.detailOpenFull}
         </a>
@@ -166,7 +196,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           href={previewUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center justify-center rounded-full border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition theme-button-hover"
+          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full border border-white/15 px-2 py-2 text-center text-sm font-medium text-white transition theme-button-hover"
         >
           {dictionary.detailOpenPreview}
         </a>
@@ -216,7 +246,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           </section>
 
           <section className="theme-detail-panel overflow-hidden rounded-3xl sm:rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
-          <div className="bg-stone-900/58">
+          <div className="relative bg-stone-900/58">
             {previewUrl ? (
               <Image
                 referrerPolicy="no-referrer"
@@ -232,16 +262,22 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                 {dictionary.noPreviewImage}
               </div>
             )}
+            {previewUrl && (imageHeadline || learnMoreLink) ? (
+              <div className="detail-image-spot absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-x-4 gap-y-1 break-words px-5 pb-3 pt-7 sm:px-6 sm:pb-4 sm:pt-10 lg:px-8">
+                {imageHeadline ? <p className="min-w-0 max-w-full text-xs font-medium leading-snug sm:text-sm">{imageHeadline}</p> : null}
+                {learnMoreLink}
+              </div>
+            ) : null}
           </div>
 
             {imageActions ? <div className="px-5 pt-5 sm:px-6 lg:hidden">{imageActions}</div> : null}
 
             {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
-            <div className="grid grid-cols-1 gap-6 p-5 sm:p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:p-8">
+            <div className="grid grid-cols-1 gap-5 p-5 sm:gap-6 sm:p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-8 lg:px-8 lg:pb-8">
             <div className="min-w-0 w-full">
               <h2 className="sr-only">{dictionary.detailDescription}</h2>
-              <div className="detail-description-prose w-full space-y-4 break-words">
+              <div className="detail-description-prose w-full space-y-3.5 break-words">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
                     key={`${wallpaper.Ssd}-description-${index}`}
@@ -258,56 +294,48 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                 notice={translationNotice}
                 className="mt-3"
               />
-              {backstageUrl ? (
-                <a
-                  href={backstageUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mt-5 inline-flex items-center gap-1.5 text-xs text-stone-500 underline-offset-4 hover:underline focus-visible:underline"
-                >
-                  <Image
-                    src="/images/bing-icon.png"
-                    alt=""
-                    width={14}
-                    height={14}
-                    unoptimized
-                    className="shrink-0"
-                  />
-                  {dictionary.detailLearnMoreOnBing}
-                </a>
+              {quickFact ? (
+                <div className="detail-quick-fact mt-4 rounded-e-lg px-3 py-2.5 sm:flex sm:items-baseline sm:gap-3">
+                  <h2 className="shrink-0 text-xs font-semibold">{dictionary.detailQuickFact}</h2>
+                  <p className="mt-1 min-w-0 whitespace-pre-line break-words text-sm leading-relaxed text-stone-200 sm:mt-0">
+                    {quickFact}
+                  </p>
+                </div>
               ) : null}
+              {!previewUrl ? learnMoreLink : null}
             </div>
 
-              <aside className="theme-detail-aside min-w-0 w-full break-words rounded-[1.5rem] backdrop-blur-sm p-5 lg:sticky lg:top-6 lg:self-start">
-                <div className="hidden lg:block">{imageActions}</div>
+              <aside className="theme-detail-aside min-w-0 w-full break-words rounded-2xl px-4 py-3 lg:self-start lg:p-4">
+                {imageActions ? <div className="mb-3 hidden lg:block">{imageActions}</div> : null}
 
-                <dl className="mt-3 flex flex-col text-sm">
-                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
-                    <dt className="whitespace-nowrap text-xs text-stone-500">
+                <dl className="detail-archive-meta text-sm">
+                  <div>
+                    <dt className="text-xs text-stone-400">
                       {dictionary.detailCopyright}
                     </dt>
-                    <dd className="min-w-0 break-words text-left sm:text-right leading-6 text-stone-200">
-                    {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
-                  </dd>
-                </div>
-                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
-                    <dt className="whitespace-nowrap text-xs text-stone-500">
+                    <dd className="min-w-0 break-words text-right text-stone-200">
+                      {wallpaper.ImageContent?.Copyright ?? dictionary.unknownCopyright}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-stone-400">
                       {dictionary.detailDate}
                     </dt>
-                    <dd className="min-w-0 break-words text-left sm:text-right tabular-nums leading-6 text-stone-200">
-                    {formattedDate}
-                  </dd>
-                </div>
-                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-[max-content_minmax(0,1fr)] sm:items-baseline sm:gap-4 py-3">
-                    <dt className="whitespace-nowrap text-xs text-stone-500">
+                    <dd className="min-w-0 break-words text-right tabular-nums text-stone-200">
+                      {formattedDate}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs text-stone-400">
                       {dictionary.detailArchiveId}
                     </dt>
-                    <dd className="min-w-0 break-words text-left sm:text-right font-mono leading-6 text-stone-300">
+                    <dd className="min-w-0 break-words text-right font-mono text-stone-300">
                       {wallpaper.Ssd}
                     </dd>
                   </div>
-              </dl>
+                </dl>
               </aside>
+              <DetailLocationMap wallpaper={wallpaper} countries={taxonomy?.countries} locale={currentLocale} />
             </div>
           </section>
 

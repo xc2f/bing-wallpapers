@@ -1,4 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
+import { getBingHeadline } from "../lib/bing-headline";
+import { parseBingMapLocation } from "../lib/bing-map-location";
 import type { WallpaperItem } from "../lib/archive";
 
 const source = new URL("../db/media_contents.json", import.meta.url);
@@ -14,15 +16,19 @@ const { schemaVersion, defaultLocale, fallbackLocale, mediaContents } = JSON.par
 
 function selectRuntimeFields(item: WallpaperItem): WallpaperItem {
   const { Ssd, FullDateString, imageId, ImageContent, Translation } = item;
+  const quickFact = ImageContent?.QuickFact?.MainText?.trim();
   return {
     Ssd,
     FullDateString,
     imageId,
+    mapLocation: parseBingMapLocation(ImageContent?.MapLink?.Url),
     ImageContent: ImageContent && {
       Title: ImageContent.Title,
+      Headline: getBingHeadline(ImageContent.Headline),
       Description: ImageContent.Description,
       Copyright: ImageContent.Copyright,
       BackstageUrl: ImageContent.BackstageUrl,
+      QuickFact: quickFact ? { MainText: quickFact } : undefined,
       Image: ImageContent.Image && {
         Url: ImageContent.Image.Url,
         Wallpaper: ImageContent.Image.Wallpaper,

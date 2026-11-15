@@ -1,3 +1,4 @@
+import { localizeBingMapLabel, parseBingMapLocation, type MapLocation } from "@/lib/bing-map-location";
 import { searchWallpapers } from "@/lib/wallpaper-search";
 export { searchWallpapers, getSearchHighlightTerms, hasWallpaperSearchMatch } from "@/lib/wallpaper-search";
 import { filterWallpapersByTaxonomy, getImageTaxonomy } from "@/lib/image-taxonomy";
@@ -17,14 +18,18 @@ export interface TranslationMetadata {
 
 export interface WallpaperItem {
   imageId?: string;
+  mapLocation?: MapLocation;
   Translation?: TranslationMetadata;
   Ssd: string;
   FullDateString?: string;
   ImageContent?: {
     Title?: string;
+    Headline?: string;
     Description?: string;
     Copyright?: string;
     BackstageUrl?: string;
+    QuickFact?: { MainText?: string };
+    MapLink?: { Url?: string };
     Image?: {
       Url?: string;
       Wallpaper?: string;
@@ -123,6 +128,29 @@ export function getWallpaperBySsd(ssd: string, locale: Locale = defaultLocale) {
   if (exact) return exact;
   knownArchiveIds ??= new Set(Object.values(wallpaperArchive.mediaContents).flatMap((items) => items.map((item) => item.Ssd)));
   return knownArchiveIds.has(ssd) ? archive.dates.get(archiveDateKey(ssd)) : undefined;
+}
+
+let mapLocationsByImage: Map<string, { location: MapLocation; title?: string }> | undefined;
+
+export function getWallpaperMapLocation(wallpaper: WallpaperItem) {
+  const localLocation = wallpaper.mapLocation ?? parseBingMapLocation(wallpaper.ImageContent?.MapLink?.Url);
+  if (localLocation || !wallpaper.imageId) return localLocation;
+
+  // Bing sometimes provides map data for the same image in only one language.
+  if (!mapLocationsByImage) {
+    mapLocationsByImage = new Map();
+    for (const items of Object.values(wallpaperArchive.mediaContents)) {
+      for (const item of items) {
+        if (!item.imageId || mapLocationsByImage.has(item.imageId)) continue;
+        const location = item.mapLocation ?? parseBingMapLocation(item.ImageContent?.MapLink?.Url);
+        if (location) mapLocationsByImage.set(item.imageId, { location, title: item.ImageContent?.Title });
+      }
+    }
+  }
+  const source = mapLocationsByImage.get(wallpaper.imageId);
+  if (!source) return;
+  const label = localizeBingMapLabel(source.location.label, source.title, wallpaper.ImageContent?.Title);
+  return label ? { ...source.location, label } : source.location;
 }
 
 export function getTranslationSource(wallpaper: WallpaperItem) {
