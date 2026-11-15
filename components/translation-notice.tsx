@@ -14,11 +14,11 @@ export default function TranslationNotice({ translation, source, dictionary, not
   return (
     <div className={className}>
       {description ? <details>
-      <summary className="group flex w-fit cursor-pointer flex-wrap items-baseline gap-x-2 gap-y-1 rounded-md text-xs leading-5">
-        {notice ? <span className="text-stone-500" data-display-text="true">{notice}</span> : null}
-        <span className="inline-flex items-baseline gap-2 whitespace-nowrap text-amber-200 transition-colors group-hover:text-amber-100">
-          {notice ? <span aria-hidden="true" className="text-stone-500">·</span> : null}
+      <summary className="detail-translation-summary group flex w-fit cursor-pointer flex-wrap items-baseline gap-x-3 gap-y-1 rounded-md text-xs leading-5">
+        {notice ? <span className="text-stone-400">{notice}</span> : null}
+        <span className="inline-flex items-center gap-1.5 whitespace-nowrap text-amber-200 underline-offset-4 group-hover:underline group-focus-visible:underline">
           {dictionary.showOriginal}
+          <span aria-hidden="true" className="detail-translation-chevron" />
         </span>
       </summary>
       <div
@@ -28,7 +28,7 @@ export default function TranslationNotice({ translation, source, dictionary, not
         {title ? <p className="mb-2 font-semibold text-stone-200">{title}</p> : null}
         <p className="whitespace-pre-line">{description}</p>
       </div>
-      </details> : notice ? <p className="text-xs leading-5 text-stone-500" data-display-text="true">{notice}</p> : null}
+      </details> : notice ? <p className="text-xs leading-5 text-stone-400">{notice}</p> : null}
     </div>
   );
 }

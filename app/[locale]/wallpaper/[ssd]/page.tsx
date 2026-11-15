@@ -277,7 +277,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
             <div className="grid grid-cols-1 gap-5 p-5 sm:gap-6 sm:p-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-x-8 lg:px-8 lg:pb-8">
             <div className="min-w-0 w-full">
               <h2 className="sr-only">{dictionary.detailDescription}</h2>
-              <div className="detail-description-prose w-full space-y-3.5 break-words">
+              <div className="detail-description-prose w-full space-y-2 break-words sm:space-y-2.5">
                 {descriptionParagraphs.map((paragraph, index) => (
                   <p
                     key={`${wallpaper.Ssd}-description-${index}`}
@@ -292,7 +292,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                 source={getTranslationSource(wallpaper)}
                 dictionary={dictionary}
                 notice={translationNotice}
-                className="mt-3"
+                className="detail-translation-note mt-3 pt-2.5"
               />
               {quickFact ? (
                 <div className="detail-quick-fact mt-4 rounded-e-lg px-3 py-2.5 sm:flex sm:items-baseline sm:gap-3">
