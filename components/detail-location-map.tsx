@@ -49,8 +49,8 @@ export default function DetailLocationMap({ wallpaper, locale }: {
             </svg>
           </span>
           <div className="min-w-0 break-words">
-            {placeName ? <p className="text-xs text-stone-400">{locationLabel}</p> : null}
             <h2 className="text-sm font-semibold leading-snug text-stone-100">{placeName || locationLabel}</h2>
+            {placeName ? <p className="mt-0.5 text-xs text-stone-400">{locationLabel}</p> : null}
           </div>
         </div>
         {mapUrl ? (
