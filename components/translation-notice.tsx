@@ -33,7 +33,7 @@ export default function TranslationNotice({ translation, source, dictionary, fie
           <div
             lang={translation.sourceLocale ? htmlLangMap[translation.sourceLocale] : undefined}
             className={field
-              ? "mt-2 ps-3 text-sm leading-relaxed text-stone-400"
+              ? "mt-2 text-sm leading-relaxed text-stone-400"
               : "mt-3 rounded-xl bg-white/[0.03] p-3 text-sm leading-7 text-stone-400"}
           >
             {title ? <p className="mb-2 font-semibold text-stone-200">{title}</p> : null}
