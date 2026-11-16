@@ -14,6 +14,7 @@ export interface TranslationMetadata {
   reviewedByHuman?: boolean;
   sourceLocale?: Locale;
   sourceSsd?: string;
+  originalText?: Pick<NonNullable<WallpaperItem["ImageContent"]>, "Title" | "Description" | "Headline" | "QuickFact">;
 }
 
 export interface WallpaperItem {
@@ -158,8 +159,11 @@ export function getTranslationSource(wallpaper: WallpaperItem) {
   if (translation?.generatedBy !== "AI" || !translation.sourceLocale || !translation.sourceSsd) {
     return undefined;
   }
+  if (translation.originalText) {
+    return { Ssd: translation.sourceSsd, imageId: wallpaper.imageId, ImageContent: translation.originalText };
+  }
   return wallpaperArchive.mediaContents[translation.sourceLocale]?.find(
-    (item) => item.Ssd === translation.sourceSsd
+    (item) => item.Ssd === translation.sourceSsd && item.imageId === wallpaper.imageId
   );
 }
 

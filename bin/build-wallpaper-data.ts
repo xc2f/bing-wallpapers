@@ -40,6 +40,7 @@ function selectRuntimeFields(item: WallpaperItem): WallpaperItem {
       reviewedByHuman: Translation.reviewedByHuman,
       sourceLocale: Translation.sourceLocale,
       sourceSsd: Translation.sourceSsd,
+      originalText: Translation.originalText,
     },
   };
 }

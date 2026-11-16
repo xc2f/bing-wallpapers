@@ -67,13 +67,31 @@ test("AI translation sources resolve from their recorded locale and archive ID",
     for (const wallpaper of getAllWallpapers(locale)) {
       const metadata = wallpaper.Translation;
       if (metadata?.generatedBy === "AI" && metadata.sourceLocale && metadata.sourceSsd) {
-        assert.deepEqual(getTranslationSource(wallpaper),
-          data.mediaContents[metadata.sourceLocale].find((item) => item.Ssd === metadata.sourceSsd));
+        assert.deepEqual(getTranslationSource(wallpaper), metadata.originalText
+          ? { Ssd: metadata.sourceSsd, imageId: wallpaper.imageId, ImageContent: metadata.originalText }
+          : data.mediaContents[metadata.sourceLocale].find(
+            (item) => item.Ssd === metadata.sourceSsd && item.imageId === wallpaper.imageId,
+          ));
       } else {
         assert.equal(getTranslationSource(wallpaper), undefined);
       }
     }
   }
+});
+
+test("a Korean fallback uses its saved English original and never borrows another image's text", () => {
+  const english = getAllWallpapers("en")[0];
+  const originalText = { Title: "Flamingos in the Ebro Delta", Description: "Flamingos gather in shallow lagoons." };
+  const wallpaper = {
+    Ssd: english.Ssd,
+    imageId: "bing:DeltaEbro:test",
+    Translation: { generatedBy: "AI", sourceLocale: "en" as const, sourceSsd: english.Ssd },
+  };
+  assert.equal(getTranslationSource(wallpaper), undefined);
+  assert.deepEqual(getTranslationSource({
+    ...wallpaper,
+    Translation: { ...wallpaper.Translation, originalText },
+  })?.ImageContent, originalText);
 });
 
 test("same-day records prefer official content and empty archives stay empty", () => {
