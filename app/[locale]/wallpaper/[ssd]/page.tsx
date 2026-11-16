@@ -19,6 +19,7 @@ import {
   getAllWallpapers,
   getRelatedWallpapers,
   getWallpaperBySsd,
+  getWallpaperBingUrl,
   getTranslationSource,
   toAbsoluteUrl,
 } from "@/lib/archive";
@@ -144,10 +145,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
   const quickFact = wallpaper.ImageContent?.QuickFact?.MainText?.trim();
   const quickFactTranslation = wallpaper.FieldTranslations?.["QuickFact.MainText"];
   const translation = wallpaper.Translation;
-  const backstagePath = wallpaper.ImageContent?.BackstageUrl;
-  const backstageUrl = backstagePath?.startsWith("/search?")
-    ? `https://www.bing.com${backstagePath}`
-    : undefined;
+  const backstageUrl = getWallpaperBingUrl(wallpaper);
   const formattedDate = formatArchiveDate(
     currentLocale,
     wallpaper.Ssd,
@@ -339,7 +337,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                   </div>
                 </dl>
               </aside>
-              <DetailLocationMap wallpaper={wallpaper} countries={taxonomy?.countries} locale={currentLocale} />
+              <DetailLocationMap wallpaper={wallpaper} locale={currentLocale} />
             </div>
           </section>
 

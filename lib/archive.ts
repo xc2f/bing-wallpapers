@@ -121,6 +121,11 @@ export function toAbsoluteUrl(path?: string) {
   return path.startsWith("http") ? path : `${BING_BASE_URL}${path}`;
 }
 
+export function getWallpaperBingUrl(wallpaper: WallpaperItem) {
+  const path = wallpaper.ImageContent?.BackstageUrl;
+  return path?.startsWith("/search?") ? new URL(path, "https://www.bing.com").href : undefined;
+}
+
 export function getAllWallpapers(locale: Locale = defaultLocale) {
   return getArchive(locale).items;
 }

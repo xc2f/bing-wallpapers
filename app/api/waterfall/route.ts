@@ -44,6 +44,7 @@ export async function GET(request: NextRequest) {
     previewUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Url),
     wallpaperUrl: toAbsoluteUrl(wallpaper.ImageContent?.Image?.Wallpaper),
     detailHref: createDetailHref(locale, wallpaper.Ssd),
+    detailApiHref: `/api/wallpapers/${locale}/${wallpaper.Ssd}`,
   }));
 
   return NextResponse.json({

@@ -1,32 +1,16 @@
 import DetailMapViewport from "@/components/detail-map-viewport";
-import { getWallpaperMapLocation, type WallpaperItem } from "@/lib/archive";
-import type { MapPoint } from "@/lib/bing-map-location";
-import countryCoordinates from "@/lib/country-coordinates.json";
+import type { WallpaperItem } from "@/lib/archive";
 import { getDictionary, type Locale } from "@/lib/i18n";
-import { taxonomyLabel } from "@/lib/taxonomy-labels";
+import { wallpaperLocation } from "@/lib/wallpaper-location";
 
-const coordinates: Partial<Record<string, number[]>> = countryCoordinates;
-
-export default function DetailLocationMap({ wallpaper, countries, locale }: {
+export default function DetailLocationMap({ wallpaper, locale }: {
   wallpaper: WallpaperItem;
-  countries?: string[];
   locale: Locale;
 }) {
   const dictionary = getDictionary(locale);
-  const mapLocation = getWallpaperMapLocation(wallpaper);
-  const exactPoint = mapLocation?.point;
-  const regions = [...new Set(countries)].flatMap((country) => {
-    const coordinate = coordinates[country];
-    if (!coordinate) return [];
-
-    const point: MapPoint = [coordinate[0], coordinate[1]];
-    return [{ point, label: taxonomyLabel(country, locale, "country") }];
-  });
-  const regionNames = new Intl.ListFormat(locale).format(regions.map(({ label }) => label));
-  const points = exactPoint
-    ? [{ point: exactPoint, label: mapLocation.label || regionNames || dictionary.detailLocation }]
-    : regions;
-  if (!points.length) return null;
+  const location = wallpaperLocation(wallpaper, locale);
+  if (!location) return null;
+  const { exactPoint, points, placeName, locationLabel, mapUrl } = location;
 
   // Match the equirectangular viewBox of the static map.
   const positions = points.map(({ point: [longitude, latitude], label }) => ({
@@ -41,11 +25,6 @@ export default function DetailLocationMap({ wallpaper, countries, locale }: {
   const centerX = (Math.min(...xs) + Math.max(...xs)) / 2;
   const centerY = (Math.min(...ys) + Math.max(...ys)) / 2;
 
-  const placeName = mapLocation?.label || regionNames;
-  const locationLabel = exactPoint ? dictionary.detailLocation : dictionary.detailApproximateRegion;
-  const mapUrl = exactPoint
-    ? `https://www.openstreetmap.org/?mlat=${exactPoint[1]}&mlon=${exactPoint[0]}#map=12/${exactPoint[1]}/${exactPoint[0]}`
-    : undefined;
 
   return (
     <figure className="detail-location-map min-w-0 overflow-hidden rounded-2xl lg:col-span-2">

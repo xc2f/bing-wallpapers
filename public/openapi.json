@@ -8,6 +8,81 @@
   "servers": [{ "url": "/" }],
   "externalDocs": { "url": "/api-guide.txt" },
   "paths": {
+    "/api/wallpapers/{locale}/{ssd}": {
+      "get": {
+        "operationId": "getWallpaper",
+        "summary": "Get a localized wallpaper and its available location data",
+        "parameters": [
+          { "$ref": "#/components/parameters/PathLocale" },
+          { "$ref": "#/components/parameters/ArchiveId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "The wallpaper detail.",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WallpaperDetail" } } }
+          },
+          "308": { "description": "Redirect to the canonical archive identifier." },
+          "400": { "description": "Unsupported locale." },
+          "404": { "description": "Unknown wallpaper." }
+        }
+      }
+    },
+    "/api/filters": {
+      "get": {
+        "operationId": "listWallpaperFilters",
+        "summary": "List the localized categories, tags, and countries usable in wallpaper search",
+        "parameters": [
+          { "name": "locale", "in": "query", "required": true, "schema": { "$ref": "#/components/schemas/Locale" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Options with counts of distinct archived images in the requested locale.",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/WallpaperFilters" } } }
+          },
+          "400": { "description": "Missing or unsupported locale." }
+        }
+      }
+    },
+    "/{locale}/wallpaper/{ssd}": {
+      "get": {
+        "operationId": "getWallpaperMarkdown",
+        "summary": "Read a wallpaper detail in Markdown",
+        "description": "Send Accept: text/markdown explicitly to receive Markdown. Ordinary requests receive HTML.",
+        "parameters": [
+          { "$ref": "#/components/parameters/PathLocale" },
+          { "$ref": "#/components/parameters/ArchiveId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "The negotiated wallpaper detail.",
+            "content": {
+              "text/markdown": { "schema": { "type": "string" } },
+              "text/html": { "schema": { "type": "string" } }
+            }
+          },
+          "308": { "description": "Redirect to the canonical archive identifier." },
+          "404": { "description": "Unknown wallpaper or locale." }
+        }
+      }
+    },
+    "/{locale}/wallpaper/{ssd}/text": {
+      "get": {
+        "operationId": "getWallpaperText",
+        "summary": "Read a wallpaper detail in plain text",
+        "parameters": [
+          { "$ref": "#/components/parameters/PathLocale" },
+          { "$ref": "#/components/parameters/ArchiveId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "UTF-8 wallpaper detail.",
+            "content": { "text/plain": { "schema": { "type": "string" } } }
+          },
+          "308": { "description": "Redirect to the canonical archive identifier." },
+          "404": { "description": "Unknown wallpaper or locale." }
+        }
+      }
+    },
     "/api/waterfall": {
       "get": {
         "operationId": "listWallpapers",
@@ -99,10 +174,76 @@
     }
   },
   "components": {
+    "parameters": {
+      "PathLocale": { "name": "locale", "in": "path", "required": true, "schema": { "$ref": "#/components/schemas/Locale" } },
+      "ArchiveId": { "name": "ssd", "in": "path", "required": true, "schema": { "type": "string" } }
+    },
     "schemas": {
+      "Locale": { "type": "string", "enum": ["en", "zh", "es", "fr", "de", "ja", "ko"] },
+      "FilterOption": {
+        "type": "object",
+        "required": ["id", "name", "count"],
+        "properties": {
+          "id": { "type": "string", "description": "Exact value to pass to the matching filter." },
+          "name": { "type": "string", "description": "Display name in the requested locale." },
+          "count": { "type": "integer", "minimum": 1 }
+        }
+      },
+      "WallpaperFilters": {
+        "type": "object",
+        "required": ["locale", "categories", "tags", "countries"],
+        "properties": {
+          "locale": { "$ref": "#/components/schemas/Locale" },
+          "categories": { "type": "array", "items": { "$ref": "#/components/schemas/FilterOption" } },
+          "tags": { "type": "array", "items": { "$ref": "#/components/schemas/FilterOption" } },
+          "countries": { "type": "array", "items": { "$ref": "#/components/schemas/FilterOption" } }
+        }
+      },
+      "WallpaperDetail": {
+        "type": "object",
+        "required": ["ssd", "locale", "title", "description", "copyright", "date", "source", "image", "previewUrl", "translationNotice"],
+        "properties": {
+          "ssd": { "type": "string" },
+          "locale": { "$ref": "#/components/schemas/Locale" },
+          "title": { "type": "string" },
+          "headline": { "type": "string" },
+          "description": { "type": "string" },
+          "quickFact": { "type": "string" },
+          "copyright": { "type": "string" },
+          "date": { "type": "string", "description": "Archive date, usually in YYYY-MM-DD form." },
+          "source": { "type": "string", "format": "uri", "description": "Canonical wallpaper page." },
+          "image": { "type": "string", "description": "Best available image URL, or an empty string." },
+          "previewUrl": { "type": "string", "description": "Preview image URL, or an empty string." },
+          "translationNotice": { "type": "string" },
+          "bingUrl": { "type": "string", "format": "uri" },
+          "location": { "$ref": "#/components/schemas/WallpaperLocation" }
+        }
+      },
+      "WallpaperLocation": {
+        "type": "object",
+        "required": ["precision", "points"],
+        "properties": {
+          "name": { "type": "string", "description": "Available place name or localized country and region names." },
+          "precision": { "type": "string", "enum": ["exact", "country"], "description": "A source coordinate or a representative country or region point." },
+          "mapUrl": { "type": "string", "format": "uri", "description": "OpenStreetMap link for a source coordinate." },
+          "points": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["latitude", "longitude", "label"],
+              "properties": {
+                "latitude": { "type": "number", "minimum": -90, "maximum": 90 },
+                "longitude": { "type": "number", "minimum": -180, "maximum": 180 },
+                "label": { "type": "string" }
+              }
+            }
+          }
+        }
+      },
       "Wallpaper": {
         "type": "object",
-        "required": ["ssd", "fullDate", "title", "description", "previewUrl", "wallpaperUrl", "detailHref"],
+        "required": ["ssd", "fullDate", "title", "description", "previewUrl", "wallpaperUrl", "detailHref", "detailApiHref"],
         "properties": {
           "ssd": { "type": "string", "description": "Archive record identifier." },
           "fullDate": { "type": "string", "description": "Localized archive date." },
@@ -111,7 +252,8 @@
           "copyright": { "type": ["string", "null"] },
           "previewUrl": { "type": "string", "description": "Absolute preview image URL, or an empty string when unavailable." },
           "wallpaperUrl": { "type": "string", "description": "Absolute wallpaper image URL, or an empty string when unavailable." },
-          "detailHref": { "type": "string", "description": "Site-relative wallpaper detail path." }
+          "detailHref": { "type": "string", "description": "Site-relative wallpaper detail path." },
+          "detailApiHref": { "type": "string", "description": "Site-relative JSON wallpaper detail path." }
         }
       }
     }

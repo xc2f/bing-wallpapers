@@ -3,6 +3,10 @@ import test from "node:test";
 import { NextRequest } from "next/server";
 import { unstable_doesMiddlewareMatch } from "next/experimental/testing/server";
 import { GET } from "../app/api/markdown/[locale]/[[...page]]/route";
+import { GET as filterOptions } from "../app/api/filters/route";
+import { GET as wallpaperJson } from "../app/api/wallpapers/[locale]/[ssd]/route";
+import { GET as searchWallpapers } from "../app/api/waterfall/route";
+import { GET as wallpaperText } from "../app/[locale]/wallpaper/[ssd]/text/route";
 import { config, middleware } from "../middleware";
 
 const origin = "https://bing.xc2f.com";
@@ -61,4 +65,50 @@ test("Earth Markdown links to the archive filters used by Earth albums", async (
   const response = await markdown("/en/earth");
   assert.equal(response.status, 200);
   assert.match(await response.text(), /\/en\?country=/);
+});
+
+test("search results link to JSON details and text formats share available details", async () => {
+  const locale = "zh";
+  const ssd = "20261029";
+  const results = await searchWallpapers(new NextRequest(origin + "/api/waterfall?locale=zh&q=ssd%3A20261029"));
+  const { items } = await results.json();
+  assert.equal(items[0].detailApiHref, `/api/wallpapers/${locale}/${ssd}`);
+
+  const request = new Request(origin + items[0].detailApiHref);
+  const params = Promise.resolve({ locale, ssd });
+  const detail = await wallpaperJson(request, { params });
+  assert.equal(detail.status, 200);
+  assert.equal(detail.headers.get("content-language"), "zh-CN");
+  const { headline, quickFact, location, bingUrl } = await detail.json();
+  assert.equal(headline, "薄雾邂逅千年时光");
+  assert.match(quickFact, /埃夫伯里/);
+  assert.equal(location.precision, "exact");
+  assert.equal(location.points[0].latitude, 51.42898);
+  assert.match(location.mapUrl, /^https:\/\/www\.openstreetmap\.org\//);
+  assert.match(bingUrl, /^https:\/\/www\.bing\.com\/search\?/);
+
+  const markdownBody = await (await markdown(`/${locale}/wallpaper/${ssd}`)).text();
+  const textBody = await (await wallpaperText(request, { params })).text();
+  for (const body of [markdownBody, textBody]) {
+    for (const value of [headline, quickFact, location.name, location.mapUrl, bingUrl]) {
+      assert.ok(body.includes(value));
+    }
+  }
+});
+
+test("localized filter IDs can be used directly in search and approximate coordinates are marked", async () => {
+  const options = await filterOptions(new Request(origin + "/api/filters?locale=zh"));
+  assert.equal(options.status, 200);
+  const { countries } = await options.json();
+  const canada = countries.find(({ id }: { id: string }) => id === "CA");
+  assert.equal(canada.name, "加拿大");
+  assert.ok(canada.count > 0);
+  const search = await searchWallpapers(new NextRequest(origin + `/api/waterfall?locale=zh&country=${canada.id}`));
+  assert.ok((await search.json()).totalCount > 0);
+  const detail = await wallpaperJson(new Request(origin), { params: Promise.resolve({ locale: "zh", ssd: "20261102" }) });
+  const { location } = await detail.json();
+  assert.equal(location.precision, "country");
+  assert.equal(location.mapUrl, undefined);
+  assert.equal((await filterOptions(new Request(origin + "/api/filters"))).status, 400);
+  assert.equal((await wallpaperJson(new Request(origin), { params: Promise.resolve({ locale: "zh", ssd: "unknown" }) })).status, 404);
 });

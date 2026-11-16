@@ -79,14 +79,28 @@ export async function GET(
         headers: { ...headers, Location: localizePath(locale, `/wallpaper/${item.Ssd}`) },
       });
     }
-    const { title, description, copyright, date, source, image, translationNotice } = wallpaperDocument(item, locale);
+    const { title, headline, description, quickFact, location, bingUrl, copyright, date, source, image, translationNotice } =
+      wallpaperDocument(item, locale);
+    const locationValue = location && [
+      escapeMarkdown(location.placeName),
+      location.mapUrl && markdownLink("OpenStreetMap", location.mapUrl),
+    ].filter(Boolean).join(" · ");
     const facts = [
       date && `- ${dictionary.detailDate}: ${escapeMarkdown(date)}`,
       copyright && `- ${dictionary.detailCopyright}: ${escapeMarkdown(copyright)}`,
+      location && locationValue && `- ${location.locationLabel}: ${locationValue}`,
       `- ${markdownLink(dictionary.detailLabel, source)}`,
       image && `- ${markdownLink(dictionary.detailOpenFull, image)}`,
+      bingUrl && `- ${markdownLink(dictionary.detailLearnMoreOnBing, bingUrl)}`,
     ].filter(Boolean).join("\n");
-    body = [`# ${escapeMarkdown(title)}`, escapeMarkdown(description), escapeMarkdown(translationNotice), facts].filter(Boolean).join("\n\n");
+    body = [
+      `# ${escapeMarkdown(title)}`,
+      headline && `*${escapeMarkdown(headline)}*`,
+      escapeMarkdown(description),
+      escapeMarkdown(translationNotice),
+      quickFact && `**${escapeMarkdown(dictionary.detailQuickFact)}**\n\n${escapeMarkdown(quickFact)}`,
+      facts,
+    ].filter(Boolean).join("\n\n");
   } else {
     return new Response(null, { status: 404, headers });
   }

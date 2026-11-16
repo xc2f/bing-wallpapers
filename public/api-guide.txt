@@ -13,17 +13,28 @@ Use uppercase AND, OR, and NOT with parentheses to combine conditions.
 URL-encode the search expression. Malformed expressions yield no matches.
 
 The year (YYYY), month (MM), category, tag, and country filters intersect
-with q and with one another. Use the category, tag, and country identifiers
-from the gallery URLs.
+with q and with one another. GET /api/filters?locale=zh returns the valid IDs,
+localized names, and distinct image counts in categories, tags, and
+countries. Pass an ID to the corresponding filter parameter.
 
 The response contains items, page, totalCount, and totalPages. Page numbers
 start at 1. Request page + 1 with the same filters while page < totalPages.
 An empty result has items=[] and totalPages=1. Each item includes a title,
-description, localized archive date, and site-relative detailHref. Resolve
-detailHref against the site origin. Image URLs are empty when unavailable.
+description, localized archive date, detailHref, and detailApiHref. Resolve
+both paths against the site origin. Image URLs are empty when unavailable.
+
+GET /api/wallpapers/zh/20261029 returns JSON detail for that wallpaper.
+It provides the title, description, archive date, copyright, source page,
+and image URLs. headline, quickFact, bingUrl, and location are included when
+available. Each location point has latitude, longitude, and a label.
+Location precision is exact for Bing coordinates and country for
+representative country or region points. Only exact locations include mapUrl.
+Unsupported locales return HTTP 400. Unknown wallpaper IDs return HTTP 404.
+Aliases redirect to the canonical ID with HTTP 308.
 
 The wallpaper detail URL also supports Accept: text/markdown. Append /text
-to a localized detail URL to request UTF-8 plain text.
+to a localized detail URL to request UTF-8 plain text. These formats also
+include the available headline, quick fact, location, and Bing link.
 
 OpenAPI specification: /openapi.json
 API catalog: /.well-known/api-catalog
