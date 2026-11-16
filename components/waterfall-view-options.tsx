@@ -201,10 +201,10 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
         aria-haspopup="dialog"
         aria-controls={panelId}
         onClick={() => setOpen((current) => !current)}
-        className={`flex cursor-pointer items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-stone-100 transition-colors duration-200 ${
+        className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 transition-colors duration-200 ${
           compact
-            ? "theme-waterfall-mode-switch bg-stone-950/78 backdrop-blur theme-floating-button-hover"
-            : "bg-transparent theme-button-hover"
+            ? "theme-floating-control backdrop-blur"
+            : "border-white/10 bg-transparent text-stone-100 theme-button-hover"
         }`}
       >
         {heading}

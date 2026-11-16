@@ -843,15 +843,15 @@ export default function WaterfallGallery({
                     )}
                   </PreserveScrollLink>
 
-                  <div className="space-y-4 p-5">
-                    {showDate && <p className="text-xs tabular-nums text-stone-500">
+                  <div className="p-5">
+                    {showDate && <p className={`text-xs tabular-nums text-stone-500 ${showTitle ? "mb-2" : "mb-3"}`}>
                       {item.fullDate ?? item.ssd}
                     </p>}
-                    {showTitle && <h2 className={`text-lg font-medium leading-6 text-white ${view.grid ? "h-12" : ""}`}>
+                    {showTitle && <h2 className={`mb-3 text-lg font-medium leading-6 text-white ${view.grid ? "h-12" : ""}`}>
                       <PreserveScrollLink
                         href={createDetailHref(item.detailHref)}
                         title={item.title}
-                        className={`break-words transition hover:text-amber-200 ${view.grid ? "line-clamp-2" : "block"}`}
+                        className={`break-words decoration-1 underline-offset-4 hover:underline focus-visible:underline ${view.grid ? "line-clamp-2" : "block"}`}
                       >
                         {item.title}
                       </PreserveScrollLink>
@@ -887,7 +887,7 @@ export default function WaterfallGallery({
                     key={item.ssd}
                     data-waterfall-index={visibleItemIndexMap.get(item.ssd)}
                     data-waterfall-ssd={item.ssd}
-                    className="group relative min-w-0 overflow-hidden bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
+                    className="relative min-w-0 overflow-hidden bg-white/[0.02] shadow-[0_10px_30px_rgba(0,0,0,0.16)]"
                     style={{ borderRadius: appearance.imageRadius }}
                   >
                     <PreserveScrollLink
@@ -921,16 +921,20 @@ export default function WaterfallGallery({
                       )}
 
                     </PreserveScrollLink>
-                    {(showTitle || showDate) && <div className="theme-waterfall-image-caption pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/28 to-transparent px-4 pb-4 pt-12 opacity-100 transition duration-300 sm:opacity-80 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
-                      {showTitle && <p className="theme-waterfall-image-title break-words text-sm font-medium leading-6 text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.32)]">
+                    {(showTitle || showDate) && <div
+                      className={`theme-waterfall-image-caption ${view.grid ? "px-3 py-2" : "pointer-events-none absolute inset-x-0 bottom-0 space-y-1 px-4 pb-4"}`}
+                      data-grid={view.grid || undefined}
+                    >
+                      {showTitle && <p className="break-words text-sm font-semibold leading-5 text-white">
                         <PreserveScrollLink
                           href={createDetailHref(item.detailHref)}
-                          className="pointer-events-auto block w-fit max-w-full rounded-sm hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                          title={view.grid ? item.title : undefined}
+                          className={`pointer-events-auto block w-fit max-w-full rounded-sm decoration-1 underline-offset-4 hover:underline focus-visible:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current ${view.grid ? "truncate" : ""}`}
                         >
                           {item.title}
                         </PreserveScrollLink>
                       </p>}
-                      {showDate && <p className="theme-waterfall-image-date mt-1 text-xs tabular-nums text-stone-200/72">
+                      {showDate && <p className="text-xs tabular-nums text-stone-400">
                         {item.fullDate ?? item.ssd}
                       </p>}
                     </div>}

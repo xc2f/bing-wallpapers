@@ -103,7 +103,7 @@ export default function ScrollToTopButton({
       type="button"
       aria-label={label}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`theme-scroll-top fixed bottom-[calc(1.25rem_+_env(safe-area-inset-bottom))] right-5 z-30 inline-flex items-center justify-center rounded-full border border-white/10 bg-stone-950/78 text-xs tabular-nums text-stone-200 shadow-[0_12px_30px_rgba(0,0,0,0.28)] backdrop-blur transition duration-200 theme-floating-button-hover hover:text-white sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-3 sm:py-2 ${hasPosition ? "gap-3 px-3 py-2" : "h-14 w-14 p-0"}`}
+      className={`theme-scroll-top theme-floating-control fixed bottom-[calc(1.25rem_+_env(safe-area-inset-bottom))] right-5 z-30 inline-flex items-center justify-center rounded-full border text-xs tabular-nums backdrop-blur transition duration-200 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-3 sm:py-2 ${hasPosition ? "gap-3 px-3 py-2" : "h-14 w-14 p-0"}`}
     >
       <span className="relative flex h-9 w-9 shrink-0 items-center justify-center">
         <svg
@@ -116,7 +116,7 @@ export default function ScrollToTopButton({
             cy="18"
             r={ringRadius}
             fill="none"
-            stroke="rgba(255,255,255,0.12)"
+            stroke="rgb(var(--theme-border-rgb) / 0.12)"
             strokeWidth="2"
           />
           <circle
@@ -124,8 +124,9 @@ export default function ScrollToTopButton({
             cy="18"
             r={ringRadius}
             fill="none"
+            className="scroll-top-progress"
             stroke="rgb(var(--theme-accent-ring-rgb))"
-            strokeWidth="2.5"
+            strokeWidth="2"
             strokeLinecap="round"
             strokeDasharray={ringCircumference}
             strokeDashoffset={ringDashOffset}
@@ -134,7 +135,7 @@ export default function ScrollToTopButton({
         <svg
           viewBox="0 0 16 16"
           aria-hidden="true"
-          className="scroll-top-arrow absolute h-3.5 w-3.5 text-stone-100"
+          className="scroll-top-arrow absolute h-3.5 w-3.5"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
