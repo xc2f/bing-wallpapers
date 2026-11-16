@@ -5,9 +5,34 @@ import data from "../db/media_contents.json";
 import { GET } from "../app/api/waterfall/route";
 import {
   getAllWallpapers, getWallpaperBySsd, getAdjacentWallpapers, selectWallpaperRecords,
-  getRelatedWallpapers, getTranslationSource, searchWallpapers,
+  getRelatedWallpapers, getTranslationSource, getWallpaperMapLocation, searchWallpapers,
 } from "../lib/archive";
 import { locales, formatArchiveDate } from "../lib/i18n";
+
+test("structured map locations take priority over legacy links and invalid coordinates fall back", () => {
+  const wallpaper = {
+    Ssd: "20261027",
+    MapLocation: { latitude: 0, longitude: -83.44, label: " 本地地名 " },
+    ImageContent: { MapLink: { Url: "/geo/REST/v1/Imagery/Map/Road/32,-84/8" } },
+  };
+  assert.deepEqual(getWallpaperMapLocation(wallpaper), { point: [-83.44, 0], label: "本地地名" });
+  assert.deepEqual(getWallpaperMapLocation({
+    ...wallpaper, MapLocation: { ...wallpaper.MapLocation, latitude: 91 },
+  })?.point, [-84, 32]);
+});
+
+test("a quick fact can have a translation source independent of the wallpaper description", () => {
+  const source = getAllWallpapers("zh")[0];
+  const wallpaper = {
+    Ssd: source.Ssd,
+    imageId: source.imageId,
+    FieldTranslations: {
+      "QuickFact.MainText": { generatedBy: "AI", sourceLocale: "zh" as const, sourceSsd: source.Ssd },
+    },
+  };
+  assert.equal(getTranslationSource(wallpaper), undefined);
+  assert.equal(getTranslationSource(wallpaper, "QuickFact.MainText"), source);
+});
 
 test("each locale only shows its own records without English fallback", () => {
   const fallback = data.mediaContents[data.fallbackLocale as typeof locales[number]];

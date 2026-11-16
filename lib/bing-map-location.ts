@@ -2,6 +2,16 @@ export type MapPoint = [longitude: number, latitude: number];
 
 export type MapLocation = { point: MapPoint; label?: string };
 
+export type ArchiveMapLocation = { longitude: number; latitude: number; label?: string | null };
+
+export function normalizeArchiveMapLocation(value?: ArchiveMapLocation | null): MapLocation | undefined {
+  if (!value) return;
+  const { longitude, latitude, label } = value;
+  if (!Number.isFinite(longitude) || Math.abs(longitude) > 180 ||
+      !Number.isFinite(latitude) || Math.abs(latitude) > 90) return;
+  return { point: [longitude, latitude], label: label?.trim() || undefined };
+}
+
 export function parseBingMapLocation(value?: string): MapLocation | undefined {
   if (!value) return;
   let url: URL;

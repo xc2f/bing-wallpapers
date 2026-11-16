@@ -142,12 +142,8 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
   const descriptionParagraphs = splitDescriptionIntoParagraphs(description, currentLocale);
   const headline = getBingHeadline(wallpaper.ImageContent?.Headline);
   const quickFact = wallpaper.ImageContent?.QuickFact?.MainText?.trim();
+  const quickFactTranslation = wallpaper.FieldTranslations?.["QuickFact.MainText"];
   const translation = wallpaper.Translation;
-  const translationNotice = translation?.generatedBy === "AI"
-    ? translation.reviewedByHuman === false
-      ? dictionary.aiTranslationUnreviewedNotice
-      : dictionary.aiTranslationNotice
-    : undefined;
   const backstagePath = wallpaper.ImageContent?.BackstageUrl;
   const backstageUrl = backstagePath?.startsWith("/search?")
     ? `https://www.bing.com${backstagePath}`
@@ -180,13 +176,13 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
     </a>
   ) : null;
   const imageActions = downloadUrl || previewUrl ? (
-    <div className={previewUrl ? "grid grid-cols-2 gap-2.5" : "grid"}>
+    <div className={previewUrl ? "grid grid-cols-2 gap-2.5 lg:flex lg:flex-wrap lg:items-center lg:gap-x-3 lg:gap-y-1" : "grid lg:flex"}>
       {downloadUrl ? (
         <a
           href={downloadUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-amber-300 px-2 py-2 text-center text-sm font-medium text-stone-950 transition hover:bg-amber-200"
+          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-amber-300 px-2 py-2 text-center text-sm font-medium text-stone-950 transition hover:bg-amber-200 lg:px-4"
         >
           {dictionary.detailOpenFull}
         </a>
@@ -196,7 +192,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           href={previewUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full border border-white/15 px-2 py-2 text-center text-sm font-medium text-white transition theme-button-hover"
+          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full px-2 py-2 text-center text-sm font-medium max-lg:border max-lg:border-[rgb(var(--theme-border-rgb)/0.15)] max-lg:text-[rgb(var(--theme-text-strong-rgb))] max-lg:hover:bg-[rgb(var(--theme-overlay-rgb)/var(--theme-button-hover-opacity))] lg:px-1 lg:text-[rgb(var(--theme-accent-text-rgb))] lg:underline-offset-4 lg:hover:underline lg:focus-visible:underline"
         >
           {dictionary.detailOpenPreview}
         </a>
@@ -291,15 +287,23 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                 translation={translation}
                 source={getTranslationSource(wallpaper)}
                 dictionary={dictionary}
-                notice={translationNotice}
-                className="detail-translation-note mt-3 pt-2.5"
+                className="mt-3"
               />
               {quickFact ? (
-                <div className="detail-quick-fact mt-4 rounded-e-lg px-3 py-2.5 sm:flex sm:items-baseline sm:gap-3">
-                  <h2 className="shrink-0 text-xs font-semibold">{dictionary.detailQuickFact}</h2>
-                  <p className="mt-1 min-w-0 whitespace-pre-line break-words text-sm leading-relaxed text-stone-200 sm:mt-0">
-                    {quickFact}
-                  </p>
+                <div className="detail-quick-fact mt-4 rounded-e-lg px-3 py-2.5">
+                  <div className="sm:flex sm:items-baseline sm:gap-3">
+                    <h2 className="shrink-0 text-xs font-semibold">{dictionary.detailQuickFact}</h2>
+                    <p className="mt-1 min-w-0 whitespace-pre-line break-words text-sm leading-relaxed text-stone-200 sm:mt-0">
+                      {quickFact}
+                    </p>
+                  </div>
+                  <TranslationNotice
+                    field="QuickFact.MainText"
+                    translation={quickFactTranslation}
+                    source={getTranslationSource(wallpaper, "QuickFact.MainText")}
+                    dictionary={dictionary}
+                    className="mt-1.5"
+                  />
                 </div>
               ) : null}
               {!previewUrl ? learnMoreLink : null}

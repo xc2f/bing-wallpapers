@@ -1,7 +1,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { getBingHeadline } from "../lib/bing-headline";
-import { parseBingMapLocation } from "../lib/bing-map-location";
-import type { WallpaperItem } from "../lib/archive";
+import { normalizeArchiveMapLocation, parseBingMapLocation } from "../lib/bing-map-location";
+import type { TranslationMetadata, WallpaperItem } from "../lib/archive";
 
 const source = new URL("../db/media_contents.json", import.meta.url);
 const output = new URL("../db/media_contents.runtime.json", import.meta.url);
@@ -14,14 +14,21 @@ const { schemaVersion, defaultLocale, fallbackLocale, mediaContents } = JSON.par
   mediaContents: Record<string, WallpaperItem[]>;
 };
 
+function selectTranslationFields(translation?: TranslationMetadata): TranslationMetadata | undefined {
+  if (!translation) return;
+  const { generatedBy, reviewedByHuman, sourceLocale, sourceSsd, originalText } = translation;
+  return { generatedBy, reviewedByHuman, sourceLocale, sourceSsd, originalText };
+}
+
 function selectRuntimeFields(item: WallpaperItem): WallpaperItem {
-  const { Ssd, FullDateString, imageId, ImageContent, Translation } = item;
+  const { Ssd, FullDateString, imageId, ImageContent, MapLocation, Translation, FieldTranslations } = item;
   const quickFact = ImageContent?.QuickFact?.MainText?.trim();
+  const quickFactTranslation = selectTranslationFields(FieldTranslations?.["QuickFact.MainText"]);
   return {
     Ssd,
     FullDateString,
     imageId,
-    mapLocation: parseBingMapLocation(ImageContent?.MapLink?.Url),
+    mapLocation: normalizeArchiveMapLocation(MapLocation) ?? parseBingMapLocation(ImageContent?.MapLink?.Url),
     ImageContent: ImageContent && {
       Title: ImageContent.Title,
       Headline: getBingHeadline(ImageContent.Headline),
@@ -35,13 +42,8 @@ function selectRuntimeFields(item: WallpaperItem): WallpaperItem {
         Downloadable: ImageContent.Image.Downloadable,
       },
     },
-    Translation: Translation && {
-      generatedBy: Translation.generatedBy,
-      reviewedByHuman: Translation.reviewedByHuman,
-      sourceLocale: Translation.sourceLocale,
-      sourceSsd: Translation.sourceSsd,
-      originalText: Translation.originalText,
-    },
+    Translation: selectTranslationFields(Translation),
+    FieldTranslations: quickFactTranslation ? { "QuickFact.MainText": quickFactTranslation } : undefined,
   };
 }
 

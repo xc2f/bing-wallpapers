@@ -41,7 +41,7 @@ export default function DetailLocationMap({ wallpaper, countries, locale }: {
   const centerX = (Math.min(...xs) + Math.max(...xs)) / 2;
   const centerY = (Math.min(...ys) + Math.max(...ys)) / 2;
 
-  const placeName = regionNames || mapLocation?.label;
+  const placeName = mapLocation?.label || regionNames;
   const locationLabel = exactPoint ? dictionary.detailLocation : dictionary.detailApproximateRegion;
   const mapUrl = exactPoint
     ? `https://www.openstreetmap.org/?mlat=${exactPoint[1]}&mlon=${exactPoint[0]}#map=12/${exactPoint[1]}/${exactPoint[0]}`

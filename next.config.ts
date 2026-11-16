@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 import { resolve } from "node:path";
 
 const url = new URL(process.env.BASE_URL || "https://www.bing.com")
@@ -26,6 +27,12 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig;
+export default function config(phase: string): NextConfig {
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    // Keep production prerenders out of the local development server.
+    return { ...nextConfig, distDir: ".next-dev" };
+  }
+  return nextConfig;
+}
 
 import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());

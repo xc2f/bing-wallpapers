@@ -1,4 +1,4 @@
-import { localizeBingMapLabel, parseBingMapLocation, type MapLocation } from "@/lib/bing-map-location";
+import { localizeBingMapLabel, normalizeArchiveMapLocation, parseBingMapLocation, type ArchiveMapLocation, type MapLocation } from "@/lib/bing-map-location";
 import { searchWallpapers } from "@/lib/wallpaper-search";
 export { searchWallpapers, getSearchHighlightTerms, hasWallpaperSearchMatch } from "@/lib/wallpaper-search";
 import { filterWallpapersByTaxonomy, getImageTaxonomy } from "@/lib/image-taxonomy";
@@ -20,7 +20,9 @@ export interface TranslationMetadata {
 export interface WallpaperItem {
   imageId?: string;
   mapLocation?: MapLocation;
+  MapLocation?: ArchiveMapLocation;
   Translation?: TranslationMetadata;
+  FieldTranslations?: { "QuickFact.MainText"?: TranslationMetadata };
   Ssd: string;
   FullDateString?: string;
   ImageContent?: {
@@ -133,8 +135,13 @@ export function getWallpaperBySsd(ssd: string, locale: Locale = defaultLocale) {
 
 let mapLocationsByImage: Map<string, { location: MapLocation; title?: string }> | undefined;
 
+function getLocalMapLocation(wallpaper: WallpaperItem) {
+  return normalizeArchiveMapLocation(wallpaper.MapLocation) ?? wallpaper.mapLocation ??
+    parseBingMapLocation(wallpaper.ImageContent?.MapLink?.Url);
+}
+
 export function getWallpaperMapLocation(wallpaper: WallpaperItem) {
-  const localLocation = wallpaper.mapLocation ?? parseBingMapLocation(wallpaper.ImageContent?.MapLink?.Url);
+  const localLocation = getLocalMapLocation(wallpaper);
   if (localLocation || !wallpaper.imageId) return localLocation;
 
   // Bing sometimes provides map data for the same image in only one language.
@@ -143,7 +150,7 @@ export function getWallpaperMapLocation(wallpaper: WallpaperItem) {
     for (const items of Object.values(wallpaperArchive.mediaContents)) {
       for (const item of items) {
         if (!item.imageId || mapLocationsByImage.has(item.imageId)) continue;
-        const location = item.mapLocation ?? parseBingMapLocation(item.ImageContent?.MapLink?.Url);
+        const location = getLocalMapLocation(item);
         if (location) mapLocationsByImage.set(item.imageId, { location, title: item.ImageContent?.Title });
       }
     }
@@ -154,8 +161,8 @@ export function getWallpaperMapLocation(wallpaper: WallpaperItem) {
   return label ? { ...source.location, label } : source.location;
 }
 
-export function getTranslationSource(wallpaper: WallpaperItem) {
-  const translation = wallpaper.Translation;
+export function getTranslationSource(wallpaper: WallpaperItem, field?: "QuickFact.MainText") {
+  const translation = field ? wallpaper.FieldTranslations?.[field] : wallpaper.Translation;
   if (translation?.generatedBy !== "AI" || !translation.sourceLocale || !translation.sourceSsd) {
     return undefined;
   }
