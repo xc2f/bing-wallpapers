@@ -31,7 +31,6 @@ export default function DetailLocationMap({ wallpaper, locale }: {
       <DetailMapViewport
         key={wallpaper.Ssd}
         positions={positions}
-        approximateLabel={exactPoint ? undefined : dictionary.detailApproximateRegion}
         initialView={{ x: centerX, y: centerY, zoom }}
         labels={{
           map: dictionary.detailLocation,

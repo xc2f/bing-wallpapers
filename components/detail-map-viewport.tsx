@@ -34,9 +34,8 @@ function midpoint(first: Position, second: Position) {
   return { x: (first.x + second.x) / 2, y: (first.y + second.y) / 2 };
 }
 
-export default function DetailMapViewport({ positions, approximateLabel, initialView, labels }: {
+export default function DetailMapViewport({ positions, initialView, labels }: {
   positions: (Position & { label: string })[];
-  approximateLabel?: string;
   initialView: MapView;
   labels: { map: string; zoomIn: string; zoomOut: string; reset: string };
 }) {
@@ -240,7 +239,6 @@ export default function DetailMapViewport({ positions, approximateLabel, initial
             }}
           >
             <p className="break-words text-xs font-semibold">{activeMarker.label}</p>
-            {approximateLabel ? <p className="mt-0.5 text-xs text-stone-400">{approximateLabel}</p> : null}
           </div>
         ) : null}
       </div>
