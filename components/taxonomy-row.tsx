@@ -60,10 +60,10 @@ export default function TaxonomyRow({ label, children, expandLabel, collapseLabe
   }
 
   return (
-    <nav aria-label={label} data-expanded={open || undefined} className="filter-tags-row relative grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-2 pb-1">
+    <nav aria-label={label} data-expanded={open || undefined} className="filter-tags-row relative grid min-w-0 grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-1 lg:grid-cols-[auto_minmax(0,1fr)_auto]">
       <span className="filter-row-label py-1 font-medium text-stone-400">{label}</span>
       <div id={listId} ref={listRef}
-        className={`col-span-2 row-start-2 flex min-w-0 flex-wrap items-start gap-x-2 ${open ? "max-h-48 content-start gap-y-2 overflow-y-auto sm:max-h-none sm:overflow-visible" : "max-h-8 gap-y-2 overflow-hidden supports-[overflow:clip]:overflow-clip"} ${showScrollCue ? "max-sm:[mask-image:linear-gradient(black_calc(100%_-_4rem),transparent)]" : ""}`}>
+        className={`col-span-2 row-start-2 flex min-w-0 flex-wrap items-start gap-x-2 lg:col-span-1 lg:col-start-2 lg:row-start-1 ${open ? "max-h-48 content-start gap-y-2 overflow-y-auto sm:max-h-none sm:overflow-visible" : "max-h-8 gap-y-2 overflow-hidden supports-[overflow:clip]:overflow-clip"} ${showScrollCue ? "max-sm:[mask-image:linear-gradient(black_calc(100%_-_4rem),transparent)]" : ""}`}>
         {options.map((option, index) => (
           <span key={index} className="inline-flex shrink-0" inert={!open && index >= visibleCount} aria-hidden={!open && index >= visibleCount ? true : undefined}>
             {option}
@@ -73,7 +73,7 @@ export default function TaxonomyRow({ label, children, expandLabel, collapseLabe
       {canExpand || open ? (
         <button type="button" aria-expanded={open} aria-controls={listId}
           onClick={toggleExpanded}
-          className="filter-row-toggle col-start-2 row-start-1 inline-flex h-8 shrink-0 items-center justify-self-end gap-1 rounded-lg px-2 text-xs text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300">
+          className="filter-row-toggle col-start-2 row-start-1 inline-flex h-8 shrink-0 items-center justify-self-end gap-1 rounded-lg px-2 text-xs text-stone-400 transition theme-button-hover hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300 lg:col-start-3">
           {open ? collapseLabel : expandLabel}
           <svg aria-hidden="true" viewBox="0 0 16 16" fill="none"
             className={`block h-4 w-4 shrink-0 ${open ? "rotate-180" : ""}`}>

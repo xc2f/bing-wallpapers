@@ -73,7 +73,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
         return <FilterLink key={id} href={href("category", active ? "" : id)} scroll={false} aria-current={active ? "true" : undefined} className={className} aria-label={active && id ? `${taxonomyUiLabel("remove", locale)}: ${name}` : name}>{content}</FilterLink>;
       }
 
-      return <nav aria-label={label} className="filter-category-section">
+      return <nav aria-label={label}>
         <div className="filter-category-grid">{categoryTile("")}{options.map(([id, count]) => categoryTile(id, count))}</div>
       </nav>;
     }
@@ -119,7 +119,7 @@ export default function TaxonomyBrowser({ items, locale, filters, pathname = "",
     );
   }
   return (
-    <section className="filter-taxonomy filter-label-columns" style={{ "--filter-label-width": filterLabelWidths[locale] } as CSSProperties}>
+    <section className="filter-taxonomy filter-label-columns space-y-3" style={{ "--filter-label-width": filterLabelWidths[locale] } as CSSProperties}>
       {fields.map((field) => <div key={field}>{row(field)}</div>)}
     </section>
   );

@@ -174,13 +174,13 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
     </a>
   ) : null;
   const imageActions = downloadUrl || previewUrl ? (
-    <div className={previewUrl ? "grid grid-cols-2 gap-2.5 lg:flex lg:flex-wrap lg:items-center lg:gap-x-3 lg:gap-y-1" : "grid lg:flex"}>
+    <div className={previewUrl ? "grid grid-cols-2 gap-2.5" : "grid lg:flex"}>
       {downloadUrl ? (
         <a
           href={downloadUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-amber-300 px-2 py-2 text-center text-sm font-medium text-stone-950 transition hover:bg-amber-200 lg:px-4"
+          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-amber-300 px-2 py-2 text-center text-sm font-medium text-stone-950 transition hover:bg-amber-200"
         >
           {dictionary.detailOpenFull}
         </a>
@@ -190,7 +190,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           href={previewUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full px-2 py-2 text-center text-sm font-medium max-lg:border max-lg:border-[rgb(var(--theme-border-rgb)/0.15)] max-lg:text-[rgb(var(--theme-text-strong-rgb))] max-lg:hover:bg-[rgb(var(--theme-overlay-rgb)/var(--theme-button-hover-opacity))] lg:px-1 lg:text-[rgb(var(--theme-accent-text-rgb))] lg:underline-offset-4 lg:hover:underline lg:focus-visible:underline"
+          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-[rgb(var(--theme-overlay-rgb)/0.06)] px-2 py-2 text-center text-sm font-medium text-[rgb(var(--theme-text-strong-rgb))] transition hover:bg-[rgb(var(--theme-overlay-rgb)/0.1)]"
         >
           {dictionary.detailOpenPreview}
         </a>
@@ -325,14 +325,6 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
                     </dt>
                     <dd className="min-w-0 break-words text-right tabular-nums text-stone-200">
                       {formattedDate}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="text-xs text-stone-400">
-                      {dictionary.detailArchiveId}
-                    </dt>
-                    <dd className="min-w-0 break-words text-right font-mono text-stone-300">
-                      {wallpaper.Ssd}
                     </dd>
                   </div>
                 </dl>

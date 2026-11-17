@@ -576,7 +576,6 @@ html[data-theme-resolved="light"] .theme-detail-page {
 }
 
 .theme-detail-aside {
-  border: 1px solid rgb(var(--theme-border-rgb) / 0.1);
   background: rgb(var(--theme-overlay-rgb) / 0.025);
 }
 
@@ -1196,17 +1195,13 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
   }
 }
 
-.filter-category-section {
-  padding-block: 0.875rem;
-}
-
 .filter-category-grid {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(9rem, 1fr);
-  gap: 0.625rem;
+  grid-auto-columns: minmax(7.25rem, 1fr);
+  gap: 0.5rem;
   overflow-x: auto;
-  padding: 6px 6px 0.625rem;
+  padding: 6px;
   margin-inline: -6px;
   scroll-snap-type: x proximity;
   /* Keep the selected ring and keyboard outline inside the scroll viewport
@@ -1219,7 +1214,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 .filter-category-card {
   position: relative;
   display: block;
-  height: 8rem;
+  height: 6rem;
   overflow: hidden;
   border-radius: 0.875rem;
   background: #262b2b;
@@ -1246,14 +1241,14 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 
 .filter-category-art {
   position: absolute;
-  top: 1.125rem;
-  left: 1rem;
+  top: 0.75rem;
+  left: 0.75rem;
   color: #d7ddc4;
 }
 
 .filter-category-art svg {
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 1.625rem;
+  height: 1.625rem;
   stroke: currentColor;
   stroke-width: 1.2;
 }
@@ -1261,7 +1256,7 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
 .filter-category-caption {
   position: absolute;
   inset-inline: 0.75rem;
-  bottom: 0.875rem;
+  bottom: 0.625rem;
   display: flex;
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -1482,12 +1477,8 @@ html[data-theme-resolved="light"] .theme-detail-related-card:hover {
     --filter-column-gap: 0.625rem;
   }
 
-  .filter-category-grid {
-    grid-auto-columns: 9rem;
-  }
-
   .filter-category-card {
-    height: 7.5rem;
+    height: 5.5rem;
   }
 
   .filter-row-toggle {

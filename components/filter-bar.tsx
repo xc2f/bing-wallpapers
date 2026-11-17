@@ -326,7 +326,7 @@ export default function FilterBar({
   return (
     <section aria-label={taxonomyUiLabel("filters", locale)} aria-busy={isPending} className="relative">
       <div
-        className="filter-panel relative rounded-[1.75rem] p-5 sm:px-7"
+        className="filter-panel relative rounded-[1.75rem] px-4 py-3 sm:px-5 sm:py-4"
         data-pending={isPending || undefined}
       >
         <FilterHeading locale={locale} compact>
@@ -352,7 +352,7 @@ export default function FilterBar({
         />
         <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-3">
 
-          <div id={filterContentId} hidden={collapsed} className="space-y-4">
+          <div id={filterContentId} hidden={collapsed} className="space-y-3">
             {!collapsed ? (
               <div className="filter-search-toolbar grid grid-cols-2 items-end gap-3 lg:grid-cols-[minmax(0,1fr)_11rem_11rem]">
                 <div ref={searchAreaRef} className="wallpaper-search relative col-span-2 min-w-0 lg:col-span-1">
