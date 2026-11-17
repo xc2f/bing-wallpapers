@@ -2,12 +2,15 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
+import FavoriteButton from "@/components/favorite-button";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
+import { matchesWallpaperShortcut } from "@/lib/wallpaper-shortcuts";
 import { WATERFALL_BATCH_SIZE } from "@/lib/waterfall-pagination";
 import type { Locale } from "@/lib/i18n";
 
 export interface SlideshowItem {
   ssd: string;
+  imageId?: string;
   title: string;
   fullDate?: string;
   copyright?: string;
@@ -84,6 +87,7 @@ export default function WaterfallSlideshow({
   const [failed, setFailed] = useState(false);
   const [controlsHidden, setControlsHidden] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
+  const detailsLinkRef = useRef<HTMLAnchorElement>(null);
   const playbackButtonRef = useRef<HTMLButtonElement>(null);
   const mountedRef = useRef(false);
   const loadingRef = useRef(false);
@@ -390,10 +394,16 @@ export default function WaterfallSlideshow({
       onPointerDown={revealControls}
       onKeyDown={(event) => {
         revealControls();
-        if (event.key === "Escape") {
+        if (event.key === "Escape" || matchesWallpaperShortcut(event.nativeEvent, "backspace")) {
           event.preventDefault();
           event.stopPropagation();
           onClose();
+          return;
+        }
+
+        if (matchesWallpaperShortcut(event.nativeEvent, "o")) {
+          event.preventDefault();
+          detailsLinkRef.current?.click();
           return;
         }
 
@@ -493,6 +503,7 @@ export default function WaterfallSlideshow({
       <button
         type="button"
         aria-label={close}
+        aria-keyshortcuts="Escape Backspace"
         title={close}
         className={`${controlClass} absolute right-[max(0.75rem,env(safe-area-inset-right))] top-[max(0.75rem,env(safe-area-inset-top))] motion-safe:transition-[background-color,opacity] ${controlsVisibility}`}
         onClick={onClose}
@@ -505,7 +516,10 @@ export default function WaterfallSlideshow({
         <div className="relative flex flex-col px-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-end sm:justify-between sm:gap-3 sm:px-6">
           <div className="min-w-0" aria-live={playing ? "off" : "polite"}>
             <PreserveScrollLink
+              ref={detailsLinkRef}
               href={detailsHref}
+              aria-keyshortcuts="O"
+              title={`${details} (O)`}
               onClick={handleDetailsClick}
               scrollAnchor={detailsScrollAnchor}
               className={`group flex min-h-11 w-fit max-w-full flex-wrap items-center content-center gap-x-3 gap-y-2 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white ${controlsVisible ? "pointer-events-auto" : ""}`}
@@ -529,6 +543,11 @@ export default function WaterfallSlideshow({
             <div className="flex min-h-0 flex-col items-end gap-2 overflow-hidden sm:overflow-visible">
               {(loading || failed) && <p className="text-right text-xs text-[#d6d3d1]" role="status">{loading ? loadingLabel : loadError}</p>}
               <div className={`flex flex-wrap justify-end gap-2 p-1 pt-3 motion-safe:transition-opacity sm:p-0 ${controlsVisibility}`}>
+                <FavoriteButton
+                  wallpaper={{ ssd: displayed.item.ssd, imageId: displayed.item.imageId, title: displayed.item.title, previewUrl: displayed.item.previewUrl }}
+                  locale={locale}
+                  controlClass={controlClass + " aria-pressed:text-[#fcd34d]"}
+                />
                 <button type="button" aria-label={previous} title={previous} className={controlClass} disabled={!canPlay || loading} onClick={() => void move(-1)}>
                   <ControlIcon name="previous" />
                 </button>

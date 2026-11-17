@@ -111,6 +111,7 @@ export const config = {
     "/wallpaper/:path*",
     "/:locale(en|zh|es|fr|de|ja|ko)",
     "/:locale(en|zh|es|fr|de|ja|ko)/earth",
+    "/:locale(en|zh|es|fr|de|ja|ko)/favorites",
     "/:locale(en|zh|es|fr|de|ja|ko)/waterfall",
     "/:locale(en|zh|es|fr|de|ja|ko)/wallpaper/:ssd",
   ],

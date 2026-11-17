@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { htmlLangMap, type Locale } from "@/lib/i18n";
 import { SITE_URL } from "@/lib/seo";
 import Script from "next/script";
+import ThemeSync from "@/components/theme-sync";
+import { THEME_COOKIE_KEY } from "@/lib/theme";
 
 export const siteMetadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -23,16 +25,14 @@ export default function SiteDocument({ children, locale }: { children: React.Rea
     <html
       lang={htmlLangMap[locale]}
       suppressHydrationWarning
-      data-theme-mode="system"
-      data-theme-resolved="dark"
     >
       <body className="bg-stone-950 text-stone-100 antialiased">
         {/* This shell is rendered exclusively by the App Router root layouts. */}
         {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
         <Script id="theme-init" strategy="beforeInteractive">{`
           (function () {
-            var storageKey = "bing-wallpapers-theme";
-            var cookieKey = "bing-wallpapers-theme";
+            var storageKey = "${THEME_COOKIE_KEY}";
+            var cookieKey = storageKey;
             var root = document.documentElement;
             var storedTheme = root.dataset.themeMode || "system";
 
@@ -71,6 +71,7 @@ export default function SiteDocument({ children, locale }: { children: React.Rea
             document.cookie = cookieKey + "=" + storedTheme + "; path=/; max-age=31536000; samesite=lax";
           })();
         `}</Script>
+        <ThemeSync />
         {children}
       </body>
     </html>

@@ -2,6 +2,8 @@
 import Link from "next/link";
 import SmartBackButton from "@/components/smart-back-button";
 import ThemeSwitcher from "@/components/theme-switcher";
+import { slideshowReturnKey } from "@/lib/slideshow-return";
+import { favoriteLabels } from "@/lib/favorite-labels";
 import EarthGalleryLink from "@/components/earth-gallery-link";
 import { localeLabels, locales, type Locale } from "@/lib/i18n";
 import { useDetailBrowse } from "@/components/detail-browse-context";
@@ -22,17 +24,20 @@ function LocaleSwitcher({ locale, languagePaths }: { locale: Locale; languagePat
   </nav>;
 }
 export default function DetailBrowseHeader({ languagePaths }: { languagePaths: Record<Locale, string> }) {
-  const { currentLocale, dictionary, searchParams: resolvedSearchParams, backHref } = useDetailBrowse();
+  const { currentLocale, dictionary, searchParams: resolvedSearchParams, backHref, backToFavorites } = useDetailBrowse();
   return (
             <div className="flex flex-wrap items-center justify-between gap-3">
               <SmartBackButton
                 fallbackHref={backHref}
-                className="inline-flex min-h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white transition theme-button-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-300"
-                label={
-                  resolvedSearchParams.view === "waterfall" && resolvedSearchParams.from === "slideshow"
-                    ? dictionary.detailBackToSlideshow
-                    : dictionary.detailBack
-                }
+                label={backToFavorites ? favoriteLabels[currentLocale].backToFavorites : dictionary.detailBack}
+                onBeforeNavigate={() => {
+                  if (backToFavorites || resolvedSearchParams.from !== "slideshow") return;
+                  try {
+                    sessionStorage.removeItem(slideshowReturnKey(backHref));
+                  } catch {
+                    // The homepage is still available when storage is disabled.
+                  }
+                }}
               />
               <div className="ml-auto flex min-w-0 flex-wrap items-center justify-end gap-3">
               <EarthGalleryLink locale={currentLocale} />

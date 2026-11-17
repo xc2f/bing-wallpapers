@@ -1,3 +1,5 @@
+import OpenWallpaperLink from "@/components/open-wallpaper-link";
+import FavoriteButton from "@/components/favorite-button";
 import detailIndexManifest from "@/db/detail-index-manifest.json";
 import { DetailBrowseProvider } from "@/components/detail-browse-context";
 import DetailBrowseHeader from "@/components/detail-browse-header";
@@ -173,18 +175,9 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
       {dictionary.detailLearnMoreOnBing}
     </a>
   ) : null;
-  const imageActions = downloadUrl || previewUrl ? (
-    <div className={previewUrl ? "grid grid-cols-2 gap-2.5" : "grid lg:flex"}>
-      {downloadUrl ? (
-        <a
-          href={downloadUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex min-h-11 min-w-0 items-center justify-center break-words rounded-full bg-amber-300 px-2 py-2 text-center text-sm font-medium text-stone-950 transition hover:bg-amber-200"
-        >
-          {dictionary.detailOpenFull}
-        </a>
-      ) : null}
+  const imageActions = (
+    <div className="grid grid-cols-2 gap-2.5">
+      {downloadUrl && <OpenWallpaperLink href={downloadUrl} label={dictionary.detailOpenFull} />}
       {previewUrl ? (
         <a
           href={previewUrl}
@@ -195,8 +188,11 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           {dictionary.detailOpenPreview}
         </a>
       ) : null}
+      <div className={downloadUrl && !previewUrl ? "" : "col-span-2"}>
+        <FavoriteButton wallpaper={{ ssd, title, imageId: wallpaper.imageId, previewUrl: previewUrl || imageUrl }} locale={currentLocale} />
+      </div>
     </div>
-  ) : null;
+  );
   return (
     <DetailBrowseProvider key={`${currentLocale}:${ssd}`} locale={currentLocale} ssd={ssd}
       initialNavigation={navigation} indexUrls={detailIndexManifest[currentLocale]}>
@@ -264,7 +260,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
             ) : null}
           </div>
 
-            {imageActions ? <div className="px-5 pt-5 sm:px-6 lg:hidden">{imageActions}</div> : null}
+            <div className="px-5 pt-5 sm:px-6 lg:hidden">{imageActions}</div>
 
             {taxonomy ? <DetailTaxonomy category={taxonomy.category} tags={taxonomy.tags} countries={taxonomy.countries} locale={currentLocale} /> : null}
 
@@ -308,7 +304,7 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
             </div>
 
               <aside className="theme-detail-aside min-w-0 w-full break-words rounded-2xl px-4 py-3 lg:self-start lg:p-4">
-                {imageActions ? <div className="mb-3 hidden lg:block">{imageActions}</div> : null}
+                <div className="mb-3 hidden lg:block">{imageActions}</div>
 
                 <dl className="detail-archive-meta text-sm">
                   <div>

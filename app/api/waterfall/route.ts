@@ -37,6 +37,7 @@ export async function GET(request: NextRequest) {
   const { page, totalPages, start, end } = waterfallPageWindow(wallpapers.length, pageValue);
   const items = wallpapers.slice(start, end).map((wallpaper) => ({
     ssd: wallpaper.Ssd,
+    imageId: wallpaper.imageId,
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
     copyright: wallpaper.ImageContent?.Copyright,

@@ -102,13 +102,16 @@ export default function ScrollToTopButton({
     <button
       type="button"
       aria-label={label}
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`theme-scroll-top theme-floating-control fixed bottom-[calc(1.25rem_+_env(safe-area-inset-bottom))] right-5 z-30 inline-flex items-center justify-center rounded-full border text-xs tabular-nums backdrop-blur transition duration-200 sm:bottom-6 sm:right-6 sm:h-auto sm:w-auto sm:gap-3 sm:px-3 sm:py-2 ${hasPosition ? "gap-3 px-3 py-2" : "h-14 w-14 p-0"}`}
+      onClick={() => window.scrollTo({
+        top: 0,
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      })}
+      className={`theme-scroll-top theme-floating-control fixed bottom-[calc(1.25rem_+_env(safe-area-inset-bottom))] right-[max(1.25rem,env(safe-area-inset-right))] z-30 inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border text-xs font-medium tabular-nums backdrop-blur transition-colors duration-200 sm:bottom-[calc(1.5rem_+_env(safe-area-inset-bottom))] sm:right-[max(1.5rem,env(safe-area-inset-right))] ${hasPosition ? "gap-2 pl-2 pr-3" : "sm:gap-2 sm:pl-2 sm:pr-3"}`}
     >
-      <span className="relative flex h-9 w-9 shrink-0 items-center justify-center">
+      <span className="relative flex size-8 shrink-0 items-center justify-center">
         <svg
           viewBox="0 0 36 36"
-          className="-rotate-90 h-9 w-9"
+          className="size-8 -rotate-90"
           aria-hidden="true"
         >
           <circle
@@ -117,7 +120,7 @@ export default function ScrollToTopButton({
             r={ringRadius}
             fill="none"
             stroke="rgb(var(--theme-border-rgb) / 0.12)"
-            strokeWidth="2"
+            strokeWidth="1.5"
           />
           <circle
             cx="18"
@@ -126,7 +129,7 @@ export default function ScrollToTopButton({
             fill="none"
             className="scroll-top-progress"
             stroke="rgb(var(--theme-accent-ring-rgb))"
-            strokeWidth="2"
+            strokeWidth="1.65"
             strokeLinecap="round"
             strokeDasharray={ringCircumference}
             strokeDashoffset={ringDashOffset}
@@ -135,20 +138,24 @@ export default function ScrollToTopButton({
         <svg
           viewBox="0 0 16 16"
           aria-hidden="true"
-          className="scroll-top-arrow absolute h-3.5 w-3.5"
+          className="scroll-top-arrow absolute size-4"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M8 13V3M8 3L4.4 6.6M8 3L11.6 6.6"
+            d="m4.5 7 3.5-3.5L11.5 7M8 3.5v9"
             stroke="currentColor"
-            strokeWidth="1"
+            strokeWidth="1.35"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </svg>
       </span>
-      {hasPosition ? <span>{currentIndex}/{totalCount}</span> : null}
+      {hasPosition ? (
+        <span>
+          {currentIndex}<span className="px-0.5 opacity-60">/</span>{totalCount}
+        </span>
+      ) : null}
       {!showPosition && <span className="hidden sm:inline">{label}</span>}
     </button>
   );

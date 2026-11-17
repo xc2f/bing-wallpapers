@@ -1,7 +1,7 @@
 "use client";
 
 import Link, { type LinkProps } from "next/link";
-import type { MouseEvent } from "react";
+import type { MouseEvent, Ref } from "react";
 
 const SCROLL_STORAGE_PREFIX = "scroll-position:";
 const SCROLL_ANCHOR_PREFIX = "scroll-anchor:";
@@ -9,6 +9,8 @@ const SCROLL_ANCHOR_SSD_PREFIX = "scroll-anchor-ssd:";
 const SCROLL_ANCHOR_OFFSET_PREFIX = "scroll-anchor-offset:";
 
 interface PreserveScrollLinkProps extends LinkProps {
+  ref?: Ref<HTMLAnchorElement>;
+  "aria-keyshortcuts"?: string;
   children: React.ReactNode;
   className?: string;
   title?: string;

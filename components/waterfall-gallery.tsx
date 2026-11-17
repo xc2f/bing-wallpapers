@@ -4,6 +4,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type MouseEvent } from "react";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
+import FavoritesLink from "@/components/favorites-link";
 import WaterfallViewOptions, { manualColumnChoices, type WaterfallView, viewDefaults } from "@/components/waterfall-view-options";
 import WaterfallSlideshow, { type SlideshowItem } from "@/components/waterfall-slideshow";
 import PreserveScrollLink from "@/components/preserve-scroll-link";
@@ -747,7 +748,7 @@ export default function WaterfallGallery({
       <span ref={toolbarStartRef} aria-hidden="true" className="pointer-events-none absolute -top-px left-0 size-px" />
       <div
         ref={toolbarRef}
-        className={`relative z-20 flex items-center justify-between gap-3 rounded-2xl border px-3 py-2 sm:sticky sm:top-2 ${
+        className={`relative z-20 flex flex-wrap items-center justify-between gap-x-3 gap-y-2 rounded-2xl border px-3 py-2 sm:sticky sm:top-2 ${
           toolbarStuck
             ? "pointer-events-none border-transparent"
             : "border-white/10 bg-stone-950/78 backdrop-blur"
@@ -758,7 +759,10 @@ export default function WaterfallGallery({
           <span aria-hidden="true" className="text-stone-500">·</span>
           <span className="font-medium tabular-nums text-stone-100">{countLabel}</span>
         </div>
-        <WaterfallViewOptions locale={locale} view={view} autoColumns={autoColumns} onChange={handleViewChange} compact={toolbarStuck} />
+        <div className="ml-auto flex flex-wrap items-center justify-end gap-2">
+          <FavoritesLink locale={locale} hidden={toolbarStuck} />
+          <WaterfallViewOptions locale={locale} view={view} autoColumns={autoColumns} onChange={handleViewChange} compact={toolbarStuck} />
+        </div>
       </div>
 
       <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">

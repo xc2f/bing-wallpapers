@@ -105,6 +105,7 @@ export default async function LocalizedHomePage({
     : dictionary.notAvailable;
   const items = loadedWallpapers.map((wallpaper) => ({
     ssd: wallpaper.Ssd,
+    imageId: wallpaper.imageId,
     fullDate: formatArchiveDate(locale, wallpaper.Ssd, wallpaper.FullDateString),
     title: wallpaper.ImageContent?.Title ?? dictionary.untitled,
     copyright: wallpaper.ImageContent?.Copyright,

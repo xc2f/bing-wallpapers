@@ -1,9 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { THEME_COOKIE_KEY, type ThemeMode } from "@/lib/theme";
+import { getStoredTheme, saveTheme, type ThemeMode } from "@/lib/theme";
 import ResponsivePanel from "@/components/responsive-panel";
-type ResolvedTheme = "light" | "dark";
 
 interface ThemeSwitcherProps {
   initialMode?: ThemeMode;
@@ -14,62 +13,6 @@ interface ThemeSwitcherProps {
     light: string;
     dark: string;
   };
-}
-
-const THEME_STORAGE_KEY = "bing-wallpapers-theme";
-
-function getCookieTheme(): ThemeMode {
-  if (typeof document === "undefined") {
-    return "system";
-  }
-
-  const prefix = `${THEME_COOKIE_KEY}=`;
-  const parts = document.cookie ? document.cookie.split("; ") : [];
-
-  for (const part of parts) {
-    if (part.startsWith(prefix)) {
-      const cookieTheme = part.slice(prefix.length);
-      if (cookieTheme === "light" || cookieTheme === "dark" || cookieTheme === "system") {
-        return cookieTheme;
-      }
-    }
-  }
-
-  return "system";
-}
-
-function getStoredTheme(): ThemeMode {
-  if (typeof window === "undefined") {
-    return "system";
-  }
-
-  const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-  if (storedTheme === "light" || storedTheme === "dark" || storedTheme === "system") {
-    return storedTheme;
-  }
-
-  return getCookieTheme();
-}
-
-function resolveTheme(mode: ThemeMode): ResolvedTheme {
-  if (mode === "light" || mode === "dark") {
-    return mode;
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-}
-
-function applyTheme(mode: ThemeMode) {
-  const resolvedTheme = resolveTheme(mode);
-  const root = document.documentElement;
-
-  root.dataset.themeMode = mode;
-  root.dataset.themeResolved = resolvedTheme;
-  root.style.colorScheme = resolvedTheme;
-  window.localStorage.setItem(THEME_STORAGE_KEY, mode);
-  document.cookie = `${THEME_COOKIE_KEY}=${mode}; path=/; max-age=31536000; samesite=lax`;
 }
 
 function ThemeIcon({ mode }: { mode: ThemeMode }) {
@@ -145,25 +88,8 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
   }
 
   useEffect(() => {
-    const initialMode = getStoredTheme();
-    setThemeMode(initialMode);
-    applyTheme(initialMode);
+    setThemeMode(getStoredTheme());
   }, []);
-
-  useEffect(() => {
-    if (themeMode !== "system") {
-      return;
-    }
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = () => applyTheme("system");
-
-    mediaQuery.addEventListener("change", handleChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange);
-    };
-  }, [themeMode]);
 
   useEffect(() => {
     if (!open) return;
@@ -206,7 +132,7 @@ export default function ThemeSwitcher({ initialMode = "system", labels }: ThemeS
 
   function handleThemeChange(nextMode: ThemeMode) {
     setThemeMode(nextMode);
-    applyTheme(nextMode);
+    saveTheme(nextMode);
     closePanel({ restoreFocus: true });
   }
 

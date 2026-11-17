@@ -4,7 +4,7 @@ import { createContext, Suspense, useContext, useEffect, useMemo, useState, type
 import { useSearchParams } from "next/navigation";
 import { selectDetailNavigation, type DetailIndexItem, type DetailIndexSearchFields, type DetailNavigation } from "@/lib/detail-browse";
 import { getWallpaperFilters, wallpaperFilterKeys } from "@/lib/wallpaper-filters";
-import { getDictionary, localizePath, type Locale } from "@/lib/i18n";
+import { getDictionary, isValidLocale, localizePath, type Locale } from "@/lib/i18n";
 
 interface BrowseContext {
   currentLocale: Locale;
@@ -12,6 +12,7 @@ interface BrowseContext {
   navigation: DetailNavigation;
   searchParams: Record<string, string>;
   backHref: string;
+  backToFavorites: boolean;
   createDetailHref: (ssd: string) => string;
 }
 const Context = createContext<BrowseContext | null>(null);
@@ -57,6 +58,8 @@ export function DetailBrowseProvider({ locale, ssd, initialNavigation, indexUrls
       const value = source.get(key)?.trim();
       if (value) result.set(key, value);
     }
+    const favoritesLocale = source.get("favoritesLocale");
+    if (favoritesLocale && isValidLocale(favoritesLocale)) result.set("favoritesLocale", favoritesLocale);
     return result;
   }, [search]);
   const filters = useMemo(() => getWallpaperFilters(Object.fromEntries(params)), [params]);
@@ -86,13 +89,17 @@ export function DetailBrowseProvider({ locale, ssd, initialNavigation, indexUrls
   backParams.delete("view");
   backParams.delete("from");
   backParams.delete("mode");
+  backParams.delete("favoritesLocale");
   const backSearch = backParams.toString();
+  const favoritesLocale = params.get("favoritesLocale");
+  const backToFavorites = favoritesLocale !== null && isValidLocale(favoritesLocale);
   const value: BrowseContext = {
     currentLocale: locale,
     dictionary: getDictionary(locale),
     navigation: hasFilters && selection?.key === filterKey ? selection.navigation : initialNavigation,
     searchParams: Object.fromEntries(params),
-    backHref: localizePath(locale, `${backSearch ? `?${backSearch}` : ""}`),
+    backHref: backToFavorites ? localizePath(favoritesLocale, "/favorites") : localizePath(locale, backSearch ? `?${backSearch}` : ""),
+    backToFavorites,
     createDetailHref: (target) => localizePath(locale, `/wallpaper/${target}${params.size ? `?${params}` : ""}`),
   };
   return <Context.Provider value={value}>

@@ -1,6 +1,6 @@
 # Bing Wallpapers Archive 设计风格
 
-本文整理截至 2026-11-09 当前工作区的界面实现（包含当时尚未提交的修改），供新增页面、调整组件和设计评审使用。它描述现有风格，不代表一次重新设计。样式参数以源码为准；本文没有进行浏览器截图验收，README 中的历史截图也不作为最新界面的唯一依据。
+本文整理截至 2026-11-17 的界面实现，供新增页面、调整组件和设计评审使用。样式以当前源码为准，README 中的截图反映拍摄时的界面。
 
 ## 1. 设计定位
 
@@ -16,7 +16,7 @@
 
 ## 2. 色彩与主题
 
-主题 token 集中在 [`app/globals.css`](../app/globals.css)。`html[data-theme-resolved]` 决定实际主题；用户可选择 `system`、`light`、`dark`，初始化与存储逻辑见 [`components/site-document.tsx`](../components/site-document.tsx) 和 [`components/theme-switcher.tsx`](../components/theme-switcher.tsx)。默认偏好为跟随系统。
+主题 token 集中在 [`app/globals.css`](../app/globals.css)。`html[data-theme-resolved]` 决定实际主题。用户可选择 `system`、`light`、`dark`，默认跟随系统。根布局在首次加载和跨语言导航后应用已保存的偏好，包括从另一语言的壁纸详情返回收藏页。实现见 [`components/site-document.tsx`](../components/site-document.tsx)、[`components/theme-sync.tsx`](../components/theme-sync.tsx) 和 [`lib/theme.ts`](../lib/theme.ts)。
 
 下表为实际 UI token 的色值；RGB 均按 sRGB 解释。
 
@@ -56,7 +56,7 @@
 | 展示标题 | `--font-display`：Iowan Old Style / Palatino，中文 Noto Serif SC、Source Han Serif SC、Songti SC 等，后备 Georgia / serif |
 | 应用展示字体的元素 | `h1`、`[data-display-text="true"]`；`h2`、`h3` 默认使用正文无衬线字体 |
 | 搜索语法等代码 | 系统等宽字体栈 |
-| 页面主标题 | `text-3xl` → `sm:text-5xl`（30 → 48px），600 字重，`tracking-tight` |
+| 页面主标题 | `text-3xl` → `sm:text-5xl`（30 → 48px），600 字重，`tracking-tight`。收藏页桌面标题为 36px |
 | 眉题 / archive label | 14px，大写规则，`0.3em` 字距，`.theme-eyebrow` 强调色 |
 | 画廊详情卡 / 相邻导航标题 | 无衬线 18px / 24px，500 字重；更多壁纸卡片标题 16px / 22px，500 字重 |
 | 区块标题 | 无衬线 20px，600 字重；控件标签通常 500 字重 |
@@ -118,7 +118,9 @@
 - 主要下载动作使用琥珀实底、深色字、胶囊轮廓；次要动作用细边框或轻背景。
 - 常规按钮文字多为 12–14px，图标多为细线 SVG，端点和转角圆润，常见描边约 1.3–1.7。
 - 视图分段按钮桌面最小高 36px，移动端为 44px；幻灯片圆形控制为 44px。其他已有紧凑选项存在更小尺寸，不能把 44px 描述成全站已实现的标准。
-- 固定状态下的「视图」以及图库、详情页的「回到顶部」共用半透明主题底色、淡边框和无阴影样式。悬停、键盘聚焦或视图面板展开时提高按钮对比度，键盘聚焦时显示轮廓。「回到顶部」使用细进度环，悬停或聚焦时提高其对比度。
+- 固定状态下的「视图」与各页的「回到顶部」共用半透明主题底色、淡边框和无阴影样式。悬停或键盘聚焦时提高按钮对比度。
+- 首页、详情页和收藏页在向下滚动超过 640px 时显示「回到顶部」。按钮最小尺寸为 48px，位置考虑屏幕安全区，使用细进度环和向上箭头。首页按钮同时显示当前浏览位置与总数。悬停或聚焦时强调进度环，键盘焦点使用主题强调色轮廓。
+- 收藏页与详情页共用返回按钮。使用低对比细边框、胶囊轮廓、左箭头和 14px 文字。小于 640px 时最小高 44px，640px 起最小高 36px。
 - 日期、国家、视图弹层使用语义面板底色与柔和阴影；模态与弹层必须保留可见焦点和有名称的关闭按钮。
 - 桌面国家筛选弹层的常规高度与日期弹层对齐，搜索结果在列表内滚动。
 
@@ -127,11 +129,31 @@
 实现：[`详情页`](../app/[locale]/wallpaper/[ssd]/page.tsx)、[`detail-ambient-background.tsx`](../components/detail-ambient-background.tsx)、[`waterfall-slideshow.tsx`](../components/waterfall-slideshow.tsx)。
 
 - 详情页主图使用 `h-auto w-full object-contain`，展示完整比例；主容器圆角 24px，`sm` 起 32px。正文与元数据侧栏位于图下。
-- 原图和预览图按钮在桌面和移动端均以等宽双列排列，分别使用琥珀色实底和随主题变化的淡底色。详情信息卡以淡底色区分区域。
+- 原图和预览图按钮在桌面和移动端均以等宽双列排列，分别使用琥珀色实底和随主题变化的淡底色。两种图片入口齐全时，收藏按钮放在下一行。详情信息卡以淡底色区分区域。
 - 环境背景由图片模糊层、采样色渐变和柔光构成；浅色主题降低环境图强度、采用更实的阅读面板。取色失败有后备渐变。
 - 767px 及以下或粗指针设备隐藏大面积模糊图与光晕，并关闭相关背板模糊，保留取色渐变。扩展时继续遵守这个性能取舍。
 - 幻灯片是固定黑底、全屏 `100dvh`、`object-cover` 的独立沉浸场景，图片可能裁切。控制与字幕通过顶部/底部暗色渐变保证可读。
 - 预览打开时暂停，可播放、前后切换，支持键盘与触摸滑动。控制区考虑安全区，标题仍可进入详情。
+
+### 收藏
+
+- 首页画廊工具栏把「我的收藏」放在「视图」左侧。桌面工具栏吸顶时隐藏收藏入口，保留「视图」。
+- 收藏页页首包含「返回首页」、标题和本地保存说明。有收藏时，标题旁用小号次要文字显示收藏数量。导入与导出在 768px 起放在标题右侧，窄屏排在说明下方。空列表保留「导入收藏」，有收藏时才显示「导出收藏」。
+- 收藏列表使用 16:9 缩略图和约 18px 圆角的淡底卡片。640px 以下为单列，640px 起为双列，1024px 起为三列。空列表用浅底提示区说明可以在预览或详情页添加收藏。
+- 详情页与幻灯片共用书签图标和收藏状态。轮廓表示可收藏，实心图标与强调色表示已收藏，切换按钮通过 `aria-pressed` 暴露状态。
+- 收藏保存在当前浏览器，跨设备或浏览器迁移通过 JSON 导入和导出完成。导入合并现有列表，按图片 ID 去重，并反馈新增和跳过的数量。
+- 收藏卡片优先链接到当前语言的同一张图片，缺少对应版本时使用收藏时的语言。详情页按来源显示「返回收藏」或「返回首页」，跨语言回退时仍返回来源收藏列表。
+- 用键盘取消收藏后，焦点接续到补位卡片的取消按钮。移除末尾卡片时转到前一张，清空列表时转到「导入收藏」。
+
+### 键盘快捷键
+
+| 按键 | 幻灯片 | 壁纸详情页 | 收藏页 |
+| --- | --- | --- | --- |
+| F | 切换当前壁纸的收藏状态 | 切换收藏状态 | — |
+| O | 打开当前壁纸详情 | 在新标签页打开高清图 | — |
+| Backspace | 关闭幻灯片 | 触发当前的返回按钮 | 返回首页 |
+
+快捷键复用对应的点击动作，填写表单、使用输入法组合文字、按住键或使用修饰键时保留原本的键盘行为。控件通过提示文字或 `aria-keyshortcuts` 标注快捷键。
 
 ## 6. 动效与状态
 
@@ -145,8 +167,11 @@
 | 桌面画廊宽屏图 hover | 200ms，放大至 1.02，滚动时可暂停 |
 | 底部抽屉进入 | 200ms ease-out，向上进入 |
 | 幻灯片播放 | 图片缓慢放大至 1.04，切图使用淡入淡出 |
+| 收藏与取消收藏 | 书签轻压、弹起并归位，约 300ms。取消时短暂收缩，约 200ms |
+| 从收藏列表移除 | 卡片轻微下沉并淡出 180ms，后续卡片滑入空位 240ms |
+| 回到顶部 | 按钮出现时上移 5px 并淡入 180ms。精细指针悬停时箭头轻抬，按下时微缩 |
 
-已有主要动效针对 `prefers-reduced-motion` 提供关闭或静态回退。新增动画遵循同样约定；hover 放大限制在合适的指针设备，避免触摸端粘滞状态。
+已有主要动效针对 `prefers-reduced-motion` 提供关闭或静态回退。开启减少动态效果时，书签直接切换状态、收藏卡片直接补位、回到顶部直接跳转。新增动画遵循同样约定。悬停位移和放大限制在合适的指针设备，避免触摸端粘滞状态。
 
 焦点环通常为 2px 强调色；照片沉浸场景使用白色焦点。选中、禁用、加载与空结果应有可理解的语义状态：`aria-current`、`aria-pressed`、`aria-expanded`、`disabled` 或 `aria-disabled`，以及适当的状态播报。这里记录的是现有模式，不构成无障碍合规认证。
 
@@ -167,6 +192,9 @@
 | 首页留白与标题层级 | [`app/[locale]/page.tsx`](../app/[locale]/page.tsx) |
 | 画廊排版与外观数值 | [`components/waterfall-gallery.tsx`](../components/waterfall-gallery.tsx) |
 | 视图选项与默认值 | [`components/waterfall-view-options.tsx`](../components/waterfall-view-options.tsx) |
+| 收藏页布局、卡片与焦点 | [`components/favorites-gallery.tsx`](../components/favorites-gallery.tsx) |
+| 收藏按钮与备份入口 | [`components/favorite-button.tsx`](../components/favorite-button.tsx)、[`components/favorites-backup-controls.tsx`](../components/favorites-backup-controls.tsx) |
+| 返回按钮、回顶与键盘判断 | [`components/smart-back-button.tsx`](../components/smart-back-button.tsx)、[`components/scroll-to-top-button.tsx`](../components/scroll-to-top-button.tsx)、[`lib/wallpaper-shortcuts.ts`](../lib/wallpaper-shortcuts.ts) |
 | 响应式浮层与焦点返回 | [`components/responsive-panel.tsx`](../components/responsive-panel.tsx) |
 | 语言与界面文案 | [`lib/i18n.ts`](../lib/i18n.ts)、[`lib/taxonomy-ui-labels.ts`](../lib/taxonomy-ui-labels.ts) |
 
