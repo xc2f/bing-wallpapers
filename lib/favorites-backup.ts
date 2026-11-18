@@ -20,7 +20,7 @@ export interface FavoritesBackupSite {
 }
 
 export function encodeFavoritesBackup(favorites: FavoriteWallpaper[], site: FavoritesBackupSite) {
-  return JSON.stringify({ format, version, site, favorites }, null, 2);
+  return JSON.stringify({ format, version, exportedAt: new Date().toISOString(), site, favorites }, null, 2);
 }
 
 export function decodeFavoritesBackup(text: string) {

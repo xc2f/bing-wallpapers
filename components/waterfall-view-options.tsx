@@ -207,6 +207,21 @@ export default function WaterfallViewOptions({ locale, view, autoColumns, onChan
             : "border-white/10 bg-transparent text-stone-100 theme-button-hover"
         }`}
       >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 16 16"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          className="shrink-0"
+        >
+          <rect x="2" y="2" width="4.5" height="4.5" rx="1" />
+          <rect x="9.5" y="2" width="4.5" height="4.5" rx="1" />
+          <rect x="2" y="9.5" width="4.5" height="4.5" rx="1" />
+          <rect x="9.5" y="9.5" width="4.5" height="4.5" rx="1" />
+        </svg>
         {heading}
         <svg
           aria-hidden="true"

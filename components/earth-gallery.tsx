@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
+import BackArrowIcon from "@/components/back-arrow-icon";
 import { localizePath, type Locale } from "@/lib/i18n";
 import type { EarthInitialView } from "@/lib/earth-initial-view";
 import { resizeBingImage } from "@/lib/bing-image";
@@ -932,7 +933,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       };
       setTransitionPhase("leaving");
     }}>
-      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4m5-5-5 5 5 5" /></svg>
+      <BackArrowIcon />
       {{ zh: "返回", en: "Back", es: "Volver", fr: "Retour", de: "Zurück", ja: "戻る", ko: "뒤로" }[locale]}
     </button>
     <div className="earth-orbit" aria-label={spaceLabel}>
