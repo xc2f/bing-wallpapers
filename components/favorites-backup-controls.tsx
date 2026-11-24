@@ -54,8 +54,8 @@ export default function FavoritesBackupControls({ locale, favorites, ready, site
   }
 
   return (
-    <div className="max-w-full space-y-2 md:max-w-[50%] md:shrink-0 md:pt-3 md:text-right">
-      <div className="flex flex-wrap gap-2 md:justify-end">
+    <div className="ml-auto max-w-full space-y-2 text-right md:max-w-[50%] md:shrink-0 md:pt-3">
+      <div className="flex flex-wrap justify-end gap-2">
         <input ref={fileInput} type="file" accept=".json,application/json" hidden onChange={importBackup} />
         <button ref={importButtonRef} type="button" className={buttonClass} disabled={!ready || importing} onClick={() => fileInput.current?.click()}>
           {labels.import}
