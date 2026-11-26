@@ -10,6 +10,7 @@ import DetailTaxonomy from "@/components/detail-taxonomy";
 import { getBingHeadline } from "@/lib/bing-headline";
 import TranslationNotice from "@/components/translation-notice";
 import Image from "next/image";
+import DetailTransitionImage from "@/components/detail-transition-image";
 import { pageMetadata, siteUrl } from "@/lib/seo";
 import JsonLd from "@/components/json-ld";
 import { notFound, permanentRedirect } from "next/navigation";
@@ -238,14 +239,10 @@ export default async function LocalizedWallpaperDetailPage({ params }: {
           <section className="theme-detail-panel overflow-hidden rounded-3xl sm:rounded-[2rem] shadow-[0_30px_90px_rgba(0,0,0,0.3)] backdrop-blur-md">
           <div className="relative bg-stone-900/58">
             {previewUrl ? (
-              <Image
-                referrerPolicy="no-referrer"
+              <DetailTransitionImage
                 src={previewUrl}
                 alt={title}
-                width={1920}
-                height={1080}
-                priority
-                className="block h-auto w-full object-contain"
+                pathname={localizePath(currentLocale, `/wallpaper/${wallpaper.Ssd}`)}
               />
             ) : (
               <div className="flex min-h-[24rem] items-center justify-center text-stone-400">

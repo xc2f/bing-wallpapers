@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
+import { useEffect } from "react";
 import SmartBackButton from "@/components/smart-back-button";
 import ThemeSwitcher from "@/components/theme-switcher";
 import { slideshowReturnKey } from "@/lib/slideshow-return";
 import { favoriteLabels } from "@/lib/favorite-labels";
 import EarthGalleryLink from "@/components/earth-gallery-link";
-import { localeLabels, locales, type Locale } from "@/lib/i18n";
+import { localeLabels, locales, localizePath, type Locale } from "@/lib/i18n";
 import { useDetailBrowse } from "@/components/detail-browse-context";
 function LocaleSwitcher({ locale, languagePaths }: { locale: Locale; languagePaths: Record<Locale, string> }) {
   const { searchParams } = useDetailBrowse();
@@ -25,12 +26,58 @@ function LocaleSwitcher({ locale, languagePaths }: { locale: Locale; languagePat
 }
 export default function DetailBrowseHeader({ languagePaths }: { languagePaths: Record<Locale, string> }) {
   const { currentLocale, dictionary, searchParams: resolvedSearchParams, backHref, backToFavorites } = useDetailBrowse();
+  const fromEarth = resolvedSearchParams.from === "earth";
+  const earthEntryLabel: Record<Locale, string> = {
+    zh: "返回地球图集", en: "Back to Earth", es: "Volver a la Tierra", fr: "Retour à la Terre",
+    de: "Zur Erde", ja: "地球図集に戻る", ko: "지구로 돌아가기",
+  };
+  useEffect(() => {
+    if (!fromEarth) return;
+    const imageId = window.location.pathname.split("/").pop();
+    const saveReturnImageOrigin = () => {
+      const image = document.querySelector<HTMLImageElement>(".detail-transition-image");
+      if (!image) return;
+      const rect = image.getBoundingClientRect();
+      try {
+        sessionStorage.setItem("earth-return-image-transition", JSON.stringify({
+          pathname: localizePath(currentLocale, "/earth"),
+          imageId,
+          src: image.currentSrc || image.src,
+          left: rect.left,
+          top: rect.top,
+          width: rect.width,
+          height: rect.height,
+          createdAt: Date.now(),
+        }));
+      } catch { /* Returning still works when storage is unavailable. */ }
+    };
+    window.addEventListener("popstate", saveReturnImageOrigin);
+    return () => window.removeEventListener("popstate", saveReturnImageOrigin);
+  }, [currentLocale, fromEarth]);
   return (
             <div className="flex flex-wrap items-center justify-between gap-3">
               <SmartBackButton
                 fallbackHref={backHref}
                 label={backToFavorites ? favoriteLabels[currentLocale].backToFavorites : dictionary.detailBack}
                 onBeforeNavigate={() => {
+                  if (fromEarth) {
+                    const image = document.querySelector<HTMLImageElement>(".detail-transition-image");
+                    if (!image) return;
+                    const rect = image.getBoundingClientRect();
+                    try {
+                      sessionStorage.setItem("earth-return-image-transition", JSON.stringify({
+                        pathname: localizePath(currentLocale, "/earth"),
+                        imageId: window.location.pathname.split("/").pop(),
+                        src: image.currentSrc || image.src,
+                        left: rect.left,
+                        top: rect.top,
+                        width: rect.width,
+                        height: rect.height,
+                        createdAt: Date.now(),
+                      }));
+                    } catch { /* Returning still works when storage is unavailable. */ }
+                    return;
+                  }
                   if (backToFavorites || resolvedSearchParams.from !== "slideshow") return;
                   try {
                     sessionStorage.removeItem(slideshowReturnKey(backHref));
@@ -40,7 +87,7 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
                 }}
               />
               <div className="ml-auto flex min-w-0 flex-wrap items-center justify-end gap-3">
-              <EarthGalleryLink locale={currentLocale} />
+              <EarthGalleryLink locale={currentLocale} label={fromEarth ? earthEntryLabel[currentLocale] : undefined} />
               <ThemeSwitcher
                 labels={{
                   trigger: dictionary.themeLabel,

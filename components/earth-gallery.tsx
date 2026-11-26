@@ -21,6 +21,8 @@ type Album = {
   id: string;
   label: string;
   coordinates: number[] | null;
+  coordinateType?: "precise" | "country";
+  countryId?: string;
   count: number;
   images: { id: string; title: string; image: string; href: string }[];
   href: string;
@@ -41,6 +43,17 @@ type EarthFlight = {
   href?: string;
   back?: boolean;
   navigated?: boolean;
+};
+
+type ReturnImageOrigin = {
+  pathname: string;
+  imageId: string;
+  src: string;
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  createdAt: number;
 };
 
 export default function EarthGallery({ albums, spaceAlbums, locale, initialView }: { albums: Album[]; spaceAlbums: Album[]; locale: Locale; initialView: EarthInitialView }) {
@@ -64,6 +77,9 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
   const pointers = useRef(new Map<number, { x: number; y: number; time: number }>());
   const inertia = useRef(createEarthInertia());
   const [selected, setSelected] = useState<Album | null>(null);
+  const [lightbox, setLightbox] = useState<{ album: Album; index: number; markerId: string } | null>(null);
+  const [returnImageOrigin, setReturnImageOrigin] = useState<ReturnImageOrigin | null>(null);
+  const lightboxReturnFocus = useRef<HTMLElement | null>(null);
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
 
@@ -73,7 +89,111 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       sessionStorage.removeItem("earth-return-path");
       if (source) canReturn.current = new URL(source).origin === window.location.origin && window.history.length > 1;
     } catch { /* Direct visits and disabled storage fall back to the home page. */ }
+    let imageOrigin: ReturnImageOrigin | undefined;
+    try {
+      const value = sessionStorage.getItem("earth-return-image-transition");
+      sessionStorage.removeItem("earth-return-image-transition");
+      if (value) imageOrigin = JSON.parse(value) as ReturnImageOrigin;
+    } catch { /* The Earth page still restores without the image animation. */ }
+    try {
+      const value = sessionStorage.getItem("earth-gallery-return-state");
+      if (!value) return;
+      sessionStorage.removeItem("earth-gallery-return-state");
+      const saved = JSON.parse(value) as {
+        pathname?: string;
+        createdAt?: number;
+        view?: { lon: number; lat: number; distance: number };
+        selectedAlbumId?: string;
+        lightboxAlbumId?: string;
+        lightboxImageId?: string;
+        lightboxIndex?: number;
+        markerId?: string;
+      };
+      if (saved.pathname !== window.location.pathname || !saved.createdAt || Date.now() - saved.createdAt > 30 * 60 * 1000) return;
+      if (saved.view && [saved.view.lon, saved.view.lat, saved.view.distance].every(Number.isFinite)) {
+        Object.assign(view.current, saved.view);
+      }
+      const selectedAlbum = albums.find(album => album.id === saved.selectedAlbumId) ?? null;
+      const lightboxAlbum = albums.find(album => album.id === saved.lightboxAlbumId);
+      const imageIndex = lightboxAlbum?.images.findIndex(image => image.id === saved.lightboxImageId) ?? -1;
+      setSelected(selectedAlbum);
+      if (lightboxAlbum && imageIndex >= 0) {
+        setLightbox({ album: lightboxAlbum, index: imageIndex, markerId: saved.markerId ?? lightboxAlbum.id });
+        selectedId.current = saved.markerId ?? selectedAlbum?.id ?? lightboxAlbum.id;
+        if (imageOrigin && imageOrigin.pathname === window.location.pathname &&
+          imageOrigin.imageId === saved.lightboxImageId && Date.now() - imageOrigin.createdAt < 10_000) {
+          setReturnImageOrigin(imageOrigin);
+        }
+      } else selectedId.current = selectedAlbum?.id ?? null;
+      lastActivity.current = performance.now();
+    } catch { /* Returning to the Earth page still works if storage is unavailable. */ }
   }, []);
+
+  useEffect(() => {
+    const image = lightbox?.album.images[lightbox.index];
+    if (!returnImageOrigin || !image || image.id !== returnImageOrigin.imageId) return;
+    const target = stage.current?.querySelector<HTMLImageElement>(".earth-lightbox-image");
+    if (!target) return;
+    const overlay = document.createElement("img");
+    overlay.src = returnImageOrigin.src;
+    Object.assign(overlay.style, {
+      position: "fixed",
+      zIndex: "9999",
+      left: `${returnImageOrigin.left}px`,
+      top: `${returnImageOrigin.top}px`,
+      width: `${returnImageOrigin.width}px`,
+      height: `${returnImageOrigin.height}px`,
+      objectFit: "contain",
+      borderRadius: "0px",
+      pointerEvents: "none",
+      willChange: "left, top, width, height, border-radius",
+      boxShadow: "0 20px 70px rgba(0,0,0,.35)",
+    });
+    let animation: Animation | undefined;
+    let animationFrame = 0;
+    let active = true;
+    let started = false;
+    const restoreTarget = () => {
+      overlay.remove();
+      target.style.visibility = "";
+    };
+    const start = () => {
+      if (started || !active) return;
+      started = true;
+      animationFrame = requestAnimationFrame(() => {
+        if (!active) return;
+        const rect = target.getBoundingClientRect();
+        if (!rect.width || !rect.height) {
+          restoreTarget();
+          setReturnImageOrigin(null);
+          return;
+        }
+        target.style.visibility = "hidden";
+        animation = overlay.animate([
+          { left: `${returnImageOrigin.left}px`, top: `${returnImageOrigin.top}px`, width: `${returnImageOrigin.width}px`, height: `${returnImageOrigin.height}px`, borderRadius: "0px" },
+          { left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px`, borderRadius: "9px" },
+        ], { duration: 720, easing: "cubic-bezier(.22,1,.36,1)" });
+        animation.addEventListener("finish", () => {
+          restoreTarget();
+          if (active) setReturnImageOrigin(null);
+        }, { once: true });
+        animation.addEventListener("cancel", restoreTarget, { once: true });
+      });
+    };
+    overlay.addEventListener("load", start, { once: true });
+    overlay.addEventListener("error", () => {
+      restoreTarget();
+      if (active) setReturnImageOrigin(null);
+    }, { once: true });
+    document.body.append(overlay);
+    if (overlay.complete && overlay.naturalWidth) start();
+    return () => {
+      active = false;
+      cancelAnimationFrame(animationFrame);
+      animation?.cancel();
+      restoreTarget();
+    };
+  }, [lightbox, returnImageOrigin]);
 
   useEffect(() => {
     const rotationInertia = inertia.current;
@@ -443,8 +563,10 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     let coverIds = new Set<string>();
     const orderPoints = () => [...points].sort((a, b) =>
       Number(b.album.id === selectedId.current) - Number(a.album.id === selectedId.current)
+      || Number(b.album.coordinateType === "country") - Number(a.album.coordinateType === "country")
       || Number(coverIds.has(b.album.id)) - Number(coverIds.has(a.album.id))
       || b.album.count - a.album.count);
+    sortedPoints = orderPoints();
     let interacting = false;
     let lastSkyReport = -Infinity;
     let hiddenAt: number | null = null;
@@ -634,6 +756,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
             if (opacity >= .25) visibleOrbitBounds.push(layout);
           });
           const covers: { x: number; y: number }[] = [];
+          const markerPositions: { x: number; y: number }[] = [];
           const nextCoverIds = new Set<string>();
           for (const { album, point } of sortedPoints) {
             const marker = markers.current.get(album.id);
@@ -643,32 +766,37 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
             const y = (1 - projected.y) * height / 2;
             const horizonDepth = point.dot(direction) - 1 / distance;
             const screenMargin = Math.min(x, width - x, y, height - y);
+            const compact = width <= 640;
             // Enter and exit at different thresholds, fading out before occlusion.
             const visible = horizonDepth > (marker.hidden ? .05 : .025)
               && screenMargin > (marker.hidden ? 20 : 8);
             if (marker.hidden === visible) marker.hidden = !visible;
             if (!visible) continue;
+            const selectedMarker = album.id === selectedId.current;
+            const closeToMarker = markerPositions.some(p => Math.hypot(p.x - x, p.y - y) < (compact ? 48 : 62));
+            const crowded = !selectedMarker && closeToMarker;
             const transform = `translate(${Math.round(x * 10) / 10}px, ${Math.round(y * 10) / 10}px)`;
             if (marker.style.transform !== transform) marker.style.transform = transform;
-            const opacity = THREE.MathUtils.smoothstep(horizonDepth, .06, .15)
+            const baseOpacity = THREE.MathUtils.smoothstep(horizonDepth, .06, .15)
               * THREE.MathUtils.smoothstep(screenMargin, 24, 48);
+            if (!crowded && baseOpacity > .1) markerPositions.push({ x, y });
+            const opacity = crowded ? 0 : baseOpacity * .72;
             const alpha = String(Math.round(opacity * 1000) / 1000);
             const hitTarget = opacity > .1 ? "auto" : "none";
             if (marker.style.opacity !== alpha) marker.style.opacity = alpha;
             if (marker.style.pointerEvents !== hitTarget) marker.style.pointerEvents = hitTarget;
             if (marker.inert !== (opacity <= .1)) marker.inert = opacity <= .1;
-            const compact = width <= 640;
-            const coverWidth = compact ? 80 : 96;
-            const coverTop = y - 31 - (compact ? 60 : 68) - 12;
+            const coverWidth = compact ? 112 : 128;
+            const coverTop = y - 31 - (compact ? 76 : 86) - 12;
             const spaceBlocked = visibleOrbitBounds.some(rect => x + coverWidth / 2 + 16 > rect.x && x - coverWidth / 2 - 6 < rect.x + rect.width && y - 25 > rect.y && coverTop < rect.y + rect.height);
             if (marker.dataset.spaceBlocked !== String(spaceBlocked)) marker.dataset.spaceBlocked = String(spaceBlocked);
-            const spacing = compact ? 104 : 124;
+            const spacing = compact ? 136 : 152;
             const panelOverlap = selectedId.current && !compact && x > width - 420;
             const incumbent = coverIds.has(album.id);
             const edgeMargin = incumbent ? 56 : 68;
-            const cover = !spaceBlocked && !panelOverlap && y > (incumbent ? 104 : 120)
+            const cover = !crowded && !spaceBlocked && !panelOverlap && y > (incumbent ? 104 : 120)
               && x > edgeMargin && x < width - edgeMargin
-              && covers.length < (compact ? 5 : 8)
+              && covers.length < (compact ? 2 : 4)
               && covers.every(p => Math.hypot(p.x - x, p.y - y) > spacing + (incumbent ? 0 : 14));
             if (marker.dataset.cover !== String(cover)) marker.dataset.cover = String(cover);
             const zIndex = album.id === selectedId.current ? "4" : cover ? "3" : "2";
@@ -796,6 +924,42 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     }
   }
 
+  function openAlbumImage(album: Album, index: number, source: HTMLElement, options: {
+    images?: Album["images"];
+    markerId?: string;
+    focusCoordinates?: number[] | null;
+  } = {}) {
+    inertia.current.reset();
+    lastActivity.current = performance.now();
+    zoomAnchor.current = null;
+    const markerId = options.markerId ?? album.id;
+    selectedId.current = markerId;
+    lightboxReturnFocus.current = source;
+    const images = options.images ?? album.images;
+    setLightbox({ album: { ...album, images, count: images.length }, index, markerId });
+    const focusCoordinates = options.focusCoordinates ?? album.coordinates;
+    if (focusCoordinates) {
+      view.current.lon = focusCoordinates[0];
+      view.current.lat = focusCoordinates[1];
+    }
+  }
+
+  function closeLightbox(restoreFocus = true) {
+    setLightbox(null);
+    selectedId.current = selected?.id ?? null;
+    lastActivity.current = performance.now();
+    const target = lightboxReturnFocus.current;
+    lightboxReturnFocus.current = null;
+    if (restoreFocus) requestAnimationFrame(() => target?.focus({ preventScroll: true }));
+  }
+
+  function stepLightbox(delta: number) {
+    setLightbox(current => current ? {
+      ...current,
+      index: (current.index + delta + current.album.images.length) % current.album.images.length,
+    } : current);
+  }
+
 
   function movePointer(pointerId: number, x: number, y: number, time: number) {
     const old = pointers.current.get(pointerId);
@@ -824,6 +988,33 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       || link.target === "_blank" || link.hasAttribute("download")) return;
     const destination = new URL(link.href, window.location.href);
     if (destination.origin !== window.location.origin) return;
+    if (link.classList.contains("earth-lightbox-details")) {
+      const image = stage.current?.querySelector<HTMLImageElement>(".earth-lightbox-image");
+      if (image) {
+        const rect = image.getBoundingClientRect();
+        try {
+          sessionStorage.setItem("earth-detail-image-transition", JSON.stringify({
+            pathname: destination.pathname,
+            src: image.currentSrc || image.src,
+            left: rect.left,
+            top: rect.top,
+            width: rect.width,
+            height: rect.height,
+            createdAt: Date.now(),
+          }));
+          sessionStorage.setItem("earth-gallery-return-state", JSON.stringify({
+            pathname: window.location.pathname,
+            createdAt: Date.now(),
+            view: { ...renderedView.current },
+            selectedAlbumId: selected?.id,
+            lightboxAlbumId: lightbox?.album.id,
+            lightboxImageId: lightbox?.album.images[lightbox.index]?.id,
+            lightboxIndex: lightbox?.index,
+            markerId: lightbox?.markerId,
+          }));
+        } catch { /* Storage can be disabled; detail navigation still works. */ }
+      }
+    }
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || error) return;
     event.preventDefault();
     if (flight.current?.kind === "leaving") return;
@@ -862,6 +1053,12 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
       if (flight.current) { event.preventDefault(); return; }
       lastActivity.current = performance.now();
       inertia.current.reset();
+      if (lightbox) {
+        if (event.key === "Escape") { event.preventDefault(); closeLightbox(); return; }
+        if (event.key === "ArrowLeft") { event.preventDefault(); stepLightbox(-1); return; }
+        if (event.key === "ArrowRight") { event.preventDefault(); stepLightbox(1); return; }
+        if ((event.target as Element).closest("button")) return;
+      }
       if (event.key === "Escape" && selected) {
         event.preventDefault();
         closeCollection();
@@ -884,7 +1081,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     onPointerDown={event => {
       if (flight.current) return;
       lastActivity.current = performance.now();
-      if ((event.target as Element).closest("button, a, aside")) return;
+      if ((event.target as Element).closest("button, a, aside, .earth-lightbox")) return;
       inertia.current.reset();
       if (pointers.current.size === 0) Object.assign(view.current, renderedView.current);
       zoomAnchor.current = null;
@@ -947,12 +1144,29 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     </div>
     <div className="earth-locations">{albums.filter(a => a.coordinates).map(album => <button
       key={album.id} hidden ref={element => { if (element) markers.current.set(album.id, element); else markers.current.delete(album.id); }}
-      className="earth-location" aria-label={`${album.label} · ${album.count} ${zh ? "张壁纸" : "wallpapers"}`}
-      aria-pressed={selected?.id === album.id}
+      className="earth-location" data-coordinate-type={album.coordinateType ?? "country"}
+      aria-label={`${album.label} · ${album.coordinateType === "precise" ? (zh ? "精确地点" : "Exact location") : (zh ? "国家概览" : "Country overview")} · ${album.count} ${zh ? "张壁纸" : "wallpapers"}`}
+      aria-pressed={selected?.id === album.id || lightbox?.markerId === album.id}
       aria-controls={selected?.id === album.id ? "earth-collection" : undefined}
-      onClick={() => choose(album)}>
+      onClick={event => {
+        if (album.coordinateType === "precise") {
+          setSelected(null);
+          const countryAlbum = albums.find(candidate => candidate.coordinateType === "country" && candidate.countryId === album.countryId);
+          const photo = album.images[0];
+          const countryIndex = countryAlbum?.images.findIndex(image => image.id === photo.id) ?? -1;
+          if (countryAlbum && countryIndex >= 0) {
+            openAlbumImage(countryAlbum, countryIndex, event.currentTarget, {
+              markerId: album.id,
+              focusCoordinates: album.coordinates,
+            });
+          } else openAlbumImage(album, 0, event.currentTarget, {
+            images: album.images.slice(0, 1),
+            markerId: album.id,
+          });
+        } else choose(album);
+      }}>
       <span className="earth-location-dot" />
-      <span className="earth-location-cover" data-depth={album.count === 1 ? "single" : album.count < 10 ? "double" : "triple"}>
+      {album.coordinateType === "precise" ? <span className="earth-location-precise-label">{album.label}</span> : <span className="earth-location-cover" data-depth={album.count === 1 ? "single" : album.count < 10 ? "double" : "triple"}>
         {album.count >= 10 && album.images[2] && <span className="earth-location-stack earth-location-stack-back" aria-hidden="true">
           <Image src={resizeBingImage(album.images[2].image, 192, 136)} alt="" width={192} height={136} sizes="(max-width:640px) 80px, 96px" draggable={false} loading="lazy" />
         </span>}
@@ -962,8 +1176,32 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
         <Image src={resizeBingImage(album.images[0].image, 192, 136)} alt="" width={192} height={136} sizes="(max-width:640px) 80px, 96px" draggable={false} />
         <span className="earth-location-count"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="2" width="9" height="9" rx="2"/>{album.count > 1 && <path d="M11 14H4a2 2 0 0 1-2-2V5"/>}</svg>{album.count}</span>
         <span className="earth-location-label">{album.label}</span>
-      </span>
+      </span>}
     </button>)}</div>
+    {lightbox && <div className="earth-lightbox" role="dialog" aria-modal="true" aria-label={lightbox.album.label}
+      onClick={event => { if (event.target === event.currentTarget) closeLightbox(); }}>
+      <button type="button" className="earth-lightbox-close" aria-label={zh ? "关闭大图" : "Close image"} onClick={() => closeLightbox()}>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m5 5 10 10M15 5 5 15"/></svg>
+      </button>
+      {lightbox.album.images.length > 1 && <>
+        <button type="button" className="earth-lightbox-nav earth-lightbox-prev" aria-label={zh ? "上一张" : "Previous image"} onClick={() => stepLightbox(-1)}>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m12.5 4-6 6 6 6"/></svg>
+        </button>
+        <button type="button" className="earth-lightbox-nav earth-lightbox-next" aria-label={zh ? "下一张" : "Next image"} onClick={() => stepLightbox(1)}>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7.5 4 6 6-6 6"/></svg>
+        </button>
+      </>}
+      <Image className="earth-lightbox-image" src={lightbox.album.images[lightbox.index].image} alt={lightbox.album.images[lightbox.index].title}
+        width={1280} height={800} sizes="(max-width: 640px) 92vw, 78vw" priority />
+      <div className="earth-lightbox-caption">
+        <span>{lightbox.album.images[lightbox.index].title}</span>
+        <span>{lightbox.album.label} · {lightbox.index + 1} / {lightbox.album.count}</span>
+        <Link className="earth-lightbox-details" href={`${lightbox.album.images[lightbox.index].href}?from=earth`}>
+          {zh ? "查看详情" : "View details"}
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-3.5-3.5L12 8l-3.5 3.5"/></svg>
+        </Link>
+      </div>
+    </div>}
     {error && <button className="earth-retry" onClick={() => { setError(false); setRetry(n => n + 1); }}>{zh ? "地球加载失败，点击重试" : "Unable to load Earth. Retry"}</button>}
     {selected && <aside id="earth-collection" className="earth-album" aria-label={selected.label} key={selected.id}>
       <div className="earth-album-topbar">
@@ -973,18 +1211,21 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
         </button>
       </div>
       <div className="earth-album-scroll">
-        <Link className="earth-album-hero" href={selected.images[0].href}>
+        <button type="button" className="earth-album-hero" aria-label={zh ? `查看大图：${selected.images[0].title}` : `View image: ${selected.images[0].title}`}
+          onClick={event => openAlbumImage(selected, 0, event.currentTarget)}>
           <Image src={selected.images[0].image} alt={selected.images[0].title} width={720} height={480} sizes="(max-width: 640px) 90vw, 360px" />
           <span className="earth-album-hero-title">{selected.images[0].title}</span>
-        </Link>
+        </button>
         <div className="earth-album-body">
           <div className="earth-album-heading"><h2>{selected.label}</h2><span>{selected.count.toLocaleString(locale)} {zh ? "张壁纸" : "wallpapers"}</span></div>
           {selected.images.length > 1 && <>
             <div className="earth-album-section-label"><span>{zh ? "近期收录" : "RECENT IMAGES"}</span></div>
-            <div className="earth-album-images">{selected.images.slice(1).map((image, index) => <Link key={image.id} href={image.href} className="earth-album-tile">
+            <div className="earth-album-images">{selected.images.slice(1, 7).map((image, index) => <button type="button" key={image.id} className="earth-album-tile"
+              aria-label={zh ? `查看大图：${image.title}` : `View image: ${image.title}`}
+              onClick={event => openAlbumImage(selected, index + 1, event.currentTarget)}>
               <span className="earth-album-tile-image"><Image src={image.image} alt="" width={320} height={210} sizes="(max-width: 640px) 44vw, 160px" loading="lazy" /><span aria-hidden="true">{String(index + 2).padStart(2, "0")}</span></span>
               <span className="earth-album-tile-title">{image.title}</span>
-            </Link>)}</div>
+            </button>)}</div>
           </>}
         </div>
       </div>

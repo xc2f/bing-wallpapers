@@ -1,4 +1,4 @@
-import { getAllWallpapers, toAbsoluteUrl } from "@/lib/archive";
+import { getAllWallpapers, getWallpaperMapLocation, toAbsoluteUrl } from "@/lib/archive";
 import { getImageTaxonomy } from "@/lib/image-taxonomy";
 import { localizePath, type Locale } from "@/lib/i18n";
 import { taxonomyLabel } from "@/lib/taxonomy-labels";
@@ -13,19 +13,49 @@ export function earthPageCopy(locale: Locale) {
 }
 
 export function getEarthAlbums(locale: Locale) {
-  const groups = new Map<string, { id: string; title: string; image: string; href: string }[]>();
+  type AlbumImage = { id: string; title: string; image: string; href: string };
+  const countryGroups = new Map<string, AlbumImage[]>();
+  const locationGroups = new Map<string, { label: string; point: number[]; country?: string; images: AlbumImage[] }>();
   const wallpapers = getAllWallpapers(locale);
   const seen = new Set<string>();
   for (const item of wallpapers) {
     if (!item.imageId || seen.has(item.imageId)) continue;
     seen.add(item.imageId);
-    for (const country of getImageTaxonomy(item)?.countries ?? []) {
-      const images = groups.get(country) ?? [];
-      images.push({ id: item.Ssd, title: item.ImageContent?.Title ?? "", image: toAbsoluteUrl(item.ImageContent?.Image?.Url), href: localizePath(locale, `/wallpaper/${item.Ssd}`) });
-      groups.set(country, images);
+    const image = { id: item.Ssd, title: item.ImageContent?.Title ?? "", image: toAbsoluteUrl(item.ImageContent?.Image?.Url), href: localizePath(locale, `/wallpaper/${item.Ssd}`) };
+    const countries = getImageTaxonomy(item)?.countries ?? [];
+    for (const country of countries) {
+      const images = countryGroups.get(country) ?? [];
+      images.push(image);
+      countryGroups.set(country, images);
+    }
+    const mapLocation = getWallpaperMapLocation(item);
+    if (mapLocation) {
+      // Coordinates are rounded to ~11 m so repeated records for one place share a marker.
+      const point = mapLocation.point;
+      const key = `${point[0].toFixed(4)},${point[1].toFixed(4)}`;
+      const group = locationGroups.get(key) ?? {
+        label: mapLocation.label || countries.map(country => taxonomyLabel(country, locale, "country")).join(", "),
+        point,
+        country: countries[0],
+        images: [],
+      };
+      group.images.push(image);
+      locationGroups.set(key, group);
     }
   }
-  const albums = [...groups].map(([id, images]) => ({ id, label: taxonomyLabel(id, locale, "country"), coordinates: (coordinates as Record<string, number[]>)[id] ?? null, count: images.length, images: images.slice(0, 7), href: localizePath(locale, `?country=${id}`) })).sort((a, b) => b.count - a.count);
+  const albums = [
+    ...[...locationGroups].map(([key, group]) => ({
+      id: `location-${key.replace(/[.,]/g, "-")}`,
+      label: group.label,
+      coordinates: group.point,
+      coordinateType: "precise" as const,
+      countryId: group.country,
+      count: group.images.length,
+      images: group.images,
+      href: localizePath(locale, group.country ? `?country=${group.country}` : `/wallpaper/${group.images[0].id}`),
+    })),
+    ...[...countryGroups].map(([id, images]) => ({ id, label: taxonomyLabel(id, locale, "country"), coordinates: (coordinates as Record<string, number[]>)[id] ?? null, coordinateType: "country" as const, countryId: id, count: images.length, images, href: localizePath(locale, `?country=${id}`) })),
+  ].sort((a, b) => b.count - a.count);
   const spaceAlbums = getSpaceAlbumGroups(wallpapers).map(group => ({
     id: `space-${group.id}`,
     label: taxonomyLabel(group.tag || "space", locale, group.tag ? "tag" : "category"),
