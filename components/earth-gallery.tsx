@@ -12,6 +12,8 @@ import { resizeBingImage } from "@/lib/bing-image";
 import { createEarthZoomNavigation, EARTH_MIN_DISTANCE, EARTH_MAX_DISTANCE, type EarthZoomAnchor } from "@/lib/earth-navigation";
 import { earthRenderQuality } from "@/lib/earth-render-quality";
 import { createEarthInertia } from "@/lib/earth-inertia";
+import { useIsomorphicLayoutEffect } from "@/lib/isomorphic-effect";
+import { animateSharedImage, type CornerRadii } from "@/lib/shared-image-transition";
 import { createStarfield } from "@/lib/starfield";
 import { loadEarthSurface } from "@/lib/earth-surface";
 import { spaceOrbitLayout } from "@/lib/space-orbit-layout";
@@ -53,6 +55,7 @@ type ReturnImageOrigin = {
   top: number;
   width: number;
   height: number;
+  radius?: number | CornerRadii;
   createdAt: number;
 };
 
@@ -83,7 +86,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
   const [error, setError] = useState(false);
   const [retry, setRetry] = useState(0);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     try {
       const source = sessionStorage.getItem("earth-return-path");
       sessionStorage.removeItem("earth-return-path");
@@ -129,70 +132,16 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
     } catch { /* Returning to the Earth page still works if storage is unavailable. */ }
   }, []);
 
-  useEffect(() => {
+  const consumedReturnImageOrigin = useRef<ReturnImageOrigin | null>(null);
+
+  useIsomorphicLayoutEffect(() => {
     const image = lightbox?.album.images[lightbox.index];
-    if (!returnImageOrigin || !image || image.id !== returnImageOrigin.imageId) return;
+    if (!returnImageOrigin || consumedReturnImageOrigin.current === returnImageOrigin) return;
+    if (!image || image.id !== returnImageOrigin.imageId) return;
     const target = stage.current?.querySelector<HTMLImageElement>(".earth-lightbox-image");
     if (!target) return;
-    const overlay = document.createElement("img");
-    overlay.src = returnImageOrigin.src;
-    Object.assign(overlay.style, {
-      position: "fixed",
-      zIndex: "9999",
-      left: `${returnImageOrigin.left}px`,
-      top: `${returnImageOrigin.top}px`,
-      width: `${returnImageOrigin.width}px`,
-      height: `${returnImageOrigin.height}px`,
-      objectFit: "contain",
-      borderRadius: "0px",
-      pointerEvents: "none",
-      willChange: "left, top, width, height, border-radius",
-      boxShadow: "0 20px 70px rgba(0,0,0,.35)",
-    });
-    let animation: Animation | undefined;
-    let animationFrame = 0;
-    let active = true;
-    let started = false;
-    const restoreTarget = () => {
-      overlay.remove();
-      target.style.visibility = "";
-    };
-    const start = () => {
-      if (started || !active) return;
-      started = true;
-      animationFrame = requestAnimationFrame(() => {
-        if (!active) return;
-        const rect = target.getBoundingClientRect();
-        if (!rect.width || !rect.height) {
-          restoreTarget();
-          setReturnImageOrigin(null);
-          return;
-        }
-        target.style.visibility = "hidden";
-        animation = overlay.animate([
-          { left: `${returnImageOrigin.left}px`, top: `${returnImageOrigin.top}px`, width: `${returnImageOrigin.width}px`, height: `${returnImageOrigin.height}px`, borderRadius: "0px" },
-          { left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px`, borderRadius: "9px" },
-        ], { duration: 720, easing: "cubic-bezier(.22,1,.36,1)" });
-        animation.addEventListener("finish", () => {
-          restoreTarget();
-          if (active) setReturnImageOrigin(null);
-        }, { once: true });
-        animation.addEventListener("cancel", restoreTarget, { once: true });
-      });
-    };
-    overlay.addEventListener("load", start, { once: true });
-    overlay.addEventListener("error", () => {
-      restoreTarget();
-      if (active) setReturnImageOrigin(null);
-    }, { once: true });
-    document.body.append(overlay);
-    if (overlay.complete && overlay.naturalWidth) start();
-    return () => {
-      active = false;
-      cancelAnimationFrame(animationFrame);
-      animation?.cancel();
-      restoreTarget();
-    };
+    consumedReturnImageOrigin.current = returnImageOrigin;
+    return animateSharedImage(target, returnImageOrigin, { targetRadius: 9 });
   }, [lightbox, returnImageOrigin]);
 
   useEffect(() => {
@@ -1000,6 +949,7 @@ export default function EarthGallery({ albums, spaceAlbums, locale, initialView 
             top: rect.top,
             width: rect.width,
             height: rect.height,
+            radius: 9,
             createdAt: Date.now(),
           }));
           sessionStorage.setItem("earth-gallery-return-state", JSON.stringify({

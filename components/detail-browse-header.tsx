@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import SmartBackButton from "@/components/smart-back-button";
 import ThemeSwitcher from "@/components/theme-switcher";
 import { slideshowReturnKey } from "@/lib/slideshow-return";
+import { clippedCornerRadii } from "@/lib/shared-image-transition";
 import { favoriteLabels } from "@/lib/favorite-labels";
 import EarthGalleryLink from "@/components/earth-gallery-link";
 import { localeLabels, locales, localizePath, type Locale } from "@/lib/i18n";
@@ -47,6 +48,7 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
           top: rect.top,
           width: rect.width,
           height: rect.height,
+          radius: clippedCornerRadii(image),
           createdAt: Date.now(),
         }));
       } catch { /* Returning still works when storage is unavailable. */ }
@@ -73,6 +75,7 @@ export default function DetailBrowseHeader({ languagePaths }: { languagePaths: R
                         top: rect.top,
                         width: rect.width,
                         height: rect.height,
+                        radius: clippedCornerRadii(image),
                         createdAt: Date.now(),
                       }));
                     } catch { /* Returning still works when storage is unavailable. */ }

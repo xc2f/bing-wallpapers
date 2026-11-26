@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { localizePath, type Locale } from "@/lib/i18n";
+import { clippedCornerRadii } from "@/lib/shared-image-transition";
 
 const labels: Record<Locale, string> = {
   zh: "地球图集", en: "Explore Earth", es: "Atlas terrestre", fr: "Atlas terrestre",
@@ -24,6 +25,7 @@ export default function EarthGalleryLink({ locale, label }: { locale: Locale; la
             top: rect.top,
             width: rect.width,
             height: rect.height,
+            radius: clippedCornerRadii(image),
             createdAt: Date.now(),
           }));
         }
